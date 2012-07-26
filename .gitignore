@@ -6,6 +6,7 @@
 
 # Ignore bundler config
 /.bundle
+bundler
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -23,10 +24,10 @@ capybara-*.html
 /vendor/bundle
 /log/*
 /tmp/*
-/db/*.sqlite3
 /public/system/*
 /coverage/
 /spec/tmp/*
 **.orig
 rerun.txt
 pickle-email-*.html
+config/database.yml
