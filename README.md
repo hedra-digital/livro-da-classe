@@ -10,7 +10,7 @@ Requirements
 
 1) Generate a SSH private key
 
-	assh-keygen -t rsa -C "your_email@youremail.com"
+	ssh-keygen -t rsa -C "your_email@youremail.com"
 
 2) Copy your key to the clipboard
 
