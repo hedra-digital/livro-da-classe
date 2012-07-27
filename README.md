@@ -7,7 +7,7 @@ Requirements
 * Git
 
 
-# Core tools setup guide (Linux)
+## Core tools setup guide (Linux)
 
 1) Install needed tools
 
@@ -23,6 +23,7 @@ Requirements
 	source ~/.bashrc
 
 4) Configure PostgreSQL
+
 	sudo su - postgres
 	psql -d postgres -U postgres
 		postgres=# alter user postgres with password 's0meth1ng'; ALTER ROLE
@@ -30,7 +31,7 @@ Requirements
 	sudo /etc/init.d/postgresql restart
 
 
-# Clone git repository and Rails setup guide
+## Clone git repository and Rails setup guide
 
 1) Generate a SSH private key
 
