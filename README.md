@@ -62,3 +62,7 @@ Requirements
 7) Download all current project files
 
 	git pull
+
+8) Install Rails dependencies
+
+	bundle install
