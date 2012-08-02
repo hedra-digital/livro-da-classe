@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @text.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @text.content %>
+</p>
+
+<p>
+  <b>Books:</b>
+  <%= @text.books.map {|x| x.to_label}.join ', ' %>
+</p>
+
+<%= link_to 'Edit', edit_text_path(@text) %> |
+<%= link_to 'Back', texts_path %>
