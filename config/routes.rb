@@ -1,7 +1,11 @@
 LivroDaClasse::Application.routes.draw do
-  resources :texts
-  resources :books
   resources :schools
+
+  resources :people
+
+  resources :texts
+
+  resources :books
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

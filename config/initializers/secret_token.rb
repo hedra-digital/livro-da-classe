@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-LivroDaClasse::Application.config.secret_token = '296994ab2a401c7dddc2a8957513c989f80b87f3a736af40bdb70f63b00860377d2259096af70d2390f9e2b08b7806183f8f5fa26629a7e8582e176223776478'
+LivroDaClasse::Application.config.secret_token = 'cb19ed3ff077a6b50316d48e1c7d3a1480b33a7473cf6a9b4d555b578b5e07eab50e85f1d9fb71eb00ef688e0476f22d18d9d444f77f14a7056b74a9d1235387'

@@ -1,8 +1,5 @@
 class Book < ActiveRecord::Base
-  attr_accessible :title, :school_id
-
-  belongs_to :school
-  has_many :assignments
-  has_many :texts, through: :assignments
-
+  attr_accessible :published_at, :title
+  has_and_belongs_to_many :texts
+  belongs_to :school, :inverse_of => :books
 end

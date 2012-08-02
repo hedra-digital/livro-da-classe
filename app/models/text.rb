@@ -1,7 +1,5 @@
 class Text < ActiveRecord::Base
-  attr_accessible :author, :content, :title
-
-  has_many :assignments
-  has_many :books, through: :assignments
-  
+  attr_accessible :content, :title
+  has_and_belongs_to_many :books
+  has_and_belongs_to_many :person
 end
