@@ -3,6 +3,7 @@
 <table class="table table-striped">
   <tr>
     <th>Title</th>
+    <th>Has Texts</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,6 +12,7 @@
 <% @books.each do |book| %>
   <tr>
     <td><%= book.title %></td>
+    <td><%= raw book.texts.map {|x| x.to_label}.join ', ' %></td>
     <td><%= link_to 'Show', book %></td>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -20,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Book', new_book_path %>
+<%= link_to 'New Book', new_book_path, :class => 'btn btn-primary' %>

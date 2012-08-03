@@ -1,19 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @text.title %>
-</p>
+<h2>Title</h2>
+	<p><%= @text.title %></p>
 
-<p>
-  <b>Content:</b>
-  <%= @text.content %>
-</p>
+<h2>Content</h2>
+	<p><%= @text.content %></p>
 
-<p>
-  <b>Books:</b>
-  <%= @text.books.map {|x| x.to_label}.join ', ' %>
-</p>
+<h2>In Books</h2>
+	<p><%= raw @text.books.map {|x| x.to_label}.join ', ' %></p>
 
 <%= link_to 'Edit', edit_text_path(@text) %> |
 <%= link_to 'Back', texts_path %>

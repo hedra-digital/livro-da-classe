@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @book.title %>
-</p>
+<h2>Title</h2>
+  <p><%= @book.title %></p>
 
+<h2>Has Texts</h2>
+  <p><%= raw @book.texts.map {|x| x.to_label}.join ', ' %></p>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
