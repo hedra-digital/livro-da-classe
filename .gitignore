@@ -32,4 +32,5 @@ rerun.txt
 pickle-email-*.html
 /config/database.yml
 /config/config.yml
+.env
 .DS_Store
