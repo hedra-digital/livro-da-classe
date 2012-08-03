@@ -11,8 +11,8 @@
 
 <% @texts.each do |text| %>
   <tr>
-    <td><%= text.title %></td>
-    <td><%= text.books.map {|x| x.to_label}.join ', ' %></td>
+    <td style="width:300px;"><%= link_to text.title, text %></td>
+    <td style="width:200px;"><%= text.books.map {|x| x.to_label}.join ', ' %></td>
     <td><%= link_to 'Show', text %></td>
     <td><%= link_to 'Edit', edit_text_path(text) %></td>
     <td><%= link_to 'Destroy', text, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -22,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Text', new_text_path %>
+<%= link_to 'New Text', new_text_path, :class => 'btn' %>
