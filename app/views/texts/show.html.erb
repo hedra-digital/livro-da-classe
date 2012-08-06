@@ -9,5 +9,8 @@
 <h2>In Books</h2>
 	<p><%= raw @text.books.map {|x| x.to_label}.join ', ' %></p>
 
+<h2>LaTeX</h2>
+	<%= kramdown @text.content %>
+
 <%= link_to 'Edit', edit_text_path(@text) %> |
 <%= link_to 'Back', texts_path %>
