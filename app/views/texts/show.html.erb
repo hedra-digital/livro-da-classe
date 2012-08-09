@@ -1,16 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h2>Title</h2>
-	<p><%= @text.title %></p>
+<p><%= @text.title %></p>
 
 <h2>Content</h2>
-	<p><%= @text.content %></p>
+<p><%= @text.content %></p>
 
 <h2>In Books</h2>
-	<p><%= raw @text.books.map {|x| x.to_label}.join ', ' %></p>
+<p><%= raw @text.books.map {|x| x.to_label}.join ', ' %></p>
 
 <h2>LaTeX</h2>
-	<%= kramdown @text.content %>
+<p><%= kramdown @text.content %></p>
 
 <%= link_to 'Edit', edit_text_path(@text) %> |
 <%= link_to 'Back', texts_path %>

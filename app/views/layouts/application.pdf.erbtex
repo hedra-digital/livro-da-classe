@@ -1,0 +1,28 @@
+\documentclass{template}
+
+<% @latex_config={:command => 'xelatex',:parse_twice => true} %>
+
+\begin{document}
+
+\include{ROSTO}
+\include{CREDITOS}
+%\include{AGRADE}
+
+\cleardoublepage
+
+\tableofcontents*
+
+\cleardoublepage
+
+\pagestyle{plain}
+\copypagestyle{chapter}{plain}
+
+\openany
+
+<%= yield %>
+
+\openright
+
+\include{COLOFAO}
+
+\end{document}

@@ -80,6 +80,8 @@ GEM
       activesupport (= 3.2.6)
       bundler (~> 1.0)
       railties (= 3.2.6)
+    rails-latex (1.0.10)
+      rails (>= 3.0.0)
     railties (3.2.6)
       actionpack (= 3.2.6)
       activesupport (= 3.2.6)
@@ -119,6 +121,7 @@ DEPENDENCIES
   kramdown
   pg
   rails (= 3.2.6)
+  rails-latex
   sass-rails (~> 3.2.3)
   simple_form!
   uglifier (>= 1.0.3)
