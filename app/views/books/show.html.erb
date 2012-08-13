@@ -6,8 +6,12 @@
 <h2>Has Texts</h2>
 <p><%= raw @book.texts.map {|x| x.to_label}.join ', ' %></p>
 
-<h2>LaTeX</h2>
-<p><%= link_to "Print", book_path(@book,:format => :pdf) %></p>
+<h2>Full Text</h2>
+<% @book.texts.each do |text| %>
+<ul>
+	<li><%= text.title  %></li>
+	<li><%= text.content  %></li>
+</ul>
+<% end %>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<%= link_to 'Edit', edit_book_path(@book) %> | <%= link_to 'Back', books_path %>

@@ -4,9 +4,8 @@
 
 \begin{document}
 
-\include{ROSTO}
-\include{CREDITOS}
-%\include{AGRADE}
+<%= render 'rosto' %>
+<%= render 'creditos' %>
 
 \cleardoublepage
 
@@ -23,6 +22,6 @@
 
 \openright
 
-\include{COLOFAO}
+<%= render 'colofao' %>
 
 \end{document}
