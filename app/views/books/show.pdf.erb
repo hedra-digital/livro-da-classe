@@ -1,1 +1,4 @@
-<%= lesc @book %>
+<% @book.texts.each do |text| %>
+\chapter{<%= text.title  %>}
+<%= kramdown text.content  %>
+<% end %>

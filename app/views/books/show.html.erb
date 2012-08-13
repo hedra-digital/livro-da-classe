@@ -14,4 +14,6 @@
 </ul>
 <% end %>
 
-<%= link_to 'Edit', edit_book_path(@book) %> | <%= link_to 'Back', books_path %>
+<h2>LaTeX</h2>
+
+<%= link_to "Print", book_path(:format => :pdf) %> | <%= link_to 'Edit', edit_book_path(@book) %> | <%= link_to 'Back', books_path %>
