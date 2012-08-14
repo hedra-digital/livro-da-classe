@@ -17,7 +17,7 @@
 <h2>LaTeX</h2>
 <%= full_text(@book) %>
 <br>
-
+<br>
 <%= lesc full_text(@book) %>
 
 <%= link_to "Print", book_path(:format => :pdf) %> | <%= link_to 'Edit', edit_book_path(@book) %> | <%= link_to 'Back', books_path %>
