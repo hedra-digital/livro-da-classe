@@ -25,6 +25,7 @@ gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 gem 'kramdown'
 gem 'draper'
 gem 'rails-latex'
+gem 'pry'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
