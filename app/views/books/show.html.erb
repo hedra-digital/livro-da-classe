@@ -9,15 +9,9 @@
 <h2>Full Text</h2>
 <% @book.texts.each do |text| %>
 <ul>
-	<li><%= text.title  %></li>
+	<li><strong><%= text.title  %></strong></li>
 	<li><%= text.content  %></li>
 </ul>
 <% end %>
-
-<h2>LaTeX</h2>
-<%= full_text(@book) %>
-<br>
-<br>
-<%= lesc full_text(@book) %>
 
 <%= link_to "Print", book_path(:format => :pdf) %> | <%= link_to 'Edit', edit_book_path(@book) %> | <%= link_to 'Back', books_path %>
