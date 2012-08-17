@@ -1,13 +1,26 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'bundler/capistrano'
 
-set :scm, :subversion
+set :application, "livro-da-classe"
+set :repository,  "git@github.com:hedra-digital/livro-da-classe.git"
+
+set :scm, :git
+set :user, 'deploy'
+
+ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "livrodaclasse_rsa")]
+
+set :use_sudo, false
+
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :deploy_to, "/home/deploy/apps/livrodaclasse"
+set :deploy_via, 'copy'
+
+default_run_options[:pty] = true
+
+role :web, "livrodaclasse.com.br"                          # Your HTTP server, Apache/etc
+role :app, "livrodaclasse.com.br"                          # This may be the same as your `Web` server
+role :db,  "livrodaclasse.com.br", :primary => true 	   # This is where Rails migrations will run
+
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
@@ -23,3 +36,18 @@ role :db,  "your slave db-server here"
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
+
+after 'deploy:update_code', 'deploy:symlink_db'
+
+namespace :deploy do
+  desc "Symlinks the database.yml"
+  task :symlink_db, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+  end
+end
+
+namespace :deploy do
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+end
