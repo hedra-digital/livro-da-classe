@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all
+    @texts = Text.all
 
     respond_to do |format|
       format.html # index.html.erb

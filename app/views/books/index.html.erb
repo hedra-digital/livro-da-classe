@@ -1,4 +1,6 @@
-<h1>Listing books</h1>
+<h1>Livro da Classe</h1>
+
+<h2>Listing books</h2>
 
 <table class="table table-striped">
   <tr>
@@ -23,3 +25,31 @@
 <br />
 
 <%= link_to 'New Book', new_book_path, :class => 'btn btn-primary' %>
+
+<br /><br />
+
+<h2>Listing texts</h2>
+
+<table class="table table-striped">
+  <tr>
+    <th>Title</th>
+    <th>In Books</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @texts.each do |text| %>
+  <tr>
+    <td><%= link_to text.title, text %></td>
+    <td><%= raw text.books.map {|x| x.to_label}.join ', ' %></td>
+    <td><%= link_to 'Show', text %></td>
+    <td><%= link_to 'Edit', edit_text_path(text) %></td>
+    <td><%= link_to 'Destroy', text, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Text', new_text_path, :class => 'btn btn-primary' %>
