@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @text %> |
-<%= link_to 'Back', texts_path %>
+<% if session['admin_logged'] %>
+	<%= link_to 'Return to admin area', admin_path %> 
+<% end %>

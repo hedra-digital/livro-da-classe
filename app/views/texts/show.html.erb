@@ -1,3 +1,4 @@
+<h1>Editing Text</h1>
 <p id="notice"><%= notice %></p>
 
 <h2>Title</h2>
@@ -12,5 +13,6 @@
 <h2>LaTeX</h2>
 <p><%= k_to_latex @text.content %></p>
 
-<%= link_to 'Edit', edit_text_path(@text) %> |
-<%= link_to 'Back', texts_path %>
+<% if session['admin_logged'] %>
+	<%= link_to 'Return to admin area', admin_path %> 
+<% end %>

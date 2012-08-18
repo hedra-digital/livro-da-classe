@@ -15,9 +15,9 @@
   <tr>
     <td><%= book.title %></td>
     <td><%= raw book.texts.map {|x| x.to_label}.join ', ' %></td>
-    <td><%= link_to 'Show', book %></td>
-    <td><%= link_to 'Edit', edit_book_path(book) %></td>
-    <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', book_path(book.uuid) %></td>
+    <td><%= link_to 'Edit', edit_book_path(book.uuid) %></td>
+    <td><%= link_to 'Destroy', book_path(book.uuid), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
@@ -43,9 +43,9 @@
   <tr>
     <td><%= link_to text.title, text %></td>
     <td><%= raw text.books.map {|x| x.to_label}.join ', ' %></td>
-    <td><%= link_to 'Show', text %></td>
-    <td><%= link_to 'Edit', edit_text_path(text) %></td>
-    <td><%= link_to 'Destroy', text, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', text_path(text.uuid) %></td>
+    <td><%= link_to 'Edit', edit_text_path(text.uuid) %></td>
+    <td><%= link_to 'Destroy', text_path(text.uuid), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

@@ -2,5 +2,9 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @book %> |
-<%= link_to 'Back', books_path %>
+<%= link_to 'Show', @book %>
+
+
+<% if session['admin_logged'] %>
+	<p><%= link_to 'Return to admin area', admin_path %> </p>
+<% end %>

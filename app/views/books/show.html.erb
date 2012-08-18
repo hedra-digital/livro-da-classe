@@ -14,4 +14,8 @@
 </ul>
 <% end %>
 
-<%= link_to "Print", book_path(:format => :pdf) %> | <%= link_to 'Edit', edit_book_path(@book) %> | <%= link_to 'Back', books_path %>
+<p><%= link_to "Print", book_path(:format => :pdf) %> | <%= link_to 'Edit', edit_book_path(@book) %> </p>
+
+<% if session['admin_logged'] %>
+<p>	<%= link_to 'Return to admin area', admin_path %> </p>
+<% end %>
