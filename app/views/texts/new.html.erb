@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 <%= simple_form_for(@text) do |f| %>
+=======
+<h1>New text</h1>
+
+<div>
+<%= simple_form_for([@book, @text]) do |f| %>
+>>>>>>> 661bcac4c1bc10d5c981e28f743f5e1c24fcb85d
   <%= f.error_notification %>
   <%= content_tag :p, 'Informe seu nome completo para criar um texto no livro.' %>
   <div class="form-inputs">

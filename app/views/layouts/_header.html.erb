@@ -2,20 +2,25 @@
 
 	<%= content_tag :div, :id => 'navigation' do %>
 		logado como <strong><%= logged_in_as %></strong> 
-		<% if session['student_logged'] && @text.present? && @text.finished_at.nil?%>
-			&middot;<%= link_to 'finalizar texto', finish_text_path(@text.uuid) %>
+		<% if session['student_logged'] && @text.present? && @text.id.present? && @text.finished_at.nil?%>
+			&middot;<%= link_to 'finalizar texto', finish_book_text_path(@book.uuid, @text.uuid) %>
 		<% end %>		
 		<% if session['professor_logged'] && @book.present? && @book.finished_at.nil?%>
 			&middot;<%= link_to 'finalizar livro', finish_book_path(@book.uuid) %>
 		<% end %>
 		<%= link_to 'sair', logout_path, :class => 'logout' %>
 	<% end %>
+<<<<<<< HEAD
 	<% if session['admin_logged'] %>
 		<%= content_tag :h1, 'Livro da Classe' %>
 		<%= content_tag :h2, 'Administrador' %>
 	<% end %>
 	<% if session['professor_logged'] && @book.present? %>
 		<%= content_tag :h1, @book.school.name %>
+=======
+	<% if ['professor_logged'] && @book.present? %>
+		<%= content_tag :h1, @book.school.name rescue "No School" %>
+>>>>>>> 661bcac4c1bc10d5c981e28f743f5e1c24fcb85d
 		<%= content_tag :h2, @book.title, :class => 'livro-titulo' %>
 	<% end %>
 

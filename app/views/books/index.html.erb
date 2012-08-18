@@ -6,14 +6,14 @@
     <th>Has Texts</th>
     <th></th>
     <th></th>
-    <th></th>
+
   </tr>
 
 <% @books.each do |book| %>
   <tr>
-    <td><%= book.title %></td>
+    <td><%= link_to book.title, book_path(book.uuid) %></td>
     <td><%= raw book.texts.map {|x| x.to_label}.join ', ' %></td>
-    <td><%= link_to 'Show', book_path(book.uuid) %></td>
+    <!-- <td><%= link_to 'Show', book_path(book.uuid) %></td> -->
     <td><%= link_to 'Edit', edit_book_path(book.uuid) %></td>
     <td><%= link_to 'Destroy', book_path(book.uuid), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
@@ -26,7 +26,7 @@
 
 <br /><br />
 
-<h2>Listing texts</h2>
+<!-- <h2>Listing texts</h2>
 
 <table class="table table-striped">
   <tr>
@@ -50,7 +50,7 @@
 
 <br />
 
-<%= link_to 'New Text', new_text_path, :class => 'btn btn-primary' %>
+<%= link_to 'New Text', new_text_path, :class => 'btn btn-primary' %> -->
 
 <br /><br />
 
