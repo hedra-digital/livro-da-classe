@@ -7,6 +7,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @texts = Text.all
+    @schools = School.all
     session['admin_logged'] = true;
 
     respond_to do |format|
