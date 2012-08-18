@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120802161724) do
+ActiveRecord::Schema.define(:version => 20120818022459) do
 
   create_table "books", :force => true do |t|
     t.string   "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20120802161724) do
     t.integer  "school_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "uuid"
   end
 
   create_table "books_texts", :id => false, :force => true do |t|
@@ -48,6 +49,15 @@ ActiveRecord::Schema.define(:version => 20120802161724) do
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "uuid"
   end
+
+  create_table "uuids", :force => true do |t|
+    t.string  "uuid"
+    t.integer "uuidable_id"
+    t.string  "uuidable_type", :limit => 40
+  end
+
+  add_index "uuids", ["uuidable_id", "uuidable_type"], :name => "index_uuids_on_uuidable_id_and_uuidable_type"
 
 end
