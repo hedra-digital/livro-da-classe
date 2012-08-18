@@ -1,11 +1,5 @@
 @import "bootstrap";
 
-body {
-}
-
-h1 {
-}
-
 #header {
   position: relative;
   padding: 20px 30px;
@@ -21,13 +15,13 @@ h1 {
   text-align: right;
 }
 
-.livro-titulo:before {
-  content: "Livro\: ";
-  color: #999;
+#header h2 {
+  color: #757575;  
 }
 
-.livro-titulo {
-  color: #757575;
+h2.livro-titulo:before {
+  content: "Livro\: ";
+  color: #999;
 }
 
 .logout {

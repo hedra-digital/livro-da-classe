@@ -1,9 +1,6 @@
-<h1>New text</h1>
-
-<div>
 <%= simple_form_for(@text) do |f| %>
   <%= f.error_notification %>
-
+  <%= content_tag :p, 'Informe seu nome completo para criar um texto no livro.' %>
   <div class="form-inputs">
     <%= f.input :author_name %>    
   </div>
@@ -12,6 +9,5 @@
     <%= f.button :submit %>
   </div>
 <% end %>
-</div>
 
-<%= link_to 'Back', texts_path %>
+<%= link_to 'Ver lista geral de textos do livro', texts_path %>
