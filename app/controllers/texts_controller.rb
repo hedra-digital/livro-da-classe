@@ -37,7 +37,7 @@ class TextsController < ApplicationController
   def create
     @book = Book.find(params[:book_id])
     @text = Text.new(params[:text])    
-    @text.book_ids << Book.find(session['current_book'])
+    @text.books << Book.find(session['current_book'])
 
     respond_to do |format|
       if @text.save
@@ -55,7 +55,7 @@ class TextsController < ApplicationController
   def update
     respond_to do |format|
       if @text.update_attributes(params[:text])
-        format.html { redirect_to @text, notice: 'Text was successfully updated.' }
+        format.html { redirect_to book_text_path(@book.uuid, @text.uuid), notice: 'Text was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

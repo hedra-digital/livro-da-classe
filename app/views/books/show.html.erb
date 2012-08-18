@@ -15,8 +15,11 @@
 <h2>Full Text</h2>
 <% @book.texts.each do |text| %>
 <ul>
-	<li><strong><%= link_to(text.title, book_text_path(@book.uuid, text.uuid))  %></strong></li>
-	<li><%= text.content  %></li>
+	<li class="item">
+    <div class="text_person"><%= person_name_for(text) %></div>
+    <div class="text_chars"><strong>Palavras: <%= words_per_text(text.content) %></strong></div>
+    <div class="text_finished"><%= text_status_for(text) %></div>
+    <div class="text_link"><%= link_to("ver texto", book_text_path(@book.uuid, text.uuid))  %></div>  
 </ul>
 <% end %>
 
@@ -25,3 +28,11 @@
 <% if session['admin_logged'] %>
 <p>	<%= link_to 'Return to admin area', admin_path %> </p>
 <% end %>
+
+<style type="text/css">
+  .item { background-color: #eee; padding: 10px; list-style-type: none;}
+  .item div { display: inline-block; padding: 10px;}
+  .text_person { display: block; font-size: 22px;}
+  .text_link { background-color: #ddd;}
+  .text_chars { display: block;}
+</style>
