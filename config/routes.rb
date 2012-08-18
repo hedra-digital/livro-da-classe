@@ -10,7 +10,7 @@ LivroDaClasse::Application.routes.draw do
   end
 
   resources :books do
-  member do 
+    member do 
       get 'finish'
     end
   end

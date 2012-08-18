@@ -11,17 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-
-#navigation {
-	padding: 10px;
-	text-align: right;
-	background: #eee;
-	margin-bottom: 5px;
-	font-size: 12px;
-}
-
-.logout {
-		padding: 5px;
-		background: #ddd;
-}

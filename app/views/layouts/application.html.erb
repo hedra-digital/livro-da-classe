@@ -7,22 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="navigation">
-	logado como <strong><%= logged_in_as %></strong> 
-	
-	<% if session['student_logged'] && @text.present? && @text.finished_at.nil?%>
-		&middot;<%= link_to 'finalizar texto', finish_text_path(@text.uuid) %>
+	<%= render 'layouts/header' %>
+	<%= content_tag :div, :id => 'main' do %>
+	<%= yield %>
 	<% end %>
-	
-	<% if session['professor_logged'] && @book.present? && @book.finished_at.nil?%>
-		&middot;<%= link_to 'finalizar livro', finish_book_path(@book.uuid) %>
-	<% end %>
-
-
-	<%= link_to 'sair', logout_path, :class => 'logout' %>
-</div>
-
-<%= yield %>
-
 </body>
 </html>
