@@ -1,9 +1,11 @@
 class Text < ActiveRecord::Base
-	attr_accessible :content, :title, :book_ids
-	has_and_belongs_to_many :books
-	has_and_belongs_to_many :person
+	attr_accessor 						:author_name
+	attr_accessible 					:content, :title, :book_ids, :author_name
+	has_and_belongs_to_many 	:books
+	has_and_belongs_to_many 	:person
 
-	before_save :set_uuid
+	before_save 							:set_uuid
+	before_save 							:create_author_if_required
 
 	def to_label
 		"#{title}"
@@ -19,6 +21,12 @@ class Text < ActiveRecord::Base
 
 	def set_uuid
 		 self.uuid = Guid.new.to_s if self.uuid.nil?
+	end
+
+	def create_author_if_required
+		if self.author_name.present?
+			self.person << Person.create(:name => self.author_name)
+		end
 	end
 
 end

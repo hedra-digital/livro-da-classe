@@ -15,17 +15,23 @@ class TextsController < ApplicationController
   # GET /texts/1
   # GET /texts/1.json
   def show
-  session['student_logged'] = true if session['professor_logged'].nil?
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @text }
+    session['student_logged'] = true if session['professor_logged'].nil?
+    if @text.title.nil? || @text.content.nil?
+      redirect_to edit_text_path(@text.uuid)
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @text }
+      end
     end
   end
 
   # GET /texts/new
   # GET /texts/new.json
   def new
-    @text = Text.new
+    @book                   = Book.find_by_uuid_or_id(params[:book_id])    
+    session['current_book'] = @book.id if @book.present?
+    @text                   = Text.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,16 +41,18 @@ class TextsController < ApplicationController
 
   # GET /texts/1/edit
   def edit
+    session['student_logged'] = true if session['professor_logged'].nil?    
   end
 
   # POST /texts
   # POST /texts.json
   def create
-    @text = Text.new(params[:text])
+    @text = Text.new(params[:text])    
+    @text.book_ids << Book.find(session['current_book'])
 
     respond_to do |format|
       if @text.save
-        format.html { redirect_to @text, notice: 'Text was successfully created.' }
+        format.html { redirect_to edit_text_path(@text.uuid), notice: 'Text was successfully created.' }
         format.json { render json: @text, status: :created, location: @text }
       else
         format.html { render action: "new" }
@@ -74,7 +82,7 @@ class TextsController < ApplicationController
     @text.destroy
 
     respond_to do |format|
-      format.html { redirect_to texts_url }
+      format.html { redirect_to "/admin" }
       format.json { head :no_content }
     end
   end

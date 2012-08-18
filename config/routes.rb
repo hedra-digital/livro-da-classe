@@ -15,6 +15,7 @@ LivroDaClasse::Application.routes.draw do
     end
   end
 
+  match 'welcome/:book_id' => "texts#new", :as => :welcome
 
   match 'admin'   => "books#index", :as => :admin
   match 'logout'  => "application#logout", :as => :logout
