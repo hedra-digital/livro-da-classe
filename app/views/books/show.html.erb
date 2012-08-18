@@ -9,12 +9,12 @@
 <h2>Full Text</h2>
 <% @book.texts.each do |text| %>
 <ul>
-	<li><strong><%= text.title  %></strong></li>
+	<li><strong><%= link_to(text.title, text_path(text.uuid))  %></strong></li>
 	<li><%= text.content  %></li>
 </ul>
 <% end %>
 
-<p><%= link_to "Print", book_path(:format => :pdf) %> | <%= link_to 'Edit', edit_book_path(@book) %> </p>
+<p><%= link_to "Print", book_path(:format => :pdf) %> | <%= link_to 'Edit', edit_book_path(@book.uuid) %> </p>
 
 <% if session['admin_logged'] %>
 <p>	<%= link_to 'Return to admin area', admin_path %> </p>

@@ -15,7 +15,7 @@ class TextsController < ApplicationController
   # GET /texts/1
   # GET /texts/1.json
   def show
-
+  session['student_logged'] = true if session['professor_logged'].nil?
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @text }

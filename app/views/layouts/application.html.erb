@@ -7,6 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="navigation">
+	logado como <strong><%= logged_in_as %></strong>
+	<%= link_to 'sair', logout_path, :class => 'logout' %>
+</div>
 
 <%= yield %>
 

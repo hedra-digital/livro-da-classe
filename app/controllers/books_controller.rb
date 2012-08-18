@@ -18,6 +18,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    session['professor_logged'] = true;
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @book }

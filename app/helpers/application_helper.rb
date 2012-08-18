@@ -16,4 +16,14 @@ def lesc(text)
 	LatexToPdf.escape_latex(text)
 end
 
+def logged_in_as
+	if session['admin_logged'].present?
+		return "admin"
+	elsif session['professor_logged'].present?
+		return "professor"
+	elsif session['student_logged'].present?
+		return "estudante"
+	end
+end
+
 end
