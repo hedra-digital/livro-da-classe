@@ -1,4 +1,6 @@
 class TextsController < ApplicationController
+  before_filter :find_resource, :only => [:show, :edit, :update, :destroy]
+
   # GET /texts
   # GET /texts.json
   def index
@@ -13,7 +15,6 @@ class TextsController < ApplicationController
   # GET /texts/1
   # GET /texts/1.json
   def show
-    @text = Text.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +35,6 @@ class TextsController < ApplicationController
 
   # GET /texts/1/edit
   def edit
-    @text = Text.find(params[:id])
   end
 
   # POST /texts
@@ -56,7 +56,6 @@ class TextsController < ApplicationController
   # PUT /texts/1
   # PUT /texts/1.json
   def update
-    @text = Text.find(params[:id])
 
     respond_to do |format|
       if @text.update_attributes(params[:text])
@@ -72,12 +71,17 @@ class TextsController < ApplicationController
   # DELETE /texts/1
   # DELETE /texts/1.json
   def destroy
-    @text = Text.find(params[:id])
     @text.destroy
 
     respond_to do |format|
       format.html { redirect_to texts_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  
+  def find_resource
+    @text = Text.find_by_uuid_or_id(params[:id])
   end
 end
