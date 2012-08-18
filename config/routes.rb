@@ -9,7 +9,12 @@ LivroDaClasse::Application.routes.draw do
     end
   end
 
-  resources :books
+  resources :books do
+  member do 
+      get 'finish'
+    end
+  end
+
 
   match 'admin'   => "books#index", :as => :admin
   match 'logout'  => "application#logout", :as => :logout

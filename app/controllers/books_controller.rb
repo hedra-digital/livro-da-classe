@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_filter :authentication_check, :only => [:index]
-  before_filter :find_resource, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_resource, :only => [:show, :edit, :update, :destroy, :finish]
   
   # GET /books
   # GET /books.json
@@ -79,6 +79,14 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to books_url }
       format.json { head :no_content }
+    end
+  end
+
+  def finish
+    @book.update_attribute(:finished_at, Time.now)
+    respond_to do |format|
+      format.html { redirect_to action: "show", notice: 'Book was marked as finished' }
+      format.json { render json: @book.errors, status: :unprocessable_entity }
     end
   end
 

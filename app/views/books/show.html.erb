@@ -1,3 +1,8 @@
+
+<p><% if @book.finished_at.present? %>
+  <em>Book finished at <%=  @book.finished_at %></em>
+<% end %></p>
+
 <p id="notice"><%= notice %></p>
 
 <h2>Title</h2>
