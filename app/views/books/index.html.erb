@@ -26,34 +26,6 @@
 
 <br /><br />
 
-<!-- <h2>Listing texts</h2>
-
-<table class="table table-striped">
-  <tr>
-    <th>Title</th>
-    <th>In Books</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @texts.each do |text| %>
-  <tr>
-    <td><%= link_to text.title, text %></td>
-    <td><%= raw text.books.map {|x| x.to_label}.join ', ' %></td>
-    <td><%= link_to 'Show', text_path(text.uuid) %></td>
-    <td><%= link_to 'Edit', edit_text_path(text.uuid) %></td>
-    <td><%= link_to 'Destroy', text_path(text.uuid), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Text', new_text_path, :class => 'btn btn-primary' %> -->
-
-<br /><br />
-
 <h2>Listing schools</h2>
 
 <table class="table table-striped">
