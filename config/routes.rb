@@ -3,7 +3,11 @@ LivroDaClasse::Application.routes.draw do
 
   resources :people
 
-  resources :texts
+  resources :texts do
+    member do 
+      get 'finish'
+    end
+  end
 
   resources :books
 

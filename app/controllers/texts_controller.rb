@@ -1,5 +1,5 @@
 class TextsController < ApplicationController
-  before_filter :find_resource, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_resource, :only => [:show, :edit, :update, :destroy, :finish]
 
   # GET /texts
   # GET /texts.json
@@ -76,6 +76,14 @@ class TextsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to texts_url }
       format.json { head :no_content }
+    end
+  end
+
+  def finish
+    @text.update_attribute(:finished_at, Time.now)
+    respond_to do |format|
+      format.html { redirect_to action: "show", notice: 'Text was marked as finished' }
+      format.json { render json: @text.errors, status: :unprocessable_entity }
     end
   end
 

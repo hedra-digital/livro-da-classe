@@ -1,4 +1,10 @@
-<h1>Editing Text</h1>
+
+<p><% if @text.finished_at.present? %>
+	<em>Text finished at <%=	@text.finished_at %></em>
+<% end %></p>
+<p>&nbsp;</p>
+<h1><%= link_to 'Edit this text', edit_text_path(@text.uuid) %></h1>
+
 <p id="notice"><%= notice %></p>
 
 <h2>Title</h2>
