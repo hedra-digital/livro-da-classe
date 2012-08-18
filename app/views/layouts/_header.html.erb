@@ -1,15 +1,18 @@
-<%= content_tag :div, :id => 'navigation' do %>
+<%= content_tag :div, :id => 'header' do %>
 
-	logado como <strong><%= logged_in_as %></strong> 
-	
-	<% if session['student_logged'] && @text.present? && @text.finished_at.nil?%>
-		&middot;<%= link_to 'finalizar texto', finish_text_path(@text.uuid) %>
+	<%= content_tag :div, :id => 'navigation' do %>
+		logado como <strong><%= logged_in_as %></strong> 
+		<% if session['student_logged'] && @text.present? && @text.finished_at.nil?%>
+			&middot;<%= link_to 'finalizar texto', finish_text_path(@text.uuid) %>
+		<% end %>		
+		<% if session['professor_logged'] && @book.present? && @book.finished_at.nil?%>
+			&middot;<%= link_to 'finalizar livro', finish_book_path(@book.uuid) %>
+		<% end %>
+		<%= link_to 'sair', logout_path, :class => 'logout' %>
 	<% end %>
-	
-	<% if session['professor_logged'] && @book.present? && @book.finished_at.nil?%>
-		&middot;<%= link_to 'finalizar livro', finish_book_path(@book.uuid) %>
+	<% if ['professor_logged'] && @book.present? %>
+		<%= content_tag :h1, @book.school.name %>
+		<%= content_tag :h2, @book.title, :class => 'livro-titulo' %>
 	<% end %>
-
-	<%= link_to 'sair', logout_path, :class => 'logout' %>
 
 <% end %>

@@ -4,15 +4,30 @@ body {
 }
 
 h1 {
-  margin-bottom: 20px;
+}
+
+#header {
+  position: relative;
+  padding: 20px 30px;
+  background: #eee;
+  font-size: 12px;
+  overflow: auto;
 }
 
 #navigation {
-  padding: 10px;
+  float: right;
+  width: 300px;
+  line-height: 3;
   text-align: right;
-  background: #eee;
-  margin-bottom: 5px;
-  font-size: 12px;
+}
+
+.livro-titulo:before {
+  content: "Livro\: ";
+  color: #999;
+}
+
+.livro-titulo {
+  color: #757575;
 }
 
 .logout {
