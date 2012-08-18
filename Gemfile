@@ -9,7 +9,10 @@ gem 'pg'
 
 gem 'guid'
 
-gem 'pry'
+group :development do
+	gem 'pry'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
