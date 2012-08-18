@@ -34,4 +34,7 @@ LivroDaClasse::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Do not serve static assets
+  config.serve_static_assets = false
 end
