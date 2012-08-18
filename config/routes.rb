@@ -8,9 +8,6 @@ LivroDaClasse::Application.routes.draw do
   resources :books
 
   match 'admin' => "books#index", :as => :admin
-  
-  root :to => "/admin" 
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
