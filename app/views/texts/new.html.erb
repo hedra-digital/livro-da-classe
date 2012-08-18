@@ -1,7 +1,7 @@
 <h1>New text</h1>
 
 <div>
-<%= simple_form_for(@text) do |f| %>
+<%= simple_form_for([@book, @text]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">

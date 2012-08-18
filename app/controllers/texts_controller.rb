@@ -1,23 +1,12 @@
 class TextsController < ApplicationController
   before_filter :find_resource, :only => [:show, :edit, :update, :destroy, :finish]
-
-  # GET /texts
-  # GET /texts.json
-  def index
-    @texts = Text.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @texts }
-    end
-  end
+  before_filter :define_user_level, :only => [:show, :new, :edit]
 
   # GET /texts/1
   # GET /texts/1.json
-  def show
-    session['student_logged'] = true if session['professor_logged'].nil?
+  def show    
     if @text.title.nil? || @text.content.nil?
-      redirect_to edit_text_path(@text.uuid)
+      redirect_to edit_book_text_path(@book.uuid,@text.uuid)
     else
       respond_to do |format|
         format.html # show.html.erb
@@ -41,18 +30,18 @@ class TextsController < ApplicationController
 
   # GET /texts/1/edit
   def edit
-    session['student_logged'] = true if session['professor_logged'].nil?    
   end
 
   # POST /texts
   # POST /texts.json
   def create
+    @book = Book.find(params[:book_id])
     @text = Text.new(params[:text])    
     @text.book_ids << Book.find(session['current_book'])
 
     respond_to do |format|
       if @text.save
-        format.html { redirect_to edit_text_path(@text.uuid), notice: 'Text was successfully created.' }
+        format.html { redirect_to edit_book_text_path(@book.uuid, @text.uuid), notice: 'Text was successfully created.' }
         format.json { render json: @text, status: :created, location: @text }
       else
         format.html { render action: "new" }
@@ -64,7 +53,6 @@ class TextsController < ApplicationController
   # PUT /texts/1
   # PUT /texts/1.json
   def update
-
     respond_to do |format|
       if @text.update_attributes(params[:text])
         format.html { redirect_to @text, notice: 'Text was successfully updated.' }
@@ -99,5 +87,10 @@ class TextsController < ApplicationController
   
   def find_resource
     @text = Text.find_by_uuid_or_id(params[:id])
+    @book = Book.find_by_uuid_or_id(params[:book_id])
+  end
+
+  def define_user_level
+    session['student_logged'] = true if session['professor_logged'].nil? ||  session['admin_logged'].nil?
   end
 end

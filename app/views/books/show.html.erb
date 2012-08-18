@@ -5,6 +5,7 @@
 
 <p id="notice"><%= notice %></p>
 
+<h1>Welcome URL: <%= link_to "/welcome/#{@book.uuid}", "/welcome/#{@book.uuid}" %></h1>
 <h2>Title</h2>
 <p><%= @book.title %></p>
 
@@ -14,7 +15,7 @@
 <h2>Full Text</h2>
 <% @book.texts.each do |text| %>
 <ul>
-	<li><strong><%= link_to(text.title, text_path(text.uuid))  %></strong></li>
+	<li><strong><%= link_to(text.title, book_text_path(@book.uuid, text.uuid))  %></strong></li>
 	<li><%= text.content  %></li>
 </ul>
 <% end %>
