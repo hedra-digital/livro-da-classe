@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_filter :authentication_check, :only => [:index]
   # GET /books
   # GET /books.json
   def index
