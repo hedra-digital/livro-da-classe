@@ -6,9 +6,6 @@
 
 	<%= content_tag :div, :id => 'navigation' do %>
 		logado como <strong><%= logged_in_as %></strong> 
-		<% if session['student_logged'] && @text.present? && @text.id.present? && @text.finished_at.nil?%>
-			&middot;<%= link_to 'finalizar texto', finish_book_text_path(@book.uuid, @text.uuid) %>
-		<% end %>		
 		<% if session['professor_logged'] && @book.present? && @book.finished_at.nil?%>
 			&middot;<%= link_to 'finalizar livro', finish_book_path(@book.uuid) %>
 		<% end %>
