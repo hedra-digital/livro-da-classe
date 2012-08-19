@@ -1,7 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Title</h2>
+<h3>Nome da escola</h3>
 <p><%= @school.name %></p>
+
+<h3>Endereço</h3>
+<p><%= @school.address_1 %></p>
+
+<h3>Complemento</h3>
+<p><%= @school.address_2 %></p>
+
+<h3>Cidade</h3>
+<p><%= @school.city %></p>
+
+<h3>Estado</h3>
+<p><%= @school.state %></p>
+
+<h3>CEP</h3>
+<p><%= @school.postal_code %></p>
 
 <%= link_to 'Edit', edit_school_path(@school) %> |
 <%= link_to 'Back', schools_path %>

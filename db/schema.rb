@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120818040130) do
+ActiveRecord::Schema.define(:version => 20120819011857) do
 
   create_table "books", :force => true do |t|
     t.string   "title"
@@ -21,6 +21,10 @@ ActiveRecord::Schema.define(:version => 20120818040130) do
     t.datetime "updated_at",   :null => false
     t.string   "uuid"
     t.datetime "finished_at"
+    t.string   "organizers"
+    t.string   "directors"
+    t.string   "coordinators"
+    t.string   "subtitle"
   end
 
   create_table "books_texts", :id => false, :force => true do |t|
@@ -41,8 +45,13 @@ ActiveRecord::Schema.define(:version => 20120818040130) do
 
   create_table "schools", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
   end
 
   create_table "texts", :force => true do |t|
