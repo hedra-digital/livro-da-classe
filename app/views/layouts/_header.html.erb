@@ -1,5 +1,5 @@
 <% if session['admin_logged'] %>
-<p id='admin-is-logged' class='alert alert-error'><strong> Atenção: Você está logado como administrador. <%= link_to 'Area de Administração', admin_path, :class => 'btn btn-danger' %> </p>
+<p id='admin-is-logged' class='alert alert-error'><strong> Atenção:</strong> Você está logado como administrador. <%= link_to 'Area de Administração', admin_path, :class => 'btn btn-danger' %> </p>
 <% end %>
 
 <%= content_tag :div, :id => 'header' do %>
