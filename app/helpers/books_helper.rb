@@ -1,7 +1,7 @@
 module BooksHelper
 
   def words_per_text(text)
-    text.scan(/\w+/).size 
+    text.scan(/\w+/).size rescue 0
   end
 
   def text_status_for(text)
