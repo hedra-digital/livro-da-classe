@@ -9,7 +9,8 @@
 <body>
 	<%= render 'layouts/header' %>
 	<%= content_tag :div, :id => 'main' do %>
-	<%= yield %>
+	<%= yield %>  
 	<% end %>
+  <code style="display:block; bottom:0; position: absolute; right:0;"><%= session.inspect %></code>
 </body>
 </html>
