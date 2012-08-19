@@ -39,9 +39,6 @@ h2.livro-titulo:before {
 }
 
 .text-item li {
-	margin: 0;
-	padding: 10px;
-	background-color: #eee;
 	list-style-type: none;
 }
 
@@ -55,10 +52,12 @@ h2.livro-titulo:before {
 	font-size: 22px;
 }
 
-.text-url {
-	background-color: #ddd;
-}
 
 .text-words {
 	display: block;
+}
+
+#admin-is-logged {
+	text-align: center;
+	margin-bottom: 0px;
 }
