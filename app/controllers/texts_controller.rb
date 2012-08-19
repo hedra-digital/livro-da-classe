@@ -91,6 +91,6 @@ class TextsController < ApplicationController
   end
 
   def define_user_level
-    session['student_logged'] = true if session['professor_logged'].nil? ||  session['admin_logged'].nil?
+    session['student_logged'] = true unless session['professor_logged'] ||  session['admin_logged']
   end
 end
