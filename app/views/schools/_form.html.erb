@@ -1,17 +1,17 @@
 <%= simple_form_for(@school) do |f| %>
-  <%= f.error_notification %>
+	<%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :address_1 %>
-    <%= f.input :address_2 %>
-    <%= f.input :city %>
-    <%= f.input :state %>
-    <%= f.input :postal_code %>
-    <%= f.association :books %>
-  </div>
+	<div class="form-inputs">
+		<%= f.input :name %>
+		<%= f.input :address_1 %>
+		<%= f.input :address_2 %>
+		<%= f.input :state, :collection => BrazilianStates.names, :selected => @school.state %>
+		<%= f.input :city, :collection => BrazilianStates.cities_by_state(@school.state), :selected => @school.city  %>
+		<%= f.input :postal_code %>
+		<%= f.association :books %>
+	</div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+	<div class="form-actions">
+		<%= f.button :submit %>
+	</div>
 <% end %>
