@@ -21,7 +21,7 @@
 
 <br><br>
 
-<p><%= link_to 'View book PDF', book_path(:format => :pdf) %> | <%= link_to 'Edit book', edit_book_path(@book.uuid) %> </p>
+<p><%= link_to 'View book PDF', pdf_book_path(@book.uuid) %> | <%= link_to 'Edit book', edit_book_path(@book.uuid) %> </p>
 
 <% if session['admin_logged'] %>
 <p>	<%= link_to 'Return to admin area', admin_path %> </p>
