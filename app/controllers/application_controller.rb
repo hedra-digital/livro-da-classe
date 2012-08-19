@@ -8,6 +8,17 @@ class ApplicationController < ActionController::Base
 		redirect_to "/index.html"
 	end
 
+	def current_user
+		if ["admin_logged"] == true
+			return "admin"
+		elsif ["professor_logged"] == true
+			return "professor"
+		else
+			return "estudante"
+		end
+
+	end
+
 	private
 		def authentication_check
 			authenticate_or_request_with_http_basic do |user, password|

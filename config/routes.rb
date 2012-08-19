@@ -13,6 +13,8 @@ LivroDaClasse::Application.routes.draw do
       member do 
         get 'finish'
       end
+
+      resources :comments
     end
   end
 
