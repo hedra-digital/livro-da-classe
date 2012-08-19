@@ -6,6 +6,7 @@ LivroDaClasse::Application.routes.draw do
   resources :books do
     member do 
       get 'finish'
+      get 'pdf'
     end
 
     resources :texts do
@@ -19,6 +20,7 @@ LivroDaClasse::Application.routes.draw do
 
   match 'admin'   => "books#index", :as => :admin
   match 'logout'  => "application#logout", :as => :logout
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

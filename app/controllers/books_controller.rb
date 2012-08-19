@@ -91,6 +91,9 @@ class BooksController < ApplicationController
     end
   end
 
+  def pdf
+  end
+
   private
 
   def find_resource

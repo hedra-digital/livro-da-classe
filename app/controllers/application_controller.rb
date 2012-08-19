@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 		session['admin_logged']     = nil;
 		session['professor_logged'] = nil;
 		session['student_logged']   = nil;
-		redirect_to "/"
+		redirect_to "/index.html"
 	end
 
 	private
