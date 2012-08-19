@@ -18,5 +18,9 @@
 		<%= content_tag :h1, @book.school.name rescue "No School"%>
 		<%= content_tag :h2, @book.title, :class => 'livro-titulo' %>
 	<% end %>
+	<% if session['student_logged'] && @book.present? %>
+		<%= content_tag :h1, @book.school.name rescue "No School"%>
+		<%= content_tag :h2, @book.title, :class => 'livro-titulo' %>
+	<% end %>
 
 <% end %>

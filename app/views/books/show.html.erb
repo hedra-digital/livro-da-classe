@@ -1,38 +1,28 @@
-
 <p><% if @book.finished_at.present? %>
   <em>Book finished at <%=  @book.finished_at %></em>
 <% end %></p>
 
 <p id="notice"><%= notice %></p>
 
-<h1>Welcome URL: <%= link_to "/welcome/#{@book.uuid}", "/welcome/#{@book.uuid}" %></h1>
-<h2>Title</h2>
-<p><%= @book.title %></p>
+<p><strong>Welcome URL:</strong> <%= link_to "/welcome/#{@book.uuid}", "/welcome/#{@book.uuid}" %></p>
 
-<h2>Has Texts</h2>
-<p><%= raw @book.texts.map {|x| x.to_label}.join ', ' %></p>
+<br>
 
-<h2>Full Text</h2>
 <% @book.texts.each do |text| %>
-<ul>
-	<li class="item">
-    <div class="text_person"><%= person_name_for(text) %></div>
-    <div class="text_chars"><strong>Palavras: <%= words_per_text(text.content) %></strong></div>
-    <div class="text_finished"><%= text_status_for(text) %></div>
-    <div class="text_link"><%= link_to("ver texto", book_text_path(@book.uuid, text.uuid))  %></div>  
+<ul class="text-item">
+	<li>
+    <div class="text-author"><%= person_name_for(text) %></div>
+    <div class="text-words"><strong>Palavras: <%= words_per_text(text.content) %></strong></div>
+    <div class="text-finished"><%= text_status_for(text) %></div>
+    <div class="text-url"><%= link_to("ver texto", book_text_path(@book.uuid, text.uuid))  %></div>
+  </li>
 </ul>
 <% end %>
 
-<p><%= link_to "Print", book_path(:format => :pdf) %> | <%= link_to 'Edit', edit_book_path(@book.uuid) %> </p>
+<br><br>
+
+<p><%= link_to 'View book PDF', book_path(:format => :pdf) %> | <%= link_to 'Edit book', edit_book_path(@book.uuid) %> </p>
 
 <% if session['admin_logged'] %>
 <p>	<%= link_to 'Return to admin area', admin_path %> </p>
 <% end %>
-
-<style type="text/css">
-  .item { background-color: #eee; padding: 10px; list-style-type: none;}
-  .item div { display: inline-block; padding: 10px;}
-  .text_person { display: block; font-size: 22px;}
-  .text_link { background-color: #ddd;}
-  .text_chars { display: block;}
-</style>

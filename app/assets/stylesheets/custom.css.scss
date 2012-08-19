@@ -1,34 +1,64 @@
 @import "bootstrap";
 
 #header {
-  position: relative;
-  padding: 20px 30px;
-  background: #eee;
-  font-size: 12px;
-  overflow: auto;
+	position: relative;
+	padding: 20px 30px;
+	background: #eee;
+	font-size: 12px;
+	overflow: auto;
 }
 
 #navigation {
-  float: right;
-  width: 300px;
-  line-height: 3;
-  text-align: right;
+	float: right;
+	width: 300px;
+	line-height: 3;
+	text-align: right;
 }
 
 #header h2 {
-  color: #757575;  
+	color: #757575;  
 }
 
 h2.livro-titulo:before {
-  content: "Livro\: ";
-  color: #999;
+	content: "Livro\: ";
+	color: #999;
 }
 
 .logout {
-  padding: 5px;
-  background: #ddd;
+	padding: 5px;
+	background: #ddd;
 }
 
 #main {
-  padding: 20px 30px;
+	padding: 20px 30px;
+}
+
+.text-item {
+	margin: 0;
+	padding: 0;
+}
+
+.text-item li {
+	margin: 0;
+	padding: 10px;
+	background-color: #eee;
+	list-style-type: none;
+}
+
+.text-item div {
+	display: inline-block;
+	padding: 10px;
+}
+
+.text-author {
+	display: block;
+	font-size: 22px;
+}
+
+.text-url {
+	background-color: #ddd;
+}
+
+.text-words {
+	display: block;
 }
