@@ -2,8 +2,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :content %>
+    <%= f.input :title, :placeholder => "Titulo do texto"%>
+    <%= f.input :content, :label => "" %>
     <% if session['admin_logged'] || session['professor_logged'] %>
       <%= f.association :books, :as => :check_boxes %>
     <% end %>
@@ -11,6 +11,7 @@
 
   <div class="form-actions">
     <%= f.button :submit, "Salvar texto" %>
+    <%= link_to "Marcar texto como finalizado", finish_book_text_path(@book.uuid, @text.uuid), :class => "btn btn-danger" %>
   </div>
 <% end %>
 
@@ -19,3 +20,7 @@
       $("#text_content").markItUp(mySettings);
    });
 </script>
+
+<style type="text/css">
+  label {display: none;}
+</style>
