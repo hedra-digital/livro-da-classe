@@ -1,25 +1,46 @@
+<p id="notice"><%= notice %></p>
+
 
 <p><% if @text.finished_at.present? %>
 	<em>Text finished at <%=	@text.finished_at %></em>
 <% end %></p>
 
-<p>&nbsp;</p>
-<h1><%= link_to 'Edit this text', edit_book_text_path(@book.uuid, @text.uuid) %></h1>
+<div class="row">
+  <div class="span8">
+  <h1><%= @text.title %></h1>
+  <p>&nbsp;</p>
+  <div style="padding: 10px;"><%= simple_format(@text.content) %></div>
+</div>
 
-<p id="notice"><%= notice %></p>
+  <div class="span4">
+    <div><%= link_to 'Editar texto', edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %></div>
+    <div><%= link_to_function 'Ver versão LaTeX', "$('#latex').modal();", :class => 'btn btn-primary' %></div>
+    <h2>Pertence aos livros</h2>
+    <ul>
+      <% @text.books.each do |b| %>
+        <li><%= link_to b.title, book_path(b.uuid) %></li>
+      <% end %>
+    </ul>
+  
+  </div>
+</div>
 
-<h2>Title</h2>
-<p><%= @text.title %></p>
 
-<h2>Content</h2>
-<p><%= @text.content %></p>
 
-<h2>In Books</h2>
-<p><%= raw @text.books.map {|x| x.to_label}.join ', ' %></p>
+<div class="modal hide" id="latex">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>LaTeX</h3>
+  </div>
+  <div class="modal-body">
+    <p><%= k_to_latex @text.content %></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
 
-<h2>LaTeX</h2>
-<p><%= k_to_latex @text.content %></p>
-
-<% if session['admin_logged'] %>
-	<%= link_to 'Return to admin area', admin_path %> 
-<% end %>
+<style type="text/css">
+  .span4 { border-left: 1px dotted #ccc; padding-left: 20px;}
+  .span4 div { margin-bottom: 10px;}
+</style>
