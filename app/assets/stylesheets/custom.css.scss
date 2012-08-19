@@ -74,3 +74,12 @@ h2.livro-titulo:before {
 	width: 700px;
 	height: 40px;
 }
+
+.text-url  {
+	float: right;
+	.btn {
+		font-size: 18px;
+		padding: 10px;
+		margin-top: -6px;
+	}
+}

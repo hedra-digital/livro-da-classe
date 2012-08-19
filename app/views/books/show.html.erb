@@ -21,7 +21,12 @@
     <div class="text-author"><%= person_name_for(text) %></div>
     <div class="text-words"><strong>Palavras: <%= words_per_text(text.content) %></strong></div>
     <div class="text-finished"><%= text_status_for(text) %></div>
-    <div class="text-url"><%= link_to("ver texto", book_text_path(@book.uuid, text.uuid), :class => "btn btn-inverse")  %></div>
+    <div class="text-url"><%= link_to("ver texto", book_text_path(@book.uuid, text.uuid), :class => "btn btn-primary")  %></div>
   </li>
 </ul>
+<% end %>
+
+<% if @book.finished_at.nil? %>
+  <hr/>
+  <div id="book_finished"><%= link_to "Marcar o livro como terminado", finish_book_path(@book.uuid), :class => "btn btn-danger" %></div>
 <% end %>

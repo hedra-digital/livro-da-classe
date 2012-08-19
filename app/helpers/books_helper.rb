@@ -10,7 +10,7 @@ module BooksHelper
   end
 
   def person_name_for(text)
-    response = text.person.first.name  rescue  "Nome n&atilde;o informado"
+    response = text.person.first.name  rescue  "Nome  do aluno n&atilde;o informado"
     raw(response)
   end
 end
