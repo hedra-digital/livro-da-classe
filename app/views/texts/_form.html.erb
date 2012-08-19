@@ -2,25 +2,26 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title, :placeholder => "Titulo do texto"%>
-    <%= f.input :content, :label => "" %>
+    <%= f.input :title, :placeholder => "Titulo do texto", :label => false%>
+    <%= f.input :content, :label => false%>
     <% if session['admin_logged'] || session['professor_logged'] %>
-      <%= f.association :books, :as => :check_boxes %>
+      <%= f.association :books, :as => :check_boxes, :label => "Livros relacionados" %>
     <% end %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit, "Salvar texto" %>
-    <%= link_to "Marcar texto como finalizado", finish_book_text_path(@book.uuid, @text.uuid), :class => "btn btn-danger" %>
+    <% if session['student_logged'] == true %>
+      <%= link_to "Marcar texto como finalizado", finish_book_text_path(@book.uuid, @text.uuid), :class => "btn btn-danger" %> 
+    <% else %>
+      <%= link_to  "Voltar ao livro", book_path(@book.uuid), :class => "btn btn-primary" %>
+    <% end %>
   </div>
 <% end %>
+
 
 <script type="text/javascript" >
    $(document).ready(function() {
       $("#text_content").markItUp(mySettings);
    });
 </script>
-
-<style type="text/css">
-  label {display: none;}
-</style>
