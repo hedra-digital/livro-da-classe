@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 			format.html { render :text => @cities.inspect }
 			format.js
 		end
+	end
 
 	def current_user
 		if ["admin_logged"] == true
