@@ -4,3 +4,13 @@
 
 <%= link_to 'Show', @school %> |
 <%= link_to 'Back', schools_path %>
+
+<script>
+	$(function(){
+		$('#form-school-state').on('change', function() {
+			$('#form-school-cities').empty();
+			var name = $(this).val();
+			$.getScript('/get_cities_by_state/' + name);
+		});
+	});
+</script>
