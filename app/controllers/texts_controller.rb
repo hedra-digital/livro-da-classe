@@ -5,6 +5,7 @@ class TextsController < ApplicationController
   # GET /texts/1
   # GET /texts/1.json
   def show    
+    @comment = Comment.new
     if @text.title.nil? || @text.content.nil?
       redirect_to edit_book_text_path(@book.uuid,@text.uuid)
     else

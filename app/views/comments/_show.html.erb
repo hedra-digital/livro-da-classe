@@ -1,0 +1,10 @@
+<p class="comment">
+  <% if comment.author == "estudante" %>
+    <i class="icon-user"></i>
+  <% else %>
+    <i class="icon-eye-open"></i>
+  <% end %>
+  &nbsp;
+  <strong><%= comment.author %>:</strong> 
+  <%= comment.content %>
+</p>

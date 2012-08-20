@@ -15,6 +15,15 @@ class ApplicationController < ActionController::Base
 			format.html { render :text => @cities.inspect }
 			format.js
 		end
+
+	def current_user
+		if ["admin_logged"] == true
+			return "admin"
+		elsif ["professor_logged"] == true
+			return "professor"
+		else
+			return "estudante"
+		end
 	end
 
 	private

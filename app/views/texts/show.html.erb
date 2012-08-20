@@ -1,27 +1,32 @@
 <p id="notice"><%= notice %></p>
 
 
-<p><% if @text.finished_at.present? %>
-	<em>Text finished at <%=	@text.finished_at %></em>
-<% end %></p>
+<% if @text.finished_at.present? %>
+  <div class="alert">
+   <button class="close" data-dismiss="alert">×</button>
+    Texto finalizado em <strong><%=  @text.finished_at.strftime("%d/%m/%y") %></strong>
+  </div>
+<% end %>
 
 <div class="row">
-  <div class="span8">
-  <h1><%= @text.title %></h1>
-  <p>&nbsp;</p>
-  <div style="padding: 10px;"><%= simple_format(@text.content) %></div>
-</div>
-
-  <div class="span4">
-    <div><%= link_to 'Editar texto', edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %></div>
-    <div><%= link_to_function 'Ver versão LaTeX', "$('#latex').modal();", :class => 'btn btn-primary' %></div>
-    <h2>Pertence aos livros</h2>
-    <ul>
-      <% @text.books.each do |b| %>
-        <li><%= link_to b.title, book_path(b.uuid) %></li>
-      <% end %>
-    </ul>
+  <div class="span7">
+    <h1><%= @text.title %></h1>
+    <p>&nbsp;</p>
+    <div style="padding: 10px;"><%= simple_format(@text.content) %></div>
+  </div>
   
+  <div class="span5">
+    <div><%= link_to 'Editar texto', edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %></div>
+    <% unless session['student_logged'] %>
+      <div><%= link_to_function 'Ver versão LaTeX', "$('#latex').modal();", :class => 'btn btn-primary' %></div>
+      <h2>Pertence aos livros</h2>
+      <ul>
+        <% @text.books.each do |b| %>
+          <li><%= link_to b.title, book_path(b.uuid) %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= render "comments/index" %>
   </div>
 </div>
 
@@ -41,6 +46,6 @@
 </div>
 
 <style type="text/css">
-  .span4 { border-left: 1px dotted #ccc; padding-left: 20px;}
-  .span4 div { margin-bottom: 10px;}
+  .span5 { border-left: 1px dotted #ccc; padding-left: 20px;}
+  .span5 div { margin-bottom: 10px;}
 </style>
