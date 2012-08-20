@@ -20,9 +20,9 @@ class BrazilianStates < Object
     all.find{|x| x["name"] == name.downcase}    
   end
 
-  def self.cities_by_state(state)
-    if state.present?
-      find_by_name(state.downcase)["cities"]
+  def self.find_cities_by_state(name)
+    if name.present?
+      find_by_name(name.downcase)["cities"]
     else
       return []
     end

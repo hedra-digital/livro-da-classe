@@ -17,9 +17,9 @@ LivroDaClasse::Application.routes.draw do
   end
 
   match 'welcome/:book_id' => "texts#new", :as => :welcome
-
   match 'admin'   => "books#index", :as => :admin
   match 'logout'  => "application#logout", :as => :logout
+  match 'get_cities_by_state/:name' => "application#get_cities_by_state", :as => :state
   
 
   # The priority is based upon order of creation:
