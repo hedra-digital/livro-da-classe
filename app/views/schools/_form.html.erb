@@ -6,7 +6,7 @@
 		<%= f.input :address_1 %>
 		<%= f.input :address_2 %>
 		<%= f.input :state, :collection => BrazilianStates.names, :selected => @school.state, :input_html => { :id => 'form-school-state' } %>
-		<%= f.input :city, :collection => BrazilianStates.find_cities_by_state(@school.state), :selected => @school.city, :input_html => { :id => 'form-school-city' } %>
+		<%= f.input :city, :collection => BrazilianStates.find_cities_by_state(@school.state), :selected => @school.city, :input_html => { :id => 'form-school-cities' } %>
 		<%= f.input :postal_code %>
 		<%= f.association :books %>
 	</div>

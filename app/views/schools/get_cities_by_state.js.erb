@@ -1,0 +1,4 @@
+<% coder = HTMLEntities.new %>
+<% @cities.each do |city| %>
+	$('#form-school-cities').append('<option>' + '<%= coder.encode(city) %>' + '</option>');
+<% end %>

@@ -80,4 +80,14 @@ class SchoolsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def get_cities_by_state
+    @cities = BrazilianStates.find_cities_by_state(params[:name].downcase)
+
+    respond_to do |format|
+      format.html { render :text => @cities.inspect }
+      format.js
+    end
+  end
+
 end
