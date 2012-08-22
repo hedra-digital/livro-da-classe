@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\LoadClass[showtrims,a4paper,11pt]{memoir}
+\LoadClass[11pt]{memoir}
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage[brazilian]{babel}
@@ -111,16 +111,17 @@
 \pagestyle{teca}
 \headstyles{teca}
 
+\setstocksize{210mm}{140mm}
 \settrimmedsize{210mm}{140mm}{*}
 \setbinding{4mm}
 \semiisopage[10]
 \headsep=.8em
 
-\setlength{\trimtop}{4cm}
-\setlength{\trimedge}{\stockwidth}
-\addtolength{\trimedge}{-\paperwidth}
-\setlength{\trimedge}{0.5\trimedge}
-\quarkmarks
+%\setlength{\trimtop}{4cm}
+%\setlength{\trimedge}{\stockwidth}
+%\addtolength{\trimedge}{-\paperwidth}
+%\setlength{\trimedge}{0.5\trimedge}
+%\quarkmarks
 %\trimFrame
 
 \checkandfixthelayout
@@ -167,4 +168,3 @@
         Índices para catálogo sistemático:\\
         #8\par
     \endgroup}
-
