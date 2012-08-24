@@ -3,16 +3,3 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', schools_path %>
-
-<script>
-	$(function(){
-		$('#form-school-state').on('change', function() {
-			$('#form-school-cities').empty();
-			var name = $(this).val();
-			$.ajax({
-				url: '/get_cities_by_state/' + name,
-				dataType: 'script'
-			});
-		});
-	});
-</script>
