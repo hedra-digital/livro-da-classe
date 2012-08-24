@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require markitup/jquery.markitup
-//= require markitup/sets/markdown/
+//= require markitup/sets/markdown/set
 //= require pdf
 //= require compatibility
 //= require_tree .
