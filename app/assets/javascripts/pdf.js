@@ -4,8 +4,6 @@
 var PDFJS = {};
 
 (function pdfjsWrapper() {
-  // Use strict in our context only - users might not want it
-  'use strict';
 
   PDFJS.build =
 'fatal: Not a git repository (or any of the parent directories): .git';
