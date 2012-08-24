@@ -14,6 +14,4 @@
 //= require jquery_ujs
 //= require markitup/jquery.markitup
 //= require markitup/sets/markdown/set
-//= require pdfjs/pdf.js
-//= require pdfjs/compatibility.js
 //= require_tree .
