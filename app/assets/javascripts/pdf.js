@@ -4,9 +4,11 @@
 var PDFJS = {};
 
 (function pdfjsWrapper() {
+  // Use strict in our context only - users might not want it
+  'use strict';
 
   PDFJS.build =
-'fatal: Not a git repository (or any of the parent directories): .git';
+'d38781d';
 
 /* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
@@ -18196,7 +18198,7 @@ Type1Font.prototype = {
     // charstring changes size - can't cache .length in loop
     for (var i = 0; i < charstring.length; i++) {
       var command = charstring[i];
-      if (typeof command === 'string') {
+      if (command.charAt) {
         var cmd = map[command];
         assert(cmd, 'Unknow command: ' + command);
 
@@ -24157,10 +24159,6 @@ var PDFImage = (function PDFImageClosure() {
       var rowBytes = (originalWidth * numComps * bpc + 7) >> 3;
       var imgArray = this.getImageBytes(originalHeight * rowBytes);
 
-      // imgArray can be incomplete (e.g. after CCITT fax encoding)
-      var actualHeight = 0 | (imgArray.length / rowBytes *
-                         height / originalHeight);
-
       var comps = this.colorSpace.getRgbBuffer(
         this.getComponents(imgArray), bpc);
       if (originalWidth != width || originalHeight != height)
@@ -24169,7 +24167,7 @@ var PDFImage = (function PDFImageClosure() {
       var compsPos = 0;
       var opacity = this.getOpacity(width, height);
       var opacityPos = 0;
-      var length = width * actualHeight * 4;
+      var length = width * height * 4;
 
       for (var i = 0; i < length; i += 4) {
         buffer[i] = comps[compsPos++];
@@ -30607,10 +30605,12 @@ var WorkerMessageHandler = {
         {
           url: source.url,
           progress: function getPDFProgress(evt) {
-            handler.send('DocProgress', {
-              loaded: evt.loaded,
-              total: evt.lengthComputable ? evt.total : void(0)
-            });
+            if (evt.lengthComputable) {
+              handler.send('DocProgress', {
+                loaded: evt.loaded,
+                total: evt.total
+              });
+            }
           },
           error: function getPDFError(e) {
             handler.send('DocError', 'Unexpected server response of ' +
