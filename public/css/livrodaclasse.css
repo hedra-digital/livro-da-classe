@@ -53,6 +53,10 @@ h1, h2, h3, h4, h5, .title {
 	padding-bottom: 180px;
 }
 
+.signup #main {
+	padding-bottom: 50px;
+}
+
 .reg {
 	background: #e91d27 url('../img/topbar.png') bottom repeat-x;
 }
