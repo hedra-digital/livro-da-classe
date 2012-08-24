@@ -4,11 +4,9 @@
 var PDFJS = {};
 
 (function pdfjsWrapper() {
-  // Use strict in our context only - users might not want it
-  'use strict';
 
   PDFJS.build =
-'d38781d';
+'e0796ce';
 
 /* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
@@ -13683,8 +13681,13 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
 
       var flags = properties.flags;
       var differences = [];
-      var baseEncoding = !!(flags & FontFlags.Symbolic) ?
-                         Encodings.symbolsEncoding : Encodings.StandardEncoding;
+      var baseEncoding = Encodings.StandardEncoding;
+      // The Symbolic attribute can be misused for regular fonts
+      // Heuristic: we have to check if the font is a standard one also
+      if (!!(flags & FontFlags.Symbolic)) {
+        baseEncoding = !properties.file ? Encodings.symbolsEncoding :
+                                          Encodings.MacRomanEncoding;
+      }
       var hasEncoding = dict.has('Encoding');
       if (hasEncoding) {
         var encoding = dict.get('Encoding');
@@ -18198,7 +18201,7 @@ Type1Font.prototype = {
     // charstring changes size - can't cache .length in loop
     for (var i = 0; i < charstring.length; i++) {
       var command = charstring[i];
-      if (command.charAt) {
+      if (typeof command === 'string') {
         var cmd = map[command];
         assert(cmd, 'Unknow command: ' + command);
 
@@ -24159,6 +24162,10 @@ var PDFImage = (function PDFImageClosure() {
       var rowBytes = (originalWidth * numComps * bpc + 7) >> 3;
       var imgArray = this.getImageBytes(originalHeight * rowBytes);
 
+      // imgArray can be incomplete (e.g. after CCITT fax encoding)
+      var actualHeight = 0 | (imgArray.length / rowBytes *
+                         height / originalHeight);
+
       var comps = this.colorSpace.getRgbBuffer(
         this.getComponents(imgArray), bpc);
       if (originalWidth != width || originalHeight != height)
@@ -24167,7 +24174,7 @@ var PDFImage = (function PDFImageClosure() {
       var compsPos = 0;
       var opacity = this.getOpacity(width, height);
       var opacityPos = 0;
-      var length = width * height * 4;
+      var length = width * actualHeight * 4;
 
       for (var i = 0; i < length; i += 4) {
         buffer[i] = comps[compsPos++];
@@ -30605,12 +30612,10 @@ var WorkerMessageHandler = {
         {
           url: source.url,
           progress: function getPDFProgress(evt) {
-            if (evt.lengthComputable) {
-              handler.send('DocProgress', {
-                loaded: evt.loaded,
-                total: evt.total
-              });
-            }
+            handler.send('DocProgress', {
+              loaded: evt.loaded,
+              total: evt.lengthComputable ? evt.total : void(0)
+            });
           },
           error: function getPDFError(e) {
             handler.send('DocError', 'Unexpected server response of ' +
