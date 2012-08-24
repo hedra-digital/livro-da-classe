@@ -5,10 +5,10 @@ var PDFJS = {};
 
 (function pdfjsWrapper() {
   // Use strict in our context only - users might not want it
-  // 'use strict';
+  'use strict';
 
   PDFJS.build =
-'e0796ce';
+'d38781d';
 
 /* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
@@ -70,7 +70,7 @@ function getPdf(arg, callback) {
         calledErrorBack = true;
         params.error();
       }
-    };
+    }
   }
 
   xhr.onreadystatechange = function getPdfOnreadystatechange(e) {
@@ -150,7 +150,7 @@ var Page = (function PageClosure() {
     get rotate() {
       var rotate = this.inheritPageProp('Rotate') || 0;
       // Normalize rotation so it's a multiple of 90 and between 0 and 270
-      if (rotate % 90 !== 0) {
+      if (rotate % 90 != 0) {
         rotate = 0;
       } else if (rotate >= 360) {
         rotate = rotate % 360;
@@ -764,7 +764,7 @@ var Util = PDFJS.Util = (function UtilClosure() {
       m[3] * v[0] + m[4] * v[1] + m[5] * v[2],
       m[6] * v[0] + m[7] * v[1] + m[8] * v[2]
     ];
-  };
+  }
 
   // Normalize rectangle rect=[x1, y1, x2, y2] so that (x1,y1) < (x2,y2)
   // For coordinate systems whose origin lies in the bottom-left, this
@@ -781,7 +781,7 @@ var Util = PDFJS.Util = (function UtilClosure() {
       r[3] = rect[1];
     }
     return r;
-  };
+  }
 
   // Returns a rectangle [x1, y1, x2, y2] corresponding to the
   // intersection of rect1 and rect2. If no intersection, returns 'false'
@@ -789,7 +789,7 @@ var Util = PDFJS.Util = (function UtilClosure() {
   Util.intersect = function Util_intersect(rect1, rect2) {
     function compare(a, b) {
       return a - b;
-    }
+    };
 
     // Order points along the axes
     var orderedX = [rect1[0], rect1[2], rect2[0], rect2[2]].sort(compare),
@@ -857,7 +857,7 @@ var PageViewport = PDFJS.PageViewport = (function PageViewportClosure() {
     }
     var offsetCanvasX, offsetCanvasY;
     var width, height;
-    if (rotateA === 0) {
+    if (rotateA == 0) {
       offsetCanvasX = Math.abs(centerY - viewBox[1]) * scale + offsetX;
       offsetCanvasY = Math.abs(centerX - viewBox[0]) * scale + offsetY;
       width = Math.abs(viewBox[3] - viewBox[1]) * scale;
@@ -972,11 +972,11 @@ function isArray(v) {
 }
 
 function isStream(v) {
-  return typeof v == 'object' && v !== null && ('getChar' in v);
+  return typeof v == 'object' && v != null && ('getChar' in v);
 }
 
 function isArrayBuffer(v) {
-  return typeof v == 'object' && v !== null && ('byteLength' in v);
+  return typeof v == 'object' && v != null && ('byteLength' in v);
 }
 
 function isRef(v) {
@@ -1020,7 +1020,7 @@ var Promise = PDFJS.Promise = (function PromiseClosure() {
     this.isRejected = false;
     this.error = null;
     // If you build a promise and pass in some data it's already resolved.
-    if (data !== null) {
+    if (data != null) {
       this.isResolved = true;
       this._data = data;
       this.hasData = true;
@@ -1031,7 +1031,7 @@ var Promise = PDFJS.Promise = (function PromiseClosure() {
     this.callbacks = [];
     this.errbacks = [];
     this.progressbacks = [];
-  }
+  };
   /**
    * Builds a promise that is resolved when all the passed in promises are
    * resolved.
@@ -1471,7 +1471,7 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
           promise.reject(error);
         else
           promise.resolve();
-      }
+      };
       var continueCallback = params.continueCallback;
 
       // Once the operatorList and fonts are loaded, do the actual rendering.
@@ -1562,7 +1562,7 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
 
       var continueWrapper;
       if (continueCallback)
-        continueWrapper = function() { continueCallback(next); };
+        continueWrapper = function() { continueCallback(next); }
       else
         continueWrapper = next;
 
@@ -2580,7 +2580,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
         var lineWidth = current.lineWidth;
         var scale = Math.abs(current.textMatrix[0] * fontMatrix[0]);
-        if (scale === 0 || lineWidth === 0)
+        if (scale == 0 || lineWidth == 0)
           lineWidth = this.getSinglePixelWidth();
         else
           lineWidth /= scale;
@@ -3253,7 +3253,7 @@ var Dict = (function DictClosure() {
         callback(key, this.get(key));
       }
     };
-  }
+  };
 
   return Dict;
 })();
@@ -3592,7 +3592,7 @@ var XRef = (function XRefClosure() {
           for (j = 0; j < typeFieldWidth; ++j)
             type = (type << 8) | stream.getByte();
           // if type field is absent, its default value = 1
-          if (typeFieldWidth === 0)
+          if (typeFieldWidth == 0)
             type = 1;
           for (j = 0; j < offsetFieldWidth; ++j)
             offset = (offset << 8) | stream.getByte();
@@ -3827,7 +3827,7 @@ var XRef = (function XRefClosure() {
         }
         if (!isCmd(obj3, 'obj')) {
           // some bad pdfs use "obj1234" and really mean 1234
-          if (obj3.cmd.indexOf('obj') === 0) {
+          if (obj3.cmd.indexOf('obj') == 0) {
             num = parseInt(obj3.cmd.substring(3), 10);
             if (!isNaN(num))
               return num;
@@ -13683,13 +13683,8 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
 
       var flags = properties.flags;
       var differences = [];
-      var baseEncoding = Encodings.StandardEncoding;
-      // The Symbolic attribute can be misused for regular fonts
-      // Heuristic: we have to check if the font is a standard one also
-      if (!!(flags & FontFlags.Symbolic)) {
-        baseEncoding = !properties.file ? Encodings.symbolsEncoding :
-                                          Encodings.MacRomanEncoding;
-      }
+      var baseEncoding = !!(flags & FontFlags.Symbolic) ?
+                         Encodings.symbolsEncoding : Encodings.StandardEncoding;
       var hasEncoding = dict.has('Encoding');
       if (hasEncoding) {
         var encoding = dict.get('Encoding');
@@ -18203,7 +18198,7 @@ Type1Font.prototype = {
     // charstring changes size - can't cache .length in loop
     for (var i = 0; i < charstring.length; i++) {
       var command = charstring[i];
-      if (typeof command === 'string') {
+      if (command.charAt) {
         var cmd = map[command];
         assert(cmd, 'Unknow command: ' + command);
 
@@ -24164,10 +24159,6 @@ var PDFImage = (function PDFImageClosure() {
       var rowBytes = (originalWidth * numComps * bpc + 7) >> 3;
       var imgArray = this.getImageBytes(originalHeight * rowBytes);
 
-      // imgArray can be incomplete (e.g. after CCITT fax encoding)
-      var actualHeight = 0 | (imgArray.length / rowBytes *
-                         height / originalHeight);
-
       var comps = this.colorSpace.getRgbBuffer(
         this.getComponents(imgArray), bpc);
       if (originalWidth != width || originalHeight != height)
@@ -24176,7 +24167,7 @@ var PDFImage = (function PDFImageClosure() {
       var compsPos = 0;
       var opacity = this.getOpacity(width, height);
       var opacityPos = 0;
-      var length = width * actualHeight * 4;
+      var length = width * height * 4;
 
       for (var i = 0; i < length; i += 4) {
         buffer[i] = comps[compsPos++];
@@ -30614,10 +30605,12 @@ var WorkerMessageHandler = {
         {
           url: source.url,
           progress: function getPDFProgress(evt) {
-            handler.send('DocProgress', {
-              loaded: evt.loaded,
-              total: evt.lengthComputable ? evt.total : void(0)
-            });
+            if (evt.lengthComputable) {
+              handler.send('DocProgress', {
+                loaded: evt.loaded,
+                total: evt.total
+              });
+            }
           },
           error: function getPDFError(e) {
             handler.send('DocError', 'Unexpected server response of ' +
