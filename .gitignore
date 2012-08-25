@@ -34,3 +34,4 @@ pickle-email-*.html
 /config/config.yml
 .env
 .DS_Store
+/public/assets
