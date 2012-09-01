@@ -65,19 +65,19 @@ h1, h2, h3, h4, h5, .title {
 	text-shadow: 1px 1px 1px #FFF;
 }
 
-h1 a:link,
-h1 a:visited,
-h1 a:hover,
-h1 a:active,
-header p a:link,
-header p a:visited,
-header p a:hover,
-header p a:active {
+.home h1 a:link,
+.home h1 a:visited,
+.home h1 a:hover,
+.home h1 a:active,
+.home header p a:link,
+.home header p a:visited,
+.home header p a:hover,
+.home header p a:active {
 	color: #FFF;
 	text-decoration: none;
 }
 
-h1, .title {
+.home h1, .title {
 	margin: 0;
 	padding: 0;
 	color: white;
@@ -85,7 +85,7 @@ h1, .title {
 	line-height: 1.6em;
 }
 
-header .logo {
+.home header .logo {
 	position: absolute;
 	top: 24px;
 	right: 15px;
