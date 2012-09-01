@@ -29,7 +29,6 @@ end
 gem 'jquery-rails'
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 gem 'kramdown'
-gem 'draper'
 gem 'rails-latex'
 
 # To use ActiveModel has_secure_password
