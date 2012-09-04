@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery
 
+	before_filter :set_locale
+
 	def logout
 		session['admin_logged']     = nil;
 		session['professor_logged'] = nil;
@@ -16,6 +18,10 @@ class ApplicationController < ActionController::Base
 		else
 			return "estudante"
 		end
+	end
+
+	def set_locale
+		I18n.locale = params[:locale] || I18n.default_locale
 	end
 
 	private
