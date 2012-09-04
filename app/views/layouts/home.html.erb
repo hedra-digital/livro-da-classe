@@ -5,24 +5,66 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-	<meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
 
-	<!-- Use the .htaccess and remove these lines to avoid edge case issues.
-			 More info: h5bp.com/i/378 -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<!-- Use the .htaccess and remove these lines to avoid edge case issues.
+				 More info: h5bp.com/i/378 -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>Livro da Classe</title>
-	<meta name="description" content="">
+		<title>Livro da Classe</title>
+		<meta name="description" content="">
 
-	<!-- Mobile viewport optimized: h5bp.com/viewport -->
-	<meta name="viewport" content="width=device-width">
-	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%= javascript_include_tag "application" %>
-	<%= csrf_meta_tags %>
-	<link rel="shortcut icon" href="favicon2.ico">
-</head>
-<body>
-	<%= yield %>
-</body>
+		<!-- Mobile viewport optimized: h5bp.com/viewport -->
+		<meta name="viewport" content="width=device-width">
+		<%= stylesheet_link_tag    "home/home", :media => "all" %>
+		<!-- <%= javascript_include_tag "home/main" %> -->
+		<%= csrf_meta_tags %>
+		<link rel="shortcut icon" href="favicon2.ico">
+	</head>
+	<body>
+		<div id="wrap">
+
+			<header class="reg">
+				<div class="clearfix">
+					<h1><a href="index.html">Livro da Classe</a></h1>
+					<%= image_tag 'home/hedraeducacao-logo.png', :width => '160', :height => '55', :alt => 'Hedra Educação', :class => 'logo' %>
+				</div>
+			</header>
+
+			<div id="main" role="main">
+      	<section>
+        	<div class="clearfix">
+
+					<%= yield %>
+
+					</div>
+				</section>
+			</div>
+
+		</div>
+
+		<footer>
+			<div class="clearfix">
+				<div id="logo">
+					<%= image_tag 'home/logo-hedra.png', :width => '130', :height => '130' %>
+				</div>
+				<div id="hedra">
+					<h2>Hedra Educação Ltda.</h2>
+					<p>Rua Fradique Coutinho 1139 Subsolo</p>
+					<p>Vila Madalena</p>
+					<p>São Paulo - SP</p>
+					<p>Tel. (11) 3097-8304</p>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+				var _gaq=[['_setAccount','UA-34524162-1'],['_trackPageview']];
+				(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+				g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+				s.parentNode.insertBefore(g,s)}(document,'script'));
+		</script>
+
+	</body>
 </html>
