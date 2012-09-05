@@ -4,15 +4,12 @@ class PagesController < ApplicationController
 	def home
 	end
 
-	def request_contact
-	end
-
 	def new
 		@contact_form = ContactForm.new
 	end
 
 	def send_lead
-		@contact_form = ContactForm.new(params[:request_contact_form])
+		@contact_form = ContactForm.new(params[:contact_form])
 		if @contact_form.valid?
 			RequestContact.report_lead(@contact_form).deliver
 			redirect_to root_path, :notice => "Obrigado pelo seu interesse no Livro da Classe. Entraremos em contato dentro de 24 horas."
