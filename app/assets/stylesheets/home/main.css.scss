@@ -123,8 +123,6 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	font-family: 'miso', sans-serif;
-	color: #474747;
 	background: #F9F9F9;
 }
 
@@ -134,6 +132,15 @@ h1, h2, h3, h4, h5 {
 	text-indent: 0;
 }
 
+header {
+	background: #e91d27 url('topbar.png') bottom repeat-x;
+}
+
+header, footer, #home, #benefits {
+	font-family: 'miso', sans-serif;
+	font-size: 18pt;
+}
+
 #wrap {
 	min-height: 100%;
 	padding-bottom: 50px;
@@ -141,19 +148,19 @@ h1, h2, h3, h4, h5 {
 
 #main {
 	overflow: auto;
-	padding-bottom: 180px;
+	padding-bottom: 180px; 
 }
 
-.signup #main {
-	padding-bottom: 50px;
-}
-
-.reg {
-	background: #e91d27 url('topbar.png') bottom repeat-x;
-}
-
-.body {
+.body-text {
 	text-shadow: 1px 1px 1px #FFF;
+}
+
+header h1 {
+	margin: 0;
+	padding: 0;
+	color: white;
+	font-size: 2.8em;
+	line-height: 1.6em;
 }
 
 header h1 a:link,
@@ -168,18 +175,6 @@ header p a:active {
 	text-decoration: none;
 }
 
-header {
-	font-size: 18pt;
-}
-
-header h1 {
-	margin: 0;
-	padding: 0;
-	color: white;
-	font-size: 2.8em;
-	line-height: 1.6em;
-}
-
 header>div, section>div, footer>div {
 	width: 960px;
 	margin: 0 auto;
@@ -190,10 +185,6 @@ header .logo {
 	position: absolute;
 	top: 24px;
 	right: 15px;
-}
-
-#product {
-	margin: 20px 0 0 0;
 }
 
 #description {
@@ -215,7 +206,7 @@ header .logo {
 	height: auto;
 }
 
-p.intro {
+.intro {
 	margin: 0;
 	padding: 0;
 	font-size: 1.4em;
@@ -224,18 +215,10 @@ p.intro {
 	word-spacing: 0.1em;
 }
 
-p.intro em {
+.intro em {
 	font-style: normal;
 	font-size: 1.6em;
 	color: #e91d27;
-}
-
-#product h2 {
-	margin: 30px 0 0 0;
-}
-
-#product h3 {
-	margin: 0 0 30px 0;
 }
 
 .start-now {
@@ -317,6 +300,8 @@ footer {
 	height: 180px;
 	padding: 60px 0 0 0;
 	clear: both;
+	font-family: 'miso', sans-serif;
+	font-size: 18pt;
 	color: #fff;
 	background: #434343 url('bg-pattern-border-2.png') top repeat-x;
 }
@@ -340,56 +325,6 @@ footer #logo {
 
 footer #hedra {
 	padding: 0 0 0 170px;
-}
-
-a.a_demo_one {
-	background-color:#3bb3e0;
-	padding:10px;
-	position:relative;
-	font-family: 'Open Sans', sans-serif;
-	font-size:12px;
-	text-decoration:none;
-	color:#fff;
-	border: solid 1px #186f8f;
-	background-image: linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
-	background-image: -o-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
-	background-image: -moz-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
-	background-image: -webkit-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
-	background-image: -ms-linear-gradient(bottom, rgb(44,160,202) 0%, rgb(62,184,229) 100%);
-	background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0, rgb(44,160,202)),
-	color-stop(1, rgb(62,184,229))
-	);
-	-webkit-box-shadow: inset 0px 1px 0px #7fd2f1, 0px 1px 0px #fff;
-	-moz-box-shadow: inset 0px 1px 0px #7fd2f1, 0px 1px 0px #fff;
-	box-shadow: inset 0px 1px 0px #7fd2f1, 0px 1px 0px #fff;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	-o-border-radius: 5px;
-	border-radius: 5px;
-}
- 
-a.a_demo_one:active {
-	padding-bottom:9px;
-	padding-left:10px;
-	padding-right:10px;
-	padding-top:11px;
-	top:1px;
-	background-image: linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
-	background-image: -o-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
-	background-image: -moz-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
-	background-image: -webkit-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
-	background-image: -ms-linear-gradient(bottom, rgb(62,184,229) 0%, rgb(44,160,202) 100%);
-	background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0, rgb(62,184,229)),
-	color-stop(1, rgb(44,160,202))
-	);
 }
 
 a.clean-gray {
@@ -436,50 +371,6 @@ a.clean-gray:active {
 	-moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
 	box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
 }
-
-.button {
-	display: inline-block;
-	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
-	*display: inline;
-	vertical-align: baseline;
-	margin: 0 2px;
-	outline: none;
-	cursor: pointer;
-	text-align: center;
-	text-decoration: none;
-	font-size: 1.4em;
-	padding: 0.45em 1.4em 0.4em;
-	text-shadow: 0 1px 1px rgba(0,0,0,.3);
-	-webkit-border-radius: .5em; 
-	-moz-border-radius: .5em;
-	border-radius: .5em;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	box-shadow: 0 1px 2px rgba(0,0,0,.2);
-}
-.button:hover {
-	text-decoration: none;
-}
-.button:active {
-	position: relative;
-	top: 1px;
-}
-
-.bigrounded {
-	-webkit-border-radius: 2em;
-	-moz-border-radius: 2em;
-	border-radius: 2em;
-}
-.medium {
-	font-size: 12px;
-	padding: .4em 1.5em .42em;
-}
-.small {
-	font-size: 11px;
-	padding: .2em 1em .275em;
-}
-
-
 
 /* ==========================================================================
    Helper classes

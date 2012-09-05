@@ -1,6 +1,8 @@
 LivroDaClasse::Application.routes.draw do
 
-	root :to => 'pages#home'
+	root :to => "pages#home"
+	get 'solicitar_contato', :to => "pages#request_contact", :as => :request_contact
+	post 'solicitar_contato/enviar', :to => "pages#send_lead", :as => :send_lead
 
 	resources :schools
 
@@ -11,12 +13,10 @@ LivroDaClasse::Application.routes.draw do
 			get 'finish'
 			get 'pdf'
 		end
-
 		resources :texts do
 			member do 
 				get 'finish'
 			end
-
 			resources :comments
 		end
 	end
@@ -25,11 +25,7 @@ LivroDaClasse::Application.routes.draw do
 	match 'admin'   => "books#index", :as => :admin
 	match 'logout'  => "application#logout", :as => :logout
 	match 'get_cities_by_state/:name' => "schools#get_cities_by_state", :as => :get_cities
-
-	match 'contato' => "contact#new", :via => :get
-	match 'contato/send_lead' => "contact#send_lead", :as => 'send_lead', :via => :post
 	
-
 	# The priority is based upon order of creation:
 	# first created -> highest priority.
 

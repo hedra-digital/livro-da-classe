@@ -24,26 +24,18 @@
 	</head>
 	<body>
 		<div id="wrap">
-
-			<header class="reg">
+			<header>
 				<div class="clearfix">
 					<h1><a href="index.html">Livro da Classe</a></h1>
 					<%= image_tag 'home/hedraeducacao-logo.png', :width => '160', :height => '55', :alt => 'Hedra Educação', :class => 'logo' %>
 				</div>
 			</header>
-
 			<div id="main" role="main">
-      	<section>
-        	<div class="clearfix">
 
-					<%= yield %>
+				<%= yield %>
 
-					</div>
-				</section>
 			</div>
-
 		</div>
-
 		<footer>
 			<div class="clearfix">
 				<div id="logo">
