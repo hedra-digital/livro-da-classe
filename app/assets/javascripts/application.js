@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require modernizr-2.6.1.min
-//= require pdf
-//= require compatibility
 //= require markitup/jquery.markitup
 //= require markitup/sets/markdown/set
 //= require bootstrap-modal
