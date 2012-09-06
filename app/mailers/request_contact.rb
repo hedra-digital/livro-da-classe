@@ -1,8 +1,8 @@
 # coding: utf-8
 class RequestContact < ActionMailer::Base
-	default :from => "leads@livrodaclasse.com.br"
+	default :from => 'leads@livrodaclasse.com.br'
 
-	headers = {'Return-Path' => 'marcelo.polli@gmail.com'}
+	headers = {'Return-Path' => 'leads@livrodaclasse.com.br'}
 	
 	def report_lead(lead_info)
 		@lead_info = lead_info
