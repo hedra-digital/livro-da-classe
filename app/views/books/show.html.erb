@@ -1,23 +1,28 @@
 <div style="float:right;">  
-  <p> <i class="icon-globe"></i>&nbsp;URL para alunos: <%= link_to welcome_url(@book.uuid), welcome_url(@book.uuid) %></p>
+  <p> <i class="icon-globe"></i>&nbsp;<%= link_to 'URL para alunos', welcome_url(@book.uuid) %></p>
 </div>
 
 <%= render "navigation" %>
 
-  <% if @book.finished_at.present? %>
-  <div class="alert">
-   <button class="close" data-dismiss="alert">×</button>
-  Livro finalizado em <strong><%=  @book.finished_at.strftime("%d/%m/%y") %></strong>
-</div>
-  <% end %>
+<% if @book.finished_at.present? %>
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    Livro finalizado em <strong><%=  @book.finished_at.strftime("%d/%m/%y") %></strong>
+  </div>
+<% end %>
 
-<p id="notice"><%= notice %></p>
+<% flash.each do |name, msg| %>
+  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+    <button type="button" class="close" data-dismiss="alert">&#215;</button>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+  </div>
+<% end %>
 
 <br>
 
 <% @book.texts.each do |text| %>
 <ul class="text-item">
-	<li class="well">
+  <li class="well">
     <div class="text-author"><%= person_name_for(text) %></div>
     <div class="text-words"><strong>Palavras: <%= words_per_text(text.content) %></strong></div>
     <div class="text-finished"><%= text_status_for(text) %></div>

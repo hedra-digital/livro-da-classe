@@ -1,9 +1,9 @@
-<h2>Listing books</h2>
+<h2>Livros</h2>
 
 <table class="table table-striped">
   <tr>
-    <th>Title</th>
-    <th>Has Texts</th>
+    <th>Título</th>
+    <th>Contém os textos</th>
     <th></th>
     <th></th>
 
@@ -13,24 +13,24 @@
   <tr>
     <td><%= link_to book.title, book_path(book.uuid) %></td>
     <td><%= raw book.texts.map {|x| x.to_label}.join ', ' %></td>
-    <!-- <td><%= link_to 'Show', book_path(book.uuid) %></td> -->
-    <td><%= link_to 'Edit', edit_book_path(book.uuid) %></td>
-    <td><%= link_to 'Destroy', book_path(book.uuid), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <!-- <td><%= link_to 'Ver', book_path(book.uuid) %></td> -->
+    <td><%= link_to 'Editar', edit_book_path(book.uuid) %></td>
+    <td><%= link_to 'Apagar', book_path(book.uuid), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Book', new_book_path, :class => 'btn btn-primary' %>
+<%= link_to 'Incluir novo livro', new_book_path, :class => 'btn btn-primary' %>
 
 <br /><br />
 
-<h2>Listing schools</h2>
+<h2>Escolas</h2>
 
 <table class="table table-striped">
   <tr>
-    <th>Name</th>
+    <th>Nome</th>
     <th></th>
     <th></th>
     <th></th>
@@ -39,13 +39,13 @@
 <% @schools.each do |school| %>
   <tr>
     <td><%= link_to school.name, school %></td>
-    <td><%= link_to 'Show', school %></td>
-    <td><%= link_to 'Edit', edit_school_path(school) %></td>
-    <td><%= link_to 'Destroy', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Ver', school %></td>
+    <td><%= link_to 'Editar', edit_school_path(school) %></td>
+    <td><%= link_to 'Apagar', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New School', new_school_path, :class => 'btn btn-primary' %>
+<%= link_to 'Incluir nova escola', new_school_path, :class => 'btn btn-primary' %>

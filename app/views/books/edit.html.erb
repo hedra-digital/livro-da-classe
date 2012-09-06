@@ -1,12 +1,11 @@
 <%= render "navigation" %>
 
-<h1>Editing book</h1>
+<h1>Editar livro</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @book %>
-
+<%= link_to 'Ver livro', @book %>
 
 <% if session['admin_logged'] %>
-	<p><%= link_to 'Return to admin area', admin_path %> </p>
+	<p><%= link_to 'Voltar para home do admin', admin_path %> </p>
 <% end %>
