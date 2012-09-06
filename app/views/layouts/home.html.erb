@@ -26,7 +26,7 @@
 		<div id="wrap">
 			<header>
 				<div class="clearfix">
-					<h1><%= link_to 'Livro da Classe', root_path %></h1>
+					<h1><%= link_to_unless_current 'Livro da Classe', root_path %></h1>
 					<%= image_tag 'home/hedraeducacao-logo.png', :width => '160', :height => '55', :alt => 'Hedra Educação', :class => 'logo' %>
 				</div>
 			</header>
