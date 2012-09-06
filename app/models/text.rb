@@ -1,12 +1,14 @@
 class Text < ActiveRecord::Base
 	attr_accessor 						:author_name
 	attr_accessible 					:content, :title, :book_ids, :author_name
-	has_and_belongs_to_many 			:books
-	has_and_belongs_to_many 			:person
-	has_many 							:comments
+	has_and_belongs_to_many 	:books
+	has_and_belongs_to_many 	:person
+	has_many 									:comments
 
-	before_save 						:set_uuid
-	before_save 						:create_author_if_required
+	before_save 							:set_uuid
+	before_save 							:create_author_if_required
+
+	validates_presence_of			:title, :content
 
 	def to_label
 		"#{title}"
