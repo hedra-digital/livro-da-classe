@@ -8,8 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require bootstrap-2.1.0
- *= require bootstrap-responsive-2.1.0
+ *= require bootstrap-2.1.1
+ *= require bootstrap-responsive-2.1.1
  *= require_self
  *= require markitup/skins/markitup/style
  *= require markitup/sets/markdown/style

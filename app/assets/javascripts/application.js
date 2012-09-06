@@ -15,5 +15,6 @@
 //= require modernizr-2.6.1.min
 //= require markitup/jquery.markitup
 //= require markitup/sets/markdown/set
+//= require bootstrap-alert
 //= require bootstrap-modal
 //= require_tree .
