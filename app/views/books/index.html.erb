@@ -6,9 +6,7 @@
     <th>Contém os textos</th>
     <th></th>
     <th></th>
-
   </tr>
-
 <% @books.each do |book| %>
   <tr>
     <td><%= link_to book.title, book_path(book.uuid) %></td>
@@ -19,8 +17,6 @@
   </tr>
 <% end %>
 </table>
-
-<br />
 
 <%= link_to 'Incluir novo livro', new_book_path, :class => 'btn btn-primary' %>
 
@@ -35,7 +31,6 @@
     <th></th>
     <th></th>
   </tr>
-
 <% @schools.each do |school| %>
   <tr>
     <td><%= link_to school.name, school %></td>
@@ -45,7 +40,5 @@
   </tr>
 <% end %>
 </table>
-
-<br />
 
 <%= link_to 'Incluir nova escola', new_school_path, :class => 'btn btn-primary' %>
