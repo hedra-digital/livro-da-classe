@@ -2,8 +2,8 @@ module ApplicationHelper
 
   def flash_message
     messages = button_tag('&#215;'.html_safe, :type => 'button', :class => 'close', :'data-dismiss' => 'alert', :name => nil)
-    flash.each do |type, msg|
-      messages = content_tag(:div, messages + msg, :class => "alert alert-#{ type == :notice ? "success" : "error" }")
+    flash.each do |type, content|
+      messages = content_tag(:div, messages + content, :class => "alert alert-#{ type == :notice ? "success" : "error" }")
     end
     messages
   end
