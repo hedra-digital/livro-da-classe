@@ -27,14 +27,4 @@ class BrazilianStates < Object
     end
   end
 
-  private
-
-  def titleize_do_b(word)
-    humanize(underscore(word)).gsub(/(?!de|da|do\b)\b\w+/) { $1.capitalize }
-  end
-
-  def titular(word)
-    humanize(underscore(word)).gsub(/\b('?[a-z])/) { $1.capitalize }
-  end
-
 end
