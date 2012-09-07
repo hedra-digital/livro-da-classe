@@ -51,7 +51,6 @@ GEM
       multi_json (~> 1.0)
     guid (0.1.1)
     hike (1.2.1)
-    htmlentities (4.3.1)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.1.1)
@@ -126,7 +125,6 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   guid
-  htmlentities
   jquery-rails
   kramdown
   newrelic_rpm

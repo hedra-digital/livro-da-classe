@@ -9,8 +9,8 @@
 		<% end %>
 		<%= field_set_tag 'Dados da escola' do %>
 			<%= f.input :nome_da_escola %>
-			<%= f.input :estado %>
-			<%= f.input :cidade %>
+			<%= f.input :estado, :collection => BrazilianStates.names, :input_html => { :id => 'form-school-state' } %>
+			<%= f.input :cidade, :collection => BrazilianStates.find_cities_by_state("Acre"), :input_html => { :id => 'form-school-cities' } %>
 			<%= f.input :telefone %>
 		<% end %>
 	</div>
