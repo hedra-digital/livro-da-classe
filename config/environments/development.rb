@@ -13,16 +13,16 @@ LivroDaClasse::Application.configure do
 	config.consider_all_requests_local       = true
 	config.action_controller.perform_caching = false
 
-	# Don't care if the mailer can't send
 	config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = {
-    host: 'localhost'
-  }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.sendmail_settings = {
-    location: '/usr/sbin/sendmail',
-    arguments: "-i -t -f contact@myapp.com"
+	config.action_mailer.delivery_method = :smtp
+	config.action_mailer.smtp_settings = {
+	  :address              => "smtp.gmail.com",
+	  :port                 => 587,
+	  :domain               => 'livrodaclasse.com.br',
+	  :user_name            => "marcelo@livrodaclasse.com.br",
+	  :password             => 'fr8sT1ke',
+	  :authentication       => 'plain',
+	  :enable_starttls_auto => true
   }
 
 	# Print deprecation notices to the Rails logger
