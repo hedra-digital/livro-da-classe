@@ -12,7 +12,7 @@ class BrazilianStates < Object
   end
 
   def self.names
-    all.map{|x| [x["name"].gsub(/(?!(?<= )(de|da|do|e|a|o)\b)(\b[a-z\u00E0-\u00FC])/) { |s| s.mb_chars.capitalize.to_s } + " - " + x["acronym"].upcase, x["name"]]}
+    all.map{|x| [x["name"].gsub(/(?!(?<= )(de|da|do|das|dos|d'|e|a|o)\b)(\b[a-z\u00E0-\u00FC])/) { |s| s.mb_chars.capitalize.to_s } + " - " + x["acronym"].upcase, x["name"]]}
   end
 
   def self.find_by_name(name)
@@ -21,7 +21,7 @@ class BrazilianStates < Object
 
   def self.find_cities_by_state(name)
     if name.present?
-      find_by_name(name.downcase)["cities"].map{|x| [x.gsub(/(?!(?<= )(de|da|do|e|a|o)\b)(\b[a-z\u00E0-\u00FC])/) { |s| s.mb_chars.capitalize.to_s }, x]}
+      find_by_name(name.downcase)["cities"].map{|x| [x.gsub(/(?!(?<= )(de|da|do|das|dos|d'|e|a|o)\b)(\b[a-z\u00E0-\u00FC])/) { |s| s.mb_chars.capitalize.to_s }, x]}
     else
       return []
     end
