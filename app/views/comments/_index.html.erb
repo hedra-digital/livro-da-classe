@@ -3,7 +3,7 @@
 <%= render :partial => "/comments/show", :collection => @text.comments, :as => :comment %>
 
 <%= simple_form_for([@book, @text, @comment]) do |f| %>
-  <%= f.input :content, :as => :text, :label => false%>
+  <%= f.input :content, :as => :text, :label => false %>
   <%= f.button :submit, "Postar comentário" %>
 <% end %>
 
