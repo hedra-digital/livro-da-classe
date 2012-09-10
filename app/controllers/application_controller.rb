@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
 	end
 
 	def current_user
-		if ["admin_logged"] == true
+		if session["admin_logged"] == true
 			return "admin"
-		elsif ["professor_logged"] == true
+		elsif session["professor_logged"] == true
 			return "professor"
 		else
 			return "estudante"

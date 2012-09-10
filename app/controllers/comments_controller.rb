@@ -9,11 +9,11 @@ class CommentsController < ApplicationController
        
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to book_text_path(@book.uuid, @text.uuid), notice: 'Text was successfully created.' }
-        format.json { render json: @text, status: :created, location: @text }
+        format.html { redirect_to book_text_path(@book.uuid, @text.uuid), :notice => 'Text was successfully created.' }
+        format.json { render :json => @text, :status => :created, :location => @text }
       else
-        format.html { redirect_to book_text_path(@book.uuid, @text.uuid), notice: 'An error happened while adding your comment.' }
-        format.json { render json: @text.errors, status: :unprocessable_entity }
+        format.html { redirect_to book_text_path(@book.uuid, @text.uuid), :notice => 'An error happened while adding your comment.' }
+        format.json { render :json => @text.errors, :status => :unprocessable_entity }
       end
     end
   end
