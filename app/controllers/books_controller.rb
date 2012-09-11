@@ -19,7 +19,6 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @url_alunos ||= Googl.shorten(welcome_url(@book.uuid)).short_url
     session['professor_logged'] = true unless session['admin_logged'];
     respond_to do |format|
       format.html # show.html.erb
