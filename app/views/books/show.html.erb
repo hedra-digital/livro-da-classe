@@ -14,14 +14,19 @@
 <br>
 
 <% @book.texts.each do |text| %>
-<ul class="text-item">
-  <li class="well">
-    <div class="text-author"><%= person_name_for(text) %></div>
-    <div class="text-words"><strong>Palavras: <%= words_per_text(text.content) %></strong></div>
-    <div class="text-finished"><%= text_status_for(text) %></div>
-    <div class="text-url"><%= link_to("ver texto", book_text_path(@book.uuid, text.uuid), :class => "btn btn-primary")  %></div>
-  </li>
-</ul>
+<div class="text-item well">
+  <dl>
+    <dt class="text-title">Título</dt>
+    <dd><%= text.title %></dd>
+    <dt class="text-author">Autor</dt>
+    <dd><%= person_name_for(text) %></dd>
+    <dt class="text-words">Palavras</dt>
+    <dd><%= words_per_text(text.content) %></dd>
+    <dt class="text-status">Status</dt>
+    <dd><%= text_status_for(text) %></dd>
+  </dl>
+  <%= link_to("Ver texto", book_text_path(@book.uuid, text.uuid), :class => "text-url btn btn-primary")  %>
+</div>
 <% end %>
 
 <% if @book.finished_at.nil? %>

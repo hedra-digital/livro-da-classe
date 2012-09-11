@@ -4,7 +4,7 @@ module BooksHelper
     url = Googl.shorten(welcome_url(@book.uuid)).short_url
     icon = content_tag :i, nil, :class => 'icon-globe'
     link = link_to url, url
-    content_tag :p, icon + '&nbsp;'.html_safe + link , :style => "float: right;"
+    content_tag :p, icon + '&nbsp;URL para alunos:&nbsp;'.html_safe + link , :style => "float: right;"
   end
 
   def words_per_text(text)

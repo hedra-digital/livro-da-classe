@@ -15,12 +15,12 @@ button,
 input,
 select,
 textarea {
-	color: #222;
+  color: #222;
 }
 
 body {
-	font-size: 1em;
-	line-height: 1.4;
+  font-size: 1em;
+  line-height: 1.4;
 }
 
 /*
@@ -30,13 +30,13 @@ body {
  */
 
 ::-moz-selection {
-	background: #b3d4fc;
-	text-shadow: none;
+  background: #b3d4fc;
+  text-shadow: none;
 }
 
 ::selection {
-	background: #b3d4fc;
-	text-shadow: none;
+  background: #b3d4fc;
+  text-shadow: none;
 }
 
 /*
@@ -44,12 +44,12 @@ body {
  */
 
 hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 1px solid #ccc;
-	margin: 1em 0;
-	padding: 0;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
 }
 
 /*
@@ -57,7 +57,7 @@ hr {
  */
 
 img {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 /*
@@ -65,9 +65,9 @@ img {
  */
 
 fieldset {
-	border: 0;
-	margin: 0;
-	padding: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /*
@@ -75,7 +75,7 @@ fieldset {
  */
 
 textarea {
-	resize: vertical;
+  resize: vertical;
 }
 
 /* ==========================================================================
@@ -83,10 +83,10 @@ textarea {
    ========================================================================== */
 
 .chromeframe {
-	margin: 0.2em 0;
-	background: #ccc;
-	color: #000;
-	padding: 0.2em 0;
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
 
 /* ==========================================================================
@@ -94,69 +94,102 @@ textarea {
    ========================================================================== */
 
 #header {
-	position: relative;
-	padding: 20px 30px;
-	background: #eee;
-	font-size: 12px;
-	overflow: auto;
+  position: relative;
+  padding: 20px 30px;
+  background: #eee;
+  font-size: 12px;
+  overflow: auto;
 }
 
 #navigation {
-	float: right;
-	width: 300px;
-	line-height: 3;
-	text-align: right;
+  float: right;
+  width: 300px;
+  line-height: 3;
+  text-align: right;
 }
 
 #header h1, h2 {
-	margin: 0;
+  margin: 0;
 }
 
 #header h2 {
-	color: #757575;  
+  color: #757575;  
 }
 
 h2.livro-titulo:before {
-	content: "Livro\: ";
-	color: #999;
+  content: "Livro\: ";
+  color: #999;
 }
 
 .logout {
-	padding: 5px;
-	background: #ddd;
+  padding: 5px;
+  background: #ddd;
 }
 
 #main {
-	padding: 20px 30px;
+  padding: 20px 30px;
 }
+
+/* Texto do livro na lista */
 
 .text-item {
-	margin: 0;
-	padding: 0;
+  margin: 0 0 5px 0;
+  padding: 10px 15px;
+  height: 47px;
 }
 
-.text-item li {
-	list-style-type: none;
+.text-item dl {
+  position: relative;
+  margin: 0;
 }
 
-.text-item div {
-	display: inline-block;
-	padding: 10px;
+.text-item dt {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: normal;
+  font-size: 11px;
+  color: #757575;
+}
+
+.text-item dd {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  margin: 0;
+}
+
+.text-title+dd {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.text-author, .text-author+dd {
+  margin-left: 320px;
+
 }
 
 .text-author {
-	display: block;
-	font-size: 22px;
+  font-size: 16px;
 }
 
-
-.text-words {
-	display: block;
+.text-words, .text-words+dd {
+  margin-left: 530px;
 }
+
+.text-status, .text-status+dd {
+  margin-left: 620px;
+}
+
+.text-url  {
+  float: right;
+}
+
+/* */
 
 #admin-is-logged {
-	text-align: center;
-	margin-bottom: 0px;
+  text-align: center;
+  margin-bottom: 0px;
 }
 
 #pdfloading{
@@ -165,24 +198,9 @@ h2.livro-titulo:before {
     position: absolute;
 }
 
-#text_title {
-	font-size: 22px;
-	width: 700px;
-	height: 40px;
-}
-
-.text-url  {
-	float: right;
-	.btn {
-		font-size: 18px;
-		padding: 10px;
-		margin-top: -6px;
-	}
-}
-
 .comment {
-	padding:5px;
-	border-bottom: 1px dotted #ccc;
+  padding:5px;
+  border-bottom: 1px dotted #ccc;
 }
 
 /* ==========================================================================
@@ -194,18 +212,18 @@ h2.livro-titulo:before {
  */
 
 .ir {
-	background-color: transparent;
-	border: 0;
-	overflow: hidden;
-	/* IE 6/7 fallback */
-	*text-indent: -9999px;
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  /* IE 6/7 fallback */
+  *text-indent: -9999px;
 }
 
 .ir:before {
-	content: "";
-	display: block;
-	width: 0;
-	height: 100%;
+  content: "";
+  display: block;
+  width: 0;
+  height: 100%;
 }
 
 /*
@@ -213,8 +231,8 @@ h2.livro-titulo:before {
  */
 
 .hidden {
-	display: none !important;
-	visibility: hidden;
+  display: none !important;
+  visibility: hidden;
 }
 
 /*
@@ -222,14 +240,14 @@ h2.livro-titulo:before {
  */
 
 .visuallyhidden {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 /*
@@ -239,12 +257,12 @@ h2.livro-titulo:before {
 
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
-	clip: auto;
-	height: auto;
-	margin: 0;
-	overflow: visible;
-	position: static;
-	width: auto;
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
 }
 
 /*
@@ -252,7 +270,7 @@ h2.livro-titulo:before {
  */
 
 .invisible {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 /*
@@ -269,12 +287,12 @@ h2.livro-titulo:before {
 
 .clearfix:before,
 .clearfix:after {
-	content: " "; /* 1 */
-	display: table; /* 2 */
+  content: " "; /* 1 */
+  display: table; /* 2 */
 }
 
 .clearfix:after {
-	clear: both;
+  clear: both;
 }
 
 /*
@@ -283,7 +301,7 @@ h2.livro-titulo:before {
  */
 
 .clearfix {
-	*zoom: 1;
+  *zoom: 1;
 }
 
 /* ==========================================================================
@@ -293,12 +311,12 @@ h2.livro-titulo:before {
    ========================================================================== */
 
 @media only screen and (min-width: 35em) {
-	/* Style adjustments for viewports that meet the condition */
+  /* Style adjustments for viewports that meet the condition */
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-	   only screen and (min-resolution: 144dpi) {
-	/* Style adjustments for high resolution devices */
+     only screen and (min-resolution: 144dpi) {
+  /* Style adjustments for high resolution devices */
 }
 
 /* ==========================================================================
@@ -307,68 +325,68 @@ h2.livro-titulo:before {
    ========================================================================== */
 
 @media print {
-	* {
-		background: transparent !important;
-		color: #000 !important; /* Black prints faster: h5bp.com/s */
-		box-shadow:none !important;
-		text-shadow: none !important;
-	}
+  * {
+    background: transparent !important;
+    color: #000 !important; /* Black prints faster: h5bp.com/s */
+    box-shadow:none !important;
+    text-shadow: none !important;
+  }
 
-	a,
-	a:visited {
-		text-decoration: underline;
-	}
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
 
-	a[href]:after {
-		content: " (" attr(href) ")";
-	}
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
 
-	abbr[title]:after {
-		content: " (" attr(title) ")";
-	}
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
 
-	/*
-	 * Don't show links for images, or javascript/internal links
-	 */
+  /*
+   * Don't show links for images, or javascript/internal links
+   */
 
-	.ir a:after,
-	a[href^="javascript:"]:after,
-	a[href^="#"]:after {
-		content: "";
-	}
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
 
-	pre,
-	blockquote {
-		border: 1px solid #999;
-		page-break-inside: avoid;
-	}
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
 
-	thead {
-		display: table-header-group; /* h5bp.com/t */
-	}
+  thead {
+    display: table-header-group; /* h5bp.com/t */
+  }
 
-	tr,
-	img {
-		page-break-inside: avoid;
-	}
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
 
-	img {
-		max-width: 100% !important;
-	}
+  img {
+    max-width: 100% !important;
+  }
 
-	@page {
-		margin: 0.5cm;
-	}
+  @page {
+    margin: 0.5cm;
+  }
 
-	p,
-	h2,
-	h3 {
-		orphans: 3;
-		widows: 3;
-	}
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
 
-	h2,
-	h3 {
-		page-break-after: avoid;
-	}
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
 }
