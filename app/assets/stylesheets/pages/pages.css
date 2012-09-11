@@ -10,8 +10,5 @@
  *
  *= require bootstrap-2.1.1
  *= require bootstrap-responsive-2.1.1
- *= require markitup/skins/markitup/style
- *= require markitup/sets/markdown/style
- *= require_self
  *= require_directory .
  */
