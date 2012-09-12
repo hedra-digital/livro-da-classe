@@ -17,6 +17,4 @@
 //= require markitup/sets/markdown/set
 //= require bootstrap-alert
 //= require bootstrap-modal
-//= require pdf
-//= require compatibility
 //= require_tree .
