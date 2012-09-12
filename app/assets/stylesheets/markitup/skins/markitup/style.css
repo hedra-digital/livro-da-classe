@@ -2,6 +2,9 @@
 // markItUp! Universal MarkUp Engine, JQuery plugin
 // By Jay Salvat - http://markitup.jaysalvat.com/
 // ------------------------------------------------------------------*/
+
+@import url(http://fonts.googleapis.com/css?family=Cousine:400,400italic,700,700italic);
+
 .markItUp * {
 	margin:0px; padding:0px;
 	outline:none;
@@ -12,7 +15,7 @@
 	text-decoration:none;
 }
 .markItUp  {
-	width:700px;
+	width:900px;
 	margin:5px 0 5px 0;
 	border:5px solid #F5F5F5;	
 }
@@ -23,13 +26,13 @@
 	font:11px Verdana, Arial, Helvetica, sans-serif;
 }
 .markItUpEditor {
-	font:12px 'Courier New', Courier, monospace;
+	font:16px 'Cousine', monospace;
 	padding:5px 5px 5px 35px;
 	border:3px solid #3C769D;
-	width:643px;
+	width:843px;
 	height:320px;	
 	clear:both;
-	line-height:18px;
+	line-height:1.5;
 	overflow:auto;
 }
 .markItUpPreviewFrame	{
