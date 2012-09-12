@@ -132,10 +132,13 @@ h2.livro-titulo:before {
 
 /* Texto do livro na lista */
 
+$titulo: 370px;
+$autor: 300px;
+
 .text-item {
   margin: 0 0 5px 0;
   padding: 10px 15px;
-  height: 47px;
+  height: 44px;
 }
 
 .text-item dl {
@@ -157,6 +160,11 @@ h2.livro-titulo:before {
   top: 20px;
   left: 0;
   margin: 0;
+  line-height: 1.0;
+}
+
+.text-title, .text-title+dd {
+  width: $titulo;
 }
 
 .text-title+dd {
@@ -165,8 +173,9 @@ h2.livro-titulo:before {
 }
 
 .text-author, .text-author+dd {
-  margin-left: 420px;
-
+  margin-left: $titulo;
+  width: $autor;
+  overflow: hidden;
 }
 
 .text-author {
@@ -174,11 +183,11 @@ h2.livro-titulo:before {
 }
 
 .text-words, .text-words+dd {
-  margin-left: 630px;
+  margin-left: $titulo + $autor;
 }
 
 .text-status, .text-status+dd {
-  margin-left: 720px;
+  margin-left: $titulo + $autor + 70px;
 }
 
 .text-url  {
