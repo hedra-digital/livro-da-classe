@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs">
   <%= nav_link 'Redação', book_path(@book.uuid) %>
   <%= nav_link 'Metadados', edit_book_path(@book.uuid) %>
-  <%= nav_link 'PDF do Livro', pdf_book_path(@book.uuid) %>  
+  <%= nav_link 'PDF do Livro', book_path(:format => :pdf) %>
 </ul>
