@@ -9,8 +9,6 @@ class Text < ActiveRecord::Base
 	before_save 							:set_uuid
 	before_save 							:create_author_if_required
 
-	validates_presence_of			:title, :content
-
 	def to_label
 		"#{title}"
 	end
