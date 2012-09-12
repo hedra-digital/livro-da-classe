@@ -15,6 +15,7 @@
   </div>
   
   <div class="span5">
+    <%= url_texto %>
     <div><%= link_to 'Editar texto', edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %></div>
     <% if session['admin_logged'] %>
       <div><%= link_to_function 'Ver versão LaTeX', "$('#latex').modal();", :class => 'btn btn-primary' %></div>
@@ -28,8 +29,6 @@
     <%= render "comments/index" %>
   </div>
 </div>
-
-
 
 <div class="modal hide" id="latex">
   <div class="modal-header">
