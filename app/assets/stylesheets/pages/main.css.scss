@@ -95,20 +95,20 @@ textarea {
 
 @font-face {
 	font-family: 'miso';
-	src: url('miso-regular.eot');
-	src: url('miso-regular.eot?#iefix') format('embedded-opentype'),
-	url('miso-regular.woff') format('woff'),
-	url('miso-regular.ttf') format('truetype');
+	src: url('/assets/miso-regular.eot');
+	src: url('/assets/miso-regular.eot?#iefix') format('embedded-opentype'),
+	url('/assets/miso-regular.woff') format('woff'),
+	url('/assets/miso-regular.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: 'miso';
-	src: url('miso-bold.eot');
-	src: url('miso-bold.eot?#iefix') format('embedded-opentype'),
-	url('miso-bold.woff') format('woff'),
-	url('miso-bold.ttf') format('truetype');
+	src: url('/assets/miso-bold.eot');
+	src: url('/assets/miso-bold.eot?#iefix') format('embedded-opentype'),
+	url('/assets/miso-bold.woff') format('woff'),
+	url('/assets/miso-bold.ttf') format('truetype');
 	font-weight: bold;
 	font-style: normal;
 }
@@ -133,7 +133,7 @@ h1, h2, h3, h4, h5 {
 }
 
 header {
-	background: #e91d27 url('topbar.png') bottom repeat-x;
+	background: #e91d27 url('/assets/topbar.png') bottom repeat-x;
 }
 
 header, footer, #home, #benefits {
@@ -303,7 +303,7 @@ footer {
 	font-family: 'miso', sans-serif;
 	font-size: 18pt;
 	color: #fff;
-	background: #434343 url('bg-pattern-border-2.png') top repeat-x;
+	background: #434343 url('/assets/bg-pattern-border-2.png') top repeat-x;
 }
 
 footer h2, footer p {
