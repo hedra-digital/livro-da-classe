@@ -95,17 +95,27 @@ textarea {
 
 #header {
   position: relative;
-  padding: 20px 30px;
+  padding: 1.6em 2.5em;
   background: #eee;
   font-size: 12px;
   overflow: auto;
+  height: 6.8em;
 }
 
-#navigation {
-  float: right;
+.nav-user {
+  position: absolute;
+  right: 0;
+  top: 0;
   width: 300px;
-  line-height: 3;
   text-align: right;
+  height: 0;
+  border-bottom: 10em solid #f26c68;
+  border-left: 7em solid transparent;
+  padding-right: 30px;
+}
+
+.nav-user>p {
+  margin-top: 4em;
 }
 
 #header h1, h2 {
