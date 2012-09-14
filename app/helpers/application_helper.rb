@@ -34,6 +34,17 @@ module ApplicationHelper
     end
   end
 
+  def user_color
+    case logged_in_as
+      when 'admin'
+        return 'adm-color'
+      when 'professor'
+        return 'tea-color'
+      else 'estudante'
+        return 'stu-color'
+    end
+  end
+
   def nav_link(link_text, link_path)
     class_name = current_page?(link_path) ? 'active' : ''
 

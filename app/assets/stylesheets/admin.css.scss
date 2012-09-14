@@ -109,9 +109,20 @@ textarea {
   width: 300px;
   text-align: right;
   height: 0;
-  border-bottom: 10em solid #f26c68;
   border-left: 7em solid transparent;
   padding-right: 30px;
+}
+
+.adm-color {
+  border-bottom: 10em solid #fc7874;
+}
+
+.tea-color {
+  border-bottom: 10em solid #8acffc;
+}
+
+.stu-color {
+  border-bottom: 10em solid #f7e371;
 }
 
 .nav-user>p {
