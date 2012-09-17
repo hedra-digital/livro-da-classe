@@ -11,7 +11,7 @@ module ApplicationHelper
   def full_text(book)
     a = String.new
     book.texts.each do |text|
-      a << "\\chapter{#{text.title}}\n#{k_to_latex(text.content)}\n" unless book.content.to_s.size == 0
+      a << "\\chapter{#{text.title}}\n#{k_to_latex(text.content)}\n" unless text.content.to_s.size == 0
     end
     a
   end
