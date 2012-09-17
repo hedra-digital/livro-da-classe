@@ -13,7 +13,7 @@ module ApplicationHelper
     book.texts.each do |text|
       a << "\\chapter{#{text.title}}\n#{k_to_latex(text.content)}\n"
     end
-    a
+    return a
   end
 
   def k_to_latex(text)
