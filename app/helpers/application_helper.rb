@@ -11,7 +11,7 @@ module ApplicationHelper
 
   def full_text(book)  
     builder = proc do |text|
-      "\\chapter{#{text.title}}\n#{k_to_latex(text.content)}\n" unless text.content.present?
+      "\\chapter{#{text.title}}\n#{k_to_latex(text.content)}\n" unless text.content.to_s.size == 0
     end
     
     book.texts.map(&builder).join
