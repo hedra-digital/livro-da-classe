@@ -12,6 +12,7 @@ LivroDaClasse::Application.routes.draw do
 		member do 
 			get 'finish'
 			get 'pdf'
+			get 'latex'
 		end
 		resources :texts do
 			member do 

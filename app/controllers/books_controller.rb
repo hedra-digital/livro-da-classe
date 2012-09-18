@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_filter :authentication_check, :only => [:index]
-  before_filter :find_resource, :only => [:show, :edit, :update, :destroy, :finish, :pdf]
+  before_filter :find_resource, :only => [:show, :edit, :update, :destroy, :finish, :pdf, :latex]
   
   # GET /books
   # GET /books.json
@@ -92,6 +92,9 @@ class BooksController < ApplicationController
   end
 
   def pdf    
+  end
+
+  def latex
   end
 
   private
