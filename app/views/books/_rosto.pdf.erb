@@ -13,18 +13,21 @@
 
 \bigskip
 
-\Large Textos dos alunos da 4ª série \textsc{a} e \textsc{b}
+<% if @book.subtitle.present? %>
+\Large <%= @book.subtitle %> \textsc{a} e \textsc{b}
+<% end %>
 
 \vfill
 
+<% if @book.organizers.present? %>
 \normalsize Organização\\
-\large Profª Ana Paula Wenc Ribeiro\\
-Profª Daniela dos Santos Pires de Souza
+\large <%= @book.organizers %>
+<% end %>
 
 \vspace*{50mm}
 
-\normalsize Escola Vicentina Sagrado Coração de Jesus\\
-Araucária, 2011
+\normalsize <%= @book.school.name %>\\
+\textsc{<%= @book.school.state %>}, 2012
 
 \endgroup
 

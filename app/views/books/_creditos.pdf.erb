@@ -3,25 +3,25 @@
 \footnotesize
 \thispagestyle{empty}
 
+<% if @book.directors.present? %>
 \textbf{Direção}\smallskip
 
-Irmã Amelia Teixeira Coelho\medskip
+<%= @book.directors %>\medskip
+<% end %>
 
+<% if @book.coordinators.present? %>
 \textbf{Coordenação Pedagógica}\smallskip
 
-Adriana Franciele Dreveniak\\
-Rosangela Dambroski dos Santos\medskip
+<%= @book.coordinators %>\medskip
+<% end %>
 
-\textbf{Organizadoras do projeto}\smallskip
+<% if @book.organizers.present? %>
+\textbf{Organização}\smallskip
 
-Profª Ana Paula Wenc Ribeiro\\
-Profª Daniela dos Santos Pires de Souza\medskip
+<%= @book.organizers %>\medskip
+<% end %>
 
-\textbf{Técnico em Informática}\smallskip
-
-Anderson Gotfrid\medskip
-
-\vfill
+\null\vfill
 
 \ficha{D784}
 {Doyle, Arthur Conan (1859--1930).}
@@ -34,9 +34,11 @@ Tradução de Eduardo San Martin. -- São Paulo: Hedra, 2011.\\}
 {820}
 {823}\medskip
 
-Escola Vicentina Sagrado Coração de Jesus\\
-Av. Victor do Amaral, 164 --- Centro --- Araucária/\textsc{pr}\\
-\textsc{cep} --- 83702-040
+\vfill
+
+<%= @book.school.name %>\\
+<%= "#{@book.school.address_1} --- #{@book.school.address_2} --- #{@book.school.city}" %>/\textsc{<%= @book.school.state %>}\\
+\textsc{cep} --- <%= @book.school.postal_code %>
 
 \pagebreak 
 
