@@ -8,12 +8,13 @@ module ApplicationHelper
     messages
   end
 
-  def full_text(book)
-    a = String.new
-    book.texts.each do |text|
-      a << "\\chapter{#{text.title}}\n#{k_to_latex(text.content)}\n"
+
+  def full_text(book)  
+    builder = proc do |text|
+      "\\chapter{#{text.title}}\n#{k_to_latex(text.content)}\n" unless text.content.to_s.size == 0
     end
-    return a
+    
+    book.texts.map(&builder).join
   end
 
   def k_to_latex(text)
