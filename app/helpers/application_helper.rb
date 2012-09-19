@@ -8,7 +8,6 @@ module ApplicationHelper
     messages
   end
 
-
   def full_text(book)  
     builder = proc do |text|
       "\\chapter{#{text.title}}\n#{k_to_latex(text.content)}\n" unless text.content.to_s.size == 0
@@ -18,7 +17,9 @@ module ApplicationHelper
   end
 
   def k_to_latex(text)
-    return Kramdown::Document.new(text).to_latex
+    a = Kramdown::Document.new(text)
+    b = OurLatex.new(a)
+    return b
   end
 
   def lesc(text)
