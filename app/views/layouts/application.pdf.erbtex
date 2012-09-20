@@ -2,12 +2,17 @@
 
 <% @latex_config={:command => 'xelatex',:parse_twice => true} %>
 
+\let\subsection\section
+
 \begin{document}
 
 <%= render 'rosto' %>
 <%= render 'creditos' %>
 
 \cleardoublepage
+
+\setcounter{tocdepth}{4}     % amplitude da presença das partes no índice
+\setcounter{secnumdepth}{-2} % amplitude da numeração das partes
 
 \tableofcontents*
 
@@ -23,5 +28,7 @@
 \openright
 
 <%= render 'colofao' %>
+
+\renewcommand{\hypertarget}{}
 
 \end{document}
