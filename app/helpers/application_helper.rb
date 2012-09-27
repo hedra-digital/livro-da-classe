@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def k_to_latex(text)
-    HedraLatex.convert(Kramdown::Document.new(text).root)
+    HedraLatex.convert(Kramdown::Document.new(text).root[0]
   end
 
   def lesc(text)
