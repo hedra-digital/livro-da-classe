@@ -12,10 +12,13 @@ class PagesController < ApplicationController
 		@contact_form = ContactForm.new(params[:contact_form])
 		if @contact_form.valid?
 			RequestContact.report_lead(@contact_form).deliver
-			redirect_to root_path, :notice => "Obrigado pelo seu interesse no Livro da Classe. Entraremos em contato dentro de 24 horas."
+			redirect_to solicitar_contato_sucesso_path
 		else
 			render :new
 		end
 	end
+
+  def success
+  end
 
 end

@@ -3,6 +3,7 @@ LivroDaClasse::Application.routes.draw do
 	root :to => "pages#home"
 	get 'solicitar_contato', :to => "pages#new", :as => :send_lead
 	post 'solicitar_contato', :to => "pages#send_lead", :as => :send_lead
+  get 'solicitar_contato/sucesso', :to => "pages#success"
 
 	resources :schools
 
