@@ -14,7 +14,7 @@ class PagesController < ApplicationController
 			RequestContact.report_lead(@contact_form).deliver
 			redirect_to solicitar_contato_sucesso_path
 		else
-			render :new
+			render :new => @contact_form.errors, :status => :unprocessable_entity
 		end
 	end
 
