@@ -31,6 +31,7 @@ gem 'kramdown'
 gem 'rails-latex'
 gem 'newrelic_rpm'
 gem 'googl'
+gem 'acts_as_list'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -127,16 +127,16 @@ header h1 {
   line-height: 1.6em;
 }
 
-header h1 a:link,
-header h1 a:visited,
-header h1 a:hover,
-header h1 a:active,
-header p a:link,
-header p a:visited,
-header p a:hover,
-header p a:active {
-  color: #FFF;
-  text-decoration: none;
+header {
+  h1, p {
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      color: #FFF;
+      text-decoration: none;
+    }
+  }
 }
 
 header>div, section>div, footer>div {
@@ -253,6 +253,7 @@ section#home {
     margin: 0;
   }
 }
+
 
 /* ==========================================================================
    Components

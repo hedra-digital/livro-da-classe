@@ -13,21 +13,11 @@
 
 <br>
 
-<% @book.texts.each do |text| %>
-<div class="text-item well">
-  <dl>
-    <dt class="text-title">Título</dt>
-    <dd><%= text.title %></dd>
-    <dt class="text-author">Autor</dt>
-    <dd><%= person_name_for(text) %></dd>
-    <dt class="text-words">Palavras</dt>
-    <dd><%= words_per_text(text.content) %></dd>
-    <dt class="text-status">Status</dt>
-    <dd><%= text_status_for(text) %></dd>
-  </dl>
-  <%= link_to("Ver texto", book_text_path(@book.uuid, text.uuid), :class => "text-url btn btn-primary")  %>
-</div>
-<% end %>
+<ul id="text-list" data-update-url="<%= sort_book_texts_url %>">
+  <% @texts.each do |text| %>
+  <li><span class="handle">[drag]</span>&nbsp;<strong><%= text.title %></strong>&nbsp;&nbsp;Autor: <%= person_name_for(text) %>&nbsp;&nbsp;<span class="text-view"><%= link_to("Ver texto", book_text_path(@book.uuid, text.uuid)) %></span></li>
+  <% end %>
+</ul>
 
 <% if @book.finished_at.nil? %>
   <hr/>

@@ -1,5 +1,5 @@
 class TextsController < ApplicationController
-  before_filter :find_resource, :only => [:show, :edit, :update, :destroy, :finish]
+  before_filter :find_resource, :only => [:show, :edit, :update, :destroy, :finish, :sort]
   before_filter :define_user_level, :only => [:show, :new, :edit]
 
   # GET /texts/1
@@ -82,6 +82,13 @@ class TextsController < ApplicationController
       format.html { redirect_to action: "show", notice: 'Text was marked as finished' }
       format.json { render json: @text.errors, status: :unprocessable_entity }
     end
+  end
+
+  def sort
+    params[:text].each_with_index do |id, index|
+      @book.texts.update_all({position: index+1}, {id: id})
+    end
+    render :nothing => true
   end
 
   private

@@ -1,4 +1,6 @@
 class Text < ActiveRecord::Base
+	acts_as_list
+
 	attr_accessor 						:author_name
 	attr_accessible 					:content, :title, :book_ids, :author_name
 	
