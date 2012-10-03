@@ -43,10 +43,6 @@ h1, h2, h3, h4, h5 {
   text-indent: 0;
 }
 
-section {
-  margin-top: 40px;
-}
-
 hr {
   clear: both; 
   float: none; 
@@ -120,6 +116,7 @@ header, footer, #home, #benefits {
 
 .body-text {
   text-shadow: 1px 1px 1px #FFF;
+  line-height: 1.1em;
 }
 
 header h1 {
@@ -190,6 +187,14 @@ footer {
    ========================================================================== */
 
 /* Home */
+
+section {
+  margin-top: 40px;
+}
+
+section#home {
+  margin-top: 0;
+}
 
 #description {
   padding: 30px 5px 0 5px;
