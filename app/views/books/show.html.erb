@@ -13,9 +13,16 @@
 
 <br>
 
-<ul id="text-list" data-update-url="<%= sort_book_texts_url %>">
+<ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>">
   <% @texts.each do |text| %>
-  <li><span class="handle">[drag]</span>&nbsp;<strong><%= text.title %></strong>&nbsp;&nbsp;Autor: <%= person_name_for(text) %>&nbsp;&nbsp;<span class="text-view"><%= link_to("Ver texto", book_text_path(@book.uuid, text.uuid)) %></span></li>
+    <%= content_tag_for :li, text do %>
+    <span class="handle">[drag]</span>&nbsp;
+    <strong><%= text.title %></strong>&nbsp;&nbsp;
+    Autor: <%= person_name_for(text) %>&nbsp;&nbsp;
+    <span class="text-view">
+      <%= link_to("Ver texto", book_text_path(@book.uuid, text.uuid)) %>
+    </span>
+    <% end %>
   <% end %>
 </ul>
 
