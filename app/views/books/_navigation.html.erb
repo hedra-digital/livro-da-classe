@@ -2,7 +2,5 @@
   <%= nav_link 'Redação', book_path(@book.uuid) %>
   <%= nav_link 'Metadados', edit_book_path(@book.uuid) %>
   <%= nav_link 'PDF', book_path(:format => :pdf) %>
-<!--   <% if logged_in_as == 'admin' %>
-    <%= nav_link 'LaTeX', latex_book_path(@book.uuid) %>
-  <% end %> -->
+  <%= nav_link 'LaTeX', book_path(:format => :latex) if logged_in_as == 'admin'  %>
 </ul>

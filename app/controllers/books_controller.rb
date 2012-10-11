@@ -24,6 +24,10 @@ class BooksController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @book }
       format.pdf
+      format.latex { 
+       latex_file = render_to_string(:layout => true) 
+       send_data latex_file
+      }
     end
   end
 
@@ -91,11 +95,12 @@ class BooksController < ApplicationController
     end
   end
 
-  def pdf    
+  def pdf        
   end
 
   def latex
   end
+
 
   private
 

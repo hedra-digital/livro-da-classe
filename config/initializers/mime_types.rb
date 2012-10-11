@@ -5,3 +5,5 @@
 # Mime::Type.register_alias "text/html", :iphone
 
 # Mime::Type.register "application/pdf", :pdf, ['text/pdf'], ['pdf']
+
+Mime::Type.register "application/x-latex", :latex

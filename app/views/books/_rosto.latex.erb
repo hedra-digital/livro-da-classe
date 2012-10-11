@@ -1,0 +1,34 @@
+\begingroup
+\centering
+
+\vspace*{40mm}
+
+\huge <%= @book.title %>
+
+\cleardoublepage
+
+\vspace*{40mm}
+
+\huge <%= @book.title %>
+
+\bigskip
+
+<% if @book.subtitle.present? %>
+\Large <%= @book.subtitle %>
+<% end %>
+
+\vfill
+
+<% if @book.organizers.present? %>
+\normalsize Organização\\
+\large <%= @book.organizers %>
+<% end %>
+
+\vspace*{50mm}
+
+\normalsize <%= @book.school.name %>\\
+\textsc{<%= @book.school.state %>}, 2012
+
+\endgroup
+
+\clearpage
