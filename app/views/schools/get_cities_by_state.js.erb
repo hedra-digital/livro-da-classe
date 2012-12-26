@@ -1,3 +1,0 @@
-<% @cities.each do |city| %>
-	$('#form-school-cities').append('<option value=\"<%= city[1].gsub(/'/) {|s| "\\'"} %>\">' + '<%= city[0].gsub(/'/) {|s| "\\'"} %>' + '</option>');
-<% end %>

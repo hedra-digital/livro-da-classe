@@ -1,7 +1,0 @@
-  <tr>
-    <td><%= link_to book.title, book_path(book.uuid) %></td>
-    <td><%= raw book.texts.map {|x| x.to_label}.join ', ' %></td>
-    <!-- <td><%= link_to 'Ver', book_path(book.uuid) %></td> -->
-    <td><%= link_to 'Editar', edit_book_path(book.uuid) %></td>
-    <td><%= link_to 'Apagar', book_path(book.uuid), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>

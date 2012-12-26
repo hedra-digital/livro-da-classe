@@ -1,6 +1,0 @@
-<ul class="nav nav-tabs">
-  <%= nav_link 'Redação', book_path(@book.uuid) %>
-  <%= nav_link 'Metadados', edit_book_path(@book.uuid) %>
-  <%= nav_link 'PDF', book_path(:format => :pdf) %>
-  <%= nav_link 'LaTeX', book_path(:format => :latex) if logged_in_as == 'admin'  %>
-</ul>
