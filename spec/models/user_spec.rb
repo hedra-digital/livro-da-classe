@@ -11,27 +11,30 @@ describe User do
   context 'when validating' do
 
     it 'is invalid without a name' do
-      user = User.new(:email => 'test@example.com', :password_digest => 'test21')
+      user = build(:user, :name => nil)
       user.should_not be_valid
       expect { user.save! }.to raise_error(
         ActiveRecord::RecordInvalid
       )
+      user.should have(1).error_on(:name)
     end
 
     it 'is invalid without an email' do
-      user = User.new(:name => 'Joe Schmuck', :password_digest => 'test21')
+      user = build(:user, :email => nil)
       user.should_not be_valid
       expect { user.save! }.to raise_error(
         ActiveRecord::RecordInvalid
       )
+      user.should have(1).error_on(:email)
     end
 
     it 'is invalid without a password' do
-      user = User.new(:name => 'Joe Schmuck', :email => 'test@example.com')
+      user = build(:user, :password_digest => nil)
       user.should_not be_valid
       expect { user.save! }.to raise_error(
         ActiveRecord::RecordInvalid
       )
+      user.should have(1).error_on(:password_digest)
     end
 
   end
