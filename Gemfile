@@ -7,7 +7,6 @@ gem 'rails', '3.2.9'
 
 gem 'mysql2'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -22,6 +21,19 @@ end
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.0'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'faker'
+end
+
+group :development do
+  gem 'meta_request'
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-nav'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 gem 'jquery-rails'
