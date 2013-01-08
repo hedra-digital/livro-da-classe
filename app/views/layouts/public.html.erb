@@ -19,19 +19,17 @@
     <![endif]-->
     <div id="wrap">
       <header>
-        <div class="clearfix">
+        <div class="container">
           <h1><%= link_to_unless_current 'Livro da Classe', root_path %></h1>
-          <%= image_tag 'hedraeducacao-logo.png', :width => '160', :height => '55', :alt => 'Hedra Educação', :class => 'logo' %>
+          <%= image_tag 'hedraeducacao-logo.png', :width => '160', :height => '55', :alt => 'Hedra Educação', :class => 'logo-he' %>
         </div>
       </header>
-      <div id="main" role="main">
-
+      <div id="main" role="main" class="container">
         <%= yield %>
-
       </div>
     </div>
     <footer>
-      <div class="clearfix">
+      <div class="container">
         <div id="logo">
           <%= image_tag 'logo-hedra.png', :width => '130', :height => '130' %>
         </div>

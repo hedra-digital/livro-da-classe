@@ -2,14 +2,29 @@
    Variables
    ========================================================================== */
 
+/*
+* Overwriting Bootstrap variables
+*/
 
+$bodyBackground:                  #f9f9f9;
+$textColor:                       #333;
+$linkColor:                       #E7611D;
+$linkColorHover:                  #3B9FC1;
+
+$sansFontFamily:                  'miso', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serifFontFamily:                 TimesNewRoman, "Times New Roman", Times, serif;
+
+$baseFontSize:                    24px;
+$baseFontFamily:                  $sansFontFamily;
+$baseLineHeight:                  1.4;
+$altFontFamily:                   $serifFontFamily;
 
 /* ==========================================================================
   Importing frameworks
   ========================================================================== */
 
 @import 'bootstrap';
-@import "bourbon";
+@import 'bourbon';
 
 
 /* ==========================================================================
@@ -24,21 +39,175 @@
    Basic tags
    ========================================================================== */
 
-html {
-  height: 100%;
+
+
+/* ==========================================================================
+   Areas
+   ========================================================================== */
+
+#wrap {
+  padding-bottom: 50px;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background: #F9F9F9;
+header {
+  height: 110px;
+  background: #e91d27 url('/assets/topbar.png') bottom repeat-x;
+  .container {
+    position: relative;
+  }
+  h1 {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-size: 2.9em;
+    line-height: 110px;
+  }
+  h1, p {
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      color: #FFF;
+      text-decoration: none;
+    }
+  }
+  .logo-he {
+    position: absolute;
+    top: 28px;
+    right: 0;
+  }
 }
 
-h1, h2, h3, h4, h5 {
-  font-weight: bold;
-  font-style: normal;
-  text-indent: 0;
+footer {
+  padding: 60px 0 0 0;
+  clear: both;
+  color: #fff;
+  background: #434343 url('/assets/footer-border.png') top repeat-x;
+  h2, p {
+    margin: 0;
+    padding: 0;
+  }
+  h2 {
+    font-size: 20px;
+    line-height: $baseLineHeight;
+  }
+  p {
+    font-size: 18px;
+  }
+  #logo {
+    float: left
+  }
+  #hedra {
+    padding: 0 0 0 170px;
+  }
+}
+
+
+/* ==========================================================================
+   Pages
+   ========================================================================== */
+
+/* Home */
+
+#intro {
+  margin-top: 0;
+  #description {
+    padding-top: 30px;
+    text-align: center;
+    .high {
+      margin: 0;
+      padding: 0;
+      font-size: 1.9em;
+      line-height: 1.4em;
+      text-align: center;
+      word-spacing: 0.1em;
+      em {
+        font-style: normal;
+        font-size: 1.6em;
+        color: #e91d27;
+      }
+    }
+    .start-now {
+      margin: 53px 0 0 0;
+      text-align: center;
+    }
+  }
+  #illustration {
+    padding-top: 20px;
+    text-align: center;
+    img {
+      width: 80%;
+      height: auto;
+    }
+  }
+}
+
+#benefits {
+  margin-top: 40px;
+  h2 {
+    margin: 0;
+    padding: 0;
+    color: #e91d27;
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+
+.text {
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+a.clean-gray {
+  background-color: #EEE;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEE), color-stop(100%, #CCC));
+  background-image: -webkit-linear-gradient(top, #EEE, #CCC);
+  background-image: -moz-linear-gradient(top, #EEE, #CCC);
+  background-image: -ms-linear-gradient(top, #EEE, #CCC);
+  background-image: -o-linear-gradient(top, #EEE, #CCC);
+  background-image: linear-gradient(top, #EEE, #CCC);
+  border: 1px solid #CCC;
+  border-bottom: 1px solid #BBB;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 7px;
+  color: #333;
+  font-size: 1.6em;
+  font-weight: normal;
+  text-decoration: none;
+  line-height: 1;
+  padding: 0.5em 0.8em;
+  text-align: center;
+  text-shadow: 0 1px 0 #EEE;
+}
+
+a.clean-gray:hover {
+  background-color: #dddddd;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
+  background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
+  background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
+  background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
+  background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
+  background-image: linear-gradient(top, #dddddd, #bbbbbb);
+  border: 1px solid #bbb;
+  border-bottom: 1px solid #999;
+  cursor: pointer;
+  text-shadow: 0 1px 0 #ddd;
+}
+
+a.clean-gray:active {
+  border: 1px solid #aaa;
+  border-bottom: 1px solid #888;
+  -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+  -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+  box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
 }
 
 hr {
@@ -87,24 +256,21 @@ hr.faded {
   );
 }
 
+
 /* ==========================================================================
-   Areas
+   Sticky footer
    ========================================================================== */
 
-/* Header */
-
-header {
-  background: #e91d27 url('/assets/topbar.png') bottom repeat-x;
+html {
+  height: 100%;
 }
 
-header, footer, #home, #benefits {
-  font-family: 'miso', sans-serif;
-  font-size: 18pt;
+body {
+  height: 100%;
 }
 
 #wrap {
   min-height: 100%;
-  padding-bottom: 50px;
 }
 
 #main {
@@ -112,194 +278,8 @@ header, footer, #home, #benefits {
   padding-bottom: 180px;
 }
 
-.body-text {
-  text-shadow: 1px 1px 1px #FFF;
-  line-height: 1.1em;
-}
-
-header h1 {
-  margin: 0;
-  padding: 0;
-  color: white;
-  font-size: 2.8em;
-  line-height: 1.6em;
-}
-
-header {
-  h1, p {
-    a:link,
-    a:visited,
-    a:hover,
-    a:active {
-      color: #FFF;
-      text-decoration: none;
-    }
-  }
-}
-
-header>div, section>div, footer>div {
-  width: 960px;
-  margin: 0 auto;
-  position: relative;
-}
-
-header .logo {
-  position: absolute;
-  top: 24px;
-  right: 15px;
-}
-
-/* Footer */
-
 footer {
   position: relative;
   margin-top: -180px;
   height: 180px;
-  padding: 60px 0 0 0;
-  clear: both;
-  font-family: 'miso', sans-serif;
-  font-size: 18pt;
-  color: #fff;
-  background: #434343 url('/assets/bg-pattern-border-2.png') top repeat-x;
-  h2, footer p {
-    margin: 0;
-    padding: 0;
-  }
-  h2 {
-    font-size: 20px;
-  }
-  p {
-    font-size: 18px;
-  }
-  #logo {
-    float: left
-  }
-  #hedra {
-    padding: 0 0 0 170px;
-  }
-}
-
-
-/* ==========================================================================
-   Pages
-   ========================================================================== */
-
-/* Home */
-
-section {
-  margin-top: 40px;
-}
-
-section#home {
-  margin-top: 0;
-}
-
-#description {
-  padding: 30px 5px 0 5px;
-  width: 460px;
-  float: left;
-  text-align: center;
-}
-
-#illustration {
-  padding-top: 20px;
-  width: 470px;
-  float: right;
-  text-align: center;
-  img {
-    width: 80%;
-    height: auto;
-  }
-}
-
-.intro {
-  margin: 0;
-  padding: 0;
-  font-size: 1.4em;
-  line-height: 1.4em;
-  text-align: center;
-  word-spacing: 0.1em;
-  em {
-    font-style: normal;
-    font-size: 1.6em;
-    color: #e91d27;
-  }
-}
-
-.start-now {
-  margin: 53px 0 0 0;
-  text-align: center;
-}
-
-#benefits {
-  div div {
-    width: 30%;
-    margin-right: 5%;
-    float: left;
-  }
-  div div:last-child {
-    margin-right: 0;
-  }
-  div div h2  {
-    margin: 0;
-    padding: 0;
-    color: #e91d27;
-    font-size: 1.4em;
-    font-weight: bold;
-  }
-  div div p {
-    margin: 0;
-  }
-}
-
-
-/* ==========================================================================
-   Components
-   ========================================================================== */
-
-/* Buttons */
-
-a.clean-gray {
-  background-color: #EEE;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEE), color-stop(100%, #CCC));
-  background-image: -webkit-linear-gradient(top, #EEE, #CCC);
-  background-image: -moz-linear-gradient(top, #EEE, #CCC);
-  background-image: -ms-linear-gradient(top, #EEE, #CCC);
-  background-image: -o-linear-gradient(top, #EEE, #CCC);
-  background-image: linear-gradient(top, #EEE, #CCC);
-  border: 1px solid #CCC;
-  border-bottom: 1px solid #BBB;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 7px;
-  color: #333;
-  font-size: 1.6em;
-  font-weight: normal;
-  text-decoration: none;
-  line-height: 1;
-  padding: 0.5em 0.8em;
-  text-align: center;
-  text-shadow: 0 1px 0 #EEE;
-}
-
-a.clean-gray:hover {
-  background-color: #dddddd;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
-  background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
-  background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
-  background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
-  background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
-  background-image: linear-gradient(top, #dddddd, #bbbbbb);
-  border: 1px solid #bbb;
-  border-bottom: 1px solid #999;
-  cursor: pointer;
-  text-shadow: 0 1px 0 #ddd;
-}
-
-a.clean-gray:active {
-  border: 1px solid #aaa;
-  border-bottom: 1px solid #888;
-  -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-  -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
-  box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
 }
