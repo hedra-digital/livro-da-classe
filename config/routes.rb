@@ -2,6 +2,7 @@ Livrodaclasse::Application.routes.draw do
 
   resources :users
   resources :sessions
+  resources :schools
 
   root :to => "pages#home"
   get '/cadastro', :to => 'users#new', :as => :new_user
