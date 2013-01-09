@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe 'unregistered user' do
@@ -19,11 +21,11 @@ describe 'unregistered user' do
 
     it 'fills up form' do
       visit new_user_path
-      fill_in 'Name', :with => 'John'
-      fill_in 'Email', :with => 'john@example.com'
-      fill_in 'Password', :with => 'password'
-      fill_in :password_confirmation, :with => 'password'
-      click_button :submit
+      fill_in 'Nome', :with => 'John'
+      fill_in 'E-mail', :with => 'john@example.com'
+      fill_in 'Senha', :with => 'password'
+      fill_in 'Confirmação da senha', :with => 'password'
+      click_button 'Criar Usuário'
     end
 
   end
