@@ -1,3 +1,3 @@
-if Rails.env.test?
-  Faker::Config.locale = "pt_br"
+if Rails.env.test? || Rails.env.development?
+  Faker::Config.locale = "pt-br"
 end
