@@ -209,6 +209,9 @@ pt_br:
         email: E-mail
         password: Senha
         password_confirmation: Confirmação da senha
+        teacher: Professor?
+        student_count: Número de alunos
+        school_name: Nome da escola
     successful:
       messages:
         created: "%{model} foi criado com sucesso."

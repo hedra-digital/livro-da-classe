@@ -21,15 +21,13 @@ describe 'unregistered user' do
 
     it 'fills up form' do
       visit new_user_path
-      fill_in 'Nome', :with => 'John'
-      fill_in 'E-mail', :with => 'john@example.com'
-      fill_in 'Senha', :with => 'password'
-      fill_in 'Confirmação da senha', :with => 'password'
-      # fill_in 'Você é professor(a)?', :with => true
-      # fill_in 'Se sim, quantos alunos tem atualmente?', :with => '50'
-      fill_in 'Nome da escola', :with => 'nome da escola'
-      fill_in 'Estado', :with => 'Ceará'
-      fill_in 'Cidade', :with => 'Jericoaquara'
+      fill_in 'user_name', :with => 'John'
+      fill_in 'user_email', :with => 'john@example.com'
+      fill_in 'user_password', :with => 'password'
+      fill_in 'user_password_confirmation', :with => 'password'
+      check 'user_teacher'
+      fill_in 'user_student_count', :with => '50'
+      fill_in 'user_school_name', :with => 'EEPSG Aluísio Nunes'
       click_button 'Criar Usuário'
     end
 

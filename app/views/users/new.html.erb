@@ -1,25 +1,12 @@
 <h1>Cadastre a sua escola</h1>
 
-<%= form_for @user do |f| %>
-  <%= field_set_tag 'Informações pessoais' do %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    <%= f.label :password %>
-    <%= f.text_field :password %>
-    <%= f.label :password_confirmation %>
-    <%= f.text_field :password_confirmation %>
-  <% end %>
-  <%= field_set_tag 'Informações da escola' do %>
-    <%= f.fields_for :school do |m| %>
-      <%= m.label :name %>
-      <%= m.text_field :name %>
-      <%= m.label :state %>
-      <%= m.text_field :state %>
-      <%= m.label :city %>
-      <%= m.text_field :city %>
-    <% end %>
-  <% end %>
-  <%= f.submit %>
+<%= simple_form_for @user do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.input :teacher, :inline_label => "Você é professor?", :label => false %>
+  <%= f.input :student_count %>
+  <%= f.input :school_name %>
+  <%= f.button :submit %>
 <% end %>

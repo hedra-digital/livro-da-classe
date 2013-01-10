@@ -8,6 +8,12 @@ describe User do
 
   it { should respond_to(:password_digest) }
 
+  it { should respond_to(:teacher) }
+
+  it { should respond_to(:student_count) }
+
+  it { should respond_to(:school_name) }
+
   context 'when validating' do
 
     it 'is invalid without a name' do
@@ -38,7 +44,5 @@ describe User do
     end
 
   end
-
-  it { should respond_to(:school) }
 
 end
