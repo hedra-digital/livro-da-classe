@@ -11,25 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130110000019) do
-
-  create_table "schools", :force => true do |t|
-    t.string   "name"
-    t.string   "state"
-    t.string   "city"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20121229005715) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
+    t.boolean  "teacher"
+    t.integer  "student_count"
+    t.string   "school_name"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.integer  "school_id"
   end
-
-  add_index "users", ["school_id"], :name => "index_users_on_school_id"
 
 end
