@@ -16,7 +16,7 @@ $serifFontFamily:                 TimesNewRoman, "Times New Roman", Times, serif
 
 $baseFontSize:                    24px;
 $baseFontFamily:                  $sansFontFamily;
-$baseLineHeight:                  1.4;
+$baseLineHeight:                  $baseFontSize * 1.4;
 $altFontFamily:                   $serifFontFamily;
 
 
