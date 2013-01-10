@@ -1,5 +1,8 @@
 class School < ActiveRecord::Base
 
+  # Relationships
+  has_many :users
+
   # Validations
   validates :name, :state, :city, :presence => true
 

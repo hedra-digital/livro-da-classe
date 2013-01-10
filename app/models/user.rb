@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   has_secure_password
 
+  # Relationships
+  belongs_to :school
+
   # Validations
   validates :email, :name, :presence => true
 
