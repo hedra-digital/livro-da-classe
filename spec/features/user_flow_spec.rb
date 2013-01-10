@@ -25,8 +25,8 @@ describe 'unregistered user' do
       fill_in 'E-mail', :with => 'john@example.com'
       fill_in 'Senha', :with => 'password'
       fill_in 'Confirmação da senha', :with => 'password'
-      fill_in 'Você é professor(a)?', :with => true
-      fill_in 'Se sim, quantos alunos tem atualmente?', :with => '50'
+      # fill_in 'Você é professor(a)?', :with => true
+      # fill_in 'Se sim, quantos alunos tem atualmente?', :with => '50'
       fill_in 'Nome da escola', :with => 'nome da escola'
       fill_in 'Estado', :with => 'Ceará'
       fill_in 'Cidade', :with => 'Jericoaquara'

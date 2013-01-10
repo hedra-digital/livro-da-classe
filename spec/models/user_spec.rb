@@ -39,4 +39,6 @@ describe User do
 
   end
 
+  it { should respond_to(:school) }
+
 end
