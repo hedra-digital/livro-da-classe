@@ -23,6 +23,7 @@ set :keep_releases, 3
 
 after "deploy:update_code", "deploy:symlink_db"
 after "deploy:restart", "deploy:cleanup"
+after "deploy", "deploy:migrate"
 
 namespace :deploy do
   desc "Symlinks the database.yml"
