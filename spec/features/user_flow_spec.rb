@@ -54,6 +54,7 @@ describe 'unregistered user' do
       fill_in 'user_student_count', :with => '50'
       fill_in 'user_school_name', :with => 'EEPSG Aluísio Nunes'
       click_button 'Criar Usuário'
+      save_and_open_page
       page.should have_content('john@example.com')
     end
 
