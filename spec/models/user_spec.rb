@@ -43,6 +43,10 @@ describe User do
       user.should have(1).error_on(:password_digest)
     end
 
+    it 'is invalid if email is taken'
+
+    it 'is invalid if email has a weird format'
+
   end
 
 end

@@ -11,7 +11,7 @@ $textColor:                       #333;
 $linkColor:                       #E7611D;
 $linkColorHover:                  #3B9FC1;
 
-$sansFontFamily:                  'miso', "Helvetica Neue", Helvetica, Arial, sans-serif;
+$sansFontFamily:                  Miso, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $serifFontFamily:                 TimesNewRoman, "Times New Roman", Times, serif;
 
 $baseFontSize:                    24px;
@@ -49,6 +49,15 @@ $altFontFamily:                   $serifFontFamily;
   padding-bottom: 50px;
 }
 
+#userid {
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: white;
+  }
+}
+
 header {
   height: 110px;
   background: #e91d27 url('/assets/topbar.png') bottom repeat-x;
@@ -67,7 +76,7 @@ header {
     a:visited,
     a:hover,
     a:active {
-      color: #FFF;
+      color: white;
       text-decoration: none;
     }
   }
@@ -81,7 +90,7 @@ header {
 footer {
   padding: 60px 0 0 0;
   clear: both;
-  color: #fff;
+  color: white;
   background: #434343 url('/assets/footer-border.png') top repeat-x;
   h2, p {
     margin: 0;

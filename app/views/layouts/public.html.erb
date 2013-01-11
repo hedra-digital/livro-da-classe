@@ -20,8 +20,18 @@
     <div id="wrap">
       <header>
         <div class="container">
-          <h1><%= link_to_unless_current 'Livro da Classe', root_path %></h1>
-          <%= image_tag 'hedraeducacao-logo.png', :width => '160', :height => '55', :alt => 'Hedra Educação', :class => 'logo-he' %>
+          <div class="row">
+            <div class="span5">
+              <h1><%= link_to_unless_current 'Livro da Classe', root_path %></h1>
+            </div>
+            <div id="userid" class="span3 offset4">
+              <% if current_user %>
+                Usuário logado: <%= current_user.email %>
+              <% else %>
+                <%= link_to "Cadastrar-se", new_user_path %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </header>
       <div id="main" role="main" class="container">

@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      redirect_to root_url, notice: "Obrigado pelo seu cadastro!"
+      session[:user_id] = @user.id
+      redirect_to app_home_path, notice: "Obrigado pelo seu cadastro!"
     else
       render "new"
     end

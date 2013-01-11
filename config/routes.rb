@@ -6,6 +6,7 @@ Livrodaclasse::Application.routes.draw do
 
   root :to => "pages#home"
   get '/cadastro', :to => 'users#new', :as => :new_user
+  get '/apphome', :to => 'pages#apphome', :as => :app_home
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
