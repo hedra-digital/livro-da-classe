@@ -37,8 +37,8 @@ describe User do
     end
 
     it 'is invalid if email is taken' do
-      user = User.create(name: 'José Manoel', email: 'name@example.com', password: 'password')
-      user2 = User.create(name: 'José Manoel', email: 'name@example.com', password: 'password')
+      user1 = create(:user, :email => 'foo@bar.com')
+      user2 = build(:user, :email => 'foo@bar.com')
       user2.should_not be_valid
       user2.should have(1).error_on(:email)
     end
