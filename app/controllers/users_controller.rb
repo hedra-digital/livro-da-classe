@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   layout 'public'
+
   def new
     @user = User.new
   end
@@ -13,4 +14,5 @@ class UsersController < ApplicationController
       render "new"
     end
   end
+
 end

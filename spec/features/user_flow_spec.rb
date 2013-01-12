@@ -19,7 +19,7 @@ describe 'unregistered user' do
       current_path.should == '/cadastro'
     end
 
-    it 'fills up form' do
+    it 'fills up sign up form' do
       visit new_user_path
       fill_in 'user_name', :with => 'John'
       fill_in 'user_email', :with => 'john@example.com'
@@ -44,7 +44,7 @@ describe 'unregistered user' do
       page.should have_content('não está de acordo com a confirmação')
     end
 
-    it 'sees his user ID on the page' do
+    it 'sees his user ID on successful sign up' do
       visit new_user_path
       fill_in 'user_name', :with => 'John'
       fill_in 'user_email', :with => 'john@example.com'
@@ -54,8 +54,30 @@ describe 'unregistered user' do
       fill_in 'user_student_count', :with => '50'
       fill_in 'user_school_name', :with => 'EEPSG Aluísio Nunes'
       click_button 'Criar Usuário'
-      save_and_open_page
+      # save_and_open_page
       page.should have_content('john@example.com')
+    end
+
+  end
+
+end
+
+describe 'signed out user' do
+
+  context 'when signing in' do
+
+    it 'clicks the sign in link' do
+      visit new_user_path
+      click_link('Entrar')
+    end
+
+    it 'fills up sign in form' do
+      visit new_user_path
+      click_link('Entrar')
+      fill_in 'Email', :with => 'john@example.com'
+      fill_in 'Password', :with => 'password'
+      click_button 'Entrar'
+      page.should have_content('autenticado')
     end
 
   end

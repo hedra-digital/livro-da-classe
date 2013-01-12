@@ -1,2 +1,7 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>Entrar no site</h1>
+
+<%= simple_form_for :signin, { :url => sessions_path } do |f| %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.button :submit, 'Entrar' %>
+<% end %>
