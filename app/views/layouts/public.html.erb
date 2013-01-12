@@ -27,7 +27,7 @@
             <div id="userid" class="span3 offset4">
               <% if current_user %>
                 Usuário logado: <%= current_user.email %>
-                <%= link_to "Sair", signout_path %>
+                <%= link_to "Sair", signout_path, :method => :delete %>
               <% else %>
                 <%= link_to "Entrar no site", signin_path %>
                 <%= link_to "Cadastrar-se", new_user_path %>

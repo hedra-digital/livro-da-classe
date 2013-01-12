@@ -3,11 +3,10 @@ Livrodaclasse::Application.routes.draw do
   get 'cadastro', :to => 'users#new', :as => :new_user
   get 'apphome', :to => 'pages#apphome', :as => :app_home
   get 'entrar', :to => 'sessions#new', :as => :signin
-  get 'sair', :to => 'sessions#destroy', :as => :signout
+  delete 'sair', :to => 'sessions#destroy', :as => :signout
 
   resources :users
   resources :sessions
-  resources :schools
 
   root :to => "pages#home"
 
