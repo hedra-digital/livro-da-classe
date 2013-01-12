@@ -20,6 +20,7 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'faker'
   gem 'launchy'
+  gem 'simplecov', :require => false
 end
 
 group :development do

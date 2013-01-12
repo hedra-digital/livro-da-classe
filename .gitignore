@@ -40,6 +40,7 @@ pickle-email-*.html
 .env
 .DS_Store
 /public/assets
+/coverage
 
 /db/sphinx/
 /log/searchd.development.pid
