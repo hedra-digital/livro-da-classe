@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :password_digest
-      t.boolean :teacher
+      t.boolean :educator
       t.integer :student_count
       t.string :school_name
 

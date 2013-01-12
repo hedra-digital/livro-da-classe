@@ -10,7 +10,7 @@ describe User do
 
   it { should respond_to(:password_digest) }
 
-  it { should respond_to(:teacher) }
+  it { should respond_to(:educator) }
 
   it { should respond_to(:student_count) }
 
