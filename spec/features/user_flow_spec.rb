@@ -66,5 +66,15 @@ describe 'signed out user' do
       click_button 'Entrar'
       page.should have_content('autenticado')
     end
+
+    it 'clicks the sign out link' do
+      visit root_path
+      click_link('Entrar')
+      fill_in 'Email', :with => user.email
+      fill_in 'Password', :with => user.password
+      click_button 'Entrar'
+      click_link('Sair')
+      page.should have_content('saiu da área logada')
+    end
   end
 end
