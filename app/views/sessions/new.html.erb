@@ -3,5 +3,6 @@
 <%= simple_form_for :signin, { :url => sessions_path } do |f| %>
   <%= f.input :email %>
   <%= f.input :password %>
+  <%= f.input :remember_me, :as => :boolean, :inline_label => 'Permanecer logado', :label => false %>
   <%= f.button :submit, 'Entrar' %>
 <% end %>
