@@ -19,6 +19,10 @@ group :test, :development do
   gem 'capybara'
   gem 'faker'
   gem 'launchy'
+  gem 'rb-inotify', '~> 0.8.8', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'guard-rspec'
+  gem 'guard-livereload'
   gem 'simplecov', :require => false
 end
 
