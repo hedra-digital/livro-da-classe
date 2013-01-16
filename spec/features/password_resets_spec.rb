@@ -36,8 +36,26 @@ describe "PasswordResets" do
       fill_in "Senha", :with => "password"
       fill_in "Confirmação da senha", :with => "password"
       click_button "Alterar senha"
-      save_and_open_page
       page.should have_content("A senha foi alterada")
+    end
+  end
+
+  context "when password token has expired" do
+    it "shows a notice to user" do
+      user = create(:user, :password_reset_token => "something", :password_reset_sent_at => 5.hour.ago)
+      visit edit_password_reset_path(user.password_reset_token)
+      fill_in "Senha", :with => "password"
+      fill_in "Confirmação da senha", :with => "password"
+      click_button "Alterar senha"
+      page.should have_content("alteração de senha já expirou")
+    end
+  end
+
+  context "when password token is invalid" do
+    it "raises record not found error" do
+      lambda {
+        visit edit_password_reset_path("invalid")
+      }.should raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 end
