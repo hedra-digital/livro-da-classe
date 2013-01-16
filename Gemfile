@@ -14,15 +14,16 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'rspec-rails', '~> 2.0'
-  gem 'factory_girl_rails'
-  gem 'capybara'
-  gem 'faker'
-  gem 'launchy'
   gem 'rb-inotify', '~> 0.8.8', :require => false
   gem 'rb-fsevent', :require => false
   gem 'guard-rspec'
   gem 'guard-livereload'
+  gem 'rspec-rails', '~> 2.0'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'faker'
+  gem 'launchy'
   gem 'simplecov', :require => false
 end
 
