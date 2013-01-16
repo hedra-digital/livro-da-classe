@@ -1,0 +1,6 @@
+<h1>Recuperação de senha</h1>
+
+<%= simple_form_for :password_reset, { :url => password_resets_path, :method => :post } do |f| %>
+  <%= f.input :email %>
+  <%= f.button :submit, 'Enviar email' %>
+<% end %>
