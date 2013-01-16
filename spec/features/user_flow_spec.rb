@@ -41,40 +41,37 @@ describe 'unregistered user' do
 
       it 'sees his user ID on successful sign up' do
         click_button 'Criar Usuário'
-        # save_and_open_page
         page.should have_content('john@example.com')
       end
     end
   end
 end
 
-describe 'signed out user' do
+describe 'registered user' do
+  let(:user) { create(:user, :password => 'anything') }
+
   context 'when signing in' do
-    let(:user) { create(:user, :password => "password") }
-
-    it 'clicks the sign in link' do
+    it 'fills in sign in form' do
       visit root_path
-      click_link('Entrar')
-      page.should have_content('Entrar no site')
+      click_link('Entrar no site')
+      fill_in 'signin_email', :with => user.email
+      fill_in 'signin_password', :with => 'anything'
+      click_button 'Entrar'
+      current_path.should == app_home_path
+    end
+  end
+
+  context 'when editing his/her profile' do
+    before do
+      visit root_path
+      click_link('Entrar no site')
+      fill_in 'signin_email', :with => user.email
+      fill_in 'signin_password', :with => 'anything'
+      click_button 'Entrar'
     end
 
-    it 'fills up sign in form' do
-      visit root_path
-      click_link('Entrar')
-      fill_in 'Email', :with => user.email
-      fill_in 'Password', :with => user.password
-      click_button 'Entrar'
-      page.should have_content('autenticado')
-    end
-
-    it 'clicks the sign out link' do
-      visit root_path
-      click_link('Entrar')
-      fill_in 'Email', :with => user.email
-      fill_in 'Password', :with => user.password
-      click_button 'Entrar'
-      click_link('Sair')
-      page.should have_content('saiu da área logada')
+    it 'clicks the edit profile link' do
+      click_link('Perfil')
     end
   end
 end
