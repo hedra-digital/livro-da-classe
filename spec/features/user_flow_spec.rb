@@ -70,8 +70,25 @@ describe 'registered user' do
       click_button 'Entrar'
     end
 
+    it 'views the user profile' do
+      click_link('Perfil')
+      current_path.should eq(user_path(user))
+      page.should have_content(user.email)
+    end
+
     it 'clicks the edit profile link' do
       click_link('Perfil')
+      click_link('Editar perfil')
+      current_path.should eq(edit_user_path(user))
     end
+
+    it 'edits email' do
+      click_link('Perfil')
+      click_link('Editar perfil')
+      fill_in 'E-mail', :with => 'different@example.com'
+      click_button 'Gravar'
+      page.should have_content('perfil foi alterado')
+    end
+
   end
 end

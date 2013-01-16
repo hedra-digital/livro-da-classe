@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   layout 'public'
 
+  def show
+    @user = current_user
+  end
+
   def new
     @user = User.new
   end
@@ -15,4 +19,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      redirect_to user_path(@user), :notice => 'Seu perfil foi alterado!'
+    else
+      render :edit
+    end
+  end
 end
