@@ -1,0 +1,7 @@
+<h1>Alteração de senha</h1>
+
+<%= simple_form_for @user, { :url => password_reset_path(params[:id]) } do |f| %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.button :submit, 'Alterar senha' %>
+<% end %>

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe "PasswordResets" do
@@ -21,6 +23,21 @@ describe "PasswordResets" do
       current_path.should eq(root_path)
       page.should have_content("Email enviado")
       last_email.should be_nil
+    end
+  end
+
+  context "when confirmation matches" do
+    it "updates the user password" do
+      user = create(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago)
+      visit edit_password_reset_path(user.password_reset_token)
+      fill_in "Senha", :with => "password"
+      click_button "Alterar senha"
+      page.should have_content("não está de acordo com a confirmação")
+      fill_in "Senha", :with => "password"
+      fill_in "Confirmação da senha", :with => "password"
+      click_button "Alterar senha"
+      save_and_open_page
+      page.should have_content("A senha foi alterada")
     end
   end
 end
