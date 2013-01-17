@@ -34,7 +34,7 @@ describe Book do
 
   context 'when saving' do
     it 'should trigger .set_uuid' do
-      book = create(:book)
+      book = create(:book,  :uuid => nil)
       book.uuid.should_not be_nil
     end
 
