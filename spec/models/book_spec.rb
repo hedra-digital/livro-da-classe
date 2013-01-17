@@ -43,10 +43,12 @@ describe Book do
     let(:book) {  create(:book) }
 
     it 'should find book by id' do
-      Book.find_by_uuid_or_id(book.id).should_not be_empty
+      Book.find_by_uuid_or_id(book.id).should_not be_nil
     end
 
-    it 'should find book by uuid'
+    it 'should find book by uuid' do
+        Book.find_by_uuid_or_id(book.uuid).should_not be_nil
+    end
   end
   
 end
