@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Book do
+  it { should respond_to(:organizer_id)}
   it { should respond_to(:coordinators) }
   it { should respond_to(:directors) }
   it { should respond_to(:organizers) }
@@ -31,11 +32,16 @@ describe Book do
     end
   end
 
-  context '.save' do
+  context 'when saving' do
     it 'should trigger .set_uuid' do
-      #book = Book.create(:title => "foo", :organizer => User.new)
       book = create(:book)
       book.uuid.should_not be_nil
+    end
+
+    it 'should belongs to an organizer' do
+      book = create(:book)
+      book.organizer.should_not be_nil
+      book.organizer.should be_an_instance_of(User)
     end
   end
 
