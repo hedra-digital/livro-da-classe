@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'mysql2'
 gem 'validates_email_format_of'
+gem 'guid'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
