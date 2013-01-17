@@ -44,6 +44,32 @@ describe 'unregistered user' do
         page.should have_content('john@example.com')
       end
     end
+
+    context 'when signing up through twitter' do
+      before do
+        visit root_path
+        click_link('signup')
+        page.should have_selector('h1', :text => 'Cadastre a sua escola', :visible => true)
+        current_path.should == '/cadastro'
+      end
+
+      it 'clicks the twitter link' do
+        page.should have_link('Twitter')
+        click_link('Twitter')
+      end
+
+      it 'is redirected to twitter for authorization' do
+        pending
+      end
+
+      it 'is redirected back to our website' do
+        pending
+      end
+
+      it 'shows the user ID on the page' do
+        pending
+      end
+    end
   end
 end
 
@@ -99,13 +125,13 @@ describe 'registered user' do
       page.should have_content('perfil foi alterado')
     end
 
-    it 'is invalid with unmatching passwords' do
-      click_link('Perfil')
-      click_link('Alterar senha')
-      fill_in 'Senha', :with => 'newpass'
-      fill_in 'Confirmação', :with => 'newfag'
-      click_button 'Gravar'
-      page.should have_content('não está de acordo com a confirmação')
-    end
+    # it 'is invalid with unmatching passwords' do
+    #   click_link('Perfil')
+    #   click_link('Alterar senha')
+    #   fill_in 'Senha', :with => 'newpass'
+    #   fill_in 'Confirmação', :with => 'newfag'
+    #   click_button 'Gravar'
+    #   page.should have_content('não está de acordo com a confirmação')
+    # end
   end
 end
