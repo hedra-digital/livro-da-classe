@@ -45,7 +45,7 @@ describe 'unregistered user' do
       end
     end
 
-    context 'when signing up through twitter' do
+    context 'when signing up successfully through twitter' do
       before do
         visit root_path
         click_link('signup')
@@ -66,7 +66,7 @@ describe 'unregistered user' do
         pending
       end
 
-      it 'shows the user ID on the page' do
+      it 'shows signed in info on the page' do
         pending
       end
     end

@@ -217,6 +217,9 @@ pt_br:
         created: "%{model} foi criado com sucesso."
         updated: "%{model} foi atualizado com sucesso."
     errors:
+      messages:
+        taken: "já está em uso"
+        record_invalid: "Erro de validação: %{errors}"
   active_admin:
     dashboard: "Painel Administrativo"
     dashboard_welcome:

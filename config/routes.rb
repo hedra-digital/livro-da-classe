@@ -1,11 +1,16 @@
 Livrodaclasse::Application.routes.draw do
 
   get 'cadastro', :to => 'users#new', :as => :new_user
-  get 'apphome', :to => 'pages#apphome', :as => :app_home
+  get 'users/:id/edit_password', :to => 'users#edit_password', :as => :edit_password
+
   get 'entrar', :to => 'sessions#new', :as => :signin
   delete 'sair', :to => 'sessions#destroy', :as => :signout
-  get 'users/:id/edit_password', :to => 'users#edit_password', :as => :edit_password
+  get 'auth/:provider/callback', :to => 'sessions#create'
+
+  get 'apphome', :to => 'pages#apphome', :as => :app_home
+
   root :to => "pages#home"
+
   resources :users
   resources :sessions
   resources :password_resets

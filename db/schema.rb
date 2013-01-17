@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117024244) do
+ActiveRecord::Schema.define(:version => 20130117200222) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(:version => 20130117024244) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "provider"
+    t.string   "uid"
   end
 
 end

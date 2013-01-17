@@ -62,7 +62,12 @@ describe User do
       user.send_password_reset
       last_email.to.should include(user.email)
     end
+  end
 
+  context 'when creating a new user' do
+    it 'has an authentication token' do
+      pending
+    end
   end
 
 end
