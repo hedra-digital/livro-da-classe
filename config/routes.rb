@@ -4,6 +4,7 @@ Livrodaclasse::Application.routes.draw do
   get 'apphome', :to => 'pages#apphome', :as => :app_home
   get 'entrar', :to => 'sessions#new', :as => :signin
   delete 'sair', :to => 'sessions#destroy', :as => :signout
+  get 'users/:id/edit_password', :to => 'users#edit_password', :as => :edit_password
   root :to => "pages#home"
   resources :users
   resources :sessions

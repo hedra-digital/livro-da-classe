@@ -90,5 +90,22 @@ describe 'registered user' do
       page.should have_content('perfil foi alterado')
     end
 
+    it 'edits password' do
+      click_link('Perfil')
+      click_link('Alterar senha')
+      fill_in 'Senha', :with => 'newpass'
+      fill_in 'Confirmação', :with => 'newpass'
+      click_button 'Gravar'
+      page.should have_content('perfil foi alterado')
+    end
+
+    it 'is invalid with unmatching passwords' do
+      click_link('Perfil')
+      click_link('Alterar senha')
+      fill_in 'Senha', :with => 'newpass'
+      fill_in 'Confirmação', :with => 'newfag'
+      click_button 'Gravar'
+      page.should have_content('não está de acordo com a confirmação')
+    end
   end
 end
