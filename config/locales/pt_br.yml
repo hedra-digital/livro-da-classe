@@ -203,6 +203,12 @@ pt_br:
       user:
         one: Usuário
         other: Usuários
+      book:
+        one: Livro
+        other: Livros
+      text: 
+        one: Texto
+        other: Textos
     attributes:
       user:
         name: Nome
@@ -212,6 +218,16 @@ pt_br:
         teacher: Professor?
         student_count: Número de alunos
         school_name: Nome da escola
+      book:
+        title: 'Título'
+        subtitle: 'Subtítulo'
+        organizers: 'Organização'
+        directors: 'Direção'
+        coordinators: 'Coordenação'
+        texts: 'Textos'
+      text:
+        title: 'Título'
+        content: 'Conteúdo'
     successful:
       messages:
         created: "%{model} foi criado com sucesso."
@@ -220,6 +236,7 @@ pt_br:
       messages:
         taken: "já está em uso"
         record_invalid: "Erro de validação: %{errors}"
+
   active_admin:
     dashboard: "Painel Administrativo"
     dashboard_welcome:
