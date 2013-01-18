@@ -1,5 +1,26 @@
-<h1>Listing books</h1>
+<h2>Livros</h2>
 
+
+<table class="table table-striped">
+  <tr>
+    <th>Título</th>
+    <th>Contém os textos</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @books.each do |book| %>
+  <tr>
+    <td><%= link_to book.title, book_path(book.uuid) %></td>
+    <td><%= raw book.texts.map {|x| x.to_label}.join ', ' %></td>
+    <td><%= link_to 'Editar', edit_book_path(book.uuid) %></td>
+    <td><%= link_to 'Apagar', book_path(book.uuid), method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Incluir novo livro', new_book_path, :class => 'btn btn-primary' %>
+
+<!-- 
 <table>
   <tr>
     <th></th>
@@ -19,3 +40,4 @@
 <br />
 
 <%= link_to 'New Book', new_book_path %>
+ -->

@@ -1,5 +1,29 @@
-<p id="notice"><%= notice %></p>
 
+<% if @book.finished_at.present? %>
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    Livro finalizado em <strong><%=  @book.finished_at.strftime("%d/%m/%y") %></strong>
+  </div>
+<% end %>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<%= flash_message %>
+
+<br>
+
+<ul id="text-list" data-update-url="<%#= sort_book_texts_path(@book) %>">
+  <% @book.texts.each do |text| %>
+    <%= content_tag_for :li, text do %>
+    <span class="handle">[drag]</span>&nbsp;
+    <strong><%= text.title %></strong>&nbsp;&nbsp;
+    Autor: <%= person_name_for(text) %>&nbsp;&nbsp;
+    <span class="text-view">
+      <%= link_to("Ver texto", book_text_path(@book.uuid, text.uuid)) %>
+    </span>
+    <% end %>
+  <% end %>
+</ul>
+
+<% if @book.finished_at.nil? %>
+  <hr/>
+  <div id="book_finished"><%= link_to "Marcar o livro como terminado", "#", :class => "btn btn-danger" %></div>
+<% end %>
