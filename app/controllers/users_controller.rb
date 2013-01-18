@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :secure_organizer_id, :only => [:edit, :update, :edit_password]
   layout 'public'
 
   def show
