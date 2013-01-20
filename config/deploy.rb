@@ -16,12 +16,7 @@ ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "livrodaclasse_rsa")]
 set :use_sudo, false
 set :keep_releases, 3
 
-# role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-# role :app, "your app-server here"                          # This may be the same as your `Web` server
-# role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-# role :db,  "your slave db-server here"
-
-after "deploy:update_code", "deploy:symlink_db"
+after "deploy:finalize_update", "deploy:symlink_db"
 after "deploy:restart", "deploy:cleanup"
 after "deploy", "deploy:migrate"
 
