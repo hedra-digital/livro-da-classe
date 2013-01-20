@@ -6,10 +6,12 @@
 
 # Ignore bundler config
 /.bundle
+/bin/
 bundler
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/db/*.db
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
@@ -32,6 +34,13 @@ rerun.txt
 pickle-email-*.html
 /config/database.yml
 /config/config.yml
+/config/email.yml
+/config/initializers/session_store.rb
+/config/development.sphinx.conf
 .env
 .DS_Store
 /public/assets
+/coverage
+
+/db/sphinx/
+/log/searchd.development.pid
