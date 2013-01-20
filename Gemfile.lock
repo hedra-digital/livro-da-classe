@@ -65,8 +65,8 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     multi_xml (0.5.2)
+    mysql2 (0.3.11)
     newrelic_rpm (3.5.5.38)
-    pg (0.14.1)
     polyglot (0.3.3)
     pry (0.9.11.4)
       coderay (~> 1.0.5)
@@ -133,8 +133,8 @@ DEPENDENCIES
   guid
   jquery-rails
   kramdown
+  mysql2
   newrelic_rpm
-  pg
   pry
   rails (= 3.2.11)
   rails-latex
