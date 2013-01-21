@@ -65,8 +65,10 @@ describe User do
   end
 
   context 'when creating a new user' do
+    let(:user) { create(:user) }
+
     it 'has an authentication token' do
-      pending
+      user.auth_token.should_not be_nil
     end
   end
 
