@@ -38,7 +38,7 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
-    @book = Book.find(params[:id])
+    @book = Book.find_by_uuid_or_id(params[:id])
   end
 
   # POST /books

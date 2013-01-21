@@ -1,0 +1,21 @@
+<h1>Listing texts</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @texts.each do |text| %>
+  <tr>
+    <td><%= link_to 'Show', book_text_path(@book, text) %></td>
+    <td><%= link_to 'Edit', edit_book_text_path(@book, text) %></td>
+    <td><%= link_to 'Destroy', book_text_path(@book, text), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Text', new_book_text_path(@book) %>
