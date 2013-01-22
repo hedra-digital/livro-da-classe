@@ -45,31 +45,31 @@ describe 'unregistered user' do
       end
     end
 
-  #   context 'when signing up successfully through twitter' do
-  #     before do
-  #       visit root_path
-  #       click_link('signup')
-  #       page.should have_selector('h1', :text => 'Cadastre a sua escola', :visible => true)
-  #       current_path.should == '/cadastro'
-  #     end
+    context 'when signing up successfully through twitter' do
+      before do
+        OmniAuth.config.test_mode = true
+        OmniAuth.config.add_mock(:twitter, { :uid => '12345' })
+        visit root_path
+        click_link('signup')
+      end
 
-  #     it 'clicks the twitter link' do
-  #       page.should have_link('Twitter')
-  #       click_link('Twitter')
-  #     end
+      it 'clicks the twitter link' do
+        page.should have_link('Twitter')
+        click_link('Twitter')
+      end
 
-  #     it 'is redirected to twitter for authorization' do
-  #       pending
-  #     end
+      it 'is redirected to twitter for authorization' do
+        pending
+      end
 
-  #     it 'is redirected back to our website' do
-  #       pending
-  #     end
+      it 'is redirected back to our website' do
+        pending
+      end
 
-  #     it 'shows signed in info on the page' do
-  #       pending
-  #     end
-  #   end
+      it 'shows signed in info on the page' do
+        pending
+      end
+    end
    end
 end
 

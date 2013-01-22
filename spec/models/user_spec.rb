@@ -43,6 +43,14 @@ describe User do
     end
   end
 
+  context 'when creating a new user' do
+    let(:user) { create(:user) }
+
+    it 'has an authentication token' do
+      user.auth_token.should_not be_nil
+    end
+  end
+
   describe "#send_password_reset" do
     let(:user) { create(:user) }
 
@@ -63,13 +71,4 @@ describe User do
       last_email.to.should include(user.email)
     end
   end
-
-  context 'when creating a new user' do
-    let(:user) { create(:user) }
-
-    it 'has an authentication token' do
-      user.auth_token.should_not be_nil
-    end
-  end
-
 end
