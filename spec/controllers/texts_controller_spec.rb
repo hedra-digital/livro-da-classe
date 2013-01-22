@@ -156,14 +156,6 @@ describe TextsController do
         response.should render_template("edit")
       end
     end
-
-    describe "with no params" do
-      it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        post :update, {:book_id => valid_attributes[:book].id}, valid_session
-        response.should render_template("edit")
-      end
-    end
   end
 
   describe "DELETE destroy" do
