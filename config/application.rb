@@ -60,6 +60,20 @@ module Livrodaclasse
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.action_mailer.raise_delivery_errors = false
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.smtp_settings = {
+      :address => "in.mailjet.com",
+      :enable_starttls_auto => true,
+      :port => 587,
+      :authentication => 'plain',
+      :user_name => "f6f798721d08716694db9c31db0b4eda",
+      :password => "cd0fb8968c3ba76173f5a58b925aa2bb"
+    }
+    config.action_mailer.default_url_options = {
+      :host => "173.255.203.143"
+    }
+
     config.generators do |g|
       g.test_framework :rspec, :fixtures => true
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
