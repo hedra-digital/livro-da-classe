@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates           :name, :presence => true
   validates           :email, :email_format => { :message => 'Não é um formato válido de e-mail', :allow_blank => true }, :uniqueness => true, :presence => true
   validates           :password, :presence => true, :on => :create
-  
+
   # Specify fields that can be accessible through mass assignment
   attr_accessible     :email, :name, :password, :password_confirmation, :educator, :student_count, :school_name
 
@@ -38,5 +38,6 @@ class User < ActiveRecord::Base
       user.name = auth['info']['name']
     end
     new_user.save!(:validate => false)
+    new_user
   end
 end
