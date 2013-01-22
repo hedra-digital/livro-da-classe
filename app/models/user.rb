@@ -32,11 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def self.create_from_omniauth(auth)
-    new_user = self.new do |user|
-      user.provider = auth['provider']
-      user.uid = auth['uid']
-      user.name = auth['info']['name']
-    end
+    new_user = new({ :provider => auth['provider'], :uid => auth['uid'], :name => auth['info']['name'] }, :without_protection => true)
     new_user.save!(:validate => false)
     new_user
   end

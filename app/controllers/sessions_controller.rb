@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
     else
       user = User.from_omniauth(env['omniauth.auth'])
       cookies[:auth_token] = user.auth_token
-      redirect_to  app_home_path, :notice => 'Usuário autenticado!'
+      redirect_to app_home_path, :notice => 'Usuário autenticado!'
     end
   end
 
