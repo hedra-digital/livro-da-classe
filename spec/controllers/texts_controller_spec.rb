@@ -102,6 +102,14 @@ describe TextsController do
         response.should render_template("new")
       end
     end
+
+    describe "with no params" do
+      it "returns redirects" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        post :create, {:book_id => valid_attributes[:book].id}, valid_session
+        response.code.should eq("302")
+      end
+    end
   end
 
   describe "PUT update" do
@@ -144,6 +152,14 @@ describe TextsController do
         Text.any_instance.stub(:save).and_return(false)
         put :update, {:id => text.to_param, :text => {  }, :book_id => valid_attributes[:book].id}, valid_session
         response.should render_template("edit")
+      end
+    end
+
+    describe "with no params" do
+      it "returns redirects" do
+        # Trigger the behavior that occurs when invalid params are submitted
+        post :create, {:book_id => valid_attributes[:book].id}, valid_session
+        response.code.should eq("302")
       end
     end
   end

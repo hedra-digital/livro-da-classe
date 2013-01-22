@@ -93,6 +93,6 @@ class TextsController < ApplicationController
   end
 
   def secure_book
-    params[:text].delete(:book)
+    params[:text].delete(:book) if params[:text].present?
   end
 end
