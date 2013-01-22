@@ -18,18 +18,20 @@ describe 'unregistered user' do
     end
 
     context 'when filling up sign up form' do
+      let(:user) { build(:user, :student_count => 50, :school_name => 'EEPSG Aluísio Nunes') }
+
       before do
         visit new_user_path
-        fill_in 'user_name', :with => 'John'
-        fill_in 'user_email', :with => 'john@example.com'
-        fill_in 'user_password', :with => 'password'
-        fill_in 'user_password_confirmation', :with => 'password'
+        fill_in 'user_name', :with => user.name
+        fill_in 'user_email', :with => user.email
+        fill_in 'user_password', :with => user.password
+        fill_in 'user_password_confirmation', :with => user.password
         check 'user_educator'
-        fill_in 'user_student_count', :with => '50'
-        fill_in 'user_school_name', :with => 'EEPSG Aluísio Nunes'
+        fill_in 'user_student_count', :with => user.student_count
+        fill_in 'user_school_name', :with => user.school_name
       end
 
-      it 'fills in all fields' do
+      it 'fills in all fields and clicks button' do
         click_button 'Criar Usuário'
       end
 
@@ -41,7 +43,7 @@ describe 'unregistered user' do
 
       it 'sees his user ID on successful sign up' do
         click_button 'Criar Usuário'
-        page.should have_content('john@example.com')
+        page.should have_content(user.name)
       end
     end
 
