@@ -14,6 +14,13 @@ describe Text do
       text.should_not be_valid
       text.should have(1).error_on(:book_id)
     end 
+
+    it 'is invalid without a title' do
+      text = build(:text, :title => nil)
+      text.should_not be_valid
+      text.should have(1).error_on(:title)
+    end 
+
   end
 
   context 'when saving' do
