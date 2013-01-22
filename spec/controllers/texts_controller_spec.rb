@@ -24,7 +24,9 @@ describe TextsController do
   # Text. As you add validations to Text, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { :book => create(:book)  }
+    { :book => create(:book),
+      :title => "Text title"
+    }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -104,10 +106,10 @@ describe TextsController do
     end
 
     describe "with no params" do
-      it "returns redirects" do
+      it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         post :create, {:book_id => valid_attributes[:book].id}, valid_session
-        response.code.should eq("302")
+        response.should render_template("new")
       end
     end
   end
@@ -156,10 +158,10 @@ describe TextsController do
     end
 
     describe "with no params" do
-      it "returns redirects" do
+      it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        post :create, {:book_id => valid_attributes[:book].id}, valid_session
-        response.code.should eq("302")
+        post :update, {:book_id => valid_attributes[:book].id}, valid_session
+        response.should render_template("edit")
       end
     end
   end

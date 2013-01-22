@@ -2,6 +2,8 @@ class TextsController < ApplicationController
   before_filter :authentication_check
   before_filter :find_book
   before_filter :secure_book, :only => [:update, :create]
+  
+  layout 'public'
 
   # GET /texts
   # GET /texts.json
@@ -93,6 +95,6 @@ class TextsController < ApplicationController
   end
 
   def secure_book
-    params[:text].delete(:book) if params[:text].present?
+    params[:text].delete(:book) if params[:text]
   end
 end
