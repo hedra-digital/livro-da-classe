@@ -49,8 +49,6 @@ describe 'unregistered user' do
 
     context 'when signing up successfully through twitter' do
       before do
-        OmniAuth.config.test_mode = true
-        OmniAuth.config.add_mock(:twitter, { :uid => '12345' })
         visit root_path
         click_link('signup')
       end
@@ -60,16 +58,10 @@ describe 'unregistered user' do
         click_link('Twitter')
       end
 
-      it 'is redirected to twitter for authorization' do
-        pending
-      end
-
-      it 'is redirected back to our website' do
-        pending
-      end
-
       it 'shows signed in info on the page' do
-        pending
+        page.should have_link('Twitter')
+        click_link('Twitter')
+        page.should have_content(OmniAuth.config.mock_auth[:twitter][:info][:name])
       end
     end
    end
