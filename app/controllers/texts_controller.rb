@@ -19,7 +19,7 @@ class TextsController < ApplicationController
   # GET /texts/1
   # GET /texts/1.json
   def show
-    @text = Text.find(params[:id])
+    @text = Text.find_by_uuid_or_id(params[:id])
     @book = @text.book
 
     respond_to do |format|
@@ -41,7 +41,7 @@ class TextsController < ApplicationController
 
   # GET /texts/1/edit
   def edit
-    @text = Text.find(params[:id])
+    @text = Text.find_by_uuid_or_id(params[:id])
   end
 
   # POST /texts
@@ -64,7 +64,7 @@ class TextsController < ApplicationController
   # PUT /texts/1
   # PUT /texts/1.json
   def update
-    @text = Text.find(params[:id])
+    @text = Text.find_by_uuid_or_id(params[:id])
     respond_to do |format|
       if @text.update_attributes(params[:text])
         format.html { redirect_to book_text_url(@book, @text), notice: 'Text was successfully updated.' }
@@ -79,7 +79,7 @@ class TextsController < ApplicationController
   # DELETE /texts/1
   # DELETE /texts/1.json
   def destroy
-    @text = Text.find(params[:id])
+    @text = Text.find_by_uuid_or_id(params[:id])
     @text.destroy
 
     respond_to do |format|
@@ -95,6 +95,6 @@ class TextsController < ApplicationController
   end
 
   def secure_book
-    params[:text].delete(:book) if params[:text]
+    params[:text].delete(:book) if params[:text].present?
   end
 end

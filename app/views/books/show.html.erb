@@ -6,24 +6,54 @@
   </div>
 <% end %>
 
-<%= flash_message %>
+<h2><%= @book.title %></h2>
 
-<br>
+<div class="row">
+  <div class="span3">
+    <h3>Textos</h3>
+  </div>
 
-<ul id="text-list" data-update-url="<%#= sort_book_texts_path(@book) %>">
+  <div class="span3">
+    <%= link_to 'Novo Texto', new_book_text_path(@book.uuid), :class => 'btn btn-primary', :style => "margin-top: 30px;" %>
+  </div>
+</div>
+
+
+<ul id="text-list" data-update-url="<%#= sort_book_texts_path(@book) %>" style="margin-top: 20px;">
   <% @book.texts.each do |text| %>
     <%= content_tag_for :li, text do %>
-    <span class="handle">[drag]</span>&nbsp;
-    <strong><%= text.title %></strong>&nbsp;&nbsp;
-    Autor: <%= person_name_for(text) %>&nbsp;&nbsp;
-    <span class="text-view">
-      <%= link_to("Ver texto", book_text_path(@book.uuid, text.uuid)) %>
-    </span>
+    <!-- <span class="handle">[drag]</span>&nbsp; -->
+    <strong><%= link_to(text.title, book_text_path(@book.uuid, text.uuid)) %></strong>&nbsp;&nbsp;
     <% end %>
   <% end %>
 </ul>
 
+<p>&nbsp;</p>
+
+<div class="row">
+  <div class="span3">
+    <h3>Meta Dados</h3>
+  </div>
+
+  <div class="span3">
+    <%= link_to 'Editar Metadata', edit_book_path(@book.uuid), :class => 'btn btn-primary', :style => "margin-top: 30px;" %>
+  </div>
+</div>
+<div class="row">
+  <!-- organizadores -->
+  <div class="span4">Organizadores:</div>
+  <div class="span8"><%= metadata_info_for(@book.organizers) %></div>
+
+  <!-- diretores -->
+  <div class="span4">Diretores:</div>
+  <div class="span8"><%= metadata_info_for(@book.directors) %></div>
+
+  <!-- coordenadores -->
+  <div class="span4">Coordenadores:</div>
+  <div class="span8"><%= metadata_info_for(@book.coordinators) %></div>
+</div>
+
 <% if @book.finished_at.nil? %>
-  <hr/>
-  <div id="book_finished"><%= link_to "Marcar o livro como terminado", "#", :class => "btn btn-danger" %></div>
+  <!-- <hr/> -->
+  <!-- <div id="book_finished"><%= link_to "Marcar o livro como terminado", "#", :class => "btn btn-danger" %></div> -->
 <% end %>

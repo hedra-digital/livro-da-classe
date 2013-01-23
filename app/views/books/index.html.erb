@@ -4,22 +4,22 @@
 <table class="table table-striped">
   <tr>
     <th>Título</th>
-    <th>Contém os textos</th>
+    <th>Textos</th>
+    <th></th>
     <th></th>
     <th></th>
   </tr>
   <% @books.each do |book| %>
   <tr>
     <td><%= link_to book.title, book_path(book.uuid) %></td>
-    <td><%= raw book.texts.size %></td>
+    <td>&nbsp;&nbsp;&nbsp;<%= raw book.texts.size %></td>
     <td><%= link_to 'Adicionar Texto', new_book_text_path(book.uuid) %></td>
-    <td><%= link_to 'Editar', edit_book_path(book.uuid) %></td>
     <td><%= link_to 'Apagar', book_path(book.uuid), method: :delete, data: { confirm: 'Tem certeza?' } %></td>
   </tr>
   <% end %>
 </table>
 
-<%= link_to 'Incluir novo livro', new_book_path, :class => 'btn btn-primary' %>
+<%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary' %>
 
 <!-- 
 <table>

@@ -1,5 +1,29 @@
-<p id="notice"><%= notice %></p>
+<% if @text.finished_at.present? %>
+  <div class="alert">
+   <button class="close" data-dismiss="alert">×</button>
+    Texto finalizado em <strong><%=  @text.finished_at.strftime("%d/%m/%y") %></strong>
+  </div>
+<% end %>
 
+<div class="row">
+  <div class="span12">
+    <h2><%= @text.title %></h2>
+    <div style="padding: 10px;"><%= simple_format(@text.content) %></div>
+  </div>
+  
+  <div class="span5">
+    <div>
+      <%= link_to 'Editar texto', edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
+      <%= link_to 'Voltar ao Livro', book_path(@book), :class =>'btn' %>
+    </div>
 
-<%= link_to 'Edit', edit_book_text_path(@book, @text) %> |
-<%= link_to 'Back', book_texts_path(@book) %>
+    <% if session['admin_logged'] %>
+      <!-- <div><%= link_to_function 'Ver versão LaTeX', "$('#latex').modal();", :class => 'btn btn-primary' %></div> -->
+    <% end %>
+  </div>
+</div>
+
+<style type="text/css">
+  .span5 { border-left: 1px dotted #ccc; padding-left: 20px;}
+  .span5 div { margin-bottom: 10px;}
+</style>

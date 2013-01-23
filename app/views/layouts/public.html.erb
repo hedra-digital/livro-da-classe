@@ -27,7 +27,10 @@
             <div id="userid" class="span3 offset4">
               <% if current_user %>
                 <p><i class="icon-user icon-white"></i> <%= current_user.name %></p>
+                <%= link_to "Meus Livros", books_path %>
+                &middot;
                 <%= link_to "Perfil", user_path(current_user) %>
+                &middot;
                 <%= link_to "Sair", signout_path, :method => :delete %>
               <% else %>
                 <%= link_to "Entrar no site", signin_path %>

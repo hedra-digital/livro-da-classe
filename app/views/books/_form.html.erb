@@ -7,10 +7,14 @@
     <%= f.input :organizers, :as => :text %>
     <%= f.input :directors, :as => :text %>
     <%= f.input :coordinators, :as => :text %>
-    <%= f.association :texts, :as => :check_boxes %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
+    <%= raw("ou ") + link_to("Cancelar", @book, :style => "color: red;" ) unless @book.new_record?%>
   </div>
 <% end %>
+
+<style>
+  textarea {width: 500px; height: 250px;}
+</style>
