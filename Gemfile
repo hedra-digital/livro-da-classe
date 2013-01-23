@@ -36,6 +36,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'mailcatcher'
+  gem 'annotate', ">=2.5.0"
 end
 
 gem 'jquery-rails'
