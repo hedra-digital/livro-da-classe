@@ -1,4 +1,24 @@
 # encoding: utf-8
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  name                   :string(255)
+#  email                  :string(255)
+#  password_digest        :string(255)
+#  educator               :boolean
+#  student_count          :integer
+#  school_name            :string(255)
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  auth_token             :string(255)
+#  password_reset_token   :string(255)
+#  password_reset_sent_at :datetime
+#  provider               :string(255)
+#  uid                    :string(255)
+#
+
 
 require 'spec_helper'
 

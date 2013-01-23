@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: texts
+#
+#  id         :integer          not null, primary key
+#  book_id    :integer
+#  content    :text
+#  title      :string(255)
+#  uuid       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Text do
