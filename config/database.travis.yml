@@ -1,0 +1,5 @@
+mysql: &mysql
+  adapter: mysql2
+  username: root
+  password:
+  database: livrodaclasse_<%= Rails.env %>
