@@ -23,15 +23,16 @@ describe BooksController do
 
   describe "GET index" do
     it "assigns all books as @books" do
-      book = Book.create! valid_attributes
+      controller.stub(:current_user).and_return(valid_session[:current_user])
+      books = valid_session[:current_user].books
       get :index, {}, valid_session
-      assigns(:books).should eq([book])
+      assigns(:books).should eq(books)
     end
   end
 
   describe "GET show" do
     it "assigns the requested book as @book" do
-      book = Book.create! valid_attributes
+      book = Book.create!(:title => "Foo", :organizer => valid_session[:current_user])
       get :show, {:id => book.to_param}, valid_session
       assigns(:book).should eq(book)
     end
@@ -39,7 +40,8 @@ describe BooksController do
 
   describe "GET new" do
     it "assigns a new book as @book" do
-      get :new, {}, valid_session
+      controller.stub(:current_user).and_return(valid_session[:current_user])
+      get :new, {:organizer_id => valid_session[:current_user]}, valid_session
       assigns(:book).should be_a_new(Book)
     end
   end
@@ -53,6 +55,10 @@ describe BooksController do
   end
 
   describe "POST create" do
+    before do 
+     controller.stub(:current_user).and_return(valid_session[:current_user])
+    end
+
     describe "with valid params" do
       it "creates a new Book" do
         expect {
@@ -73,6 +79,9 @@ describe BooksController do
     end
 
     describe "with invalid params" do
+      before do
+        controller.stub(:current_user).and_return(valid_session[:current_user])
+      end
       it "assigns a newly created but unsaved book as @book" do
         # Trigger the behavior that occurs when invalid params are submitted
         Book.any_instance.stub(:save).and_return(false)
