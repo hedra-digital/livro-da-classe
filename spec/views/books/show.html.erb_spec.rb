@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "books/show" do
   before(:each) do
-    @book = assign(:book, stub_model(Book))
+    @book = create(:book)
   end
 
   it "renders attributes in <p>" do
