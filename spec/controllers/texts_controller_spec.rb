@@ -19,6 +19,9 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe TextsController do
+  before do
+    controller.stub(:current_user).and_return(valid_session[:current_user])
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Text. As you add validations to Text, be sure to

@@ -7,4 +7,8 @@ FactoryGirl.define do
     password { Faker::Base.bothify('#?#?#?#?') }
     educator true
   end
+
+  factory :organizer, :parent => :user do
+    books
+  end
 end

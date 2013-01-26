@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authentication_check
-    redirect_to signin_path unless session[:auth_token]
+    redirect_to signin_path unless current_user
   end
 
   helper_method :current_user

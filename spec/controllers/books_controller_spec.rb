@@ -1,14 +1,21 @@
 require 'spec_helper'
 
 describe BooksController do
+  let(:books) { FactoryGirl.create_list(:book, 3) }
+  let(:organizer) { create(:user, :books => books) }
+  let(:book) { books.first }
+
+  before do
+    controller.stub(:current_user).and_return(valid_session[:current_user])
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Book. As you add validations to Book, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { 
+    {
       :title => "Foo",
-      :organizer => create(:user)
+      :organizer => organizer
     }
   end
 
@@ -17,14 +24,12 @@ describe BooksController do
   # BooksController. Be sure to keep this updated too.
   def valid_session
     {
-      :current_user => create(:user)
+      :current_user => organizer
     }
   end
 
   describe "GET index" do
     it "assigns all books as @books" do
-      controller.stub(:current_user).and_return(valid_session[:current_user])
-      books = valid_session[:current_user].books
       get :index, {}, valid_session
       assigns(:books).should eq(books)
     end
@@ -32,7 +37,6 @@ describe BooksController do
 
   describe "GET show" do
     it "assigns the requested book as @book" do
-      book = Book.create!(:title => "Foo", :organizer => valid_session[:current_user])
       get :show, {:id => book.to_param}, valid_session
       assigns(:book).should eq(book)
     end
@@ -40,7 +44,6 @@ describe BooksController do
 
   describe "GET new" do
     it "assigns a new book as @book" do
-      controller.stub(:current_user).and_return(valid_session[:current_user])
       get :new, {:organizer_id => valid_session[:current_user]}, valid_session
       assigns(:book).should be_a_new(Book)
     end
@@ -48,17 +51,12 @@ describe BooksController do
 
   describe "GET edit" do
     it "assigns the requested book as @book" do
-      book = Book.create! valid_attributes
       get :edit, {:id => book.to_param}, valid_session
       assigns(:book).should eq(book)
     end
   end
 
   describe "POST create" do
-    before do 
-     controller.stub(:current_user).and_return(valid_session[:current_user])
-    end
-
     describe "with valid params" do
       it "creates a new Book" do
         expect {

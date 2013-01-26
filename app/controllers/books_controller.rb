@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_filter :authentication_check
   before_filter :secure_organizer_id, :only => [:create, :update]
   before_filter :resource, :only => [:show, :edit, :destroy, :update]
-  
+
   def index
     @books = current_user.books
   end
@@ -21,7 +21,7 @@ class BooksController < ApplicationController
 
   def create
     @book = current_user.books.new(params[:book])
-    
+
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.'
     else
@@ -39,7 +39,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    redirect_to books_url 
+    redirect_to books_url
   end
 
   private
