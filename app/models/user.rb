@@ -22,10 +22,12 @@
 
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :books, :foreign_key => "organizer_id"
 
   # Callbacks
   before_create       { generate_token(:auth_token) }
+
+  # Relationships
+  has_many            :books, :foreign_key => "organizer_id"
 
   # Validations
   validates           :name, :presence => true

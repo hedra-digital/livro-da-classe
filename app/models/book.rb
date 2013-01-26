@@ -16,17 +16,22 @@
 #
 
 class Book < ActiveRecord::Base
-  attr_accessible :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :text_ids
-  belongs_to :organizer, :class_name => "User"
 
-  validates :organizer, :presence => true
-  validates :title,     :presence => true
+  # Callbacks
+  before_save           :set_uuid
 
-  before_save            :set_uuid
-
+  # Relationships
+  belongs_to            :organizer, :class_name => "User"
   has_many              :texts
 
-  attr_accessor         :finished_at 
+  # Validations
+  validates             :organizer, :presence => true
+  validates             :title,     :presence => true
+
+  # Specify fields that can be accessible through mass assignment
+  attr_accessible       :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :text_ids
+
+  attr_accessor         :finished_at
 
   def self.find_by_uuid_or_id(id)
     response   = Book.find_by_uuid(id.to_s)
