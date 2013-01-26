@@ -29,13 +29,13 @@ group :test, :development do
 end
 
 group :development do
-  gem 'meta_request'
+  gem 'mailcatcher'
   gem 'pry'
   gem 'pry-remote'
   gem 'pry-nav'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'mailcatcher'
+  gem 'meta_request'
   gem 'annotate', ">=2.5.0"
 end
 
