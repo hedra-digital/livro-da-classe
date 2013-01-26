@@ -10,16 +10,12 @@
     <h2><%= @text.title %></h2>
     <div style="padding: 10px;"><%= simple_format(@text.content) %></div>
   </div>
-  
+
   <div class="span5">
     <div>
       <%= link_to 'Editar texto', edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
       <%= link_to 'Voltar ao Livro', book_path(@book), :class =>'btn' %>
     </div>
-
-    <% if session['admin_logged'] %>
-      <!-- <div><%= link_to_function 'Ver versão LaTeX', "$('#latex').modal();", :class => 'btn btn-primary' %></div> -->
-    <% end %>
   </div>
 </div>
 
