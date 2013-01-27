@@ -9,6 +9,6 @@ FactoryGirl.define do
     organizers "MyText"
     directors "MyText"
     coordinators "MyText"
-    organizer { create(:user) }
+    organizer { build_stubbed(:user) }
   end
 end

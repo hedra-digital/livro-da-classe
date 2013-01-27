@@ -9,6 +9,6 @@ FactoryGirl.define do
   end
 
   factory :organizer, :parent => :user do
-    books
+    books { FactoryGirl.build_list(:book, 3) }
   end
 end

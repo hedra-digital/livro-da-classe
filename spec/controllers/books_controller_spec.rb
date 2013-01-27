@@ -1,31 +1,15 @@
 require 'spec_helper'
 
 describe BooksController do
-  let(:books) { FactoryGirl.create_list(:book, 3) }
-  let(:organizer) { create(:user, :books => books) }
-  let(:book) { books.first }
+  let(:organizer)         { create(:organizer) }
+  let(:books)             { organizer.books }
+  let(:book)              { books.first }
+
+  let(:valid_session)     { { :current_user => organizer } }
+  let(:valid_attributes)  { attributes_for(:book, :organizer => organizer) }
 
   before do
     controller.stub(:current_user).and_return(valid_session[:current_user])
-  end
-
-  # This should return the minimal set of attributes required to create a valid
-  # Book. As you add validations to Book, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {
-      :title => "Foo",
-      :organizer => organizer
-    }
-  end
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # BooksController. Be sure to keep this updated too.
-  def valid_session
-    {
-      :current_user => organizer
-    }
   end
 
   describe "GET index" do
