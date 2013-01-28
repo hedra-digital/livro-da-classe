@@ -82,45 +82,53 @@ describe 'registered user' do
     it 'fills in sign in form' do
       current_path.should == app_home_path
     end
+  end
 
-    context 'when editing his/her profile' do
-      it 'views the user profile' do
-        click_link('Perfil')
-        current_path.should eq(user_path(user))
-        page.should have_content(user.email)
-      end
+  context 'when editing his/her profile' do
+    before do
+      visit root_path
+      click_link('Entrar no site')
+      fill_in 'signin_email', :with => user.email
+      fill_in 'signin_password', :with => 'anything'
+      click_button 'Entrar'
+    end
 
-      it 'clicks the edit profile link' do
-        click_link('Perfil')
-        click_link('Editar perfil')
-        current_path.should eq(edit_user_path(user))
-      end
+    it 'views the user profile' do
+      click_link('Perfil')
+      current_path.should eq(user_path(user))
+      page.should have_content(user.email)
+    end
 
-      it 'edits email' do
-        click_link('Perfil')
-        click_link('Editar perfil')
-        fill_in 'E-mail', :with => 'different@example.com'
-        click_button 'Gravar'
-        page.should have_content('perfil foi alterado')
-      end
+    it 'clicks the edit profile link' do
+      click_link('Perfil')
+      click_link('Editar perfil')
+      current_path.should eq(edit_user_path(user))
+    end
 
-      it 'edits password' do
-        click_link('Perfil')
-        click_link('Alterar senha')
-        fill_in 'Senha', :with => 'newpass'
-        fill_in 'Confirmação', :with => 'newpass'
-        click_button 'Gravar'
-        page.should have_content('perfil foi alterado')
-      end
+    it 'edits email' do
+      click_link('Perfil')
+      click_link('Editar perfil')
+      fill_in 'E-mail', :with => 'different@example.com'
+      click_button 'Gravar'
+      page.should have_content('perfil foi alterado')
+    end
 
-      # it 'is invalid with unmatching passwords' do
-      #   click_link('Perfil')
-      #   click_link('Alterar senha')
-      #   fill_in 'Senha', :with => 'newpass'
-      #   fill_in 'Confirmação', :with => 'newfag'
-      #   click_button 'Gravar'
-      #   page.should have_content('não está de acordo com a confirmação')
-      # end
+    it 'edits password' do
+      click_link('Perfil')
+      click_link('Editar perfil')
+      fill_in 'Senha', :with => 'newpass'
+      fill_in 'Confirmação', :with => 'newpass'
+      click_button 'Gravar'
+      page.should have_content('perfil foi alterado')
+    end
+
+    it "can't edit password with unmatching entries" do
+      click_link('Perfil')
+      click_link('Editar perfil')
+      fill_in 'Senha', :with => 'newpass'
+      fill_in 'Confirmação', :with => 'newfag'
+      click_button 'Gravar'
+      page.should have_content('não está de acordo com a confirmação')
     end
   end
 end

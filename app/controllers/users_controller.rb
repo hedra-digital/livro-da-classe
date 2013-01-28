@@ -32,8 +32,4 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-
-  def edit_password
-    @user = current_user
-  end
 end
