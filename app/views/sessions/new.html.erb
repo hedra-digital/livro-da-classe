@@ -7,3 +7,8 @@
   <%= content_tag :p, link_to("Esqueceu sua senha?", new_password_reset_path) %>
   <%= f.button :submit, 'Entrar' %>
 <% end %>
+
+<p>Ou identifique-se pelos serviços:</p>
+<ul>
+  <li><%= link_to 'Twitter', '/auth/twitter' %></li>
+  <li><%= link_to 'Facebook', '/auth/facebook' %></li></ul>

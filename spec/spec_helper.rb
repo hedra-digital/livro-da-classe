@@ -13,6 +13,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 OmniAuth.config.test_mode = true
 OmniAuth.config.add_mock(:twitter, { :uid => '12345' })
+OmniAuth.config.add_mock(:facebook, { :uid => '12345' })
 
 RSpec.configure do |config|
   # ## Mock Framework

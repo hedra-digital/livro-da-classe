@@ -47,13 +47,13 @@ describe 'unregistered user' do
       end
     end
 
-    context 'when signing up successfully through twitter' do
+    context 'when signing up through Twitter' do
       before do
         visit root_path
         click_link('signup')
       end
 
-      it 'clicks the twitter link' do
+      it 'clicks the Twitter link' do
         page.should have_link('Twitter')
         click_link('Twitter')
       end
@@ -64,23 +64,82 @@ describe 'unregistered user' do
         page.should have_content(OmniAuth.config.mock_auth[:twitter][:info][:name])
       end
     end
+
+    context 'when signing up through Facebook' do
+      before do
+        visit root_path
+        click_link('signup')
+      end
+
+      it 'clicks the Facebook link' do
+        page.should have_link('Facebook')
+        click_link('Facebook')
+      end
+
+      it 'shows signed in info on the page' do
+        page.should have_link('Facebook')
+        click_link('Facebook')
+        page.should have_content(OmniAuth.config.mock_auth[:facebook][:info][:name])
+      end
+    end
    end
 end
 
 describe 'registered user' do
   let(:user) { create(:user, :password => 'anything') }
 
-  context 'when signing in' do
+  context 'when signing in through email/password' do
     before do
       visit root_path
       click_link('Entrar no site')
-      fill_in 'signin_email', :with => user.email
-      fill_in 'signin_password', :with => 'anything'
-      click_button 'Entrar'
     end
 
     it 'fills in sign in form' do
-      current_path.should == app_home_path
+      fill_in 'signin_email', :with => user.email
+      fill_in 'signin_password', :with => 'anything'
+    end
+
+    it 'clicks the sigin in button' do
+      fill_in 'signin_email', :with => user.email
+      fill_in 'signin_password', :with => 'anything'
+      click_button 'Entrar'
+      current_path.should eq(app_home_path)
+    end
+  end
+
+  context 'when signing in through Twitter' do
+    before do
+      visit root_path
+      click_link('Entrar no site')
+    end
+
+    it 'clicks on the Twitter link' do
+      page.should have_link('Twitter')
+      click_link('Twitter')
+    end
+
+    it 'shows signed in info on the page' do
+      page.should have_link('Twitter')
+      click_link('Twitter')
+      page.should have_content(OmniAuth.config.mock_auth[:twitter][:info][:name])
+    end
+  end
+
+  context 'when signing in through Twitter' do
+    before do
+      visit root_path
+      click_link('Entrar no site')
+    end
+
+    it 'clicks on the Twitter link' do
+      page.should have_link('Facebook')
+      click_link('Facebook')
+    end
+
+    it 'shows signed in info on the page' do
+      page.should have_link('Facebook')
+      click_link('Facebook')
+      page.should have_content(OmniAuth.config.mock_auth[:facebook][:info][:name])
     end
   end
 
