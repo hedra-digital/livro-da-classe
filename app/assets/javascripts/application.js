@@ -13,5 +13,6 @@
 //= require modernizr-2.6.2.min
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require bootstrap-alert
 //= require_tree .

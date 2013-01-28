@@ -57,7 +57,7 @@ describe TextsController do
 
       it "redirects to the created text" do
         post :create, {:text => valid_attributes, :book_id => book.id}, valid_session
-        response.should redirect_to(book_text_path(Text.last.book, Text.last))
+        response.should redirect_to(book_path(Text.last.book))
       end
     end
 

@@ -52,7 +52,7 @@ class TextsController < ApplicationController
 
     respond_to do |format|
       if @text.save
-        format.html { redirect_to book_text_path(@book, @text), notice: 'Text was successfully created.' }
+        format.html { redirect_to book_path(@book), notice: 'Text was successfully created.' }
         format.json { render json: @text, status: :created, location: @text }
       else
         format.html { render action: "new" }
@@ -67,7 +67,7 @@ class TextsController < ApplicationController
     @text = Text.find_by_uuid_or_id(params[:id])
     respond_to do |format|
       if @text.update_attributes(params[:text])
-        format.html { redirect_to book_text_url(@book, @text), notice: 'Text was successfully updated.' }
+        format.html { redirect_to book_path(@book), notice: 'Text was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -87,6 +87,14 @@ class TextsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def sort
+    params[:text].each_with_index do |id, index|
+      @book.texts.update_all({position: index+1}, {id: id})
+    end
+    render :nothing => true
+  end
+
 
   private
 

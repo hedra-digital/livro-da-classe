@@ -15,7 +15,11 @@ Livrodaclasse::Application.routes.draw do
   resources :sessions
   resources :password_resets
   resources :books do
-    resources :texts
+    resources :texts do
+      collection do
+        post 'sort'
+      end
+    end
   end
 
   # The priority is based upon order of creation:

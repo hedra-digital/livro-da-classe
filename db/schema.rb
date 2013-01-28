@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117200222) do
+ActiveRecord::Schema.define(:version => 20130128231848) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20130117200222) do
     t.string   "uuid"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "position"
   end
 
   create_table "users", :force => true do |t|

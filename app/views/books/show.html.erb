@@ -19,10 +19,10 @@
 </div>
 
 
-<ul id="text-list" data-update-url="<%#= sort_book_texts_path(@book) %>" style="margin-top: 20px;">
+<ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" style="margin-top: 20px;">
   <% @book.texts.each do |text| %>
     <%= content_tag_for :li, text do %>
-    <!-- <span class="handle">[drag]</span>&nbsp; -->
+    <span class="handle">[drag]</span>&nbsp;
     <strong><%= link_to(text.title, book_text_path(@book.uuid, text.uuid)) %></strong>&nbsp;&nbsp;
     <% end %>
   <% end %>
