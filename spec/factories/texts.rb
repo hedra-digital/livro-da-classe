@@ -1,10 +1,10 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+require 'faker'
 
 FactoryGirl.define do
   factory :text do
-    book { create(:book)}
-    content "MyString"
-    title "MyString"
+    title { Faker::Lorem.sentence }
     uuid "MyString"
+    content { Faker::Lorem.paragraph }
+    book { build_stubbed(:book) }
   end
 end

@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe TextsController do
   let(:book)              { create(:book) }
-
+  let(:text)              { create(:text, :book => book) }
   let(:valid_session)     { { :current_user => create(:user) } }
-  let(:valid_attributes)  { { :title => "Text title", :book => book } }
+  let(:valid_attributes)  { attributes_for(:text) }
 
   before do
     controller.stub(:current_user).and_return(valid_session[:current_user])
@@ -13,14 +13,13 @@ describe TextsController do
   describe "GET index" do
     it "assigns all texts as @texts" do
       text = Text.create! valid_attributes
-      get :index, {:book_id => book.id }, valid_session
+      get :index, {:book_id => book.id}, valid_session
       assigns(:texts).should eq([text])
     end
   end
 
   describe "GET show" do
     it "assigns the requested text as @text" do
-      text = Text.create! valid_attributes
       get :show, {:id => text.to_param, :book_id => book.id}, valid_session
       assigns(:text).should eq(text)
     end
@@ -35,7 +34,6 @@ describe TextsController do
 
   describe "GET edit" do
     it "assigns the requested text as @text" do
-      text = Text.create! valid_attributes
       get :edit, {:id => text.to_param, :book_id => book.id}, valid_session
       assigns(:text).should eq(text)
     end
@@ -45,7 +43,7 @@ describe TextsController do
     describe "with valid params" do
       it "creates a new Text" do
         expect {
-          post :create, {:text => valid_attributes,  :book_id => book.id}, valid_session
+          post :create, {:book_id => book.id, :text => valid_attributes}, valid_session
         }.to change(Text, :count).by(1)
       end
 
@@ -63,14 +61,12 @@ describe TextsController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved text as @text" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Text.any_instance.stub(:save).and_return(false)
         post :create, {:text => {  }, :book_id => book.id}, valid_session
         assigns(:text).should be_a_new(Text)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Text.any_instance.stub(:save).and_return(false)
         post :create, {:text => {  }, :book_id => book.id}, valid_session
         response.should render_template("new")
@@ -79,7 +75,6 @@ describe TextsController do
 
     describe "with no params" do
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
         post :create, {:book_id => book.id}, valid_session
         response.should render_template("new")
       end
@@ -89,23 +84,16 @@ describe TextsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested text" do
-        text = Text.create! valid_attributes
-        # Assuming there are no other texts in the database, this
-        # specifies that the Text created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
         Text.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
         put :update, {:id => text.to_param, :text => { "these" => "params" }, :book_id => book.id}, valid_session
       end
 
       it "assigns the requested text as @text" do
-        text = Text.create! valid_attributes
         put :update, {:id => text.to_param, :text => valid_attributes, :book_id => book.id}, valid_session
         assigns(:text).should eq(text)
       end
 
       it "redirects to the text" do
-        text = Text.create! valid_attributes
         put :update, {:id => text.to_param, :text => valid_attributes, :book_id => book.id}, valid_session
         # response.should redirect_to(book_text_path(text.book.id, text))
       end
@@ -113,15 +101,12 @@ describe TextsController do
 
     describe "with invalid params" do
       it "assigns the text as @text" do
-        text = Text.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
         Text.any_instance.stub(:save).and_return(false)
         put :update, {:id => text.to_param, :text => {  }, :book_id => book.id}, valid_session
         assigns(:text).should eq(text)
       end
 
       it "re-renders the 'edit' template" do
-        text = Text.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Text.any_instance.stub(:save).and_return(false)
         put :update, {:id => text.to_param, :text => {  }, :book_id => book.id}, valid_session
@@ -139,8 +124,7 @@ describe TextsController do
     end
 
     it "redirects to the texts list" do
-      text = Text.create! valid_attributes
-      delete :destroy, {:id => text.to_param, :book_id => book.id}, valid_session
+      delete :destroy, {:book_id => book.id, :id => text.to_param}, valid_session
       # response.should redirect_to(book_texts_url(text.book.id, :host => "test.host"))
     end
   end

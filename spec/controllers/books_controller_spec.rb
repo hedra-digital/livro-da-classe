@@ -4,7 +4,6 @@ describe BooksController do
   let(:organizer)         { create(:organizer) }
   let(:books)             { organizer.books }
   let(:book)              { books.first }
-
   let(:valid_session)     { { :current_user => organizer } }
   let(:valid_attributes)  { attributes_for(:book, :organizer => organizer) }
 
@@ -61,18 +60,13 @@ describe BooksController do
     end
 
     describe "with invalid params" do
-      before do
-        controller.stub(:current_user).and_return(valid_session[:current_user])
-      end
       it "assigns a newly created but unsaved book as @book" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Book.any_instance.stub(:save).and_return(false)
         post :create, {:book => {  }}, valid_session
         assigns(:book).should be_a_new(Book)
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Book.any_instance.stub(:save).and_return(false)
         post :create, {:book => {  }}, valid_session
         response.should render_template("new")
@@ -83,23 +77,16 @@ describe BooksController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested book" do
-        book = Book.create! valid_attributes
-        # Assuming there are no other books in the database, this
-        # specifies that the Book created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
         Book.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
         put :update, {:id => book.to_param, :book => { "these" => "params" }}, valid_session
       end
 
       it "assigns the requested book as @book" do
-        book = Book.create! valid_attributes
         put :update, {:id => book.to_param, :book => valid_attributes}, valid_session
         assigns(:book).should eq(book)
       end
 
       it "redirects to the book" do
-        book = Book.create! valid_attributes
         put :update, {:id => book.to_param, :book => valid_attributes}, valid_session
         response.should redirect_to(book)
       end
@@ -107,16 +94,12 @@ describe BooksController do
 
     describe "with invalid params" do
       it "assigns the book as @book" do
-        book = Book.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
         Book.any_instance.stub(:save).and_return(false)
         put :update, {:id => book.to_param, :book => {  }}, valid_session
         assigns(:book).should eq(book)
       end
 
       it "re-renders the 'edit' template" do
-        book = Book.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
         Book.any_instance.stub(:save).and_return(false)
         put :update, {:id => book.to_param, :book => {  }}, valid_session
         response.should render_template("edit")
@@ -126,14 +109,12 @@ describe BooksController do
 
   describe "DELETE destroy" do
     it "destroys the requested book" do
-      book = Book.create! valid_attributes
       expect {
         delete :destroy, {:id => book.to_param}, valid_session
       }.to change(Book, :count).by(-1)
     end
 
     it "redirects to the books list" do
-      book = Book.create! valid_attributes
       delete :destroy, {:id => book.to_param}, valid_session
       response.should redirect_to(books_url(:host => "test.host"))
     end
