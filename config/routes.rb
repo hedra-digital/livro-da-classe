@@ -5,6 +5,7 @@ Livrodaclasse::Application.routes.draw do
   delete 'sair', :to => 'sessions#destroy', :as => :signout
   get 'cadastro', :to => 'users#new', :as => :new_user
   get 'apphome', :to => 'pages#apphome', :as => :app_home
+  get 'auth/failure', :to => redirect('/')
 
   root :to => "pages#home"
 
