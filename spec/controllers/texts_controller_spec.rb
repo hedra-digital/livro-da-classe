@@ -55,7 +55,7 @@ describe TextsController do
 
       it "redirects to the created text" do
         post :create, {:text => valid_attributes, :book_id => book.id}, valid_session
-        response.should redirect_to(book_path(Text.last.book))
+        response.should redirect_to(book_text_path(Text.last.book, Text.last))
       end
     end
 
@@ -95,7 +95,7 @@ describe TextsController do
 
       it "redirects to the text" do
         put :update, {:id => text.to_param, :text => valid_attributes, :book_id => book.id}, valid_session
-        # response.should redirect_to(book_text_path(text.book.id, text))
+        response.should redirect_to(book_text_path(Text.last.book, Text.last))
       end
     end
 
@@ -107,7 +107,6 @@ describe TextsController do
       end
 
       it "re-renders the 'edit' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
         Text.any_instance.stub(:save).and_return(false)
         put :update, {:id => text.to_param, :text => {  }, :book_id => book.id}, valid_session
         response.should render_template("edit")
@@ -125,7 +124,7 @@ describe TextsController do
 
     it "redirects to the texts list" do
       delete :destroy, {:book_id => book.id, :id => text.to_param}, valid_session
-      # response.should redirect_to(book_texts_url(text.book.id, :host => "test.host"))
+      response.should redirect_to(book_texts_path(text.book))
     end
   end
 

@@ -35,7 +35,7 @@ class TextsController < ApplicationController
   def update
     @text = Text.find_by_uuid_or_id(params[:id])
     if @text.update_attributes(params[:text])
-      redirect_to book_text_url(@book, @text), notice: 'Text was successfully updated.'
+      redirect_to book_text_path(@book, @text), notice: 'Text was successfully updated.'
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class TextsController < ApplicationController
   def destroy
     @text = Text.find_by_uuid_or_id(params[:id])
     @text.destroy
-    redirect_to book_texts_url(@book)
+    redirect_to book_texts_path(@book)
   end
 
   def sort
