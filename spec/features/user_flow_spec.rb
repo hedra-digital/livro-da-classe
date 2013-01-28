@@ -124,3 +124,37 @@ describe 'registered user' do
     end
   end
 end
+
+describe 'invalid registered user' do
+  let(:user) { create(:user, :email => 'user@example.com', :password => 'anything') }
+
+  it 'is invalid with wrong email' do
+    visit root_path
+    click_link('Entrar no site')
+    fill_in 'signin_email', :with => 'dada'
+    fill_in 'signin_password', :with => user.password
+    click_button 'Entrar'
+    current_path.should eq(sessions_path)
+    page.should have_content('inválidos')
+  end
+
+  it 'is invalid with wrong password' do
+    visit root_path
+    click_link('Entrar no site')
+    fill_in 'signin_email', :with => user.email
+    fill_in 'signin_password', :with => 'dada'
+    click_button 'Entrar'
+    current_path.should eq(sessions_path)
+    page.should have_content('inválidos')
+  end
+
+  it 'is invalid with wrong user and password' do
+    visit root_path
+    click_link('Entrar no site')
+    fill_in 'signin_email', :with => 'dada'
+    fill_in 'signin_password', :with => 'dada'
+    click_button 'Entrar'
+    current_path.should eq(sessions_path)
+    page.should have_content('inválidos')
+  end
+end
