@@ -18,27 +18,27 @@
 require 'spec_helper'
 
 describe Book do
-  it { should respond_to(:organizer_id)}
+  it { should respond_to(:organizer_id) }
   it { should respond_to(:coordinators) }
   it { should respond_to(:directors) }
   it { should respond_to(:organizers) }
   it { should respond_to(:published_at) }
   it { should respond_to(:subtitle) }
-  it { should respond_to(:title) }  
-  it { should respond_to(:uuid) } 
+  it { should respond_to(:title) }
+  it { should respond_to(:uuid) }
 
   context 'when validating' do
     it 'is invalid without an organizer' do
       book = build(:book, :organizer => nil)
       book.should_not be_valid
       book.should have(1).error_on(:organizer)
-    end 
+    end
 
     it 'is invalid without an title' do
       book = build(:book, :title => nil)
       book.should_not be_valid
       book.should have(1).error_on(:title)
-    end 
+    end
   end
 
   context '.set_uuid' do
@@ -73,5 +73,5 @@ describe Book do
         Book.find_by_uuid_or_id(book.uuid).should_not be_nil
     end
   end
-  
+
 end

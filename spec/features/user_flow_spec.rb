@@ -82,6 +82,24 @@ describe 'unregistered user' do
         page.should have_content(OmniAuth.config.mock_auth[:facebook][:info][:name])
       end
     end
+
+    context 'when signing up through Google' do
+      before do
+        visit root_path
+        click_link('signup')
+      end
+
+      it 'clicks the Facebook link' do
+        page.should have_link('Google')
+        click_link('Google')
+      end
+
+      it 'shows signed in info on the page' do
+        page.should have_link('Google')
+        click_link('Google')
+        page.should have_content(OmniAuth.config.mock_auth[:google][:info][:name])
+      end
+    end
    end
 end
 
@@ -140,6 +158,24 @@ describe 'registered user' do
       page.should have_link('Facebook')
       click_link('Facebook')
       page.should have_content(OmniAuth.config.mock_auth[:facebook][:info][:name])
+    end
+  end
+
+  context 'when signing in through Google' do
+    before do
+      visit root_path
+      click_link('Entrar no site')
+    end
+
+    it 'clicks on the Twitter link' do
+      page.should have_link('Google')
+      click_link('Google')
+    end
+
+    it 'shows signed in info on the page' do
+      page.should have_link('Google')
+      click_link('Google')
+      page.should have_content(OmniAuth.config.mock_auth[:google][:info][:name])
     end
   end
 
