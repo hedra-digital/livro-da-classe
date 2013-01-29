@@ -9,5 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require markitup/skins/markitup/style
+ *= require markitup/sets/markdown/style
  *= require_tree .
  */
