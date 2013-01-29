@@ -13,16 +13,14 @@ class SessionsController < ApplicationController
         if params[:signin][:remember_me]
           cookies.permanent[:auth_token] = user.auth_token
         end
-        session[:auth_token] = user.auth_token
-        redirect_to app_home_path, :notice => 'Usuário autenticado!'
+        authenticate(user)
       else
         flash.now.alert = 'Usuário ou senha inválidos'
         render :new
       end
     elsif env['omniauth.auth']
       user = User.from_omniauth(env['omniauth.auth'])
-      session[:auth_token] = user.auth_token
-      redirect_to app_home_path, :notice => 'Usuário autenticado!'
+      authenticate(user)
     end
   end
 
