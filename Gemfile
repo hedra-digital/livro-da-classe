@@ -45,6 +45,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'simple_form'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
