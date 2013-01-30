@@ -1,0 +1,231 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+/*
+* Overwriting Bootstrap variables
+*/
+
+$bodyBackground:                  #f9f9f9;
+$textColor:                       #333;
+
+$sansFontFamily:                  Miso, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serifFontFamily:                 TimesNewRoman, "Times New Roman", Times, serif;
+
+$baseFontSize:                    24px;
+$baseFontFamily:                  $sansFontFamily;
+$baseLineHeight:                  $baseFontSize * 1.4;
+$altFontFamily:                   $serifFontFamily;
+
+$iconSpritePath:          "/assets/glyphicons-halflings.png";
+$iconWhiteSpritePath:     "/assets/glyphicons-halflings-white.png";
+
+@mixin sticky-footer($footer-height, $root-selector: unquote("#root"), $root-footer-selector: unquote("#root_footer"), $footer-selector: unquote("#footer")) {
+  html, body {
+    height: 100%; }
+  #{$root-selector} {
+    clear: both;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -$footer-height;
+    #{$root-footer-selector} {
+      height: $footer-height; } }
+  #{$footer-selector} {
+    clear: both;
+    position: relative;
+    height: $footer-height; } }
+
+/* ==========================================================================
+  Importing frameworks
+  ========================================================================== */
+
+@import 'bootstrap';
+@import 'bourbon';
+
+
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+
+@include font-face(Miso, '/assets/miso-regular', normal, normal);
+@include font-face(Miso, '/assets/miso-bold', bold, normal);
+
+
+/* ==========================================================================
+   Basic tags
+   ========================================================================== */
+
+
+/* ==========================================================================
+   Areas
+   ========================================================================== */
+
+#main {
+  padding-bottom: 50px;
+}
+
+header {
+  height: 110px;
+  .container {
+    position: relative;
+  }
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2.9em;
+    line-height: 110px;
+  }
+  h1, p {
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+  .logo-he {
+    position: absolute;
+    top: 28px;
+    right: 0;
+  }
+  #userid {
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+}
+
+footer {
+  color: white;
+  background: #434343 url('/assets/footer-border.png') top repeat-x;
+  #logo {
+    margin-top: 60px;
+    float: left;
+  }
+  #address {
+    margin-top: 60px;
+    padding: 0 0 0 170px;
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+    address {
+      font-size: 19px;
+      line-height: 1.4;
+    }
+  }
+}
+
+@include sticky-footer(240px, "#wrap", "#push", "footer");
+
+
+/* ==========================================================================
+   Pages
+   ========================================================================== */
+
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+
+.text {
+  text-shadow: 1px 1px 1px #FFF;
+}
+
+a.clean-gray {
+  background-color: #EEE;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #EEE), color-stop(100%, #CCC));
+  background-image: -webkit-linear-gradient(top, #EEE, #CCC);
+  background-image: -moz-linear-gradient(top, #EEE, #CCC);
+  background-image: -ms-linear-gradient(top, #EEE, #CCC);
+  background-image: -o-linear-gradient(top, #EEE, #CCC);
+  background-image: linear-gradient(top, #EEE, #CCC);
+  border: 1px solid #CCC;
+  border-bottom: 1px solid #BBB;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 7px;
+  color: #333;
+  font-size: 1.6em;
+  font-weight: normal;
+  text-decoration: none;
+  line-height: 1;
+  padding: 0.5em 0.8em;
+  text-align: center;
+  text-shadow: 0 1px 0 #EEE;
+}
+
+a.clean-gray:hover {
+  background-color: #dddddd;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #bbbbbb));
+  background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
+  background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
+  background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
+  background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
+  background-image: linear-gradient(top, #dddddd, #bbbbbb);
+  border: 1px solid #bbb;
+  border-bottom: 1px solid #999;
+  cursor: pointer;
+  text-shadow: 0 1px 0 #ddd;
+}
+
+a.clean-gray:active {
+  border: 1px solid #aaa;
+  border-bottom: 1px solid #888;
+  -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+  -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+  box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+}
+
+hr {
+  clear: both;
+  float: none;
+  width: 100%;
+  height: 2px;
+  margin: 1.4em 0;
+  border: none;
+  background: #ddd;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    color-stop(0.5, rgb(221,221,221)),
+    color-stop(0.5, rgb(255,255,255))
+    );
+  background-image: -moz-linear-gradient(
+    center top,
+    rgb(221,221,221) 50%,
+    rgb(255,255,255) 50%
+    );
+}
+
+hr.faded {
+  clear: both;
+  float: none;
+  width: 100%;
+  height: 1px;
+  margin: 1.4em 0 1.6em 0;
+  border: none;
+  background: #ddd;
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    right bottom,
+    color-stop(0, rgb(255,255,255)),
+    color-stop(0.1, rgb(221,221,221)),
+    color-stop(0.9, rgb(221,221,221)),
+    color-stop(1, rgb(255,255,255))
+  );
+  background-image: -moz-linear-gradient(
+    left center,
+    rgb(255,255,255) 0%,
+    rgb(221,221,221) 10%,
+    rgb(221,221,221) 90%,
+    rgb(255,255,255) 100%
+  );
+}

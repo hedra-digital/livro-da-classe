@@ -5,10 +5,57 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-</head>
-<body>
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="wrap">
+      <header>
+        <div class="container">
+          <div class="row">
+            <div class="span5">
+              <h1><%= link_to_unless_current 'Livro da Classe', root_path %></h1>
+            </div>
+            <div id="userid" class="span3 offset4">
+              <p><i class="icon-user"></i> <%= current_user.name %></p>
+              <%= link_to "Meus Livros", books_path %>
+              &middot;
+              <%= link_to "Perfil", user_path(current_user) %>
+              &middot;
+              <%= link_to "Sair", signout_path, :method => :delete %>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div id="main" role="main" class="container">
+        <%= flash_message %>
+        <%= yield %>
+      </div>
+      <div id="push"></div>
+    </div>
+    <footer>
+      <div class="container">
+        <div id="logo">
+          <%= image_tag 'logo-hedra.png', :width => '130', :height => '130' %>
+        </div>
+        <div id="address">
+          <h2>Hedra Educação Ltda.</h2>
+          <address>
+            Rua Fradique Coutinho 1139 Subsolo<br>
+            Vila Madalena<br>
+            São Paulo - SP<br>
+            Tel. (11) 3097-8304<br>
+          </address>
+        </div>
+      </div>
+    </footer>
 
-<%= yield %>
-
-</body>
+    <script>
+      var _gaq=[['_setAccount','UA-34822510-2'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+  </body>
 </html>

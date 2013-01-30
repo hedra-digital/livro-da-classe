@@ -1,10 +1,11 @@
 class PagesController < ApplicationController
-  layout 'public'
 
   def home
+    render :layout => 'public'
   end
 
   def apphome
+    render :layout => 'application'
   end
 
 end
