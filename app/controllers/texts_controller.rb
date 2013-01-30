@@ -3,8 +3,6 @@ class TextsController < ApplicationController
   before_filter :find_book
   before_filter :secure_book, :only => [:update, :create]
 
-  layout 'public'
-
   def index
     @texts = Text.all
   end

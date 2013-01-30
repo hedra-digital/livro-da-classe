@@ -1,9 +1,8 @@
 # encoding: utf-8
 
 class SessionsController < ApplicationController
-  layout 'public'
-
   def new
+    render :layout => 'public'
   end
 
   def create

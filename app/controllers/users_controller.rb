@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_filter :authentication_check, :only => [:edit, :update, :edit_password]
-  layout 'public'
 
   def show
     @user = current_user
@@ -8,6 +7,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render :layout => 'public'
   end
 
   def create

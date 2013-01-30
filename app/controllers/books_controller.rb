@@ -1,6 +1,4 @@
 class BooksController < ApplicationController
-  layout 'public'
-
   before_filter :authentication_check
   before_filter :secure_organizer_id, :only => [:create, :update]
   before_filter :resource, :only => [:show, :edit, :destroy, :update]
