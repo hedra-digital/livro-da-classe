@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class SessionsController < ApplicationController
+  layout :choose_layout
+
   def new
     render :layout => 'public'
   end
@@ -12,14 +14,16 @@ class SessionsController < ApplicationController
         if params[:signin][:remember_me]
           cookies.permanent[:auth_token] = user.auth_token
         end
-        authenticate(user)
+        session[:auth_token] = user.auth_token
+        redirect_to app_home_path, :notice => 'Usuário autenticado!'
       else
         flash.now.alert = 'Usuário ou senha inválidos'
-        render :new
+        render :new, :layout => 'public'
       end
     elsif env['omniauth.auth']
       user = User.from_omniauth(env['omniauth.auth'])
-      authenticate(user)
+      session[:auth_token] = user.auth_token
+      redirect_to app_home_path, :notice => 'Usuário autenticado!'
     end
   end
 
@@ -27,5 +31,11 @@ class SessionsController < ApplicationController
     cookies.delete(:auth_token)
     session[:auth_token] = nil
     redirect_to root_path, :notice => 'Você saiu da área logada.'
+  end
+
+  private
+
+  def choose_layout
+    current_user ? "application" : "public"
   end
 end

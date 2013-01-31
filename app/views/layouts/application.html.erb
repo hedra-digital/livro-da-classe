@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Livrodaclasse</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" xmlns:fb="http://ogp.me/ns/fb#"> <!--<![endif]-->
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <%= yield(:title).presence || content_tag(:title, "Livro da Classe") %>
+    <%= stylesheet_link_tag    "public", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= favicon_link_tag %>
+    <%= csrf_meta_tags %>
+    <%= yield :meta_tags %>
   </head>
   <body>
     <!--[if lt IE 7]>

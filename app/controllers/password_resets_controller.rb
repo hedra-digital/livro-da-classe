@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class PasswordResetsController < ApplicationController
-  layout 'public'
+  layout :choose_layout
 
   def new
   end
@@ -25,5 +25,11 @@ class PasswordResetsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  private
+
+  def choose_layout
+    current_user ? "application" : "public"
   end
 end

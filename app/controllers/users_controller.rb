@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
   before_filter :authentication_check, :only => [:edit, :update, :edit_password]
 
+  layout        :choose_layout
+
   def show
     @user = current_user
   end
 
   def new
     @user = User.new
-    render :layout => 'public'
   end
 
   def create
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
       cookies[:auth_token] = @user.auth_token
       redirect_to app_home_path, notice: "Obrigado pelo seu cadastro!"
     else
-      render "new"
+      render :new
     end
   end
 
@@ -31,5 +32,11 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  private
+
+  def choose_layout
+    current_user ? "application" : "public"
   end
 end

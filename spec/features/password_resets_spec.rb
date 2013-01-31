@@ -26,13 +26,20 @@ describe "PasswordResets" do
     end
   end
 
-  context "when confirmation matches" do
-    it "updates the user password" do
+  context "when confirmation doesn't match" do
+    it "shows error message" do
       user = create(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago)
       visit edit_password_reset_path(user.password_reset_token)
       fill_in "Senha", :with => "password"
       click_button "Alterar senha"
       page.should have_content("não está de acordo com a confirmação")
+    end
+  end
+
+  context "when confirmation matches" do
+    it "updates the user password" do
+      user = create(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago)
+      visit edit_password_reset_path(user.password_reset_token)
       fill_in "Senha", :with => "password"
       fill_in "Confirmação da senha", :with => "password"
       click_button "Alterar senha"

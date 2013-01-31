@@ -14,11 +14,6 @@ class ApplicationController < ActionController::Base
     redirect_to signin_path unless current_user
   end
 
-  def authenticate(user)
-    session[:auth_token] = user.auth_token
-    redirect_to app_home_path, :notice => 'Usuário autenticado!'
-  end
-
   helper_method :current_user
 
 end

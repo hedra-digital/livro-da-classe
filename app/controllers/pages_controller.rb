@@ -1,11 +1,16 @@
 class PagesController < ApplicationController
+  layout :choose_layout
 
   def home
-    render :layout => 'public'
   end
 
   def apphome
-    render :layout => 'application'
+  end
+
+  private
+
+  def choose_layout
+    current_user ? "application" : "public"
   end
 
 end

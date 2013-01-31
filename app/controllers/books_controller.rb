@@ -23,7 +23,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.'
     else
-      render action: "new"
+      render :new
     end
   end
 
@@ -31,7 +31,7 @@ class BooksController < ApplicationController
     if @book.update_attributes(params[:book])
       redirect_to @book, notice: 'Book was successfully updated.'
     else
-      render action: "edit"
+      render :edit
     end
   end
 
