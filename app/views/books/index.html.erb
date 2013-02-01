@@ -1,44 +1,23 @@
-<h2>Livros</h2>
-
-
-<table class="table table-striped">
-  <tr>
-    <th>Título</th>
-    <th>Textos</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <% @books.each do |book| %>
-  <tr>
-    <td><%= link_to book.title, book_path(book.uuid) %></td>
-    <td>&nbsp;&nbsp;&nbsp;<%= raw book.texts.size %></td>
-    <td><%= link_to 'Adicionar Texto', new_book_text_path(book.uuid) %></td>
-    <td><%= link_to 'Apagar', book_path(book.uuid), method: :delete, data: { confirm: 'Tem certeza?' } %></td>
-  </tr>
-  <% end %>
-</table>
-
-<%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary' %>
-
-<!-- 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @books.each do |book| %>
-  <tr>
-    <td><%= link_to 'Show', book %></td>
-    <td><%= link_to 'Edit', edit_book_path(book) %></td>
-    <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% if @books.present? %>
+  <h2>Meus livros</h2>
+  <table class="table table-striped">
+    <tr>
+      <th>Título</th>
+      <th>Textos</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= link_to book.title, book_path(book.uuid) %></td>
+        <td>&nbsp;&nbsp;&nbsp;<%= raw book.texts.size %></td>
+        <td><%= link_to 'Adicionar Texto', new_book_text_path(book.uuid) %></td>
+        <td><%= link_to 'Apagar', book_path(book.uuid), method: :delete, data: { confirm: 'Tem certeza?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary' %>
+<% else %>
+  <p class="nobook">Você ainda não criou nenhum livro. Que tal <%= link_to 'começar agora?', new_book_path %></p>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Book', new_book_path %>
- -->
