@@ -16,4 +16,5 @@
 //= require markitup/jquery.markitup
 //= require markitup/sets/markdown/set
 //= require bootstrap-alert
+//= require bindWithDelay
 //= require_tree .
