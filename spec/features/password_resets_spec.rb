@@ -43,7 +43,7 @@ describe "PasswordResets" do
       fill_in "Senha", :with => "password"
       fill_in "Confirmação da senha", :with => "password"
       click_button "Alterar senha"
-      page.should have_content("A senha foi alterada")
+      page.should have_content("senha foi alterada")
     end
   end
 

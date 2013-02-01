@@ -4,9 +4,6 @@ class PagesController < ApplicationController
   def home
   end
 
-  def apphome
-  end
-
   private
 
   def choose_layout
