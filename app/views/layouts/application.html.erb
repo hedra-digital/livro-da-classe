@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= yield(:title).presence || content_tag(:title, "Livro da Classe") %>
-    <%= stylesheet_link_tag    "public", :media => "all" %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
@@ -44,7 +44,7 @@
     <footer>
       <div class="container">
         <div id="logo">
-          <%= image_tag 'logo-hedra.png', :width => '130', :height => '130' %>
+          <%= image_tag '/assets/logo-hedra.png', :width => '130', :height => '130' %>
         </div>
         <div id="address">
           <h2>Hedra Educação Ltda.</h2>
