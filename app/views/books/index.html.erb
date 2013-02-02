@@ -19,5 +19,5 @@
   </table>
   <%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary' %>
 <% else %>
-  <p class="nobook">Você ainda não criou nenhum livro. Que tal <%= link_to 'começar agora?', new_book_path %></p>
+  <p class="nobook">Você não tem nenhum livro. Que tal <%= link_to 'começar um agora?', new_book_path %></p>
 <% end %>

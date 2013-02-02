@@ -103,7 +103,7 @@ describe 'unregistered user' do
    end
 end
 
-describe 'registered user' do
+describe 'valid registered user' do
   let(:user) { create(:user, :password => 'anything') }
 
   context 'when signing in through email/password' do
