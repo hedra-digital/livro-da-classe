@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   validates           :password, :presence => true, :on => :create
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible     :email, :name, :password, :password_confirmation, :educator, :student_count, :school_name
+  attr_accessible     :email, :name, :password, :password_confirmation, :educator, :student_count, :school_name, :asked_for_email
 
   def send_password_reset
     generate_token(:password_reset_token)
