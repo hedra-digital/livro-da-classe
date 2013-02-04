@@ -19,7 +19,7 @@ describe BooksController do
 
     it "redirects to the email page if the current_user meet the requirements" do
       valid_session[:current_user].email           = nil
-      valid_session[:current_user].asked_for_email = false
+      valid_session[:current_user].asked_for_email = nil
       get :index, {}, valid_session
       response.status.should be(302)
     end
