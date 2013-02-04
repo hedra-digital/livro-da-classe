@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_filter :authentication_check, :only => [:edit, :update, :edit_password]
+  before_filter :resource, :only => [:show, :edit, :update, :email]
 
   layout        :choose_layout
 
   def show
-    @user = current_user
   end
 
   def new
@@ -22,7 +22,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
   end
 
   def update
