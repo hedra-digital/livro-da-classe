@@ -21,9 +21,21 @@
             <div class="span5">
               <h1><%= link_to_unless_current 'Livro da Classe', root_path %></h1>
             </div>
-            <div id="userid" class="span3 offset4">
-              <%= link_to "Entrar no site", signin_path %>
-              <%= link_to "Cadastrar-se", new_user_path %>
+            <div id="userid" class="span4 offset3">
+              <nav id="user-nav" class="nav">
+                <ul>
+                  <li><%= link_to "Entrar no site", signin_path %></li>
+                  <li><%= link_to "Cadastrar-se", new_user_path %></li>
+                </ul>
+              </nav>
+              <nav id="social-signin" class="nav">
+                <p>Ou entre pelos serviços:</p>
+                <ul>
+                  <li><%= link_to 'Facebook', '/auth/facebook', :class => 'facebook-oauth' %></li>
+                  <li><%= link_to 'Twitter', '/auth/twitter', :class => 'twitter-oauth' %></li>
+                  <li><%= link_to 'Google', '/auth/google_oauth2', :class => 'google-oauth' %></li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>

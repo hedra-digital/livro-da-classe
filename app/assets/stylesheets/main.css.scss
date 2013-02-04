@@ -20,6 +20,19 @@ $altFontFamily:                   $serifFontFamily;
 $iconSpritePath:          "/assets/glyphicons-halflings.png";
 $iconWhiteSpritePath:     "/assets/glyphicons-halflings-white.png";
 
+
+/* ==========================================================================
+  Importing frameworks
+  ========================================================================== */
+
+@import 'bootstrap';
+@import 'bourbon';
+
+
+/* ==========================================================================
+  Mixin overwrite
+  ========================================================================== */
+
 @mixin sticky-footer($footer-height, $root-selector: unquote("#root"), $root-footer-selector: unquote("#root_footer"), $footer-selector: unquote("#footer")) {
   html, body {
     height: 100%; }
@@ -36,13 +49,11 @@ $iconWhiteSpritePath:     "/assets/glyphicons-halflings-white.png";
     position: relative;
     height: $footer-height; } }
 
-/* ==========================================================================
-  Importing frameworks
-  ========================================================================== */
-
-@import 'bootstrap';
-@import 'bourbon';
-
+@mixin hide-text() {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
 
 /* ==========================================================================
    Fonts
@@ -101,6 +112,56 @@ header {
       color: inherit;
       text-decoration: underline;
     }
+    #user-nav {
+      li:before {
+        content: "• ";
+      }
+      li:first-child:before {
+        content: none;
+      }
+    }
+    #social-signin {
+      margin-top: 10px;
+      p {
+        margin: 0;
+        line-height: 1;
+        font-size: 12px;
+        font-family: Helvetica, "Helvetica Neue", sans-serif;
+      }
+      li {
+        height: 32px;
+      }
+      a {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        background-image: url(asset_path('social-icons.png', image));
+        background-repeat: no-repeat;
+        background-size: cover;
+        @include hide-text();
+      }
+      .facebook-oauth {
+        background-position: 0 0;
+      }
+      .twitter-oauth {
+        background-position: -32px 0;
+      }
+      .google-oauth {
+        background-position: -64px 0;
+      }
+    }
+  }
+}
+
+.nav {
+  ul {
+    margin: 0;
+    display: inline-block;
+  }
+  li {
+    list-style: none;
+    display: inline-block;
+    line-height: 1;
   }
 }
 
