@@ -16,6 +16,19 @@ describe BooksController do
       get :index, {}, valid_session
       assigns(:books).should eq(books)
     end
+
+    it "redirects to the email page if the current_user meet the requirements" do
+      valid_session[:current_user].email           = nil
+      valid_session[:current_user].asked_for_email = false
+      get :index, {}, valid_session
+      response.status.should be(302)
+    end
+
+    it "show the index page if current_user has no email set but asked_for_email = true" do
+      valid_session[:current_user].email           = nil
+      get :index, {}, valid_session
+      assigns(:books).should eq(books)
+    end
   end
 
   describe "GET show" do

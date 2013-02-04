@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_filter :authentication_check
+  before_filter :ominiauth_user_gate
   before_filter :secure_organizer_id, :only => [:create, :update]
   before_filter :resource, :only => [:show, :edit, :destroy, :update]
 

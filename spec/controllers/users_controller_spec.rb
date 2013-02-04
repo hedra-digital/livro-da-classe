@@ -96,5 +96,26 @@ describe UsersController do
         response.should render_template("edit")
       end
     end
+
+    context "when referred by UserController#email" do
+      it "should update the current_user email address" do
+        User.any_instance.should_receive(:update_attributes).with(valid_attributes.with_indifferent_access)
+        put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+      end
+
+      it "should render the email view if there's any errors" do
+        User.any_instance.stub(:save).and_return(false)
+        put :update, {:id => user.to_param, :user => {  }, :email_gate => true}, valid_session
+        response.should render_template("email")
+      end
+    end
+
+  end
+
+  describe "GET email" do
+     it "assigns the current user as @user" do
+      get :show, {:id => user.to_param}, valid_session
+      assigns(:user).should eq(user)
+    end
   end
 end

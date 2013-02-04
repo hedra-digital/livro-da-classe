@@ -16,4 +16,13 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  def ominiauth_user_gate
+    if current_user && current_user.email.blank? && current_user.asked_for_email == false
+      current_user.update_attribute(:asked_for_email, true)
+      redirect_to email_users_path
+    else
+      return true
+    end
+  end
+
 end
