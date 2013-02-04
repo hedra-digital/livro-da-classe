@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130128231848) do
+ActiveRecord::Schema.define(:version => 20130204200459) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130128231848) do
     t.datetime "password_reset_sent_at"
     t.string   "provider"
     t.string   "uid"
+    t.boolean  "asked_for_email"
   end
 
 end
