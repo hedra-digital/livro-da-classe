@@ -1,0 +1,8 @@
+<h3>Ainda não temos seu e-mail!</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem dolorum quaerat mollitia provident sit nesciunt deleniti blanditiis aliquid sed itaque. Debitis ut molestias unde impedit asperiores. Fugit sapiente molestiae sit.</p>
+
+<%= simple_form_for @user do |f| %>
+  <%= f.input :email %>
+  <%= f.input :email_gate , as: :fake_hidden, label: false, input_html: { value: "true" } %>
+  <%= f.submit 'Salvar endereço' %>
+<% end %>
