@@ -6,6 +6,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password { Faker::Base.bothify('#?#?#?#?') }
     educator true
+    asked_for_email true
   end
 
   factory :organizer, :parent => :user do
