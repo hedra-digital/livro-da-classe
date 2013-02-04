@@ -9,7 +9,11 @@ Livrodaclasse::Application.routes.draw do
 
   root :to => "pages#home"
 
-  resources :users
+  resources :users do
+    collection do
+      get 'email'
+    end
+  end
   resources :sessions
   resources :password_resets
   resources :books do
