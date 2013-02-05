@@ -26,9 +26,6 @@ describe 'unregistered user' do
         fill_in 'user_email', :with => user.email
         fill_in 'user_password', :with => user.password
         fill_in 'user_password_confirmation', :with => user.password
-        check 'user_educator'
-        fill_in 'user_student_count', :with => user.student_count
-        fill_in 'user_school_name', :with => user.school_name
       end
 
       it 'fills in all fields and clicks button' do

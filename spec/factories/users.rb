@@ -5,7 +5,6 @@ FactoryGirl.define do
     name { Faker::Name.name }
     email { Faker::Internet.email }
     password { Faker::Base.bothify('#?#?#?#?') }
-    educator true
     asked_for_email true
   end
 
