@@ -25,8 +25,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
-    if @user.update_attributes(params[:user])
+    @user = current_user    
+    if update_user
       redirect_to user_path(@user), :notice => 'Seu perfil foi alterado!'
     else
       if params[:email_gate].present?
@@ -47,5 +47,13 @@ class UsersController < ApplicationController
   end
   def choose_layout
     current_user ? "application" : "public"
+  end
+
+  def update_user
+    if params[:email_gate]
+      @user.update_attribute(:email, params[:user]["email"]) ? true : false
+    else
+      @user.update_attributes(params[:user]) ? true : false
+    end
   end
 end
