@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130204200459) do
+ActiveRecord::Schema.define(:version => 20130206000447) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -40,9 +40,6 @@ ActiveRecord::Schema.define(:version => 20130204200459) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.boolean  "educator"
-    t.integer  "student_count"
-    t.string   "school_name"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
     t.string   "auth_token"
