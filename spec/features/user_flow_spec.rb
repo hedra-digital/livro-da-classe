@@ -18,7 +18,7 @@ describe 'unregistered user' do
     end
 
     context 'when filling up sign up form' do
-      let(:user) { build(:user, :student_count => 50, :school_name => 'EEPSG Aluísio Nunes') }
+      let(:user) { build(:user) }
 
       before do
         visit new_user_path
