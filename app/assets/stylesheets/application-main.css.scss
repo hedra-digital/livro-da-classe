@@ -1,3 +1,5 @@
+@import "main";
+
 header {
   background: lavender url('/assets/topbar.png') bottom repeat-x;
   h1 {
@@ -6,6 +8,44 @@ header {
   #userid {
     color: #666;
   }
+}
+
+#book-info {
+  margin-bottom: 30px;
+  font-size: 0.8em;
+  color: #444;
+  background: #eee;
+  @include box-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  text-shadow: 1px 1px 1px #FFF;
+  small {
+    line-height: 1;
+  }
+  .book-title {
+    margin: 0;
+    font-size: 1.5em;
+    line-height: 1;
+  }
+  .book-nav {
+    margin-top: 10px;
+    background: #f5f5f5;
+    ul, li {
+      margin: 0;
+      list-style: none;
+    }
+    li {
+      display: inline-block;
+      &:after {
+        content: " |";
+      }
+      &:last-child:after {
+        content: none;
+      }
+    }
+  }
+}
+
+#main {
+  font-family: $altFontFamily;
 }
 
 

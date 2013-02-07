@@ -1,21 +1,24 @@
-<h1>Listing texts</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= render 'books/book_info' %>
 
-<% @texts.each do |text| %>
-  <tr>
-    <td><%= link_to 'Show', book_text_path(@book, text) %></td>
-    <td><%= link_to 'Edit', edit_book_text_path(@book, text) %></td>
-    <td><%= link_to 'Destroy', book_text_path(@book, text), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<div class="container">
+  <%= flash_message %>
+  <div class="row">
+    <div class="span3">
+      <h1>Textos</h1>
+    </div>
 
-<br />
+    <div class="span3 offset6">
+      <%= link_to 'Novo Texto', new_book_text_path(@book.uuid), :class => 'btn btn-primary', :style => "margin-top: 30px;" %>
+    </div>
+  </div>
 
-<%= link_to 'New Text', new_book_text_path(@book) %>
+  <ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" style="margin-top: 20px;">
+    <% @book.texts.each do |text| %>
+      <%= content_tag_for :li, text do %>
+      <span class="handle">[drag]</span>&nbsp;
+      <strong><%= link_to(text.title, book_text_path(@book.uuid, text.uuid)) %></strong>&nbsp;&nbsp;
+      <% end %>
+    <% end %>
+  </ul>
+</div>

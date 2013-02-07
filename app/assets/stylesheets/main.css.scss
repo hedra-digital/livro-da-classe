@@ -11,11 +11,11 @@ $textColor:                       #333;
 
 $sansFontFamily:                  Miso, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $serifFontFamily:                 TimesNewRoman, "Times New Roman", Times, serif;
+$altFontFamily:                   "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 $baseFontSize:                    24px;
 $baseFontFamily:                  $sansFontFamily;
 $baseLineHeight:                  $baseFontSize * 1.4;
-$altFontFamily:                   $serifFontFamily;
 
 $iconSpritePath:          "/assets/glyphicons-halflings.png";
 $iconWhiteSpritePath:     "/assets/glyphicons-halflings-white.png";
@@ -126,7 +126,7 @@ header {
         margin: 0;
         line-height: 1;
         font-size: 12px;
-        font-family: Helvetica, "Helvetica Neue", sans-serif;
+        font-family: $altFontFamily;
       }
       li {
         height: 32px;
