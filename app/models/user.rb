@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   # Relationships
   has_many            :books, :foreign_key => "organizer_id"
-  has_many            :books, :through => :collaborations, :foreign_key => "collaborator_id"
+  has_many            :colaborated_books, :through => :collaborations, :foreign_key => "collaborator_id"
   has_many            :collaborations
 
   # Validations
