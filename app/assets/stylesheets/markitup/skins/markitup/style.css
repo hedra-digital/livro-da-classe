@@ -21,7 +21,7 @@
 }
 .markItUpContainer  {
 	border:1px solid #3C769D;	
-	background:#FFF url("/assets/markitup/skins/markitup/images/bg-container.png") repeat-x top left;
+	background:#FFF url("/assets/markitup/skins/markitup/bg-container.png") repeat-x top left;
 	padding:5px 5px 2px 5px;
 	font:11px Verdana, Arial, Helvetica, sans-serif;
 }
