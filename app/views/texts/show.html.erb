@@ -11,10 +11,11 @@
     <div style="padding: 10px;"><%= simple_format(@text.content) %></div>
   </div>
 
-  <div class="span5">
+  <div class="span10">
     <div>
       <%= link_to 'Editar texto', edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
-      <%= link_to 'Voltar ao Livro', book_path(@book), :class =>'btn' %>
+      <%= link_to 'Apagar texto', book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger',:method => "delete", :confirm => "Are you sure?"  %>
+      <%= link_to 'Voltar ao Livro', book_path(@book), :class =>'btn'%>
     </div>
   </div>
 </div>

@@ -8,7 +8,7 @@
 
   <div class="form-actions">
       <%= f.button :submit, "Salvar texto" %>
-      <%= f.button :submit, "Voltar ao livro", :class =>"btn-primary" %>
+      <%= link_to  "Voltar ao livro", book_path(@book.uuid), :class => 'btn btn-primary' %>
   </div>
 <% end %>
 
@@ -20,7 +20,7 @@
 
       // save when required
       $('textarea').bindWithDelay("keyup", function(){
-        var form = $("#edit_text_3");
+        var form = $(document.forms).first();
         console.log("Saving");
         $.ajax( {
         type: "POST",

@@ -21,10 +21,11 @@ class TextsController < ApplicationController
   end
 
   def create
-    @text      = Text.new(params[:text])
-    @text.book = @book
+    @text       = Text.new(params[:text])
+    @text.book  = @book
+    @text.title = "Novo texto" 
     if @text.save
-      redirect_to book_text_path(@book, @text), notice: 'Text was successfully created.'
+      redirect_to edit_book_text_path(@book.uuid, @text.uuid)
     else
       render :new
     end
@@ -33,7 +34,7 @@ class TextsController < ApplicationController
   def update
     @text = Text.find_by_uuid_or_id(params[:id])
     if @text.update_attributes(params[:text])
-      redirect_to book_text_path(@book, @text), notice: 'Text was successfully updated.'
+      redirect_to book_text_path(@book.uuid, @text.uuid), notice: 'Text was successfully updated.'
     else
       render :edit
     end
@@ -42,7 +43,7 @@ class TextsController < ApplicationController
   def destroy
     @text = Text.find_by_uuid_or_id(params[:id])
     @text.destroy
-    redirect_to book_texts_path(@book)
+    redirect_to book_path(@book.uuid)
   end
 
   def sort

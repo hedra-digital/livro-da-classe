@@ -53,9 +53,9 @@ describe TextsController do
         assigns(:text).should be_persisted
       end
 
-      it "redirects to the created text" do
+      it "redirects to the edit page for created text" do
         post :create, {:text => valid_attributes, :book_id => book.id}, valid_session
-        response.should redirect_to(book_text_path(Text.last.book, Text.last))
+        response.should redirect_to(edit_book_text_path(Text.last.book.uuid, Text.last.uuid))
       end
     end
 
@@ -74,9 +74,9 @@ describe TextsController do
     end
 
     describe "with no params" do
-      it "re-renders the 'new' template" do
+      it "redirects to edit" do
         post :create, {:book_id => book.id}, valid_session
-        response.should render_template("new")
+        response.should redirect_to(edit_book_text_path(Text.last.book.uuid, Text.last.uuid))
       end
     end
   end
@@ -95,7 +95,7 @@ describe TextsController do
 
       it "redirects to the text" do
         put :update, {:id => text.to_param, :text => valid_attributes, :book_id => book.id}, valid_session
-        response.should redirect_to(book_text_path(Text.last.book, Text.last))
+        response.should redirect_to(book_text_path(Text.last.book.uuid, Text.last.uuid))
       end
     end
 
@@ -124,7 +124,7 @@ describe TextsController do
 
     it "redirects to the texts list" do
       delete :destroy, {:book_id => book.id, :id => text.to_param}, valid_session
-      response.should redirect_to(book_texts_path(text.book))
+      response.should redirect_to(book_path(text.book.uuid))
     end
   end
 

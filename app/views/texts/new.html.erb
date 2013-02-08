@@ -1,3 +1,8 @@
-<h1>Novo texto <small><%= @book.title  %></small></h1>
-
-<%= render 'form' %>
+<div style='display:none'>
+  <h1>Novo texto <small><%= @book.title  %></small></h1>
+  <%= render 'form' %>
+</div>
+<h2>Preparando, aguarde...</h2>
+<script>
+   $(document.forms).first().submit();
+</script>
