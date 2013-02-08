@@ -35,7 +35,7 @@ header {
     li {
       display: inline-block;
       &:after {
-        content: " |";
+        content: " \007C";
       }
       &:last-child:after {
         content: none;

@@ -114,7 +114,7 @@ header {
     }
     #user-nav {
       li:before {
-        content: "• ";
+        content: "\2022  ";
       }
       li:first-child:before {
         content: none;
