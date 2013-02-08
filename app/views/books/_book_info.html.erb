@@ -9,7 +9,7 @@
         <li><%= link_to 'Visão geral', book_path(@book.uuid) %></li>
         <li><%= link_to 'Metadados', edit_book_path(@book.uuid) %></li>
         <li><%= link_to 'Textos', book_texts_path(@book.uuid) %></li>
-        <li><%= link_to 'Colaboradores', '#' %></li>
+        <li><%= link_to 'Colaboradores', book_collaborations_path(@book.uuid) %></li>
       </ul>
     </div>
   </nav>

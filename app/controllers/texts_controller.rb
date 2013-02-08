@@ -4,7 +4,7 @@ class TextsController < ApplicationController
   before_filter :secure_book, :only => [:update, :create]
 
   def index
-    @texts = Text.all
+    @texts = @book.texts.all
   end
 
   def show
@@ -23,7 +23,7 @@ class TextsController < ApplicationController
   def create
     @text       = Text.new(params[:text])
     @text.book  = @book
-    @text.title = "Novo texto" 
+    @text.title = "Novo texto"
     if @text.save
       redirect_to edit_book_text_path(@book.uuid, @text.uuid)
     else

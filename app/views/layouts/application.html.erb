@@ -33,7 +33,11 @@
         </div>
       </header>
       <div id="main" role="main">
-        <%= yield %>
+        <%= render 'books/book_info' if (controller_name == 'books' and params[:id]) || params[:book_id] %>
+        <div class="container">
+          <%= flash_message %>
+          <%= yield %>
+        </div>
       </div>
       <div id="push"></div>
     </div>
