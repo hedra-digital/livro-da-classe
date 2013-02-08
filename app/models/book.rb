@@ -22,6 +22,8 @@ class Book < ActiveRecord::Base
 
   # Relationships
   belongs_to            :organizer, :class_name => "User"
+  has_many              :collaborators, :through => :collaborations, :class_name => "User"
+  has_many              :collaborations
   has_many              :texts
 
   # Validations

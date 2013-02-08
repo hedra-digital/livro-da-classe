@@ -7,9 +7,6 @@
 #  name                   :string(255)
 #  email                  :string(255)
 #  password_digest        :string(255)
-#  educator               :boolean
-#  student_count          :integer
-#  school_name            :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  auth_token             :string(255)
@@ -17,6 +14,7 @@
 #  password_reset_sent_at :datetime
 #  provider               :string(255)
 #  uid                    :string(255)
+#  asked_for_email        :boolean
 #
 
 
@@ -28,10 +26,15 @@ class User < ActiveRecord::Base
 
   # Relationships
   has_many            :books, :foreign_key => "organizer_id"
+  has_many            :books, :through => :collaborations, :foreign_key => "collaborator_id"
+  has_many            :collaborations
 
   # Validations
   validates           :name, :presence => true
-  validates           :email, :email_format => { :message => 'Não é um formato válido de e-mail', :allow_blank => true }, :uniqueness => true, :presence => true
+  validates           :email,
+                      :email_format => { :message => 'Não é um formato válido de e-mail', :allow_blank => true },
+                      :uniqueness => true,
+                      :presence => true
   validates           :password, :presence => true, :on => :create
 
   # Specify fields that can be accessible through mass assignment
