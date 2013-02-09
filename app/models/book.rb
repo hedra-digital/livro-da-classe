@@ -41,9 +41,22 @@ class Book < ActiveRecord::Base
     return response
   end
 
+  def full_text_latex
+    builder = proc do |text|
+      "\\chapter{#{text.title}}\n#{text_to_latex(text.content)}\n" unless text.content.to_s.size == 0
+    end
+    
+    texts.map(&builder).join
+  end
+
   private
 
   def set_uuid
      self.uuid = Guid.new.to_s if self.uuid.nil?
   end
+
+  def text_to_latex(text)
+    HedraLatex.convert(Kramdown::Document.new(text).root)[0]
+  end
+
 end

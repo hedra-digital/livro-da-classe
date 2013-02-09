@@ -74,4 +74,23 @@ describe Book do
     end
   end
 
+  context '#text_to_latex(text)' do
+    let(:book) {  create(:book_with_texts) }
+
+    it 'converts the argument to latex' do
+      book.send(:text_to_latex, book.texts.first.content).should ==  "#{book.texts.first.content}\n\n" 
+    end
+  end
+
+  context '.full_text_latex' do
+    let(:book) {  create(:book) }
+
+    it 'converts all book texts into a single latex source' do
+      1.upto(3).each do |i|
+        book.texts.create(title: i, content: i)
+      end
+
+      book.full_text_latex.should == "\\chapter{1}\n1\n\n\n\\chapter{2}\n2\n\n\n\\chapter{3}\n3\n\n\n"
+    end
+  end
 end
