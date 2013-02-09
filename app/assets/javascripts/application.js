@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require markitup/jquery.markitup
 //= require markitup/sets/markdown/set
 //= require bootstrap-alert
 //= require bindWithDelay
-//= require_tree .
+//= require jquery-ui
+//= require reorder
