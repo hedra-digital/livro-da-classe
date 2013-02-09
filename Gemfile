@@ -10,6 +10,7 @@ gem 'simple_form'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'kramdown'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
