@@ -1,4 +1,4 @@
-# encoding: UTF-8
+ # encoding: UTF-8
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_auth_token(session[:auth_token]) if session[:auth_token]
   end
 
+  helper_method :current_user
+
   def authentication_check
     redirect_to signin_path unless current_user
   end
-
-  helper_method :current_user
 
   def ominiauth_user_gate
     if current_user && current_user.email.blank? && current_user.asked_for_email.nil?

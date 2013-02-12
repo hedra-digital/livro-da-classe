@@ -12,7 +12,7 @@ describe TextsController do
 
   describe "GET index" do
     it "assigns all texts as @texts" do
-      text = Text.create! valid_attributes
+      text = book.texts.create! valid_attributes
       get :index, {:book_id => book.id}, valid_session
       assigns(:texts).should eq([text])
     end
