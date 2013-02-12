@@ -190,6 +190,8 @@ GEM
     railties (3.2.12)
       actionpack (= 3.2.12)
       activesupport (= 3.2.12)
+    rails-latex (1.0.11)
+      rails (>= 3.0.0)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -296,6 +298,7 @@ DEPENDENCIES
   pry-nav
   pry-remote
   rails (= 3.2.12)
+  rails-latex
   rb-fsevent
   rb-inotify (~> 0.8.8)
   rspec-rails (~> 2.0)
