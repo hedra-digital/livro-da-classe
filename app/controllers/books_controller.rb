@@ -9,6 +9,10 @@ class BooksController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html # show.html.erb
+      format.pdf
+    end
   end
 
   def new
