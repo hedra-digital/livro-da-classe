@@ -22,7 +22,7 @@ Livrodaclasse::Application.routes.draw do
         post 'sort'
       end
     end
-    resources :collaborations
+    resources :collaborators
   end
 
 end
