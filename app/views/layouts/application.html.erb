@@ -22,7 +22,7 @@
               <h1><%= link_to_unless_current 'Livro da Classe', app_home_path %></h1>
             </div>
             <div id="userid" class="span3 offset4">
-              <p><i class="icon-user"></i> <%= current_user.name %></p>
+              <p><i class="icon-user"></i> <%= current_user.email %></p>
               <%= link_to "Meus Livros", books_path %>
               &middot;
               <%= link_to "Perfil", user_path(current_user) %>

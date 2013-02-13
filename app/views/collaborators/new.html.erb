@@ -1,5 +1,13 @@
 <h1>New collaborator</h1>
 
-<%= render 'form' %>
+<%= simple_form_for([@book, @collaborator], :url => book_collaborators_path) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :email %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Back', book_collaborators_path(@book) %>

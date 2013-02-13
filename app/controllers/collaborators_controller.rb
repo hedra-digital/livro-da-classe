@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class CollaboratorsController < ApplicationController
   before_filter :authentication_check
   before_filter :find_book
@@ -15,35 +17,33 @@ class CollaboratorsController < ApplicationController
   end
 
   def create
-    @collaborator = @book.collaborators.new(params[:collaborator])
-
-    if @collaborator.save
-      redirect_to [@book, @collaborator], notice: 'Collaboration was successfully created.'
-    else
-      render action: "new"
-    end
+    @collaborator = @book.collaborators.new(params[:user], :without_protection => true)
+    @collaborator.save!(:validate => false)
+    binding.pry
+    @collaborator.send_book_invitation(current_user, @book.uuid)
+    redirect_to book_collaborators_path(@book), :notice => "Email enviado com instruções para criar a conta."
   end
 
   def edit
-    @collaborator = @book.collaborators.find(params[:id])
+    @collaborator = @book.collaborators.find_by_password_reset_token!(params[:id])
   end
 
   def update
-    @collaborator = @book.collaborators.find(params[:id])
+    @collaborator = @book.collaborators.find_by_password_reset_token!(params[:id])
 
-    if @collaborator.update_attributes(params[:collaborator])
-      redirect_to [@book, @collaborator], notice: 'Collaboration was successfully updated.'
+    if @collaborator.update_attributes(params[:user])
+      redirect_to book_collaborator_path(@book, @collaborator), notice: 'Collaboration was successfully updated.'
     else
       render action: "edit"
     end
   end
 
-  def destroy
-    @collaborator = @book.collaborators.find(params[:id])
-    @collaborator.destroy
+  # def destroy
+  #   @collaborator = @book.collaborators.find(params[:id])
+  #   @collaborator.destroy
 
-    redirect_to book_collaborators_path(@book)
-  end
+  #   redirect_to book_collaborators_path(@book)
+  # end
 
   private
 

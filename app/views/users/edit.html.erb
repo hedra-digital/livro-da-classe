@@ -2,11 +2,5 @@
   <%= flash_message %>
   <h1>Editar perfil</h1>
 
-  <%= simple_form_for @user do |f| %>
-    <%= f.input :name %>
-    <%= f.input :email %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
-    <%= f.submit 'Gravar alterações' %>
-  <% end %>
+  <%= render 'form' %>
 </div>

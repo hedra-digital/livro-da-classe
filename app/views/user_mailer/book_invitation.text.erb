@@ -1,0 +1,5 @@
+Você recebeu um convite de <%= @inviter.name %> para participar de um projeto no Livro da Classe.
+
+Para criar a sua conta e começar a escrever, clique no link abaixo.
+
+<%= edit_book_collaborator_url(@book_uuid, @user.password_reset_token) %>

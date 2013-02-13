@@ -50,6 +50,13 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver
   end
 
+  def send_book_invitation(inviter, book_uuid)
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!(:validate => false)
+    UserMailer.book_invitation(inviter, self, book_uuid).deliver
+  end
+
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
