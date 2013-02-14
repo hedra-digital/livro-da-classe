@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   before_filter :resource, :only => [:show, :edit, :destroy, :update]
 
   def index
-    @books = current_user.books
+    @books = current_user.organized_books
   end
 
   def show
@@ -16,14 +16,14 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = current_user.books.new
+    @book = current_user.organized_books.new
   end
 
   def edit
   end
 
   def create
-    @book = current_user.books.new(params[:book])
+    @book = current_user.organized_books.new(params[:book])
 
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.'

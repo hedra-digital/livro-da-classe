@@ -18,29 +18,27 @@
 #  asked_for_email        :boolean
 #
 
-
 class User < ActiveRecord::Base
 
   # Use built-in rails support for password protection
   has_secure_password
 
   # Callbacks
-  before_create         { generate_token(:auth_token) }
+  before_create             { generate_token(:auth_token) }
 
   # Relationships
-  has_many              :books, :foreign_key => "organizer_id"
-  has_many              :colaborated_books, :through => :collaborations, :foreign_key => "collaborator_id"
-  has_many              :collaborations
+  has_many                  :organized_books, :class_name => "Book", :foreign_key => "organizer_id"
+  has_and_belongs_to_many   :books
 
   # Validations
-  validates :name,      :presence => true
-  validates :email,     :email_format => { :message => 'Não é um formato válido de e-mail', :allow_blank => true },
-                        :uniqueness => true,
-                        :presence => true
-  validates :password,  :presence => true, :on => :create
+  validates :name,          :presence => true
+  validates :email,         :email_format => { :message => 'Não é um formato válido de e-mail', :allow_blank => true },
+                            :uniqueness => true,
+                            :presence => true
+  validates :password,      :presence => true, :on => :create
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible     :email, :name, :password, :password_confirmation, :educator, :student_count, :school_name, :asked_for_email
+  attr_accessible           :email, :name, :password, :password_confirmation, :educator, :student_count, :school_name, :asked_for_email
 
   # Other methods
   def send_password_reset

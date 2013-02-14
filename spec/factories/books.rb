@@ -10,9 +10,5 @@ FactoryGirl.define do
     directors "MyText"
     coordinators "MyText"
     organizer { build_stubbed(:user) }
-
-    factory :book_with_texts do
-      texts { FactoryGirl.build_list(:text, 3)}
-    end
   end
 end

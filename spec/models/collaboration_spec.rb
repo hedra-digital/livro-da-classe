@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Collaboration do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should respond_to(:book_id) }
+  it { should respond_to(:collaborator_id) }
 end

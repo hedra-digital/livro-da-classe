@@ -25,7 +25,7 @@ class Text < ActiveRecord::Base
   validates :title,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible         :book, :content, :title, :uuid, :content
+  attr_accessible         :book_id, :content, :title, :uuid, :content
 
   attr_accessor           :finished_at
 
