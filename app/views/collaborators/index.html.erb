@@ -1,17 +1,17 @@
-<h1>Listing collaborators</h1>
+<h1>Colaboradores</h1>
 
-<table>
+<table class="table">
   <tr>
-    <th></th>
+    <th>Email</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @collaborators.each do |collaborator| %>
   <tr>
+    <td><%= collaborator.email rescue 'N/A' %></td>
     <td><%= link_to 'Show', book_collaborator_path(@book, collaborator) %></td>
     <td><%= link_to 'Edit', edit_book_collaborator_path(@book, collaborator) %></td>
-    <td><%= link_to 'Destroy', [@book, collaborator], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
