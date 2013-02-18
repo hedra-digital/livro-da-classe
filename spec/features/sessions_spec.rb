@@ -18,7 +18,7 @@ describe "Sessions" do
       fill_in 'Email', :with => user.email
       fill_in 'Password', :with => user.password
       click_button 'Entrar'
-      page.should have_content(user.name)
+      page.should have_content(user.email)
     end
 
     it 'clicks the sign out link' do
