@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user    
+    @user = current_user
     if update_user
       redirect_to user_path(@user), :notice => 'Seu perfil foi alterado!'
     else
@@ -44,9 +44,6 @@ class UsersController < ApplicationController
 
   def resource
     @user = current_user
-  end
-  def choose_layout
-    current_user ? "application" : "public"
   end
 
   def update_user

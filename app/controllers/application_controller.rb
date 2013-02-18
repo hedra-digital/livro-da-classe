@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def choose_layout
+    current_user ? "application" : "public"
+  end
+
 end

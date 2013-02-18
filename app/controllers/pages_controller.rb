@@ -4,10 +4,4 @@ class PagesController < ApplicationController
   def home
   end
 
-  private
-
-  def choose_layout
-    current_user ? "application" : "public"
-  end
-
 end

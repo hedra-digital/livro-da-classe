@@ -5,6 +5,8 @@ class CollaboratorsController < ApplicationController
   before_filter :find_book
   before_filter :find_collaborator, :only => [:edit, :update]
 
+  layout        :choose_layout
+
   def index
     @collaborators = @book.users.all
   end

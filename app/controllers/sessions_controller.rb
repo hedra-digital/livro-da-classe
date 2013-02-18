@@ -32,10 +32,4 @@ class SessionsController < ApplicationController
     session[:auth_token] = nil
     redirect_to root_path, :notice => 'Você saiu da área logada.'
   end
-
-  private
-
-  def choose_layout
-    current_user ? "application" : "public"
-  end
 end

@@ -26,10 +26,4 @@ class PasswordResetsController < ApplicationController
       render :edit
     end
   end
-
-  private
-
-  def choose_layout
-    current_user ? "application" : "public"
-  end
 end
