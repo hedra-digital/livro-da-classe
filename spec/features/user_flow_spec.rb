@@ -40,7 +40,7 @@ describe 'unregistered user' do
 
       it 'sees his user ID on successful sign up' do
         click_button 'Criar Usuário'
-        page.should have_content(user.name)
+        page.should have_content(user.email)
       end
     end
 
@@ -58,7 +58,7 @@ describe 'unregistered user' do
       it 'shows signed in info on the page' do
         page.should have_link('Twitter')
         click_link('Twitter')
-        page.should have_content(OmniAuth.config.mock_auth[:twitter][:info][:name])
+        page.should have_content(OmniAuth.config.mock_auth[:twitter][:info][:email])
       end
     end
 
@@ -76,7 +76,7 @@ describe 'unregistered user' do
       it 'shows signed in info on the page' do
         page.should have_link('Facebook')
         click_link('Facebook')
-        page.should have_content(OmniAuth.config.mock_auth[:facebook][:info][:name])
+        page.should have_content(OmniAuth.config.mock_auth[:facebook][:info][:email])
       end
     end
 
@@ -94,7 +94,7 @@ describe 'unregistered user' do
       it 'shows signed in info on the page' do
         page.should have_link('Google')
         click_link('Google')
-        page.should have_content(OmniAuth.config.mock_auth[:google][:info][:name])
+        page.should have_content(OmniAuth.config.mock_auth[:google][:info][:email])
       end
     end
    end
@@ -136,7 +136,7 @@ describe 'valid registered user' do
     it 'shows signed in info on the page' do
       page.should have_link('Twitter')
       click_link('Twitter')
-      page.should have_content(OmniAuth.config.mock_auth[:twitter][:info][:name])
+      page.should have_content(OmniAuth.config.mock_auth[:twitter][:info][:email])
     end
   end
 
@@ -154,7 +154,7 @@ describe 'valid registered user' do
     it 'shows signed in info on the page' do
       page.should have_link('Facebook')
       click_link('Facebook')
-      page.should have_content(OmniAuth.config.mock_auth[:facebook][:info][:name])
+      page.should have_content(OmniAuth.config.mock_auth[:facebook][:info][:email])
     end
   end
 
@@ -172,7 +172,7 @@ describe 'valid registered user' do
     it 'shows signed in info on the page' do
       page.should have_link('Google')
       click_link('Google')
-      page.should have_content(OmniAuth.config.mock_auth[:google][:info][:name])
+      page.should have_content(OmniAuth.config.mock_auth[:google][:info][:email])
     end
   end
 
@@ -201,7 +201,7 @@ describe 'valid registered user' do
       click_link('Perfil')
       click_link('Editar perfil')
       fill_in 'E-mail', :with => 'different@example.com'
-      click_button 'Gravar'
+      click_button 'Atualizar'
       page.should have_content('perfil foi alterado')
     end
 
@@ -210,7 +210,7 @@ describe 'valid registered user' do
       click_link('Editar perfil')
       fill_in 'Senha', :with => 'newpass'
       fill_in 'Confirmação', :with => 'newpass'
-      click_button 'Gravar'
+      click_button 'Atualizar'
       page.should have_content('perfil foi alterado')
     end
 
@@ -219,7 +219,7 @@ describe 'valid registered user' do
       click_link('Editar perfil')
       fill_in 'Senha', :with => 'newpass'
       fill_in 'Confirmação', :with => 'newfag'
-      click_button 'Gravar'
+      click_button 'Atualizar'
       page.should have_content('não está de acordo com a confirmação')
     end
   end
