@@ -140,17 +140,18 @@ header {
         background-size: cover;
         @include hide-text();
       }
-      .facebook-oauth {
-        background-position: 0 0;
-      }
-      .twitter-oauth {
-        background-position: -32px 0;
-      }
-      .google-oauth {
-        background-position: -64px 0;
-      }
     }
   }
+}
+
+#facebook-oauth {
+  background-position: 0 0;
+}
+#twitter-oauth {
+  background-position: -32px 0;
+}
+#google-oauth {
+  background-position: -64px 0;
 }
 
 .nav {
