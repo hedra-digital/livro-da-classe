@@ -16,19 +16,25 @@ class CollaboratorsController < ApplicationController
   end
 
   def create
-    @collaborator = @book.users.new(params[:user], :without_protection => true)
+    @collaborator = User.new(params[:user], :without_protection => true)
     @collaborator.save!(:validate => false)
+    @book.users << @collaborator
     @collaborator.send_book_invitation(current_user, @book.uuid)
-    redirect_to book_collaborators_path(@book), :notice => "Email enviado com instruções para criar a conta."
+    redirect_to book_collaborators_path(@book.uuid), :notice => "Email enviado com instruções para criar a conta."
   end
 
   def edit
+    cookies.delete(:auth_token)
+    session[:auth_token] = nil
   end
 
   def update
+    # binding.pry
     if @collaborator.update_attributes(params[:user])
-      redirect_to book_collaborator_path(@book, @collaborator), notice: 'Collaboration was successfully updated.'
+      session[:auth_token] = user.auth_token
+      redirect_to app_home_path
     else
+      # binding.pry
       render action: "edit"
     end
   end
