@@ -5,7 +5,8 @@ class BooksController < ApplicationController
   before_filter :resource, :only => [:show, :edit, :destroy, :update]
 
   def index
-    @books = current_user.organized_books
+    @organized_books = current_user.organized_books
+    @collaborated_books = current_user.books
   end
 
   def show

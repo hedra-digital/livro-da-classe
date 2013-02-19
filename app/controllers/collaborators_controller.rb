@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class CollaboratorsController < ApplicationController
-  before_filter :authentication_check
+  before_filter :authentication_check, :except => :update
   before_filter :find_book
   before_filter :find_collaborator, :only => [:edit, :update]
 
@@ -29,14 +29,15 @@ class CollaboratorsController < ApplicationController
   end
 
   def update
-    # binding.pry
     if @collaborator.update_attributes(params[:user])
-      session[:auth_token] = user.auth_token
+      session[:auth_token] = @collaborator.auth_token
       redirect_to app_home_path
     else
-      # binding.pry
-      render action: "edit"
+      render :edit
     end
+  end
+
+  def resend_invitation
   end
 
   private

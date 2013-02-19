@@ -10,8 +10,8 @@
 <% @collaborators.each do |collaborator| %>
   <tr>
     <td><%= collaborator.email rescue 'N/A' %></td>
-    <td><%= link_to 'Show', book_collaborator_path(@book, collaborator) %></td>
-    <td><%= link_to 'Edit', edit_book_collaborator_path(@book, collaborator) %></td>
+    <td><%= collaborator.name.present? ? "Ativado" : "Não ativado" %></td>
+    <td><%= link_to 'Reenviar convite', '#' %></td>
   </tr>
 <% end %>
 </table>

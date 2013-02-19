@@ -1,6 +1,6 @@
 <h1>Crie a sua conta</h1>
 
-<%= simple_form_for([@book, @collaborator], :url => book_collaborator_path(@book, params[:id]), :method => :put) do |f| %>
+<%= simple_form_for([@book, @collaborator], :url => book_collaborator_path(@book.uuid, @collaborator.password_reset_token), :method => :put) do |f| %>
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :email %>
