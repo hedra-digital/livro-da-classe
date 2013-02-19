@@ -63,7 +63,7 @@ describe Book do
   end
 
   context '#find_by_uuid_or_id' do
-    let(:book) {  create(:book) }
+    let(:book) { create(:book) }
 
     it 'should find book by id' do
       Book.find_by_uuid_or_id(book.id).should_not be_nil
@@ -75,15 +75,20 @@ describe Book do
   end
 
   context '#text_to_latex(text)' do
-    let(:book) {  create(:book_with_texts) }
+    # let(:valid_attributes) { attributes_for(:book, :texts => create_list(:text, 3)) }
+    let(:book) { create(:book) }
+
+    before do
+      book.texts = FactoryGirl.create_list(:text, 3, :book_id => book.id)
+    end
 
     it 'converts the argument to latex' do
-      book.send(:text_to_latex, book.texts.first.content).should ==  "#{book.texts.first.content}\n\n" 
+      book.send(:text_to_latex, book.texts.first.content).should ==  "#{book.texts.first.content}\n\n"
     end
   end
 
   context '.full_text_latex' do
-    let(:book) {  create(:book) }
+    let(:book) { create(:book) }
 
     it 'converts all book texts into a single latex source' do
       1.upto(3).each do |i|
