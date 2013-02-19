@@ -20,33 +20,32 @@ describe Text do
   it { should respond_to(:uuid) }
   it { should respond_to(:content) }
 
-
   context 'when validating' do
     it 'is invalid without a book_id' do
-      text = build(:text, :book_id => nil)
+      text = build(:text, :book => nil)
       text.should_not be_valid
       text.should have(1).error_on(:book_id)
-    end 
+    end
 
     it 'is invalid without a title' do
       text = build(:text, :title => nil)
       text.should_not be_valid
       text.should have(1).error_on(:title)
-    end 
+    end
 
   end
 
   context 'when saving' do
     it 'should trigger .set_uuid' do
-      text = create(:text, :uuid => nil)
+      text = create(:text, :uuid => nil, :book => build_stubbed(:book))
       text.uuid.should_not be_nil
     end
 
-    it 'should belongs to a book' do
-      text = create(:text)
+    it 'should belong to a book' do
+      text = create(:text, :book => build_stubbed(:book))
       text.book.should_not be_nil
       text.book.should be_an_instance_of(Book)
-    end    
+    end
   end
 
    context '.set_uuid' do
@@ -58,7 +57,7 @@ describe Text do
   end
 
   context '#find_by_uuid_or_id' do
-    let(:text) {  create(:text) }
+    let(:text) { create(:text, :book => build_stubbed(:book)) }
 
     it 'should find text by id' do
       Text.find_by_uuid_or_id(text.id).should_not be_nil
