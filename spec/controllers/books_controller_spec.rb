@@ -5,7 +5,7 @@ describe BooksController do
   let(:books)             { organizer.books }
   let(:book)              { books.first }
   let(:valid_session)     { { :current_user => organizer } }
-  let(:valid_attributes)  { attributes_for(:book, :organizer => organizer) }
+  let(:valid_attributes)  { attributes_for(:book, :organizer_id => organizer.id) }
 
   before do
     controller.stub(:current_user).and_return(valid_session[:current_user])
@@ -13,21 +13,23 @@ describe BooksController do
 
   describe "GET index" do
     it "assigns all books as @books" do
+      books = Book.create! valid_attributes # doesn't work without this line
       get :index, {}, valid_session
-      assigns(:books).should eq(books)
+      assigns(:books).should eq([books])
     end
 
-    it "redirects to the email page if the current_user meet the requirements" do
+    it "redirects to the email page if the current_user meets the requirements" do
       valid_session[:current_user].email           = nil
       valid_session[:current_user].asked_for_email = nil
       get :index, {}, valid_session
       response.status.should be(302)
     end
 
-    it "show the index page if current_user has no email set but asked_for_email = true" do
+    it "shows the index page if current_user has no email but asked_for_email=true" do
+      books = Book.create! valid_attributes # doesn't work without this line
       valid_session[:current_user].email           = nil
       get :index, {}, valid_session
-      assigns(:books).should eq(books)
+      assigns(:books).should eq([books])
     end
   end
 
@@ -68,7 +70,7 @@ describe BooksController do
 
       it "redirects to the created book" do
         post :create, {:book => valid_attributes}, valid_session
-        response.should redirect_to(Book.last)
+        response.should redirect_to(book_path(Book.last.uuid))
       end
     end
 
@@ -101,7 +103,7 @@ describe BooksController do
 
       it "redirects to the book" do
         put :update, {:id => book.to_param, :book => valid_attributes}, valid_session
-        response.should redirect_to(book)
+        response.should redirect_to(book_path(book.uuid))
       end
     end
 

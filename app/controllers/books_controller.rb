@@ -19,22 +19,22 @@ class BooksController < ApplicationController
     @book = current_user.organized_books.new
   end
 
-  def edit
-  end
-
   def create
     @book = current_user.organized_books.new(params[:book])
 
     if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+      redirect_to book_path(@book.uuid), notice: 'Book was successfully created.'
     else
       render :new
     end
   end
 
+  def edit
+  end
+
   def update
     if @book.update_attributes(params[:book])
-      redirect_to @book, notice: 'Book was successfully updated.'
+      redirect_to book_path(@book.uuid), notice: 'Book was successfully updated.'
     else
       render :edit
     end
