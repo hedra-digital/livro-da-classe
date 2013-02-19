@@ -12,10 +12,10 @@ describe BooksController do
   end
 
   describe "GET index" do
-    it "assigns all books as @books" do
-      books = Book.create! valid_attributes # doesn't work without this line
+    it "assigns organized books as @organized_books" do
+      books = organizer.books.create! valid_attributes # doesn't work without this line
       get :index, {}, valid_session
-      assigns(:books).should eq([books])
+      assigns(:organized_books).should eq([books])
     end
 
     it "redirects to the email page if the current_user meets the requirements" do
@@ -26,10 +26,10 @@ describe BooksController do
     end
 
     it "shows the index page if current_user has no email but asked_for_email=true" do
-      books = Book.create! valid_attributes # doesn't work without this line
+      books = organizer.books.create! valid_attributes # doesn't work without this line
       valid_session[:current_user].email           = nil
       get :index, {}, valid_session
-      assigns(:books).should eq([books])
+      assigns(:organized_books).should eq([books])
     end
   end
 
