@@ -33,7 +33,6 @@ describe Text do
       text.should_not be_valid
       text.should have(1).error_on(:title)
     end
-
   end
 
   context 'when saving' do
@@ -68,5 +67,4 @@ describe Text do
         Text.find_by_uuid_or_id(text.uuid).should_not be_nil
     end
   end
-
 end

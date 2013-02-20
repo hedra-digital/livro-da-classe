@@ -15,6 +15,9 @@ class Project < ActiveRecord::Base
   # Relationships
   belongs_to                :book
 
+  # Validations
+  validates :book_id,       :presence => true
+
   # Specify fields that can be accessible through mass assignment
   attr_accessible           :book_id, :finish_date, :release_date
 end
