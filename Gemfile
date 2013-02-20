@@ -25,6 +25,7 @@ group :test, :development do
   gem 'rb-fsevent', :require => false
   gem 'guard-rspec'
   gem 'guard-livereload'
+  gem 'terminal-notifier-guard'
   gem 'rspec-rails', '~> 2.0'
   gem 'factory_girl_rails'
   gem 'capybara'
