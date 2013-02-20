@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Project do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should respond_to(:book_id) }
+  it { should respond_to(:release_date) }
+  it { should respond_to(:finish_date) }
 end
