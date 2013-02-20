@@ -29,7 +29,9 @@ class CollaboratorsController < ApplicationController
   end
 
   def update
-    if @collaborator.update_attributes(params[:user])
+    if @collaborator.password_reset_sent_at < 2.hours.ago
+      redirect_to root_path, :notice => "O link já expirou. Por favor, peça ao organizador do livro para enviar um novo convite."
+    elsif @collaborator.update_attributes(params[:user])
       session[:auth_token] = @collaborator.auth_token
       redirect_to app_home_path
     else
