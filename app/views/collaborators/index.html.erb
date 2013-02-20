@@ -1,6 +1,12 @@
-<%= link_to 'Incluir novo', new_book_collaborator_path(@book.uuid), :class => 'btn btn-primary', :style => 'float: right;' %>
+<div class="row">
+  <div class="span3">
+    <h1>Colaboradores</h1>
+  </div>
 
-<h1>Colaboradores</h1>
+  <div class="span3 offset6">
+    <%= link_to 'Incluir novo', new_book_collaborator_path(@book.uuid), :class => 'btn btn-primary', :style => 'margin-top: 30px;' %>
+  </div>
+</div>
 
 <table class="table">
   <tr>
