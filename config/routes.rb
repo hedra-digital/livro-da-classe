@@ -14,10 +14,12 @@ Livrodaclasse::Application.routes.draw do
       get 'email'
     end
   end
+
   resources :sessions
   resources :password_resets
   resources :books do
     resources :texts do
+      resources :comments
       collection do
         post 'sort'
       end
