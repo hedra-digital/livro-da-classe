@@ -3,7 +3,7 @@
 class CollaboratorsController < ApplicationController
   before_filter :authentication_check, :except => :update
   before_filter :find_book
-  before_filter :find_collaborator, :only => [:edit, :update]
+  before_filter :find_collaborator, :only => [:edit, :update, :resend_invitation]
 
   layout        :choose_layout
 
@@ -38,6 +38,8 @@ class CollaboratorsController < ApplicationController
   end
 
   def resend_invitation
+    @collaborator.send_book_invitation(current_user, @book.uuid)
+    redirect_to book_collaborators_path(@book.uuid), :notice => "Email enviado com instruções para criar a conta."
   end
 
   private

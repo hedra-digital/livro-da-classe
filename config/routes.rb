@@ -22,7 +22,11 @@ Livrodaclasse::Application.routes.draw do
         post 'sort'
       end
     end
-    resources :collaborators
+    resources :collaborators do
+      member do
+        get 'resend_invitation'
+      end
+    end
   end
 
 end
