@@ -24,6 +24,7 @@ class Book < ActiveRecord::Base
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
   has_and_belongs_to_many   :users
   has_many                  :texts
+  has_one                   :project
 
   # Validations
   validates                 :organizer, :presence => true
@@ -45,7 +46,7 @@ class Book < ActiveRecord::Base
     builder = proc do |text|
       "\\chapter{#{text.title}}\n#{text_to_latex(text.content)}\n" unless text.content.to_s.size == 0
     end
-    
+
     texts.map(&builder).join
   end
 
