@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProjectController do
+describe ProjectsController do
 
   describe "GET 'new'" do
     it "returns http success" do
