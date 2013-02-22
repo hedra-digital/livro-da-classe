@@ -24,6 +24,9 @@ class CollaboratorsController < ApplicationController
   end
 
   def edit
+    if @book.nil? || @collaborator.nil?
+      redirect_to root_path, :notice => "Link inválido."
+    end
     cookies.delete(:auth_token)
     session[:auth_token] = nil
   end
@@ -35,7 +38,7 @@ class CollaboratorsController < ApplicationController
       session[:auth_token] = @collaborator.auth_token
       redirect_to app_home_path
     else
-      render :edit
+      redirect_to root_path, :notice => "Houve um erro na criação da conta."
     end
   end
 

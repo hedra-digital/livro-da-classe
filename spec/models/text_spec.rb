@@ -64,7 +64,7 @@ describe Text do
     end
 
     it 'should find text by uuid' do
-        Text.find_by_uuid_or_id(text.uuid).should_not be_nil
+      Text.find_by_uuid_or_id(text.uuid).should_not be_nil
     end
   end
 end
