@@ -16,25 +16,35 @@ class CollaboratorsController < ApplicationController
   end
 
   def create
-    @collaborator = User.new(params[:user], :without_protection => true)
-    @collaborator.save!(:validate => false)
-    @book.users << @collaborator
-    @collaborator.send_book_invitation(current_user, @book.uuid)
-    redirect_to book_collaborators_path(@book.uuid), :notice => "Email enviado com instruções para criar a conta."
+    collaborator = User.where(:email => params[:user][:email]).first
+    unless collaborator
+      collaborator = User.new(params[:user], :without_protection => true)
+      collaborator.valid?
+      if collaborator.errors[:email].present?
+        redirect_to new_book_collaborator_path(@book.uuid), :notice => "O e-mail informado não é válido." and return
+      else
+        collaborator.save!(:validate => false)
+      end
+    end
+    collaborator.send_book_invitation(current_user, @book.uuid)
+    redirect_to book_collaborators_path(@book.uuid), :notice => "Email enviado com instruções para o colaborador."
   end
 
   def edit
-    if @book.nil? || @collaborator.nil?
-      redirect_to root_path, :notice => "Link inválido."
+    unless current_user = @collaborator
+      cookies.delete(:auth_token)
+      session[:auth_token] = nil
+    else
+      @book.users << @collaborator
+      redirect_to app_home_path, :notice => "Você foi adicionado como colaborador do livro <em>#{@book.title}</em>."
     end
-    cookies.delete(:auth_token)
-    session[:auth_token] = nil
   end
 
   def update
     if @collaborator.password_reset_sent_at < 2.hours.ago
       redirect_to root_path, :notice => "O link já expirou. Por favor, peça ao organizador do livro para enviar um novo convite."
     elsif @collaborator.update_attributes(params[:user])
+      @book.users << @collaborator
       session[:auth_token] = @collaborator.auth_token
       redirect_to app_home_path
     else
