@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class CollaboratorsController < ApplicationController
-  before_filter :authentication_check, :except => :update
+  before_filter :authentication_check, :except => [:edit, :update]
   before_filter :find_book
   before_filter :find_collaborator, :only => [:edit, :update, :resend_invitation]
 
@@ -12,7 +12,7 @@ class CollaboratorsController < ApplicationController
   end
 
   def new
-    @collaborator = @book.users.new
+    @collaborator = User.new
   end
 
   def create
@@ -31,13 +31,12 @@ class CollaboratorsController < ApplicationController
   end
 
   def edit
-    unless current_user = @collaborator
-      cookies.delete(:auth_token)
-      session[:auth_token] = nil
-    else
+    if current_user == @collaborator
       @book.users << @collaborator
       redirect_to app_home_path, :notice => "Você foi adicionado como colaborador do livro <em>#{@book.title}</em>."
     end
+    cookies.delete(:auth_token)
+    session[:auth_token] = nil
   end
 
   def update
@@ -46,7 +45,7 @@ class CollaboratorsController < ApplicationController
     elsif @collaborator.update_attributes(params[:user])
       @book.users << @collaborator
       session[:auth_token] = @collaborator.auth_token
-      redirect_to app_home_path
+      redirect_to app_home_path, :notice => "Você foi adicionado como colaborador do livro <em>#{@book.title}</em>." and return
     else
       redirect_to root_path, :notice => "Houve um erro na criação da conta."
     end
@@ -64,6 +63,6 @@ class CollaboratorsController < ApplicationController
   end
 
   def find_collaborator
-    @collaborator = @book.users.find_by_password_reset_token!(params[:id])
+    @collaborator = User.find_by_password_reset_token!(params[:id])
   end
 end

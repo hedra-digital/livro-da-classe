@@ -127,62 +127,90 @@ describe 'user who organizes a book' do
         User.where(:email => collaborator.email).first.password_reset_token.should_not be_nil
         last_email.to.should include(collaborator.email)
       end
+
+      it 'shows collaborator in index' do
+        pending
+      end
     end
   end
 end
 
-# describe 'collaborator getting an invitation to a book' do
-#   let(:organizer) { create(:organizer) }
-#   let(:book) { organizer.organized_books.first }
+describe 'collaborator getting an invitation to a book' do
+  let(:organizer) { create(:organizer) }
+  let(:book) { organizer.organized_books.first }
 
-#   before do
-#     visit root_path
-#     click_link('Entrar no site')
-#     fill_in 'signin_email', :with => organizer.email
-#     fill_in 'signin_password', :with => organizer.password
-#     click_button 'Entrar'
-#     click_link 'Meus Livros'
-#     click_link book.title
-#     click_link 'Colaboradores'
-#     click_link 'Incluir novo'
-#     fill_in 'user_email', :with => "example@email.com"
-#     click_button 'Enviar convite'
-#   end
+  before do
+    visit root_path
+    click_link('Entrar no site')
+    fill_in 'signin_email', :with => organizer.email
+    fill_in 'signin_password', :with => organizer.password
+    click_button 'Entrar'
+    click_link 'Meus Livros'
+    click_link book.title
+    click_link 'Colaboradores'
+    click_link 'Incluir novo'
+  end
 
-#   context "when it is a new user" do
-#     let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago) }
+  context "when it is a new user" do
+    # let(:collaborator) { build(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago) }
+    let(:email) { Faker::Internet.email }
+    let(:name) { Faker::Name.name }
+    let(:password) { Faker::Base.bothify('#?#?#?#?') }
 
-#     before do
-#       visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-#       collab2 = build(:user)
-#       fill_in "Nome", :with => collab2.name
-#       fill_in "Senha", :with => collab2.password
-#       fill_in "Confirmação da senha", :with => collab2.password
-#     end
+    before do
+      fill_in 'user_email', :with => email
+      click_button 'Enviar convite'
+    end
 
-#     it "creates a new account" do
-#       click_button "Atualizar Usuário"
-#       page.should have_content(collaborator.email)
-#       current_path.should eq(app_home_path)
-#     end
+    it "visits the URL received by email" do
+      # TODO: use actual URL from last_email.body
+      collaborator = User.where(:email => email).first
+      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+      current_path.should eq(edit_book_collaborator_path(book.uuid, collaborator.password_reset_token))
+    end
 
-#     it "gets added as collaborator to the book" do
-#       expect{ click_button "Atualizar Usuário" }.to change { User.where(:password_reset_token => "something").first.books }.by(1)
-#       User.where(:password_reset_token => "something").first.books.should include(book)
-#     end
-#   end
+    it 'fills in personal info' do
+      collaborator = User.where(:email => email).first
+      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+      fill_in "Nome", :with => name
+      fill_in "Senha", :with => password
+      fill_in "Confirmação da senha", :with => password
+      click_button "Atualizar Usuário"
+    end
 
-#   context "when it is a registered user" do
-#     pending
+    it "is automatically logged in" do
+      collaborator = User.where(:email => email).first
+      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+      fill_in "Nome", :with => name
+      fill_in "Senha", :with => password
+      fill_in "Confirmação da senha", :with => password
+      click_button "Atualizar Usuário"
+      page.should have_content(email)
+      current_path.should eq(app_home_path)
+    end
 
-#     context "who was not previously a collaborator in the book" do
-#       pending
-#     end
+    it "gets added as collaborator to the book" do
+      collaborator = User.where(:email => email).first
+      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+      fill_in "Nome", :with => name
+      fill_in "Senha", :with => password
+      fill_in "Confirmação da senha", :with => password
+      expect{ click_button "Atualizar Usuário" }.to change { User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }.by(1)
+      User.where(:password_reset_token => collaborator.password_reset_token).first.books.should include(book)
+    end
+  end
 
-#     context "who was previously a collaborator in the book" do
-#       pending
-#     end
-#   end
+  context "when it is a registered user" do
+    pending
+
+    context "who was not previously a collaborator in the book" do
+      pending
+    end
+
+    context "who was previously a collaborator in the book" do
+      pending
+    end
+  end
 
 #   context "when password token has expired" do
 #     let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 5.hours.ago) }
@@ -205,4 +233,4 @@ end
 #       User.where(:password_reset_token => "something").first.books.should_not include(book)
 #     end
 #   end
-# end
+end
