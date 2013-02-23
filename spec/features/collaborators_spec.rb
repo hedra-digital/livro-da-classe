@@ -157,62 +157,53 @@ describe 'collaborator getting an invitation to a book' do
       click_button "Atualizar Usuário"
     end
 
-    it "is automatically logged in" do
-      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-      fill_in "Nome", :with => new_collaborator.name
-      fill_in "Senha", :with => new_collaborator.password
-      fill_in "Confirmação da senha", :with => new_collaborator.password
-      click_button "Atualizar Usuário"
-      page.should have_content(collaborator.email)
-      current_path.should eq(app_home_path)
+    context "with valid token" do
+      let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago) }
+
+      before do
+        visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+        fill_in "Nome", :with => new_collaborator.name
+        fill_in "Senha", :with => new_collaborator.password
+        fill_in "Confirmação da senha", :with => new_collaborator.password
+      end
+
+      it "is automatically logged in" do
+        click_button "Atualizar Usuário"
+        page.should have_content(collaborator.email)
+        current_path.should eq(app_home_path)
+      end
+
+      it "gets added as collaborator to the book" do
+        expect{ click_button "Atualizar Usuário" }.to change{ User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }.by(1)
+        User.where(:password_reset_token => collaborator.password_reset_token).first.books.should include(book)
+      end
     end
 
-    it "gets added as collaborator to the book" do
-      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-      fill_in "Nome", :with => new_collaborator.name
-      fill_in "Senha", :with => new_collaborator.password
-      fill_in "Confirmação da senha", :with => new_collaborator.password
-      expect{ click_button "Atualizar Usuário" }.to change{ User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }.by(1)
-      User.where(:password_reset_token => collaborator.password_reset_token).first.books.should include(book)
-    end
-  end
+    context "with expired token" do
+      let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 5.hours.ago) }
 
-  context "when it is a new user with expired token" do
-    let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 5.hours.ago) }
-    let(:new_collaborator) { build(:user) }
+      before do
+        visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+        fill_in "Nome", :with => new_collaborator.name
+        fill_in "Senha", :with => new_collaborator.password
+        fill_in "Confirmação da senha", :with => new_collaborator.password
+      end
 
-    it "visits the URL received by email" do
-      # TODO: use actual URL from last_email.body
-      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-      current_path.should eq(edit_book_collaborator_path(book.uuid, collaborator.password_reset_token))
-    end
+      it "does not get logged in" do
+        click_button "Atualizar Usuário"
+        page.should_not have_content(collaborator.email)
+        current_path.should eq(root_path)
+      end
 
-    it 'fills in personal info' do
-      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-      fill_in "Nome", :with => new_collaborator.name
-      fill_in "Senha", :with => new_collaborator.password
-      fill_in "Confirmação da senha", :with => new_collaborator.password
-      click_button "Atualizar Usuário"
-    end
+      it "shows a notice to user" do
+        click_button "Atualizar Usuário"
+        page.should have_content("O link já expirou")
+      end
 
-    it "is not logged in" do
-      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-      fill_in "Nome", :with => new_collaborator.name
-      fill_in "Senha", :with => new_collaborator.password
-      fill_in "Confirmação da senha", :with => new_collaborator.password
-      click_button "Atualizar Usuário"
-      page.should_not have_content(collaborator.email)
-      current_path.should_not eq(app_home_path)
-      page.should have_content("O link já expirou")
-    end
-
-    it "does not get added as collaborator to the book" do
-      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-      fill_in "Nome", :with => new_collaborator.name
-      fill_in "Senha", :with => new_collaborator.password
-      fill_in "Confirmação da senha", :with => new_collaborator.password
-      expect{ click_button "Atualizar Usuário" }.not_to change{ User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }
-      User.where(:password_reset_token => collaborator.password_reset_token).first.books.should_not include(book)
+      it "does not get added as collaborator to the book" do
+        expect{ click_button "Atualizar Usuário" }.not_to change{ User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }
+        User.where(:password_reset_token => collaborator.password_reset_token).first.books.should_not include(book)
+      end
     end
   end
 
@@ -227,26 +218,4 @@ describe 'collaborator getting an invitation to a book' do
       pending
     end
   end
-
-#   context "when password token has expired" do
-#     let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 5.hours.ago) }
-
-#     before do
-#       visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-#       collab2 = build(:user)
-#       fill_in "Nome", :with => collab2.name
-#       fill_in "Senha", :with => collab2.password
-#       fill_in "Confirmação da senha", :with => collab2.password
-#     end
-
-#     it "shows a notice to user" do
-#       click_button "Atualizar Usuário"
-#       page.should have_content("O link já expirou")
-#     end
-
-#     it "does not get added to the book" do
-#       expect{ click_button "Atualizar Usuário" }.not_to change { User.where(:password_reset_token => "something").first.books }
-#       User.where(:password_reset_token => "something").first.books.should_not include(book)
-#     end
-#   end
 end
