@@ -6,21 +6,6 @@ describe CommentsController do
   let(:valid_session)     { { :current_user => create(:user) } }
   let(:valid_attributes)  { attributes_for(:comment) }
 
-  describe "GET index" do
-    it "assigns all comments as @comments" do
-      comment = Comment.create! valid_attributes
-      get :index, {:book_id => book.id, :text_id => text.id}, valid_session
-      assigns(:comments).should eq([comment])
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new comment as @comment" do
-      get :new, {:book_id => book.id, :text_id => text.id}, valid_session
-      assigns(:comment).should be_a_new(Comment)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Comment" do
@@ -44,6 +29,7 @@ describe CommentsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved comment as @comment" do
         # Trigger the behavior that occurs when invalid params are submitted
+        request.env["HTTP_REFERER"] = '/'
         Comment.any_instance.stub(:save).and_return(false)
         post :create, {:comment => {  }}, valid_session
         assigns(:comment).should be_a_new(Comment)
@@ -51,9 +37,10 @@ describe CommentsController do
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
+        request.env["HTTP_REFERER"] = '/'
         Comment.any_instance.stub(:save).and_return(false)
         post :create, {:comment => {  }}, valid_session
-        response.should render_template("new")
+        response.should be(302)
       end
     end
   end

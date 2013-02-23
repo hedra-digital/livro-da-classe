@@ -5,17 +5,15 @@ class CommentsController < ApplicationController
     @comments = Comment.all
   end
 
-  def new
-    @comment = Comment.new
-  end
-
   def create
-    @comment = Comment.new(params[:comment])
+    @comment      = Comment.new(params[:comment])
+    @comment.user = current_user
+    @comment.text = @text
 
     if @comment.save
-      redirect_to book_text_path(@book.uuid, @text.uuid)
+      redirect_to book_text_path(@book.uuid, @text.uuid), notice: "Comentario adicionado"
     else
-      render action: "new"
+      redirect_to :back
     end
   end
 

@@ -23,6 +23,11 @@ describe TextsController do
       get :show, {:book_id => book.id, :id => text.to_param}, valid_session
       assigns(:text).should eq(text)
     end
+
+    it "assign a new comment as @comment" do
+      get :show, {:book_id => book.id, :id => text.to_param}, valid_session
+      assigns(:comment).should be_a_new(Comment)
+    end
   end
 
   describe "GET new" do

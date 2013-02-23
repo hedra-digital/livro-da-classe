@@ -19,6 +19,7 @@ class Text < ActiveRecord::Base
 
   # Relationships
   belongs_to                :book
+  has_many                  :comments
 
   # Validations
   validates :book_id,       :presence => true
