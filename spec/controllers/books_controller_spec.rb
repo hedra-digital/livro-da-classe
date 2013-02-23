@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe BooksController do
   let(:organizer)         { create(:organizer) }
-  let(:books)             { organizer.books }
+  let(:books)             { organizer.organized_books }
   let(:book)              { books.first }
   let(:valid_session)     { { :current_user => organizer } }
   let(:valid_attributes)  { attributes_for(:book, :organizer_id => organizer.id) }
@@ -13,9 +13,8 @@ describe BooksController do
 
   describe "GET index" do
     it "assigns organized books as @organized_books" do
-      books = organizer.books.create! valid_attributes # doesn't work without this line
       get :index, {}, valid_session
-      assigns(:organized_books).should eq([books])
+      assigns(:organized_books).should eq(books)
     end
 
     it "redirects to the email page if the current_user meets the requirements" do
@@ -26,10 +25,9 @@ describe BooksController do
     end
 
     it "shows the index page if current_user has no email but asked_for_email=true" do
-      books = organizer.books.create! valid_attributes # doesn't work without this line
       valid_session[:current_user].email           = nil
       get :index, {}, valid_session
-      assigns(:organized_books).should eq([books])
+      assigns(:organized_books).should eq(books)
     end
   end
 

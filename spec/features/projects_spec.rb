@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe 'user with a book' do
   let(:organizer) { create(:organizer) }
-  let(:book) { organizer.books.first }
+  let(:book) { organizer.organized_books.first }
 
   before do
     visit root_path
