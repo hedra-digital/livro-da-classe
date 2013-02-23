@@ -136,8 +136,7 @@ describe 'user who organizes a book' do
 end
 
 describe 'collaborator getting an invitation to a book' do
-  let(:organizer) { create(:organizer) }
-  let(:book) { organizer.organized_books.first }
+  let(:book) { create(:book) }
 
   context "when it is a new user" do
     let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago) }
@@ -158,8 +157,6 @@ describe 'collaborator getting an invitation to a book' do
     end
 
     context "with valid token" do
-      let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago) }
-
       before do
         visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
         fill_in "Nome", :with => new_collaborator.name
