@@ -31,7 +31,7 @@ class Book < ActiveRecord::Base
   validates                 :title,     :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids
+  attr_accessible           :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users
 
   attr_accessor             :finished_at
 

@@ -1,6 +1,7 @@
  # encoding: UTF-8
 
 class ApplicationController < ActionController::Base
+  include AuthorizationHelper
   protect_from_forgery
 
   helper_method :current_user

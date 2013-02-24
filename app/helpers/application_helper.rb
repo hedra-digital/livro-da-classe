@@ -1,5 +1,6 @@
 module ApplicationHelper
-
+  include AuthorizationHelper
+  
   def flash_message
     types = { :notice => 'success', :alert => 'error', :info => 'info' }
     flash.inject("") do |sum, message|
