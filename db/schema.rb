@@ -33,13 +33,6 @@ ActiveRecord::Schema.define(:version => 20130220165451) do
 
   add_index "books_users", ["book_id", "user_id"], :name => "index_books_users_on_book_id_and_user_id"
 
-  create_table "collaborations", :id => false, :force => true do |t|
-    t.integer  "collaborator_id"
-    t.integer  "book_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.text     "content"
