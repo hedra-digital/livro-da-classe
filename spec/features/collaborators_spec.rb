@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'user who organizes a book' do
+describe 'book organizer' do
   let(:organizer) { create(:organizer) }
   let(:book) { organizer.organized_books.first }
 
@@ -33,7 +33,7 @@ describe 'user who organizes a book' do
       current_path.should eq(new_book_collaborator_path(book.uuid))
     end
 
-    context 'when inviting a new user' do
+    context 'who is a new user' do
       let(:email) { Faker::Internet.email }
 
       before do
@@ -54,7 +54,7 @@ describe 'user who organizes a book' do
         User.where(:email => email).should_not be_nil
       end
 
-      it 'is redirected to collaborators index' do
+      it 'is redirected to the collaborators index' do
         click_button 'Enviar convite'
         current_path.should eq(book_collaborators_path(book.uuid))
       end
@@ -65,9 +65,15 @@ describe 'user who organizes a book' do
         User.where(:email => email).first.password_reset_token.should_not be_nil
         last_email.to.should include(email)
       end
+
+      it 'shows collaborator in index' do
+        click_button 'Enviar convite'
+        page.should have_content('Convites enviados')
+        page.should have_content(email)
+      end
     end
 
-    context 'when inviting an invalid user' do
+    context 'who is an invalid user' do
       let(:email) { 'foo' }
 
       before do
@@ -104,115 +110,166 @@ describe 'user who organizes a book' do
       end
     end
 
-    context 'when inviting a registered user' do
+    context 'who is a registered user that is not a collaborator in the same book' do
       let(:collaborator) { create(:user) }
 
       before do
         click_link 'Colaboradores'
         click_link 'Incluir novo'
+      end
+
+      it 'fills in the email' do
         fill_in 'user_email', :with => collaborator.email
       end
 
-      it 'fills in the email of a registered user' do
-      end
-
       it 'clicks button to send the invitation' do
+        fill_in 'user_email', :with => collaborator.email
         click_button 'Enviar convite'
-        current_path.should eq(book_collaborators_path(book.uuid))
       end
 
       it 'emails collaborator' do
+        # binding.pry
+        fill_in 'user_email', :with => collaborator.email
         click_button 'Enviar convite'
         page.should have_content('Email enviado')
         User.where(:email => collaborator.email).first.password_reset_token.should_not be_nil
         last_email.to.should include(collaborator.email)
       end
 
+      it 'is redirected to the collaborators index' do
+        fill_in 'user_email', :with => collaborator.email
+        click_button 'Enviar convite'
+        current_path.should eq(book_collaborators_path(book.uuid))
+      end
+
       it 'shows collaborator in index' do
-        pending
-      end
-    end
-  end
-end
-
-describe 'collaborator getting an invitation to a book' do
-  let(:book) { create(:book) }
-
-  context "when it is a new user" do
-    let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago) }
-    let(:new_collaborator) { build(:user) }
-
-    it "visits the URL received by email" do
-      # TODO: use actual URL from last_email.body
-      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-      current_path.should eq(edit_book_collaborator_path(book.uuid, collaborator.password_reset_token))
-    end
-
-    it 'fills in personal info' do
-      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-      fill_in "Nome", :with => new_collaborator.name
-      fill_in "Senha", :with => new_collaborator.password
-      fill_in "Confirmação da senha", :with => new_collaborator.password
-      click_button "Atualizar Usuário"
-    end
-
-    context "with valid token" do
-      before do
-        visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-        fill_in "Nome", :with => new_collaborator.name
-        fill_in "Senha", :with => new_collaborator.password
-        fill_in "Confirmação da senha", :with => new_collaborator.password
-      end
-
-      it "is automatically logged in" do
-        click_button "Atualizar Usuário"
+        fill_in 'user_email', :with => collaborator.email
+        click_button 'Enviar convite'
+        page.should have_content('Convites enviados')
         page.should have_content(collaborator.email)
-        current_path.should eq(app_home_path)
-      end
-
-      it "gets added as collaborator to the book" do
-        expect{ click_button "Atualizar Usuário" }.to change{ User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }.by(1)
-        User.where(:password_reset_token => collaborator.password_reset_token).first.books.should include(book)
       end
     end
 
-    context "with expired token" do
-      let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 5.hours.ago) }
+    context 'who is a registered user that is already a collaborator in the same book' do
+      let(:collaborator) { create(:user, :books => [book]) }
 
       before do
-        visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-        fill_in "Nome", :with => new_collaborator.name
-        fill_in "Senha", :with => new_collaborator.password
-        fill_in "Confirmação da senha", :with => new_collaborator.password
+        click_link 'Colaboradores'
+        click_link 'Incluir novo'
       end
 
-      it "does not get logged in" do
-        click_button "Atualizar Usuário"
-        page.should_not have_content(collaborator.email)
-        current_path.should eq(root_path)
+      it 'fills in the email' do
+        fill_in 'user_email', :with => collaborator.email
       end
 
-      it "shows a notice to user" do
-        click_button "Atualizar Usuário"
-        page.should have_content("O link já expirou")
+      it 'clicks button to send the invitation' do
+        fill_in 'user_email', :with => collaborator.email
+        click_button 'Enviar convite'
       end
 
-      it "does not get added as collaborator to the book" do
-        expect{ click_button "Atualizar Usuário" }.not_to change{ User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }
-        User.where(:password_reset_token => collaborator.password_reset_token).first.books.should_not include(book)
+      it 'is not redirected' do
+        fill_in 'user_email', :with => collaborator.email
+        click_button 'Enviar convite'
+        current_path.should eq(new_book_collaborator_path(book.uuid))
       end
-    end
-  end
 
-  context "when it is a registered user" do
-    pending
+      it 'shows notice to user' do
+        fill_in 'user_email', :with => collaborator.email
+        click_button 'Enviar convite'
+        page.should have_content('O usuário informado já é colaborador do livro selecionado.')
+      end
 
-    context "who was not previously a collaborator in the book" do
-      pending
-    end
-
-    context "who was previously a collaborator in the book" do
-      pending
+      it 'does not send email' do
+        fill_in 'user_email', :with => collaborator.email
+        click_button 'Enviar convite'
+        last_email.should be_nil
+      end
     end
   end
 end
+
+# describe 'collaborator getting an invitation to a book' do
+#   let(:book) { create(:book) }
+
+#   context "when it is a new user" do
+#     let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago) }
+#     let(:new_collaborator) { build(:user) }
+
+#     it "visits the URL received by email" do
+#       # TODO: use actual URL from last_email.body
+#       visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+#       current_path.should eq(edit_book_collaborator_path(book.uuid, collaborator.password_reset_token))
+#     end
+
+#     it 'fills in personal info' do
+#       visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+#       fill_in "Nome", :with => new_collaborator.name
+#       fill_in "Senha", :with => new_collaborator.password
+#       fill_in "Confirmação da senha", :with => new_collaborator.password
+#       click_button "Atualizar Usuário"
+#     end
+
+#     context "with valid token" do
+#       before do
+#         visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+#         fill_in "Nome", :with => new_collaborator.name
+#         fill_in "Senha", :with => new_collaborator.password
+#         fill_in "Confirmação da senha", :with => new_collaborator.password
+#       end
+
+#       it "is automatically logged in" do
+#         click_button "Atualizar Usuário"
+#         page.should have_content(collaborator.email)
+#         current_path.should eq(app_home_path)
+#       end
+
+#       it "gets added as collaborator to the book" do
+#         expect{ click_button "Atualizar Usuário" }.to change{ User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }.by(1)
+#         User.where(:password_reset_token => collaborator.password_reset_token).first.books.should include(book)
+#       end
+#     end
+
+#     context "with expired token" do
+#       let(:collaborator) { create(:user, :password_reset_token => "something", :password_reset_sent_at => 5.hours.ago) }
+
+#       before do
+#         visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+#         fill_in "Nome", :with => new_collaborator.name
+#         fill_in "Senha", :with => new_collaborator.password
+#         fill_in "Confirmação da senha", :with => new_collaborator.password
+#       end
+
+#       it "does not get logged in" do
+#         click_button "Atualizar Usuário"
+#         page.should_not have_content(collaborator.email)
+#         current_path.should eq(root_path)
+#       end
+
+#       it "shows a notice to user" do
+#         click_button "Atualizar Usuário"
+#         page.should have_content("O link já expirou")
+#       end
+
+#       it "does not get added as collaborator to the book" do
+#         expect{ click_button "Atualizar Usuário" }.not_to change{ User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }
+#         User.where(:password_reset_token => collaborator.password_reset_token).first.books.should_not include(book)
+#       end
+#     end
+#   end
+
+#   context "when it is a registered user" do
+#     pending
+
+#     it 'redirects collaborator to app home' do
+#       pending
+#     end
+
+#     context "who was not previously a collaborator in the book" do
+#       pending
+#     end
+
+#     context "who was previously a collaborator in the book" do
+#       pending
+#     end
+#   end
+# end

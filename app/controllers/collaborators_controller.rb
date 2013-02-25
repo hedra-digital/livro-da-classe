@@ -9,6 +9,7 @@ class CollaboratorsController < ApplicationController
 
   def index
     @collaborators = @book.users.all
+    @invited_users = Invitation.where(:book_id => @book.id).map { |i| User.where(:id => i.invited_id).first }
   end
 
   def new
@@ -17,7 +18,8 @@ class CollaboratorsController < ApplicationController
 
   def create
     collaborator = User.where(:email => params[:user][:email]).first
-    unless collaborator
+    # binding.pry
+    if collaborator.nil?
       collaborator = User.new(params[:user], :without_protection => true)
       collaborator.valid?
       if collaborator.errors[:email].present?
@@ -25,8 +27,11 @@ class CollaboratorsController < ApplicationController
       else
         collaborator.save!(:validate => false)
       end
+    elsif @book.users.include?(collaborator)
+      redirect_to new_book_collaborator_path(@book.uuid), :notice => "O usuário informado já é colaborador do livro selecionado." and return
     end
     collaborator.send_book_invitation(current_user, @book.uuid)
+    Invitation.create(:invited_id => collaborator.id, :book_id => @book.id)
     redirect_to book_collaborators_path(@book.uuid), :notice => "Email enviado com instruções para o colaborador."
   end
 
@@ -44,6 +49,7 @@ class CollaboratorsController < ApplicationController
       redirect_to root_path, :notice => "O link já expirou. Por favor, peça ao organizador do livro para enviar um novo convite."
     elsif @collaborator.update_attributes(params[:user])
       @book.users << @collaborator
+      Invitation.where(:invited_id => collaborator.id, :book_id => @book.id).destroy
       session[:auth_token] = @collaborator.auth_token
       redirect_to app_home_path, :notice => "Você foi adicionado como colaborador do livro <em>#{@book.title}</em>." and return
     else
