@@ -6,9 +6,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment      = Comment.new(params[:comment])
-    @comment.user = session['current_user']
-    @comment.text = @text
+    @comment        = Comment.new(params[:comment])
+    @comment.user   = session['current_user']
+    @comment.user ||= current_user
+    @comment.text   = @text
 
     if @comment.save
       redirect_to book_text_path(@book.uuid, @text.uuid), notice: "Comentario adicionado"
