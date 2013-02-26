@@ -36,23 +36,28 @@ class CollaboratorsController < ApplicationController
   end
 
   def edit
-    if current_user == @collaborator
+    if @collaborator.password_digest || @collaborator.provider
       @book.users << @collaborator
+      Invitation.where(:invited_id => @collaborator.id, :book_id => @book.id).first.destroy
+      session[:auth_token] = @collaborator.auth_token
       redirect_to app_home_path, :notice => "Você foi adicionado como colaborador do livro <em>#{@book.title}</em>."
+    else
+      cookies.delete(:auth_token)
+      session[:auth_token] = nil
     end
-    cookies.delete(:auth_token)
-    session[:auth_token] = nil
   end
 
   def update
+    invitation = Invitation.where(:invited_id => @collaborator.id, :book_id => @book.id).first
     if @collaborator.password_reset_sent_at < 2.hours.ago
       redirect_to root_path, :notice => "O link já expirou. Por favor, peça ao organizador do livro para enviar um novo convite."
-    elsif @collaborator.update_attributes(params[:user])
+    elsif @collaborator.update_attributes(params[:user]) and invitation.present?
       @book.users << @collaborator
-      Invitation.where(:invited_id => collaborator.id, :book_id => @book.id).destroy
+      invitation.destroy
       session[:auth_token] = @collaborator.auth_token
       redirect_to app_home_path, :notice => "Você foi adicionado como colaborador do livro <em>#{@book.title}</em>." and return
     else
+      binding.pry
       redirect_to root_path, :notice => "Houve um erro na criação da conta."
     end
   end

@@ -1,3 +1,7 @@
 class Invitation < ActiveRecord::Base
-  attr_accessible :book_id, :invited_id
+
+  belongs_to           :book
+  belongs_to           :user, :foreign_key => 'invited_id'
+
+  attr_accessible      :book_id, :invited_id
 end

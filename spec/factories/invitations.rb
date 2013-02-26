@@ -2,7 +2,11 @@
 
 FactoryGirl.define do
   factory :invitation do
-    invited_id 1
-    book_id 1
+    association :user, :factory => :user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago
+    book
+
+    factory :invalid_invitation do
+      association :user, :factory => :user, :password_reset_token => "something", :password_reset_sent_at => 5.hours.ago
+    end
   end
 end

@@ -8,7 +8,7 @@ FactoryGirl.define do
     asked_for_email true
 
     factory :organizer do
-      organized_books { FactoryGirl.build_list(:book, 3) }
+      organized_books { FactoryGirl.create_list(:book, 3) }
     end
 
     factory :collaborator do

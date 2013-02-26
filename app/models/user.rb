@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   # Relationships
   has_many                  :organized_books, :class_name => "Book", :foreign_key => "organizer_id"
   has_and_belongs_to_many   :books
+  has_many                  :invitations, :foreign_key => 'invited_id'
 
   # Validations
   validates :name,          :presence => true

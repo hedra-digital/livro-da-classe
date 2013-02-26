@@ -25,6 +25,7 @@ class Book < ActiveRecord::Base
   has_and_belongs_to_many   :users
   has_many                  :texts
   has_one                   :project
+  has_many                  :invitations
 
   # Validations
   validates                 :organizer, :presence => true
