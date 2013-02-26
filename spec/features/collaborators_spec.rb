@@ -253,6 +253,17 @@ describe "user getting an invitation to a book" do
       expect{ click_button "Atualizar Usuário" }.to change{ User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }.by(1)
       User.where(:password_reset_token => collaborator.password_reset_token).first.books.should include(book)
     end
+
+    it "sees book listed under my books" do
+      collaborator = User.where(:email => email).first
+      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+      fill_in "Nome", :with => new_collaborator.name
+      fill_in "Senha", :with => new_collaborator.password
+      fill_in "Confirmação da senha", :with => new_collaborator.password
+      click_button "Atualizar Usuário"
+      click_link 'Meus Livros'
+      page.should have_content(book.title)
+    end
   end
 
   context "when it is a new user with invalid token" do
@@ -359,6 +370,12 @@ describe "user getting an invitation to a book" do
     it "gets added as collaborator to the book" do
       expect{ visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token) }.to change{ User.where(:password_reset_token => collaborator.password_reset_token).first.books.size }.by(1)
       User.where(:password_reset_token => collaborator.password_reset_token).first.books.should include(book)
+    end
+
+    it "sees book listed under my books" do
+      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+      click_link 'Meus Livros'
+      page.should have_content(book.title)
     end
   end
 end
