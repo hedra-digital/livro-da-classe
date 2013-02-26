@@ -8,18 +8,20 @@
   </div>
 </div>
 
-<h3>Colaboradores</h3>
+<% if @collaborators.present? %>
+  <h3>Colaboradores</h3>
 
-<table class="table">
-  <tr>
-    <th>Email</th>
-  </tr>
-  <% @collaborators.each do |collaborator| %>
+  <table class="table">
     <tr>
-      <td><%= collaborator.email rescue 'N/A' %></td>
+      <th>Email</th>
     </tr>
-  <% end %>
-</table>
+    <% @collaborators.each do |collaborator| %>
+      <tr>
+        <td><%= collaborator.email rescue 'N/A' %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
 
 <% if @invited_users.present? %>
   <h3>Convites enviados</h3>
