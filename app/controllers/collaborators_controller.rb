@@ -18,7 +18,6 @@ class CollaboratorsController < ApplicationController
 
   def create
     collaborator = User.where(:email => params[:user][:email]).first
-    # binding.pry
     if collaborator.nil?
       collaborator = User.new(params[:user], :without_protection => true)
       collaborator.valid?
@@ -57,7 +56,6 @@ class CollaboratorsController < ApplicationController
       session[:auth_token] = @collaborator.auth_token
       redirect_to app_home_path, :notice => "Você foi adicionado como colaborador do livro <em>#{@book.title}</em>." and return
     else
-      binding.pry
       redirect_to root_path, :notice => "Houve um erro na criação da conta."
     end
   end
