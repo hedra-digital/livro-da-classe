@@ -1,41 +1,29 @@
-<% if @organized_books.present? || @collaborated_books.present? %>
-  <h2>Meus livros</h2>
-  <% if @organized_books.present? %>
-    <h3>Como organizador</h3>
-    <table class="table table-striped">
+<% if @books.present? %>
+  <div class="row">
+    <div class="span9">
+      <h1>Meus livros</h1>
+    </div>
+
+    <div class="span3">
+      <%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary btn-new' %>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <tr>
+      <th>Título</th>
+      <th>Textos</th>
+      <th>Status</th>
+      <th>Papel</th>
+    </tr>
+    <% @books.each do |book| %>
       <tr>
-        <th>Título</th>
-        <th>Textos</th>
-        <th></th>
-        <th></th>
+        <td><%= link_to book.title, book_path(book.uuid) %></td>
+        <td><%= raw book.texts.size %></td>
+        <td><%= book_status_label(book) %></td>
+        <td><%= book_role_label(book, current_user) %></td>
       </tr>
-      <% @organized_books.each do |book| %>
-        <tr>
-          <td><%= link_to book.title, book_path(book.uuid) %></td>
-          <td>&nbsp;&nbsp;&nbsp;<%= raw book.texts.size %></td>
-          <td><%= link_to 'Adicionar Texto', new_book_text_path(book.uuid) %></td>
-          <td><%= link_to 'Apagar', book_path(book.uuid), method: :delete, data: { confirm: 'Tem certeza?' } %></td>
-        </tr>
-      <% end %>
-    </table>
-    <%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary' %>
-  <% elsif @collaborated_books.present? %>
-    <h3>Como colaborador</h3>
-    <table class="table table-striped">
-      <tr>
-        <th>Título</th>
-        <th>Textos</th>
-        <th></th>
-      </tr>
-      <% @collaborated_books.each do |book| %>
-        <tr>
-          <td><%= link_to book.title, book_path(book.uuid) %></td>
-          <td>&nbsp;&nbsp;&nbsp;<%= raw book.texts.size %></td>
-          <td><%= link_to 'Adicionar Texto', new_book_text_path(book.uuid) %></td>
-        </tr>
-      <% end %>
-    </table>
-  <% end %>
+    <% end %>
+  </table>
 <% else %>
   <p class="nobook">Você não tem nenhum livro. Que tal <%= link_to 'começar um agora?', new_book_path %></p>
 <% end %>
