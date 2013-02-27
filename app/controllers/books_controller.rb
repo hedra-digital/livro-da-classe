@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class BooksController < ApplicationController
   before_filter :authentication_check
   before_filter :ominiauth_user_gate
@@ -23,7 +25,7 @@ class BooksController < ApplicationController
     @book = current_user.organized_books.new(params[:book])
 
     if @book.save
-      redirect_to book_path(@book.uuid), notice: 'Book was successfully created.'
+      redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
     else
       render :new
     end
@@ -34,7 +36,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update_attributes(params[:book])
-      redirect_to book_path(@book.uuid), notice: 'Book was successfully updated.'
+      redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
     else
       render :edit
     end
