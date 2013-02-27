@@ -264,6 +264,16 @@ describe "user getting an invitation to a book" do
       click_link 'Meus Livros'
       page.should have_content(book.title)
     end
+
+    it "keeps inviter as book organizer" do
+      collaborator = User.where(:email => email).first
+      visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
+      fill_in "Nome", :with => new_collaborator.name
+      fill_in "Senha", :with => new_collaborator.password
+      fill_in "Confirmação da senha", :with => new_collaborator.password
+      click_button "Atualizar Usuário"
+      book.organizer.should eq(organizer)
+    end
   end
 
   context "when it is a new user with invalid token" do
