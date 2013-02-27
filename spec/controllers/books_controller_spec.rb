@@ -12,9 +12,9 @@ describe BooksController do
   end
 
   describe "GET index" do
-    it "assigns organized books as @organized_books" do
+    it "assigns organized books as @books" do
       get :index, {}, valid_session
-      assigns(:organized_books).should eq(books)
+      assigns(:books).should eq(books)
     end
 
     it "redirects to the email page if the current_user meets the requirements" do
@@ -27,7 +27,7 @@ describe BooksController do
     it "shows the index page if current_user has no email but asked_for_email=true" do
       valid_session[:current_user].email           = nil
       get :index, {}, valid_session
-      assigns(:organized_books).should eq(books)
+      assigns(:books).should eq(books)
     end
   end
 
