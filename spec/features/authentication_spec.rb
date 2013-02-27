@@ -14,7 +14,7 @@ describe 'unregistered user' do
       visit root_path
       click_link('signup')
       page.should have_selector('h1', :text => 'Cadastre a sua escola', :visible => true)
-      current_path.should == '/cadastro'
+      current_path.should eq(new_user_path)
     end
 
     context 'when filling up sign up form' do
@@ -32,10 +32,15 @@ describe 'unregistered user' do
         click_button 'Criar Usuário'
       end
 
-      it "sees error if passwords dont't match" do
+      it "sees error if passwords don't match" do
         fill_in 'user_password_confirmation', :with => 'dada'
         click_button 'Criar Usuário'
         page.should have_content('não está de acordo com a confirmação')
+      end
+
+      it "gets redirected to the app home" do
+        click_button 'Criar Usuário'
+        current_path.should eq(app_home_path)
       end
 
       it 'sees his user ID on successful sign up' do

@@ -272,6 +272,7 @@ describe "user getting an invitation to a book" do
       fill_in "Senha", :with => new_collaborator.password
       fill_in "Confirmação da senha", :with => new_collaborator.password
       click_button "Atualizar Usuário"
+      click_link 'Meus Livros'
       book.organizer.should eq(organizer)
     end
   end

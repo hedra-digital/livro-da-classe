@@ -7,7 +7,8 @@ class BooksController < ApplicationController
   before_filter :resource, :only => [:show, :edit, :destroy, :update]
 
   def index
-    @books = current_user.organized_books << current_user.books
+    @books = []
+    @books.concat(current_user.organized_books).concat(current_user.books).flatten
   end
 
   def show
