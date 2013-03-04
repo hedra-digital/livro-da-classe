@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304210749) do
+ActiveRecord::Schema.define(:version => 20130304223317) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -65,9 +65,11 @@ ActiveRecord::Schema.define(:version => 20130304210749) do
     t.date     "finish_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "client_id"
   end
 
   add_index "projects", ["book_id"], :name => "index_projects_on_book_id"
+  add_index "projects", ["client_id"], :name => "index_projects_on_client_id"
 
   create_table "texts", :force => true do |t|
     t.integer  "book_id"

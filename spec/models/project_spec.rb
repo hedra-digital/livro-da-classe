@@ -8,6 +8,7 @@
 #  finish_date  :date
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  client_id    :integer
 #
 
 require 'spec_helper'

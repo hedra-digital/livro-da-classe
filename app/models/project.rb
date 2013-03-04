@@ -8,12 +8,14 @@
 #  finish_date  :date
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  client_id    :integer
 #
 
 class Project < ActiveRecord::Base
 
   # Relationships
   belongs_to                :book
+  belongs_to                :client
 
   # Validations
   validates :book_id,       :presence => true
