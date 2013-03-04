@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe ProjectsController do
+  let(:valid_session)     { { :current_user => create(:user) } }
+
+  before do
+    controller.stub(:current_user).and_return(valid_session[:current_user])
+  end
 
   describe "GET 'new'" do
     it "returns http success" do
