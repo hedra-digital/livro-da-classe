@@ -29,7 +29,6 @@ describe 'user with a book' do
 
     it "fills out form" do
       click_link 'Quero fazer o Livro da Classe'
-      save_and_open_page
       fill_in 'Nome', :with => 'dada'
       fill_in 'Email', :with => 'dada'
       fill_in 'Telefone', :with => 'dada'
