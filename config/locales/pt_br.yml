@@ -206,9 +206,12 @@ pt_br:
       book:
         one: Livro
         other: Livros
-      text: 
+      text:
         one: Texto
         other: Textos
+      client:
+        one: Cliente
+        other: Clientes
     attributes:
       user:
         name: Nome
@@ -228,6 +231,12 @@ pt_br:
       text:
         title: 'Título'
         content: 'Conteúdo'
+      client:
+        name: Nome
+        emai: E-mail
+        phone: Telefone
+        position: Cargo
+        company: Instituição de ensino
     successful:
       messages:
         created: "%{model} foi criado com sucesso."

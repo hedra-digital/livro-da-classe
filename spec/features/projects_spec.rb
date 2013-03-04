@@ -16,15 +16,25 @@ describe 'user with a book' do
     click_link book.title
   end
 
-  context 'when starting a new project' do
+  context "when starting a new project" do
     it 'sees the book info' do
       page.should have_content(book.title)
       page.should have_xpath("//nav[@class='book-nav']")
     end
 
-    it 'clicks the new project link' do
-      click_link 'Criar projeto'
+    it "clicks the new project link" do
+      click_link 'Quero fazer o Livro da Classe'
       current_path.should eq(new_project_path)
+    end
+
+    it "fills out form" do
+      click_link 'Quero fazer o Livro da Classe'
+      save_and_open_page
+      fill_in 'Nome', :with => 'dada'
+      fill_in 'Email', :with => 'dada'
+      fill_in 'Telefone', :with => 'dada'
+      fill_in 'Cargo', :with => 'dada'
+      fill_in 'Instituição de ensino', :with => 'dada'
     end
   end
 end

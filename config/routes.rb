@@ -31,5 +31,6 @@ Livrodaclasse::Application.routes.draw do
     end
   end
   resources :projects
+  resources :clients
 
 end
