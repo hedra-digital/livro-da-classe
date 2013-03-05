@@ -29,8 +29,8 @@ Livrodaclasse::Application.routes.draw do
         get 'resend_invitation'
       end
     end
+    resources :projects do
+      resources :clients
+    end
   end
-  resources :projects
-  resources :clients
-
 end

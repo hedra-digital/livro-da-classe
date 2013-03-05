@@ -4,10 +4,11 @@ class ProjectsController < ApplicationController
 
   def new
     client = Client.new(:user_id => current_user.id)
-    @project = Project.new(:client => client)
+    @project = Project.new(:client => client, :book_id => @book.id)
   end
 
   def create
+    redirect_to book_path(@book.uuid)
   end
 
   private

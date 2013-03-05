@@ -17,7 +17,7 @@
 
 <h2>Formulário de adesão</h2>
 
-<%= simple_form_for @project do |f| %>
+<%= simple_form_for(@project, :url => book_projects_path(@book.uuid)) do |f| %>
   <div class="form-inputs">
     <%= field_set_tag "Dados do projeto" do %>
       <%= f.input :release_date, :as => :string, :hint => "Quando você deseja lançar o seu livro?" %>
