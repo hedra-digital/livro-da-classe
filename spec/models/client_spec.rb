@@ -14,5 +14,17 @@
 require 'spec_helper'
 
 describe Client do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should respond_to(:name) }
+  it { should respond_to(:email) }
+  it { should respond_to(:position) }
+  it { should respond_to(:phone) }
+  it { should respond_to(:company) }
+
+  context 'when validating' do
+    it 'is invalid without a user' do
+      user = build(:client, :user_id => nil)
+      user.should_not be_valid
+      user.should have(1).error_on(:user_id)
+    end
+  end
 end

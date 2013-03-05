@@ -18,8 +18,11 @@ class Client < ActiveRecord::Base
   has_many                  :projects
 
   # Delegate
-  delegate                  :name, :email, :to => :user
+  delegate                  :name, :name=, :email, :email=, :to => :user
+
+  # Validations
+  validates :user_id,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :company, :phone, :position, :user_id
+  attr_accessible           :company, :phone, :position, :user_id, :email, :name
 end

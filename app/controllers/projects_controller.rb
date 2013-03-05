@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class ProjectsController < ApplicationController
   before_filter :authentication_check
   before_filter :find_book
@@ -8,7 +10,12 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    redirect_to book_path(@book.uuid)
+    @project = Project.new(params[:project].merge(:book_id => @book.id))
+    if @project.save
+      redirect_to book_path(@book.uuid), :notice => "Seu Livro da Classe já foi criado."
+    else
+      render :new
+    end
   end
 
   private

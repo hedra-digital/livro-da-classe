@@ -5,7 +5,6 @@ require 'spec_helper'
 describe 'book organizer' do
   let(:organizer) { create(:organizer) }
   let(:book) { organizer.organized_books.first }
-  let(:project) { create(:project) }
 
   before do
     visit root_path
@@ -30,33 +29,44 @@ describe 'book organizer' do
 
     it "fills out form" do
       click_link 'Quero fazer o Livro da Classe'
-      fill_in 'Data de lançamento', :with => project.release_date
-      fill_in 'Nome', :with => project.client.name
-      fill_in 'Email', :with => project.client.email
-      fill_in 'Telefone', :with => project.client.phone
-      fill_in 'Cargo', :with => project.client.position
-      fill_in 'Instituição de ensino', :with => project.client.company
+      fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
+      fill_in 'Nome', :with => organizer.name
+      fill_in 'Email', :with => organizer.email
+      fill_in 'Telefone', :with => "MyString"
+      fill_in 'Cargo', :with => "MyString"
+      fill_in 'Instituição de ensino', :with => "MyString"
     end
 
     it "clicks submit button" do
       click_link 'Quero fazer o Livro da Classe'
-      fill_in 'Data de lançamento', :with => project.release_date
-      fill_in 'Nome', :with => project.client.name
-      fill_in 'Email', :with => project.client.email
-      fill_in 'Telefone', :with => project.client.phone
-      fill_in 'Cargo', :with => project.client.position
-      fill_in 'Instituição de ensino', :with => project.client.company
+      fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
+      fill_in 'Nome', :with => organizer.name
+      fill_in 'Email', :with => organizer.email
+      fill_in 'Telefone', :with => "MyString"
+      fill_in 'Cargo', :with => "MyString"
+      fill_in 'Instituição de ensino', :with => "MyString"
       click_button 'Criar Projeto'
+    end
+
+    it "creates new project" do
+      click_link 'Quero fazer o Livro da Classe'
+      fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
+      fill_in 'Nome', :with => organizer.name
+      fill_in 'Email', :with => organizer.email
+      fill_in 'Telefone', :with => "MyString"
+      fill_in 'Cargo', :with => "MyString"
+      fill_in 'Instituição de ensino', :with => "MyString"
+      expect { click_button 'Criar Projeto' }.to change { Project.all.size }.by(1)
     end
 
     it "gets redirected to book page" do
       click_link 'Quero fazer o Livro da Classe'
-      fill_in 'Data de lançamento', :with => project.release_date
-      fill_in 'Nome', :with => project.client.name
-      fill_in 'Email', :with => project.client.email
-      fill_in 'Telefone', :with => project.client.phone
-      fill_in 'Cargo', :with => project.client.position
-      fill_in 'Instituição de ensino', :with => project.client.company
+      fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
+      fill_in 'Nome', :with => organizer.name
+      fill_in 'Email', :with => organizer.email
+      fill_in 'Telefone', :with => "MyString"
+      fill_in 'Cargo', :with => "MyString"
+      fill_in 'Instituição de ensino', :with => "MyString"
       click_button 'Criar Projeto'
       current_path.should eq(book_path(book.uuid))
     end
