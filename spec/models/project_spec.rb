@@ -17,6 +17,7 @@ describe Project do
   it { should respond_to(:book_id) }
   it { should respond_to(:release_date) }
   it { should respond_to(:finish_date) }
+  it { should respond_to(:client_id) }
 
   context 'when validating' do
     it 'is invalid without a book_id' do

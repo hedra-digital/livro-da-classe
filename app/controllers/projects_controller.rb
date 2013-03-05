@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
   before_filter :find_book
 
   def new
-    @client = Client.new(:user_id => current_user.id)
+    client = Client.new(:user_id => current_user.id)
+    @project = Project.new(:client => client)
   end
 
   def create

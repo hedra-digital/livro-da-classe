@@ -15,14 +15,23 @@
   </tr>
 </table>
 
-<h2>Dados pessoais</h2>
-<%= simple_form_for @client do |f| %>
+<h2>Formulário de adesão</h2>
+
+<%= simple_form_for @project do |f| %>
   <div class="form-inputs">
-    <%= f.input :name, :placeholder => @client.name %>
-    <%= f.input :email, :placeholder => @client.email %>
-    <%= f.input :phone %>
-    <%= f.input :position %>
-    <%= f.input :company %>
+    <%= field_set_tag "Dados do projeto" do %>
+      <%= f.input :release_date, :as => :string, :hint => "Quando você deseja lançar o seu livro?" %>
+    <% end %>
+
+    <%= field_set_tag "Dados pessoais" do %>
+      <%= f.simple_fields_for :client do |c| %>
+        <%= c.input :name, :placeholder => @project.client.name %>
+        <%= c.input :email, :placeholder => @project.client.email %>
+        <%= c.input :phone %>
+        <%= c.input :position %>
+        <%= c.input :company %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="form-actions">

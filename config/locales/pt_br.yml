@@ -212,6 +212,9 @@ pt_br:
       client:
         one: Cliente
         other: Clientes
+      project:
+        one: Projeto
+        other: Projetos
     attributes:
       user:
         name: Nome
@@ -237,6 +240,8 @@ pt_br:
         phone: Telefone
         position: Cargo
         company: Instituição de ensino
+      project:
+        release_date: Data de lançamento
     successful:
       messages:
         created: "%{model} foi criado com sucesso."

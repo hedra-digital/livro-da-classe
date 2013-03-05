@@ -21,5 +21,8 @@ class Project < ActiveRecord::Base
   validates :book_id,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :finish_date, :release_date
+  attr_accessible           :book_id, :finish_date, :release_date, :client_attributes, :client
+
+  accepts_nested_attributes_for :client
+
 end

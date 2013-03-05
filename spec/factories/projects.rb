@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :project do
-    book_id ""
+    book
+    client
     release_date 3.months.since
     finish_date 3.months.since - 2.weeks
   end

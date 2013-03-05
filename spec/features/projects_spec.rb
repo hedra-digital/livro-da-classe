@@ -5,6 +5,7 @@ require 'spec_helper'
 describe 'user with a book' do
   let(:organizer) { create(:organizer) }
   let(:book) { organizer.organized_books.first }
+  let(:project) { create(:project) }
 
   before do
     visit root_path
@@ -29,11 +30,12 @@ describe 'user with a book' do
 
     it "fills out form" do
       click_link 'Quero fazer o Livro da Classe'
-      fill_in 'Nome', :with => 'dada'
-      fill_in 'Email', :with => 'dada'
-      fill_in 'Telefone', :with => 'dada'
-      fill_in 'Cargo', :with => 'dada'
-      fill_in 'Instituição de ensino', :with => 'dada'
+      fill_in 'Data de lançamento', :with => project.release_date
+      fill_in 'Nome', :with => project.client.name
+      fill_in 'Email', :with => project.client.email
+      fill_in 'Telefone', :with => project.client.phone
+      fill_in 'Cargo', :with => project.client.position
+      fill_in 'Instituição de ensino', :with => project.client.company
     end
   end
 end
