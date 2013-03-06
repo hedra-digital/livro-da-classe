@@ -35,6 +35,7 @@ describe 'book organizer' do
       fill_in 'Telefone', :with => "MyString"
       fill_in 'Cargo', :with => "MyString"
       fill_in 'Instituição de ensino', :with => "MyString"
+      check 'project_terms_of_service'
     end
 
     it "clicks submit button" do
@@ -45,6 +46,7 @@ describe 'book organizer' do
       fill_in 'Telefone', :with => "MyString"
       fill_in 'Cargo', :with => "MyString"
       fill_in 'Instituição de ensino', :with => "MyString"
+      check 'project_terms_of_service'
       click_button 'Criar Projeto'
     end
 
@@ -56,6 +58,7 @@ describe 'book organizer' do
       fill_in 'Telefone', :with => "MyString"
       fill_in 'Cargo', :with => "MyString"
       fill_in 'Instituição de ensino', :with => "MyString"
+      check 'project_terms_of_service'
       expect { click_button 'Criar Projeto' }.to change { Project.all.size }.by(1)
     end
 
@@ -67,6 +70,7 @@ describe 'book organizer' do
       fill_in 'Telefone', :with => "MyString"
       fill_in 'Cargo', :with => "MyString"
       fill_in 'Instituição de ensino', :with => "MyString"
+      check 'project_terms_of_service'
       click_button 'Criar Projeto'
       current_path.should eq(book_path(book.uuid))
     end

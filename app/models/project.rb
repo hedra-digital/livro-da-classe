@@ -18,10 +18,11 @@ class Project < ActiveRecord::Base
   belongs_to                :client
 
   # Validations
-  validates :book_id,       :presence => true
+  validates                 :book_id, :presence => true
+  validates                 :terms_of_service, :acceptance => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :finish_date, :release_date, :client_attributes, :client
+  attr_accessible           :book_id, :finish_date, :release_date, :client_attributes, :client, :terms_of_service
 
   accepts_nested_attributes_for :client
 
