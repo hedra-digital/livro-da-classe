@@ -19,16 +19,16 @@ describe Project do
   it { should respond_to(:finish_date) }
   it { should respond_to(:client_id) }
 
-  context 'when validating' do
-    it 'is invalid without a book_id' do
+  context "when validating" do
+    it "is invalid without a book_id" do
       project = build(:project, :book_id => nil)
       project.should_not be_valid
       project.should have(1).error_on(:book_id)
     end
   end
 
-  context 'when saving' do
-    it 'should belong to a book' do
+  context "when saving" do
+    it "should belong to a book" do
       project = create(:project, :book => build_stubbed(:book))
       project.book.should_not be_nil
       project.book.should be_an_instance_of(Book)

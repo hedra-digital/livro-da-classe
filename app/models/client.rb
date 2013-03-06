@@ -21,7 +21,7 @@ class Client < ActiveRecord::Base
   delegate                  :name, :name=, :email, :email=, :to => :user
 
   # Validations
-  validates :user_id,       :presence => true
+  validates                 :user_id, :position, :phone, :company, :presence => true
 
   # Specify fields that can be accessible through mass assignment
   attr_accessible           :company, :phone, :position, :user_id, :email, :name
