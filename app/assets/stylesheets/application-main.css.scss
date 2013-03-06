@@ -1,23 +1,70 @@
-@import "main";
 
-header {
-  background: #CCDEFA url('/assets/topbar.png') bottom repeat-x;
-  h1 {
-    color: #333;
-  }
-  #userid {
-    color: #666;
-  }
+/* ==========================================================================
+  Importing frameworks
+  ========================================================================== */
+
+@import 'bootstrap';
+// @import 'responsive';
+@import 'bourbon';
+
+/* ==========================================================================
+  Mixin overwrite
+  ========================================================================== */
+
+@mixin sticky-footer($footer-height, $root-selector: unquote("#root"), $root-footer-selector: unquote("#root_footer"), $footer-selector: unquote("#footer")) {
+  html, body {
+    height: 100%; }
+  #{$root-selector} {
+    clear: both;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -$footer-height;
+    #{$root-footer-selector} {
+      height: $footer-height; } }
+  #{$footer-selector} {
+    clear: both;
+    position: relative;
+    height: $footer-height; } }
+
+@mixin hide-text() {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
+
+/* ==========================================================================
+   Basic tags
+   ========================================================================== */
 
 textarea {
   height: 150px;
   width: 100%;
 }
 
+.btn-new {
+  margin-top: 14px;
+  font-size: 0.9em;
+  float: right;
+}
+
+.label {
+  font-size: 0.55em;
+}
+
+/* ==========================================================================
+   Areas
+   ========================================================================== */
+
+#main {
+  padding-bottom: 50px;
+  .alert {
+    margin-top: 10px;
+  }
+}
+
 #book-info {
   margin-bottom: 30px;
-  font-size: 0.8em;
   color: #444;
   background: #eee;
   @include box-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
@@ -49,19 +96,29 @@ textarea {
   }
 }
 
-.btn-new {
-  margin-top: 14px;
-  font-size: 0.9em;
-  float: right;
+footer {
+  color: white;
+  background: #434343 url('/assets/footer-border.png') top repeat-x;
+  #logo {
+    margin-top: 60px;
+    float: left;
+  }
+  #address {
+    margin-top: 60px;
+    padding: 0 0 0 170px;
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+    address {
+      font-size: 19px;
+      line-height: 1.4;
+    }
+  }
 }
 
-#main {
-  font-family: $altFontFamily;
-}
-
-.label {
-  font-size: 0.55em;
-}
+@include sticky-footer(240px, "#wrap", "#push", "footer");
 
 
 /* ==========================================================================

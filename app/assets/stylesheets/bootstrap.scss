@@ -28,19 +28,19 @@
 
 // Components: common
 @import "sprites";
-// @import "dropdowns";
+@import "dropdowns";
 // @import "wells";
 @import "component-animations";
 @import "close";
 
 // Components: Buttons & Alerts
 @import "buttons";
-// @import "button-groups";
+@import "button-groups";
 @import "alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons
 
 // Components: Nav
-// @import "navs";
-// @import "navbar";
+@import "navs";
+@import "navbar";
 // @import "breadcrumbs";
 // @import "pagination";
 // @import "pager";

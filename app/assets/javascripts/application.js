@@ -15,6 +15,7 @@
 //= require markitup/jquery.markitup
 //= require markitup/sets/markdown/set
 //= require bootstrap-alert
+//= require bootstrap-dropdown
 //= require bindWithDelay
 //= require jquery-ui
 //= require reorder

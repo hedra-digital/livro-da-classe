@@ -1,4 +1,4 @@
-<h1>Começar o Livro da Classe</h1>
+<h1>Comece agora seu Livro da Classe</h1>
 
 <p>Para editar e imprimir este livro, você contará com nosso apoio editorial.</p>
 
@@ -20,7 +20,7 @@
 <%= simple_form_for(@project, :url => { :action => :create }) do |f| %>
   <div class="form-inputs">
     <%= field_set_tag "Dados do projeto" do %>
-      <%= f.input :release_date, :as => :string, :hint => "Quando você deseja lançar o seu livro?" %>
+      <%= f.input :release_date, :as => :date_picker, :hint => "Quando você deseja lançar o seu livro?" %>
     <% end %>
 
     <%= field_set_tag "Dados pessoais" do %>
