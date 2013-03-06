@@ -12,6 +12,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'kramdown'
 gem 'rails-latex'
+gem 'bootstrap-datepicker-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -5,14 +5,18 @@
 <h2>Formatos e preços</h2>
 
 <table class="table">
-  <tr>
-    <th>Coluna 1</th>
-    <th>Coluna 2</th>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Coluna 1</th>
+      <th>Coluna 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
 </table>
 
 <h2>Formulário de adesão</h2>
@@ -56,3 +60,7 @@
     <%= f.button :submit, :class => 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $('[data-behaviour~=datepicker]').datepicker()
+</script>

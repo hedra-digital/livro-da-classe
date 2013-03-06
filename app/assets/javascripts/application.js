@@ -19,3 +19,5 @@
 //= require bindWithDelay
 //= require jquery-ui
 //= require reorder
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR

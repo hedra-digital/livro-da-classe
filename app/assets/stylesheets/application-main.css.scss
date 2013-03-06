@@ -1,3 +1,10 @@
+/* ==========================================================================
+  Variables
+  ========================================================================== */
+
+$iconSpritePath:          "/assets/glyphicons-halflings.png";
+$iconWhiteSpritePath:     "/assets/glyphicons-halflings-white.png";
+
 
 /* ==========================================================================
   Importing frameworks
@@ -46,10 +53,6 @@ textarea {
   margin-top: 14px;
   font-size: 0.9em;
   float: right;
-}
-
-.label {
-  font-size: 0.55em;
 }
 
 /* ==========================================================================
