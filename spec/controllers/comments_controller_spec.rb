@@ -6,8 +6,19 @@ describe CommentsController do
   let(:valid_session)     { { :current_user => create(:user) } }
   let(:valid_attributes)  { attributes_for(:comment) }
 
-  describe "POST create" do
+  before do
+    controller.stub(:current_user).and_return(valid_session[:current_user])
+  end
 
+  # describe "GET index" do
+  #   it "assigns comments as @comments" do
+  #     comment = Comment.create! valid_attributes
+  #     get :index, {:book_id => book.id, :text_id => text.id}, valid_session
+  #     assigns(:comments).should eq([comment])
+  #   end
+  # end
+
+  describe "POST create" do
     describe "with valid params" do
       it "creates a new Comment" do
         expect {
@@ -16,7 +27,7 @@ describe CommentsController do
       end
 
       it "assigns a newly created comment as @comment" do
-        post :create, {:book_id => book.id, :text_id => text.id,:comment => valid_attributes}, valid_session
+        post :create, {:book_id => book.id, :text_id => text.id, :comment => valid_attributes}, valid_session
         assigns(:comment).should be_a(Comment)
         assigns(:comment).should be_persisted
       end
@@ -59,5 +70,4 @@ describe CommentsController do
       response.should redirect_to(book_text_path(book.uuid, text.uuid))
     end
   end
-
 end
