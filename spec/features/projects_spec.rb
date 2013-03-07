@@ -6,17 +6,17 @@ describe 'book organizer' do
   let(:organizer) { create(:organizer) }
   let(:book) { organizer.organized_books.first }
 
-  before do
-    visit root_path
-    click_link('Entrar no site')
-    fill_in 'signin_email', :with => organizer.email
-    fill_in 'signin_password', :with => organizer.password
-    click_button 'Entrar'
-    click_link 'Meus Livros'
-    click_link book.title
-  end
-
   context "when starting a new project" do
+    before do
+      visit root_path
+      click_link('Entrar no site')
+      fill_in 'signin_email', :with => organizer.email
+      fill_in 'signin_password', :with => organizer.password
+      click_button 'Entrar'
+      click_link 'Meus Livros'
+      click_link book.title
+    end
+
     it 'sees the book info' do
       page.should have_content(book.title)
       page.should have_xpath("//div[@id='book-info']")
@@ -75,4 +75,30 @@ describe 'book organizer' do
       current_path.should eq(book_path(book.uuid))
     end
   end
+
+  # context "when working on a current project" do
+  #   let(:client) { create(:client, :user_id => organizer.id, :name => organizer.name, :email => organizer.email) }
+  #   let(:project) { create(:project, :client_id => client.id, :book_id => book.id) }
+
+  #   before do
+  #     visit root_path
+  #     click_link('Entrar no site')
+  #     fill_in 'signin_email', :with => organizer.email
+  #     fill_in 'signin_password', :with => organizer.password
+  #     click_button 'Entrar'
+  #     click_link book.title
+  #   end
+
+  #   it 'sees the book info' do
+  #     within("#book-info") do
+  #       page.should have_content(book.title)
+  #     end
+  #   end
+
+  #   it "does not see the new project link" do
+  #     page.should_not have_link('Quero fazer o Livro da Classe')
+  #   end
+
+  # end
+
 end

@@ -1,6 +1,6 @@
 module ApplicationHelper
   include AuthorizationHelper
-  
+
   def flash_message
     types = { :notice => 'success', :alert => 'error', :info => 'info' }
     flash.inject("") do |sum, message|
@@ -15,4 +15,13 @@ module ApplicationHelper
     LatexToPdf.escape_latex(text)
   end
 
+  def is_project?(book=nil)
+    book ||= @book
+
+    if book.nil?
+      return false
+    else
+      book.project.present?
+    end
+  end
 end

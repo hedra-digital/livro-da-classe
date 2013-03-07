@@ -18,6 +18,13 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit
+    @project = Project.where(:book_id => @book.id)
+  end
+
+  def update
+  end
+
   private
 
   def find_book

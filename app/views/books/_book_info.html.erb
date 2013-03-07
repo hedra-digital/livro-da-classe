@@ -17,11 +17,16 @@
               <%= menu_item 'Colaboradores', book_collaborators_path(@book.uuid) %>
             <% end %>
             <%= menu_item 'PDF', book_path(@book.uuid, :format => "pdf")  %>
+            <% if is_organizer? && is_project? %>
+              <%= menu_item 'Projeto', edit_book_project_path(@book.uuid) %>
+            <% end %>
           </ul>
         </nav>
       </div>
       <div class="span3">
-        <%= link_to 'Quero fazer o Livro da Classe', new_book_project_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
+        <% unless @book.project %>
+          <%= link_to 'Quero fazer o Livro da Classe', new_book_project_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
+        <% end %>
       </div>
     </div>
   </div>
