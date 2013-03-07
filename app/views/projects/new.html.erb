@@ -28,9 +28,9 @@
     <%= field_set_tag "Dados pessoais" do %>
       <%= f.simple_fields_for :client do |c| %>
         <%= c.input :user_id, :as => :hidden %>
-        <%= c.input :name, :placeholder => @project.client.name %>
-        <%= c.input :email, :placeholder => @project.client.email %>
-        <%= c.input :phone %>
+        <%= c.input :name %>
+        <%= c.input :email %>
+        <%= c.input :phone, :placeholder => 'Ex.: (11) 9999-9999' %>
         <%= c.input :position, :collection => ['Professor', 'Coordenador', 'Diretor', 'Outros'] %>
         <%= c.input :company %>
       <% end %>
