@@ -2,6 +2,8 @@
 
 require 'spec_helper'
 
+# TODO: can't create project as collaborator
+
 describe 'book organizer' do
   let(:organizer) { create(:organizer) }
   let(:book) { organizer.organized_books.first }
