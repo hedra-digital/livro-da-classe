@@ -6,17 +6,17 @@
       </div>
       <div class="span8">
         <h2 class="book-title"><%= @book.title %></h2>
-        <nav class="book-nav" role="navigation">
-          <ul>
-            <li><%= link_to 'Visão geral', book_path(@book.uuid) %></li>
+        <nav role="navigation">
+          <ul class="nav nav-pills">
+            <%= menu_item 'Visão geral', book_path(@book.uuid) %>
             <% if is_organizer? %>
-            <li><%= link_to 'Metadados', edit_book_path(@book.uuid) %></li>
+              <%= menu_item 'Metadados', edit_book_path(@book.uuid) %>
             <% end %>
-            <li><%= link_to 'Textos', book_texts_path(@book.uuid) %></li>
+            <%= menu_item 'Textos', book_texts_path(@book.uuid) %>
             <% if is_organizer? %>
-            <li><%= link_to 'Colaboradores', book_collaborators_path(@book.uuid) %></li>
+              <%= menu_item 'Colaboradores', book_collaborators_path(@book.uuid) %>
             <% end %>
-            <li><%= link_to 'PDF', book_path(@book.uuid, :format => "pdf")  %></li>
+            <%= menu_item 'PDF', book_path(@book.uuid, :format => "pdf")  %>
           </ul>
         </nav>
       </div>

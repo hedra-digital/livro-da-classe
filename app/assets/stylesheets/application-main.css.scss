@@ -64,26 +64,13 @@ textarea {
 #book-info {
   margin-top: 20px;
   color: #444;
-  text-shadow: 1px 1px 1px #FFF;
   .book-title {
     font-size: 2.2em;
     line-height: 1;
+    text-shadow: 1px 1px 1px #FFF;
   }
-  .book-nav {
-    margin-top: 10px;
-    ul, li {
-      margin: 0;
-      list-style: none;
-    }
-    li {
-      display: inline-block;
-      &:after {
-        content: " \007C";
-      }
-      &:last-child:after {
-        content: none;
-      }
-    }
+  .nav {
+    margin-bottom: 0;
   }
 }
 
