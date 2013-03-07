@@ -34,8 +34,8 @@
           </div>
         </div>
       </div>
+      <%= render 'books/book_info' if (controller_name == 'books' and params[:id]) || params[:book_id] %>
       <div id="main" role="main">
-        <%= render 'books/book_info' if (controller_name == 'books' and params[:id]) || params[:book_id] %>
         <div class="container">
           <%= flash_message %>
           <%= yield %>
