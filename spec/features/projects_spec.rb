@@ -19,7 +19,7 @@ describe 'book organizer' do
   context "when starting a new project" do
     it 'sees the book info' do
       page.should have_content(book.title)
-      page.should have_xpath("//nav[@class='book-nav']")
+      page.should have_xpath("//div[@id='book-info']")
     end
 
     it "clicks the new project link" do
@@ -33,7 +33,7 @@ describe 'book organizer' do
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
-      fill_in 'Cargo', :with => "MyString"
+      select('Professor', :from => 'Cargo')
       fill_in 'Instituição de ensino', :with => "MyString"
       check 'project_terms_of_service'
     end
@@ -44,7 +44,7 @@ describe 'book organizer' do
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
-      fill_in 'Cargo', :with => "MyString"
+      select('Professor', :from => 'Cargo')
       fill_in 'Instituição de ensino', :with => "MyString"
       check 'project_terms_of_service'
       click_button 'Criar Projeto'
@@ -56,7 +56,7 @@ describe 'book organizer' do
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
-      fill_in 'Cargo', :with => "MyString"
+      select('Professor', :from => 'Cargo')
       fill_in 'Instituição de ensino', :with => "MyString"
       check 'project_terms_of_service'
       expect { click_button 'Criar Projeto' }.to change { Project.all.size }.by(1)
@@ -68,7 +68,7 @@ describe 'book organizer' do
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
-      fill_in 'Cargo', :with => "MyString"
+      select('Professor', :from => 'Cargo')
       fill_in 'Instituição de ensino', :with => "MyString"
       check 'project_terms_of_service'
       click_button 'Criar Projeto'

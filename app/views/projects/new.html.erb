@@ -31,7 +31,7 @@
         <%= c.input :name, :placeholder => @project.client.name %>
         <%= c.input :email, :placeholder => @project.client.email %>
         <%= c.input :phone %>
-        <%= c.input :position %>
+        <%= c.input :position, :collection => ['Professor', 'Coordenador', 'Diretor', 'Outros'] %>
         <%= c.input :company %>
       <% end %>
     <% end %>

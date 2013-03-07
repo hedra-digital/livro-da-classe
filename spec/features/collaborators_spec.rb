@@ -19,7 +19,7 @@ describe 'book organizer' do
   context 'when inviting a collaborator' do
     it 'sees the book info' do
       page.should have_content(book.title)
-      page.should have_xpath("//nav[@class='book-nav']")
+      page.should have_xpath("//div[@id='book-info']")
     end
 
     it 'clicks the collaborators link' do
