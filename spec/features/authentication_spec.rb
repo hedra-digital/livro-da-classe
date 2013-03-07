@@ -52,7 +52,6 @@ describe 'unregistered user' do
     context 'when signing up through Twitter' do
       before do
         visit root_path
-        click_link('signup')
       end
 
       it 'clicks the Twitter link' do
@@ -70,7 +69,6 @@ describe 'unregistered user' do
     context 'when signing up through Facebook' do
       before do
         visit root_path
-        click_link('signup')
       end
 
       it 'clicks the Facebook link' do
@@ -88,7 +86,6 @@ describe 'unregistered user' do
     context 'when signing up through Google' do
       before do
         visit root_path
-        click_link('signup')
       end
 
       it 'clicks the Facebook link' do
