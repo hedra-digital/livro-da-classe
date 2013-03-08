@@ -83,9 +83,10 @@ textarea {
   padding-bottom: 50px;
   .container {
     background: white;
-    border: 2px solid #F2F2F2;
     border-radius: 5px;
+    border: 1px solid #d0d5cb;
     padding: 15px;
+    @include box-shadow(0 0 0 4px rgba(208,213,203,0.3));
   }
 }
 
