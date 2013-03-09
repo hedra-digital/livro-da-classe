@@ -2,7 +2,6 @@ require "spec_helper"
 
 describe TextsController do
   describe "routing" do
-
     it "routes to #index" do
       get("/books/1/texts").should route_to("texts#index", :book_id => "1")
     end
@@ -30,6 +29,5 @@ describe TextsController do
     it "routes to #destroy" do
       delete("/books/1/texts/1").should route_to("texts#destroy", :id => "1", :book_id => "1")
     end
-
   end
 end

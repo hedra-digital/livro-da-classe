@@ -2,16 +2,15 @@ require 'spec_helper'
 
 describe UsersController do
   let(:user)              { create(:user) }
-  let(:valid_session)     { { :current_user => user } }
   let(:valid_attributes)  { attributes_for(:user) }
 
   before do
-    controller.stub(:current_user).and_return(valid_session[:current_user])
+    sign_in user
   end
 
   describe "GET show" do
     it "assigns the current user as @user" do
-      get :show, {:id => user.to_param}, valid_session
+      get :show, :id => user.to_param
       assigns(:user).should eq(user)
     end
   end
@@ -60,7 +59,7 @@ describe UsersController do
 
   describe "GET edit" do
     it "assigns the current user as @user" do
-      get :show, {:id => user.to_param}, valid_session
+      get :show, :id => user.to_param
       assigns(:user).should eq(user)
     end
   end
@@ -69,16 +68,16 @@ describe UsersController do
     context "with valid params" do
       it "updates the current user" do
         User.any_instance.should_receive(:update_attributes).with(valid_attributes.with_indifferent_access)
-        put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+        put :update, :id => user.to_param, :user => valid_attributes
       end
 
       it "assigns the updated user as @user" do
-        put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+        put :update, :id => user.to_param, :user => valid_attributes
         assigns(:user).should eq(user)
       end
 
       it "redirects to the current user's profile" do
-        put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+        put :update, :id => user.to_param, :user => valid_attributes
         response.should redirect_to(user)
       end
     end
@@ -86,13 +85,13 @@ describe UsersController do
     context "with invalid params" do
       it "assigns the book as @book" do
         User.any_instance.stub(:save).and_return(false)
-        put :update, {:id => user.to_param, :user => {  }}, valid_session
+        put :update, :id => user.to_param, :user => {  }
         assigns(:user).should eq(user)
       end
 
       it "re-renders the 'edit' template" do
         User.any_instance.stub(:save).and_return(false)
-        put :update, {:id => user.to_param, :user => {  }}, valid_session
+        put :update, :id => user.to_param, :user => {  }
         response.should render_template("edit")
       end
     end
@@ -100,12 +99,12 @@ describe UsersController do
     context "when referred by UserController#email" do
       it "should update the current_user email address" do
         User.any_instance.should_receive(:update_attributes).with(valid_attributes.with_indifferent_access)
-        put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
+        put :update, :id => user.to_param, :user => valid_attributes
       end
 
       it "should render the email view if there's any errors" do
         User.any_instance.stub(:save).and_return(false)
-        put :update, {:id => user.to_param, :user => {  }, :email_gate => true}, valid_session
+        put :update, :id => user.to_param, :user => {  }, :email_gate => true
         response.should render_template("email")
       end
     end
@@ -114,7 +113,7 @@ describe UsersController do
 
   describe "GET email" do
      it "assigns the current user as @user" do
-      get :show, {:id => user.to_param}, valid_session
+      get :show, :id => user.to_param
       assigns(:user).should eq(user)
     end
   end
