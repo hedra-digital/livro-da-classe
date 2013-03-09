@@ -14,15 +14,17 @@
   <div class="span10">
     <div>
       <%= link_to 'Editar texto', edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
-      <%= link_to 'Apagar texto', book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger',:method => "delete", :confirm => "Are you sure?"  %>
-      <%= link_to 'Voltar ao Livro', book_path(@book), :class =>'btn'%>
+      <%= link_to 'Apagar texto', book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger', :method => "delete", :confirm => "Are you sure?"  %>
+      <%= link_to 'Voltar ao Livro', book_path(@book), :class =>'btn' %>
     </div>
   </div>
 </div>
+
 <hr>
- <%= render "comments/index" %>
- 
+
+<%= render "comments/index" %>
+
 <style type="text/css">
-  .span5 { border-left: 1px dotted #ccc; padding-left: 20px;}
+  .span5 { border-left: 1px dotted #ccc; padding-left: 20px; }
   .span5 div { margin-bottom: 10px;}
 </style>
