@@ -13,8 +13,8 @@
 
 class Project < ActiveRecord::Base
 
-  MANUFACTURE_IN_WEEKS = 3
-  MANUFACTURE_TIME     = MANUFACTURE_IN_WEEKS.send(:week)
+  MANUFACTURE_IN_UNITS = 25
+  MANUFACTURE_TIME     = MANUFACTURE_IN_UNITS.send(:days)
 
   # Relationships
   belongs_to                :book
