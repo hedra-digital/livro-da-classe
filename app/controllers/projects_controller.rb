@@ -19,10 +19,16 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.where(:book_id => @book.id)
+    @project = Project.where(:book_id => @book.id).first
   end
 
   def update
+    @project = Project.where(:book_id => @book.id).first
+    if @project.update_attributes(params[:project])
+      redirect_to book_path(@book.uuid), :notice => "Projeto atualizado com sucesso"
+    else
+      render :edit
+    end
   end
 
   private
