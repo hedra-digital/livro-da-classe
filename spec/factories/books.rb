@@ -9,7 +9,7 @@ FactoryGirl.define do
     organizers "MyText"
     directors "MyText"
     coordinators "MyText"
-    organizer { build_stubbed(:user) }
+    association :organizer, :factory => :user
 
     factory :book_with_texts do
       ignore do
