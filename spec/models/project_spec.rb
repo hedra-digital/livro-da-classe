@@ -48,7 +48,7 @@ describe Project do
     end
 
     it "should accept dates before interval set by PROJECT::MANUFACTURE_TIME" do
-      project = build(:project, :release_date => (Date.tomorrow + Project::MANUFACTURE_TIME))
+      project = build(:project, :release_date => (Date.tomorrow + Project::MANUFACTURE_TIME + 10.days))
       project.should be_valid
       project.should_not have(1).error_on(:release_date)
     end
