@@ -18,7 +18,7 @@
             <% end %>
             <%= menu_item 'PDF', book_path(@book.uuid, :format => "pdf")  %>
             <% if is_organizer? && is_project? %>
-              <%= menu_item 'Projeto', edit_book_project_path(@book.uuid) %>
+              <%= menu_item 'Projeto', edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>
           </ul>
         </nav>
