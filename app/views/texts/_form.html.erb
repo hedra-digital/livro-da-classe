@@ -2,32 +2,31 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title, :placeholder => "Titulo do texto", :label => false%>
-    <%= f.input :content, :label => false%>
+    <%= f.input :title, :placeholder => "Titulo do texto", :label => false %>
+    <%= f.input :content, :label => false %>
   </div>
 
   <div class="form-actions">
-      <%= f.button :submit, "Salvar texto" %>
-      <%= link_to  "Voltar ao livro", book_path(@book.uuid), :class => 'btn btn-primary' %>
+    <%= f.button :submit, "Salvar texto", :class => 'btn-primary' %>
+    <%= link_to  "Voltar ao livro", book_path(@book.uuid), :class => 'btn' %>
   </div>
 <% end %>
 
-
 <script type="text/javascript" >
-   $(document).ready(function() {
-      // use markupit
-      $("#text_content").markItUp(mySettings);
+  $(document).ready(function() {
+    // use markupit
+    $("#text_content").markItUp(mySettings);
 
-      // save when required
-      $('textarea').bindWithDelay("keyup", function(){
-        var form = $(document.forms).first();
-        console.log("Saving");
-        $.ajax( {
-        type: "POST",
-        url: form.attr( 'action' ),
-        data: form.serialize()
-      });
-  
-      }, 1000)
-   });
+    // save when required
+    $('textarea').bindWithDelay("keyup", function(){
+      var form = $(document.forms).first();
+      console.log("Saving");
+      $.ajax( {
+      type: "POST",
+      url: form.attr( 'action' ),
+      data: form.serialize()
+    });
+
+    }, 1000)
+  });
 </script>
