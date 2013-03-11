@@ -11,15 +11,15 @@
   <table class="table table-striped">
     <tr>
       <th>Título</th>
+      <th></th>
       <th>Textos</th>
-      <th>Status</th>
       <th>Papel</th>
     </tr>
     <% @books.each do |book| %>
       <tr>
         <td><%= link_to book.title, book_path(book.uuid) %></td>
-        <td><%= raw book.texts.size %></td>
         <td><%= book_status_label(book) %></td>
+        <td><%= raw book.texts.size %></td>
         <td><%= book_role_label(book, current_user) %></td>
       </tr>
     <% end %>
