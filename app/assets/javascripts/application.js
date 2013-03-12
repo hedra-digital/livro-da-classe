@@ -21,3 +21,10 @@
 //= require reorder
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR
+//= require_self
+
+
+$('[data-behaviour~=datepicker]').datepicker({
+  language: 'pt-BR',
+  format:   'dd/mm/yyyy'
+});
