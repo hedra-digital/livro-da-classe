@@ -24,7 +24,7 @@
         </nav>
       </div>
       <div class="span3">
-        <% unless @book.project %>
+        <% unless @book.project || current_page?(:controller => 'projects', :action => 'new') %>
           <%= link_to 'Quero fazer o Livro da Classe', new_book_project_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
         <% end %>
       </div>
