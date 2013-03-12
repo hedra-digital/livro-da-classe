@@ -32,8 +32,9 @@ module Livrodaclasse
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = :pt_br
-    config.i18n.locale = :pt_br
+    config.i18n.available_locales = [:en, :"pt-BR"]
+    config.i18n.default_locale = :"pt-BR"
+    config.i18n.locale = :"pt-BR"
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
