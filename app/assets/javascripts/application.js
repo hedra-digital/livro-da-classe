@@ -24,7 +24,10 @@
 //= require_self
 
 
-$('[data-behaviour~=datepicker]').datepicker({
-  language: 'pt-BR',
-  format:   'dd/mm/yyyy'
+// Bootstrap Datepicker
+$(document).ready(function() {
+  $('[data-behaviour~=datepicker]').datepicker({
+    language: 'pt-BR',
+    format:   'dd/mm/yyyy'
+  });
 });
