@@ -25,12 +25,12 @@ describe 'book organizer' do
     end
 
     it "clicks the new project link" do
-      click_link 'Quero fazer o Livro da Classe'
+      click_link 'Publicar o Livro da Classe'
       current_path.should eq(new_book_project_path(book.uuid))
     end
 
     it "fills out form" do
-      click_link 'Quero fazer o Livro da Classe'
+      click_link 'Publicar o Livro da Classe'
       fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
@@ -41,7 +41,7 @@ describe 'book organizer' do
     end
 
     it "clicks submit button" do
-      click_link 'Quero fazer o Livro da Classe'
+      click_link 'Publicar o Livro da Classe'
       fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
@@ -53,7 +53,7 @@ describe 'book organizer' do
     end
 
     it "creates new project" do
-      click_link 'Quero fazer o Livro da Classe'
+      click_link 'Publicar o Livro da Classe'
       fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
@@ -65,7 +65,7 @@ describe 'book organizer' do
     end
 
     it "gets redirected to book page" do
-      click_link 'Quero fazer o Livro da Classe'
+      click_link 'Publicar o Livro da Classe'
       fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
@@ -98,7 +98,7 @@ describe 'book organizer' do
   #   end
 
   #   it "does not see the new project link" do
-  #     page.should_not have_link('Quero fazer o Livro da Classe')
+  #     page.should_not have_link('Publicar o Livro da Classe')
   #   end
 
   # end
