@@ -26,7 +26,7 @@ describe BooksController do
       organizer.email           = nil
       organizer.asked_for_email = nil
       get :index
-      response.status.should be(302)
+      expect(response.status).to eq(302)
     end
 
     it "shows the index page if current_user has no email but asked_for_email=true" do

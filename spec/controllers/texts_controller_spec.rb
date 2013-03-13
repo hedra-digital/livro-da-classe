@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe TextsController do
-  let(:user)              { create(:user) }
-
-  let(:book)              { create(:book_with_texts) }
+  let!(:user)             { create(:user) }
+  let!(:book)             { create(:book_with_texts) }
   let(:text)              { book.texts.first }
   let(:valid_attributes)  { attributes_for(:text) }
 
@@ -53,7 +52,6 @@ describe TextsController do
   describe "POST create" do
     context "with valid params" do
       it "creates a new Text" do
-        book = FactoryGirl.create(:book_with_texts)
         expect{ post :create, :book_id => book.id, :text => valid_attributes }.to change{ Text.all.size }.by(1)
       end
 
