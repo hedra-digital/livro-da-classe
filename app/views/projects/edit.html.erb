@@ -2,11 +2,10 @@
 
 <%= simple_form_for(@project, :url => { :action => :update }) do |f| %>
   <div class="form-inputs">
-    <%= field_set_tag "Data de lançamento" do %>
-      <%= f.input :release_date, :as => :date_picker %>
-    <% end %>
+    <%= f.input :release_date, :as => :date_picker %>
+  </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, :class => 'btn btn-primary' %>
-    </div>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
 <% end %>
