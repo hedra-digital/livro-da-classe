@@ -24,7 +24,8 @@
         </nav>
       </div>
       <div class="span3 book-info-aux">
-        <% unless @book.project || current_page?(:controller => 'projects', :action => 'new') %>
+        <% if current_page?(new_book_project_path(@book)) %>
+        <% elsif @book.project.nil? %>
           <%= link_to 'Publicar o Livro da Classe', new_book_project_path(@book.uuid), :class => 'btn btn-new' %>
         <% else %>
           Tempo restante até a entrega<br>

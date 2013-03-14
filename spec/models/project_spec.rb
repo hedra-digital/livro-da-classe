@@ -70,12 +70,12 @@ describe Project do
     it "should calculate the number of dates between today and the finish_date" do
       release_date = (Date.tomorrow + Project::MANUFACTURE_TIME + 10.days)
       project = build(:project, :release_date => (Date.tomorrow + Project::MANUFACTURE_TIME + 10.days))
-      project.remaining_days.should  == (project.release_date - Date.today ).to_i
+      project.remaining_days.should  == (project.finish_date - Date.today).to_i
     end
 
-    it "should never be negative" do
+    it "should be nil when invalid" do
       project = build(:project, :release_date => (Date.yesterday))
-      project.remaining_days.should >= 0
+      project.remaining_days.should be_nil
     end
   end
 end

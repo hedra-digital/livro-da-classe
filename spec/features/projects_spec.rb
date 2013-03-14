@@ -7,6 +7,7 @@ require 'spec_helper'
 describe 'book organizer' do
   let(:organizer) { create(:organizer) }
   let(:book) { organizer.organized_books.first }
+  let(:project_attributes) { attributes_for(:project) }
 
   context "when starting a new project" do
     before do
@@ -31,7 +32,7 @@ describe 'book organizer' do
 
     it "fills out form" do
       click_link 'Publicar o Livro da Classe'
-      fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
+      fill_in 'Data de lançamento', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
@@ -42,7 +43,7 @@ describe 'book organizer' do
 
     it "clicks submit button" do
       click_link 'Publicar o Livro da Classe'
-      fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
+      fill_in 'Data de lançamento', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
@@ -54,7 +55,7 @@ describe 'book organizer' do
 
     it "creates new project" do
       click_link 'Publicar o Livro da Classe'
-      fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
+      fill_in 'Data de lançamento', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
@@ -66,7 +67,7 @@ describe 'book organizer' do
 
     it "gets redirected to book page" do
       click_link 'Publicar o Livro da Classe'
-      fill_in 'Data de lançamento', :with => "2013-06-05 19:30:44"
+      fill_in 'Data de lançamento', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
