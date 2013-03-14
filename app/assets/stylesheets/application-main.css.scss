@@ -2,10 +2,10 @@
   Variables
   ========================================================================== */
 
-$bodyBackground:          ghostwhite;
+$bodyBackground:                  ghostwhite;
 
-$iconSpritePath:          asset_path("glyphicons-halflings.png", image);
-$iconWhiteSpritePath:     asset_path("glyphicons-halflings-white.png", image);
+$iconSpritePath:                  asset_path("glyphicons-halflings.png", image);
+$iconWhiteSpritePath:             asset_path("glyphicons-halflings-white.png", image);
 
 
 /* ==========================================================================
@@ -74,6 +74,9 @@ textarea {
   }
   .nav {
     margin-bottom: 0;
+  }
+  .book-info-aux {
+    text-align: right;
   }
 }
 

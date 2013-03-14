@@ -12,8 +12,8 @@ $baseFontSize:                    20px;
 $baseFontFamily:                  $sansFontFamily;
 $baseLineHeight:                  $baseFontSize * 1.4;
 
-$iconSpritePath:          "/assets/glyphicons-halflings.png";
-$iconWhiteSpritePath:     "/assets/glyphicons-halflings-white.png";
+$iconSpritePath:                  asset_path("glyphicons-halflings.png", image);
+$iconWhiteSpritePath:             asset_path("glyphicons-halflings-white.png", image);
 
 
 /* ==========================================================================

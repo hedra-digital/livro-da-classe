@@ -4,7 +4,7 @@ module BooksHelper
   def book_status_label(book)
     tags = ""
     if book.project.present?
-      tags << content_tag(:span, "Edição em andamento", :class => 'label')
+      tags << remaining_label(book.project)
     else
       tags << link_to('Publicar', new_book_project_path(book), :class => 'btn btn-mini')
     end
