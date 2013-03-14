@@ -1,15 +1,5 @@
 <h1>Seu Projeto</h1>
 
-<% if @project.has_valid_release_date? %>
-  <div class="alert">
-    Seu projeto deve ser entregue em <strong><%= @project.remaining_days %></strong> dias
-  </div>
-<% else %>
-  <div class="alert alert-error">
-    A data de entrega do seu projeto é inválida.
-  </div>
-<% end %>
-
 <%= simple_form_for(@project, :url => { :action => :update }) do |f| %>
   <div class="form-inputs">
     <%= field_set_tag "Data de lançamento" do %>
