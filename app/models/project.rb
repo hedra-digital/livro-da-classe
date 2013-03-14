@@ -45,7 +45,7 @@ class Project < ActiveRecord::Base
 
   def remaining_days
     return nil unless self.release_date
-    days = (self.release_date - Date.today).to_i
+    days = (self.finish_date - Date.today).to_i
     days >= 0 ? days : 0
   end
 end
