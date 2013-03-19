@@ -28,7 +28,6 @@
         <% elsif @book.project.nil? %>
           <%= link_to 'Publicar o Livro da Classe', new_book_project_path(@book.uuid), :class => 'btn btn-new' %>
         <% else %>
-          Tempo restante até a entrega<br>
           <%= remaining_label(@book.project) %>
         <% end %>
       </div>
