@@ -2,11 +2,11 @@
 
 <%= simple_form_for(@project, :url => { :action => :update }) do |f| %>
   <div class="form-inputs">
-    <%= f.input :release_date, :as => :date_picker %>
     <div>
       Data de finalização<br>
       <span style="font-weight: bold;"><%=l @project.finish_date %></span>
     </div>
+    <%= f.input :release_date, :as => :date_picker %>
   </div>
 
   <div class="form-actions">
