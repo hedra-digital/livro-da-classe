@@ -1,0 +1,71 @@
+
+\makeatletter
+
+% HEAD STYLES
+\makeheadstyles{default}{%
+% part
+\renewcommand*{\partnamefont}{\huge}
+\renewcommand*{\partnumfont}{\huge}
+\renewcommand*{\parttitlefont}{\huge}
+\renewcommand*{\midpartskip}{\par\vskip 2\onelineskip}%
+% chapter
+\setlength{\beforechapskip}{7mm}%
+\setlength{\afterchapskip}{36mm\@plus2mm\@minus1mm}%
+\renewcommand*{\chapnamefont}{\centering\LARGE}%
+\renewcommand*{\chapnumfont}{\centering\LARGE}%
+\renewcommand*{\chaptitlefont}{\centering\LARGE}%
+% section
+\setbeforesecskip{1.2\onelineskip\@plus4mm\@minus2mm}%
+\setaftersecskip{.6\onelineskip\@plus2mm\@minus1mm}%
+\setsecheadstyle{\centering\Large\scshape\MakeTextLowercase}%
+% subsection
+\setbeforesubsecskip{.5\onelineskip}%
+\setaftersubsecskip{.8\onelineskip}%
+\setsubsecheadstyle{\flushleft\large\scshape\MakeTextLowercase}%
+% paragraph
+\setbeforeparaskip{1.0\onelineskip}%
+\setafterparaskip{1em}%
+\setparaheadstyle{\centering\large\itshape}%
+}
+
+\makepagestyle{default}
+\makeheadposition{default}{flushright}{flushleft}{}{}
+\makepsmarks{default}{%
+  \nouppercaseheads
+  \createmark{chapter}{both}{nonumber}{}{}
+%  \createmark{section}{right}{nonumber}{}{}
+  \let\sectionmark\@gobble
+  \createplainmark{toc}{both}{\contentsname}
+  \createplainmark{lof}{both}{\listfigurename}
+  \createplainmark{lot}{both}{\listtablename}
+  \createplainmark{bib}{both}{\bibname}
+  \createplainmark{index}{both}{\indexname}
+  \createplainmark{glossary}{both}{\glossaryname}}
+ 
+
+% HEADING STYLES
+\makeevenhead{default}{\footnotesize\thepage}{}{\scshape\MakeLowercase{\leftmark}}
+\makeoddhead{default}{\scshape\MakeLowercase{\rightmark}}{}{\footnotesize\thepage}
+\makeheadrule{default}{\textwidth}{\normalrulethickness}
+\headsep=1.2em
+
+%\makeevenfoot{default}{}{\footnotesize\thepage}{}{}
+%\makeoddfoot{default}{}{\footnotesize\thepage}{}{}
+
+\makeevenfoot{plain}{}{\footnotesize\thepage}{}{}
+\makeoddfoot{plain}{}{\footnotesize\thepage}{}{}
+
+
+% FOOTNOTE
+\footmarkstyle{\normalfont{\raisebox{3pt}{\tiny#1}}}
+\def\@makefnmark#1{{\tiny \raisebox{3pt}{\@thefnmark}}}
+\skip\footins=8mm\@plus1mm\@minus4mm
+%\show\@makefnmark
+
+\makeatother%
+
+\copypagestyle{part}{empty}
+\copypagestyle{chapter}{empty}
+\pagestyle{default}
+\headstyles{default}
+
