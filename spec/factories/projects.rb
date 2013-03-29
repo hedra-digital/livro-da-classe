@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :project do
     book
     client
-    release_date 3.months.since
+    release_date 3.months.since.to_date
   end
 end
