@@ -10,6 +10,7 @@ FactoryGirl.define do
     directors "MyText"
     coordinators "MyText"
     association :organizer, :factory => :user
+    template
 
     factory :book_with_texts do
       ignore do
