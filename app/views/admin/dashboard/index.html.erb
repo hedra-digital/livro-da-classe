@@ -1,0 +1,16 @@
+<h1 style="margin: 0 0 40px 0;">Lista de projetos</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Título</th>
+    <th></th>
+    <th>Textos</th>
+  </tr>
+  <% @projects.each do |project| %>
+    <tr>
+      <td><%= project.book.title %></td>
+      <td><%= book_status_label(project.book) %></td>
+      <td><%= raw project.book.texts.size %></td>
+    </tr>
+  <% end %>
+</table>
