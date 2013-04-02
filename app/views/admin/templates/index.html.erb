@@ -1,0 +1,14 @@
+<h1 style="margin: 0 0 40px 0;">Lista de templates</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Nome</th>
+  </tr>
+  <% if @templates %>
+    <% @templates.each do |template| %>
+      <tr>
+        <td><%= template.name %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

@@ -7,7 +7,7 @@ Livrodaclasse::Application.routes.draw do
   get 'apphome', :to => 'books#index', :as => :app_home
   get 'auth/failure', :to => redirect('/')
 
-  root :to => "pages#home"
+  root :to => 'pages#home'
 
   resources :users do
     collection do
@@ -33,6 +33,8 @@ Livrodaclasse::Application.routes.draw do
   end
 
   namespace :admin do
-    root to: 'dashboard#index'
+    root :to => 'dashboard#index'
+
+    resources :templates, :only => :index
   end
 end
