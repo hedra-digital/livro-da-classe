@@ -7,12 +7,14 @@
     <th></th>
     <th>Textos</th>
   </tr>
-  <% @projects.each do |project| %>
-    <tr>
-      <td><%= project.book.title %></td>
-      <td><%= project.book.template.name %></td>
-      <td><%= book_status_label(project.book) %></td>
-      <td><%= raw project.book.texts.size %></td>
-    </tr>
+  <% if @project %>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.book.title %></td>
+        <td><%= project.book.template.name %></td>
+        <td><%= book_status_label(project.book) %></td>
+        <td><%= raw project.book.texts.size %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
