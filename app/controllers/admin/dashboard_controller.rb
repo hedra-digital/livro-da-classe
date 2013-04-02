@@ -1,5 +1,5 @@
 class Admin::DashboardController < Admin::ApplicationController
   def index
-    @projects = Project.includes([:client, :book]).all
+    @projects = Project.includes([:book, :client]).all
   end
 end
