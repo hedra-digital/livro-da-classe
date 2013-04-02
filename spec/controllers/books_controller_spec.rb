@@ -4,7 +4,7 @@ describe BooksController do
   let(:organizer)         { create(:organizer) }
   let(:books)             { organizer.organized_books }
   let(:book)              { books.first }
-  let(:valid_attributes)  { attributes_for(:book, :organizer_id => organizer.id) }
+  let(:valid_attributes)  { attributes_for(:book, :organizer_id => organizer.id, :template_id => book.template_id) }
 
   before do
     sign_in organizer
