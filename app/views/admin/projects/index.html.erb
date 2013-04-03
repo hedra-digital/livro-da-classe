@@ -1,0 +1,20 @@
+<h1 style="margin: 0 0 40px 0;">Lista de projetos</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Título</th>
+    <th>Template</th>
+    <th></th>
+    <th>Textos</th>
+  </tr>
+  <% if @projects %>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.book.title, admin_project_path(project) %></td>
+        <td><%= project.book.template.name %></td>
+        <td><%= book_status_label(project.book) %></td>
+        <td><%= raw project.book.texts.size %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
