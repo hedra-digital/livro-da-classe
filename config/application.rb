@@ -9,6 +9,10 @@ if defined?(Bundler)
   Bundler.require(:default, :assets, Rails.env)
 end
 
+CONFIG = YAML.load_file(File.expand_path('../config.yml', __FILE__))
+CONFIG.merge! CONFIG.fetch(Rails.env, {})
+CONFIG.symbolize_keys!
+
 module Livrodaclasse
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
