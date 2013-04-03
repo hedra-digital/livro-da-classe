@@ -1,2 +1,11 @@
 admin_username: "frodo"
 admin_password: "shire"
+
+development:
+  latex_template_path: ~/Documents/work/livrodaclasse/latex_templates/
+
+text:
+  latex_template_path: ~/Documents/work/livrodaclasse/latex_templates/
+
+production:
+  latex_template_path: ~/apps/livrodaclasse/latex_templates/

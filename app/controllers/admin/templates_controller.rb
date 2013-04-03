@@ -1,5 +1,5 @@
 class Admin::TemplatesController < Admin::ApplicationController
   def index
-    @templates = Template.all
+    @templates = LATEX_TEMPLATES
   end
 end
