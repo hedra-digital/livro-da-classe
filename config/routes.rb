@@ -35,7 +35,7 @@ Livrodaclasse::Application.routes.draw do
   namespace :admin do
     root :to => 'dashboard#index'
 
-    resources :projects, :only => [:index, :show]
+    resources :projects, :only => [:index, :show, :edit, :update]
     resources :templates, :only => :index
   end
 end

@@ -1,0 +1,13 @@
+<h1>Editar projeto</h1>
+
+<%= simple_form_for(@project, :url => { :action => :update }) do |f| %>
+  <div class="form-inputs">
+    <%= f.simple_fields_for :book do |b| %>
+      <%= b.input :template, :collection => LATEX_TEMPLATES %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

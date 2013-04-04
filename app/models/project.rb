@@ -27,9 +27,9 @@ class Project < ActiveRecord::Base
   validates_with ProjectValidator
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :release_date, :client_attributes, :client, :terms_of_service
+  attr_accessible           :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes
 
-  accepts_nested_attributes_for :client
+  accepts_nested_attributes_for :client, :book
 
   def has_valid_release_date?
     self.release_date.present? && (self.release_date > (Date.today + Project::MANUFACTURE_TIME))
