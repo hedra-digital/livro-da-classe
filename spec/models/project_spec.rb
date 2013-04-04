@@ -28,7 +28,7 @@ describe Project do
 
   context "when saving" do
     it "should belong to a book" do
-      project = create(:project, :book => build_stubbed(:book))
+      project = create(:project)
       project.book.should_not be_nil
       project.book.should be_an_instance_of(Book)
     end

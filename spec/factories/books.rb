@@ -9,6 +9,7 @@ FactoryGirl.define do
     organizers "MyText"
     directors "MyText"
     coordinators "MyText"
+    template "/Users/marcelo/code/latex/template_1"
     association :organizer, :factory => :user
 
     factory :book_with_texts do
