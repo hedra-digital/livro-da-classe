@@ -26,7 +26,6 @@ class Book < ActiveRecord::Base
   has_many                  :texts
   has_one                   :project
   has_many                  :invitations
-  belongs_to                :template
 
   # Validations
   validates                 :organizer, :presence => true
@@ -34,7 +33,7 @@ class Book < ActiveRecord::Base
   validates                 :template,  :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template_id
+  attr_accessible           :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template
 
   attr_accessor             :finished_at
 
