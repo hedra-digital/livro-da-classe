@@ -49,7 +49,7 @@ class Book < ActiveRecord::Base
       "\\chapter{#{text.title}}\n#{text_to_latex(text.content)}\n" unless text.content.to_s.size == 0
     end
 
-    texts.map(&builder).join
+    texts.order("position ASC").map(&builder).join
   end
 
   private
