@@ -1,13 +1,11 @@
-<% template = "template_2" %>
-
-\newcommand\titulo{Titulo}
-\newcommand\autor{Autor}
-\newcommand\organizador{Organizador}
+\newcommand\titulo{<%= @book.title %>}
+\newcommand\autor{<%= @book.organizer.name %>}
+\newcommand\organizador{<%= @book.organizer.organizers %>}
 \newcommand\tradutor{Tradutor}
 \newcommand\cidade{São Paulo}
 \newcommand\ano{2013}
 \newcommand\direitos{Hedra}
 \newcommand\introducao{\chapter{Introdução}\lipsum[1-4]}
-\newcommand\texto{\chapter{Texto 1}\lipsum[10-17]\chapter{Texto 2}\lipsum[42-53]}
+\newcommand\texto{<%= @book.full_text_latex %>}
 
-\input{../../../templates/<%= template %>/LIVRO}
+\input{<%= @book.template %>/LIVRO}
