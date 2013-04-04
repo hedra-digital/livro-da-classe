@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130402124125) do
 
-  create_table "admins", :force => true do |t|
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "books", :force => true do |t|
     t.datetime "published_at"
     t.string   "title"
@@ -28,10 +21,10 @@ ActiveRecord::Schema.define(:version => 20130402124125) do
     t.text     "organizers"
     t.text     "directors"
     t.text     "coordinators"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "organizer_id"
-    t.integer  "template_id",  :default => 0, :null => false
+    t.string   "template"
   end
 
   create_table "books_users", :id => false, :force => true do |t|
@@ -78,12 +71,6 @@ ActiveRecord::Schema.define(:version => 20130402124125) do
 
   add_index "projects", ["book_id"], :name => "index_projects_on_book_id"
   add_index "projects", ["client_id"], :name => "index_projects_on_client_id"
-
-  create_table "templates", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "texts", :force => true do |t|
     t.integer  "book_id"
