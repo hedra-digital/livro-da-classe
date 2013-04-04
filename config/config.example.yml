@@ -4,7 +4,7 @@ admin_password: "shire"
 development:
   latex_template_path: ~/Documents/work/livrodaclasse/latex_templates/
 
-text:
+test:
   latex_template_path: ~/Documents/work/livrodaclasse/latex_templates/
 
 production:
