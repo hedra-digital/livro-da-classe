@@ -2,10 +2,10 @@ admin_username: "frodo"
 admin_password: "shire"
 
 development:
-  latex_template_path: ~/Documents/work/livrodaclasse/latex_templates/
+  latex_template_path: templates/
 
 test:
-  latex_template_path: ~/Documents/work/livrodaclasse/latex_templates/
+  latex_template_path: templates/
 
 production:
-  latex_template_path: ~/apps/livrodaclasse/latex_templates/
+  latex_template_path: templates/
