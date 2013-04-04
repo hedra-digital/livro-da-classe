@@ -1,6 +1,6 @@
 \newcommand\titulo{<%= @book.title %>}
 \newcommand\autor{<%= @book.organizer.name %>}
-\newcommand\organizador{<%= @book.organizer.organizers %>}
+\newcommand\organizador{<%= @book.organizers %>}
 \newcommand\tradutor{Tradutor}
 \newcommand\cidade{São Paulo}
 \newcommand\ano{2013}
