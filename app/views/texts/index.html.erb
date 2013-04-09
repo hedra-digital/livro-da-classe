@@ -13,16 +13,16 @@
     <p class="blank">Nenhum texto encontrado. Que tal <%= link_to 'criar um novo texto?', new_book_text_path(@book.uuid) %>
   </div>
 <% else %>
-  <%  if is_organizer? %>
-  <ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" style="margin-top: 20px;">
+  <% if is_organizer? %>
+    <ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" style="margin-top: 20px; list-style: none;">
   <% else %>
-  <ul style="margin-top: 20px;">
+    <ul style="margin-top: 20px;">
   <% end %>
-    <% @texts.each do |text| %>
-      <%= content_tag_for :li, text do %>
-      <%= raw('<span class="handle">[drag]</span>&nbsp;') if is_organizer? %>
+  <% @texts.each do |text| %>
+    <%= content_tag_for :li, text do %>
+      <%= raw('<i class="icon-move handle"></i>&nbsp;') if is_organizer? %>
       <strong><%= link_to(text.title, book_text_path(@book.uuid, text.uuid)) %></strong>&nbsp;&nbsp;
-      <% end %>
     <% end %>
+  <% end %>
   </ul>
 <% end %>
