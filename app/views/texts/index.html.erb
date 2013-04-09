@@ -8,11 +8,21 @@
   </div>
 </div>
 
-<ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" style="margin-top: 20px;">
-  <% @book.texts.order(:position).each do |text| %>
-    <%= content_tag_for :li, text do %>
-    <span class="handle">[drag]</span>&nbsp;
-    <strong><%= link_to(text.title, book_text_path(@book.uuid, text.uuid)) %></strong>&nbsp;&nbsp;
-    <% end %>
+<% if @texts.blank? %>
+  <div class="row">
+    <p class="blank">Nenhum texto encontrado. Que tal <%= link_to 'criar um novo texto?', new_book_text_path(@book.uuid) %>
+  </div>
+<% else %>
+  <%  if is_organizer? %>
+  <ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" style="margin-top: 20px;">
+  <% else %>
+  <ul style="margin-top: 20px;">
   <% end %>
-</ul>
+    <% @texts.each do |text| %>
+      <%= content_tag_for :li, text do %>
+      <%= raw('<span class="handle">[drag]</span>&nbsp;') if is_organizer? %>
+      <strong><%= link_to(text.title, book_text_path(@book.uuid, text.uuid)) %></strong>&nbsp;&nbsp;
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

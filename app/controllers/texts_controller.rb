@@ -4,7 +4,7 @@ class TextsController < ApplicationController
   before_filter :secure_book, :only => [:update, :create]
 
   def index
-    @texts = @book.texts.all
+    @texts = is_organizer? ? @book.texts.order(:position) : @book.texts.where(:user_id => current_user.id)
   end
 
   def show
@@ -25,6 +25,7 @@ class TextsController < ApplicationController
     @text       = Text.new(params[:text])
     @text.book  = @book
     @text.title = "Novo texto"
+    @text.user  = current_user
     if @text.save
       redirect_to edit_book_text_path(@book.uuid, @text.uuid)
     else

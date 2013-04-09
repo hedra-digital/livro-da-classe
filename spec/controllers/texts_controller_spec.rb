@@ -19,7 +19,7 @@ describe TextsController do
 
     it "assigns all texts as @texts" do
       get :index, :book_id => book.id
-      assigns(:texts).should eq(book.texts)
+      assigns(:texts).should eq(book.texts.order(:position))
     end
   end
 
