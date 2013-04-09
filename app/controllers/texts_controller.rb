@@ -4,7 +4,7 @@ class TextsController < ApplicationController
   before_filter :secure_book, :only => [:update, :create]
 
   def index
-    @texts = is_organizer? ? @book.texts.order(:position) : @book.texts.where(:user_id => current_user.id)
+    @texts = is_organizer?(@book, current_user) ? @book.texts.order(:position) : @book.texts.where(:user_id => current_user.id)
   end
 
   def show

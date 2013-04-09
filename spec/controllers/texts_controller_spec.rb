@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe TextsController do
-  let!(:user)             { create(:user) }
   let!(:book)             { create(:book_with_texts) }
+  let!(:user)             { book.organizer }
   let(:text)              { book.texts.first }
   let(:valid_attributes)  { attributes_for(:text) }
 
@@ -125,6 +125,7 @@ describe TextsController do
   describe "DELETE destroy" do
     it "destroys the requested text" do
       valid_attributes[:book_id] = book.id
+      valid_attributes[:user_id] = create(:user).id
       text = Text.create! valid_attributes
       expect {
         delete :destroy, :id => text.to_param, :book_id => book.id

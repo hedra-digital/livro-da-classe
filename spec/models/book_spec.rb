@@ -92,9 +92,8 @@ describe Book do
 
     it 'converts all book texts into a single latex source' do
       1.upto(3).each do |i|
-        book.texts.create(title: i, content: i)
+        book.texts.create(title: i, content: i, user_id: create(:user).id)
       end
-
       book.full_text_latex.should == "\\chapter{1}\n1\n\n\n\\chapter{2}\n2\n\n\n\\chapter{3}\n3\n\n\n"
     end
   end

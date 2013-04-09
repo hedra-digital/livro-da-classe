@@ -128,7 +128,6 @@ describe 'book organizer' do
       end
 
       it 'emails collaborator' do
-        # binding.pry
         fill_in 'user_email', :with => collaborator.email
         click_button 'Enviar convite'
         page.should have_content('Email enviado')
