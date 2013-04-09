@@ -19,14 +19,16 @@ class Text < ActiveRecord::Base
 
   # Relationships
   belongs_to                :book
+  belongs_to                :user
   has_many                  :comments
 
   # Validations
   validates :book_id,       :presence => true
   validates :title,         :presence => true
+  validates :user_id,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :content, :title, :uuid, :content
+  attr_accessible           :book_id, :content, :title, :uuid, :content 
 
   attr_accessor             :finished_at
 

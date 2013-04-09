@@ -15,11 +15,12 @@
 require 'spec_helper'
 
 describe Text do
-  it { should respond_to(:book_id) }
-  it { should respond_to(:content) }
-  it { should respond_to(:title) }
-  it { should respond_to(:uuid) }
-  it { should respond_to(:content) }
+  it { should respond_to(:book_id)  }
+  it { should respond_to(:content)  }
+  it { should respond_to(:title)    }
+  it { should respond_to(:uuid)     }
+  it { should respond_to(:content)  }
+  it { should respond_to(:user_id)  }
 
   context 'when validating' do
     it 'is invalid without a book_id' do
@@ -32,6 +33,12 @@ describe Text do
       text = build(:text, :title => nil)
       text.should_not be_valid
       text.should have(1).error_on(:title)
+    end
+
+    it 'is invalid without an user_id' do
+      text = build(:text, :user => nil)
+      text.should_not be_valid
+      text.should have(1).error_on(:user_id)
     end
   end
 
