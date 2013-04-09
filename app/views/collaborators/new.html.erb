@@ -1,4 +1,4 @@
-<h1>Novo colaborador</h1>
+<h1><%=t :invite_new_collaborator %></h1>
 
 <%= simple_form_for([@book, @collaborator], :url => book_collaborators_path) do |f| %>
   <div class="form-inputs">
@@ -6,6 +6,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Enviar convite" %>
+    <%= f.button :submit, t(:send_invitation_submit) %>
   </div>
 <% end %>

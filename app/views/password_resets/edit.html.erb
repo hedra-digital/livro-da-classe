@@ -1,4 +1,4 @@
-<h1>Alteração de senha</h1>
+<h1><%=t :edit_password %></h1>
 
 <%= simple_form_for @user, { :url => password_reset_path(params[:id]) } do |f| %>
   <div class="form-inputs">
@@ -7,6 +7,6 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, 'Alterar senha' %>
+    <%= f.button :submit, t(:save_password) %>
   </div>
 <% end %>

@@ -4,12 +4,12 @@
   </div>
 
   <div class="span3">
-    <%= link_to 'Incluir novo', new_book_collaborator_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
+    <%= link_to t(:invite_new_collaborator), new_book_collaborator_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
   </div>
 </div>
 
 <% if @collaborators.present? %>
-  <h3>Colaboradores</h3>
+  <h3><%=t :current_collaborators %></h3>
 
   <table class="table">
     <tr>
@@ -24,7 +24,7 @@
 <% end %>
 
 <% if @invited_users.present? %>
-  <h3>Convites enviados</h3>
+  <h3><%=t :outstanding_invitations %></h3>
 
   <table class="table">
     <tr>

@@ -1,4 +1,4 @@
-<h2>Comentários</h2>
+<h2><%=t :comments %></h2>
 
 <%= render :partial => "/comments/show", :collection => @text.comments, :as => :comment %>
 
@@ -9,8 +9,10 @@
 
 <style type="text/css">
   textarea {
-  width: 370px;height: 60px;
+    width: 370px;
+    height: 60px;
   }
+
   .form-horizontal .controls {
     margin-top: 10px;
     margin-left: 0px;
