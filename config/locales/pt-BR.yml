@@ -10,6 +10,13 @@ pt-BR:
   email_ask_body: 'Para continuar usando o Livro da Classe, por favor informe seu email.'
   cancel: 'Cancelar'
   initial_text_title: 'Título do texto'
+  book_nav:
+    overview: 'Visão geral'
+    book_data: 'Ficha técnica'
+    texts: 'Textos'
+    collaborators: 'Colaboradores'
+    pdf: 'PDF'
+    project: 'Projeto'
   helpers:
     submit:
       create: "Incluir novo %{model}"

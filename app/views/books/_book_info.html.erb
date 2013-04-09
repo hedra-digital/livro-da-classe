@@ -8,17 +8,17 @@
         <h2 class="book-title"><%= @book.title %></h2>
         <nav role="navigation">
           <ul class="nav nav-pills">
-            <%= menu_item 'Visão geral', book_path(@book.uuid) %>
+            <%= menu_item t(:overview, :scope => :book_nav), book_path(@book.uuid) %>
             <% if is_organizer? %>
-              <%= menu_item 'Metadados', edit_book_path(@book.uuid) %>
+              <%= menu_item t(:book_data, :scope => :book_nav), edit_book_path(@book.uuid) %>
             <% end %>
-            <%= menu_item 'Textos', book_texts_path(@book.uuid) %>
+            <%= menu_item t(:texts, :scope => :book_nav), book_texts_path(@book.uuid) %>
             <% if is_organizer? %>
-              <%= menu_item 'Colaboradores', book_collaborators_path(@book.uuid) %>
+              <%= menu_item t(:collaborators, :scope => :book_nav), book_collaborators_path(@book.uuid) %>
             <% end %>
-            <%= menu_item 'PDF', book_path(@book.uuid, :format => "pdf")  %>
+            <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
             <% if is_organizer? && is_project? %>
-              <%= menu_item 'Projeto', edit_book_project_path(@book.uuid, @book.project.id) %>
+              <%= menu_item t(:project, :scope => :book_nav), edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>
           </ul>
         </nav>
