@@ -24,7 +24,7 @@ class TextsController < ApplicationController
   def create
     @text       = Text.new(params[:text])
     @text.book  = @book
-    @text.title = "Novo texto"
+    @text.title = I18n.translate(:initial_text_title)
     @text.user  = current_user
     if @text.save
       redirect_to edit_book_text_path(@book.uuid, @text.uuid)

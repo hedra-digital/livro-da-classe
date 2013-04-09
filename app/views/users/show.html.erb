@@ -1,10 +1,8 @@
-<div class="container">
-  <h1><%= @user.name %></h1>
+<h1><%= @user.name %></h1>
 
-  <dl>
-    <dt>E-mail</dt>
-    <dd><%= @user.email %></dd>
-  </dl>
+<dl>
+  <dt>E-mail</dt>
+  <dd><%= @user.email %></dd>
+</dl>
 
-  <%= link_to 'Editar perfil', edit_user_path(@user) %>
-</div>
+<%= link_to t(:edit_account), edit_user_path(@user) %>

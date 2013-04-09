@@ -1,4 +1,20 @@
 pt-BR:
+  my_books: 'Meus livros'
+  account: 'Perfil'
+  sign_out: 'Sair'
+  sign_in: 'Entrar no site'
+  sign_up: 'Cadastrar-se'
+  edit_account: 'Editar perfil'
+  get_started: 'Crie sua conta'
+  email_ask_heading: 'Ainda não temos seu e-mail!'
+  email_ask_body: 'Para continuar usando o Livro da Classe, por favor informe seu email.'
+  cancel: 'Cancelar'
+  initial_text_title: 'Título do texto'
+  helpers:
+    submit:
+      create: "Incluir novo %{model}"
+      submit: "Enviar %{model}"
+      update: "Atualizar %{model}"
   date:
     abbr_day_names:
     - Dom
@@ -250,7 +266,6 @@ pt-BR:
       messages:
         taken: "já está em uso"
         record_invalid: "Erro de validação: %{errors}"
-
   active_admin:
     dashboard: "Painel Administrativo"
     dashboard_welcome:

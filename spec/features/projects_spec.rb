@@ -16,7 +16,7 @@ describe 'book organizer' do
       fill_in 'signin_email', :with => organizer.email
       fill_in 'signin_password', :with => organizer.password
       click_button 'Entrar'
-      click_link 'Meus Livros'
+      click_link 'Meus livros'
       click_link book.title
     end
 

@@ -12,7 +12,7 @@ describe 'book organizer' do
     fill_in 'signin_email', :with => organizer.email
     fill_in 'signin_password', :with => organizer.password
     click_button 'Entrar'
-    click_link 'Meus Livros'
+    click_link 'Meus livros'
     click_link book.title
   end
 
@@ -201,7 +201,7 @@ describe "user getting an invitation to a book" do
       fill_in 'signin_email', :with => organizer.email
       fill_in 'signin_password', :with => organizer.password
       click_button 'Entrar'
-      click_link 'Meus Livros'
+      click_link 'Meus livros'
       click_link book.title
       click_link 'Colaboradores'
       click_link 'Incluir novo'
@@ -261,7 +261,7 @@ describe "user getting an invitation to a book" do
       fill_in "Senha", :with => new_collaborator.password
       fill_in "Confirmação da senha", :with => new_collaborator.password
       click_button "Atualizar Usuário"
-      click_link 'Meus Livros'
+      click_link 'Meus livros'
       page.should have_content(book.title)
     end
 
@@ -272,7 +272,7 @@ describe "user getting an invitation to a book" do
       fill_in "Senha", :with => new_collaborator.password
       fill_in "Confirmação da senha", :with => new_collaborator.password
       click_button "Atualizar Usuário"
-      click_link 'Meus Livros'
+      click_link 'Meus livros'
       book.organizer.should eq(organizer)
     end
   end
@@ -289,7 +289,7 @@ describe "user getting an invitation to a book" do
       fill_in 'signin_email', :with => organizer.email
       fill_in 'signin_password', :with => organizer.password
       click_button 'Entrar'
-      click_link 'Meus Livros'
+      click_link 'Meus livros'
       click_link book.title
       click_link 'Colaboradores'
       click_link 'Incluir novo'
@@ -385,7 +385,7 @@ describe "user getting an invitation to a book" do
 
     it "sees book listed under my books" do
       visit edit_book_collaborator_path(book.uuid, collaborator.password_reset_token)
-      click_link 'Meus Livros'
+      click_link 'Meus livros'
       page.should have_content(book.title)
     end
   end
