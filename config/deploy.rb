@@ -16,14 +16,15 @@ ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "livrodaclasse_rsa")]
 set :use_sudo, false
 set :keep_releases, 3
 
-after "deploy:finalize_update", "deploy:symlink_db"
+after "deploy:finalize_update", "deploy:symlink_config"
 after "deploy:restart", "deploy:cleanup"
 after "deploy", "deploy:migrate"
 
 namespace :deploy do
-  desc "Symlinks the database.yml"
-  task :symlink_db, :roles => :app do
+  desc "Symlinks config files"
+  task :symlink_config, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{deploy_to}/shared/config/config.yml #{release_path}/config/config.yml"
   end
 
   task :restart do
