@@ -7,7 +7,7 @@
 \RequirePackage{floatpag}
 \RequirePackage{lipsum}
 
-\RequirePackage[minionint,mathlf]{MinionPro}
+\RequirePackage{Times}
 \RequirePackage[protrusion=true,expansion]{microtype}
 \RequirePackage{ucs}
 \RequirePackage[utf8x]{inputenc}
