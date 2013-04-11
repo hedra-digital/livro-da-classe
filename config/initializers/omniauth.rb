@@ -6,7 +6,7 @@ if Rails.env.production?
     provider :facebook, "462817203782895", "6ad0fab174bcd0d298195957fe68a48c"
     provider :google_oauth2, "1087006017149.apps.googleusercontent.com", "QrdEkoAt1AURclhddV7a8GP5"
   end
-elsif Rails.env.demo?
+elsif Rails.env.sales?
   Rails.application.config.middleware.use OmniAuth::Builder do
     provider :twitter, "g2pgUJetYRoDTePZ4TcyQ", "LkRyPuYWRT2g0bq543E3uKbjoDrcUkQCZImZfLHqJg"
     provider :facebook, "462817203782895", "6ad0fab174bcd0d298195957fe68a48c"
