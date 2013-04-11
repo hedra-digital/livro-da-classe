@@ -1,7 +1,7 @@
 require 'bundler/capistrano'
 require 'capistrano/ext/multistage'
 
-set :stages, ["staging", "production"]
+set :stages, ["staging", "sales", "production"]
 set :default_stage, "staging"
 
 set :application, "Livro da Classe"
