@@ -12,7 +12,7 @@ elsif Rails.env.sales?
     provider :facebook, "462817203782895", "6ad0fab174bcd0d298195957fe68a48c"
     provider :google_oauth2, "1087006017149-t8ad3ej20ib46kqs33638avmsu7kr3fo.apps.googleusercontent.com", "Z1C7hirHxUe25zgLq5oGshsC"
   end
-elsif Rails.env.staging? || Rails.env.test?
+elsif Rails.env.staging? || Rails.env.test? || Rails.env.development?
   Rails.application.config.middleware.use OmniAuth::Builder do
     provider :twitter, "HFwmE8CdAqLrgMjQROw8g", "FjHG7WEOEGF9zS15UrK1DS2bKFuVVcLsPzVJasqpU"
     provider :facebook, "462817203782895", "6ad0fab174bcd0d298195957fe68a48c"
