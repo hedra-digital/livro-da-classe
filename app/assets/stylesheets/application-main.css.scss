@@ -122,13 +122,13 @@ footer {
    ========================================================================== */
 
 /*
-* App home
+* Blank pages
 */
 
-.nobook {
-  margin-top: 70px;
+.blank {
   text-align: center;
-  color: #666;
+  font-size: 18px;
+  margin: 40px 0;
 }
 
 /*
@@ -139,14 +139,4 @@ footer {
   height: 300px;
   overflow: auto;
   background: whitesmoke;
-}
-
-/*
-* Text pages
-*/
-
-.blank {
-  text-align: center;
-  font-size: 18px;
-  padding: 10px;
 }

@@ -1,18 +1,14 @@
-<div class="row">
-  <div class="span9">
-    <h1>Textos</h1>
-  </div>
-
-  <div class="span3">
-    <%= link_to 'Novo Texto', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
-  </div>
-</div>
-
-<% if @texts.blank? %>
+<% if @texts.present? %>
   <div class="row">
-    <p class="blank">Nenhum texto encontrado. Que tal <%= link_to 'criar um novo texto?', new_book_text_path(@book.uuid) %>
+    <div class="span9">
+      <h1>Textos</h1>
+    </div>
+
+    <div class="span3">
+      <%= link_to 'Novo Texto', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
+    </div>
   </div>
-<% else %>
+
   <% if is_organizer? %>
     <ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" style="margin-top: 20px; list-style: none;">
   <% else %>
@@ -25,4 +21,6 @@
     <% end %>
   <% end %>
   </ul>
+<% else %>
+  <p class="blank">Nenhum texto encontrado. Que tal <%= link_to 'criar um novo texto?', new_book_text_path(@book.uuid) %></p>
 <% end %>

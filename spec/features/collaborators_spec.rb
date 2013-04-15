@@ -29,7 +29,7 @@ describe 'book organizer' do
 
     it 'clicks the new collaborator button' do
       click_link 'Colaboradores'
-      click_link 'Convidar novo'
+      click_link 'convidar'
       current_path.should eq(new_book_collaborator_path(book.uuid))
     end
 
@@ -38,7 +38,7 @@ describe 'book organizer' do
 
       before do
         click_link 'Colaboradores'
-        click_link 'Convidar novo'
+        click_link 'convidar'
         fill_in 'user_email', :with => email
       end
 
@@ -78,7 +78,7 @@ describe 'book organizer' do
 
       before do
         click_link 'Colaboradores'
-        click_link 'Convidar novo'
+        click_link 'convidar'
         fill_in 'user_email', :with => email
       end
 
@@ -115,7 +115,7 @@ describe 'book organizer' do
 
       before do
         click_link 'Colaboradores'
-        click_link 'Convidar novo'
+        click_link 'convidar'
       end
 
       it 'fills in the email' do
@@ -154,7 +154,7 @@ describe 'book organizer' do
 
       before do
         click_link 'Colaboradores'
-        click_link 'Convidar novo'
+        click_link 'convidar'
       end
 
       it 'fills in the email' do
@@ -203,7 +203,7 @@ describe "user getting an invitation to a book" do
       click_link 'Meus livros'
       click_link book.title
       click_link 'Colaboradores'
-      click_link 'Convidar novo'
+      click_link 'convidar'
       fill_in 'user_email', :with => email
       click_button 'Enviar convite'
     end
@@ -291,7 +291,7 @@ describe "user getting an invitation to a book" do
       click_link 'Meus livros'
       click_link book.title
       click_link 'Colaboradores'
-      click_link 'Convidar novo'
+      click_link 'convidar'
       fill_in 'user_email', :with => email
       click_button 'Enviar convite'
       collaborator = User.where(:email => email).first

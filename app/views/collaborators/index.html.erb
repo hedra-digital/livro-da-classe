@@ -1,41 +1,45 @@
-<div class="row">
-  <div class="span9">
-    <h1>Colaboradores</h1>
+<% if @collaborators.present? || @invited_users.present? %>
+  <div class="row">
+    <div class="span9">
+      <h1>Colaboradores</h1>
+    </div>
+
+    <div class="span3">
+      <%= link_to t(:invite_new_collaborator), new_book_collaborator_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
+    </div>
   </div>
 
-  <div class="span3">
-    <%= link_to t(:invite_new_collaborator), new_book_collaborator_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
-  </div>
-</div>
+  <% if @collaborators.present? %>
+    <h3><%=t :current_collaborators %></h3>
 
-<% if @collaborators.present? %>
-  <h3><%=t :current_collaborators %></h3>
-
-  <table class="table">
-    <tr>
-      <th>Email</th>
-    </tr>
-    <% @collaborators.each do |collaborator| %>
+    <table class="table">
       <tr>
-        <td><%= collaborator.email rescue 'N/A' %></td>
+        <th>Email</th>
       </tr>
-    <% end %>
-  </table>
-<% end %>
+      <% @collaborators.each do |collaborator| %>
+        <tr>
+          <td><%= collaborator.email rescue 'N/A' %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
 
-<% if @invited_users.present? %>
-  <h3><%=t :outstanding_invitations %></h3>
+  <% if @invited_users.present? %>
+    <h3><%=t :outstanding_invitations %></h3>
 
-  <table class="table">
-    <tr>
-      <th>Email</th>
-      <th></th>
-    </tr>
-    <% @invited_users.each do |invited_user| %>
+    <table class="table">
       <tr>
-        <td><%= invited_user.email rescue 'N/A' %></td>
-        <td><%= link_to 'Reenviar convite', resend_invitation_book_collaborator_path(@book.uuid, invited_user.password_reset_token) %></td>
+        <th>Email</th>
+        <th></th>
       </tr>
-    <% end %>
-  </table>
+      <% @invited_users.each do |invited_user| %>
+        <tr>
+          <td><%= invited_user.email rescue 'N/A' %></td>
+          <td><%= link_to 'Reenviar convite', resend_invitation_book_collaborator_path(@book.uuid, invited_user.password_reset_token) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+<% else %>
+  <p class="blank">Seu livro ainda não tem colaboradores. Que tal <%= link_to 'convidar o primeiro', new_book_collaborator_path(@book.uuid) %>?</p>
 <% end %>
