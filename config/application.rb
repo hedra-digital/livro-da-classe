@@ -73,12 +73,9 @@ module Livrodaclasse
       :user_name => "f6f798721d08716694db9c31db0b4eda",
       :password => "cd0fb8968c3ba76173f5a58b925aa2bb"
     }
-    config.action_mailer.default_url_options = {
-      :host => "173.255.203.143"
-    }
 
     config.generators do |g|
-      g.test_framework :rspec, :fixtures => true
+      g.test_framework :rspec, :fixture => true, :views => false
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
   end
