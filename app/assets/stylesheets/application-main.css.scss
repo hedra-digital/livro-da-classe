@@ -140,3 +140,21 @@ footer {
   overflow: auto;
   background: whitesmoke;
 }
+
+/*
+* Text index
+*/
+
+.text-list-collaborator {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.text-list-organizer {
+  @extend .text-list-collaborator;
+  list-style: none;
+}
+
+.text-list-title {
+  font-style: italic;
+}

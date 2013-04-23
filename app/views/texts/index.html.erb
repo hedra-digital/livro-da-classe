@@ -10,14 +10,14 @@
   </div>
 
   <% if is_organizer? %>
-    <ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" style="margin-top: 20px; list-style: none;">
+    <ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" class="text-list-organizer">
   <% else %>
-    <ul style="margin-top: 20px;">
+    <ul  class="text-list-collaborator">
   <% end %>
   <% @texts.each do |text| %>
     <%= content_tag_for :li, text do %>
       <%= raw('<i class="icon-move handle"></i>&nbsp;') if is_organizer? %>
-      <strong><%= link_to(text.title, book_text_path(@book.uuid, text.uuid)) %></strong>&nbsp;&nbsp;
+      <strong class="text-list-title"><%= link_to(text.title, book_text_path(@book.uuid, text.uuid)) %></strong>&nbsp;-&nbsp;<span class="text-list-author"><%= text.user.name %></span>
     <% end %>
   <% end %>
   </ul>
