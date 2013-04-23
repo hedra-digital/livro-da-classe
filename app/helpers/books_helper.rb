@@ -2,6 +2,7 @@
 
 module BooksHelper
   def book_status_label(book)
+    return unless is_organizer?(book, current_user)
     tags = ""
     if book.project.present?
       tags << remaining_label(book.project)
