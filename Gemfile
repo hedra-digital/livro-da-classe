@@ -48,3 +48,7 @@ group :development do
   gem 'meta_request'
   gem 'annotate', ">=2.5.0"
 end
+
+group :production do
+  gem 'newrelic_rpm'
+end
