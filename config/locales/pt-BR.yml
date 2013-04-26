@@ -283,6 +283,7 @@ pt-BR:
       messages:
         taken: "já está em uso"
         record_invalid: "Erro de validação: %{errors}"
+        invalid_release_date: "Data de lançamento precisa ser pelo menos daqui a %{manufacture_time} dias"
   active_admin:
     dashboard: "Painel Administrativo"
     dashboard_welcome:
