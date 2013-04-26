@@ -15,6 +15,7 @@ gem 'kramdown'
 gem 'rails-latex'
 gem 'bootstrap-datepicker-rails'
 gem 'gravatar_image_tag'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -47,8 +48,4 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'annotate', ">=2.5.0"
-end
-
-group :production do
-  gem 'newrelic_rpm'
 end
