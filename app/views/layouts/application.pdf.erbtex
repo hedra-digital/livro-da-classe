@@ -1,11 +1,34 @@
-\newcommand\titulo{<%= @book.title %>}
-\newcommand\autor{<%= @book.organizer.name %>}
-\newcommand\organizador{<%= @book.organizers %>}
-\newcommand\tradutor{Tradutor}
-\newcommand\cidade{São Paulo}
-\newcommand\ano{2013}
-\newcommand\direitos{Hedra}
-\newcommand\introducao{}
-\newcommand\texto{<%= @book.full_text_latex %>}
+\documentclass{../../../template}
 
-\input{<%= @book.template %>/LIVRO}
+<% @latex_config={:command => 'xelatex',:parse_twice => true} %>
+
+\let\subsection\section
+
+\begin{document}
+
+<%= render 'rosto' %>
+<%= render 'creditos' %>
+
+\cleardoublepage
+
+\setcounter{tocdepth}{4}     % amplitude da presença das partes no índice
+\setcounter{secnumdepth}{-2} % amplitude da numeração das partes
+
+\tableofcontents*
+
+\cleardoublepage
+
+\pagestyle{plain}
+\copypagestyle{chapter}{plain}
+
+\openany
+
+<%= yield %>
+
+\openright
+
+<%= render 'colofao' %>
+
+\renewcommand{\hypertarget}{}
+
+\end{document}
