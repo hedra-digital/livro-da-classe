@@ -39,10 +39,11 @@
 
 <h2>Formulário de adesão</h2>
 
-<%= simple_form_for(@project, :url => { :action => :create }) do |f| %>
+<%= simple_form_for(@project, :url => { :action => :create }, :html => { :multipart => true }) do |f| %>
   <div class="form-inputs">
     <%= field_set_tag "Dados do projeto" do %>
-      <%= f.input :release_date, :as => :date_picker, :hint => "Quando você deseja lançar o seu livro?" %>
+      <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>
+      <%= f.file_field :school_logo %>
     <% end %>
 
     <%= field_set_tag "Dados pessoais" do %>

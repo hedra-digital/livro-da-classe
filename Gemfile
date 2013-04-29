@@ -16,6 +16,7 @@ gem 'rails-latex'
 gem 'bootstrap-datepicker-rails'
 gem 'gravatar_image_tag'
 gem 'newrelic_rpm'
+gem 'paperclip', '~> 3.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

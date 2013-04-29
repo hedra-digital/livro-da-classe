@@ -17,19 +17,24 @@ class Project < ActiveRecord::Base
   MANUFACTURE_TIME     = MANUFACTURE_IN_UNITS.send(:days)
 
   # Relationships
-  belongs_to                :book
-  belongs_to                :client
+  belongs_to                    :book
+  belongs_to                    :client
 
   # Validations
-  validates                 :book_id, :presence => true
-  validates                 :terms_of_service, :acceptance => true
-
-  validates_with ProjectValidator
+  validates                     :book_id, :presence => true
+  validates                     :terms_of_service, :acceptance => true
+  validates_with                ProjectValidator
+  validates_attachment          :school_logo,
+                                :content_type => { :content_type => "image/jpg" },
+                                :size => { :in => 0..100.kilobytes }
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes
+  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo
 
   accepts_nested_attributes_for :client, :book
+
+  has_attached_file             :school_logo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+
 
   def has_valid_release_date?
     self.release_date.present? && (self.release_date > (Date.today + Project::MANUFACTURE_TIME))
