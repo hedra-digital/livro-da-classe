@@ -17,7 +17,7 @@
     </tr>
     <% @books.each do |book| %>
       <tr>
-        <td><%= link_to book.title, book_path(book.uuid) %>, por <%= book.organizer.name.presence || book.organizer.email %></td>
+        <td><%= link_to book.title, book_path(book.uuid) %>, (<%= book.organizer.name.presence || book.organizer.email %>, org.)</td>
         <td><%= book_status_label(book) %></td>
         <td><%= raw book.texts.size %></td>
         <td><%= book_role_label(book, current_user) %></td>

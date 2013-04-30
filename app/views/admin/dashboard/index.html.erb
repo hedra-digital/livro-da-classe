@@ -11,7 +11,7 @@
   <% if @projects %>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= link_to project.book.title, admin_project_path(project) %></td>
+        <td><%= link_to project.book.title, admin_project_path(project) %>, (<%= project.book.organizer.name.presence || project.book.organizer.email %>, org.)</td>
         <td><%= link_to 'Editar', edit_admin_project_path(project) %></td>
         <td><%= project.book.template %></td>
         <td><%= admin_book_status(project.book) %></td>
