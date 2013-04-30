@@ -17,15 +17,17 @@
 //= require markitup/sets/markdown/set
 //= require bootstrap-alert
 //= require bootstrap-dropdown
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR
+//= require bootstrap-fileupload
 //= require jquery.tipsy
 //= require bindWithDelay
 //= require reorder
-//= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR
 //= require_self
 
 
 // Bootstrap Datepicker
+
 $(document).ready(function() {
   $('[data-behaviour~=datepicker]').datepicker({
     language: 'pt-BR',
@@ -34,9 +36,15 @@ $(document).ready(function() {
 });
 
 // Tooltips
+
 $(window).load(function() {
   $('.has-tipsy').tipsy({
     gravity: 's',
     fade: true
   });
+});
+
+// File Upload
+$(document).ready(function() {
+  $('.fileupload').fileupload();
 });
