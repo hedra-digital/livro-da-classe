@@ -32,7 +32,7 @@ describe 'book organizer' do
 
     it "fills out form" do
       click_link 'Publicar'
-      fill_in 'Data de lançamento', :with => project_attributes[:release_date]
+      fill_in 'project_release_date', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
@@ -43,7 +43,7 @@ describe 'book organizer' do
 
     it "clicks submit button" do
       click_link 'Publicar'
-      fill_in 'Data de lançamento', :with => project_attributes[:release_date]
+      fill_in 'project_release_date', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
@@ -55,7 +55,7 @@ describe 'book organizer' do
 
     it "creates new project" do
       click_link 'Publicar'
-      fill_in 'Data de lançamento', :with => project_attributes[:release_date]
+      fill_in 'project_release_date', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
@@ -67,7 +67,7 @@ describe 'book organizer' do
 
     it "gets redirected to book page" do
       click_link 'Publicar'
-      fill_in 'Data de lançamento', :with => project_attributes[:release_date]
+      fill_in 'project_release_date', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
       fill_in 'Telefone', :with => "MyString"
