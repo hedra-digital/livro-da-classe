@@ -1,8 +1,11 @@
- # encoding: UTF-8
+# encoding: UTF-8
 
 class ApplicationController < ActionController::Base
   include AuthorizationHelper
+
   protect_from_forgery
+
+  http_basic_authenticate_with(:name => CONFIG[:admin_username], :password => CONFIG[:admin_password]) if ['staging', 'sales'].include?(Rails.env)
 
   helper_method :current_user
 
