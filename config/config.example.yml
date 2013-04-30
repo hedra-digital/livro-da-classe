@@ -1,11 +1,15 @@
-admin_username: "frodo"
-admin_password: "shire"
+restricted_area:
+  username: "frodo"
+  password: "shire"
 
-development:
+development: &defaults
   latex_template_path: templates/
 
 test:
-  latex_template_path: templates/
+  <<: *defaults
+
+sales:
+  <<: *defaults
 
 production:
-  latex_template_path: templates/
+  <<: *defaults
