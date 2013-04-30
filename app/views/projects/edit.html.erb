@@ -1,4 +1,4 @@
-<h1>Seu Projeto</h1>
+<h1>Projeto</h1>
 
 <%= simple_form_for(@project, :url => { :action => :update }) do |f| %>
   <div class="form-inputs">
@@ -7,6 +7,7 @@
       <span style="font-weight: bold;"><%=l @project.finish_date %></span>
     </div>
     <%= f.input :release_date, :as => :date_picker %>
+    <%= f.file_field :school_logo %>
   </div>
 
   <div class="form-actions">

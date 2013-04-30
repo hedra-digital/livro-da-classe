@@ -12,7 +12,7 @@ module ProjectHelper
     when days <= 7
       'label label-important'
     end
-    klass << ' has-tipsy'
+    klass << ' has-tipsy project-remaining-days'
     content_tag :span, pluralize(project.remaining_days, 'dia', 'dias'), :class => klass, :title => 'Tempo restante até a data de entrega do projeto'
   end
 end
