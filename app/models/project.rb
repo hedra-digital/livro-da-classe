@@ -24,16 +24,13 @@ class Project < ActiveRecord::Base
   validates                     :book_id, :presence => true
   validates                     :terms_of_service, :acceptance => true
   validates_with                ProjectValidator
-  validates_attachment          :school_logo,
-                                :content_type => { :content_type => "image/jpg" },
-                                :size => { :in => 0..100.kilobytes }
 
   # Specify fields that can be accessible through mass assignment
   attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo
 
   accepts_nested_attributes_for :client, :book
 
-  has_attached_file             :school_logo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file             :school_logo
 
 
   def has_valid_release_date?

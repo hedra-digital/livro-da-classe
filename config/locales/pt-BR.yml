@@ -28,6 +28,7 @@ pt-BR:
     collaborators: 'Colaboradores'
     pdf: 'PDF'
     project: 'Projeto'
+    publish: 'Publicar'
   helpers:
     submit:
       create: "Incluir novo %{model}"
