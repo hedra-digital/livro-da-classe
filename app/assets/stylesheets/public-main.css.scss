@@ -3,9 +3,11 @@
 header {
   height: 110px;
   background: #e91d27 url('/assets/topbar.png') bottom repeat-x;
+
   .container {
     position: relative;
   }
+
   h1 {
     margin: 0;
     padding: 0;
@@ -13,6 +15,7 @@ header {
     line-height: 110px;
     color: white;
   }
+
   h1, p {
     a:link,
     a:visited,
@@ -22,13 +25,16 @@ header {
       text-decoration: none;
     }
   }
+
   .logo-he {
     position: absolute;
     top: 28px;
     right: 0;
   }
+
   #userid {
     color: white;
+
     a:link,
     a:visited,
     a:hover,
@@ -36,6 +42,7 @@ header {
       color: inherit;
       text-decoration: underline;
     }
+
     #user-nav {
       li:before {
         content: "\2022  ";
@@ -44,17 +51,21 @@ header {
         content: none;
       }
     }
+
     #social-signin {
       margin-top: 10px;
+
       p {
         margin: 0;
         line-height: 1;
         font-size: 12px;
         font-family: $altFontFamily;
       }
+
       li {
         height: 32px;
       }
+
       a {
         display: inline-block;
         width: 32px;
@@ -71,9 +82,11 @@ header {
 #facebook-oauth {
   background-position: 0 0;
 }
+
 #twitter-oauth {
   background-position: -32px 0;
 }
+
 #google-oauth {
   background-position: -64px 0;
 }
@@ -83,6 +96,7 @@ header {
     margin: 0;
     display: inline-block;
   }
+
   li {
     list-style: none;
     display: inline-block;
@@ -98,9 +112,11 @@ header {
 
 #intro {
   margin-top: 0;
+
   #description {
     padding-top: 30px;
     text-align: center;
+
     .high {
       margin: 0;
       padding: 0;
@@ -108,20 +124,24 @@ header {
       line-height: 1.4em;
       text-align: center;
       word-spacing: 0.1em;
+
       em {
         font-style: normal;
         font-size: 1.6em;
         color: #e91d27;
       }
     }
+
     .start-now {
       margin: 53px 0 0 0;
       text-align: center;
     }
   }
+
   #illustration {
     padding-top: 20px;
     text-align: center;
+
     img {
       width: 80%;
       height: auto;
@@ -131,6 +151,7 @@ header {
 
 #benefits {
   margin-top: 40px;
+
   h2 {
     margin: 0;
     padding: 0;
@@ -138,6 +159,7 @@ header {
     font-size: 1.4em;
     font-weight: bold;
   }
+
   p {
     margin: 0;
   }
