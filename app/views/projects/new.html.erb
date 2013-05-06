@@ -43,7 +43,17 @@
   <div class="form-inputs">
     <%= field_set_tag "Dados do projeto" do %>
       <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>
-      <%= f.file_field :school_logo %>
+      <label for="project_school_logo"><%= t(:school_logo_label) %></label>
+      <div class="fileupload fileupload-new" data-provides="fileupload">
+        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
+        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+        <div>
+          <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
+          <%= f.input_field :school_logo, :as => :file %>
+          </span>
+          <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+        </div>
+      </div>
     <% end %>
 
     <%= field_set_tag "Dados pessoais" do %>

@@ -1,13 +1,23 @@
 <h1>Projeto</h1>
 
-<%= simple_form_for(@project, :url => { :action => :update }) do |f| %>
+<%= simple_form_for(@project, :url => { :action => :update }, :html => { :multipart => true }) do |f| %>
   <div class="form-inputs">
-    <div>
+    <div style="margin-bottom: 20px;">
       Data de finalização<br>
       <span style="font-weight: bold;"><%=l @project.finish_date %></span>
     </div>
-    <%= f.input :release_date, :as => :date_picker %>
-    <%= f.file_field :school_logo %>
+    <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>
+    <label for="project_school_logo"><%= t(:school_logo_label) %></label>
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+      <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
+      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+      <div>
+        <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
+        <%= f.input_field :school_logo, :as => :file %>
+        </span>
+        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions">

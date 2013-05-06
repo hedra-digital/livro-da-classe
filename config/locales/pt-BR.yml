@@ -21,6 +21,7 @@ pt-BR:
   save_password: 'Gravar senha'
   reset_password: 'Solicitar nova senha'
   release_date_label: 'Quando você deseja lançar o seu livro?'
+  school_logo_label: 'Logomarca da sua escola'
   book_nav:
     overview: 'Visão geral'
     book_data: 'Ficha técnica'
