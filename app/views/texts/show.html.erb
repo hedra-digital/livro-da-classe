@@ -1,7 +1,7 @@
 <% if @text.finished_at.present? %>
   <div class="alert">
    <button class="close" data-dismiss="alert">×</button>
-    Texto finalizado em <strong><%=  @text.finished_at.strftime("%d/%m/%y") %></strong>
+    <%= t(:text_finished_at) %><strong><%=  @text.finished_at.strftime("%d/%m/%y") %></strong>
   </div>
 <% end %>
 
@@ -13,9 +13,9 @@
 
   <div class="span10">
     <div>
-      <%= link_to 'Editar texto', edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
-      <%= link_to 'Apagar texto', book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger', :method => "delete", :confirm => "Are you sure?"  %>
-      <%= link_to 'Voltar ao Livro', book_path(@book), :class =>'btn' %>
+      <%= link_to t(:text_edit), edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
+      <%= link_to t(:text_delete), book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger', :method => "delete", :confirm => t(:text_confirm) %>
+      <%= link_to t(:text_back), book_path(@book), :class =>'btn' %>
     </div>
   </div>
 </div>

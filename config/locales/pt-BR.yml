@@ -22,6 +22,11 @@ pt-BR:
   reset_password: 'Solicitar nova senha'
   release_date_label: 'Quando você deseja lançar o seu livro?'
   school_logo_label: 'Logomarca da sua escola'
+  text_finished_at: 'Texto finalizado em'
+  text_edit: 'Editar texto'
+  text_delete: 'Apagar texto'
+  text_confirm: 'Tem certeza de que deseja apagar o texto?'
+  text_back: 'Voltar para o texto'
   book_nav:
     overview: 'Visão geral'
     book_data: 'Ficha técnica'
