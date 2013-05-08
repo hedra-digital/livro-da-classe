@@ -1,5 +1,7 @@
 Livrodaclasse::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
+
   get 'entrar', :to => 'sessions#new', :as => :signin
   get 'auth/:provider/callback', :to => 'sessions#create'
   delete 'sair', :to => 'sessions#destroy', :as => :signout

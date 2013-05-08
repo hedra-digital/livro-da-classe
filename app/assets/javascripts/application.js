@@ -13,8 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require markitup/jquery.markitup
-//= require markitup/sets/markdown/set
+//= require ckeditor/init
 //= require bootstrap-alert
 //= require bootstrap-dropdown
 //= require bootstrap-datepicker/core
