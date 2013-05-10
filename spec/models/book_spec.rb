@@ -83,7 +83,7 @@ describe Book do
     end
 
     it 'converts the argument to latex' do
-      book.send(:text_to_latex, book.texts.first.content).should ==  "#{book.texts.first.content}\n\n"
+      book.send(:text_to_latex, book.texts.first.content).should ==  "#{book.texts.first.content}\n"
     end
   end
 
@@ -95,7 +95,7 @@ describe Book do
       1.upto(3).each do |i|
         book.texts.create(title: i, content: i, user_id: user.id)
       end
-      book.full_text_latex.should == "\\chapter{1}\n1\n\n\n\\chapter{2}\n2\n\n\n\\chapter{3}\n3\n\n\n"
+      book.full_text_latex.should == "\\chapter{1}\n1\n\n\\chapter{2}\n2\n\n\\chapter{3}\n3\n\n"
     end
   end
 end
