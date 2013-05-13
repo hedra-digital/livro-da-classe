@@ -42,7 +42,6 @@ group :test, :development do
 end
 
 group :development do
-  gem 'mailcatcher'
   gem 'pry'
   gem 'pry-remote'
   gem 'pry-nav'
