@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require ckeditor/init
+//= require ckeditor/config.js
 //= require bootstrap-alert
 //= require bootstrap-dropdown
 //= require bootstrap-datepicker/core
