@@ -5,6 +5,11 @@
 \RequirePackage{textcomp}
 \RequirePackage{ifthen}
 \RequirePackage{tikz-inet}
+\RequirePackage{amsmath}
+\RequirePackage{fp}
+\RequirePackage{lastpage}
+
+\usetikzlibrary{calc}
 
 %\RequirePackage[minionint,mathlf]{MinionPro}
 \RequirePackage{ucs}
@@ -22,6 +27,9 @@
 %\setsansfont[Scale=MatchUppercase,Mapping=tex-text]{Akzidenz-Grotesk BQ Bold Condensed}
 %\setmonofont[Scale=MatchLowercase]{Akzidenz-Grotesk BQ Medium Condensed}
 %\setmainlanguage{portuges}
+
+% Para contar páginas
+\newwrite\tempfile
 
 
 \makeatletter
@@ -180,16 +188,19 @@
 
 \newcommand{\ficha}[7]{\begin{minipage}{.7\textwidth}
 \medskip\fontsize{7pt}{8pt}\selectfont
-	Dados Internacionais de Catalogação na Publicação (\textsc{cip})\\
+	Dados Internacionais de Catal.~na Publicação (\textsc{cip})\\
 	\vspace{-.5em}\hrule\smallskip
 	#1\hskip2mm
 	\hbox{\vtop{#2\par
 	#3 \pageref{LastPage}~p.}}\par\smallskip
-	\textsc{isbn}\hskip2mm #4\par\smallskip
+	\hskip2mm #4\par\smallskip
 	#5\par\smallskip
-	\hbox{\raggedleft\vbox{\textsc{cdu} #6\par \textsc{cdd} #7}}\par\smallskip
+	\hbox{\raggedleft\vbox{\textsc{cdu} #6\hfill\par \textsc{cdd} #7}\hfill}\par\smallskip
 	\hrule\smallskip Elaborado por Wanda Lucia Schmidt \textsc{crb-8-1922}\medskip
 \end{minipage}}
+
+
+
 
 %\footnoteInSection para colocar notas em seções, capítulos etc. 
 \RequirePackage{manyfoot}

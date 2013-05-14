@@ -13,8 +13,14 @@
 
 \include{ROSTO}
 \include{CREDITOS}
+\include{contapagina}
 
 \include{CORPO}
 \include{COLOFAO}
+
+\immediate\openout\tempfile=contapagina.log
+\immediate\write\tempfile{\thepage}
+\immediate\closeout\tempfile
+\makeatother
 
 \end{document}

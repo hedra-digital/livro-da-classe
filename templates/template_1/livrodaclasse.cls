@@ -7,7 +7,7 @@
 \RequirePackage{floatpag}
 \RequirePackage{lipsum}
 
-\RequirePackage{Times}
+%\RequirePackage[minionint,mathlf]{MinionPro}
 \RequirePackage[protrusion=true,expansion]{microtype}
 \RequirePackage{ucs}
 \RequirePackage[utf8x]{inputenc}
@@ -16,11 +16,11 @@
 \RequirePackage[brazilian]{babel}
 \defineshorthand{"-}{\discretionary{-}{-}{-}}
 
-\RequirePackage{../../../templates/template_1/pacotes/hedralogo}
-\RequirePackage{../../../templates/template_1/pacotes/hedrapagina}
-\RequirePackage{../../../templates/template_1/pacotes/hedrasumario}
-\RequirePackage{../../../templates/template_1/pacotes/hedrageral}
-\RequirePackage{../../../templates/template_1/pacotes/hedraextra}
+\RequirePackage{pacotes/hedralogo}
+\RequirePackage{pacotes/hedrapagina}
+\RequirePackage{pacotes/hedrasumario}
+\RequirePackage{pacotes/hedrageral}
+\RequirePackage{pacotes/hedraextra}
 
 \AtBeginDocument{%
 \makeatletter
