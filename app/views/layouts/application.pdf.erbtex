@@ -1,3 +1,4 @@
+<% @latex_config={:parse_twice => true} %>
 \newcommand\titulo{<%= @book.title %>}
 \newcommand\autor{<%= @book.organizer.name %>}
 \newcommand\organizador{<%= @book.organizers %>}
