@@ -1,9 +1,10 @@
 CKEDITOR.editorConfig = function(config) {
-  config.toolbar = [
-    { name: 'basicstyles', items: [ 'Bold', 'Italic' ] },
-    { name: 'insert', items: [ 'Image' ] },
-    { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-    { name: 'document', items: [ 'Source' ] }
+  config.toolbarGroups = [
+    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+    { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+    { name: 'links' },
+    { name: 'insert' },
+    { name: 'document', groups: [ 'mode' ] }
   ];
 
   config.language = 'pt-BR';
