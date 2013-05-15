@@ -6,6 +6,7 @@
 \RequirePackage{textcomp}
 \RequirePackage{floatpag}
 \RequirePackage{lipsum}
+\RequirePackage{times}
 
 %\RequirePackage[minionint,mathlf]{MinionPro}
 \RequirePackage[protrusion=true,expansion]{microtype}
