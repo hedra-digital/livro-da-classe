@@ -3,6 +3,7 @@ CKEDITOR.editorConfig = function(config) {
     { name: 'basicstyles', items: [ 'Bold', 'Italic' ] },
     { name: 'insert', items: [ 'Image' ] },
     { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+    { name: 'colors', items: [ 'BGColor' ] },
     { name: 'document', items: [ 'Source' ] }
   ];
 
