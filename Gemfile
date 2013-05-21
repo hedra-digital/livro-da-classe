@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem "sprockets", "2.2.2.backport1"
+gem "sprockets", '2.2.2.backport1'
 gem 'mysql2'
 gem 'validates_email_format_of'
 gem 'guid'
@@ -48,5 +48,5 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'annotate', ">=2.5.0"
+  gem 'annotate', '>=2.5.0'
 end
