@@ -16,7 +16,7 @@ ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "livrodaclasse_rsa")]
 set :use_sudo, false
 set :keep_releases, 3
 
-after "deploy:finalize_update", "deploy:symlink_config"
+after "deploy:finalize_update", "deploy:symlink_config", "deploy:symlink_assets"
 after "deploy:restart", "deploy:cleanup"
 after "deploy", "deploy:migrate"
 
@@ -25,6 +25,11 @@ namespace :deploy do
   task :symlink_config, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{deploy_to}/shared/config/config.yml #{release_path}/config/config.yml"
+  end
+
+  desc "Symlinks assets"
+  task :symlink_assets, :roles => :app do
+    run "ln -nfs #{deploy_to}/shared/ckeditor_assets #{release_path}/public/"
   end
 
   task :restart do
