@@ -1,6 +1,6 @@
 class Ckeditor::Picture < Ckeditor::Asset
   has_attached_file :data,
-                    :url  => "/ckeditor_assets/pictures/:book_id/:style_:basename.:extension",
+                    :url  => "/ckeditor_assets/pictures/:style_:basename.:extension",
                     :styles => { :content => '800>', :thumb => '118x100#' }
 
   validates_attachment_size :data, :less_than => 2.megabytes
