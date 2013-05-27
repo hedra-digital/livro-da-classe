@@ -33,4 +33,9 @@ class ApplicationController < ActionController::Base
     current_user ? "application" : "public"
   end
 
+  def ckeditor_before_create_asset(asset)
+    book            = Book.find(session['book_id'])
+    asset.assetable = book
+    return true
+  end
 end

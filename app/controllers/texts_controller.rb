@@ -19,6 +19,7 @@ class TextsController < ApplicationController
 
   def edit
     @text = Text.find_by_uuid_or_id(params[:id])
+    session['book_id'] = @text.book.id
   end
 
   def create

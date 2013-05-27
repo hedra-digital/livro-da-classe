@@ -16,7 +16,7 @@
             <% if is_organizer? %>
               <%= menu_item t(:collaborators, :scope => :book_nav), book_collaborators_path(@book.uuid) %>
             <% end %>
-            <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
+            <%#= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
             <% if is_organizer? && is_project? %>
               <%= menu_item t(:project, :scope => :book_nav), edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>
