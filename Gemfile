@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem "sprockets", '2.2.2.backport1'
+gem "sprockets", '2.2.2.backport2'
 gem 'mysql2'
 gem 'validates_email_format_of'
 gem 'guid'
