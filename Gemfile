@@ -29,10 +29,8 @@ end
 group :test, :development do
   gem 'rb-inotify', '~> 0.8.8', :require => false
   gem 'rb-fsevent', :require => false
-  gem 'guard-rspec'
-  gem 'guard-livereload'
   gem 'terminal-notifier-guard'
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails', "~> 2.14.0.rc1"
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-webkit'
