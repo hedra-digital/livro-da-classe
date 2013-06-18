@@ -37,7 +37,11 @@ Livrodaclasse::Application.routes.draw do
   namespace :admin do
     root :to => 'dashboard#index'
 
-    resources :projects, :only => [:index, :show, :edit, :update]
+    resources :projects, :only => [:index, :show, :edit, :update] do
+      member do 
+        get 'impersonate'
+      end
+    end
     resources :templates, :only => :index
   end
 end

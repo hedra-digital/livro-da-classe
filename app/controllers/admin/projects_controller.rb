@@ -1,4 +1,5 @@
 class Admin::ProjectsController < Admin::ApplicationController
+
   def index
     @projects = Project.includes([:book, :client]).all
   end
@@ -19,5 +20,11 @@ class Admin::ProjectsController < Admin::ApplicationController
     else
       render :edit
     end
+  end
+
+  def impersonate
+    @project = Project.find(params[:id])
+    session[:auth_token] = @project.book.organizer.auth_token
+    redirect_to app_home_path
   end
 end
