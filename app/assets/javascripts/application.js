@@ -20,6 +20,7 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR
 //= require bootstrap-fileupload
 //= require jquery.tipsy
+//= require jquery.fancybox
 //= require bindWithDelay
 //= require reorder
 //= require_self
