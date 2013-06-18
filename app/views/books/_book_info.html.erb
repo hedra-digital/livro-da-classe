@@ -3,7 +3,7 @@
     <div class="row">
       <div class="span1">
         <% if @book.cover.present? %>
-          <%= image_tag(@book.cover.url(:thumb)) %>
+          <%= link_to(image_tag(@book.cover.url(:thumb)), @book.cover.url(:content), :class => 'cover-modal') %>
         <% else %>
           <img src="http://placehold.it/60x80">
         <% end %>

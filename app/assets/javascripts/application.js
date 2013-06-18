@@ -45,11 +45,13 @@ $(window).load(function() {
 });
 
 // File Upload
+
 $(document).ready(function() {
   $('.fileupload').fileupload();
 });
 
-// Tutorial modal
+// Fancybox modals
+
 $(document).ready(function() {
   $(".tutorial-modal").fancybox({
     maxWidth    : 800,
@@ -61,5 +63,14 @@ $(document).ready(function() {
     closeClick  : false,
     openEffect  : 'none',
     closeEffect : 'none'
+  });
+
+  $(".cover-modal").fancybox({
+    padding     : 0,
+    openEffect  : 'elastic',
+    openSpeed   : 150,
+    closeEffect : 'elastic',
+    closeSpeed  : 150,
+    closeClick  : true
   });
 });
