@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507205603) do
+ActiveRecord::Schema.define(:version => 20130618041548) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -21,10 +21,14 @@ ActiveRecord::Schema.define(:version => 20130507205603) do
     t.text     "organizers"
     t.text     "directors"
     t.text     "coordinators"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "organizer_id"
     t.string   "template"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
   end
 
   create_table "books_users", :id => false, :force => true do |t|

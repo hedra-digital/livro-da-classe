@@ -272,6 +272,7 @@ pt-BR:
         directors: 'Direção'
         coordinators: 'Coordenação'
         texts: 'Textos'
+        cover: 'Capa'
       text:
         title: 'Título'
         content: 'Conteúdo'

@@ -10,6 +10,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  position   :integer
+#  user_id    :integer
 #
 
 class Text < ActiveRecord::Base

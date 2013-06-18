@@ -2,7 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="span1">
-        <img src="http://placehold.it/60x80">
+        <% if @book.cover.present? %>
+          <%= link_to(image_tag(@book.cover.url(:thumb)), @book.cover.url(:content), :class => 'cover-modal') %>
+        <% else %>
+          <img src="http://placehold.it/60x80">
+        <% end %>
       </div>
       <div class="span8">
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? %>
@@ -16,7 +20,7 @@
             <% if is_organizer? %>
               <%= menu_item t(:collaborators, :scope => :book_nav), book_collaborators_path(@book.uuid) %>
             <% end %>
-            <%#= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
+            <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
             <% if is_organizer? && is_project? %>
               <%= menu_item t(:project, :scope => :book_nav), edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>

@@ -46,3 +46,4 @@ pickle-email-*.html
 /log/searchd.development.pid
 .vagrant
 Vagrantfile
+/public/ckeditor_assets/

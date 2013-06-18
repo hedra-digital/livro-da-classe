@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem "sprockets", '2.2.2.backport1'
+gem "sprockets", '2.2.2.backport2'
 gem 'mysql2'
 gem 'validates_email_format_of'
 gem 'guid'
@@ -17,7 +17,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'gravatar_image_tag'
 gem 'newrelic_rpm'
 gem 'paperclip', '~> 3.0'
-gem 'ckeditor'
+gem 'ckeditor', :git => 'git://github.com/hedra-digital/ckeditor.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -29,10 +29,8 @@ end
 group :test, :development do
   gem 'rb-inotify', '~> 0.8.8', :require => false
   gem 'rb-fsevent', :require => false
-  gem 'guard-rspec'
-  gem 'guard-livereload'
   gem 'terminal-notifier-guard'
-  gem 'rspec-rails', '~> 2.0'
+  gem 'rspec-rails', "~> 2.14.0.rc1"
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-webkit'

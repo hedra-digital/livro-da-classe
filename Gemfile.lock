@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/hedra-digital/ckeditor.git
+  revision: 859ef9d341536e3cef505f80332a66ac663aa82a
+  specs:
+    ckeditor (4.0.4)
+      mime-types
+      orm_adapter
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -33,29 +41,27 @@ GEM
       rake
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    better_errors (0.8.0)
+    better_errors (0.9.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
-    bootstrap-datepicker-rails (1.0.0.5)
+    bootstrap-datepicker-rails (1.0.0.7)
       railties (>= 3.0)
-    bourbon (3.1.3)
+    bourbon (3.1.6)
       sass (>= 3.2.0)
       thor
     builder (3.0.4)
+    callsite (0.0.11)
     capybara (2.1.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (0.14.2)
+    capybara-webkit (1.0.0)
       capybara (~> 2.0, >= 2.0.2)
       json
-    ckeditor (4.0.4)
-      mime-types
-      orm_adapter
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -67,14 +73,10 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.4.0)
+    coffee-script-source (1.6.2)
     debug_inspector (0.0.2)
-    diff-lcs (1.1.3)
-    em-websocket (0.4.0)
-      eventmachine (>= 0.12.9)
-      http_parser.rb (~> 0.5.3)
+    diff-lcs (1.2.4)
     erubis (2.7.0)
-    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -86,53 +88,36 @@ GEM
       i18n (~> 0.5)
     faraday (0.8.7)
       multipart-post (~> 1.1)
-    ffi (1.7.0)
-    formatador (0.2.4)
+    ffi (1.8.1)
     gravatar_image_tag (1.1.3)
-    guard (1.7.0)
-      formatador (>= 0.2.4)
-      listen (>= 0.6.0)
-      lumberjack (>= 1.0.2)
-      pry (>= 0.9.10)
-      thor (>= 0.14.6)
-    guard-livereload (1.1.3)
-      em-websocket (>= 0.2.0)
-      guard (>= 1.5.0)
-      multi_json (~> 1.0)
-    guard-rspec (2.5.4)
-      guard (>= 1.1)
-      rspec (~> 2.11)
     guid (0.1.1)
-    hashie (2.0.3)
+    hashie (2.0.5)
     hike (1.2.2)
-    http_parser.rb (0.5.3)
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.0.1)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
-    json (1.7.7)
+    json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    kramdown (1.0.1)
+    kramdown (1.0.2)
     launchy (2.3.0)
       addressable (~> 2.3)
-    listen (0.7.3)
-    lumberjack (1.0.3)
-    mail (2.5.3)
-      i18n (>= 0.4.0)
+    mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    meta_request (0.2.1)
+    meta_request (0.2.6)
+      callsite
       rack-contrib
-      rails
+      railties
     method_source (0.8.1)
-    mime-types (1.22)
-    multi_json (1.7.2)
+    mime-types (1.23)
+    multi_json (1.7.4)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
-    newrelic_rpm (3.6.0.83)
+    newrelic_rpm (3.6.2.96)
     nokogiri (1.5.9)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -146,7 +131,7 @@ GEM
       rack
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
-    omniauth-google-oauth2 (0.1.15)
+    omniauth-google-oauth2 (0.1.17)
       omniauth (~> 1.0)
       omniauth-oauth2
     omniauth-oauth (1.0.1)
@@ -159,14 +144,14 @@ GEM
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
     orm_adapter (0.4.0)
-    paperclip (3.4.1)
+    paperclip (3.4.2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
     polyglot (0.3.3)
-    pry (0.9.12)
+    pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
@@ -193,11 +178,7 @@ GEM
       bundler (~> 1.0)
       railties (= 3.2.13)
     rails-latex (1.0.11)
-      rack-ssl (~> 1.3.2)
       rails (>= 3.0.0)
-      rake (>= 0.8.7)
-      rdoc (~> 3.4)
-      thor (>= 0.14.6, < 2.0)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -211,22 +192,18 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    rspec (2.12.0)
-      rspec-core (~> 2.12.0)
-      rspec-expectations (~> 2.12.0)
-      rspec-mocks (~> 2.12.0)
-    rspec-core (2.12.2)
-    rspec-expectations (2.12.1)
-      diff-lcs (~> 1.1.3)
-    rspec-mocks (2.12.2)
-    rspec-rails (2.12.2)
+    rspec-core (2.14.0.rc1)
+    rspec-expectations (2.14.0.rc1)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.14.0.rc1)
+    rspec-rails (2.14.0.rc1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (~> 2.12.0)
-      rspec-expectations (~> 2.12.0)
-      rspec-mocks (~> 2.12.0)
-    sass (3.2.7)
+      rspec-core (= 2.14.0.rc1)
+      rspec-expectations (= 2.14.0.rc1)
+      rspec-mocks (= 2.14.0.rc1)
+    sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -238,20 +215,20 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
-    slop (3.4.4)
-    sprockets (2.2.2.backport1)
+    slop (3.4.5)
+    sprockets (2.2.2.backport2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     terminal-notifier-guard (1.5.3)
     thor (0.18.1)
-    tilt (1.3.7)
+    tilt (1.4.1)
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
-    uglifier (1.3.0)
+    uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     validates_email_format_of (1.5.3)
@@ -270,13 +247,11 @@ DEPENDENCIES
   bourbon
   capybara
   capybara-webkit
-  ckeditor
+  ckeditor!
   coffee-rails (~> 3.2.1)
   factory_girl_rails
   faker
   gravatar_image_tag
-  guard-livereload
-  guard-rspec
   guid
   jquery-rails (= 2.0.1)
   kramdown
@@ -295,11 +270,11 @@ DEPENDENCIES
   rails-latex
   rb-fsevent
   rb-inotify (~> 0.8.8)
-  rspec-rails (~> 2.0)
+  rspec-rails (~> 2.14.0.rc1)
   sass-rails (~> 3.2.3)
   simple_form
   simplecov
-  sprockets (= 2.2.2.backport1)
+  sprockets (= 2.2.2.backport2)
   terminal-notifier-guard
   uglifier (>= 1.0.3)
   validates_email_format_of

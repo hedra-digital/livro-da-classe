@@ -11,7 +11,7 @@ class HedraLatex < Kramdown::Converter::Latex
       warning("Cannot include non-local image")
       ''
     elsif !el.attr['src'].empty?
-      "\\noindent\\nobreak\\dotfill\\par{}Sua imagem estará aqui\\par{}\\noindent\\nobreak\\dotfill"
+      "{\\centering#{latex_link_target(el)}\\includegraphics[width=\\textwidth]{#{Rails.root.join('public')}#{el.attr['src']}}}"
     else
       warning("Cannot include image with empty path")
       ''
