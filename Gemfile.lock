@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/hedra-digital/ckeditor.git
+  revision: 859ef9d341536e3cef505f80332a66ac663aa82a
+  specs:
+    ckeditor (4.0.4)
+      mime-types
+      orm_adapter
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -54,9 +62,6 @@ GEM
     capybara-webkit (1.0.0)
       capybara (~> 2.0, >= 2.0.2)
       json
-    ckeditor (4.0.4)
-      mime-types
-      orm_adapter
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -242,7 +247,7 @@ DEPENDENCIES
   bourbon
   capybara
   capybara-webkit
-  ckeditor
+  ckeditor!
   coffee-rails (~> 3.2.1)
   factory_girl_rails
   faker
