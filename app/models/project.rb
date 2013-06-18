@@ -2,13 +2,17 @@
 #
 # Table name: projects
 #
-#  id           :integer          not null, primary key
-#  book_id      :integer
-#  release_date :date
-#  finish_date  :date
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  client_id    :integer
+#  id                       :integer          not null, primary key
+#  book_id                  :integer
+#  release_date             :date
+#  finish_date              :date
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  client_id                :integer
+#  school_logo_file_name    :string(255)
+#  school_logo_content_type :string(255)
+#  school_logo_file_size    :integer
+#  school_logo_updated_at   :datetime
 #
 
 class Project < ActiveRecord::Base

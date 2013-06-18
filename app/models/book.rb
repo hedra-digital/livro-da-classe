@@ -13,6 +13,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  organizer_id :integer
+#  template     :string(255)
 #
 
 class Book < ActiveRecord::Base
