@@ -163,3 +163,11 @@ footer {
   @extend .text-list-collaborator;
   list-style: none;
 }
+
+/* ==========================================================================
+   CKEditor customizations
+   ========================================================================== */
+
+#cke_57_uiElement > tbody:first-child > tr:first-child > td:first-child {
+  display: none;
+}
