@@ -4,6 +4,7 @@
   <div class="form-inputs">
     <%= f.simple_fields_for :book do |b| %>
       <%= b.input :template, :collection => LATEX_TEMPLATES %>
+      <%= b.input :cover, :as => :file %>
     <% end %>
   </div>
 

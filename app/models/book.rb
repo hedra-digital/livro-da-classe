@@ -33,9 +33,16 @@ class Book < ActiveRecord::Base
   validates                 :title,     :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template
+  attr_accessible           :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover
 
   attr_accessor             :finished_at
+
+  # Paperclip attachment
+  has_attached_file :cover,
+                    :styles => {
+                      :content => ['100%', :jpg],
+                      :thumb => ['60x80#', :jpg]
+                    }
 
   # Other methods
   def self.find_by_uuid_or_id(id)

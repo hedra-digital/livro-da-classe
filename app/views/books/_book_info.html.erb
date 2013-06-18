@@ -2,7 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="span1">
-        <img src="http://placehold.it/60x80">
+        <% if @book.cover.present? %>
+          <%= image_tag(@book.cover.url(:thumb)) %>
+        <% else %>
+          <img src="http://placehold.it/60x80">
+        <% end %>
       </div>
       <div class="span8">
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? %>

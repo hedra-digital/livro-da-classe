@@ -30,6 +30,7 @@ namespace :deploy do
   desc "Symlinks assets"
   task :symlink_assets, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/ckeditor_assets #{release_path}/public/"
+    run "ln -nfs #{deploy_to}/shared/covers #{release_path}/public/"
   end
 
   task :restart do
