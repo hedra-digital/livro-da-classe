@@ -66,6 +66,7 @@ class Book < ActiveRecord::Base
   end
 
   def text_to_latex(text)
+    text = Kramdown::Document.new(text, :input => 'html').to_html
     HedraLatex.convert(Kramdown::Document.new(text, :input => 'html').root)[0]
   end
 

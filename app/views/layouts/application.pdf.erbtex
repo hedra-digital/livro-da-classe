@@ -1,14 +1,15 @@
+# encoding: UTF-8
 <% @latex_config = { :parse_twice => true } %>
 \RequirePackage[utf8x]{inputenc}
 
-\newcommand\titulo{<%= @book.title.force_encoding("UTF-8") %>}
-\newcommand\autor{<%= @book.organizer.name.force_encoding("UTF-8") %>}
-\newcommand\organizador{<%= @book.organizers.force_encoding("UTF-8") %>}
+\newcommand\titulo{<%= @book.title %>}
+\newcommand\autor{<%= @book.organizer.name %>}
+\newcommand\organizador{<%= @book.organizers %>}
 \newcommand\tradutor{Tradutor}
 \newcommand\cidade{São Paulo}
 \newcommand\ano{2013}
 \newcommand\direitos{Hedra}
 \newcommand\introducao{}
-\newcommand\texto{<%= @book.full_text_latex.force_encoding("UTF-8") %>}
+\newcommand\texto{<%= @book.full_text_latex %>}
 
 \input{<%= @book.template %>/LIVRO}
