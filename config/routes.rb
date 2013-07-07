@@ -38,7 +38,7 @@ Livrodaclasse::Application.routes.draw do
     root :to => 'dashboard#index'
 
     resources :projects, :only => [:index, :show, :edit, :update] do
-      member do 
+      member do
         get 'impersonate'
       end
     end
