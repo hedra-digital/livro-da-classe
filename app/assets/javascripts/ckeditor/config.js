@@ -2,7 +2,7 @@ CKEDITOR.editorConfig = function(config) {
   config.toolbar = [
     { name: 'basicstyles', items: [ 'Bold', 'Italic' ] },
     { name: 'insert', items: [ 'Image' ] },
-    { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+    { name: 'clipboard', items: [ 'Cut', 'Copy', 'PasteText', '-', 'Undo', 'Redo' ] },
     { name: 'colors', items: [ 'BGColor' ] },
     { name: 'document', items: [ 'Source' ] }
   ];
@@ -90,3 +90,6 @@ CKEDITOR.editorConfig = function(config) {
     }
   });
 };
+
+// Blocking the paste keystroke
+CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
