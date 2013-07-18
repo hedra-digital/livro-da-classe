@@ -93,3 +93,16 @@ CKEDITOR.editorConfig = function(config) {
 
 // Blocking the paste keystroke
 CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
+
+//showing message to alert user about using the paste button
+$(document).keydown(function(e){
+      if(e.ctrlKey && e.keyCode == 86){
+            if ($("#paste-message").length == 0){
+              $("<div id='paste-message'>").appendTo($("body"));
+            }
+            $("#paste-message").addClass('alert');
+            $("#paste-message").addClass('alert-box');
+            $("#paste-message").html('Para colar textos, utilize o botão na barra de ferramentas<button type="button" class="close" data-dismiss="alert">&times;</button>');
+            $("#paste-message").alert();
+      }
+})

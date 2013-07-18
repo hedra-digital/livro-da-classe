@@ -101,6 +101,18 @@ textarea {
   }
 }
 
+.alert-box {
+  width: 21%;
+  height: 17px;
+  top: 31%;
+  left: 48%;
+  color: #0088cc;
+  border: 0px;
+  position: absolute;
+  z-index: 100;
+  background-color: #fff;
+}
+
 footer {
   color: white;
   background: #434343 url('/assets/footer-border.png') top repeat-x;
