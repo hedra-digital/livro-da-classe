@@ -1,21 +1,61 @@
-# Livro da Classe
+## Como configurar o ambiente de desenvolvimento
 
-[![Build Status](https://travis-ci.org/hedra-digital/livro-da-classe.png)](https://travis-ci.org/hedra-digital/livro-da-classe) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/hedra-digital/livro-da-classe)
+### Pré requisitos
+* Git (http://git-scm.com/)
+* RVM (https://rvm.io/rvm/install)
+* MySQL (http://www.mysql.com/)
 
-## Setup Guide (Ubuntu)
+### Outros pacotes
+<code>
+sudo apt-get install libmysql-ruby libmysqlclient-dev libxml2-dev libxslt1-dev imagemagick libmagickwand-dev libqt4-dev
+</code>
 
-### Install Texlive
+### Clonar a aplicação
+<code>
+$ git clone git@github.com/hedra-digital/livro-da-classe.git
+</code>
 
-    sudo apt-get texlive-full
+### Instalar ruby
+<code>
+$ cd hedra-site
+$ rvm install ruby-2.0.0-p247
+</code>
 
-### Install ImageMagick
+### Criar gemset
+<code>
+$ rvm use ruby-2.0.0-p247
+$ rvm gemset create ruby-2.0.0-p247 hedra-site
+$ rvm use ruby-2.0.0-p247@hedra-site
+</code>
 
-    sudo apt-get install libmagickwand-dev libmagickcore-dev imagemagick
+### Instalar Gems do projeto
+<code>
+$ bundle install
+</code>
 
-### Symlink LaTeX template directory
+### Configurar banco de dados da aplicação
+<code>
+$ cp config/database.example.yml config/database.yml
+</code>
 
-    sudo ln -s /etc/texmf/tex/generic/ ~/apps/livrodaclasse/current/templates
+Configure usuário e senha de acesso ao MySQL no arquivo config/database.yml
 
-## License
+### Configurações da aplicação
+<code>
+$ cp config/config.example.yml config/config.yml
+</code>
 
-MIT License. Copyright 2012, 2013 Editora Hedra. http://hedra.com.br
+Configure usuário e senha de acesso a area restrita e pasta dos templates no arquivo config/config.ym
+
+### Criar estrutura do banco de dados da aplicação
+<code>
+$ rake db:create
+$ rake db:migrate
+</code>
+
+### Executar aplicação local
+<code>
+$ rails server
+</code>
+
+Acesse a aplicação através da url http://127.0.0.1:3000
