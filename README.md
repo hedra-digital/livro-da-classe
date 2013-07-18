@@ -1,5 +1,6 @@
 # Livro da Classe
 
+
 [![Build Status](https://travis-ci.org/hedra-digital/livro-da-classe.png)](https://travis-ci.org/hedra-digital/livro-da-classe) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/hedra-digital/livro-da-classe)
 
 ## Setup Guide (Ubuntu)
@@ -10,7 +11,11 @@
 
 ### Install ImageMagick
 
-    sudo apt-get install libmagickwand-dev libmagickcore-dev imagemagick
+    sudo apt-get install libmagickwand-dev libmagickcore-dev imagemagick 
+    
+### Others 
+
+    sudo apt-get install libqt4-dev libqtwebkit-dev
 
 ### Symlink LaTeX template directory
 
