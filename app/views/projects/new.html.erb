@@ -1,3 +1,5 @@
+<%= simple_form_for(@project, :url => { :action => :create }, :html => { :multipart => true }) do |f| %>
+
 <p>Para editar e imprimir este livro, você contará com nosso apoio editorial.</p>
 
 <h2>Formatos e preços</h2>
@@ -14,21 +16,21 @@
   </thead>
   <tbody>
     <tr>
-      <td>21 x 14 cm</td>
+      <td><%= f.radio_button :publish_format, '21 x 14 cm', :checked => true, :class => 'format-radio' %>21 x 14 cm</td>
       <td>4x4 cores</td>
       <td>até 48 pp.</td>
       <td>R$ 20,00</td>
       <td>R$ 0,40</td>
     </tr>
     <tr>
-      <td>14 x 21 cm</td>
+      <td><%= f.radio_button :publish_format, '14 x 21 cm', :class => 'format-radio' %>14 x 21 cm</td>
       <td>1x1 cores</td>
       <td>até 100 pp.</td>
       <td>R$ 20,00</td>
       <td>R$ 0,20</td>
     </tr>
     <tr>
-      <td>16 x 23 cm</td>
+      <td><%= f.radio_button :publish_format, '16 x 23 cm', :class => 'format-radio' %>16 x 23 cm</td>
       <td>1x1 cores</td>
       <td>até 90 pp.</td>
       <td>R$ 22,00</td>
@@ -39,7 +41,7 @@
 
 <h2>Formulário de adesão</h2>
 
-<%= simple_form_for(@project, :url => { :action => :create }, :html => { :multipart => true }) do |f| %>
+
   <div class="form-inputs">
     <%= field_set_tag "Dados do projeto" do %>
       <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>

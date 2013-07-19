@@ -3,6 +3,10 @@
 <%= simple_form_for(@project, :url => { :action => :update }, :html => { :multipart => true }) do |f| %>
   <div class="form-inputs">
     <div style="margin-bottom: 20px;">
+      Formato da Publicação<br>
+      <span style="font-weight: bold;"><%= @project.publish_format %></span>
+    </div>
+    <div style="margin-bottom: 20px;">
       Data de finalização<br>
       <span style="font-weight: bold;"><%=l @project.finish_date %></span>
     </div>

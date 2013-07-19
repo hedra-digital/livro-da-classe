@@ -1,4 +1,28 @@
 CKEDITOR.editorConfig = function(config) {
+  config.keystrokes =
+  [
+    [ CKEDITOR.ALT + 121 /*F10*/, 'toolbarFocus' ],
+    [ CKEDITOR.ALT + 122 /*F11*/, 'elementsPathFocus' ],
+
+    [ CKEDITOR.SHIFT + 121 /*F10*/, 'contextMenu' ],
+
+    [ CKEDITOR.CTRL + 90 /*Z*/, 'undo' ],
+    [ CKEDITOR.CTRL + 89 /*Y*/, 'redo' ],
+    [ CKEDITOR.CTRL + CKEDITOR.SHIFT + 90 /*Z*/, 'redo' ],
+
+    [ CKEDITOR.CTRL + 76 /*L*/, 'link' ],
+
+    [ CKEDITOR.CTRL + 66 /*B*/, 'bold' ],
+    [ CKEDITOR.CTRL + 73 /*I*/, 'italic' ],
+    [ CKEDITOR.CTRL + 85 /*U*/, 'underline' ],
+
+    [ CKEDITOR.CTRL + 86 /*V*/, 'pastetext' ],
+    [ CKEDITOR.SHIFT + 45 /*INS*/, 'pastetext' ],
+
+    [ CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse' ]
+  ];
+
+
   config.toolbar = [
     { name: 'basicstyles', items: [ 'Bold', 'Italic' ] },
     { name: 'insert', items: [ 'Image' ] },
@@ -94,6 +118,11 @@ CKEDITOR.editorConfig = function(config) {
 // Blocking the paste keystroke
 CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
 
+CKEDITOR.on('instanceReady', function(ev)
+{
+  ev.editor._.commands.paste = ev.editor._.commands.pastetext;
+});
+
 //showing message to alert user about using the paste button
 $(document).keydown(function(e){
       if(e.ctrlKey && e.keyCode == 86){
@@ -105,4 +134,4 @@ $(document).keydown(function(e){
             $("#paste-message").html('Para colar textos, utilize o botão na barra de ferramentas<button type="button" class="close" data-dismiss="alert">&times;</button>');
             $("#paste-message").alert();
       }
-})
+});

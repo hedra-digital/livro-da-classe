@@ -140,6 +140,11 @@ input[type="checkbox"] {
   line-height: normal;
 }
 
+// Custom Radio Format to Projects Form [VIZIR]
+.format-radio {
+  margin: 0 5px 4px 0 !important;
+}
+
 // Reset width of input images, buttons, radios, checkboxes
 input[type="file"],
 input[type="image"],
