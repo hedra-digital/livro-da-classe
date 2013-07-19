@@ -112,16 +112,38 @@ CKEDITOR.editorConfig = function(config) {
         upload.action = config.addQueryString(upload.action, upload.filebrowser['params']);
       }
     }
+
+    //customize class field for childrens approuch [VIZIR]
+    if (dialogName == 'image')
+    {
+      for (var i in dialogDefinition.contents)
+      {
+        var contents = dialogDefinition.contents[i];
+        var classField = dialogDefinition.contents[3].elements[2];
+        dialogDefinition.contents[3].elements[2] = null;
+
+        if (contents.id == "info")
+        {
+          classField.widths[0] = '100%';
+          classField.widths[1] = '0%';
+          classField.children[0].label = 'Intenção de tamanho para a imagem publicada';
+          classField.children[0].type = 'select';
+          classField.children[0].default = 'medium-intention';
+          classField.children[0].items = [];
+          classField.children[0].items.push(['Imagem com Tamanho Pequeno','small-intention']);
+          classField.children[0].items.push(['Imagem com Tamanho Médio','medium-intention']);
+          classField.children[0].items.push(['Imagem com Tamanho Grande','big-intention']);
+          delete classField.children[1];
+          contents.elements.splice(1, 0, classField);
+          contents.elements[2].label = 'Legenda da Imagem';
+        }
+      }
+    }
   });
 };
 
 // Blocking the paste keystroke
 CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
-
-CKEDITOR.on('instanceReady', function(ev)
-{
-  ev.editor._.commands.paste = ev.editor._.commands.pastetext;
-});
 
 //showing message to alert user about using the paste button
 $(document).keydown(function(e){
