@@ -162,6 +162,13 @@ footer {
   background: whitesmoke;
 }
 
+.terms-actions label, a{
+  margin-top: 20px;
+  float: left;
+  width: 20%;
+}
+
+
 /*
 * Text index
 */
@@ -187,4 +194,16 @@ footer {
 #cke_Upload_96,
 #cke_advanced_121 {
   display: none;
+}
+
+img .small-intention {
+  
+}
+
+img .medium-intention {
+
+}
+
+img .big-intention {
+  
 }

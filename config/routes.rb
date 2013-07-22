@@ -8,6 +8,7 @@ Livrodaclasse::Application.routes.draw do
   get 'cadastro', :to => 'users#new', :as => :new_user
   get 'apphome', :to => 'books#index', :as => :app_home
   get 'auth/failure', :to => redirect('/')
+  get 'projects/terms_of_service', :to => 'projects#terms_of_service', :as => :terms_of_service
 
   root :to => 'pages#home'
 
