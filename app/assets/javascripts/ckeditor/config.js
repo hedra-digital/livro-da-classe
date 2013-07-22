@@ -151,8 +151,6 @@ CKEDITOR.editorConfig = function(config) {
 // Blocking the paste keystroke
 CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
 
-CKEDITOR.instances.text_content.removeMenuItem('paste');
-
 //showing message to alert user about using the paste button
 $(document).keydown(function(e){
       if(e.ctrlKey && e.keyCode == 86){
