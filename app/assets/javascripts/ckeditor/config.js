@@ -54,6 +54,9 @@ CKEDITOR.editorConfig = function(config) {
   // The location of a script that handles file uploads.
   config.filebrowserUploadUrl = "/ckeditor/attachment_files";
 
+  // Because of 
+  config.hideDialogFields = "image:info:htmlPreview";
+
   // Rails CSRF token
   config.filebrowserParams = function(){
     var csrf_token, csrf_param, meta,
@@ -118,11 +121,12 @@ CKEDITOR.editorConfig = function(config) {
       for (var i in dialogDefinition.contents)
       {
         var contents = dialogDefinition.contents[i];
-        var classField = dialogDefinition.contents[3].elements[2];
-        dialogDefinition.contents[3].elements[2] = null;
 
         if (contents.id == "info")
         {
+          var classField = dialogDefinition.contents[3].elements[2];
+          dialogDefinition.contents[3].elements[2] = null;
+
           classField.widths[0] = '100%';
           classField.widths[1] = '0%';
           classField.children[0].label = 'Intenção de tamanho para a imagem publicada';
@@ -135,8 +139,18 @@ CKEDITOR.editorConfig = function(config) {
           delete classField.children[1];
           contents.elements.splice(1, 0, classField);
           contents.elements[2].label = 'Legenda da Imagem';
+          delete contents.elements[3].children[0].children[0]; //remove the width, heigth, border, etc fields
         }
       }
+
+      dialogDefinition.onLoad = function () { 
+        var dialog = CKEDITOR.dialog.getCurrent(); 
+
+        var elem = dialog.getContentElement('info','htmlPreview');     
+        elem.getElement().hide(); 
+         
+        dialog.hidePage('advanced'); 
+      }; 
     }
   });
 
@@ -145,8 +159,6 @@ CKEDITOR.editorConfig = function(config) {
   });
 
 };
-
-
 
 // Blocking the paste keystroke
 CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
