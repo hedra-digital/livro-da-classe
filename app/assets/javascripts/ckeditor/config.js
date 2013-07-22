@@ -22,7 +22,6 @@ CKEDITOR.editorConfig = function(config) {
     [ CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse' ]
   ];
 
-
   config.toolbar = [
     { name: 'basicstyles', items: [ 'Bold', 'Italic' ] },
     { name: 'insert', items: [ 'Image' ] },
@@ -140,10 +139,19 @@ CKEDITOR.editorConfig = function(config) {
       }
     }
   });
+
+  CKEDITOR.on('instanceReady', function(ck) { 
+    ck.editor.removeMenuItem('paste'); 
+  });
+
 };
+
+
 
 // Blocking the paste keystroke
 CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
+
+CKEDITOR.instances.text_content.removeMenuItem('paste');
 
 //showing message to alert user about using the paste button
 $(document).keydown(function(e){
