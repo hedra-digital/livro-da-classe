@@ -6,6 +6,14 @@ GIT
       mime-types
       orm_adapter
 
+GIT
+  remote: git://github.com/smartinez87/exception_notification.git
+  revision: b977b653da0ea674096a0451ac8b5925a590a3b8
+  specs:
+    exception_notification (4.0.0)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -252,6 +260,7 @@ DEPENDENCIES
   capybara-webkit
   ckeditor!
   coffee-rails (~> 3.2.1)
+  exception_notification!
   factory_girl_rails
   faker
   gravatar_image_tag

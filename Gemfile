@@ -20,6 +20,8 @@ gem 'paperclip', '~> 3.0'
 gem 'ckeditor', :git => 'git://github.com/hedra-digital/ckeditor.git'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+gem "exception_notification", git: "git://github.com/smartinez87/exception_notification.git"
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

@@ -35,4 +35,9 @@ Livrodaclasse::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  #config.middleware.use ExceptionNotifier,
+  #:email_prefix => "[LIVRO DA CLASSE] ",
+  #:sender_address => %{"notifier" <fellipe@vizir.com.br>},
+  #:exception_recipients => %w{jefferson@vizir.com.br}
 end
