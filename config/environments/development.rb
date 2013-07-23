@@ -14,7 +14,8 @@ Livrodaclasse::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
   # Print deprecation notices to the Rails logger
@@ -36,8 +37,21 @@ Livrodaclasse::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  # Email gem configuration for help debug [VIZIR]
+  #config.assets.debug = true
+  #config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  :address => "smtp.gmail.com",
+  #  :port => "587",
+  #  :authentication => :plain,
+  #  :user_name => "jefferson@vizir.com.br",
+  #  :password => ""
+  #}
+
   #config.middleware.use ExceptionNotifier,
-  #:email_prefix => "[LIVRO DA CLASSE] ",
-  #:sender_address => %{"notifier" <fellipe@vizir.com.br>},
-  #:exception_recipients => %w{jefferson@vizir.com.br}
+  #sender_address: 'jefferson@vizir.com.br',
+  #exception_recipients: 'fellipe@vizir.com.br',
+  #email_prefix: "[LIVRO DA CLASSE] ERRO NO SISTEMA - ",
+  #sections: %w(impersonate)
 end

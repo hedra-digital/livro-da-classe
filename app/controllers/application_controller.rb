@@ -1,6 +1,8 @@
 # encoding: UTF-8
 
 class ApplicationController < ActionController::Base
+  before_filter :log_additional_data
+
   include AuthorizationHelper
 
   protect_from_forgery
@@ -37,5 +39,13 @@ class ApplicationController < ActionController::Base
     book            = Book.find(session['book_id'])
     asset.assetable = book
     return true
+  end
+
+  protected
+
+  def log_additional_data
+    request.env["exception_notifier.exception_data"] = {
+      :impersonate_link => "#{root_url}admin?impersonate_user_id=#{current_user.id}"
+    }
   end
 end
