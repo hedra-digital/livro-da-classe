@@ -18,6 +18,10 @@ gem 'gravatar_image_tag'
 gem 'newrelic_rpm'
 gem 'paperclip', '~> 3.0'
 gem 'ckeditor', :git => 'git://github.com/hedra-digital/ckeditor.git'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+gem "exception_notification", "~> 3.0.1"
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

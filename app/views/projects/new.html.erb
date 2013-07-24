@@ -73,7 +73,10 @@
       <div class="terms">
         <%= render 'terms_of_service' %>
       </div>
-      <%= f.input :terms_of_service, :as => :boolean, :label => false, :inline_label => "Li e aceito os termos acima" %>
+      <div class="terms-actions">
+        <%= f.input :terms_of_service, :as => :boolean, :label => false, :inline_label => "Li e aceito os termos acima" %>
+        <%= link_to "Imprimir os termos", terms_of_service_path(:format => :pdf), :target => '_blank' %>
+      </div>
     <% end %>
   </div>
 

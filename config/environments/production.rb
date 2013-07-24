@@ -65,4 +65,22 @@ Livrodaclasse::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  # Email gem configuration for help debug [VIZIR]
+  #config.assets.debug = true
+  #config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  :address => "smtp.gmail.com",
+  #  :port => "587",
+  #  :authentication => :plain,
+  #  :user_name => "jefferson@vizir.com.br",
+  #  :password => ""
+  #}
+
+  #config.middleware.use ExceptionNotifier,
+  #sender_address: 'jefferson@vizir.com.br',
+  #exception_recipients: 'fellipe@vizir.com.br',
+  #email_prefix: "[LIVRO DA CLASSE] ERRO NO SISTEMA - ",
+  #sections: %w(impersonate)
 end

@@ -31,6 +31,16 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def terms_of_service
+    respond_to do |format|
+      format.pdf do
+        render :pdf => 'terms_of_service',
+               :margin => {:top => '18mm', :left => '10mm', :right => '10mm', :bottom => '20mm'},
+               :show_as_html => params[:debug].present?
+      end
+    end
+  end
+
   private
 
   def find_book
