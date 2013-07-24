@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719123501) do
+ActiveRecord::Schema.define(:version => 20130724144651) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(:version => 20130719123501) do
     t.integer  "text_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "default_covers", :force => true do |t|
+    t.string   "default_cover_file_name"
+    t.string   "default_cover_content_type"
+    t.integer  "default_cover_file_size"
+    t.datetime "default_cover_updated_at"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "invitations", :force => true do |t|
