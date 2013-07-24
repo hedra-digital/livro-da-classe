@@ -48,3 +48,6 @@ group :development do
   gem 'meta_request'
   gem 'annotate', '>=2.5.0'
 end
+
+gem "exception_notification", "~> 3.0.1"
+gem "debugger", "~> 1.6.1"

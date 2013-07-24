@@ -74,9 +74,18 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    columnize (0.3.6)
     debug_inspector (0.0.2)
+    debugger (1.6.1)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     diff-lcs (1.2.4)
     erubis (2.7.0)
+    exception_notification (3.0.1)
+      actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -249,6 +258,8 @@ DEPENDENCIES
   capybara-webkit
   ckeditor!
   coffee-rails (~> 3.2.1)
+  debugger (~> 1.6.1)
+  exception_notification (~> 3.0.1)
   factory_girl_rails
   faker
   gravatar_image_tag
