@@ -1,26 +1,177 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The change you wanted was rejected (422)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>A mudança solicitada foi rejeitada (422)</title>
   <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
+
+    /* General */
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+
+    h1, h2, p {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url("stripe-error.png");
+      background-repeat: repeat-x repeat-y;
+      color: #666;
+      text-align: center;
+      font-family: arial, sans-serif;
+    }
+
+    h1 {
+      font: 72px Times, serif;
+      color: black;
+      font-weight: bolder;
+      display: block;
+    }
+
+    /* Images */
+
+    #error-img {
+      width: 60%;
+      height: 90%;
+      background-color: transparent;
+      margin-top: 2.5%;
+      -webkit-box-shadow: 2px 0px 56px 21px rgba(171,171,171,0.65);
+      -moz-box-shadow: 2px 0px 56px 21px rgba(171,171,171,0.65);
+      box-shadow: 2px 0px 56px 21px rgba(171,171,171,0.65);
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+    }
+
+    #hedra-logo {
+      position: absolute;
+      z-index: 10;
+      top: 65%;
+      left: 25%;
+    }
+
+    /* Error Message */
+
+    #message-inner {
+      position: absolute;
+      background-color: transparent;
+      width: 20%;
+      height: 30%;
+      top: 10%;
+      left: 58%;
+    }
+
+    .sub {
+      width: 100%;
+      position: relative;
+      font-size: 21px;
+      padding: 0 10px;
+      color: black;
+      font-weight: bolder;
+      display: block;
+    }
+
+    .info {
+      display: inline-block;
+      width: 100%;
+      height: 65%;
+      margin-top: 40px;
+      vertical-align: middle;
+    }
+
+    /* Page Border */
+
+    #left, #right {
+      background: transparent;
+      position: fixed;
+    }
+    #left, #right {
+      top: 0; bottom: 0;
+      width: 19.5%;
+    }
+    #left { left: 0; }
+    #right { right: 0; }
+
+    /* Action Buttons */
+
+    .utilities {
+      position: absolute;
+      top:50%;
+      left:66%;
+    }
+    .utilities .button {
+        display: inline-block;
+        width: 140px;
+        height: 34px;
+        margin: 0 0 0 6px;
+        padding: 0 18px;
+        background: #006db0;
+        background-image: linear-gradient(bottom, #0062a6 0%, #0079bb 100%);
+        background-image: -o-linear-gradient(bottom, #0062a6 0%, #0079bb 100%);
+        background-image: -moz-linear-gradient(bottom, #0062a6 0%, #0079bb 100%);
+        background-image: -webkit-linear-gradient(bottom, #0062a6 0%, #0079bb 100%);
+        background-image: -ms-linear-gradient(bottom, #0062a6 0%, #0079bb 100%);
+        -moz-box-shadow: 0 0 0 1px #003255, 0 1px 3px rgba(0, 50, 85, 0.5), 0 1px #00acd8 inset;
+        -webkit-box-shadow: 0 0 0 1px #003255, 0 1px 3px rgba(0, 50, 85, 0.5), 0 1px #00acd8 inset;
+        box-shadow: 0 0 0 1px #003255, 0 1px 3px rgba(0, 50, 85, 0.5), 0 1px #00acd8 inset;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        font-size: 14px;
+        line-height: 34px;
+        color: white;
+        font-weight: bold;
+        text-shadow: 0 -1px #00385a;
+        text-decoration: none;
+        margin-bottom: 10px;
+    }
+    .utilities .button:hover {
+        background: #0081c6;
+        background-image: linear-gradient(bottom, #006fbb 0%, #008dce 100%);
+        background-image: -o-linear-gradient(bottom, #006fbb 0%, #008dce 100%);
+        background-image: -moz-linear-gradient(bottom, #006fbb 0%, #008dce 100%);
+        background-image: -webkit-linear-gradient(bottom, #006fbb 0%, #008dce 100%);
+        background-image: -ms-linear-gradient(bottom, #006fbb 0%, #008dce 100%);
+        -moz-box-shadow: 0 0 0 1px #003255, 0 1px 3px rgba(0, 50, 85, 0.5), 0 1px #00c1e4 inset;
+        -webkit-box-shadow: 0 0 0 1px #003255, 0 1px 3px rgba(0, 50, 85, 0.5), 0 1px #00c1e4 inset;
+        box-shadow: 0 0 0 1px #003255, 0 1px 3px rgba(0, 50, 85, 0.5), 0 1px #00c1e4 inset;
+    }
+    .utilities .button:active {
+        background: #0081c6;
+        background-image: linear-gradient(bottom, #008dce 0%, #006fbb 100%);
+        background-image: -o-linear-gradient(bottom, #008dce 0%, #006fbb 100%);
+        background-image: -moz-linear-gradient(bottom, #008dce 0%, #006fbb 100%);
+        background-image: -webkit-linear-gradient(bottom, #008dce 0%, #006fbb 100%);
+        background-image: -ms-linear-gradient(bottom, #008dce 0%, #006fbb 100%);
+        -moz-box-shadow: 0 0 0 1px #003255, 0 1px 3px rgba(0, 50, 85, 0.5), 0 1px #00c1e4 inset;
+        -webkit-box-shadow: 0 0 0 1px #003255, 0 1px 3px rgba(0, 50, 85, 0.5), 0 1px #00c1e4 inset;
+        box-shadow: 0 0 0 1px #003255, 0 1px 3px rgba(0, 50, 85, 0.5), 0 1px #00c1e4 inset;
+    }
+
   </style>
 </head>
-
 <body>
   <!-- This file lives in public/422.html -->
-  <div class="dialog">
-    <h1>The change you wanted was rejected.</h1>
-    <p>Maybe you tried to change something you didn't have access to.</p>
-  </div>
+  <div id="left"></div>
+  <div id="right"></div>
+    <img id="hedra-logo" src="hedra-logo.png"></img>
+    <img id="error-img" src="error.png"></img>
+    <div id="message-inner">
+      <h1>422</h1>
+      <span class="sub">A mudança solicitada foi rejeitada</span>
+      <article class="info">
+        <p>Provavelmente você tentou alterar algo que não tem acesso.</p>
+      </article>
+    </div>
+    <div class="utilities">
+        <a class="button" href="#" onclick="history.go(-1);return true;">Voltar para anterior</a>
+        <br>
+        <a class="button" href="http://www.livrodaclasse.com.br">Voltar para home</a>
+    </div>
 </body>
 </html>
