@@ -49,7 +49,7 @@ Livrodaclasse::Application.configure do
   config.assets.precompile += %w( public.css )
 
   # Disable delivery errors, bad email addresses will be ignored
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => "livrodaclasse.com.br" }
 
   # Enable threaded mode
@@ -74,13 +74,13 @@ Livrodaclasse::Application.configure do
   #  :address => "smtp.gmail.com",
   #  :port => "587",
   #  :authentication => :plain,
-  #  :user_name => "jefferson@vizir.com.br",
+  #  :user_name => "email",
   #  :password => ""
   #}
 
   #config.middleware.use ExceptionNotifier,
-  #sender_address: 'jefferson@vizir.com.br',
-  #exception_recipients: 'fellipe@vizir.com.br',
+  #sender_address: 'email from',
+  #exception_recipients: 'email to',
   #email_prefix: "[LIVRO DA CLASSE] ERRO NO SISTEMA - ",
   #sections: %w(impersonate)
 end
