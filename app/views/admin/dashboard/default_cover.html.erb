@@ -1,0 +1,18 @@
+<h1 style="margin: 0 0 40px 0;">Capa Padrão</h1>
+
+<div style="float: left; display: block; width: 100%;">
+	<div style=" float: left; width: 40%; text-align: center; height: 140px;">
+		Capa padrão atual:<br><br>
+		<%= image_tag @default_cover.default_cover.url(:thumb) %>
+	</div>
+
+	<div>
+		<p>Definir uma nova imagem para capa padrão:</p>
+		<br>
+		<%= simple_form_for(@default_cover, :url => admin_update_default_cover_path, :method => :post, :html => {:multipart => true}) do |f|%>
+			<%= f.file_field :default_cover %>
+			<br><br>
+			<%= f.submit 'Atualizar capa padrão' %>
+		<% end %>
+	</div>
+</div>

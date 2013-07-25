@@ -27,4 +27,12 @@ module BooksHelper
     options[:class] = 'active' if current_page?(path)
     content_tag(:li, link_to(name, path), options)
   end
+
+  def book_cover
+    if @book.cover.present?
+      link_to(image_tag(@book.cover.url(:thumb)), @book.cover.url(:content), :class => 'cover-modal')
+    else
+      link_to(image_tag(DefaultCover.first.default_cover.url(:thumb)), DefaultCover.first.default_cover.url, :class => 'cover-modal')
+    end
+  end
 end

@@ -8,4 +8,16 @@ class Admin::DashboardController < Admin::ApplicationController
 	    redirect_to app_home_path
     end
   end
+
+  def default_cover
+  	DefaultCover.new.save if DefaultCover.first.nil? 
+
+  	@default_cover = DefaultCover.first
+  end
+
+  def update_default_cover
+  	DefaultCover.first.update_attributes(params[:default_cover])
+  	flash[:success] = 'Capa padrão atualizada com sucesso'
+  	redirect_to admin_root_path
+  end
 end

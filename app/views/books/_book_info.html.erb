@@ -2,13 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="span1">
-        <% if @book.cover.present? %>
-          <%= link_to(image_tag(@book.cover.url(:thumb)), @book.cover.url(:content), :class => 'cover-modal') %>
-        <% else %>
-          <a href="http://2.bp.blogspot.com/-MEkIz1Bld0c/T_4oRfvREPI/AAAAAAAAA8k/wZHwb6kUPlw/s1600/blank+book+cover.jpg" class="cover-modal">
-            <img src="http://2.bp.blogspot.com/-MEkIz1Bld0c/T_4oRfvREPI/AAAAAAAAA8k/wZHwb6kUPlw/s1600/blank+book+cover.jpg">
-          </a>
-        <% end %>
+        <%= book_cover %>
       </div>
       <div class="span8">
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? %>
