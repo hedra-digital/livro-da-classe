@@ -21,7 +21,7 @@ gem 'ckeditor', :git => 'git://github.com/hedra-digital/ckeditor.git'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem "exception_notification", "~> 3.0.1"
-
+gem "debugger", "~> 1.6.1"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -52,6 +52,3 @@ group :development do
   gem 'meta_request'
   gem 'annotate', '>=2.5.0'
 end
-
-gem "exception_notification", "~> 3.0.1"
-gem "debugger", "~> 1.6.1"
