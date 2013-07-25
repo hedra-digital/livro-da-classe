@@ -45,6 +45,12 @@ Configure usuário e senha de acesso ao MySQL no arquivo config/database.yml
 $ cp config/config.example.yml config/config.yml
 </code>
 
+### Configurações do LateX
+<code>
+$ cd /etc/texmf/tex/generic/
+$ sudo ln -s [PASTA DA APLICAÇÃO]/templates/ latex
+</code>
+
 Configure usuário e senha de acesso a area restrita e pasta dos templates no arquivo config/config.ym
 
 ### Criar estrutura do banco de dados da aplicação
