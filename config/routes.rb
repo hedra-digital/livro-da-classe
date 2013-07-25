@@ -42,7 +42,7 @@ Livrodaclasse::Application.routes.draw do
     match 'dashboard/update_default_cover', :to => 'dashboard#update_default_cover', :as => :update_default_cover
 
     resources :projects, :only => [:index, :show, :edit, :update] do
-      member do 
+      member do
         get 'impersonate'
       end
     end

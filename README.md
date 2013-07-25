@@ -5,6 +5,8 @@
 * RVM (https://rvm.io/rvm/install)
 * MySQL (http://www.mysql.com/)
 
+[![Build Status](https://travis-ci.org/hedra-digital/livro-da-classe.png)](https://travis-ci.org/hedra-digital/livro-da-classe) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/hedra-digital/livro-da-classe)
+
 ### Outros pacotes
 <code>
 sudo apt-get install libmysql-ruby libmysqlclient-dev libxml2-dev libxslt1-dev imagemagick libmagickwand-dev libqt4-dev
@@ -32,6 +34,12 @@ $ rvm use ruby-2.0.0-p247@hedra-site
 <code>
 $ bundle install
 </code>
+
+sudo apt-get install libmagickwand-dev libmagickcore-dev imagemagick 
+    
+### Others 
+
+sudo apt-get install libqt4-dev libqtwebkit-dev
 
 ### Configurar banco de dados da aplicação
 <code>
