@@ -102,6 +102,7 @@ GEM
     guid (0.1.1)
     hashie (2.0.5)
     hike (1.2.2)
+    htmlentities (4.3.1)
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
@@ -267,6 +268,7 @@ DEPENDENCIES
   faker
   gravatar_image_tag
   guid
+  htmlentities
   jquery-rails (= 2.0.1)
   kramdown
   launchy
