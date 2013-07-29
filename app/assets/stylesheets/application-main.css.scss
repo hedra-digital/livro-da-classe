@@ -183,14 +183,17 @@ footer {
   display: none;
 }
 
-img .small-intention {
-  
+.small-intention {
+  zoom: 0.3; /* all browsers */
+  -moz-transform: scale(0.3);  /* Firefox */
 }
 
-img .medium-intention {
-
+.medium-intention {
+  zoom: 0.6; /* all browsers */
+  -moz-transform: scale(0.3);  /* Firefox */
 }
 
-img .big-intention {
-  
+.big-intention {
+  zoom: 1; /* all browsers */
+  -moz-transform: scale(0.3);  /* Firefox */
 }

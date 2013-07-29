@@ -175,3 +175,7 @@ $(document).keydown(function(e){
             $("#paste-message").alert();
       }
 });
+
+CKEDITOR.addCss('.small-intention { zoom: 0.3; -moz-transform: scale(0.3); }');
+CKEDITOR.addCss('.medium-intention { zoom: 0.6; -moz-transform: scale(0.6); }');
+CKEDITOR.addCss('.big-intention { zoom: 1; -moz-transform: scale(1); }');
