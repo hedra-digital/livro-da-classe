@@ -22,6 +22,7 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem "exception_notification", "~> 3.0.1"
 gem "debugger", "~> 1.6.1"
+gem "htmlentities"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

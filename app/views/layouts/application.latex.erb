@@ -6,6 +6,6 @@
 \newcommand\ano{2013}
 \newcommand\direitos{Hedra}
 \newcommand\introducao{\chapter{Introdução}\lipsum[1-4]}
-\newcommand\texto{<%= @book.full_text_latex %>}
+\newcommand\texto{<%= @book.full_text_latex.html_safe %>}
 
 \input{<%= @book.template %>/LIVRO}
