@@ -38,20 +38,20 @@ Livrodaclasse::Application.configure do
   config.assets.debug = true
 
   # Email gem configuration for help debug [VIZIR]
-  #config.assets.debug = true
-  #config.action_mailer.raise_delivery_errors = true
-  #config.action_mailer.delivery_method = :smtp
-  #config.action_mailer.smtp_settings = {
-  #  :address => "smtp.gmail.com",
-  #  :port => "587",
-  #  :authentication => :plain,
-  #  :user_name => "email",
-  #  :password => ""
-  #}
+  config.assets.debug = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => "587",
+    :authentication => :plain,
+    :user_name => "hedra@vizir.com.br",
+    :password => "h3dr4m41l"
+  }
 
-  #config.middleware.use ExceptionNotifier,
-  #sender_address: 'email from',
-  #exception_recipients: 'email to',
-  #email_prefix: "[LIVRO DA CLASSE] ERRO NO SISTEMA - ",
-  #sections: %w(impersonate)
+  config.middleware.use ExceptionNotifier,
+  sender_address: 'vizir@hedra.com.br',
+  exception_recipients: 'vizir@hedra.com.br',
+  email_prefix: "[LIVRO DA CLASSE] ERRO NO SISTEMA - ",
+  sections: %w(impersonate)
 end
