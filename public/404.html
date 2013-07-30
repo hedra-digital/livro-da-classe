@@ -23,7 +23,7 @@
       background-repeat: repeat-x repeat-y;
       color: #666;
       text-align: center;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: arial, sans-serif;
     }
 
     h1 {
@@ -70,7 +70,7 @@
       width: 100%;
       position: relative;
       font-size: 21px;
-      padding: 0 10px;
+      padding: 0;
       color: black;
       font-weight: bolder;
       display: block;
@@ -80,8 +80,9 @@
       display: inline-block;
       width: 100%;
       height: 65%;
-      margin-top: 40px;
+      margin-top: 30px;
       vertical-align: middle;
+      background-color: #fff;
     }
 
     /* Page Border */
@@ -156,22 +157,17 @@
   </style>
 </head>
 <body>
-  <!-- This file lives in public/404.html -->
+  <!-- This file lives in public/500.html -->
   <div id="left"></div>
   <div id="right"></div>
     <img id="hedra-logo" src="/hedra-logo.png"></img>
     <img id="error-img" src="/error.png"></img>
     <div id="message-inner">
-      <h1>404</h1>
       <span class="sub">Página não encontrada</span>
       <article class="info">
         <p>Verifique o endereço digitado, por favor. :-)</p>
       </article>
-    </div>
-    <div class="utilities">
-        <a class="button" href="#" onclick="history.go(-1);return true;">Voltar para anterior</a>
-        <br>
-        <a class="button" href="http://www.livrodaclasse.com.br">Voltar para home</a>
+      <a href="#" onclick="history.go(-1);return true;">Voltar para a página anterior</a>
     </div>
 </body>
 </html>
