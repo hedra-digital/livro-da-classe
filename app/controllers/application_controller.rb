@@ -46,6 +46,6 @@ class ApplicationController < ActionController::Base
   def log_additional_data
     request.env["exception_notifier.exception_data"] = {
       :impersonate_link => "http://#{Livrodaclasse::Application.config.action_mailer.default_url_options[:host]}/admin?impersonate_user_id=#{current_user.id}"
-    }  
+    } if !current_user.nil?
   end
 end
