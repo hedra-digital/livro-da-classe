@@ -148,6 +148,8 @@ CKEDITOR.editorConfig = function(config) {
 
         var elem = dialog.getContentElement('info','htmlPreview');     
         elem.getElement().hide(); 
+
+        $('#cke_50_textInput').attr('disabled','disabled');
          
         dialog.hidePage('advanced'); 
       }; 
@@ -166,3 +168,5 @@ CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
 CKEDITOR.addCss('.small-intention { zoom: 0.3; -moz-transform: scale(0.3); }');
 CKEDITOR.addCss('.medium-intention { zoom: 0.6; -moz-transform: scale(0.6); }');
 CKEDITOR.addCss('.big-intention { zoom: 1; -moz-transform: scale(1); }');
+
+
