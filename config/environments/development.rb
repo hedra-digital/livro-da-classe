@@ -14,8 +14,8 @@ Livrodaclasse::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
   # Print deprecation notices to the Rails logger
@@ -35,20 +35,20 @@ Livrodaclasse::Application.configure do
   config.assets.compress = false
 
   # Email gem configuration for help debug [VIZIR]
-  # config.assets.debug = true
-  # config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   :address => "smtp.gmail.com",
-  #   :port => "587",
-  #   :authentication => :plain,
-  #   :user_name => "hedra@vizir.com.br",
-  #   :password => "h3dr4m41l"
-  # }
+  config.assets.debug = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => "587",
+    :authentication => :plain,
+    :user_name => "vizir@hedra.com.br",
+    :password => "h3dr4m41l"
+  }
 
-  # config.middleware.use ExceptionNotifier,
-  # sender_address: 'vizir@hedra.com.br',
-  # exception_recipients: 'vizir@hedra.com.br',
-  # email_prefix: "[LIVRO DA CLASSE] ERRO NO SISTEMA - ",
-  # sections: %w(impersonate)
+  config.middleware.use ExceptionNotifier,
+  sender_address: 'vizir@hedra.com.br',
+  exception_recipients: 'vizir@hedra.com.br',
+  email_prefix: "[LIVRO DA CLASSE] ERRO NO SISTEMA - ",
+  sections: %w(impersonate)
 end

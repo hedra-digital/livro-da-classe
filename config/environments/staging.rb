@@ -75,7 +75,7 @@ Livrodaclasse::Application.configure do
     :address => "smtp.gmail.com",
     :port => "587",
     :authentication => :plain,
-    :user_name => "hedra@vizir.com.br",
+    :user_name => "vizir@hedra.com.br",
     :password => "h3dr4m41l"
   }
 
