@@ -20,7 +20,6 @@ gem 'paperclip', '~> 3.0'
 gem 'ckeditor', :git => 'git://github.com/hedra-digital/ckeditor.git'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-gem "exception_notification", "~> 3.0.1"
 gem "debugger", "~> 1.6.1"
 gem "htmlentities"
 
@@ -53,3 +52,5 @@ group :development do
   gem 'meta_request'
   gem 'annotate', '>=2.5.0'
 end
+
+gem "exception_notification", "~> 3.0.1"

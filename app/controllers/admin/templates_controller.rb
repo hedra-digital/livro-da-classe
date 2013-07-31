@@ -1,5 +1,6 @@
 class Admin::TemplatesController < Admin::ApplicationController
   def index
-    @templates = LATEX_TEMPLATES
+    @templates = Livrodaclasse::Application.latex_templates
+
   end
 end

@@ -23,7 +23,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = current_user.organized_books.new(params[:book].merge(:template => LATEX_TEMPLATES[0]))
+    @book = current_user.organized_books.new(params[:book].merge(:template => Livrodaclasse::Application.latex_templates[0]))
 
     if @book.save
       redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
