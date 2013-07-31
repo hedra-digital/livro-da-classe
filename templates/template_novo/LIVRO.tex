@@ -1,0 +1,25 @@
+\documentclass[showtrims,10pt]{memoir}
+\usepackage{comment,projeto,hedralogo,lipsum,enumerate}
+
+\include{COMANDOS}
+
+\begin{document}
+
+% \include{CONTEUDO}
+
+\title\titulo
+\author\autor
+
+\include{ROSTO}
+\include{CREDITOS}
+\include{contapagina}
+
+\include{CORPO}
+\include{COLOFAO}
+
+\immediate\openout\tempfile=contapagina.log
+\immediate\write\tempfile{\thepage}
+\immediate\closeout\tempfile
+\makeatother
+
+\end{document}

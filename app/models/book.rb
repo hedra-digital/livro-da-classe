@@ -55,7 +55,7 @@ class Book < ActiveRecord::Base
 
   def full_text_latex
     builder = proc do |text|
-      "\\chapter{#{text.title}}\n#{text_to_latex(text.content)}\n" unless text.content.to_s.size == 0
+      "\\chapter{#{text.title}}\n#{MarkupLatex.new(text.content).text_to_latex}\n" unless text.content.to_s.size == 0
     end
 
     texts.order("position ASC").map(&builder).join
@@ -65,49 +65,5 @@ class Book < ActiveRecord::Base
 
   def set_uuid
      self.uuid = Guid.new.to_s if self.uuid.nil?
-  end
-
-  def text_to_latex(text)
-    content_text = text.dup
-    coder ||= HTMLEntities.new
-    content_text = coder.decode(content_text)
-
-    array = prepare_text content_text
-    compiled_array = compile_latex array
-    string = ""
-    compiled_array.each{|a| string << a[1]}
-    string
-  end
-
-  def compile_latex(array)
-    array.each do |element|
-      if element[0] == :html
-        element[1] = HedraLatex.convert(Kramdown::Document.new(element[1], :input => 'html').root)[0]
-      elsif element[0] == :latex
-        element[1] = ActionView::Base.full_sanitizer.sanitize(element[1])
-        #removing html tags of latex code
-      end
-    end
-  end
-
-  def prepare_text(text)
-    l_begin = "{beginlatex}"
-    l_end = "{endlatex}"
-    start_index = 0
-    array_text = []
-
-    while !text.empty?
-      start_latex = text.index(l_begin)
-      if(start_latex.nil?)
-        array_text << [:html, text[(start_index)..(text.size - 1)]]
-        text[start_index..text.size - 1] = ""
-      else
-        end_latex = text.index(l_end)
-        array_text << [:html, text[(start_index)..(start_latex - 1)]]
-        array_text << [:latex, text[(start_latex + l_begin.size)..(end_latex - 1)]]
-        text[(start_index)..(end_latex + l_end.size - 1)] = ""
-      end 
-    end
-    array_text
   end
 end
