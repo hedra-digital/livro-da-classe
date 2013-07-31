@@ -1,4 +1,7 @@
 class MarkupLatex
+
+  require "#{Rails.root}/lib/hedra-latex.rb"
+
   def initialize(text)
     @text  = text    
   end
