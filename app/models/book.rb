@@ -54,8 +54,10 @@ class Book < ActiveRecord::Base
   end
 
   def full_text_latex
+    require "#{Rails.root}/lib/markup_latex.rb"
+
     builder = proc do |text|
-      "\\chapter{#{text.title}}\n#{MarkupLatex.new(text.content).text_to_latex}\n" unless text.content.to_s.size == 0
+      "\\chapter{#{text.title}}\n#{MarkupLatex.new(text.content).to_latex}\n" unless text.content.to_s.size == 0
     end
 
     texts.order("position ASC").map(&builder).join

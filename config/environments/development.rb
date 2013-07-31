@@ -34,11 +34,7 @@ Livrodaclasse::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
-  # Expands the lines which load the assets
-  config.assets.debug = true
-
   # Email gem configuration for help debug [VIZIR]
-  
   # config.assets.debug = true
   # config.action_mailer.raise_delivery_errors = true
   # config.action_mailer.delivery_method = :smtp
