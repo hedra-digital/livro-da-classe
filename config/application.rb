@@ -78,5 +78,14 @@ module Livrodaclasse
       g.test_framework :rspec, :fixture => true, :views => false
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
+
+    def latex_templates
+      require "#{Rails.root}/lib/hedra-latex.rb"
+
+      latex_template_path = CONFIG[Rails.env.to_sym]["latex_template_path"] << "*"
+      templates = Dir.glob(latex_template_path).sort.select { |f| File.directory? f }.map { |m| File.basename(m) }
+      
+      templates
+    end
   end
 end
