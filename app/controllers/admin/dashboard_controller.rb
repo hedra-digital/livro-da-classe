@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Admin::DashboardController < Admin::ApplicationController
   def index
   	if params[:impersonate_user_id].blank?
