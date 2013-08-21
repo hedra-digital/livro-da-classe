@@ -49,8 +49,8 @@ Livrodaclasse::Application.configure do
   config.assets.precompile += %w( public.css )
 
   # Disable delivery errors, bad email addresses will be ignored
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => "livrodaclasse.com.br" }
 
   # Enable threaded mode
@@ -69,15 +69,15 @@ Livrodaclasse::Application.configure do
 
   # Email gem configuration for help debug [VIZIR]
   config.assets.debug = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => "587",
-    :authentication => :plain,
-    :user_name => "vizir@hedra.com.br",
-    :password => "h3dr4m41l"
-  }
+  #config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  :address => "smtp.gmail.com",
+  #  :port => "587",
+  #  :authentication => :plain,
+  #  :user_name => "vizir@hedra.com.br",
+  #  :password => "h3dr4m41l"
+  #}
 
   config.middleware.use ExceptionNotifier,
   sender_address: 'vizir@hedra.com.br',
