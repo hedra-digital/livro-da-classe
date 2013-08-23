@@ -40,8 +40,8 @@ class MarkupLatex
   end
 
   def prepare_text(text)
-    l_begin = "{beginlatex}"
-    l_end = "{endlatex}"
+    l_begin = "{{"
+    l_end = "}}"
     start_index = 0
     array_text = []
 
