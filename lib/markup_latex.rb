@@ -72,8 +72,6 @@ class MarkupLatex
       latex_img = "{{\\#{img_type}{#{img_sub}}{#{img_src}} }}" 
 
       text = text.sub(img_tag.to_s, latex_img)
-
-      puts "Replace de imagem feito com sucesso..." 
     end
     text
   end
