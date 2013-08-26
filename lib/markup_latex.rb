@@ -19,6 +19,7 @@ class MarkupLatex
   end
 
   def build_array(content_text)
+    content_text = prepare_image content_text
     array = prepare_text content_text
     compiled_array = compile_latex array
   end
@@ -59,4 +60,50 @@ class MarkupLatex
     end
     array_text
   end
+
+  def prepare_image(text)
+    while text.match /<img .*? \/>/
+      img_tag = text.match /<img .*? \/>/ 
+
+      img_type = get_image_type(img_tag.to_s)
+      img_sub = get_image_sub(img_tag.to_s)
+      img_src = get_image_src(img_tag.to_s)
+
+      latex_img = "{{\\#{img_type}{#{img_sub}}{#{img_src}} }}" 
+
+      text = text.sub(img_tag.to_s, latex_img)
+
+      puts "Replace de imagem feito com sucesso..." 
+    end
+    text
+  end
+
+  def get_image_type(img_tag)
+    if img_tag.include? "small-intention"
+      'imagempequena'
+    elsif img_tag.include? "medium-intention"
+      'imagemmedia'
+    else
+      'imagemgrande'
+    end
+  end
+
+  def get_image_sub(img_tag)
+    sub = img_tag[/img.*?alt="(.*?)"/i,1]
+    if sub.nil?
+      ""
+    else
+      sub
+    end
+  end
+
+  def get_image_src(img_tag)
+    src = img_tag[/img.*?src="(.*?)"/i,1]
+    if src.nil?
+      return ""
+    else
+      return "#{Rails.public_path}#{src}"
+    end
+  end
+
 end
