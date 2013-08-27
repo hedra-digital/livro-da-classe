@@ -45,6 +45,7 @@
   <div class="form-inputs">
     <%= field_set_tag "Dados do projeto" do %>
       <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>
+      <%= f.input :quantity, :as => :integer, :label => t(:quantity) %>
       <label for="project_school_logo"><%= t(:school_logo_label) %></label>
       <div class="fileupload fileupload-new" data-provides="fileupload">
         <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
@@ -60,7 +61,7 @@
 
     <%= field_set_tag "Dados pessoais" do %>
       <%= f.simple_fields_for :client do |c| %>
-        <%= c.input :user_id, :as => :hidden %>
+        <%= c.input :user_id, :as => :hidden %>/home/fellip/home/fellipe/hedra-livrodaclasse/public/system/projects/school_logos/000/000/002/original/delorean.jpge/hedra-livrodaclasse/public/system/projects/school_logos/000/000/002/original/delorean.jpg
         <%= c.input :name %>
         <%= c.input :email %>
         <%= c.input :phone, :placeholder => 'Ex.: (11) 9999-9999' %>

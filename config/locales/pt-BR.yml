@@ -21,6 +21,7 @@ pt-BR:
   save_password: 'Gravar senha'
   reset_password: 'Solicitar nova senha'
   release_date_label: 'Quando você deseja lançar o seu livro?'
+  quantity: 'Quantas unidades do livro deverão ser publicadas nessa tiragem?'
   school_logo_label: 'Logomarca da sua escola'
   text_finished_at: 'Texto finalizado em'
   text_edit: 'Editar texto'

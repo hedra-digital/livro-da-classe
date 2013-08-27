@@ -60,13 +60,15 @@ class Book < ActiveRecord::Base
       "\\chapter{#{text.title}}\n#{MarkupLatex.new(text.content).to_latex}\n" unless text.content.to_s.size == 0
     end
 
-    content = texts.order("position ASC").map(&builder).join
+    texts.order("position ASC").map(&builder).join
+  end
 
-    if self.project.present?
-      content += MarkupLatex.school_logo_latex(self.project.school_logo.url)
+  def get_school_logo
+    school_logo = self.project.school_logo.url
+    if !school_logo.index("?").nil?
+      school_logo = school_logo[0..school_logo.index("?") -1]
     end
-
-    content
+    return Rails.public_path + school_logo
   end
 
   private

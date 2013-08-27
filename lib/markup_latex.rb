@@ -104,13 +104,4 @@ class MarkupLatex
     end
   end
 
-  def self.school_logo_latex(school_logo)
-    if !school_logo.index("?").nil?
-      school_logo = school_logo[0..school_logo.index("?") -1]
-    else
-      return ''
-    end
-    return '\logoescola{' + Rails.public_path + school_logo + '}'
-  end
-
 end
