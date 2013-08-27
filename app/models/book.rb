@@ -61,11 +61,9 @@ class Book < ActiveRecord::Base
     end
 
     content = texts.order("position ASC").map(&builder).join
-    
+
     if self.project.present?
       content += MarkupLatex.school_logo_latex(self.project.school_logo.url)
-    else
-      content += MarkupLatex.school_logo_latex("")
     end
 
     content
