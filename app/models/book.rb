@@ -64,11 +64,15 @@ class Book < ActiveRecord::Base
   end
 
   def get_school_logo
-    school_logo = self.project.school_logo.url
-    if !school_logo.index("?").nil?
-      school_logo = school_logo[0..school_logo.index("?") -1]
+    if !self.project.nil?
+      school_logo = self.project.school_logo.url
+      if !school_logo.index("?").nil?
+        school_logo = school_logo[0..school_logo.index("?") -1]
+      end
+      return Rails.public_path + school_logo
+    else
+      return Rails.public_path + "/default_logo.jpg"
     end
-    return Rails.public_path + school_logo
   end
 
   private
