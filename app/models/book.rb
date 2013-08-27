@@ -60,12 +60,21 @@ class Book < ActiveRecord::Base
       "\\chapter{#{text.title}}\n#{MarkupLatex.new(text.content).to_latex}\n" unless text.content.to_s.size == 0
     end
 
-    texts.order("position ASC").map(&builder).join
+    content = texts.order("position ASC").map(&builder).join
+    
+    if self.project.present?
+      content += MarkupLatex.school_logo_latex(self.project.school_logo.url)
+    else
+      content += MarkupLatex.school_logo_latex("")
+    end
+
+    content
   end
 
   private
 
   def set_uuid
-     self.uuid = Guid.new.to_s if self.uuid.nil?
+    self.uuid = Guid.new.to_s if self.uuid.nil?
   end
+
 end
