@@ -104,4 +104,13 @@ class MarkupLatex
     end
   end
 
+  def self.school_logo_latex(school_logo)
+    if !school_logo.empty?
+      school_logo = school_logo[0..school_logo.index("?") -1]
+      '\logoescola{' + Rails.public_path + school_logo + '}'
+    else
+      ''
+    end
+  end
+
 end
