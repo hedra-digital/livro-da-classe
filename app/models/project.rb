@@ -30,12 +30,17 @@ class Project < ActiveRecord::Base
   validates_with                ProjectValidator
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity
+  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity, :pages
 
   accepts_nested_attributes_for :client, :book
 
   has_attached_file             :school_logo
 
+  PUBLISH_FORMAT_PRICE = {
+    "21 x 14 cm" => 0.4,
+    "14 x 21 cm" => 0.2,
+    "16 x 23 cm" => 0.23
+  }
 
   def has_valid_release_date?
     self.release_date.present? && (self.release_date > (Date.today + Project::MANUFACTURE_TIME))
@@ -54,4 +59,16 @@ class Project < ActiveRecord::Base
     days = (self.finish_date - Date.today).to_i
     days >= 0 ? days : 0
   end
+
+  def calculated_pages
+    #todo pegar a quantidade de páginas do projeto
+    30
+  end
+
+  def price
+    price = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format]
+    price = "%0.2f" % price
+    "R$ #{price}"
+  end
+
 end

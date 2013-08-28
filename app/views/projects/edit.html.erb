@@ -10,6 +10,10 @@
       Data de finalização<br>
       <span style="font-weight: bold;"><%=l @project.finish_date %></span>
     </div>
+    <div class="project-price">
+      Preço Total<br>
+      <span id="project-price"><%= @project.price %></span> (<%= @project.calculated_pages %> páginas)
+    </div>
     <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>
 
     <label for="project_school_logo"><%= t(:school_logo_label) %></label>
