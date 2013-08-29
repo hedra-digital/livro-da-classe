@@ -35,7 +35,6 @@ class MarkupLatex
         element[1] = HedraLatex.convert(Kramdown::Document.new(element[1], :input => 'html').root)[0]
       elsif element[0] == :latex
         element[1] = ActionView::Base.full_sanitizer.sanitize(element[1])
-        #removing html tags of latex code
       end
     end
   end
