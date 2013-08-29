@@ -74,19 +74,6 @@ describe Book do
     end
   end
 
-  context '#text_to_latex(text)' do
-    # let(:valid_attributes) { attributes_for(:book, :texts => create_list(:text, 3)) }
-    let(:book) { create(:book) }
-
-    before do
-      book.texts = FactoryGirl.create_list(:text, 3, :book_id => book.id)
-    end
-
-    it 'converts the argument to latex' do
-      book.send(:text_to_latex, book.texts.first.content).should ==  "#{book.texts.first.content}\n"
-    end
-  end
-
   context '.full_text_latex' do
     let(:book) { create(:book) }
     let(:user) { create(:user) }
