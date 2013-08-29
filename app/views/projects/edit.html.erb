@@ -11,8 +11,16 @@
       <span style="font-weight: bold;"><%=l @project.finish_date %></span>
     </div>
     <div class="project-price">
-      Preço Total<br>
+      Preço Unitário<br>
       <span id="project-price"><%= @project.price %></span> (<%= @project.calculated_pages %> páginas)
+    </div>
+    <div class="project-price">
+      Quantidade<br>
+      <span id="project-price"><%= @project.quantity %> unidades</span>
+    </div>
+    <div class="project-price">
+      Preço Total<br>
+      <span id="project-total-price"><%= @project.total_price %></span>
     </div>
     <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>
 

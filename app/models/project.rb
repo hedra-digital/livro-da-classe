@@ -25,6 +25,7 @@ class Project < ActiveRecord::Base
   belongs_to                    :client
 
   # Validations
+  validates_numericality_of     :quantity, :greater_than => 99
   validates                     :book_id, :presence => true
   validates                     :terms_of_service, :acceptance => true
   validates_with                ProjectValidator
@@ -69,6 +70,12 @@ class Project < ActiveRecord::Base
     price = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format]
     price = "%0.2f" % price
     "R$ #{price}"
+  end
+
+  def total_price
+    total = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format] * self.quantity
+    total = "%0.2f" % total
+    "R$ #{total}"
   end
 
 end

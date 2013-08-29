@@ -1,7 +1,8 @@
 <script type="text/javascript">
   $(document).ready(function() {
+    var price;
     $(".format-radio").change(function() {
-      var price = <%= @project.calculated_pages %>;
+      price = <%= @project.calculated_pages %>;
       if (this.value == "21 x 14 cm")
         price *= 0.40;
       else if (this.value == "14 x 21 cm")
@@ -9,8 +10,17 @@
       else if (this.value == "16 x 23 cm")
         price *= 0.22;
       $("#project-price").text("R$ " + price.toFixed(2));
+      $("#project_quantity").change();
     });
+
+    $("#project_quantity").change(function() {
+      total = price * $("#project_quantity").val();
+      $("#project-total-price").text("R$ " + total.toFixed(2));
+    });
+
     $("#project_publish_format_21_x_14_cm").change();
+    $("#project_quantity").change();
+
   });
 </script>
 
@@ -55,13 +65,14 @@
   </tbody>
 </table>
 
-<div class="project-price"><b>Preço Total: </b><span id="project-price"></span> (<%= @project.calculated_pages %> páginas)</div>
+<div class="project-price"><b>Preço Unitário: </b><span id="project-price"></span> (<%= @project.calculated_pages %> páginas)</div>
 
 <h2>Formulário de adesão</h2>
   <div class="form-inputs">
     <%= field_set_tag "Dados do projeto" do %>      
       <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>
-      <%= f.input :quantity, :as => :integer, :label => t(:quantity) %>
+      <%= f.input :quantity, :as => :integer, :label => t(:quantity), input_html: { min: 100, value: 100 } %>
+      <div class="project-price"><b>Preço Total: </b><span id="project-total-price"></span></div>
       <label for="project_school_logo"><%= t(:school_logo_label) %></label>
       <div class="fileupload fileupload-new" data-provides="fileupload">
         <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
