@@ -67,21 +67,9 @@ Livrodaclasse::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  # Email gem configuration for help debug [VIZIR]
-  config.assets.debug = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => "587",
-    :authentication => :plain,
-    :user_name => "vizir@hedra.com.br",
-    :password => "h3dr4m41l"
-  }
-
   config.middleware.use ExceptionNotifier,
-  sender_address: 'vizir@hedra.com.br',
-  exception_recipients: 'vizir@hedra.com.br',
-  email_prefix: "[LIVRO DA CLASSE] ERRO NO SISTEMA - ",
+  sender_address: 'nao-responda@livrodaclasse.com.br',
+  exception_recipients: 'jorge@hedra.com.br; vizir@hedra.com.br',
+  email_prefix: "[STAGING - LIVRO DA CLASSE] ERRO NO SISTEMA - ",
   sections: %w(impersonate)
 end

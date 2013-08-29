@@ -69,7 +69,7 @@ Livrodaclasse::Application.configure do
 
   config.middleware.use ExceptionNotifier,
   sender_address: 'nao-responda@livrodaclasse.com.br',
-  exception_recipients: 'vizir@hedra.com.br',
+  exception_recipients: 'jorge@hedra.com.br; vizir@hedra.com.br',
   email_prefix: "[LIVRO DA CLASSE] ERRO NO SISTEMA - ",
   sections: %w(impersonate)
 end
