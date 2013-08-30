@@ -31,7 +31,7 @@ class Project < ActiveRecord::Base
   validates_with                ProjectValidator
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity, :pages
+  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity
 
   accepts_nested_attributes_for :client, :book
 
@@ -62,20 +62,27 @@ class Project < ActiveRecord::Base
   end
 
   def calculated_pages
-    #todo pegar a quantidade de páginas do projeto
-    30
+    self.book.count_pages
   end
 
   def price
-    price = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format]
-    price = "%0.2f" % price
-    "R$ #{price}"
+    if !self.calculated_pages.nil?
+      price = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format]
+      price = "%0.2f" % price
+      "R$ #{price}"
+    else
+      "Preço unitário não calculado"
+    end
   end
 
   def total_price
-    total = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format] * self.quantity
-    total = "%0.2f" % total
-    "R$ #{total}"
+    if !self.calculated_pages.nil? and !self.quantity.nil?
+      total = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format] * self.quantity
+      total = "%0.2f" % total
+      "R$ #{total}"
+    else
+      "Preço total não calculado"
+    end
   end
 
 end

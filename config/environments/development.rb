@@ -34,6 +34,9 @@ Livrodaclasse::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
+  #Permit multiple threads
+  config.threadsafe!
+
   # Email gem configuration for help debug [VIZIR]
   config.assets.debug = true
   config.action_mailer.raise_delivery_errors = true
