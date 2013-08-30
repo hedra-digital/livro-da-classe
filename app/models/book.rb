@@ -84,7 +84,7 @@ class Book < ActiveRecord::Base
       reader = PDF::Reader.new(open(site_url))
       reader.page_count
     rescue
-      0
+      -1
     end
   end
 
