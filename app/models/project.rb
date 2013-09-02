@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 # == Schema Information
 #
 # Table name: projects
@@ -25,17 +27,23 @@ class Project < ActiveRecord::Base
   belongs_to                    :client
 
   # Validations
+  validates_numericality_of     :quantity, :greater_than => 99
   validates                     :book_id, :presence => true
   validates                     :terms_of_service, :acceptance => true
   validates_with                ProjectValidator
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format
+  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity
 
   accepts_nested_attributes_for :client, :book
 
   has_attached_file             :school_logo
 
+  PUBLISH_FORMAT_PRICE = {
+    "21 x 14 cm" => 0.4,
+    "14 x 21 cm" => 0.2,
+    "16 x 23 cm" => 0.23
+  }
 
   def has_valid_release_date?
     self.release_date.present? && (self.release_date > (Date.today + Project::MANUFACTURE_TIME))
@@ -54,4 +62,29 @@ class Project < ActiveRecord::Base
     days = (self.finish_date - Date.today).to_i
     days >= 0 ? days : 0
   end
+
+  def calculated_pages
+    self.book.count_pages
+  end
+
+  def price
+    if !self.calculated_pages.nil?
+      price = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format]
+      price = "%0.2f" % price
+      "R$ #{price}"
+    else
+      "Preço unitário não calculado"
+    end
+  end
+
+  def total_price
+    if !self.calculated_pages.nil? and !self.quantity.nil?
+      total = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format] * self.quantity
+      total = "%0.2f" % total
+      "R$ #{total}"
+    else
+      "Preço total não calculado"
+    end
+  end
+
 end

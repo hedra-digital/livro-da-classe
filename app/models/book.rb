@@ -54,6 +54,7 @@ class Book < ActiveRecord::Base
   end
 
   def full_text_latex
+
     require "#{Rails.root}/lib/markup_latex.rb"
 
     builder = proc do |text|
@@ -63,9 +64,30 @@ class Book < ActiveRecord::Base
     texts.order("position ASC").map(&builder).join
   end
 
+  def get_school_logo
+    if !self.project.nil?
+      school_logo = self.project.school_logo.url
+      if !school_logo.index("?").nil?
+        school_logo = school_logo[0..school_logo.index("?") -1]
+      end
+      return Rails.public_path + school_logo
+    else
+      return Rails.public_path + "/default_logo.jpg"
+    end
+  end
+
+  def count_pages 
+    require 'open-uri'
+    site_url = "http://#{Livrodaclasse::Application.config.action_mailer.default_url_options[:host]}"
+    site_url = "#{site_url}/books/#{self.uuid}.pdf"
+    reader = PDF::Reader.new(open(site_url))
+    reader.page_count
+  end
+
   private
 
   def set_uuid
-     self.uuid = Guid.new.to_s if self.uuid.nil?
+    self.uuid = Guid.new.to_s if self.uuid.nil?
   end
+
 end

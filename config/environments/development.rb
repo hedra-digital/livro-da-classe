@@ -34,6 +34,9 @@ Livrodaclasse::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
+  #Permit multiple threads
+  config.threadsafe!
+
   # Email gem configuration for help debug [VIZIR]
   config.assets.debug = true
   config.action_mailer.raise_delivery_errors = true
@@ -48,7 +51,7 @@ Livrodaclasse::Application.configure do
 
   config.middleware.use ExceptionNotifier,
   sender_address: 'vizir@hedra.com.br',
-  exception_recipients: 'vizir@hedra.com.br',
-  email_prefix: "[LIVRO DA CLASSE] ERRO NO SISTEMA - ",
+  exception_recipients: 'fellipe@vizir.com.br; vizir@hedra.com.br',
+  email_prefix: "[DEV - LIVRO DA CLASSE] ERRO NO SISTEMA - ",
   sections: %w(impersonate)
 end

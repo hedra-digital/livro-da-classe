@@ -2,6 +2,7 @@
 <% @latex_config = { :parse_twice => true } %>
 \RequirePackage[utf8x]{inputenc}
 
+\newcommand{\logoescola}{<%= @book.get_school_logo %>}
 \newcommand\titulo{<%= @book.title %>}
 \newcommand\autor{<%= @book.organizer.name %>}
 \newcommand\organizador{<%= @book.organizers %>}

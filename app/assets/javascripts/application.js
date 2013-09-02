@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require ckeditor/init
 //= require bootstrap-alert
 //= require bootstrap-dropdown
 //= require bootstrap-datepicker/core
@@ -24,6 +23,7 @@
 //= require bindWithDelay
 //= require reorder
 //= require_self
+//= require ckeditor/init
 
 
 // Bootstrap Datepicker
