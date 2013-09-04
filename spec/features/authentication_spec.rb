@@ -7,12 +7,12 @@ describe 'unregistered user' do
     it 'visits the home page' do
       visit root_path
       page.should have_selector('h1', :text => 'Livro da Classe')
-      page.should have_link('signup', :href => new_user_path)
+      page.should have_link('sign_up', :href => new_user_path)
     end
 
     it 'clicks the sign up button' do
       visit root_path
-      click_link('signup')
+      click_link('sign_up')
       page.should have_selector('h1', :text => 'Crie sua conta', :visible => true)
       current_path.should eq(new_user_path)
     end
