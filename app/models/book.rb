@@ -54,7 +54,6 @@ class Book < ActiveRecord::Base
   end
 
   def full_text_latex
-
     require "#{Rails.root}/lib/markup_latex.rb"
 
     builder = proc do |text|
@@ -77,11 +76,15 @@ class Book < ActiveRecord::Base
   end
 
   def count_pages 
-    require 'open-uri'
-    site_url = "http://#{Livrodaclasse::Application.config.action_mailer.default_url_options[:host]}"
-    site_url = "#{site_url}/books/#{self.uuid}.pdf"
-    reader = PDF::Reader.new(open(site_url))
-    reader.page_count
+    begin
+      require 'open-uri'
+      site_url = "http://#{Livrodaclasse::Application.config.action_mailer.default_url_options[:host]}"
+      site_url = "#{site_url}/books/#{self.uuid}.pdf"
+      reader = PDF::Reader.new(open(site_url))
+      return reader.page_count
+    rescue
+      return 0
+    end
   end
 
   private

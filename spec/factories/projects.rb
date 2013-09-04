@@ -5,7 +5,6 @@ FactoryGirl.define do
     book
     client
     release_date 3.months.since.to_date
-    quantity 10
-    publish_format "21 x 14 cm"
+    quantity 0
   end
 end
