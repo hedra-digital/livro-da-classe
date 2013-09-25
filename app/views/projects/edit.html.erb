@@ -16,7 +16,7 @@
     </div>
     <div class="project-price">
       Quantidade<br>
-      <span id="project-price"><%= @project.quantity %> unidades</span>
+      <%= f.input :quantity, :as => :integer, :label => t(:quantity), input_html: { min: 50, value: @project.quantity } %>
     </div>
     <div class="project-price">
       Preço Total<br>
