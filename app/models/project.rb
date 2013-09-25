@@ -27,7 +27,7 @@ class Project < ActiveRecord::Base
   belongs_to                    :client
 
   # Validations
-  validates_numericality_of     :quantity, :greater_than => 99
+  validates_numericality_of     :quantity, :greater_than => 49
   validates                     :book_id, :presence => true
   validates                     :terms_of_service, :acceptance => true
   validates_with                ProjectValidator
@@ -40,7 +40,6 @@ class Project < ActiveRecord::Base
   has_attached_file             :school_logo
 
   PUBLISH_FORMAT_PRICE = {
-    "21 x 14 cm" => 0.4,
     "14 x 21 cm" => 0.2,
     "16 x 23 cm" => 0.23
   }
