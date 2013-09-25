@@ -63,7 +63,7 @@ class Project < ActiveRecord::Base
   end
 
   def calculated_pages
-    self.book.count_pages
+    [self.book.count_pages, 100].max
   end
 
   def price

@@ -2,7 +2,7 @@
   $(document).ready(function() {
     var price;
     $(".format-radio").change(function() {
-      price = <%= [@project.calculated_pages, 100].max%>;
+      price = <%= @project.calculated_pages%>;
       if (this.value == "14 x 21 cm")
         price *= 0.20;
       else if (this.value == "16 x 23 cm")
@@ -58,7 +58,7 @@
   </tbody>
 </table>
 
-<div class="project-price"><b>Preço Unitário: </b><span id="project-price"></span> (<%= [@project.calculated_pages, 100].max %> páginas)</div>
+<div class="project-price"><b>Preço Unitário: </b><span id="project-price"></span> (<%= @project.calculated_pages %> páginas)</div>
 
 <h2>Formulário de adesão</h2>
   <div class="form-inputs">
