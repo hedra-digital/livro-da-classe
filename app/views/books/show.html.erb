@@ -1,5 +1,6 @@
 <div class="row">
   <!-- organizadores -->
+
   <div class="span4">Organizadores:</div>
   <div class="span8"><%= @book.organizers.presence || raw("<em>n&atilde;o definido</em>") %></div>
 
@@ -11,3 +12,37 @@
   <div class="span4">Coordenadores:</div>
   <div class="span8"><%= @book.coordinators.presence || raw("<em>n&atilde;o definido</em>") %></div>
 </div>
+  <input type="hidden" id="hidden_book_id" value="<%= @book.uuid %>"></input>
+
+<div id="recados">
+  <h3> Novo recado </h3>
+  <div id="novo_recado">
+    <textarea id="text_novo_recado" rows="1" cols="30"></textarea>
+    <button type="button" id="botao_enviar">Enviar</button>
+  </div>
+  <h3> Recados </h3>
+  <div id="listar_recados">
+    <div>
+      <ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Recado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @scraps.each do |scrap|%>
+              <tr>
+                <td><%= link_to scrap.created_at.strftime("%d/%m/%Y %R"), scrap_show_path(id: scrap.id) %></td>
+                <td><%= scrap.content %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+       </ul>
+    </div>
+  </div>
+</div>
+
+

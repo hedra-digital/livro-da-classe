@@ -12,6 +12,8 @@ class BooksController < ApplicationController
   end
 
   def show
+    @scraps = Book.find_by_uuid(params[:id]).scraps.order("created_at desc")
+
     respond_to do |format|
       format.html # show.html.erb
       format.pdf 
@@ -47,7 +49,7 @@ class BooksController < ApplicationController
     @book.destroy
     redirect_to books_url
   end
-
+  
   private
 
   def secure_organizer_id

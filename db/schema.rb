@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130830180555) do
+ActiveRecord::Schema.define(:version => 20130926173205) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -93,19 +93,26 @@ ActiveRecord::Schema.define(:version => 20130830180555) do
     t.integer  "book_id"
     t.date     "release_date"
     t.date     "finish_date"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "client_id"
     t.string   "school_logo_file_name"
     t.string   "school_logo_content_type"
     t.integer  "school_logo_file_size"
     t.datetime "school_logo_updated_at"
     t.string   "publish_format"
-    t.integer  "quantity"
+    t.integer  "quantity",                 :default => 100
   end
 
   add_index "projects", ["book_id"], :name => "index_projects_on_book_id"
   add_index "projects", ["client_id"], :name => "index_projects_on_client_id"
+
+  create_table "scraps", :force => true do |t|
+    t.integer  "book_id"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "texts", :force => true do |t|
     t.integer  "book_id"
