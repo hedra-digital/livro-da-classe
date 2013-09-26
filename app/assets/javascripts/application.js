@@ -82,6 +82,7 @@ $(document).ready(function() {
       $.post("/scraps/create", { book: $("#hidden_book_id").val(), content: $("#text_novo_recado").val()}, function( data ) {
         $("#recados table tbody").prepend(data);
       }, 'html');
+      $("#text_novo_recado").val('');
     }
   });
 });
