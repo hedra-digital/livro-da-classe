@@ -34,7 +34,7 @@
           <tbody>
             <% @scraps.each do |scrap|%>
               <tr>
-                <td><%= link_to scrap.created_at.strftime("%d/%m/%Y %R"), scrap_show_path(id: scrap.id) %></td>
+                <td><span class="label"><%= link_to scrap.created_at.strftime("%d/%m/%Y"), scrap_show_path(id: scrap.id) %></span></td>
                 <td><%= scrap.content %></td>
               </tr>
             <% end %>

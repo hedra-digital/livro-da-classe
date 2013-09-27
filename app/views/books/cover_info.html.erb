@@ -1,0 +1,14 @@
+<h2>Capa</h2>
+<%= simple_form_for(@cover_info, :url => "update_cover_info", :html => { :multipart => true }) do |f| %>
+  <%= f.input :titulo_linha1 %>
+  <%= f.input :titulo_linha2 %>
+  <%= f.input :titulo_linha3 %>
+  <%= f.input :organizador %>
+  <%= f.input :autor %>
+  <%= f.input :texto_na_lombada %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to "Gerar Capa", book_generate_cover_path(@cover_info.book_id, format: :pdf) %>
