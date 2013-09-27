@@ -12,11 +12,7 @@ Livrodaclasse::Application.routes.draw do
   get 'apphome', :to => 'books#index', :as => :app_home
   get 'auth/failure', :to => redirect('/')
   get 'projects/terms_of_service', :to => 'projects#terms_of_service', :as => :terms_of_service
-<<<<<<< HEAD
-=======
   match 'texts/enable_or_disable', :to => 'texts#enable_or_disable', :as => :enable_or_disable
-
->>>>>>> 1fd2f2774289e98f6ce5a3d7631f06fc0309802f
   root :to => 'pages#home'
 
   resources :users do
