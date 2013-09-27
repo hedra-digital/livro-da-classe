@@ -29,6 +29,7 @@ class Book < ActiveRecord::Base
   has_many                  :texts, :dependent => :destroy
   has_one                   :project
   has_many                  :invitations, :dependent => :destroy
+  has_many                  :scraps, :dependent => :destroy
 
   # Validations
   validates                 :organizer, :presence => true

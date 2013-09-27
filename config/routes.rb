@@ -1,5 +1,8 @@
 Livrodaclasse::Application.routes.draw do
 
+  get "scraps/:id" => "scraps#show", as: :scrap_show
+  match "scraps/create" => "scraps#create", as: :scrap_create
+
   mount Ckeditor::Engine => '/ckeditor'
 
   get 'entrar', :to => 'sessions#new', :as => :signin

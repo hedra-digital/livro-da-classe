@@ -1,0 +1,9 @@
+<p>
+  <b>Data:</b> 
+  <%= @scrap.created_at.strftime("%d/%m/%Y %R") %>
+</p>
+<p>
+  <b>Recado:</b> 
+  <%= @scrap.content%>
+</p>
+<%= link_to "Voltar para o livro", book_path(@book.uuid)%>

@@ -1,0 +1,12 @@
+#recados li{
+  list-style:none;
+}
+
+#recados textarea {
+height: 40px;
+width: 80%;
+}
+
+#recados table th{
+  text-align: left;
+}

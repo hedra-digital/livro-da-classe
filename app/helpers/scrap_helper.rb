@@ -1,0 +1,2 @@
+module ScrapHelper
+end
