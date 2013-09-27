@@ -26,12 +26,12 @@ class Book < ActiveRecord::Base
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
   has_and_belongs_to_many   :users
-  has_many                  :texts
+  has_many                  :texts, :dependent => :destroy
   has_one                   :project
   has_one                   :cover_info
-  has_many                  :invitations
+  has_many                  :invitations, :dependent => :destroy
   has_many                  :scraps, :dependent => :destroy
-  
+
   # Validations
   validates                 :organizer, :presence => true
   validates                 :title,     :presence => true

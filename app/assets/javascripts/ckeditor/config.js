@@ -1,4 +1,7 @@
 CKEDITOR.editorConfig = function(config) {
+
+  config.extraPlugins = 'eqneditor';
+
   config.keystrokes =
   [
     [ CKEDITOR.ALT + 121 /*F10*/, 'toolbarFocus' ],
@@ -27,7 +30,8 @@ CKEDITOR.editorConfig = function(config) {
     { name: 'insert', items: [ 'Image' ] },
     { name: 'clipboard', items: [ 'Cut', 'Copy', 'PasteText', '-', 'Undo', 'Redo' ] },
     { name: 'colors', items: [ 'BGColor' ] },
-    { name: 'document', items: [ 'Source' ] }
+    { name: 'document', items: [ 'Source' ] },
+    { name: 'latex', items: [ 'EqnEditor' ] }
   ];
 
   config.language = 'pt-BR';

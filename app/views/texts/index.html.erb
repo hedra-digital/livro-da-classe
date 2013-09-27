@@ -17,7 +17,8 @@
   <% @texts.each do |text| %>
     <%= content_tag_for :li, text do %>
       <%= raw('<i class="icon-move handle"></i>&nbsp;') if is_organizer? %>
-      <strong class="text-list-title"><%= link_to(text.title, book_text_path(@book.uuid, text.uuid)) %></strong>, por <span class="text-list-author"><%= text.user.name.presence || text.user.email %></span>
+      <%= enable_or_disable_link(text) %>
+      <strong class="text-list-title"><%= text_title(@book, text) %></strong>, por <span class="text-list-author"><%= text.user.name.presence || text.user.email %></span>
     <% end %>
   <% end %>
   </ul>

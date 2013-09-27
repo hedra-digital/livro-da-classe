@@ -65,10 +65,15 @@ class MarkupLatex
       img_tag = text.match /<img .*? \/>/ 
 
       img_type = get_image_type(img_tag.to_s)
-      img_sub = get_image_sub(img_tag.to_s)
-      img_src = get_image_src(img_tag.to_s)
 
-      latex_img = "{{\\#{img_type}{#{img_sub}}{#{img_src}} }}" 
+      if img_type != 'imagemlatex'
+        img_sub = get_image_sub(img_tag.to_s)
+        img_src = get_image_src(img_tag.to_s)
+        latex_img = "{{\\#{img_type}{#{img_sub}}{#{img_src}} }}" 
+      else
+        img_sub = get_image_sub(img_tag.to_s)
+        latex_img = "{{\\#{img_sub} }}"
+      end
 
       text = text.sub(img_tag.to_s, latex_img)
     end
@@ -76,7 +81,9 @@ class MarkupLatex
   end
 
   def get_image_type(img_tag)
-    if img_tag.include? "small-intention"
+    if img_tag.include? "latex-plugin"
+      'imagemlatex'
+    elsif img_tag.include? "small-intention"
       'imagempequena'
     elsif img_tag.include? "medium-intention"
       'imagemmedia'
