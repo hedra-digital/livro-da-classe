@@ -92,6 +92,7 @@
 // Common styles
 .nav-tabs,
 .nav-pills {
+  width: 700px;
   @include clearfix();
 }
 .nav-tabs > li,

@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   def new
     client = Client.new(:user_id => current_user.id)
     @project = Project.new(:client => client, :book_id => @book.id)
+    @capa = Capa.new(:book_id => @book.id)
   end
 
   def create

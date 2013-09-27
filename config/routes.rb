@@ -12,7 +12,6 @@ Livrodaclasse::Application.routes.draw do
   get 'apphome', :to => 'books#index', :as => :app_home
   get 'auth/failure', :to => redirect('/')
   get 'projects/terms_of_service', :to => 'projects#terms_of_service', :as => :terms_of_service
-
   root :to => 'pages#home'
 
   resources :users do
@@ -37,7 +36,10 @@ Livrodaclasse::Application.routes.draw do
     end
     resources :projects
   end
-
+  get 'books/:id/cover_info', to: 'books#cover_info', as: :book_cover_info
+  match 'books/:id/update_cover_info', to: 'books#update_cover_info', as: :book_update_cover_info
+  match 'books/:id/generate_cover', to: 'books#generate_cover', as: :book_generate_cover
+  
   namespace :admin do
     root :to => 'dashboard#index'
 

@@ -1,4 +1,5 @@
 pt-BR:
+  cover_info: 'Dados da capa'
   my_books: 'Meus livros'
   account: 'Perfil'
   sign_out: 'Sair'
@@ -242,6 +243,9 @@ pt-BR:
     pm: ''
   activerecord:
     models:
+      cover_info:
+        one: Dados da capa
+        other: Dados das capas
       user:
         one: Usuário
         other: Usuários
@@ -258,6 +262,14 @@ pt-BR:
         one: Projeto
         other: Projetos
     attributes:
+      cover_info: 
+        autor: Autor 
+        book_id: Livro 
+        organizador: Organizador
+        texto_na_lombada: Texto na lombada 
+        titulo_linha1: Título (linha 1)
+        titulo_linha2: Título (linha 2)
+        titulo_linha3: Título (linha 3)
       user:
         name: Nome
         email: E-mail

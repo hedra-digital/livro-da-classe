@@ -55,3 +55,4 @@ end
 
 gem "exception_notification", "~> 3.0.1"
 gem "pdf-reader"
+gem 'xml-simple'
