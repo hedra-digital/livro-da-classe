@@ -173,9 +173,23 @@ footer {
   font-size: 1.2em;
 }
 
+.text-list-collaborator li{
+  margin-top: 5px;
+}
+
 .text-list-organizer {
   @extend .text-list-collaborator;
   list-style: none;
+}
+
+.text-btn-enabled {
+  margin-left: 10px;
+  margin-right: 12px;
+}
+
+.text-btn-disabled {
+  margin-left: 10px;
+  margin-right: 24px;
 }
 
 /* ==========================================================================

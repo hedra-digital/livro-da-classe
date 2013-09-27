@@ -29,7 +29,7 @@ class Text < ActiveRecord::Base
   validates :user_id,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :content, :title, :uuid, :content, :user_id
+  attr_accessible           :book_id, :content, :title, :uuid, :content, :user_id, :enabled
 
   attr_accessor             :finished_at
 
@@ -37,6 +37,10 @@ class Text < ActiveRecord::Base
     response   = Text.find_by_uuid(id.to_s)
     response ||= Text.find_by_id(id)
     return response
+  end
+
+  def is_disabled?
+    !self.enabled
   end
 
   private

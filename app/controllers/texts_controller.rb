@@ -56,6 +56,12 @@ class TextsController < ApplicationController
     render :nothing => true
   end
 
+  def enable_or_disable
+    text = Text.find_by_uuid_or_id(params[:uuid])
+    text.enabled = (text.is_disabled?) ? true : false
+    text.save
+    redirect_to book_texts_path(text.book.uuid)
+  end
 
   private
 
