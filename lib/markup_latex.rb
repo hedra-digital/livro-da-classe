@@ -72,7 +72,7 @@ class MarkupLatex
         latex_img = "{{\\#{img_type}{#{img_sub}}{#{img_src}} }}" 
       else
         img_sub = get_image_sub(img_tag.to_s)
-        latex_img = "{{\\#{img_sub} }}"
+        latex_img = "{{\\ $ #{img_sub} $ }}"
       end
 
       text = text.sub(img_tag.to_s, latex_img)
