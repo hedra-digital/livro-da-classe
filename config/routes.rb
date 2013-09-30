@@ -44,6 +44,7 @@ Livrodaclasse::Application.routes.draw do
   namespace :admin do
     root :to => 'dashboard#index'
 
+    get 'dashboard/scraps', :to => 'dashboard#scraps', :as => :scraps
     get 'dashboard/default_cover', :to => 'dashboard#default_cover', :as => :default_cover
     match 'dashboard/update_default_cover', :to => 'dashboard#update_default_cover', :as => :update_default_cover
     resources :projects, :only => [:index, :show, :edit, :update] do

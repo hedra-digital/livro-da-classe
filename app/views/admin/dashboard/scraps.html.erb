@@ -1,0 +1,18 @@
+<h2>Recados</h2>
+
+<table class="table">
+  <thead>
+  <th>Data</th>
+  <th>Livro</th>
+  <th>Recado</th>
+  </thead>
+  <tbody>
+    <% @scraps.each do |scrap|%>
+      <tr>
+        <td><span class="label label-info"><%= scrap.created_at.strftime("%d/%m/%Y") %></span></td>
+        <td><%= link_to scrap.book.title, book_path(scrap.book.uuid) %></td>
+        <td><%= scrap.content %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
