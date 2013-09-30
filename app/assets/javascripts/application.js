@@ -25,6 +25,8 @@
 //= require_self
 //= require ckeditor/init
 //= require ckeditor/plugins/eqneditor/plugin
+//= require ckeditor/plugins/eqneditor/lang/en
+//= require ckeditor/plugins/eqneditor/dialogs/eqneditor
 
 
 // Bootstrap Datepicker
