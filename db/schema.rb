@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130927182255) do
+ActiveRecord::Schema.define(:version => 20130930194422) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -78,11 +78,18 @@ ActiveRecord::Schema.define(:version => 20130927182255) do
     t.string   "titulo_linha1"
     t.string   "titulo_linha2"
     t.string   "titulo_linha3"
-    t.string   "organizador"
     t.string   "autor"
-    t.string   "texto_na_lombada"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "texto_quarta_capa"
+    t.string   "capa_imagem_file_name"
+    t.string   "capa_imagem_content_type"
+    t.integer  "capa_imagem_file_size"
+    t.datetime "capa_imagem_updated_at"
+    t.string   "capa_detalhe_file_name"
+    t.string   "capa_detalhe_content_type"
+    t.integer  "capa_detalhe_file_size"
+    t.datetime "capa_detalhe_updated_at"
   end
 
   create_table "default_covers", :force => true do |t|
@@ -105,15 +112,15 @@ ActiveRecord::Schema.define(:version => 20130927182255) do
     t.integer  "book_id"
     t.date     "release_date"
     t.date     "finish_date"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "client_id"
     t.string   "school_logo_file_name"
     t.string   "school_logo_content_type"
     t.integer  "school_logo_file_size"
     t.datetime "school_logo_updated_at"
     t.string   "publish_format"
-    t.integer  "quantity"
+    t.integer  "quantity",                 :default => 100
   end
 
   add_index "projects", ["book_id"], :name => "index_projects_on_book_id"
