@@ -39,8 +39,8 @@ class Text < ActiveRecord::Base
     return response
   end
 
-  def is_disabled?
-    !self.enabled
+  def is_enabled?
+    self.enabled
   end
 
   private
