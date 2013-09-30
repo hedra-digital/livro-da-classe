@@ -48,8 +48,8 @@ class BooksController < ApplicationController
     root.elements[10].elements[0].children = texto_na_lombada.to_s
     root.css("#ConteudoTexto5aCapa").first.children = texto_quarta_capa.to_s
     root.css("#TextoTitulo5aCapa").first.children = titulo.join(" ").to_s
-    root.elements[5].attributes["absref"].value = @book.project.school_logo.path.to_s
-    root.elements[5].attributes["href"].value = @book.project.school_logo.path.to_s
+    root.elements[5].attributes["absref"].value = @book.project.school_logo.path.to_s if !school_logo.nil?
+    root.elements[5].attributes["href"].value = @book.project.school_logo.path.to_s if !school_logo.nil?
     root.elements[4].attributes["href"].value = cover_info.capa_imagem.path.to_s
     root.elements[3].attributes["absref"].value = cover_info.capa_detalhe.path.to_s
     root.elements[3].attributes["href"].value = cover_info.capa_detalhe.path.to_s
