@@ -1,1 +1,6 @@
-<tr><td><%= link_to @scrap.created_at.strftime('%d/%m/%Y %R'), scrap_show_path(@scrap) %></td><td><%= simple_format(truncate(@scrap.content, :length => 100, :omission => '(...&nbsp;)' )) %></td></tr>
+<tr>
+    <td>
+      <span class="label label-info"><%= @scrap.created_at.strftime("%d/%m/%Y") %></span>
+      <%= @scrap.content %>
+    </td>
+</tr>
