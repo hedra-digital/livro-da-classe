@@ -72,7 +72,6 @@ class BooksController < ApplicationController
   end
 
   def create
-    raise params.inspect
     @book = current_user.organized_books.new(params[:book].merge(:template => Livrodaclasse::Application.latex_templates[0]))
 
     if @book.save
