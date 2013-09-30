@@ -24,6 +24,7 @@
 //= require reorder
 //= require_self
 //= require ckeditor/init
+//= require ckeditor/plugins/eqneditor/plugin
 
 
 // Bootstrap Datepicker

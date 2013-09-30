@@ -287,6 +287,7 @@ DEPENDENCIES
   meta_request
   mysql2
   newrelic_rpm
+  nokogiri
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter
