@@ -23,24 +23,20 @@
   <h3> Recados </h3>
   <div id="listar_recados">
     <div>
-      <ul>
-        <table>
-          <thead>
+      <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+          <% @scraps.each do |scrap|%>
             <tr>
-              <th>Data</th>
-              <th>Recado</th>
+              <td>
+                <span class="label label-info"><%= scrap.created_at.strftime("%d/%m/%Y") %></span>
+                <%= scrap.content %>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            <% @scraps.each do |scrap|%>
-              <tr>
-                <td><span class="label"><%= link_to scrap.created_at.strftime("%d/%m/%Y"), scrap_show_path(id: scrap.id) %></span></td>
-                <td><%= scrap.content %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-       </ul>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

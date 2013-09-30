@@ -21,4 +21,8 @@ class Admin::DashboardController < Admin::ApplicationController
   	flash[:success] = 'Capa padrão atualizada com sucesso'
   	redirect_to admin_root_path
   end
+
+  def scraps
+    @scraps = Scrap.includes(:book).order("created_at DESC").all
+  end
 end
