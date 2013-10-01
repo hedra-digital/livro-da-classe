@@ -15,7 +15,7 @@ elsif Rails.env.sales?
 elsif Rails.env.staging? || Rails.env.test? || Rails.env.development?
   Rails.application.config.middleware.use OmniAuth::Builder do
     provider :twitter, "HFwmE8CdAqLrgMjQROw8g", "FjHG7WEOEGF9zS15UrK1DS2bKFuVVcLsPzVJasqpU"
-    provider :facebook, "462817203782895", "6ad0fab174bcd0d298195957fe68a48c"
+    provider :facebook, "223113251187371", "00774062f4529edff4e0f93f257a90de"
     provider :google_oauth2, "1087006017149-trcfrjjs4fg5ftjsmp8dpd1oai84vifu.apps.googleusercontent.com", "1maEZuCXHaFwYiQF_cXIjBY2"
   end
 elsif Rails.env.sletras?
