@@ -24,10 +24,11 @@ class BooksController < ApplicationController
   end
 
   def generate_cover
+    pdf_file = @book.cover_info.generate_pdf_cover
+    
     respond_to do |format|
       format.pdf do |pdf|
-        send_file pdf_file
-        
+        send_file pdf_file    
       end
     end
   end

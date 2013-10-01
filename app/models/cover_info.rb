@@ -11,12 +11,12 @@ class CoverInfo < ActiveRecord::Base
   after_save :generate_cover
 
 
-   def generate_cover
 
-    timestamp = DateTime.now.strftime("%m%d%H%M%S")    
-    pdf_file = "inksvg/Capa_#{self.book.id}_#{timestamp}.pdf"
-    novo_svg = "inksvg/CodigoCapa0921svg_#{self.book.id}_#{timestamp}.svg"
-    png_file = "inksvg/Capa_#{self.book.id}_#{timestamp}.png"
+
+  def generate_cover
+    pdf_file = pdf_file_name
+    novo_svg = novo_svg_file_name
+    png_file = png_file_name
 
     update_svg novo_svg
 
@@ -24,11 +24,41 @@ class CoverInfo < ActiveRecord::Base
     generate_png pdf_file, png_file
     update_book_cover png_file
 
-    #delete_files
-    
+    delete_files pdf_file, novo_svg, png_file
   end
 
+  def generate_pdf_cover
+    timestamp = DateTime.now.strftime("%m%d%H%M%S")    
+    pdf_file = pdf_file_name
+    novo_svg = novo_svg_file_name    
+    update_svg novo_svg
+
+    generate_pdf pdf_file, novo_svg
+    pdf_file
+  end
+  
   private
+
+  def file_id
+    timestamp = DateTime.now.strftime("%m%d%H%M%S")
+    file_id = "#{self.book.id}_#{timestamp}"    
+  end
+
+  def path
+    "inksvg/tmp/"
+  end
+ 
+  def novo_svg_file_name
+    "#{path}Capasvg_#{file_id}.svg"
+  end
+  
+  def pdf_file_name
+    "#{path}Capa_#{file_id}.pdf"
+  end
+  
+  def png_file_name
+    "#{path}Capa_#{file_id}.png"
+  end
 
   def xml
     require 'net/http'

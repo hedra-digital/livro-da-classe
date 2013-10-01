@@ -3,23 +3,25 @@
     <div class="row">
       <div class="span1">
         <%= book_cover %>
+        <%= link_to "Capa", book_generate_cover_path(@book.uuid, format: :pdf) %>
       </div>
       <div class="span8">
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? %>
         <nav role="navigation">
           <ul class="nav nav-pills">
-            <%= menu_item t(:overview, :scope => :book_nav), book_path(@book.uuid) %>
             <% if is_organizer? %>
               <%= menu_item t(:book_data, :scope => :book_nav), edit_book_path(@book.uuid) %>
             <% end %>
-            <%= menu_item t(:texts, :scope => :book_nav), book_texts_path(@book.uuid) %>
             <% if is_organizer? %>
               <%= menu_item t(:collaborators, :scope => :book_nav), book_collaborators_path(@book.uuid) %>
             <% end %>
+            <%= menu_item t(:texts, :scope => :book_nav), book_texts_path(@book.uuid) %>
             <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
             <% if is_organizer? && is_project? %>
               <%= menu_item t(:project, :scope => :book_nav), edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>
+            <%= menu_item t(:overview, :scope => :book_nav), book_path(@book.uuid) %>
+            
             <% if is_organizer? && !is_project? %>
               <%= menu_item t(:publish, :scope => :book_nav), new_book_project_path(@book.uuid) %>
             <% end %>

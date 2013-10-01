@@ -30,13 +30,13 @@ pt-BR:
   text_confirm: 'Tem certeza de que deseja apagar o texto?'
   text_back: 'Voltar para o texto'
   book_nav:
-    overview: 'Visão geral'
+    overview: 'Mural'
     book_data: 'Ficha técnica'
-    texts: 'Textos'
-    collaborators: 'Colaboradores'
-    pdf: 'PDF'
-    project: 'Projeto'
-    publish: 'Publicar'
+    texts: 'Capítulos'
+    collaborators: 'Alunos'
+    pdf: 'Livro'
+    project: 'Contrato'
+    publish: 'Contratar editora'
   helpers:
     submit:
       create: "Incluir novo %{model}"
