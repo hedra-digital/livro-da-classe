@@ -22,7 +22,7 @@ class Book < ActiveRecord::Base
 
   # Callbacks
   before_save               :set_uuid
-
+  after_create              :create_cover_info
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
   has_and_belongs_to_many   :users
@@ -89,10 +89,13 @@ class Book < ActiveRecord::Base
     end
   end
 
+  def create_cover_info
+    CoverInfo.create(book_id: self.id) 
+  end
+  
   private
 
   def set_uuid
     self.uuid = Guid.new.to_s if self.uuid.nil?
   end
-
 end

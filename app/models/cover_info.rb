@@ -12,11 +12,13 @@ class CoverInfo < ActiveRecord::Base
 
 
    def generate_cover
-    update_svg
 
-    pdf_file = "inksvg/Capa_#{self.book.id}.pdf"
-    novo_svg = "inksvg/CodigoCapa0921svg_#{self.book.id}.svg"
-    png_file = "inksvg/Capa_#{self.book.id}.png"
+    timestamp = DateTime.now.strftime("%m%d%H%M%S")    
+    pdf_file = "inksvg/Capa_#{self.book.id}_#{timestamp}.pdf"
+    novo_svg = "inksvg/CodigoCapa0921svg_#{self.book.id}_#{timestamp}.svg"
+    png_file = "inksvg/Capa_#{self.book.id}_#{timestamp}.png"
+
+    update_svg novo_svg
 
     generate_pdf pdf_file, novo_svg    
     generate_png pdf_file, png_file
@@ -64,14 +66,14 @@ class CoverInfo < ActiveRecord::Base
     root.elements[3].attributes["href"].value = cover_info.capa_detalhe.path.to_s
   end
 
-  def update_svg
+  def update_svg novo_svg
     xml = xml()
     atualiza_dados_svg xml.root
-    write_svg xml
+    write_svg xml, novo_svg
   end
-  def write_svg xml
+  def write_svg xml, novo_svg
     #write
-    File.open("inksvg/CodigoCapa0921svg_#{self.book.id}.svg", "w") do |f|
+    File.open(novo_svg, "w") do |f|
       f.write xml.to_xml
     end
   end

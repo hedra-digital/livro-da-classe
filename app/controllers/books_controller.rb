@@ -12,7 +12,7 @@ class BooksController < ApplicationController
   end
 
   def cover_info
-    @cover_info = @book.cover_info || CoverInfo.create(book_id: @book.id) 
+    @cover_info = @book.cover_info
   end
   
   def update_cover_info
