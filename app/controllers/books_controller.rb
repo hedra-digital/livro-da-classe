@@ -24,46 +24,12 @@ class BooksController < ApplicationController
   end
 
   def generate_cover
-    require 'net/http'
-    require 'rubygems'
-    require 'nokogiri'
-
-    # read and parse the old file
-    file = File.read('inksvg/CodigoCapa0921svg.svg')
-    xml = Nokogiri::XML(file)
-    root = xml.root
-
-    cover_info = @book.cover_info
-    #parametros
-    titulo = [cover_info.titulo_linha1, cover_info.titulo_linha2, cover_info.titulo_linha3]
-    organizador= @book.organizers
-    autor=cover_info.autor
-    texto_na_lombada = @book.title
-    texto_quarta_capa = cover_info.texto_quarta_capa
-
-    #atualizar o xml
-    (0..2).each{|n| root.elements[7].elements[n].children = titulo[n].to_s }
-    root.elements[8].elements[0].children = organizador.to_s
-    root.elements[9].elements[0].children = autor.to_s
-    root.elements[10].elements[0].children = texto_na_lombada.to_s
-    root.css("#ConteudoTexto5aCapa").first.children = texto_quarta_capa.to_s
-    root.css("#TextoTitulo5aCapa").first.children = titulo.join(" ").to_s
-    root.elements[5].attributes["absref"].value = @book.project.school_logo.path.to_s if !school_logo.nil?
-    root.elements[5].attributes["href"].value = @book.project.school_logo.path.to_s if !school_logo.nil?
-    root.elements[4].attributes["href"].value = cover_info.capa_imagem.path.to_s
-    root.elements[3].attributes["absref"].value = cover_info.capa_detalhe.path.to_s
-    root.elements[3].attributes["href"].value = cover_info.capa_detalhe.path.to_s
-
-    #write
-    File.open("inksvg/CodigoCapa0921svg_#{@book.id}.svg", "w") do |f|
-      f.write xml.to_xml
-    end
-
-    system "inkscape --export-pdf=inksvg/Capa_#{@book.id}.pdf --file=inksvg/CodigoCapa0921svg_#{@book.id}.svg"
-
     respond_to do |format|
-      format.pdf{send_file "inksvg/Capa_#{@book.id}.pdf"} 
-    end    
+      format.pdf do |pdf|
+        send_file pdf_file
+        
+      end
+    end
   end
 
   def show

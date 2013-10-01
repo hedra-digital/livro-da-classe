@@ -160,8 +160,8 @@
     </rdf:RDF>
   </metadata>
   <image
-     sodipodi:absref="2.jpg"
-     xlink:href="2.jpg"
+     sodipodi:absref=""
+     xlink:href=""
      height="160"
      width="160"
      y="534.26514"
@@ -174,12 +174,12 @@
      y="216.23077"
      x="495.70312"
      id="image1"
-     xlink:href="1.jpg"
+     xlink:href=""
      height="363"
      width="363" />
   <image
-     sodipodi:absref="logo.jpg"
-     xlink:href="logo.jpg"
+     sodipodi:absref=""
+     xlink:href=""
      y="140.46526"
      x="896.66888"
      overflow="visible"
@@ -548,15 +548,15 @@
        sodipodi:role="line"
        id="TC1"
        x="592.43921"
-       y="97.011871">Título comprido que</tspan><tspan
+       y="97.011871">e</tspan><tspan
        sodipodi:role="line"
        id="TC2"
        x="592.43921"
-       y="127.01187">vira três linhas quando</tspan><tspan
+       y="127.01187"></tspan><tspan
        sodipodi:role="line"
        id="TC3"
        x="592.43921"
-       y="157.01187">corre pela capa</tspan></text>
+       y="157.01187"></tspan></text>
   <text
      xml:space="preserve"
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:Tahoma;-inkscape-font-specification:Tahoma"
@@ -567,7 +567,7 @@
        sodipodi:role="line"
        id="tspan4432"
        x="565.95453"
-       y="608.86115">$Organizador$</tspan></text>
+       y="608.86115"></tspan></text>
   <text
      xml:space="preserve"
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Tahoma;-inkscape-font-specification:Tahoma"
@@ -578,7 +578,7 @@
        sodipodi:role="line"
        id="tspan4436"
        x="568.07813"
-       y="634.34503">$Autores$</tspan></text>
+       y="634.34503"></tspan></text>
   <text
      y="-491.96915"
      x="348.89224"
@@ -591,7 +591,7 @@
        id="tspan5993"
        font-size="8"
        y="-491.96915"
-       x="348.89224">Texto na lombada</tspan>
+       x="348.89224"></tspan>
   </text>
   <flowRoot
      xml:space="preserve"
@@ -605,7 +605,7 @@
          x="-41.411304"
          y="276.50891"
          style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#008000;fill-opacity:0.07058824000000000;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS" /></flowRegion><flowPara
-       id="TextoTitulo5aCapa">Título comprido que vira três linhas quando corre pela capa</flowPara></flowRoot>  <flowRoot
+       id="TextoTitulo5aCapa"></flowPara></flowRoot>  <flowRoot
      transform="translate(139.03343,24.499264)"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;font-family:Tahoma;-inkscape-font-specification:Tahoma"
      id="Texto5aCapa"
@@ -617,4 +617,4 @@
          height="229.24475"
          width="166.52286"
          id="BoxTexto5aCapa" /></flowRegion><flowPara
-       id="ConteudoTexto5aCapa">Pellentesque vitae massa mattis, molestie nibh quis, blandit purus. Nunc vel lectus in erat semper convallis non sit amet lorem. Sed eu massa euismod, tempus nulla ac, hendrerit est. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae erat augue. Fusce placerat tristique elit ac iaculis. Nulla aliquet, enim non cursus iaculis, erat lectus rutrum nulla, sit amet tincidunt ipsum nisl in dolor. </flowPara></flowRoot></svg>
+       id="ConteudoTexto5aCapa"> </flowPara></flowRoot></svg>
