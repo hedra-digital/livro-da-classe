@@ -45,7 +45,11 @@ class CoverInfo < ActiveRecord::Base
   end
 
   def path
-    "inksvg/tmp/"
+    path_ = "inksvg/tmp/"
+    if !Dir.exists?(path_)
+      Dir.mkdir path_
+    end
+    path_
   end
  
   def novo_svg_file_name

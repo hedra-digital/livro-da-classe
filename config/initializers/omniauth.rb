@@ -3,8 +3,8 @@ OmniAuth.config.logger = Rails.logger
 if Rails.env.production?
   Rails.application.config.middleware.use OmniAuth::Builder do
     provider :twitter, "2byTz4MOQIyv3YoMHzFVEQ", "cRU6vQSh7pg5yZxRRPSu1HnSFNDSZI4SDmeo0ZcVV5I"
-    provider :facebook, "462817203782895", "6ad0fab174bcd0d298195957fe68a48c"
-    provider :google_oauth2, "1087006017149.apps.googleusercontent.com", "QrdEkoAt1AURclhddV7a8GP5"
+    provider :facebook, "223113251187371", "00774062f4529edff4e0f93f257a90de"
+    provider :google_oauth2, "41386639646.apps.googleusercontent.com", "pOgZZAOFIpJEA6CqrknsyQJv"
   end
 elsif Rails.env.sales?
   Rails.application.config.middleware.use OmniAuth::Builder do
