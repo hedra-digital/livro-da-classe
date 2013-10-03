@@ -22,7 +22,7 @@ class Book < ActiveRecord::Base
 
   # Callbacks
   before_save               :set_uuid
-  after_create              :create_cover_info
+  after_create              :create_dependencies
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
   has_and_belongs_to_many   :users
@@ -35,11 +35,14 @@ class Book < ActiveRecord::Base
   # Validations
   validates                 :organizer, :presence => true
   validates                 :title,     :presence => true
+  validates                 :number,    :numericality => true,  :allow_nil => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover
+  attr_accessible           :project_attributes, :cover_info_attributes, :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu
 
   attr_accessor             :finished_at
+
+  accepts_nested_attributes_for :cover_info, :project
 
   # Paperclip attachment
   has_attached_file :cover,
@@ -89,8 +92,9 @@ class Book < ActiveRecord::Base
     end
   end
 
-  def create_cover_info
-    CoverInfo.create(book_id: self.id) 
+  def create_dependencies
+    CoverInfo.create(book_id: self.id)
+    Project.create(book_id: self.id) 
   end
   
   private

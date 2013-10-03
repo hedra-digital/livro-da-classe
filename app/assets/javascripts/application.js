@@ -27,7 +27,8 @@
 //= require ckeditor/plugins/eqneditor/plugin
 //= require ckeditor/plugins/eqneditor/lang/en
 //= require ckeditor/plugins/eqneditor/dialogs/eqneditor
-
+//= require jquery.jqEasyCharCounter.min.js
+//= require jquery.mask.min.js
 
 // Bootstrap Datepicker
 
@@ -87,5 +88,10 @@ $(document).ready(function() {
       }, 'html');
       $("#text_novo_recado").val('');
     }
+  });
+  $('#book_zipcode').mask("99999-999");
+  // using id and custom settings
+  $('#book_title').jqEasyCounter({
+      'maxChars': 54
   });
 });

@@ -269,8 +269,8 @@ pt-BR:
         titulo_linha1: Título (linha 1)
         titulo_linha2: Título (linha 2)
         titulo_linha3: Título (linha 3)
-        capa_imagem: Imagem da capa
-        capa_detalhe: Detalhe da capa
+        capa_imagem: Imagem principal
+        capa_detalhe: Segunda imagem
       user:
         name: Nome
         email: E-mail
@@ -287,6 +287,16 @@ pt-BR:
         coordinators: 'Coordenação'
         texts: 'Textos'
         cover: 'Capa'
+        institution: 'Instituição'
+        street: 'Logradouro'
+        number: 'Número'
+        city: 'Município'
+        state: 'Estado'
+        zipcode: 'CEP'
+        klass: 'Turma'
+        librarian_name: 'Nome do biblotecário'
+        cdu: 'CDU'
+        cdd: 'CDD'
       text:
         title: 'Título'
         content: 'Conteúdo'

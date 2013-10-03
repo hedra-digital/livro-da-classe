@@ -38,7 +38,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :client, :book
 
   has_attached_file             :school_logo
-
+  
   PUBLISH_FORMAT_PRICE = {
     "21 x 14 cm" => 0.4,
     "14 x 21 cm" => 0.2,

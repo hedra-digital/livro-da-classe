@@ -4,16 +4,7 @@
   <%= f.input :titulo_linha2 %>
   <%= f.input :titulo_linha3 %>
   <%= f.input :autor %>
-  <%= f.input :texto_quarta_capa %>
-  Imagem da capa:
-  <%= image_tag(@cover_info.capa_imagem.url(:thumb)) if@cover_info.capa_imagem.present? %>
-  <%= f.file_field :capa_imagem %>
-  <br/>
-  <br/>
-  Detalhe da capa:
-  <%= image_tag(@cover_info.capa_detalhe.url(:thumb)) if@cover_info.capa_detalhe.present? %>
-  <%= f.file_field :capa_detalhe %>
-
+  
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn btn-primary' %>
   </div>

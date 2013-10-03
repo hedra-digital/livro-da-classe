@@ -10,3 +10,19 @@ width: 80%;
 #recados table th{
   text-align: left;
 }
+
+#book_number{
+    width:50px;
+}
+#book_state{
+    width:162px;
+}
+#book_zipcode{
+    width:71px;
+}
+#book_city{
+    width:140px;
+}
+#book_street{
+    width:250px;
+}

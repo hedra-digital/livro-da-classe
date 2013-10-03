@@ -1,18 +1,4 @@
-<div class="row">
-  <!-- organizadores -->
-
-  <div class="span4">Organizadores:</div>
-  <div class="span8"><%= @book.organizers.presence || raw("<em>n&atilde;o definido</em>") %></div>
-
-  <!-- diretores -->
-  <div class="span4">Diretores:</div>
-  <div class="span8"><%= @book.directors.presence || raw("<em>n&atilde;o definido</em>") %></div>
-
-  <!-- coordenadores -->
-  <div class="span4">Coordenadores:</div>
-  <div class="span8"><%= @book.coordinators.presence || raw("<em>n&atilde;o definido</em>") %></div>
-</div>
-  <input type="hidden" id="hidden_book_id" value="<%= @book.uuid %>"></input>
+<input type="hidden" id="hidden_book_id" value="<%= @book.uuid %>"></input>
 
 <div id="recados">
   <h3> Novo recado </h3>
@@ -40,5 +26,3 @@
     </div>
   </div>
 </div>
-
-

@@ -1,0 +1,16 @@
+<b>Equipe</b>
+<%= f.input :institution %>
+<b>Endereço</b>
+<div class="row">
+  <div class="span4"><%= f.input :street %></div>
+  <div class="span2"><%= f.input :number %></div>
+  <div class="span4"><%= f.input :city %></div>
+</div>
+<div class="row">
+  <div class="span4"><%= f.input :state, collection: @states %></div>
+  <div class="span4"><%= f.input :zipcode %></div>
+</div>
+<%= f.input :directors, :as => :text %>
+<%= f.input :coordinators, :as => :text %> 
+<%= f.input :organizers, :label => "Professor responsável", :as => :text %>
+<%= f.input :klass %>
