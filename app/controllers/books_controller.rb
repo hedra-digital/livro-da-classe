@@ -52,9 +52,21 @@ class BooksController < ApplicationController
   end
 
   def create    
+    project = params[:book][:project_attributes]
+    params[:book].delete :project_attributes
+    cover_info = params[:book][:cover_info_attributes]
+    params[:book].delete :cover_info_attributes
+
     @book = current_user.organized_books.new(params[:book].merge(:template => Livrodaclasse::Application.latex_templates[0]))
+    @book.organizer = current_user
+
     if @book.save
-      BookCover.new(@book.build_cover_info).generate_cover
+      @book.build_project
+      @book.project.update_attributes project
+      @book.build_cover_info
+      @book.cover_info.update_attributes cover_info
+
+      BookCover.new(@book.cover_info).generate_cover
       redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
     else
       render :new

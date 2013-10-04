@@ -82,8 +82,8 @@ class BookCover
     root.css("#ConteudoTexto5aCapa").first.children = texto_quarta_capa.to_s
     root.css("#TextoTitulo5aCapa").first.children = titulo.join(" ").to_s
     if !@cover_info.book.project.nil?
-      root.elements[5].attributes["absref"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path.to_s : "inksvg/logo.jpg"
-      root.elements[5].attributes["href"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path.to_s : "inksvg/logo.jpg"
+      root.elements[5].attributes["absref"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path.to_s : "inksvg/logo.png"
+      root.elements[5].attributes["href"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path.to_s : "inksvg/logo.png"
     end
     root.elements[4].attributes["href"].value = !cover_info.capa_imagem_file_name.nil? ? cover_info.capa_imagem.path.to_s : "inksvg/1.jpg"
     root.elements[3].attributes["absref"].value = !cover_info.capa_detalhe_file_name.nil? ? cover_info.capa_detalhe.path.to_s : "inksvg/2.jpg"

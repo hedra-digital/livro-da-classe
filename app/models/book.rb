@@ -22,7 +22,7 @@ class Book < ActiveRecord::Base
 
   # Callbacks
   before_save               :set_uuid
-  after_create              :create_dependencies
+  #after_create              :create_dependencies
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
   has_and_belongs_to_many   :users
@@ -92,10 +92,10 @@ class Book < ActiveRecord::Base
     end
   end
 
-  def create_dependencies
-    CoverInfo.create(book_id: self.id)
-    Project.create(book_id: self.id) 
-  end
+  #def create_dependencies
+  #  CoverInfo.create(book_id: self.id)
+  #  Project.create(book_id: self.id) 
+  #end
   
   private
 
