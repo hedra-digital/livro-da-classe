@@ -3,8 +3,8 @@
 }
 
 #recados textarea {
-height: 40px;
-width: 80%;
+  height: 40px;
+  width: 80%;
 }
 
 #recados table th{
@@ -12,17 +12,20 @@ width: 80%;
 }
 
 #book_number{
-    width:50px;
+  width:50px;
 }
 #book_state{
-    width:162px;
+  width:162px;
 }
 #book_zipcode{
-    width:71px;
+  width:71px;
 }
 #book_city{
-    width:140px;
+  width:140px;
 }
 #book_street{
-    width:250px;
+  width:250px;
+}
+#book_title{
+  width: 404px;
 }

@@ -90,8 +90,13 @@ $(document).ready(function() {
     }
   });
   $('#book_zipcode').mask("99999-999");
-  // using id and custom settings
   $('#book_title').jqEasyCounter({
       'maxChars': 54
+  });
+  $('#book_organizers').jqEasyCounter({
+      'maxChars': 25
+  });
+  $('#book_directors').jqEasyCounter({
+      'maxChars': 25
   });
 });

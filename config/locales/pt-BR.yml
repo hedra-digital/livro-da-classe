@@ -280,10 +280,10 @@ pt-BR:
         student_count: Número de alunos
         school_name: Nome da escola
       book:
-        title: 'Título'
+        title: 'Título do livro'
         subtitle: 'Subtítulo'
-        organizers: 'Organização'
-        directors: 'Direção'
+        organizers: 'Organizador'
+        directors: 'Diretor'
         coordinators: 'Coordenação'
         texts: 'Textos'
         cover: 'Capa'
@@ -295,8 +295,8 @@ pt-BR:
         zipcode: 'CEP'
         klass: 'Turma'
         librarian_name: 'Nome do biblotecário'
-        cdu: 'CDU'
-        cdd: 'CDD'
+        cdu: 'CDU do livro'
+        cdd: 'CDD do livro'
       text:
         title: 'Título'
         content: 'Conteúdo'
