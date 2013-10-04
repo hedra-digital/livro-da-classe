@@ -39,12 +39,6 @@ class Project < ActiveRecord::Base
 
   has_attached_file             :school_logo
 
-  before_create                   :default_value
-  
-  def default_value
-    self.quantity = 50
-  end
-
   PUBLISH_FORMAT_PRICE = {
     "21 x 14 cm" => 0.4,
     "14 x 21 cm" => 0.2,

@@ -29,3 +29,8 @@
 #book_title{
   width: 404px;
 }
+
+#team, #address, #cover, #cataloging{
+  text-decoration: underline;
+  font-size: 18px;
+}

@@ -61,8 +61,9 @@ class BooksController < ApplicationController
     @book.organizer = current_user
 
     if @book.save
-      @book.build_project
+      @book.build_project quantity: 50
       @book.project.update_attributes project
+
       @book.build_cover_info
       @book.cover_info.update_attributes cover_info
 
