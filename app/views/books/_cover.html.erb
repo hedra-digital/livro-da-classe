@@ -1,13 +1,13 @@
-<b id="cover">Capa</b>
+<b id="cover">Capa <span><%= link_to "Visualizar capa inteira", book_generate_cover_path(@book.uuid, format: :pdf) if @book.uuid.present? %> </span></b>
 <% book = f.object %>
-
 <div class="row">
+
   <div class="span4">
     <label for="project_school_logo"><%= "Logo" %></label>
-    <div class="fileupload <%= book.project.school_logo.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
+    <div class="fileupload <%= book.project.present? and book.project.school_logo.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
       <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-        <%= image_tag(book.project.school_logo.url) if book.project.school_logo.present? %>
+        <%= image_tag(book.project.school_logo.url) if book.project.present? and book.project.school_logo.present? %>
       </div>
       <div>
         <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
@@ -18,13 +18,14 @@
       </div>
     </div>
   </div>
+
   <div class="span4">
     <%= f.simple_fields_for :cover_info do |c| %>
       <label for="cover_info_capa_imagem"><%= t(:capa_imagem) %></label>
-      <div class="fileupload <%= book.cover_info.capa_imagem.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
+      <div class="fileupload <%= book.project.present? and book.cover_info.capa_imagem.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
         <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
         <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-          <%= image_tag(book.cover_info.capa_imagem.url) if book.cover_info.capa_imagem.present? %>
+          <%= image_tag(book.cover_info.capa_imagem.url) if book.project.present? and book.cover_info.capa_imagem.present? %>
         </div>
         <div>
           <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
@@ -34,14 +35,14 @@
           </span>
         </div>
       </div>
-  </div>  
-  
+  </div>
+
   <div class="span4">
     <label for="cover_info_capa_detalhe"><%= t(:capa_detalhe) %></label>
-    <div class="fileupload <%= book.cover_info.capa_detalhe.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
+    <div class="fileupload <%= book.project.present? and book.cover_info.capa_detalhe.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
       <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-        <%= image_tag(book.cover_info.capa_detalhe.url) if book.cover_info.capa_detalhe.present? %>
+        <%= image_tag(book.cover_info.capa_detalhe.url) if book.project.present? and book.cover_info.capa_detalhe.present? %>
       </div>
       <div>
         <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
@@ -52,6 +53,9 @@
       </div>
     </div>
   </div>
-</div>
-  <%= c.input :texto_quarta_capa, :as => :text %>
+  <div class="span7">
+    <%= c.input :texto_quarta_capa, :label => "Texto de capa", :as => :text, :input_html => { :maxlength => 200, :class => 'cover-text'  } %>
+  </div>
 <% end %>
+</div>
+

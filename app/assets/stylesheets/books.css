@@ -31,6 +31,31 @@
 }
 
 #team, #address, #cover, #cataloging{
-  text-decoration: underline;
   font-size: 18px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.address-itens{
+  float:left;
+  padding-left: 20px;
+}
+
+.cover-text{
+  width: 95%;
+  height: 75px;
+  resize: none;
+}
+
+.cataloging-container{
+  width: 100%;
+  float: left;
+  margin-top: 10px;
+  margin-left: 40px;
+}
+
+#cover a{
+  float: right;
+  font-size: 14px;
+  font-weight: normal;
 }

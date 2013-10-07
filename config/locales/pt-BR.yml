@@ -294,7 +294,7 @@ pt-BR:
         state: 'Estado'
         zipcode: 'CEP'
         klass: 'Turma'
-        librarian_name: 'Nome do biblotecário'
+        librarian_name: 'Nome do bibliotecário'
         cdu: 'CDU do livro'
         cdd: 'CDD do livro'
       text:

@@ -3,7 +3,6 @@
     <div class="row">
       <div class="span1">
         <%= book_cover %>
-        <%= link_to "Capa", book_generate_cover_path(@book.uuid, format: :pdf) %>
       </div>
       <div class="span8">
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? %>

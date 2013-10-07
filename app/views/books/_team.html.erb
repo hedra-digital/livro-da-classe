@@ -1,16 +1,17 @@
 <b id="team">Equipe</b>
-<%= f.input :institution %>
+<%= f.input :institution, :input_html => {:maxlength => 100 } %>
 <b id="address">Endereço</b>
 <div class="row">
-  <div class="span4"><%= f.input :street %></div>
-  <div class="span2"><%= f.input :number %></div>
-  <div class="span4"><%= f.input :city %></div>
+  <div class="address-row">
+  	<div class="address-itens"><%= f.input :street %></div>
+  	<div class="address-itens"><%= f.input :number %></div>
+  	<div class="address-itens"><%= f.input :city %></div>
+  </div>
 </div>
 <div class="row">
-  <div class="span4"><%= f.input :state, collection: @states %></div>
-  <div class="span4"><%= f.input :zipcode %></div>
+  <div class="span"><%= f.input :state, collection: @states %></div>
+  <div class="span2"><%= f.input :zipcode %></div>
 </div>
 <%= f.input :directors, :as => :string %>
-<%= f.input :coordinators, :as => :text %> 
-<%= f.input :organizers, :label => "Professor responsável", :as => :string %>
+<%= f.input :organizers, :label => "Professor responsável", :as => :string, :input_html => { :value => current_user.name }  %>
 <%= f.input :klass %>
