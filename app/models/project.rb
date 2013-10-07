@@ -68,7 +68,7 @@ class Project < ActiveRecord::Base
   end
 
   def price
-    if !self.calculated_pages.nil?
+    if !self.calculated_pages.nil? and !self.publish_format.nil?
       price = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format]
       price = "%0.2f" % price
       "R$ #{price}"
@@ -78,7 +78,7 @@ class Project < ActiveRecord::Base
   end
 
   def total_price
-    if !self.calculated_pages.nil? and !self.quantity.nil?
+    if !self.calculated_pages.nil? and !self.quantity.nil? and !self.publish_format.nil?
       total = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format] * self.quantity
       total = "%0.2f" % total
       "R$ #{total}"
