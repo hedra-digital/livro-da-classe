@@ -2,6 +2,9 @@
   $(document).ready(function() {
     var price;
     $(".format-radio").change(function() {
+      
+    "14 x 21 cm" => 0.2,
+    "16 x 23 cm" => 0.23
       price = <%= @project.calculated_pages%>;
       if (this.value == "14 x 21 cm")
         price *= 0.20;
