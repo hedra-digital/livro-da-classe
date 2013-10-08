@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131003074011) do
+ActiveRecord::Schema.define(:version => 20131008172624) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -122,15 +122,16 @@ ActiveRecord::Schema.define(:version => 20131003074011) do
     t.integer  "book_id"
     t.date     "release_date"
     t.date     "finish_date"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.integer  "client_id"
     t.string   "school_logo_file_name"
     t.string   "school_logo_content_type"
     t.integer  "school_logo_file_size"
     t.datetime "school_logo_updated_at"
     t.string   "publish_format"
-    t.integer  "quantity"
+    t.integer  "quantity",                 :default => 100
+    t.boolean  "engaged",                  :default => false
   end
 
   add_index "projects", ["book_id"], :name => "index_projects_on_book_id"

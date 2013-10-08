@@ -1,0 +1,31 @@
+<h1>Projeto</h1>
+
+<%= simple_form_for(@project, :url => { :action => :update }, :html => { :multipart => true }) do |f| %>
+  <div class="form-inputs">
+    <div style="margin-bottom: 20px;">
+      Formato da Publicação<br>
+      <span style="font-weight: bold;"><%= @project.publish_format %></span>
+    </div>
+    <div style="margin-bottom: 20px;">
+      Data de finalização<br>
+      <span style="font-weight: bold;"><%= @project.finish_date %></span>
+    </div>
+    <div class="project-price">
+      Preço Unitário<br>
+      <span id="project-price"><%= @project.price %></span> (<%= @project.calculated_pages %> páginas)
+    </div>
+    <div class="project-price">
+      Quantidade<br>
+      <%= f.input :quantity, :as => :integer, :label => t(:quantity), input_html: { min: 50, value: @project.quantity } %>
+    </div>
+    <div class="project-price">
+      Preço Total<br>
+      <span id="project-total-price"><%= @project.total_price.to_s %></span>
+    </div>
+    <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn btn-primary' %>
+  </div>
+<% end %>

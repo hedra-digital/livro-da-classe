@@ -21,11 +21,12 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.where(:book_id => @book.id).first
+    @project.client = Client.new(:user_id => current_user.id) if @project.client.nil?
   end
 
   def update
     @project = Project.where(:book_id => @book.id).first
-    if @project.update_attributes(params[:project])
+    if @project.update_attributes(params[:project].merge(engaged: true))
       redirect_to book_path(@book.uuid), :notice => "Projeto atualizado com sucesso"
     else
       render :edit

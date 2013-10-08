@@ -33,7 +33,7 @@ class Project < ActiveRecord::Base
   validates_with                ProjectValidator
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity
+  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity, :engaged
 
   accepts_nested_attributes_for :client, :book
 
