@@ -1,3 +1,13 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#project_quantity").change(function() {
+      var price = <%= @project.price_number %>;
+      var total = price * $("#project_quantity").val();
+      $("#project-total-price").text("R$ " + total.toFixed(2));
+    });
+  });
+</script>
+
 <h1>Projeto</h1>
 
 <%= simple_form_for(@project, :url => { :action => :update }, :html => { :multipart => true }) do |f| %>

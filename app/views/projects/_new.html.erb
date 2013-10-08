@@ -1,3 +1,28 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    var price;
+    $(".format-radio").change(function() {
+      price = <%= @project.calculated_pages%>;
+      if (this.value == "14 x 21 cm")
+        price *= 0.20;
+      else if (this.value == "16 x 23 cm")
+        price *= 0.22;
+      $("#project-price").text("R$ " + price.toFixed(2));
+      $("#project_quantity").change();
+    });
+
+    $("#project_quantity").change(function() {
+      total = price * $("#project_quantity").val();
+      $("#project-total-price").text("R$ " + total.toFixed(2));
+    });
+
+    $("#project_publish_format_14_x_21_cm").change();
+    $("#project_publish_format_14_x_21_cm").prop('checked', true);
+
+    $("#project_quantity").change();
+
+  });
+</script>
 
 <%= simple_form_for(@project, :url => { :action => :update }, :html => { :multipart => true }) do |f| %>
 

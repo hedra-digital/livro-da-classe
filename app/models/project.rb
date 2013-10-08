@@ -67,6 +67,14 @@ class Project < ActiveRecord::Base
     [self.book.count_pages, 100].max
   end
 
+  def price_number
+    if !self.calculated_pages.nil? and !self.publish_format.nil?
+      price = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format]
+    else
+      "Preço unitário não calculado"
+    end
+  end
+
   def price
     if !self.calculated_pages.nil? and !self.publish_format.nil?
       price = self.calculated_pages * PUBLISH_FORMAT_PRICE[self.publish_format]
