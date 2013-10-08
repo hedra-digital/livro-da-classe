@@ -66,35 +66,65 @@ class BookCover
     xml
   end
 
-  def atualiza_dados_svg(root)
-    cover_info = @cover_info
-    #parametros
-    titulo = [cover_info.titulo_linha1, cover_info.titulo_linha2, cover_info.titulo_linha3]
-    organizador= @cover_info.book.organizers
-    autor=cover_info.autor
-    texto_na_lombada = @cover_info.book.title
-    texto_quarta_capa = cover_info.texto_quarta_capa
+  def atualiza_titulo linhas_titulo
     #atualizar o xml
-    (0..2).each{|n| root.elements[7].elements[n].children = titulo[n].to_s }
-    root.elements[8].elements[0].children = organizador.to_s
-    root.elements[9].elements[0].children = autor.to_s
-    root.elements[10].elements[0].children = texto_na_lombada.to_s
-    root.css("#ConteudoTexto5aCapa").first.children = texto_quarta_capa.to_s
-    root.css("#TextoTitulo5aCapa").first.children = titulo.join(" ").to_s
+    (0..2).each{|n| @root.elements[7].elements[n].children = linhas_titulo[n].to_s }
+  end
+
+  def atualiza_organizador organizador
+    @root.elements[8].elements[0].children = organizador.to_s
+  end
+  
+  def atualiza_autor autor
+    @root.elements[9].elements[0].children = autor.to_s
+  end
+
+  def atualiza_texto_lombada texto_na_lombada
+    @root.elements[10].elements[0].children = texto_na_lombada.to_s
+  end
+  
+  def atualiza_texto_quarta_capa texto_quarta_capa, linhas_titulo
+    @root.css("#ConteudoTexto5aCapa").first.children = texto_quarta_capa.to_s
+    @root.css("#TextoTitulo5aCapa").first.children = linhas_titulo.join(" ").to_s
+  end
+
+  def atualiza_logo
     if !@cover_info.book.project.nil?
-      root.elements[5].attributes["absref"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path.to_s : "inksvg/logo.png"
-      root.elements[5].attributes["href"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path.to_s : "inksvg/logo.png"
+      @root.elements[5].attributes["absref"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path.to_s : "inksvg/logo.png"
+      @root.elements[5].attributes["href"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path.to_s : "inksvg/logo.png"
     end
-    root.elements[4].attributes["href"].value = !cover_info.capa_imagem_file_name.nil? ? cover_info.capa_imagem.path.to_s : "inksvg/1.jpg"
-    root.elements[3].attributes["absref"].value = !cover_info.capa_detalhe_file_name.nil? ? cover_info.capa_detalhe.path.to_s : "inksvg/2.jpg"
-    root.elements[3].attributes["href"].value = !cover_info.capa_detalhe_file_name.nil? ? cover_info.capa_detalhe.path.to_s : "inksvg/2.jpg"
+  end
+
+  def atualiza_imagem_capa
+    @root.elements[4].attributes["href"].value = !@cover_info.capa_imagem_file_name.nil? ? @cover_info.capa_imagem.path.to_s : "inksvg/1.jpg"
+  end
+
+  def atualiza_detalhe_capa
+    @root.elements[3].attributes["absref"].value = !@cover_info.capa_detalhe_file_name.nil? ? @cover_info.capa_detalhe.path.to_s : "inksvg/2.jpg"
+    @root.elements[3].attributes["href"].value = !@cover_info.capa_detalhe_file_name.nil? ? @cover_info.capa_detalhe.path.to_s : "inksvg/2.jpg"
+  end
+  
+  def atualiza_dados_svg
+    #textos
+    linhas_titulo = [@cover_info.titulo_linha1, @cover_info.titulo_linha2, @cover_info.titulo_linha3]
+    atualiza_titulo linhas_titulo
+    atualiza_organizador @cover_info.book.organizers
+    atualiza_autor @cover_info.autor
+    atualiza_texto_lombada @cover_info.book.title
+    atualiza_texto_quarta_capa @cover_info.texto_quarta_capa, linhas_titulo
+    #imagens
+    atualiza_logo
+    atualiza_imagem_capa
+    atualiza_detalhe_capa
   end
 
   def update_svg novo_svg
     xml = xml()
-    atualiza_dados_svg xml.root
+    @root  = xml.root
+    atualiza_dados_svg 
     write_svg xml, novo_svg
   end
+  
   def write_svg xml, novo_svg
     #write
     File.open(novo_svg, "w") do |f|

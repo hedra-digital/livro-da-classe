@@ -26,7 +26,7 @@ class BooksController < ApplicationController
   end
 
   def generate_cover
-    pdf_file = @book.cover_info.generate_pdf_cover
+    pdf_file = BookCover.new(@book.cover_info).generate_pdf_cover
     
     respond_to do |format|
       format.pdf do |pdf|
@@ -82,12 +82,10 @@ class BooksController < ApplicationController
 
   def update
     params[:book].delete :project_attributes if params[:book][:project_attributes][:school_logo].blank?
-    if params[:book][:cover_info_attributes][:capa_imagem].blank? and params[:book][:cover_info_attributes][:capa_detalhe].blank?
-      params[:book].delete :cover_info_attributes 
-    else
-      params[:book][:cover_info_attributes].delete :capa_imagem  if params[:book][:cover_info_attributes][:capa_imagem].blank? 
-      params[:book][:cover_info_attributes].delete :capa_detalhe  if params[:book][:cover_info_attributes][:capa_detalhe].blank?
-    end
+    params[:book][:cover_info_attributes].delete :capa_imagem        if params[:book][:cover_info_attributes][:capa_imagem].blank? 
+    params[:book][:cover_info_attributes].delete :capa_detalhe       if params[:book][:cover_info_attributes][:capa_detalhe].blank?
+    params[:book][:cover_info_attributes].delete :texto_quarta_capa  if params[:book][:cover_info_attributes][:texto_quarta_capa].blank?
+    
     
     if @book.update_attributes(params[:book])
       BookCover.new(@book.cover_info).generate_cover
