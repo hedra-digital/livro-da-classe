@@ -99,4 +99,20 @@ $(document).ready(function() {
   $('#book_directors').jqEasyCounter({
       'maxChars': 25
   });
+
+  $('#cover_info_titulo_linha1').jqEasyCounter({
+      'maxChars': 20
+  });
+
+  $('#cover_info_titulo_linha2').jqEasyCounter({
+      'maxChars': 20
+  });
+
+  $('#cover_info_titulo_linha3').jqEasyCounter({
+      'maxChars': 20
+  });
+
+  $('#cover_info_autor').jqEasyCounter({
+      'maxChars': 30
+  });
 });

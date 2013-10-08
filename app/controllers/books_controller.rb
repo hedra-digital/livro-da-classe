@@ -19,6 +19,7 @@ class BooksController < ApplicationController
   
   def update_cover_info
     if @book.cover_info.update_attributes(params[:cover_info])
+      BookCover.new(@book.cover_info).generate_cover
       redirect_to book_cover_info_path(@book.uuid), notice: 'Capa atualizada com sucesso'
     else
       render :edit
