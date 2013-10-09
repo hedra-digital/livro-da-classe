@@ -38,7 +38,7 @@ class Book < ActiveRecord::Base
   validates                 :number,    :numericality => true,  :allow_nil => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :project_attributes, :cover_info_attributes, :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu
+  attr_accessible           :project_attributes, :cover_info_attributes, :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords
 
   attr_accessor             :finished_at
 

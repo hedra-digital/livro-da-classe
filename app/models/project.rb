@@ -42,7 +42,7 @@ class Project < ActiveRecord::Base
   PUBLISH_FORMAT_PRICE = {
     "21 x 14 cm" => 0.4,
     "14 x 21 cm" => 0.2,
-    "16 x 23 cm" => 0.23
+    "16 x 23 cm" => 0.22
   }
 
   def has_valid_release_date?

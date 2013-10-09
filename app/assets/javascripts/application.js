@@ -115,4 +115,8 @@ $(document).ready(function() {
   $('#cover_info_autor').jqEasyCounter({
       'maxChars': 30
   });
+
+  $('#book_keywords').jqEasyCounter({
+      'maxChars': 80
+  });
 });
