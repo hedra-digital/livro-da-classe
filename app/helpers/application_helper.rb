@@ -33,7 +33,7 @@ module ApplicationHelper
     if book.nil?
       return false
     else
-      book.project.present?
+      book.project.present? and book.project.engaged?
     end
   end
 end
