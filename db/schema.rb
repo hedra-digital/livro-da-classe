@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131008172624) do
+ActiveRecord::Schema.define(:version => 20131009172529) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20131008172624) do
     t.string   "librarian_name"
     t.string   "cdu"
     t.string   "cdd"
+    t.string   "keywords"
   end
 
   create_table "books_users", :id => false, :force => true do |t|

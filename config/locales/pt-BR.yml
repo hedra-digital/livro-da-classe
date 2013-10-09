@@ -297,6 +297,7 @@ pt-BR:
         librarian_name: 'Nome do bibliotecário'
         cdu: 'CDU do livro'
         cdd: 'CDD do livro'
+        keywords: 'Palavras Chave'
       text:
         title: 'Título'
         content: 'Conteúdo'

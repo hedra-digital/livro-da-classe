@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ScrapController do
+describe ScrapsController do
 
   describe "GET 'show'" do
     it "returns http success" do
