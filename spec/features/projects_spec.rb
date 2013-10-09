@@ -26,8 +26,8 @@ describe 'book organizer' do
     end
 
     it "clicks the new project link" do
-      click_link 'Publicar'
-      current_path.should eq(new_book_project_path(book.uuid))
+      click_link 'Contratar'
+      current_path.should eq(edit_book_project_path(book.uuid))
     end
 
     it "fills out form" do

@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(:version => 20131008172624) do
     t.integer  "school_logo_file_size"
     t.datetime "school_logo_updated_at"
     t.string   "publish_format"
-    t.integer  "quantity",                 :default => 100
+    t.integer  "quantity"
     t.boolean  "engaged",                  :default => false
   end
 
