@@ -10,13 +10,18 @@ class SessionsController < ApplicationController
   def create
     if params[:signin]
       user = User.find_by_email(params[:signin][:email])
-      if user && user.authenticate(params[:signin][:password])
-        if params[:signin][:remember_me]
-          cookies.permanent[:auth_token] = user.auth_token
+      begin
+        if user && user.authenticate(params[:signin][:password])
+          if params[:signin][:remember_me]
+            cookies.permanent[:auth_token] = user.auth_token
+          end
+          session[:auth_token] = user.auth_token
+          redirect_to app_home_path
+        else
+          flash.now.alert = 'Usuário ou senha inválidos'
+          render :new, :layout => 'public'
         end
-        session[:auth_token] = user.auth_token
-        redirect_to app_home_path
-      else
+      rescue #BCrypt::Errors::InvalidHash
         flash.now.alert = 'Usuário ou senha inválidos'
         render :new, :layout => 'public'
       end
