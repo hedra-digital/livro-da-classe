@@ -12,6 +12,8 @@
   <div class="span"><%= f.input :state, collection: @states %></div>
   <div class="span2"><%= f.input :zipcode %></div>
 </div>
-<%= f.input :directors, :as => :string %>
-<%= f.input :organizers, :label => "Professor responsável", :as => :string, :input_html => { :value => current_user.name }  %>
-<%= f.input :klass %>
+<div class="row">
+  <div class="span4"><%= f.input :directors, :as => :string %></div>
+  <div class="span4"><%= f.input :organizers, :label => "Professor responsável", :as => :string, :input_html => { :value => current_user.name }  %></div>
+  <div class="span4"><%= f.input :klass %></div>
+</div>
