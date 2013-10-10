@@ -6,7 +6,7 @@ module BooksHelper
     tags = ""
     if book.project.present? and book.project.engaged?
       tags << remaining_label(book.project)
-    else
+    elsif book.project.present? and !book.project.engaged?
       tags << link_to('Contratar', edit_book_project_path(book.uuid, book.project.id), :class => 'btn btn-mini')
     end
     tags.html_safe
