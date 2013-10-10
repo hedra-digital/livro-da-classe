@@ -49,7 +49,6 @@ class BooksController < ApplicationController
     @book = current_user.organized_books.new
     @book.build_project
     @book.build_cover_info
-    #raise ""
   end
 
   def create    
@@ -71,6 +70,8 @@ class BooksController < ApplicationController
       BookCover.new(@book.cover_info).generate_cover
       redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
     else
+      @book.build_project
+      @book.build_cover_info
       render :new
     end
   end

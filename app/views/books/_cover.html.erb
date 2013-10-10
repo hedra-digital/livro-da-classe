@@ -1,7 +1,6 @@
 <b id="cover">Capa <span><%= link_to "Visualizar capa inteira", book_generate_cover_path(@book.uuid, format: :pdf) if @book.uuid.present? %> </span></b>
 <% book = f.object %>
 <div class="row">
-
   <div class="span4">
     <label for="project_school_logo"><%= "Logo" %></label>
     <div class="fileupload <%= book.project.present? and book.project.school_logo.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
