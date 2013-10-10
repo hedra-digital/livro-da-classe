@@ -23,5 +23,6 @@
 \newcommand\bibliotecario{<%= @book.cover_info.librarian_name %>}
 \newcommand\cdd{<%= @book.cover_info.cdd %>}
 \newcommand\cdu{<%= @book.cover_info.cdu %>}
+\newcommand\palavraschave{<%= @book.keywords %>}
 
 \input{<%= @book.template %>/LIVRO}
