@@ -1,6 +1,6 @@
 <h1>Projeto: <%= @project.book.title %></h1>
 <h4 style="margin: 0 0 40px 0;">
-  Usuário: <%= link_to @project.client.email, impersonate_admin_project_path(@project) %>
+  Usuário: <%= link_to @project.book.organizer.email, impersonate_admin_project_path(@project) %>
 </h4>
 
 <dl>
