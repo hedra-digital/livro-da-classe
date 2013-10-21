@@ -53,7 +53,7 @@ class Project < ActiveRecord::Base
     if has_valid_release_date?
       self.release_date - Project::MANUFACTURE_TIME
     else
-      return nil
+      self.release_date
     end
   end
 
