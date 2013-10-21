@@ -15,17 +15,16 @@
 \newcommand\instituicao{<%= @book.institution %>}
 \newcommand\logradouro{<%= @book.street %>}
 \newcommand\numero{<%= @book.number %>}
-\newcommand\cidade{<%= @book.city %>}
+\newcommand\cidadeinstituicao{<%= @book.city %>}
 \newcommand\estado{<%= @book.state %>}
 \newcommand\cep{<%= @book.zipcode %>}
 \newcommand\diretor{<%= @book.directors %>}
 \newcommand\coordenador{<%= @book.coordinators %>}
-\newcommand\organizador{<%= @book.organizers %>}
 \newcommand\turma{<%= @book.klass %>}
 \newcommand\quartacapa{<%= @book.cover_info.texto_quarta_capa %>}
 \newcommand\logo{<%= @book.get_school_logo %>}
-\newcommand\bibliotecario{<%= @book.cover_info.librarian_name %>}
-\newcommand\cdd{<%= @book.cover_info.cdd %>}
-\newcommand\cdu{<%= @book.cover_info.cdu %>}
+\newcommand\bibliotecario{<%= @book.librarian_name %>}
+\newcommand\cdd{<%= @book.cdd %>}
+\newcommand\cdu{<%= @book.cdu %>}
 
 \input{<%= @book.template %>/LIVRO}
