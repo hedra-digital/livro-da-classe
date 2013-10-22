@@ -1,5 +1,9 @@
 # encoding: UTF-8
 class BookCover
+
+  PRIMARY_DEFAULT = '#3483aa'
+  SECUNDARY_DEFAULT = '#72abcc'
+
   def initialize cover_info
     @cover_info = cover_info
   end
@@ -61,14 +65,20 @@ class BookCover
     require 'nokogiri'
 
     # read and parse the old file
-    file = File.read('inksvg/CodigoCapa0921svg.svg')
-    xml = Nokogiri::XML(file)
+    @file = File.read('inksvg/CodigoCapa0921svg.svg')
+    change_colors @cover_info.cor_primaria, @cover_info.cor_secundaria
+    xml = Nokogiri::XML(@file)
     xml
   end
 
-  def atualiza_titulo linhas_titulo
-    #atualizar o xml
-    (0..2).each{|n| @root.elements[7].elements[n].children = linhas_titulo[n].to_s }
+  def change_colors primary, secundary
+    @file = @file.gsub(PRIMARY_DEFAULT, "##{primary}") if !primary.nil?
+    @file = @file.gsub(SECUNDARY_DEFAULT, "##{secundary}") if !secundary.nil?
+  end
+
+  def atualiza_titulo titulo
+    @root.css("#TextoTitulo1aCapa").first.children = titulo.to_s
+    @root.css("#TextoTitulo5aCapa").first.children = titulo.to_s
   end
 
   def atualiza_organizador organizador
@@ -83,9 +93,8 @@ class BookCover
     @root.elements[10].elements[0].children = texto_na_lombada.to_s
   end
   
-  def atualiza_texto_quarta_capa texto_quarta_capa, linhas_titulo
+  def atualiza_texto_quarta_capa texto_quarta_capa
     @root.css("#ConteudoTexto5aCapa").first.children = texto_quarta_capa.to_s
-    @root.css("#TextoTitulo5aCapa").first.children = linhas_titulo.join(" ").to_s
   end
 
   def atualiza_logo
@@ -106,12 +115,11 @@ class BookCover
   
   def atualiza_dados_svg
     #textos
-    linhas_titulo = [@cover_info.titulo_linha1, @cover_info.titulo_linha2, @cover_info.titulo_linha3]
-    atualiza_titulo linhas_titulo
+    atualiza_titulo @cover_info.book.title
     atualiza_organizador @cover_info.book.organizers
     atualiza_autor @cover_info.autor
     atualiza_texto_lombada @cover_info.book.title
-    atualiza_texto_quarta_capa @cover_info.texto_quarta_capa, linhas_titulo
+    atualiza_texto_quarta_capa @cover_info.texto_quarta_capa
     #imagens
     atualiza_logo
     atualiza_imagem_capa

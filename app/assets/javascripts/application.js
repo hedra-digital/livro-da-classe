@@ -29,6 +29,7 @@
 //= require ckeditor/plugins/eqneditor/dialogs/eqneditor
 //= require jquery.jqEasyCharCounter.min.js
 //= require jquery.mask.min.js
+//= require jscolor/jscolor
 
 // Bootstrap Datepicker
 

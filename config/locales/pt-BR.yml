@@ -271,6 +271,8 @@ pt-BR:
         titulo_linha3: Título (linha 3)
         capa_imagem: Imagem principal
         capa_detalhe: Segunda imagem
+        cor_primaria: Cor Principal da Capa
+        cor_secundaria: Cor Secundária da Capa
       user:
         name: Nome
         email: E-mail

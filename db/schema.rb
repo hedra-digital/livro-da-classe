@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131009172529) do
+ActiveRecord::Schema.define(:version => 20131022172943) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -101,6 +101,8 @@ ActiveRecord::Schema.define(:version => 20131009172529) do
     t.string   "capa_detalhe_content_type"
     t.integer  "capa_detalhe_file_size"
     t.datetime "capa_detalhe_updated_at"
+    t.string   "cor_primaria"
+    t.string   "cor_secundaria"
   end
 
   create_table "default_covers", :force => true do |t|

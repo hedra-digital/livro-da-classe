@@ -179,7 +179,7 @@
      width="363" />
   <image
      sodipodi:absref=""
-     xlink:href=""
+     xlink:href="logo.jpg"
      y="140.46526"
      x="896.66888"
      overflow="visible"
@@ -538,25 +538,20 @@
       </g>
     </g>
   </g>
-  <text
+  <flowRoot
      xml:space="preserve"
-     style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:Tahoma;-inkscape-font-specification:Tahoma"
-     x="592.43921"
-     y="97.011871"
-     id="TituloCapa"
-     sodipodi:linespacing="125%"><tspan
-       sodipodi:role="line"
-       id="TC1"
-       x="592.43921"
-       y="97.011871">e</tspan><tspan
-       sodipodi:role="line"
-       id="TC2"
-       x="592.43921"
-       y="127.01187"></tspan><tspan
-       sodipodi:role="line"
-       id="TC3"
-       x="592.43921"
-       y="157.01187"></tspan></text>
+     id="Titulo1aCapa"
+
+     style="font-size:24px;fill:#ffffff;font-family:Tahoma;-inkscape-font-specification:Tahoma;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%;"
+     transform="translate(139.03343,-47.385174)"><flowRegion
+       id="CaixaTitulo1aCapa"><rect
+         id="RetanguloTitulo1aCapa"
+         width="230"
+         height="160"
+         x="452.43921"
+         y="110.011871"
+         style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#f9f9f9;fill-opacity:0.07058824000000000;font-family:Tahoma;-inkscape-font-specification:Tahoma" /></flowRegion><flowPara
+       id="TextoTitulo1aCapa">$TextoTitulo1aCapa$</flowPara></flowRoot>
   <text
      xml:space="preserve"
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:Tahoma;-inkscape-font-specification:Tahoma"
@@ -567,7 +562,7 @@
        sodipodi:role="line"
        id="tspan4432"
        x="565.95453"
-       y="608.86115"></tspan></text>
+       y="608.86115">$Organizador$</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Tahoma;-inkscape-font-specification:Tahoma"
@@ -578,7 +573,7 @@
        sodipodi:role="line"
        id="tspan4436"
        x="568.07813"
-       y="634.34503"></tspan></text>
+       y="634.34503">$Autores$</tspan></text>
   <text
      y="-491.96915"
      x="348.89224"
@@ -591,7 +586,7 @@
        id="tspan5993"
        font-size="8"
        y="-491.96915"
-       x="348.89224"></tspan>
+       x="348.89224">$Lombada$</tspan>
   </text>
   <flowRoot
      xml:space="preserve"
@@ -605,7 +600,7 @@
          x="-41.411304"
          y="276.50891"
          style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#008000;fill-opacity:0.07058824000000000;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS" /></flowRegion><flowPara
-       id="TextoTitulo5aCapa"></flowPara></flowRoot>  <flowRoot
+       id="TextoTitulo5aCapa">$TextoTitulo5aCapa$</flowPara></flowRoot>  <flowRoot
      transform="translate(139.03343,24.499264)"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;font-family:Tahoma;-inkscape-font-specification:Tahoma"
      id="Texto5aCapa"
@@ -617,4 +612,4 @@
          height="229.24475"
          width="166.52286"
          id="BoxTexto5aCapa" /></flowRegion><flowPara
-       id="ConteudoTexto5aCapa"> </flowPara></flowRoot></svg>
+       id="ConteudoTexto5aCapa">$Texto5aCapa$</flowPara></flowRoot></svg>
