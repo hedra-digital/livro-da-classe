@@ -542,7 +542,7 @@
      xml:space="preserve"
      id="Titulo1aCapa"
 
-     style="font-size:24px;fill:#ffffff;font-family:Tahoma;-inkscape-font-specification:Tahoma;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%;"
+     style="font-size:{{Titulo1aCorpo}};fill:#ffffff;font-family:Tahoma;-inkscape-font-specification:Tahoma;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%;"
      transform="translate(139.03343,-47.385174)"><flowRegion
        id="CaixaTitulo1aCapa"><rect
          id="RetanguloTitulo1aCapa"
@@ -550,7 +550,7 @@
          height="160"
          x="452.43921"
          y="110.011871"
-         style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#f9f9f9;fill-opacity:0.07058824000000000;font-family:Tahoma;-inkscape-font-specification:Tahoma" /></flowRegion><flowPara
+         style="font-size:{{Titulo1aCorpo}};font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#f9f9f9;fill-opacity:0.07058824000000000;font-family:Tahoma;-inkscape-font-specification:Tahoma" /></flowRegion><flowPara
        id="TextoTitulo1aCapa">$TextoTitulo1aCapa$</flowPara></flowRoot>
   <text
      xml:space="preserve"
@@ -579,10 +579,10 @@
      x="348.89224"
      id="Lombada"
      transform="matrix(0,1,-1,0,0,0)"
-     style="-inkscape-font-specification:Trebuchet MS;font-family:Trebuchet MS;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:12px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+     style="-inkscape-font-specification:Trebuchet MS;font-family:Trebuchet MS;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:{{LombadaCorpo}};text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
      sodipodi:linespacing="125%">
     <tspan
-       style="font-size:12px;font-family:Trebuchet MS;fill:#ffffff;-inkscape-font-specification:Trebuchet MS;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+       style="font-size:{{LombadaCorpo}};font-family:Trebuchet MS;fill:#ffffff;-inkscape-font-specification:Trebuchet MS;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
        id="tspan5993"
        font-size="8"
        y="-491.96915"
@@ -591,7 +591,7 @@
   <flowRoot
      xml:space="preserve"
      id="Titulo5aCapa"
-     style="font-size:17px;fill:#3482a9;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+     style="font-size:{{Titulo5aCorpo}};fill:#3482a9;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
      transform="translate(139.03343,-47.385174)"><flowRegion
        id="CaixaTitulo5aCapa"><rect
          id="RetanguloTitulo5aCapa"
@@ -599,7 +599,7 @@
          height="65.833359"
          x="-41.411304"
          y="276.50891"
-         style="font-size:17px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#008000;fill-opacity:0.07058824000000000;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS" /></flowRegion><flowPara
+         style="font-size:{{Titulo5aCorpo}};font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#008000;fill-opacity:0.07058824000000000;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS" /></flowRegion><flowPara
        id="TextoTitulo5aCapa">$TextoTitulo5aCapa$</flowPara></flowRoot>  <flowRoot
      transform="translate(139.03343,24.499264)"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;font-family:Tahoma;-inkscape-font-specification:Tahoma"

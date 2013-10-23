@@ -4,6 +4,12 @@ class BookCover
   PRIMARY_DEFAULT = '#3483aa'
   SECUNDARY_DEFAULT = '#72abcc'
 
+  TAMANHOS_TITULO = {
+    :curto => { :capa1 => "36px", :capa5 => "30px", :lombada => "16px" },
+    :medio => { :capa1 => "30px", :capa5 => "24px", :lombada => "14px" },
+    :comprido => { :capa1 => "24px", :capa5 => "18px", :lombada => "12px" }
+  }
+
   def initialize cover_info
     @cover_info = cover_info
   end
@@ -66,14 +72,28 @@ class BookCover
 
     # read and parse the old file
     @file = File.read('inksvg/CodigoCapa0921svg.svg')
-    change_colors @cover_info.cor_primaria, @cover_info.cor_secundaria
+    troca_cor @cover_info.cor_primaria, @cover_info.cor_secundaria
+    troca_fonte @cover_info.book.title
     xml = Nokogiri::XML(@file)
     xml
   end
 
-  def change_colors primary, secundary
-    @file = @file.gsub(PRIMARY_DEFAULT, "##{primary}") if !primary.nil?
-    @file = @file.gsub(SECUNDARY_DEFAULT, "##{secundary}") if !secundary.nil?
+  def troca_fonte titulo
+    tamanho = TAMANHOS_TITULO[:comprido]
+    if titulo.length <= 18
+      tamanho = TAMANHOS_TITULO[:curto]
+    elsif titulo.length <= 36
+      tamanho = TAMANHOS_TITULO[:medio]
+    end
+
+    @file = @file.gsub("{{Titulo1aCorpo}}", tamanho[:capa1])
+    @file = @file.gsub("{{Titulo5aCorpo}}", tamanho[:capa5])
+    @file = @file.gsub("{{LombadaCorpo}}", tamanho[:lombada])
+  end
+
+  def troca_cor primaria, secundaria
+    @file = @file.gsub(PRIMARY_DEFAULT, "##{primaria}") if !primaria.nil?
+    @file = @file.gsub(SECUNDARY_DEFAULT, "##{secundaria}") if !secundaria.nil?
   end
 
   def atualiza_titulo titulo
