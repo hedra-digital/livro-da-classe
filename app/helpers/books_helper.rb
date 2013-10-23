@@ -15,7 +15,7 @@ module BooksHelper
   def book_remove_label(book, user)
     return unless is_organizer?(book, user)
     tags = ""
-    if !book.project.present? and !book.project.engaged?
+    if book.project.present? and !book.project.engaged?
       tags << link_to('Remover', book_path(book), :class => 'btn btn-danger btn-mini',
        :confirm => 'Tem certeza que deseja apagar este livro?', :method => :delete)
     end
