@@ -69,6 +69,7 @@ class BooksController < ApplicationController
       @book.cover_info.update_attributes cover_info
 
       BookCover.new(@book.cover_info).generate_cover
+      #render :crop
       redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
     else
       @book.build_project
@@ -92,6 +93,7 @@ class BooksController < ApplicationController
     
     if @book.update_attributes(params[:book])
       BookCover.new(@book.cover_info).generate_cover
+      #render :crop
       redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
     else
       render :edit
@@ -101,6 +103,12 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     redirect_to books_url
+  end
+
+  def crop
+    respond_to do |format|
+      format.html
+    end
   end
   
   private

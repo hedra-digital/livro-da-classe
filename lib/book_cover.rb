@@ -110,7 +110,7 @@ class BookCover
   end
 
   def atualiza_texto_lombada texto_na_lombada
-    @root.elements[10].elements[0].children = texto_na_lombada.to_s
+    #@root.elements[10].elements[0].children = texto_na_lombada.to_s
   end
   
   def atualiza_texto_quarta_capa texto_quarta_capa

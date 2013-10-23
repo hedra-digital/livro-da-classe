@@ -192,42 +192,42 @@
      transform="translate(19.17899,-6.7680711)"
      id="Grade">
     <polyline
-       points="818.613,586.144 259.791,561.142 251.032,701.314 811.406,701.314 "
+       points="801.612,590.144 242.791,565.142 234.032,705.314 794.405,705.314 "
        id="polyline5027"
        style="fill:#3483aa"
        transform="translate(0,-5.2472379e-5)" />
     <polygon
-       points="522.279,572.85 544.048,224.472 281.561,212.736 259.791,561.143 "
+       points="505.279,576.85 527.048,228.472 264.561,216.736 242.791,565.143 "
        id="polygon5029"
        style="fill:#3483aa"
        transform="translate(0,-5.2472379e-5)" />
     <polygon
-       points="967.772,592.87 967.772,243.52 840.325,237.851 818.613,586.172 "
+       points="950.773,596.87 950.773,247.52 823.325,241.851 801.612,590.172 "
        id="polygon5459"
        style="fill:#3483aa"
        transform="translate(0,-5.2472379e-5)" />
     <polygon
-       points="21,701.316 251.031,701.316 259.791,561.143 21,550.352 "
+       points="4,705.316 234.031,705.316 242.791,565.143 4,554.352 "
        id="polygon5461"
        style="fill:#3483aa"
        transform="translate(0,-5.2472379e-5)" />
     <polygon
-       points="21,21 293.551,21 281.561,212.736 21,201.031 "
+       points="4,25 276.551,25 264.561,216.736 4,205.031 "
        id="polygon5463"
        style="fill:#3483aa"
        transform="translate(0,-5.2472379e-5)" />
     <polyline
-       points="556.747,21 544.022,224.5 840.388,237.766 853.925,21 "
+       points="539.747,25 527.023,228.5 823.388,241.766 836.925,25 "
        id="polyline5465"
        style="fill:#3483aa"
        transform="translate(0,-5.2472379e-5)" />
     <polyline
-       points="293.551,21 281.56,212.68 543.991,224.527 556.749,21 "
+       points="276.551,25 264.56,216.68 526.991,228.527 539.749,25 "
        id="polyline5467"
        style="fill:#72abcc"
        transform="translate(0,-5.2472379e-5)" />
     <polygon
-       points="514.229,701.316 522.279,572.85 259.818,561.143 251.032,701.316 "
+       points="497.23,705.316 505.279,576.85 242.818,565.143 234.032,705.316 "
        id="polygon5469"
        style="fill:#72abcc"
        transform="translate(0,-5.2472379e-5)" />
@@ -548,31 +548,31 @@
          id="RetanguloTitulo1aCapa"
          width="230"
          height="160"
-         x="452.43921"
+         x="432.43921"
          y="110.011871"
          style="font-size:{{Titulo1aCorpo}};font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#f9f9f9;fill-opacity:0.07058824000000000;font-family:Tahoma;-inkscape-font-specification:Tahoma" /></flowRegion><flowPara
        id="TextoTitulo1aCapa">$TextoTitulo1aCapa$</flowPara></flowRoot>
   <text
      xml:space="preserve"
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:Tahoma;-inkscape-font-specification:Tahoma"
-     x="565.95453"
+     x="555.95453"
      y="608.86115"
      id="Organizador"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4432"
-       x="565.95453"
+       x="555.95453"
        y="608.86115">$Organizador$</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Tahoma;-inkscape-font-specification:Tahoma"
-     x="568.07813"
+     x="558.07813"
      y="634.34503"
      id="Autor"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4436"
-       x="568.07813"
+       x="558.07813"
        y="634.34503">$Autores$</tspan></text>
   <text
      y="-491.96915"
@@ -586,7 +586,7 @@
        id="tspan5993"
        font-size="8"
        y="-491.96915"
-       x="348.89224">$Lombada$</tspan>
+       x="348.89224"></tspan>
   </text>
   <flowRoot
      xml:space="preserve"
@@ -597,7 +597,7 @@
          id="RetanguloTitulo5aCapa"
          width="180"
          height="65.833359"
-         x="-41.411304"
+         x="-51.411304"
          y="276.50891"
          style="font-size:{{Titulo5aCorpo}};font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#008000;fill-opacity:0.07058824000000000;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS" /></flowRegion><flowPara
        id="TextoTitulo5aCapa">$TextoTitulo5aCapa$</flowPara></flowRoot>  <flowRoot
@@ -608,8 +608,17 @@
        id="FlowRegion5aCapa"><rect
          style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.07058824;font-family:Tahoma;-inkscape-font-specification:Tahoma"
          y="276.50891"
-         x="-41.411304"
+         x="-51.411304"
          height="229.24475"
          width="166.52286"
          id="BoxTexto5aCapa" /></flowRegion><flowPara
-       id="ConteudoTexto5aCapa">$Texto5aCapa$</flowPara></flowRoot></svg>
+       id="ConteudoTexto5aCapa">$Texto5aCapa$</flowPara></flowRoot>
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="36.563" y1="9.146" x2="36.563" y2="-19.854"/>
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="11.563" y1="33.146" x2="-17.437" y2="33.146"/>
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="1007.563" y1="33.146" x2="978.563" y2="33.146"/>
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="36.563" y1="704.146" x2="36.563" y2="737.146"/>
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="16.563" y1="685.146" x2="-15.437" y2="685.146"/>
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="975.563" y1="685.146" x2="1007.125" y2="685.146"/>
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="955.563" y1="705.324" x2="955.563" y2="735.967"/>
+<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="955.563" y1="8.146" x2="955.563" y2="-17.854"/>
+     </svg>

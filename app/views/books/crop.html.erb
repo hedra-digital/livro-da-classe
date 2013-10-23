@@ -1,0 +1,38 @@
+<%= javascript_include_tag "jcrop/jquery.Jcrop" %>
+<%= stylesheet_link_tag "jcrop/jquery.Jcrop" %>
+
+<script type="text/javascript" charset="utf-8">
+        function showCoords(c) {
+            jQuery('#x1').val(c.x);
+            jQuery('#y1').val(c.y);
+            jQuery('#x2').val(c.x2);
+            jQuery('#y2').val(c.y2);
+            jQuery('#w').val(c.w);
+            jQuery('#h').val(c.h);
+        }
+
+        jQuery(function ($) {
+            $('#target').Jcrop({
+                onSelect:showCoords,
+                bgColor:'yellow',
+                onChange:showCoords
+            });
+        });
+</script>
+
+<h4>Imagens da Capa</h4>
+<div class="page" align="center">
+
+  <!-- This is the image we're attaching Jcrop to -->
+  <%= image_tag(book.project.school_logo.url) if book.project.present? and book.project.school_logo.present?, :id => 'target' %>
+  <!--<%= image_tag "pool.jpg", :id => 'target', :alt => 'Flowers' %>-->
+
+  <form onsubmit="return false;" class="coords">
+    <label>X1 <input type="text" size="4" id="x1" name="x1"/></label>
+    <label>Y1 <input type="text" size="4" id="y1" name="y1"/></label>
+    <label>X2 <input type="text" size="4" id="x2" name="x2"/></label>
+    <label>Y2 <input type="text" size="4" id="y2" name="y2"/></label>
+    <label>W <input type="text" size="4" id="w" name="w"/></label>
+    <label>H <input type="text" size="4" id="h" name="h"/></label>
+  </form>
+</div>

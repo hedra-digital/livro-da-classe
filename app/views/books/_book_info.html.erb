@@ -24,9 +24,6 @@
             <% if is_organizer? && !is_project? %>
               <%= menu_item t(:publish, :scope => :book_nav), edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>
-            <% if is_organizer? %>
-              <%= menu_item t(:cover_info), book_cover_info_path(@book.uuid) %>
-            <% end %>
           </ul>
         </nav>
       </div>
