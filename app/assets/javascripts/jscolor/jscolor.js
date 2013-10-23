@@ -780,11 +780,11 @@ var jscolor = {
 				case 0: var padImg = 'hs.png'; break;
 				case 1: var padImg = 'hv.png'; break;
 			}
-			p.padM.style.backgroundImage = "url('"+jscolor.getDir()+"cross.gif')";
+			p.padM.style.backgroundImage = "url('/assets/cross.gif')";
 			p.padM.style.backgroundRepeat = "no-repeat";
-			p.sldM.style.backgroundImage = "url('"+jscolor.getDir()+"arrow.gif')";
+			p.sldM.style.backgroundImage = "url('/assets/arrow.gif')";
 			p.sldM.style.backgroundRepeat = "no-repeat";
-			p.pad.style.backgroundImage = "url('"+jscolor.getDir()+padImg+"')";
+			p.pad.style.backgroundImage = "url('/assets/"+padImg+"')";
 			p.pad.style.backgroundRepeat = "no-repeat";
 			p.pad.style.backgroundPosition = "0 0";
 
