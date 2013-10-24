@@ -49,6 +49,11 @@ class Project < ActiveRecord::Base
     "16 x 23 cm" => 0.22
   }
 
+  def school_logo_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file school_logo.path(style)
+  end
+
   def has_valid_release_date?
     self.release_date.present? && (self.release_date > (Date.today + Project::MANUFACTURE_TIME))
   end

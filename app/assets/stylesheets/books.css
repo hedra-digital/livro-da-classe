@@ -62,6 +62,9 @@
 
 .crop-image-container{
   margin-top: 15px;
+  width:600px;
+  height:600px;
+  overflow:hidden;
 }
 
 .crop-image-container img{
