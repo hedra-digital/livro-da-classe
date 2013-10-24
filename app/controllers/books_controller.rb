@@ -101,6 +101,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
+    @book.project.destroy
     @book.destroy
     redirect_to books_url
   end
