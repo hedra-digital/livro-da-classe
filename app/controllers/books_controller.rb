@@ -14,13 +14,13 @@ class BooksController < ApplicationController
   end
 
   def cover_info
-    @cover_info = @book.cover_info
   end
   
   def update_cover_info
     if @book.cover_info.update_attributes(params[:cover_info])
       BookCover.new(@book.cover_info).generate_cover
-      redirect_to book_cover_info_path(@book.uuid), notice: 'Capa atualizada com sucesso'
+      redirect_to book_path(@book.uuid), notice: 'As definições feitas no livro foram realizadas com sucesso.'
+      #redirect_to book_cover_info_path(@book.uuid), notice: 'Capa atualizada com sucesso'
     else
       render :edit
     end
@@ -69,8 +69,8 @@ class BooksController < ApplicationController
       @book.cover_info.update_attributes cover_info
 
       BookCover.new(@book.cover_info).generate_cover
-      #render :crop
-      redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
+      redirect_to book_cover_info_path(@book.uuid)
+      #redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
     else
       @book.build_project
       @book.build_cover_info
@@ -93,8 +93,8 @@ class BooksController < ApplicationController
     
     if @book.update_attributes(params[:book])
       BookCover.new(@book.cover_info).generate_cover
-      #render :crop
-      redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
+      redirect_to book_cover_info_path(@book.uuid)
+      #redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
     else
       render :edit
     end
@@ -104,12 +104,6 @@ class BooksController < ApplicationController
     @book.project.destroy
     @book.destroy
     redirect_to books_url
-  end
-
-  def crop
-    respond_to do |format|
-      format.html
-    end
   end
   
   private

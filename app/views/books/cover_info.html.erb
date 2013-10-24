@@ -1,10 +1,94 @@
-<h2>Capa</h2>
-<%= simple_form_for(@cover_info, :url => "update_cover_info", :html => { :multipart => true }) do |f| %>
-  <%= f.input :titulo_linha1 %>
-  <%= f.input :titulo_linha2 %>
-  <%= f.input :titulo_linha3 %>
-  <%= f.input :autor %>
-  
+<%= javascript_include_tag "jcrop/jquery.Jcrop" %>
+<%= stylesheet_link_tag "jcrop/jquery.Jcrop" %>
+
+<script type="text/javascript" charset="utf-8">
+        function updateLogoCoords(c) {
+            jQuery('#cover_info_logo_x1').val(c.x);
+            jQuery('#cover_info_logo_y1').val(c.y);
+            jQuery('#cover_info_logo_x2').val(c.x2);
+            jQuery('#cover_info_logo_y2').val(c.y2);
+            jQuery('#cover_info_logo_w').val(c.w);
+            jQuery('#cover_info_logo_h').val(c.h);
+        }
+        function updateCapaCoords(c) {
+            jQuery('#cover_info_capa_imagem_x1').val(c.x);
+            jQuery('#cover_info_capa_imagem_y1').val(c.y);
+            jQuery('#cover_info_capa_imagem_x2').val(c.x2);
+            jQuery('#cover_info_capa_imagem_y2').val(c.y2);
+            jQuery('#cover_info_capa_imagem_w').val(c.w);
+            jQuery('#cover_info_capa_imagem_h').val(c.h);
+        }
+        function updateDetalheCoords(c){
+            jQuery('#cover_info_capa_detalhe_x1').val(c.x);
+            jQuery('#cover_info_capa_detalhe_y1').val(c.y);
+            jQuery('#cover_info_capa_detalhe_x2').val(c.x2);
+            jQuery('#cover_info_capa_detalhe_y2').val(c.y2);
+            jQuery('#cover_info_capa_detalhe_w').val(c.w);
+            jQuery('#cover_info_capa_detalhe_h').val(c.h);
+        }
+
+        jQuery(function ($) {
+            $('#logo-crop').Jcrop({
+                aspectRatio: 1,
+                onSelect: updateLogoCoords,
+                bgColor:'black',
+                bgOpacity: .7,
+                onChange: updateLogoCoords
+            });
+            $('#capa-crop').Jcrop({
+                aspectRatio: 1,
+                onSelect: updateCapaCoords,
+                bgColor:'black',
+                bgOpacity: .7,
+                onChange: updateCapaCoords
+            });
+            $('#detalhe-crop').Jcrop({
+                aspectRatio: 1,
+                onSelect: updateDetalheCoords,
+                bgColor:'black',
+                bgOpacity: .7,
+                onChange: updateDetalheCoords
+            });
+        });
+</script>
+
+<h2>Redimensionando as imagens...</h2>
+<p class="crop-image-desc">Para redimensionar as imagens, clique na imagem e selecione a área dela que deve ser utilizada.<br>Lembre-se de que a imagem poderá ficar distorcida ao ser gerada a capa do livro, caso não selecione esta área.</p>
+<div class='crop-image-container'>
+  <label><%= "Imagem do Logotipo da Escola" %></label>
+  <%= image_tag @book.project.school_logo.url, :id => 'logo-crop', :class => 'crop-image' if @book.project.present? and @book.project.school_logo.present? %>
+</div>
+<div class='crop-image-container'>
+  <label><%= "Imagem principal da capa" %></label>
+  <%= image_tag @book.cover_info.capa_imagem.url, :id => 'capa-crop', :class => 'crop-image' if @book.cover_info.present? and @book.cover_info.capa_imagem.present? %>
+</div>
+<div class='crop-image-container'>
+  <label><%= "Imagem detalhe da capa" %></label>
+  <%= image_tag @book.cover_info.capa_detalhe.url, :id => 'detalhe-crop', :class => 'crop-image' if @book.cover_info.present? and @book.cover_info.capa_detalhe.present? %>
+</div>
+<%= simple_form_for(@book.cover_info, :url => "update_cover_info", :html => { :multipart => true }) do |f| %>
+  <div style="display: none;">
+    <%= f.input :logo_x1 %>
+    <%= f.input :logo_x2 %>
+    <%= f.input :logo_y1 %>
+    <%= f.input :logo_y2 %>
+    <%= f.input :logo_w %>
+    <%= f.input :logo_h %>
+
+    <%= f.input :capa_imagem_x1 %>
+    <%= f.input :capa_imagem_x2 %>
+    <%= f.input :capa_imagem_y1 %>
+    <%= f.input :capa_imagem_y2 %>
+    <%= f.input :capa_imagem_w %>
+    <%= f.input :capa_imagem_h %>
+
+    <%= f.input :capa_detalhe_x1 %>
+    <%= f.input :capa_detalhe_x2 %>
+    <%= f.input :capa_detalhe_y1 %>
+    <%= f.input :capa_detalhe_y2 %>
+    <%= f.input :capa_detalhe_w %>
+    <%= f.input :capa_detalhe_h %>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn btn-primary' %>
   </div>

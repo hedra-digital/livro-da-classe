@@ -32,9 +32,9 @@ pt-BR:
   book_nav:
     overview: 'Mural'
     book_data: 'Ficha técnica'
-    texts: 'Capítulos'
+    texts: 'Textos'
     collaborators: 'Alunos'
-    pdf: 'Livro'
+    pdf: 'PDF'
     project: 'Contrato'
     publish: 'Contratar'
   helpers:

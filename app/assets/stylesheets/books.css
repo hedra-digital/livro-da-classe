@@ -59,3 +59,15 @@
   font-size: 14px;
   font-weight: normal;
 }
+
+.crop-image-container{
+  margin-top: 15px;
+}
+
+.crop-image-container img{
+  padding-top: 5px;
+}
+
+.crop-image-desc {
+  padding-left: 20px;
+}

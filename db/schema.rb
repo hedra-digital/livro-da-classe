@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131022172943) do
+ActiveRecord::Schema.define(:version => 20131024182731) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -103,6 +103,24 @@ ActiveRecord::Schema.define(:version => 20131022172943) do
     t.datetime "capa_detalhe_updated_at"
     t.string   "cor_primaria"
     t.string   "cor_secundaria"
+    t.integer  "logo_x1"
+    t.integer  "logo_x2"
+    t.integer  "logo_y1"
+    t.integer  "logo_y2"
+    t.integer  "capa_imagem_x1"
+    t.integer  "capa_imagem_x2"
+    t.integer  "capa_imagem_y1"
+    t.integer  "capa_imagem_y2"
+    t.integer  "capa_detalhe_x1"
+    t.integer  "capa_detalhe_x2"
+    t.integer  "capa_detalhe_y1"
+    t.integer  "capa_detalhe_y2"
+    t.integer  "logo_w"
+    t.integer  "logo_h"
+    t.integer  "capa_imagem_w"
+    t.integer  "capa_imagem_h"
+    t.integer  "capa_detalhe_w"
+    t.integer  "capa_detalhe_h"
   end
 
   create_table "default_covers", :force => true do |t|

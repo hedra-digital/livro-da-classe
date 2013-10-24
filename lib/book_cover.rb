@@ -119,18 +119,18 @@ class BookCover
 
   def atualiza_logo
     if !@cover_info.book.project.nil?
-      @root.elements[5].attributes["absref"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path.to_s : "inksvg/logo.png"
-      @root.elements[5].attributes["href"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path.to_s : "inksvg/logo.png"
+      @root.elements[5].attributes["absref"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path(:small).to_s : "inksvg/logo.png"
+      @root.elements[5].attributes["href"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path(:small).to_s : "inksvg/logo.png"
     end
   end
 
   def atualiza_imagem_capa
-    @root.elements[4].attributes["href"].value = !@cover_info.capa_imagem_file_name.nil? ? @cover_info.capa_imagem.path.to_s : "inksvg/1.jpg"
+    @root.elements[4].attributes["href"].value = !@cover_info.capa_imagem_file_name.nil? ? @cover_info.capa_imagem.path(:small).to_s : "inksvg/1.jpg"
   end
 
   def atualiza_detalhe_capa
-    @root.elements[3].attributes["absref"].value = !@cover_info.capa_detalhe_file_name.nil? ? @cover_info.capa_detalhe.path.to_s : "inksvg/2.jpg"
-    @root.elements[3].attributes["href"].value = !@cover_info.capa_detalhe_file_name.nil? ? @cover_info.capa_detalhe.path.to_s : "inksvg/2.jpg"
+    @root.elements[3].attributes["absref"].value = !@cover_info.capa_detalhe_file_name.nil? ? @cover_info.capa_detalhe.path(:small).to_s : "inksvg/2.jpg"
+    @root.elements[3].attributes["href"].value = !@cover_info.capa_detalhe_file_name.nil? ? @cover_info.capa_detalhe.path(:small).to_s : "inksvg/2.jpg"
   end
   
   def atualiza_dados_svg
@@ -140,6 +140,10 @@ class BookCover
     atualiza_autor @cover_info.autor
     atualiza_texto_lombada @cover_info.book.title
     atualiza_texto_quarta_capa @cover_info.texto_quarta_capa
+    #crop das imagens
+    crop_logo
+    crop_capa
+    crop_detalhe
     #imagens
     atualiza_logo
     atualiza_imagem_capa
@@ -165,8 +169,39 @@ class BookCover
   end
 
   def generate_png(pdf_file, png_file)
-    system "inkscape #{pdf_file} --export-area=525:26:986:700 --export-png=#{png_file}"
+    system "inkscape #{pdf_file} --export-area=485:26:970:700 --export-png=#{png_file}"
     system "convert #{png_file} -background white -flatten #{png_file}"
+  end
+
+  def crop_logo
+    if !@cover_info.book.project.school_logo_file_name.nil? and @cover_info.cropping_logo?
+      file = @cover_info.book.project.school_logo.path.to_s
+      out_file = @cover_info.book.project.school_logo.path(:small).to_s
+      dimensions = "#{@cover_info.logo_w}x#{@cover_info.logo_h}+#{@cover_info.logo_x1}+#{@cover_info.logo_y1}"
+      crop file, out_file, dimensions
+    end
+  end
+
+  def crop_capa
+    if !@cover_info.capa_imagem_file_name.nil? and @cover_info.cropping_capa?
+      file = @cover_info.capa_imagem.path.to_s
+      out_file = @cover_info.capa_imagem.path(:small).to_s
+      dimensions = "#{@cover_info.capa_imagem_w}x#{@cover_info.capa_imagem_h}+#{@cover_info.capa_imagem_x1}+#{@cover_info.capa_imagem_y1}"
+      crop file, out_file, dimensions
+    end
+  end
+
+  def crop_detalhe
+    if !@cover_info.capa_detalhe_file_name.nil? and @cover_info.cropping_detalhe?
+      file = @cover_info.capa_detalhe.path.to_s
+      out_file = @cover_info.capa_detalhe.path(:small).to_s
+      dimensions = "#{@cover_info.capa_detalhe_w}x#{@cover_info.capa_detalhe_h}+#{@cover_info.capa_detalhe_x1}+#{@cover_info.capa_detalhe_y1}"
+      crop file, out_file, dimensions
+    end
+  end
+
+  def crop(in_file, out_file, dimensions)
+    system "gm convert -crop #{dimensions} #{in_file} #{out_file}"
   end
 
   def update_book_cover(png_file)
