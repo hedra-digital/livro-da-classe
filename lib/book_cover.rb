@@ -5,9 +5,9 @@ class BookCover
   SECUNDARY_DEFAULT = '#72abcc'
 
   TAMANHOS_TITULO = {
-    :curto => { :capa1 => "36px", :capa5 => "30px", :lombada => "16px" },
-    :medio => { :capa1 => "30px", :capa5 => "18px", :lombada => "14px" },
-    :comprido => { :capa1 => "24px", :capa5 => "14px", :lombada => "12px" }
+    :curto => { :capa1 => "36px", :capa5 => "17px", :lombada => "16px" },
+    :medio => { :capa1 => "30px", :capa5 => "17px", :lombada => "14px" },
+    :comprido => { :capa1 => "24px", :capa5 => "17px", :lombada => "12px" }
   }
 
   def initialize cover_info
