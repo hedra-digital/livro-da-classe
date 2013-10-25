@@ -58,10 +58,10 @@
     <%= c.input :texto_quarta_capa, :label => "Texto de capa (máx. 415 toques)", :as => :text, :input_html => { :maxlength => 415, :class => 'cover-text'  } %>
   </div>
   <div class="span5">
-    <%= c.input :cor_primaria, :input_html => { :class => 'color' } %>
+    <%= c.input :cor_primaria, :input_html => { :class => 'color', :value =>  book.cover_info.primaria } %>
   </div>
   <div class="span5">  
-    <%= c.input :cor_secundaria, :input_html => { :class => 'color' } %>
+    <%= c.input :cor_secundaria, :input_html => { :class => 'color', :value => book.cover_info.secundaria  }  %>
   </div>
 <% end %>
 </div>

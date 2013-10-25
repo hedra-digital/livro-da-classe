@@ -57,4 +57,12 @@ class CoverInfo < ActiveRecord::Base
     @geometry[style] ||= Paperclip::Geometry.from_file capa_detalhe.path(style)
   end
 
+  def primaria
+    return self.cor_primaria.nil? ? '28572F' : self.cor_primaria 
+  end
+
+  def secundaria
+    return self.cor_secundaria.nil? ? '6F7551' : self.cor_secundaria
+  end
+
 end
