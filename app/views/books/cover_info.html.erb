@@ -2,72 +2,74 @@
 <%= stylesheet_link_tag "jcrop/jquery.Jcrop" %>
 
 <script type="text/javascript" charset="utf-8">
-        function updateLogoCoords(c) {
-            var ratioLogo = <%= @book.project.school_logo_geometry(:original).width %> / <%= @book.project.school_logo_geometry(:normal).width %>;
-            jQuery('#cover_info_logo_x1').val(Math.round(c.x * ratioLogo));
-            jQuery('#cover_info_logo_y1').val(Math.round(c.y * ratioLogo));
-            jQuery('#cover_info_logo_x2').val(Math.round(c.x2 * ratioLogo));
-            jQuery('#cover_info_logo_y2').val(Math.round(c.y2 * ratioLogo));
-            jQuery('#cover_info_logo_w').val(Math.round(c.w * ratioLogo));
-            jQuery('#cover_info_logo_h').val(Math.round(c.h * ratioLogo));
-        }
-        function updateCapaCoords(c) {
-            var ratioCapa = <%= @book.cover_info.capa_image_geometry(:original).width %> / <%= @book.cover_info.capa_image_geometry(:normal).width %>;
-            jQuery('#cover_info_capa_imagem_x1').val(Math.round(c.x * ratioCapa));
-            jQuery('#cover_info_capa_imagem_y1').val(Math.round(c.y * ratioCapa));
-            jQuery('#cover_info_capa_imagem_x2').val(Math.round(c.x2 * ratioCapa));
-            jQuery('#cover_info_capa_imagem_y2').val(Math.round(c.y2 * ratioCapa));
-            jQuery('#cover_info_capa_imagem_w').val(Math.round(c.w * ratioCapa));
-            jQuery('#cover_info_capa_imagem_h').val(Math.round(c.h * ratioCapa));
-        }
-        function updateDetalheCoords(c){
-            var ratioDetalhe = <%= @book.cover_info.capa_detalhe_geometry(:original).width %> / <%= @book.cover_info.capa_detalhe_geometry(:normal).width %>;
-            jQuery('#cover_info_capa_detalhe_x1').val(Math.round(c.x * ratioDetalhe));
-            jQuery('#cover_info_capa_detalhe_y1').val(Math.round(c.y * ratioDetalhe));
-            jQuery('#cover_info_capa_detalhe_x2').val(Math.round(c.x2 * ratioDetalhe));
-            jQuery('#cover_info_capa_detalhe_y2').val(Math.round(c.y2 * ratioDetalhe));
-            jQuery('#cover_info_capa_detalhe_w').val(Math.round(c.w * ratioDetalhe));
-            jQuery('#cover_info_capa_detalhe_h').val(Math.round(c.h * ratioDetalhe));
-        }
+    var ratio = 1;
 
-        jQuery(function ($) {
-            $('#logo-crop').Jcrop({
-                aspectRatio: 1,
-                onSelect: updateLogoCoords,
-                bgColor:'black',
-                bgOpacity: .7,
-                onChange: updateLogoCoords
-            });
-            $('#capa-crop').Jcrop({
-                aspectRatio: 1,
-                onSelect: updateCapaCoords,
-                bgColor:'black',
-                bgOpacity: .7,
-                onChange: updateCapaCoords
-            });
-            $('#detalhe-crop').Jcrop({
-                aspectRatio: 1,
-                onSelect: updateDetalheCoords,
-                bgColor:'black',
-                bgOpacity: .7,
-                onChange: updateDetalheCoords
-            });
+    function updateLogoCoords(c) {
+        jQuery('#cover_info_logo_x1').val(Math.round(c.x * ratio));
+        jQuery('#cover_info_logo_y1').val(Math.round(c.y * ratio));
+        jQuery('#cover_info_logo_x2').val(Math.round(c.x2 * ratio));
+        jQuery('#cover_info_logo_y2').val(Math.round(c.y2 * ratio));
+        jQuery('#cover_info_logo_w').val(Math.round(c.w * ratio));
+        jQuery('#cover_info_logo_h').val(Math.round(c.h * ratio));
+    }
+    function updateCapaCoords(c) {
+        jQuery('#cover_info_capa_imagem_x1').val(Math.round(c.x * ratio));
+        jQuery('#cover_info_capa_imagem_y1').val(Math.round(c.y * ratio));
+        jQuery('#cover_info_capa_imagem_x2').val(Math.round(c.x2 * ratio));
+        jQuery('#cover_info_capa_imagem_y2').val(Math.round(c.y2 * ratio));
+        jQuery('#cover_info_capa_imagem_w').val(Math.round(c.w * ratio));
+        jQuery('#cover_info_capa_imagem_h').val(Math.round(c.h * ratio));
+    }
+    function updateDetalheCoords(c){
+        jQuery('#cover_info_capa_detalhe_x1').val(Math.round(c.x * ratio));
+        jQuery('#cover_info_capa_detalhe_y1').val(Math.round(c.y * ratio));
+        jQuery('#cover_info_capa_detalhe_x2').val(Math.round(c.x2 * ratio));
+        jQuery('#cover_info_capa_detalhe_y2').val(Math.round(c.y2 * ratio));
+        jQuery('#cover_info_capa_detalhe_w').val(Math.round(c.w * ratio));
+        jQuery('#cover_info_capa_detalhe_h').val(Math.round(c.h * ratio));
+    }
+
+    jQuery(function ($) {
+        $('#logo-crop').Jcrop({
+            aspectRatio: 1,
+            onSelect: updateLogoCoords,
+            bgColor:'black',
+            bgOpacity: .7,
+            onChange: updateLogoCoords,
+            setSelect: <%= @book.cover_info.logo_area %>
         });
+        $('#capa-crop').Jcrop({
+            aspectRatio: 1,
+            onSelect: updateCapaCoords,
+            bgColor:'black',
+            bgOpacity: .7,
+            onChange: updateCapaCoords,
+            setSelect: <%= @book.cover_info.capa_area %>
+        });
+        $('#detalhe-crop').Jcrop({
+            aspectRatio: 1,
+            onSelect: updateDetalheCoords,
+            bgColor:'black',
+            bgOpacity: .7,
+            onChange: updateDetalheCoords,
+            setSelect: <%= @book.cover_info.detalhe_area %>
+        });
+    });
 </script>
 
-<h2>Redimensionando as imagens...</h2>
-<p class="crop-image-desc">Para redimensionar as imagens, clique na imagem e selecione a área dela que deve ser utilizada.<br>Lembre-se de que a imagem poderá ficar distorcida ao ser gerada a capa do livro, caso não selecione esta área.</p>
+<h2>Redimensionando as imagens da capa...</h2>
+<p class="crop-image-desc">Para redimensionar as imagens, clique na imagem e selecione a área dela que deve ser utilizada.<br>Lembre-se de que isso é muito importante para que sua capa seja construída do jeito que você deseja.</p>
+<label class="crop-label"><%= "Imagem do Logotipo da Escola" %></label>
 <div class='crop-image-container'>
-  <label><%= "Imagem do Logotipo da Escola" %></label>
-  <%= image_tag @book.project.school_logo.url, :id => 'logo-crop', :class => 'crop-image' if @book.project.present? and @book.project.school_logo.present? %>
+  <%= image_tag @book.project.school_logo.url(:normal), :id => 'logo-crop', :class => 'crop-image' if @book.project.present? and @book.project.school_logo.present? %>
 </div>
+<label class="crop-label"><%= "Imagem principal da capa" %></label>
 <div class='crop-image-container'>
-  <label><%= "Imagem principal da capa" %></label>
-  <%= image_tag @book.cover_info.capa_imagem.url, :id => 'capa-crop', :class => 'crop-image' if @book.cover_info.present? and @book.cover_info.capa_imagem.present? %>
+  <%= image_tag @book.cover_info.capa_imagem.url(:normal), :id => 'capa-crop', :class => 'crop-image' if @book.cover_info.present? and @book.cover_info.capa_imagem.present? %>
 </div>
+<label class="crop-label"><%= "Imagem detalhe da capa" %></label>
 <div class='crop-image-container'>
-  <label><%= "Imagem detalhe da capa" %></label>
-  <%= image_tag @book.cover_info.capa_detalhe.url, :id => 'detalhe-crop', :class => 'crop-image' if @book.cover_info.present? and @book.cover_info.capa_detalhe.present? %>
+  <%= image_tag @book.cover_info.capa_detalhe.url(:normal), :id => 'detalhe-crop', :class => 'crop-image' if @book.cover_info.present? and @book.cover_info.capa_detalhe.present? %>
 </div>
 <%= simple_form_for(@book.cover_info, :url => "update_cover_info", :html => { :multipart => true }) do |f| %>
   <div style="display: none;">

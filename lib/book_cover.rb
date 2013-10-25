@@ -175,7 +175,7 @@ class BookCover
 
   def crop_logo
     if !@cover_info.book.project.school_logo_file_name.nil? and @cover_info.cropping_logo?
-      file = @cover_info.book.project.school_logo.path.to_s
+      file = @cover_info.book.project.school_logo.path(:normal).to_s
       out_file = @cover_info.book.project.school_logo.path(:small).to_s
       dimensions = "#{@cover_info.logo_w}x#{@cover_info.logo_h}+#{@cover_info.logo_x1}+#{@cover_info.logo_y1}"
       crop file, out_file, dimensions
@@ -184,7 +184,7 @@ class BookCover
 
   def crop_capa
     if !@cover_info.capa_imagem_file_name.nil? and @cover_info.cropping_capa?
-      file = @cover_info.capa_imagem.path.to_s
+      file = @cover_info.capa_imagem.path(:normal).to_s
       out_file = @cover_info.capa_imagem.path(:small).to_s
       dimensions = "#{@cover_info.capa_imagem_w}x#{@cover_info.capa_imagem_h}+#{@cover_info.capa_imagem_x1}+#{@cover_info.capa_imagem_y1}"
       crop file, out_file, dimensions
@@ -193,7 +193,7 @@ class BookCover
 
   def crop_detalhe
     if !@cover_info.capa_detalhe_file_name.nil? and @cover_info.cropping_detalhe?
-      file = @cover_info.capa_detalhe.path.to_s
+      file = @cover_info.capa_detalhe.path(:normal).to_s
       out_file = @cover_info.capa_detalhe.path(:small).to_s
       dimensions = "#{@cover_info.capa_detalhe_w}x#{@cover_info.capa_detalhe_h}+#{@cover_info.capa_detalhe_x1}+#{@cover_info.capa_detalhe_y1}"
       crop file, out_file, dimensions

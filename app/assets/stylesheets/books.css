@@ -62,9 +62,7 @@
 
 .crop-image-container{
   margin-top: 15px;
-  width:600px;
-  height:600px;
-  overflow:hidden;
+  padding-left: 5%;
 }
 
 .crop-image-container img{
@@ -73,4 +71,8 @@
 
 .crop-image-desc {
   padding-left: 20px;
+}
+
+.crop-label {
+  margin-top: 15px;
 }

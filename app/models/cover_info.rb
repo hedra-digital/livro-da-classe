@@ -9,8 +9,10 @@ class CoverInfo < ActiveRecord::Base
   attr_accessible :capa_detalhe, :capa_detalhe_x1, :capa_detalhe_x2, :capa_detalhe_y1, :capa_detalhe_y2, :capa_detalhe_w, :capa_detalhe_h
   has_attached_file :capa_detalhe, :styles => { :normal => ["600x600>", :jpg], :small => ["300x300#", :jpg] }, :default_url => "/images/:style/missing.png"
 
+  DEFAULT_CROP = "[0, 0, 30, 30]"
+
   def cropping_logo?  
-    !logo_x1.blank? && !logo_x2.blank? && !logo_y1.blank? && !logo_y2.blank?  
+    !logo_x1.blank? and !logo_y1.blank? and !logo_w.blank? and !logo_h.blank?
   end
 
   def cropping_capa?  
@@ -19,6 +21,30 @@ class CoverInfo < ActiveRecord::Base
 
   def cropping_detalhe?  
     !capa_detalhe_x1.blank? and !capa_detalhe_y1.blank? and !capa_detalhe_w.blank? and !capa_detalhe_h.blank?  
+  end
+
+  def logo_area
+    if cropping_logo?  
+      "[#{logo_x1},#{logo_y1},#{logo_x2},#{logo_y2}]"
+    else
+      DEFAULT_CROP
+    end
+  end
+
+  def capa_area  
+    if cropping_capa?  
+      "[#{capa_imagem_x1},#{capa_imagem_y1},#{capa_imagem_x2},#{capa_imagem_y2}]"
+    else
+      DEFAULT_CROP
+    end
+  end
+
+  def detalhe_area  
+    if cropping_detalhe?  
+      "[#{capa_detalhe_x1},#{capa_detalhe_y1},#{capa_detalhe_x2},#{capa_detalhe_y2}]"
+    else
+      DEFAULT_CROP
+    end
   end
 
   def capa_image_geometry(style = :original)
