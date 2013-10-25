@@ -2,7 +2,7 @@
 
 class ProjectValidator < ActiveModel::Validator
   def validate(record)
-    if record.release_date.present?
+    if record.release_date.present? and record.release_date_changed?
       if record.has_valid_release_date?
         return true
       else

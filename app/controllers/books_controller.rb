@@ -90,7 +90,6 @@ class BooksController < ApplicationController
     params[:book][:cover_info_attributes].delete :capa_detalhe       if params[:book][:cover_info_attributes][:capa_detalhe].blank?
     params[:book][:cover_info_attributes].delete :texto_quarta_capa  if params[:book][:cover_info_attributes][:texto_quarta_capa].blank?
     
-    
     if @book.update_attributes(params[:book])
       BookCover.new(@book.cover_info).generate_cover
       redirect_to book_cover_info_path(@book.uuid)
