@@ -16,8 +16,8 @@
       $("#project-total-price").text("R$ " + total.toFixed(2));
     });
 
-    $("#project_publish_format_14_x_21_cm").change();
-    $("#project_publish_format_14_x_21_cm").prop('checked', true);
+    $("#project_publish_format_16_x_23_cm").change();
+    $("#project_publish_format_16_x_23_cm").prop('checked', true);
 
     $("#project_quantity").change();
 
@@ -41,13 +41,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <!--<tr>
       <td><%= f.radio_button :publish_format, '14 x 21 cm', :class => 'format-radio' %>14 x 21 cm</td>
       <td>1x1 cores</td>
       <td>até 100 pp.</td>
       <td>R$ 20,00</td>
       <td>R$ 0,20</td>
-    </tr>
+    </tr>-->
     <tr>
       <td><%= f.radio_button :publish_format, '16 x 23 cm', :class => 'format-radio' %>16 x 23 cm</td>
       <td>1x1 cores</td>
