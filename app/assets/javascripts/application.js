@@ -30,6 +30,7 @@
 //= require jquery.jqEasyCharCounter.min.js
 //= require jquery.mask.min.js
 //= require jscolor/jscolor
+//= require jcrop/jquery.Jcrop
 
 // Bootstrap Datepicker
 
