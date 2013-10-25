@@ -35,7 +35,7 @@ class Book < ActiveRecord::Base
   # Validations
   validates                 :organizer, :presence => true
   validates                 :title,     :presence => true
-  validates                 :number,    :numericality => true,  :allow_nil => true
+  validates                 :number,    :numericality => true, :allow_blank => true
 
   # Specify fields that can be accessible through mass assignment
   attr_accessible           :project_attributes, :cover_info_attributes, :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords
@@ -90,6 +90,10 @@ class Book < ActiveRecord::Base
     rescue
       return 0
     end
+  end
+
+  def resize_images?
+    self.cover_info.capa_imagem.present? or self.cover_info.capa_detalhe.present? or self.project.school_logo.present?
   end
 
   #def create_dependencies

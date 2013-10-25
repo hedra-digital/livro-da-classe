@@ -69,8 +69,11 @@ class BooksController < ApplicationController
       @book.cover_info.update_attributes cover_info
 
       BookCover.new(@book.cover_info).generate_cover
-      redirect_to book_cover_info_path(@book.uuid)
-      #redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
+      if @book.resize_images?
+        redirect_to book_cover_info_path(@book.uuid)
+      else
+        redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
+      end
     else
       @book.build_project
       @book.build_cover_info
@@ -92,8 +95,11 @@ class BooksController < ApplicationController
     
     if @book.update_attributes(params[:book])
       BookCover.new(@book.cover_info).generate_cover
-      redirect_to book_cover_info_path(@book.uuid)
-      #redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
+      if @book.resize_images?
+        redirect_to book_cover_info_path(@book.uuid)
+      else
+        redirect_to book_path(@book.uuid), notice: 'O livro foi atualizado.'
+      end
     else
       render :edit
     end

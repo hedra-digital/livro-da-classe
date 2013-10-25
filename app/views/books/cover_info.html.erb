@@ -56,18 +56,24 @@
 
 <h2>Redimensionando as imagens da capa...</h2>
 <p class="crop-image-desc">Para redimensionar as imagens, clique na imagem e selecione a área dela que deve ser utilizada.<br>Lembre-se de que isso é muito importante para que sua capa seja construída do jeito que você deseja.</p>
-<label class="crop-label"><%= "Imagem do Logotipo da Escola" %></label>
-<div class='crop-image-container'>
-  <%= image_tag @book.project.school_logo.url(:normal), :id => 'logo-crop', :class => 'crop-image' if @book.project.present? and @book.project.school_logo.present? %>
-</div>
-<label class="crop-label"><%= "Imagem principal da capa" %></label>
-<div class='crop-image-container'>
-  <%= image_tag @book.cover_info.capa_imagem.url(:normal), :id => 'capa-crop', :class => 'crop-image' if @book.cover_info.present? and @book.cover_info.capa_imagem.present? %>
-</div>
-<label class="crop-label"><%= "Imagem detalhe da capa" %></label>
-<div class='crop-image-container'>
-  <%= image_tag @book.cover_info.capa_detalhe.url(:normal), :id => 'detalhe-crop', :class => 'crop-image' if @book.cover_info.present? and @book.cover_info.capa_detalhe.present? %>
-</div>
+<%- if @book.project.present? and @book.project.school_logo.present? %>
+    <label for="logo-crop" class="crop-label"><%= "Imagem do Logotipo da Escola" %></label>
+    <div class='crop-image-container'>
+      <%= image_tag @book.project.school_logo.url(:normal), :id => 'logo-crop', :class => 'crop-image' %>
+    </div>
+<%- end %>
+<%- if @book.cover_info.present? and @book.cover_info.capa_imagem.present? %>
+    <label for="capa-crop" class="crop-label"><%= "Imagem principal da capa" %></label>
+    <div class='crop-image-container'>
+      <%= image_tag @book.cover_info.capa_imagem.url(:normal), :id => 'capa-crop', :class => 'crop-image' %>
+    </div>
+<%- end %>
+<%- if @book.cover_info.present? and @book.cover_info.capa_detalhe.present? %>
+    <label for="detalhe-crop" class="crop-label"><%= "Imagem detalhe da capa" %></label>
+    <div class='crop-image-container'>
+      <%= image_tag @book.cover_info.capa_detalhe.url(:normal), :id => 'detalhe-crop', :class => 'crop-image' %>
+    </div>
+<%- end %>
 <%= simple_form_for(@book.cover_info, :url => "update_cover_info", :html => { :multipart => true }) do |f| %>
   <div style="display: none;">
     <%= f.input :logo_x1 %>
