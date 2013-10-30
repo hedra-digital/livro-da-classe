@@ -74,6 +74,7 @@ class BookCover
     @file = File.read('inksvg/CodigoCapa0921svg.svg')
     troca_cor @cover_info.cor_primaria, @cover_info.cor_secundaria
     troca_fonte @cover_info.book.title
+    define_dimensoes_logo
     xml = Nokogiri::XML(@file)
     xml
   end
@@ -94,6 +95,27 @@ class BookCover
   def troca_cor primaria, secundaria
     @file = @file.gsub(PRIMARY_DEFAULT, "##{primaria}") if !primaria.nil?
     @file = @file.gsub(SECUNDARY_DEFAULT, "##{secundaria}") if !secundaria.nil?
+  end
+
+  def define_dimensoes_logo
+    if !@cover_info.book.project.nil?
+      if !@cover_info.book.project.school_logo_file_name.nil?
+        width = @cover_info.book.project.school_logo_geometry.width
+        height = @cover_info.book.project.school_logo_geometry.height
+        if width > height
+          height = height / width * 40
+          width = 40
+        else
+          width = width / height * 55
+          height = 55
+        end
+        @file = @file.gsub("{{LogoWidth}}", "#{width}")
+        @file = @file.gsub("{{LogoHeight}}", "#{height}")
+      else
+        @file = @file.gsub("{{LogoWidth}}", "40")
+        @file = @file.gsub("{{LogoHeight}}", "40")
+      end
+    end
   end
 
   def atualiza_titulo titulo
@@ -119,8 +141,8 @@ class BookCover
 
   def atualiza_logo
     if !@cover_info.book.project.nil?
-      @root.elements[5].attributes["absref"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path(:small).to_s : "inksvg/logo.png"
-      @root.elements[5].attributes["href"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path(:small).to_s : "inksvg/logo.png"
+      @root.elements[5].attributes["absref"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path(:normal).to_s : "inksvg/logo.png"
+      @root.elements[5].attributes["href"].value = !@cover_info.book.project.school_logo_file_name.nil? ? @cover_info.book.project.school_logo.path(:normal).to_s : "inksvg/logo.png"
     end
   end
 
@@ -141,7 +163,7 @@ class BookCover
     atualiza_texto_lombada @cover_info.book.title
     atualiza_texto_quarta_capa @cover_info.texto_quarta_capa
     #crop das imagens
-    crop_logo
+    #crop_logo
     crop_capa
     crop_detalhe
     #imagens

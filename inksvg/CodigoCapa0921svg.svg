@@ -181,11 +181,11 @@
      sodipodi:absref=""
      xlink:href="logo.jpg"
      y="140.46526"
-     x="896.66888"
+     x="900.66888"
      overflow="visible"
      enable-background="new    "
-     width="55"
-     height="55"
+     width="{{LogoWidth}}"
+     height="{{LogoHeight}}"
      id="logo"
      style="overflow:visible" />
   <g

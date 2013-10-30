@@ -39,8 +39,8 @@ class Project < ActiveRecord::Base
 
   has_attached_file :school_logo,
                     :styles => {
-                      :normal => ["600x600>", :jpg],
-                      :small => ["300x300#", :jpg]
+                      :normal => ["600x600>", :png],
+                      :small => ["300x300#", :png]
                     }
 
   PUBLISH_FORMAT_PRICE = {

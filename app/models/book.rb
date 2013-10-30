@@ -48,7 +48,7 @@ class Book < ActiveRecord::Base
   has_attached_file :cover,
                     :styles => {
                       :content => ['100%', :jpg],
-                      :thumb => ['60x80#', :jpg]
+                      :thumb => ['60x80>', :jpg]
                     }
 
   # Other methods
