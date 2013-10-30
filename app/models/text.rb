@@ -49,23 +49,6 @@ class Text < ActiveRecord::Base
     self.enabled
   end
 
-  def get_text_image
-    if !self.image.nil?
-      img = self.image.url
-      if !img.index("?").nil?
-        img = img[0..img.index("?") -1]
-      end
-      return Rails.public_path + img
-    else
-      return ""
-    end
-  end
-
-  def content_latex
-    require "#{Rails.root}/lib/markup_latex.rb"
-    "#{MarkupLatex.new(self.content).to_latex}"
-  end
-
   private
 
   def set_uuid

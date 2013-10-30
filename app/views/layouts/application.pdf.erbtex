@@ -11,6 +11,7 @@
 \newcommand\ano{2013}
 \newcommand\direitos{Hedra}
 \newcommand\introducao{}
+\newcommand\texto{<%= @book.full_text_latex.html_safe %>}
 \newcommand\instituicao{<%= @book.institution %>}
 \newcommand\logradouro{<%= @book.street %>}
 \newcommand\numero{<%= @book.number %>}
@@ -25,11 +26,5 @@
 \newcommand\bibliotecario{<%= @book.librarian_name %>}
 \newcommand\cdd{<%= @book.cdd %>}
 \newcommand\cdu{<%= @book.cdu %>}
-
-<%- i = 0 %>
-<%- @book.texts.each do |t| %>
-<%- i = i + 1 %>
-\newcommand\<%= "nucleo_#{i}" %>{<%= t.title %>}{<%= t.author %>}{<%= t.get_text_image %>}{<%= t.content_latex.html_safe %>}
-<%- end %>
 
 \input{<%= @book.template %>/LIVRO}
