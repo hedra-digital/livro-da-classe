@@ -14,6 +14,10 @@
 </div>
 <div class="row">
   <div class="span4"><%= f.input :directors, :as => :string %></div>
-  <div class="span4"><%= f.input :organizers, :label => "Professor responsável", :as => :string, :input_html => { :value => current_user.name }  %></div>
+  <%- if !@book.organizers.nil? %>
+    <div class="span4"><%= f.input :organizers, :label => "Professor responsável", :as => :string %></div>
+  <%- else %>
+    <div class="span4"><%= f.input :organizers, :label => "Professor responsável", :as => :string, :input_html => { :value => current_user.name }  %></div>
+  <%- end %>
   <div class="span4"><%= f.input :klass %></div>
 </div>

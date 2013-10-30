@@ -29,7 +29,13 @@ class Text < ActiveRecord::Base
   validates :user_id,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :content, :title, :uuid, :content, :user_id, :enabled
+  attr_accessible           :book_id, :content, :title, :uuid, :content, :user_id, :enabled, :author, :image
+
+  has_attached_file :image,
+                    :styles => {
+                      :normal => ["600x600>", :png],
+                      :small => ["300x300>", :png]
+                    }
 
   attr_accessor             :finished_at
 

@@ -303,6 +303,7 @@ pt-BR:
       text:
         title: 'Título'
         content: 'Conteúdo'
+        author: 'Autor do Texto'
       client:
         name: Nome
         emai: E-mail
