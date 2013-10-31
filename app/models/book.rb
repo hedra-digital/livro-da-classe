@@ -93,7 +93,7 @@ class Book < ActiveRecord::Base
   end
 
   def resize_images?
-    self.cover_info.capa_imagem.present? or self.cover_info.capa_detalhe.present? or self.project.school_logo.present?
+    self.cover_info.capa_imagem.present? or self.cover_info.capa_detalhe.present?
   end
 
   #def create_dependencies
