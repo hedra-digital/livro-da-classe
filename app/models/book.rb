@@ -100,6 +100,95 @@ class Book < ActiveRecord::Base
   #  CoverInfo.create(book_id: self.id)
   #  Project.create(book_id: self.id) 
   #end
+
+  def commands
+    commands = ""
+    commands << "\\newcommand{\\nucleo}[3]{\\chapter{#1,por #2}{#1}\\par\\hfill#2\\medskip\\par#3}\n"
+    commands << "\\newcommand{\\logoescola}{#{self.get_school_logo}}\n"
+    commands << "\\newcommand\\titulo{#{self.title}}\n"
+    commands << "\\newcommand\\autor{#{self.organizer.name}}\n"
+    commands << "\\newcommansd\\organizador{#{self.organizers}}\n"
+    commands << "\\newcommand\\tradutor{Tradutor}\n"
+    commands << "\\newcommand\\cidade{São Paulo}\n"
+    commands << "\\newcommand\\ano{2013}\n"
+    commands << "\\newcommand\\direitos{Hedra}\n"
+    commands << "\\newcommand\\introducao{\\chapter{Introdução}\\lipsum[1-4]}\n"
+    commands << "\\newcommand\\instituicao{#{self.institution}}\n"
+    commands << "\\newcommand\\logradouro{#{self.street}}\n"
+    commands << "\\newcommand\\numero{#{self.number}}\n"
+    commands << "\\newcommand\\cidadeinstituicao{#{self.city}}\n"
+    commands << "\\newcommand\\estado{#{self.state}}\n"
+    commands << "\\newcommand\\cep{#{self.zipcode}}\n"
+    commands << "\\newcommand\\diretor{#{self.directors}}\n"
+    commands << "\\newcommand\\coordenador{#{self.coordinators}}\n"
+    commands << "\\newcommand\\turma{#{self.klass}}\n"
+    commands << "\\newcommand\\quartacapa{#{self.cover_info.texto_quarta_capa}}\n"
+    commands << "\\newcommand\\logo{#{self.get_school_logo}}\n"
+    commands << "\\newcommand\\bibliotecario{#{self.librarian_name}}\n"
+    commands << "\\newcommand\\cdd{#{self.cdd}}\n"
+    commands << "\\newcommand\\cdu{#{self.cdu}}\n"
+    commands << "\\newcommand\\palavraschave{#{self.keywords}}\n"
+    commands << "\n\\input{#{self.template}/LIVRO}\n"
+    commands
+  end
+
+  def content
+    content = ""
+    self.texts.each do |text|
+      content << "\\begin{nucleo}{#{text.title}}[#{text.author}][#{text.default_image}]#{text.content}\\end{nucleo}\n\n"
+    end
+    content
+  end
+
+  def pdf
+    config = {:command => 'pdflatex', :arguments => ['-halt-on-error']}
+
+    directory = File.join(Rails.root,'tmp','rails-latex',"#{self.id}-#{self.title}")
+    input_text = File.join(directory,'TEXTO.tex')
+    input_comands = File.join(directory,'comandosespecificos.sty')
+    FileUtils.mkdir_p(directory)
+
+    # write commands file
+    File.open(input_comands,'wb') {|io| io.write(self.commands) }
+
+    # write core file
+    File.open(input_text,'wb') {|io| io.write(self.content) }
+
+    # build latex
+    Process.waitpid(
+      fork do
+        begin
+          Dir.chdir directory
+          STDOUT.reopen("TEXTO.log","a")
+          STDERR.reopen(STDOUT)
+          args = config[:arguments] + %w[-shell-escape -interaction batchmode TEXTO.tex]
+          system config[:command], '-draftmode', *args
+          exec config[:command], *args
+        rescue
+          File.open("TEXTO.log",'a') {|io|
+            io.write("#{$!.message}:\n#{$!.backtrace.join("\n")}\n")
+          }
+        ensure
+          Process.exit! 1
+        end
+      end
+    )
+
+    # check rotine success
+    if File.exist?(pdf_file = input_text.sub(/\.tex$/,'.pdf'))
+      File.rename(pdf_file, File.join(directory,'SUCESSO.pdf'))
+      pdf_file = File.join(directory,'SUCESSO.pdf')
+      #result = File.read(pdf_file)
+    else
+      pdf_file = nil
+      #send email with .log attached
+      AdminMailer.pdf_to_latex_error(self, directory, "#{input_text.sub(/\.tex$/,'.log')}").deliver
+      #showing last success (if not exists shows an error)
+      #pdf_file = File.join(directory,'SUCESSO.pdf')
+      #result = File.read(pdf_file)
+    end
+    pdf_file
+  end
   
   private
 

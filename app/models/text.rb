@@ -49,6 +49,10 @@ class Text < ActiveRecord::Base
     self.enabled
   end
 
+  def default_image
+    self.image.exists? ? '' : self.image.path
+  end
+
   private
 
   def set_uuid
