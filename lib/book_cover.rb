@@ -191,7 +191,7 @@ class BookCover
   end
 
   def generate_png(pdf_file, png_file)
-    system "inkscape #{pdf_file} --export-area=600:20:1255:900 --export-png=#{png_file}"
+    system "inkscape #{pdf_file} --export-area=600:40:1180:880 --export-png=#{png_file}"
     system "convert #{png_file} -background white -flatten #{png_file}"
   end
 
