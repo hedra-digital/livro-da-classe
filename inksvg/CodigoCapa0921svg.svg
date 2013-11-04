@@ -10,8 +10,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="992.12598"
-   height="719.29132"
+   width="1275.5906"
+   height="921.25983"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -134,17 +134,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49944993"
-     inkscape:cx="706.16113"
-     inkscape:cy="121.93298"
+     inkscape:zoom="0.70632886"
+     inkscape:cx="646.77449"
+     inkscape:cy="382.33618"
      inkscape:document-units="mm"
      inkscape:current-layer="svg2"
      showgrid="false"
      units="mm"
-     inkscape:window-width="1440"
-     inkscape:window-height="838"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1056"
+     inkscape:window-x="1366"
+     inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:snap-global="true" />
   <metadata
@@ -162,34 +162,34 @@
   <image
      sodipodi:absref=""
      xlink:href=""
-     height="160"
-     width="160"
-     y="534.26514"
-     x="810.6073"
+     height="207"
+     width="207"
+     y="700"
+     x="1050"
      style="overflow:visible"
      id="imagem2"
      enable-background="new    "
      overflow="visible" />
   <image
-     y="221.23077"
-     x="478.70312"
+     y="276"
+     x="611"
      id="image1"
      xlink:href=""
-     height="363"
-     width="363" />
+     height="480"
+     width="480" />
   <image
      sodipodi:absref=""
      xlink:href="logo.jpg"
-     y="140.46526"
-     x="896.66888"
+     y="180"
+     x="1170"
      overflow="visible"
      enable-background="new    "
-     width="55"
-     height="55"
+     width="{{LogoWidth}}"
+     height="{{LogoHeight}}"
      id="logo"
      style="overflow:visible" />
   <g
-     transform="translate(19.17899,-6.7680711)"
+     transform="matrix(1.310673,0,0,1.3178492,12.010735,-21.657402)"
      id="Grade">
     <polyline
        points="801.612,590.144 242.791,565.142 234.032,705.314 794.405,705.314 "
@@ -362,7 +362,7 @@
           </clipPath>
           <polygon
              clip-path="url(#SVGID_10_)"
-             points="882.839,73.003 882.839,73.22 882.839,73.003 882.622,73.003 882.622,107.01 917.736,107.01 917.736,72.786 882.622,72.786 882.622,73.003 882.839,73.003 882.839,73.22 917.302,73.22 917.302,106.576 883.056,106.576 883.056,73.003 "
+             points="882.839,73.22 917.302,73.22 917.302,106.576 883.056,106.576 883.056,73.003 882.839,73.003 882.839,73.22 882.839,73.003 882.622,73.003 882.622,107.01 917.736,107.01 917.736,72.786 882.622,72.786 882.622,73.003 882.839,73.003 "
              id="polygon5521"
              style="fill:#286fb7" />
         </g>
@@ -499,7 +499,7 @@
           </clipPath>
           <polygon
              clip-path="url(#SVGID_18_)"
-             points="891.495,91.487 901.599,91.487 901.599,102.653 906.755,102.653 906.755,77.115 901.599,77.115 901.599,87.167 891.495,87.167 891.495,77.115 886.339,77.115 886.339,102.653 891.495,102.653 "
+             points="906.755,77.115 901.599,77.115 901.599,87.167 891.495,87.167 891.495,77.115 886.339,77.115 886.339,102.653 891.495,102.653 891.495,91.487 901.599,91.487 901.599,102.653 906.755,102.653 "
              id="polygon5569"
              style="fill:#ffffff" />
         </g>
@@ -543,40 +543,40 @@
      id="Titulo1aCapa"
 
      style="font-size:{{Titulo1aCorpo}};fill:#ffffff;font-family:Tahoma;-inkscape-font-specification:Tahoma;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%;"
-     transform="translate(139.03343,-47.385174)"><flowRegion
+     transform="translate(382.29875,-2.3198487)"><flowRegion
        id="CaixaTitulo1aCapa"><rect
          id="RetanguloTitulo1aCapa"
          width="230"
          height="160"
-         x="432.43921"
-         y="110.011871"
+         x="350"
+         y="100"
          style="font-size:{{Titulo1aCorpo}};font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#f9f9f9;fill-opacity:0.07058824000000000;font-family:Tahoma;-inkscape-font-specification:Tahoma" /></flowRegion><flowPara
        id="TextoTitulo1aCapa">$TextoTitulo1aCapa$</flowPara></flowRoot>
   <text
      xml:space="preserve"
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#f9f9f9;fill-opacity:1;stroke:none;font-family:Tahoma;-inkscape-font-specification:Tahoma"
-     x="555.95453"
-     y="608.86115"
+     x="700"
+     y="800"
      id="Organizador"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4432"
-       x="555.95453"
-       y="608.86115">$Organizador$</tspan></text>
+       x="700"
+       y="800">$Organizador$</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Tahoma;-inkscape-font-specification:Tahoma"
-     x="558.07813"
-     y="634.34503"
+     x="700"
+     y="840"
      id="Autor"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4436"
-       x="558.07813"
-       y="634.34503">$Autores$</tspan></text>
+       x="700"
+       y="840">$Autores$</tspan></text>
   <text
      y="-491.96915"
-     x="348.89224"
+     x="550.8609"
      id="Lombada"
      transform="matrix(0,1,-1,0,0,0)"
      style="-inkscape-font-specification:Trebuchet MS;font-family:Trebuchet MS;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:{{LombadaCorpo}};text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
@@ -586,39 +586,95 @@
        id="tspan5993"
        font-size="8"
        y="-491.96915"
-       x="348.89224"></tspan>
+       x="550.8609"></tspan>
   </text>
   <flowRoot
      xml:space="preserve"
      id="Titulo5aCapa"
      style="font-size:{{Titulo5aCorpo}};fill:#3482a9;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
-     transform="translate(139.03343,-47.385174)"><flowRegion
+     transform="matrix(1,0,0,1.1186906,138.78612,52.302484)"><flowRegion
        id="CaixaTitulo5aCapa"><rect
          id="RetanguloTitulo5aCapa"
          width="180"
-         height="65.833359"
-         x="-51.411304"
-         y="276.50891"
+         height="65"
+         x="-45"
+         y="275"
          style="font-size:{{Titulo5aCorpo}};font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#008000;fill-opacity:0.07058824000000000;font-family:Trebuchet MS;-inkscape-font-specification:Trebuchet MS" /></flowRegion><flowPara
        id="TextoTitulo5aCapa">$TextoTitulo5aCapa$</flowPara></flowRoot>  <flowRoot
-     transform="translate(139.03343,24.499264)"
+     transform="matrix(1,0,0,1.1186906,138.78612,132.71899)"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;font-family:Tahoma;-inkscape-font-specification:Tahoma"
      id="Texto5aCapa"
      xml:space="preserve"><flowRegion
        id="FlowRegion5aCapa"><rect
          style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.07058824;font-family:Tahoma;-inkscape-font-specification:Tahoma"
-         y="276.50891"
-         x="-51.411304"
-         height="229.24475"
-         width="166.52286"
+         y="275"
+         x="-45"
+         height="230"
+         width="167"
          id="BoxTexto5aCapa" /></flowRegion><flowPara
        id="ConteudoTexto5aCapa">$Texto5aCapa$</flowPara></flowRoot>
-<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="36.563" y1="9.146" x2="36.563" y2="-19.854"/>
-<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="11.563" y1="33.146" x2="-17.437" y2="33.146"/>
-<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="1007.563" y1="33.146" x2="978.563" y2="33.146"/>
-<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="36.563" y1="704.146" x2="36.563" y2="737.146"/>
-<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="16.563" y1="685.146" x2="-15.437" y2="685.146"/>
-<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="975.563" y1="685.146" x2="1007.125" y2="685.146"/>
-<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="955.563" y1="705.324" x2="955.563" y2="735.967"/>
-<line fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" x1="955.563" y1="8.146" x2="955.563" y2="-17.854"/>
-     </svg>
+<line
+     stroke-miterlimit="10"
+     x1="35.964539"
+     y1="6.440979"
+     x2="35.964539"
+     y2="-22.559021"
+     id="line118"
+     style="fill:#ffffff;stroke:#000000;stroke-miterlimit:10" />
+  <line
+     stroke-miterlimit="10"
+     x1="10.964539"
+     y1="30.440979"
+     x2="-18.035461"
+     y2="30.440979"
+     id="line120"
+     style="fill:#ffffff;stroke:#000000;stroke-miterlimit:10" />
+  <line
+     stroke-miterlimit="10"
+     x1="1296.9645"
+     y1="30.440979"
+     x2="1267.9645"
+     y2="30.440979"
+     id="line122"
+     style="fill:#ffffff;stroke:#000000;stroke-miterlimit:10" />
+  <line
+     stroke-miterlimit="10"
+     x1="27.964539"
+     y1="913.44098"
+     x2="27.964539"
+     y2="946.44098"
+     id="line124"
+     style="fill:#ffffff;stroke:#000000;stroke-miterlimit:10" />
+  <line
+     stroke-miterlimit="10"
+     x1="7.9645386"
+     y1="894.44098"
+     x2="-24.035461"
+     y2="894.44098"
+     id="line126"
+     style="fill:#ffffff;stroke:#000000;stroke-miterlimit:10" />
+  <line
+     stroke-miterlimit="10"
+     x1="1268.9645"
+     y1="894.44098"
+     x2="1300.5265"
+     y2="894.44098"
+     id="line128"
+     style="fill:#ffffff;stroke:#000000;stroke-miterlimit:10" />
+  <line
+     stroke-miterlimit="10"
+     x1="1246.9645"
+     y1="912.61871"
+     x2="1246.9645"
+     y2="943.26178"
+     id="line130"
+     style="fill:#ffffff;stroke:#000000;stroke-miterlimit:10" />
+  <line
+     stroke-miterlimit="10"
+     x1="1246.9645"
+     y1="7.440979"
+     x2="1246.9645"
+     y2="-18.559021"
+     id="line132"
+     style="fill:#ffffff;stroke:#000000;stroke-miterlimit:10" />
+</svg>
