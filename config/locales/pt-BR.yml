@@ -261,7 +261,13 @@ pt-BR:
       project:
         one: Projeto
         other: Projetos
+      expression:
+        one: Expressão
+        other: Expressões
     attributes:
+      expression:
+        target: Expressão a ser substituída
+        replace: Expressão substituta
       cover_info: 
         autor: Autor 
         book_id: Livro 

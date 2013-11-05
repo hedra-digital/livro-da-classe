@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131030121458) do
+ActiveRecord::Schema.define(:version => 20131105155128) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -130,6 +130,13 @@ ActiveRecord::Schema.define(:version => 20131030121458) do
     t.datetime "default_cover_updated_at"
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "expressions", :force => true do |t|
+    t.string   "target"
+    t.string   "replace"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "invitations", :force => true do |t|

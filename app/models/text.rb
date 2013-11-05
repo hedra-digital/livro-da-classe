@@ -17,6 +17,7 @@ class Text < ActiveRecord::Base
 
   # Callbacks
   before_save               :set_uuid
+  before_save               :remove_expressions
 
   # Relationships
   belongs_to                :book
@@ -57,5 +58,11 @@ class Text < ActiveRecord::Base
 
   def set_uuid
      self.uuid = Guid.new.to_s if self.uuid.nil?
+  end
+
+  def remove_expressions
+    Expression.all.each do |exp|
+      self.content = self.content.gsub(exp.target, exp.replace)
+    end
   end
 end
