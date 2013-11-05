@@ -62,7 +62,7 @@ class Text < ActiveRecord::Base
 
   def remove_expressions
     Expression.all.each do |exp|
-      self.content = self.content.gsub(exp.target, exp.replace)
+      self.content = self.content.gsub(eval(exp.target), exp.replace)
     end
   end
 end
