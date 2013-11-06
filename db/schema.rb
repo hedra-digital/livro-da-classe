@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131024182731) do
+ActiveRecord::Schema.define(:version => 20131105155128) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -132,6 +132,13 @@ ActiveRecord::Schema.define(:version => 20131024182731) do
     t.datetime "updated_at",                 :null => false
   end
 
+  create_table "expressions", :force => true do |t|
+    t.string   "target"
+    t.string   "replace"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "invitations", :force => true do |t|
     t.integer  "invited_id"
     t.integer  "book_id"
@@ -170,11 +177,16 @@ ActiveRecord::Schema.define(:version => 20131024182731) do
     t.text     "content"
     t.string   "title"
     t.string   "uuid"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.integer  "position"
     t.integer  "user_id"
-    t.boolean  "enabled",    :default => true
+    t.boolean  "enabled",            :default => true
+    t.string   "author"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "users", :force => true do |t|

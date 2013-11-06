@@ -53,5 +53,6 @@ Livrodaclasse::Application.routes.draw do
       end
     end
     resources :templates, :only => :index
+    resources :expressions, :only => [:index, :create, :new, :edit, :update, :destroy]
   end
 end

@@ -6,7 +6,7 @@
     <div class="fileupload <%= book.project.present? and book.project.school_logo.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
       <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-        <%= image_tag(book.project.school_logo.url(:small)) if book.project.present? and book.project.school_logo.present? %>
+        <%= image_tag(book.project.school_logo.url(:normal)) if book.project.present? and book.project.school_logo.present? %>
       </div>
       <div>
         <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>

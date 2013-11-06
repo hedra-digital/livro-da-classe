@@ -3,6 +3,30 @@
 
   <div class="form-inputs">
     <%= f.input :title, :label => false %>
+    <!--<div class="row">
+      <div class="span4"><%= f.input :title %></div>
+      <%- #if !@text.author.nil? %>
+        <div class="span2"><%= f.input :author %></div>
+      <%- #else %>
+        <div class="span2"><%= f.input :author, :input_html => { :value => current_user.name } %></div>
+      <%- #end %>
+    </div>
+    <div class="row">
+      <div class="span7">
+        <label for="text_image"><%= "Imagem principal do texto" %></label>
+        <div class="fileupload <%= @text.image.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
+          <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
+          <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+            <%= image_tag(@text.image.url(:small)) if @text.image.present? %>
+          </div>
+          <div>
+            <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
+              <%= f.input_field :image, :as => :file %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>-->
     <%= f.input :content, :label => false, :as => :ckeditor %>
   </div>
 

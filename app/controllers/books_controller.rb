@@ -38,10 +38,20 @@ class BooksController < ApplicationController
 
   def show
     @scraps = @book.scraps.order("created_at desc")
-
     respond_to do |format|
       format.html # show.html.erb
-      format.pdf 
+      format.pdf
+
+      #codigo para novo estilo de geração
+
+      #format.pdf do
+      #  pdf = @book.pdf
+      #  if !pdf.nil?
+      #    send_file(pdf, :filename => "#{@book.uuid}.pdf", :disposition => 'inline', :type => "application/pdf")
+      #  else
+      #    raise "Error in pdf generation"
+      #  end
+      #end
     end
   end
 

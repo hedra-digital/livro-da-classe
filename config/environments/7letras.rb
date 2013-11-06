@@ -50,7 +50,7 @@ Livrodaclasse::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => "7letras.livrodaclasse.com.br" }
+  config.action_mailer.default_url_options = { :host => "7letras.livrodaclasse.com.br", :sender_address => "vizir@hedra.com.br", :email_prefix => "[7LETRAS - LIVRO DA CLASSE] ERRO NO SISTEMA " }
 
   # Enable threaded mode
   # config.threadsafe!

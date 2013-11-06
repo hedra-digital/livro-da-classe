@@ -17,6 +17,7 @@ class Text < ActiveRecord::Base
 
   # Callbacks
   before_save               :set_uuid
+  before_save               :remove_expressions
 
   # Relationships
   belongs_to                :book
@@ -29,7 +30,13 @@ class Text < ActiveRecord::Base
   validates :user_id,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :content, :title, :uuid, :content, :user_id, :enabled
+  attr_accessible           :book_id, :content, :title, :uuid, :content, :user_id, :enabled, :author, :image
+
+  has_attached_file :image,
+                    :styles => {
+                      :normal => ["600x600>", :png],
+                      :small => ["300x300>", :png]
+                    }
 
   attr_accessor             :finished_at
 
@@ -43,9 +50,19 @@ class Text < ActiveRecord::Base
     self.enabled
   end
 
+  def default_image
+    self.image.exists? ? '' : self.image.path
+  end
+
   private
 
   def set_uuid
      self.uuid = Guid.new.to_s if self.uuid.nil?
+  end
+
+  def remove_expressions
+    Expression.all.each do |exp|
+      self.content = self.content.gsub(eval(exp.target), exp.replace)
+    end
   end
 end

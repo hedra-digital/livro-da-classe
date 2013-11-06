@@ -1,0 +1,12 @@
+<%= simple_form_for([:admin, @expression], :html => {:class => 'form-vertical' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+        <%= f.input :target %>
+        <%= f.input :replace %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

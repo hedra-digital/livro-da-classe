@@ -1,14 +1,14 @@
 <script type="text/javascript" charset="utf-8">
     var ratio = 1;
 
-    function updateLogoCoords(c) {
+    /*function updateLogoCoords(c) {
         jQuery('#cover_info_logo_x1').val(Math.round(c.x * ratio));
         jQuery('#cover_info_logo_y1').val(Math.round(c.y * ratio));
         jQuery('#cover_info_logo_x2').val(Math.round(c.x2 * ratio));
         jQuery('#cover_info_logo_y2').val(Math.round(c.y2 * ratio));
         jQuery('#cover_info_logo_w').val(Math.round(c.w * ratio));
         jQuery('#cover_info_logo_h').val(Math.round(c.h * ratio));
-    }
+    }*/
     function updateCapaCoords(c) {
         jQuery('#cover_info_capa_imagem_x1').val(Math.round(c.x * ratio));
         jQuery('#cover_info_capa_imagem_y1').val(Math.round(c.y * ratio));
@@ -27,14 +27,14 @@
     }
 
     jQuery(function ($) {
-        $('#logo-crop').Jcrop({
+        /*$('#logo-crop').Jcrop({
             aspectRatio: 1,
             onSelect: updateLogoCoords,
             bgColor:'black',
             bgOpacity: .7,
             onChange: updateLogoCoords,
             setSelect: <%= @book.cover_info.logo_area %>
-        });
+        });*/
         $('#capa-crop').Jcrop({
             aspectRatio: 1,
             onSelect: updateCapaCoords,
@@ -56,12 +56,6 @@
 
 <h2>Redimensionando as imagens da capa...</h2>
 <p class="crop-image-desc">Para redimensionar as imagens, clique na imagem e selecione a área dela que deve ser utilizada.<br>Lembre-se de que isso é muito importante para que sua capa seja construída do jeito que você deseja.</p>
-<%- if @book.project.present? and @book.project.school_logo.present? %>
-    <label for="logo-crop" class="crop-label"><%= "Imagem do Logotipo da Escola" %></label>
-    <div class='crop-image-container'>
-      <%= image_tag @book.project.school_logo.url(:normal), :id => 'logo-crop', :class => 'crop-image' %>
-    </div>
-<%- end %>
 <%- if @book.cover_info.present? and @book.cover_info.capa_imagem.present? %>
     <label for="capa-crop" class="crop-label"><%= "Imagem principal da capa" %></label>
     <div class='crop-image-container'>
@@ -76,12 +70,6 @@
 <%- end %>
 <%= simple_form_for(@book.cover_info, :url => "update_cover_info", :html => { :multipart => true }) do |f| %>
   <div style="display: none;">
-    <%= f.input :logo_x1 %>
-    <%= f.input :logo_x2 %>
-    <%= f.input :logo_y1 %>
-    <%= f.input :logo_y2 %>
-    <%= f.input :logo_w %>
-    <%= f.input :logo_h %>
 
     <%= f.input :capa_imagem_x1 %>
     <%= f.input :capa_imagem_x2 %>
