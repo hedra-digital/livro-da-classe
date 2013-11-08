@@ -52,7 +52,7 @@ class MarkupLatex
         text[start_index..text.size - 1] = ""
       else
         end_latex = text.index(l_end)
-        array_text << [:html, text[(start_index)..(start_latex - 1)]]
+        array_text << [:html, text[(start_index)..(start_latex - 1)]] if (start_latex -1) >= start_index
         array_text << [:latex, text[(start_latex + l_begin.size)..(end_latex - 1)]]
         text[(start_index)..(end_latex + l_end.size - 1)] = ""
       end 

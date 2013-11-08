@@ -103,17 +103,17 @@ class BookCover
         width = @cover_info.book.project.school_logo_geometry.width
         height = @cover_info.book.project.school_logo_geometry.height
         if width > height
-          height = height / width * 40
-          width = 40
+          height = height / width * 75
+          width = 75
         else
-          width = width / height * 55
-          height = 55
+          width = width / height * 100
+          height = 100
         end
         @file = @file.gsub("{{LogoWidth}}", "#{width}")
         @file = @file.gsub("{{LogoHeight}}", "#{height}")
       else
-        @file = @file.gsub("{{LogoWidth}}", "40")
-        @file = @file.gsub("{{LogoHeight}}", "40")
+        @file = @file.gsub("{{LogoWidth}}", "50")
+        @file = @file.gsub("{{LogoHeight}}", "50")
       end
     end
   end
