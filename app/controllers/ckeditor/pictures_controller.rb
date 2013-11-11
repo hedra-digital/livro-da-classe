@@ -8,9 +8,10 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
   def create
     @picture = Ckeditor::Picture.new
     respond_with_asset(@picture)
-    ["content", "original", "thumb"].each do |prefix|
-      system "convert public/ckeditor_assets/pictures/#{prefix}_#{@picture.data_file_name} -fx '(r+g+b)/3' -colorspace Gray public/ckeditor_assets/pictures/#{prefix}_#{@picture.data_file_name}"
-    end
+
+    #["content", "original", "thumb"].each do |prefix|
+    #  system "convert public/ckeditor_assets/pictures/#{prefix}_#{@picture.data_file_name} -fx '(r+g+b)/3' -colorspace Gray public/ckeditor_assets/pictures/#{prefix}_#{@picture.data_file_name}"
+    #end
   end
 
   def destroy
