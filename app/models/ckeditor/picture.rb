@@ -38,18 +38,18 @@ class Ckeditor::Picture < Ckeditor::Asset
                                         ],
                                       :message => "has to be in a proper format"
 
-  before_create :randomize_file_name
+  #before_create :randomize_file_name
 
   def url_content
     url(:content)
   end
 
-private
+#private
 
-  def randomize_file_name
-    extension = File.extname(data_file_name).downcase
-    name = File.basename(data_file_name, extension).downcase
-    self.data.instance_write(:file_name, "#{name}#{"%.0f" % Time.new.to_f}#{extension}")
-  end
+  #def randomize_file_name
+  #  extension = File.extname(data_file_name).downcase
+  #  name = File.basename(data_file_name, extension).downcase
+  #  self.data.instance_write(:file_name, "#{name}#{"%.0f" % Time.new.to_f}#{extension}")
+  #end
 
 end
