@@ -96,18 +96,12 @@ class Book < ActiveRecord::Base
     self.cover_info.capa_imagem.present? or self.cover_info.capa_detalhe.present?
   end
 
-  #def create_dependencies
-  #  CoverInfo.create(book_id: self.id)
-  #  Project.create(book_id: self.id) 
-  #end
-
   def commands
     commands = ""
-    commands << "\\newcommand{\\nucleo}[3]{\\chapter{#1,por #2}{#1}\\par\\hfill#2\\medskip\\par#3}\n"
-    commands << "\\newcommand{\\logoescola}{#{self.get_school_logo}}\n"
+    commands << "\\newcommand\\logoescola{#{self.get_school_logo}}\n"
     commands << "\\newcommand\\titulo{#{self.title}}\n"
     commands << "\\newcommand\\autor{#{self.organizer.name}}\n"
-    commands << "\\newcommansd\\organizador{#{self.organizers}}\n"
+    commands << "\\newcommand\\organizador{#{self.organizers}}\n"
     commands << "\\newcommand\\tradutor{Tradutor}\n"
     commands << "\\newcommand\\cidade{São Paulo}\n"
     commands << "\\newcommand\\ano{2013}\n"
@@ -128,7 +122,6 @@ class Book < ActiveRecord::Base
     commands << "\\newcommand\\cdd{#{self.cdd}}\n"
     commands << "\\newcommand\\cdu{#{self.cdu}}\n"
     commands << "\\newcommand\\palavraschave{#{self.keywords}}\n"
-    commands << "\n\\input{#{self.template}/LIVRO}\n"
     commands
   end
 
@@ -143,9 +136,10 @@ class Book < ActiveRecord::Base
   def pdf
     config = {:command => 'pdflatex', :arguments => ['-halt-on-error']}
 
-    directory = File.join(Rails.root,'tmp','rails-latex',"#{self.id}-#{self.title}")
+    directory = File.join(Rails.root,'tmp','rails-latex',"#{self.id}-#{self.title}".gsub(" ","_"))
+    template_directory = File.join(Rails.root,'templates')
     input_text = File.join(directory,'TEXTO.tex')
-    input_comands = File.join(directory,'comandosespecificos.sty')
+    input_comands = File.join(directory,'comandos.sty')
     FileUtils.mkdir_p(directory)
 
     # write commands file
@@ -159,13 +153,15 @@ class Book < ActiveRecord::Base
       fork do
         begin
           Dir.chdir directory
-          STDOUT.reopen("TEXTO.log","a")
+          STDOUT.reopen("LIVRO.log","a")
           STDERR.reopen(STDOUT)
-          args = config[:arguments] + %w[-shell-escape -interaction batchmode TEXTO.tex]
-          system config[:command], '-draftmode', *args
-          exec config[:command], *args
+          args = config[:arguments] + %w[-shell-escape -interaction batchmode LIVRO.tex]
+          system "cp #{template_directory}/#{self.template}/* #{directory}/"
+          system "cd #{directory}/ make"
+          #system config[:command], '-draftmode', *args
+          #exec config[:command], *args
         rescue
-          File.open("TEXTO.log",'a') {|io|
+          File.open("LIVRO.log",'a') {|io|
             io.write("#{$!.message}:\n#{$!.backtrace.join("\n")}\n")
           }
         ensure
@@ -173,6 +169,7 @@ class Book < ActiveRecord::Base
         end
       end
     )
+
 
     # check rotine success
     if File.exist?(pdf_file = input_text.sub(/\.tex$/,'.pdf'))
@@ -182,7 +179,7 @@ class Book < ActiveRecord::Base
     else
       pdf_file = nil
       #send email with .log attached
-      AdminMailer.pdf_to_latex_error(self, directory, "#{input_text.sub(/\.tex$/,'.log')}").deliver
+      AdminMailer.pdf_to_latex_error(self, directory, "#{directory}/LIVRO.log").deliver
       #showing last success (if not exists shows an error)
       #pdf_file = File.join(directory,'SUCESSO.pdf')
       #result = File.read(pdf_file)

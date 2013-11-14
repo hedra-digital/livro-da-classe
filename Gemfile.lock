@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/chagasaway/rails-latex.git
+  revision: 2d0dbca035137631f2c0528e05e4d325cdf8a739
+  specs:
+    rails-latex (1.0.11)
+      rails (>= 3.0.0)
+
+GIT
   remote: git://github.com/hedra-digital/ckeditor.git
   revision: 859ef9d341536e3cef505f80332a66ac663aa82a
   specs:
@@ -196,8 +203,6 @@ GEM
       activesupport (= 3.2.13)
       bundler (~> 1.0)
       railties (= 3.2.13)
-    rails-latex (1.0.11)
-      rails (>= 3.0.0)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -297,7 +302,7 @@ DEPENDENCIES
   pry-nav
   pry-remote
   rails (= 3.2.13)
-  rails-latex
+  rails-latex!
   rb-fsevent
   rb-inotify (~> 0.8.8)
   rspec-rails (~> 2.14.0.rc1)
