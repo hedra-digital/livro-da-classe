@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/chagasaway/rails-latex.git
-  revision: 2d0dbca035137631f2c0528e05e4d325cdf8a739
+  revision: dd2e8d93fc5ec0d141b23160361a1b2a65f7a5a6
+  tag: v1.0.12
   specs:
     rails-latex (1.0.11)
       rails (>= 3.0.0)
