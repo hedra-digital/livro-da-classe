@@ -65,7 +65,7 @@ class Book < ActiveRecord::Base
       "\\chapter{#{text.title}}\n#{MarkupLatex.new(text.content).to_latex}\n" unless text.content.to_s.size == 0
     end
 
-    texts.order("position ASC").map(&builder).join
+    texts.order("-position DESC").map(&builder).join
   end
 
   def get_school_logo
@@ -126,11 +126,14 @@ class Book < ActiveRecord::Base
   end
 
   def content
+    require "#{Rails.root}/lib/markup_latex.rb"
+
     content = ""
-    self.texts.each do |text|
-      content << "\\begin{nucleo}{#{text.title}}[#{text.author}][#{text.default_image}]#{text.content}\\end{nucleo}\n\n"
+    self.texts.order("-position DESC").each do |text|
+      content << "\\begin{nucleo}{#{text.title}}[#{text.author}][#{text.default_image}]#{MarkupLatex.new(text.content).to_latex}\\end{nucleo}\n\n" unless text.content.to_s.size == 0
     end
-    content
+
+    content.html_safe
   end
 
   def pdf
@@ -157,9 +160,7 @@ class Book < ActiveRecord::Base
           STDERR.reopen(STDOUT)
           args = config[:arguments] + %w[-shell-escape -interaction batchmode LIVRO.tex]
           system "cp #{template_directory}/#{self.template}/* #{directory}/"
-          system "cd #{directory}/ make"
-          #system config[:command], '-draftmode', *args
-          #exec config[:command], *args
+          system "cd #{directory}/ && make"
         rescue
           File.open("LIVRO.log",'a') {|io|
             io.write("#{$!.message}:\n#{$!.backtrace.join("\n")}\n")
@@ -170,11 +171,10 @@ class Book < ActiveRecord::Base
       end
     )
 
-
     # check rotine success
-    if File.exist?(pdf_file = input_text.sub(/\.tex$/,'.pdf'))
-      File.rename(pdf_file, File.join(directory,'SUCESSO.pdf'))
-      pdf_file = File.join(directory,'SUCESSO.pdf')
+    if File.exist?(pdf_file = File.join(directory, 'LIVRO.pdf'))
+      File.rename(pdf_file, File.join(directory,"#{self.uuid}.pdf"))
+      pdf_file = File.join(directory,"#{self.uuid}.pdf")
       #result = File.read(pdf_file)
     else
       pdf_file = nil
