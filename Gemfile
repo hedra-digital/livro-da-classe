@@ -12,7 +12,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'kramdown'
-gem 'rails-latex', :git => 'git://github.com/chagasaway/rails-latex.git', :tag => "v1.0.12"
+gem 'rails-latex'
 gem 'bootstrap-datepicker-rails'
 gem 'gravatar_image_tag'
 gem 'newrelic_rpm'
