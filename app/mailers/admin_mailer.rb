@@ -12,6 +12,6 @@ class AdminMailer < ActionMailer::Base
     
     attachments['error.log'] = File.read(error_file)
     
-    mail(subject: "[LATEX] #{Livrodaclasse::Application.config.action_mailer.default_url_options[:email_prefix]}")
+    mail(subject: "[LATEX] #{Livrodaclasse::Application.config.action_mailer.default_url_options[:email_prefix]} - #{@title.upcase}")
   end
 end

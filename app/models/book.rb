@@ -175,14 +175,9 @@ class Book < ActiveRecord::Base
     if File.exist?(pdf_file = File.join(directory, 'LIVRO.pdf'))
       File.rename(pdf_file, File.join(directory,"#{self.uuid}.pdf"))
       pdf_file = File.join(directory,"#{self.uuid}.pdf")
-      #result = File.read(pdf_file)
     else
       pdf_file = nil
-      #send email with .log attached
       AdminMailer.pdf_to_latex_error(self, directory, "#{directory}/LIVRO.log").deliver
-      #showing last success (if not exists shows an error)
-      #pdf_file = File.join(directory,'SUCESSO.pdf')
-      #result = File.read(pdf_file)
     end
     pdf_file
   end
