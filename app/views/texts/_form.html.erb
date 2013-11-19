@@ -2,7 +2,6 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title, :label => false %>
     <div class="row">
       <div class="span4"><%= f.input :title %></div>
       <%- if !@text.author.nil? %>
@@ -11,6 +10,7 @@
         <div class="span2"><%= f.input :author, :input_html => { :value => current_user.name } %></div>
       <%- end %>
     </div>
+    <%= f.input :content, :label => false, :as => :ckeditor %>
     <div class="row">
       <div class="span7">
         <label for="text_image"><%= "Imagem principal do texto" %></label>
@@ -27,7 +27,6 @@
         </div>
       </div>
     </div>
-    <%= f.input :content, :label => false, :as => :ckeditor %>
   </div>
 
   <div class="form-actions">
