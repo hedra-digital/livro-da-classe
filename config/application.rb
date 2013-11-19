@@ -82,8 +82,8 @@ module Livrodaclasse
     def latex_templates
       require "#{Rails.root}/lib/hedra-latex.rb"
 
-      latex_template_path = CONFIG[Rails.env.to_sym]["latex_template_path"] << "*"
-      templates = Dir.glob(latex_template_path).sort.select { |f| File.directory? f }.map { |m| File.basename(m) }
+      latex_template_path = CONFIG[Rails.env.to_sym]["latex_template_path"]
+      templates = Dir.glob("#{latex_template_path}*").sort.select { |f| File.directory? f }.map { |m| File.basename(m) }
       
       templates
     end

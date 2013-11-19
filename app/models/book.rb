@@ -137,34 +137,22 @@ class Book < ActiveRecord::Base
   end
 
   def pdf
-    config = {:command => 'pdflatex', :arguments => ['-halt-on-error']}
-
-    directory = File.join(Rails.root,'tmp','rails-latex',"#{self.id}-#{self.title}".gsub(" ","_"))
-    template_directory = File.join(Rails.root,'templates')
+    directory = File.join(Rails.root,'public','books',"#{self.id}-#{self.title}".gsub(" ","_"))
+    template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],'')
     input_text = File.join(directory,'TEXTO.tex')
     input_comands = File.join(directory,'comandos.sty')
     FileUtils.mkdir_p(directory)
-
-    # write commands file
     File.open(input_comands,'wb') {|io| io.write(self.commands) }
-
-    # write core file
     File.open(input_text,'wb') {|io| io.write(self.content) }
 
     # build latex
     Process.waitpid(
       fork do
         begin
-          Dir.chdir directory
-          STDOUT.reopen("LIVRO.log","a")
-          STDERR.reopen(STDOUT)
-          args = config[:arguments] + %w[-shell-escape -interaction batchmode LIVRO.tex]
-          system "cp #{template_directory}/#{self.template}/* #{directory}/"
+          system "cp #{template_directory}#{self.template}/* #{directory}/"
           system "cd #{directory}/ && make"
         rescue
-          File.open("LIVRO.log",'a') {|io|
-            io.write("#{$!.message}:\n#{$!.backtrace.join("\n")}\n")
-          }
+          #
         ensure
           Process.exit! 1
         end
