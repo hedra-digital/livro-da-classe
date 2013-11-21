@@ -92,12 +92,19 @@ $(document).ready(function() {
     }
   });
   $('#book_zipcode').mask("99999-999");
+  
   $('#book_title').jqEasyCounter({
       'maxChars': 54
   });
+
+  $('#book_cover_info_attributes_texto_quarta_capa').jqEasyCounter({
+      'maxChars': 415
+  });
+  
   $('#book_organizers').jqEasyCounter({
       'maxChars': 25
   });
+
   $('#book_directors').jqEasyCounter({
       'maxChars': 25
   });
@@ -121,4 +128,6 @@ $(document).ready(function() {
   $('#book_keywords').jqEasyCounter({
       'maxChars': 80
   });
+
+
 });
