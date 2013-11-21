@@ -157,6 +157,7 @@ GEM
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
     orm_adapter (0.4.0)
+    pandoc-ruby (0.7.5)
     paperclip (3.4.2)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -291,6 +292,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter
+  pandoc-ruby
   paperclip (~> 3.0)
   pdf-reader
   pry
