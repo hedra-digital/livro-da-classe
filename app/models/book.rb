@@ -65,7 +65,9 @@ class Book < ActiveRecord::Base
       "\\chapter{#{text.title}}\n#{MarkupLatex.new(text.content).to_latex}\n" unless text.content.to_s.size == 0
     end
 
-    texts.order("-position DESC").map(&builder).join
+    t = texts.order("-position DESC").map(&builder).join
+    t.gsub("\n\\\\","\n")
+    t
   end
 
   def get_school_logo
