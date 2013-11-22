@@ -67,6 +67,8 @@ class Book < ActiveRecord::Base
 
     t = texts.order("-position DESC").map(&builder).join
     t.gsub("\n\\\\","\n")
+    t.gsub("\\\\","\n\n")
+    t.gsub("\\ \\","\n\n")
     t
   end
 
