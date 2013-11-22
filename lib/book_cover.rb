@@ -105,9 +105,12 @@ class BookCover
         if width > height
           height = height / width * 75
           width = 75
-        else
+        elsif width < height
           width = width / height * 100
           height = 100
+        else
+          width = 75
+          height = 75
         end
         @file = @file.gsub("{{LogoWidth}}", "#{width}")
         @file = @file.gsub("{{LogoHeight}}", "#{height}")
