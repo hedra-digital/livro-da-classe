@@ -8,6 +8,7 @@
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? and @book.project.engaged? %>
         <nav role="navigation">
           <ul class="nav nav-pills">
+            <% if false %>
             <% if is_organizer? %>
               <%= menu_item t(:book_data, :scope => :book_nav), edit_book_path(@book.uuid) %>
             <% end %>
@@ -24,6 +25,9 @@
             <% if is_organizer? && !is_project? %>
               <%= menu_item t(:publish, :scope => :book_nav), edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>
+            <% else %>
+              <%= menu_item t(:overview, :scope => :book_nav), book_path(@book.uuid) %>
+            <% end%>
           </ul>
         </nav>
       </div>

@@ -4,9 +4,7 @@
   <div class="form-inputs">
         <h3> <%= "Livro" unless @book.new_record? %> </h3>
         <%= f.input :title, :label => "Título do livro (máx. 54 toques)", :input_html => {:maxlength => 54 } %>
-        <%= render 'team', :f => f %>
-        <%= render 'cover', :f => f %>
-        <%= render 'cataloging', :f => f %>
+        <%= f.input :document, :as => :file, :label => "Documento" %>
   </div>
 
   <div class="form-actions">

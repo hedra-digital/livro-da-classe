@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <%= yield(:title).presence || content_tag(:title, "Livro da Classe") %>
+    <%= yield(:title).presence || content_tag(:title, "Originais") %>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= favicon_link_tag %>
@@ -18,10 +18,9 @@
       <div class="navbar navbar-static-top navbar-inverse">
         <div class="navbar-inner">
           <div class="container">
-            <%= link_to 'Livro da Classe', app_home_path, :class => 'brand' %>
+            <%= link_to 'Originais', app_home_path, :class => 'brand' %>
             <ul class="nav">
               <li><%= link_to t(:my_books), books_path %></li>
-              <li><a class="tutorial-modal" data-fancybox-type="iframe" href="http://prezi.com/embed/w2ipyvduj-gc/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;features=undefined&amp;disabled_features=undefined">Tutorial</a></li>
             </ul>
             <ul class="nav pull-right">
               <li class="dropdown">
@@ -47,15 +46,15 @@
     <footer>
       <div class="container">
         <div id="logo">
-          <%= image_tag '/assets/logo-hedra.png', :width => '130', :height => '130' %>
+          <%= image_tag '/assets/logo-7letras.jpg', :width => '130', :height => '130' %>
         </div>
         <div id="address">
-          <h2>Hedra Educação Ltda.</h2>
+          <h2>Viveiros de Castro Editora Ltda.</h2>
           <address>
-            Rua Fradique Coutinho 1139 Subsolo<br>
-            Vila Madalena<br>
-            São Paulo - SP<br>
-            Tel. (11) 3097-8304<br>
+            Rua Visconde de Pirajá, 580 Loja 320<br>
+            Ipanema<br>
+            Rio de Janeiro - RJ<br>
+            Tel. (21) 2540-0076<br>
           </address>
         </div>
       </div>

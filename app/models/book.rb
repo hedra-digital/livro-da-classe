@@ -38,7 +38,7 @@ class Book < ActiveRecord::Base
   validates                 :number,    :numericality => true, :allow_blank => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :project_attributes, :cover_info_attributes, :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords
+  attr_accessible           :project_attributes, :cover_info_attributes, :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords, :document
 
   attr_accessor             :finished_at
 
@@ -50,6 +50,8 @@ class Book < ActiveRecord::Base
                       :content => ['100%', :jpg],
                       :thumb => ['60x80>', :jpg]
                     }
+
+  has_attached_file :document
 
   # Other methods
   def self.find_by_uuid_or_id(id)
