@@ -49,8 +49,9 @@ Livrodaclasse::Application.configure do
   config.assets.precompile += %w( public.css )
 
   # Disable delivery errors, bad email addresses will be ignored
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => "7letras.livrodaclasse.com.br", :sender_address => "vizir@hedra.com.br", :email_prefix => "[7LETRAS - LIVRO DA CLASSE] ERRO NO SISTEMA " }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { :host => "7letras.livrodaclasse.com.br", :sender_address => "nao-responda@livrodaclasse.com.br", :email_prefix => "[7LETRAS - LIVRO DA CLASSE] ERRO NO SISTEMA " }
 
   # Enable threaded mode
   # config.threadsafe!
@@ -65,4 +66,11 @@ Livrodaclasse::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  config.threadsafe!
+
+  config.middleware.use ExceptionNotifier,
+  sender_address: 'nao-responda@livrodaclasse.com.br',
+  exception_recipients: 'jorge@hedra.com.br; vizir@hedra.com.br; fellipe@vizir.com.br',
+  email_prefix: "[7LETRAS - LIVRO DA CLASSE] ERRO NO SISTEMA - ",
+  sections: %w(impersonate)
 end
