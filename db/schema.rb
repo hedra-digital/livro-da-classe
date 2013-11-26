@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131122183944) do
+ActiveRecord::Schema.define(:version => 20131126192541) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20131122183944) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.integer  "publisher_id"
   end
 
   create_table "books_users", :id => false, :force => true do |t|
@@ -168,6 +169,23 @@ ActiveRecord::Schema.define(:version => 20131122183944) do
 
   add_index "projects", ["book_id"], :name => "index_projects_on_book_id"
   add_index "projects", ["client_id"], :name => "index_projects_on_client_id"
+
+  create_table "publishers", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "official_name"
+    t.string   "address"
+    t.string   "district"
+    t.string   "city"
+    t.string   "uf"
+    t.string   "telephone"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "scraps", :force => true do |t|
     t.integer  "book_id"

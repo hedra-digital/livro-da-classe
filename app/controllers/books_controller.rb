@@ -67,6 +67,7 @@ class BooksController < ApplicationController
 
     @book = current_user.organized_books.new(params[:book].merge(:template => Livrodaclasse::Application.latex_templates[0]))
     @book.organizer = current_user
+    @book.publisher_id = current_publisher
 
     if @book.save
       @book.build_project quantity: 50
@@ -99,6 +100,7 @@ class BooksController < ApplicationController
     #params[:book][:cover_info_attributes].delete :capa_imagem        if params[:book][:cover_info_attributes][:capa_imagem].blank? 
     #params[:book][:cover_info_attributes].delete :capa_detalhe       if params[:book][:cover_info_attributes][:capa_detalhe].blank?
     #params[:book][:cover_info_attributes].delete :texto_quarta_capa  if params[:book][:cover_info_attributes][:texto_quarta_capa].blank?
+    @book.publisher_id = current_publisher
     
     if @book.update_attributes(params[:book])
       #BookCover.new(@book.cover_info).generate_cover
