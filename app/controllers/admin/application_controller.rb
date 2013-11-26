@@ -3,6 +3,5 @@ class Admin::ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  #http_basic_authenticate_with(:name => CONFIG[:restricted_area][:username], :password => CONFIG[:restricted_area][:password])
-  http_basic_authenticate_with(:name => "frodo", :password => "shire")
+  http_basic_authenticate_with(:name => CONFIG[:restricted_area][:username], :password => CONFIG[:restricted_area][:password])
 end
