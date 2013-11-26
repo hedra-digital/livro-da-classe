@@ -95,18 +95,14 @@ class BooksController < ApplicationController
   end
 
   def update
-    params[:book].delete :project_attributes if params[:book][:project_attributes][:school_logo].blank?
-    params[:book][:cover_info_attributes].delete :capa_imagem        if params[:book][:cover_info_attributes][:capa_imagem].blank? 
-    params[:book][:cover_info_attributes].delete :capa_detalhe       if params[:book][:cover_info_attributes][:capa_detalhe].blank?
-    params[:book][:cover_info_attributes].delete :texto_quarta_capa  if params[:book][:cover_info_attributes][:texto_quarta_capa].blank?
+    #params[:book].delete :project_attributes if params[:book][:project_attributes][:school_logo].blank?
+    #params[:book][:cover_info_attributes].delete :capa_imagem        if params[:book][:cover_info_attributes][:capa_imagem].blank? 
+    #params[:book][:cover_info_attributes].delete :capa_detalhe       if params[:book][:cover_info_attributes][:capa_detalhe].blank?
+    #params[:book][:cover_info_attributes].delete :texto_quarta_capa  if params[:book][:cover_info_attributes][:texto_quarta_capa].blank?
     
     if @book.update_attributes(params[:book])
       BookCover.new(@book.cover_info).generate_cover
-      if @book.resize_images?
-        redirect_to book_cover_info_path(@book.uuid)
-      else
-        redirect_to book_path(@book.uuid), notice: 'O livro foi atualizado.'
-      end
+      redirect_to book_path(@book.uuid), notice: 'O livro foi atualizado.'
     else
       render :edit
     end
