@@ -1,6 +1,10 @@
 pt-BR:
+  my_books: 'Meus Originais'
+  book_desc: 'Original'
+  book_title: 'Título do Original'
+  book_create: 'Criar Original'
+  book_document: 'Documento'
   cover_info: 'Dados da capa'
-  my_books: 'Meus livros'
   account: 'Perfil'
   sign_out: 'Sair'
   sign_in: 'Entrar no site'
@@ -29,9 +33,11 @@ pt-BR:
   text_delete: 'Apagar texto'
   text_confirm: 'Tem certeza de que deseja apagar o texto?'
   text_back: 'Voltar para o texto'
+  document_upload: 'Carregar o documento'
+  document_uploaded: 'Alterar o documento'
   book_nav:
     overview: 'Mural'
-    book_data: 'Dados do Livro'
+    book_data: 'Dados do Original'
     texts: 'Textos'
     collaborators: 'Alunos'
     pdf: 'PDF'
@@ -288,7 +294,8 @@ pt-BR:
         student_count: Número de alunos
         school_name: Nome da escola
       book:
-        title: 'Título do livro'
+        title: 'Título do original'
+        document: 'Documento atual'
         subtitle: 'Subtítulo'
         organizers: 'Organizador'
         directors: 'Diretor'

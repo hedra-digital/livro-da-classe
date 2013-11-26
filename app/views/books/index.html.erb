@@ -1,11 +1,11 @@
 <% if @books.present? %>
   <div class="row">
     <div class="span9">
-      <h1>Meus livros</h1>
+      <h1>Originais</h1>
     </div>
 
     <div class="span3">
-      <%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary btn-new' %>
+      <%= link_to 'Novo original', new_book_path, :class => 'btn btn-primary btn-new' %>
     </div>
   </div>
   <table class="table table-striped">
@@ -25,5 +25,5 @@
     <% end %>
   </table>
 <% else %>
-  <p class="blank">Você ainda não tem nenhum livro. <%= link_to 'Faça o upload do seu original aqui.', new_book_path %></p>
+  <p class="blank">Você ainda não tem nenhum original. <%= link_to 'Faça o upload aqui.', new_book_path %></p>
 <% end %>

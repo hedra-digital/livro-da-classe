@@ -3,7 +3,9 @@
   Usuário: <%= link_to @project.book.organizer.email, impersonate_admin_project_path(@project) %>
 </h4>
 
+<% if @project.engaged? %>
 <dl>
   <dt>Data de lançamento</dt>
   <dd><%= @project.release_date %></dd>
 </dl>
+<% end %>

@@ -2,20 +2,25 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <h3> <%= "Livro" unless @book.new_record? %> </h3>
-    <%= f.input :title, :label => "Título do livro (máx. 54 toques)", :input_html => {:maxlength => 54 } %>
+    <h3> <%= t('book_desc') unless @book.new_record? %> </h3>
+    <%= f.input :title, :label => t('book_title'), :input_html => {:maxlength => 54 } %>
     <div class="row">
-      <div class="span"><%= "Documento atual: #{@book.document_file_name}" if @book.document.present? %></div>
+      <div class="span">
+        <% if @book.document.present? %>
+        <b><%= t('book_document') %></b><br>
+        <div class="span"><%= "#{@book.document_file_name}" %></div>
+        <% end %>
+      </div>
     </div>
     <br>
     <div class="row">
-      <div class="span"><%= f.input :document, :as => :file, :label => @book.document.present? ? "Alterar o documento" : "Carregar o documento" %></div>
+      <div class="span"><%= f.input :document, :as => :file, :label => @book.document.present? ? t('document_uploaded') : t('document_upload') %></div>
     </div>
     
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, t('book_create') %>
     <%= raw("ou ") + link_to("Cancelar", @book, :style => "color: red;" ) unless @book.new_record?%>
   </div>
 <% end %>
