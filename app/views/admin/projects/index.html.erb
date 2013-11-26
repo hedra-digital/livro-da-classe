@@ -3,8 +3,8 @@
 <table class="table table-striped">
   <tr>
     <th>Título</th>
-    <th></th>
-    <th>Template</th>
+    <!--<th></th>
+    <th>Template</th>-->
     <th></th>
     <th>Documento</th>
   </tr>
@@ -12,8 +12,8 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to project.book.title, admin_project_path(project) %>, (<%= project.book.organizer.name.presence || project.book.organizer.email %>, org.)</td>
-        <td><%= link_to 'Editar', edit_admin_project_path(project), :class => 'btn btn-mini' %></td>
-        <td><%= project.book.template %></td>
+        <!--<td><%= link_to 'Editar', edit_admin_project_path(project), :class => 'btn btn-mini' %></td>
+        <td><%= project.book.template %></td>-->
         <td><%= admin_book_status(project.book) %></td>
         <td><%= project.book.document.present? ? project.book.document_file_name : "Nenhum documento" %></td>
       </tr>
