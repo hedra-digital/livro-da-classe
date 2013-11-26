@@ -31,7 +31,7 @@ pt-BR:
   text_back: 'Voltar para o texto'
   book_nav:
     overview: 'Mural'
-    book_data: 'Ficha técnica'
+    book_data: 'Dados do Livro'
     texts: 'Textos'
     collaborators: 'Alunos'
     pdf: 'PDF'
