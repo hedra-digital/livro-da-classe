@@ -68,9 +68,9 @@ Livrodaclasse::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.threadsafe!
 
-  config.middleware.use ExceptionNotifier,
-  sender_address: 'nao-responda@livrodaclasse.com.br',
-  exception_recipients: 'jorge@hedra.com.br; vizir@hedra.com.br; fellipe@vizir.com.br',
-  email_prefix: "[7LETRAS - LIVRO DA CLASSE] ERRO NO SISTEMA - ",
-  sections: %w(impersonate)
+  #config.middleware.use ExceptionNotifier,
+  #sender_address: 'nao-responda@livrodaclasse.com.br',
+  #exception_recipients: 'jorge@hedra.com.br; vizir@hedra.com.br; fellipe@vizir.com.br',
+  #email_prefix: "[7LETRAS - LIVRO DA CLASSE] ERRO NO SISTEMA - ",
+  #sections: %w(impersonate)
 end

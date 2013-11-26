@@ -45,7 +45,7 @@ group :test, :development do
   gem 'simplecov', :require => false
 end
 
-group :development, :sletras do
+group :development do
   gem 'pry'
   gem 'pry-remote'
   gem 'pry-nav'
