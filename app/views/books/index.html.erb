@@ -12,14 +12,14 @@
     <tr>
       <th>Título</th>
       <th>Documento</th>
-      <th></th>
+      <!--<th></th>-->
       <th></th>
     </tr>
     <% @books.each do |book| %>
       <tr>
         <td><%= link_to book.title, book_path(book.uuid) %>, (<%= book.organizer.name.presence || book.organizer.email %>, org.)</td>
         <td><%= book.document.present? ? book.document_file_name : "Nenhum documento" %></td>
-        <td><%= book_status_label(book) %></td>
+        <!--<td><%= book_status_label(book) %></td>-->
         <td><%= book_remove_label(book, current_user) %></td>
       </tr>
     <% end %>
