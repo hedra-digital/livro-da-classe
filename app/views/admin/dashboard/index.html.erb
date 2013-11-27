@@ -3,6 +3,8 @@
 <table class="table table-striped">
   <tr>
     <th>Título</th>
+    <th>Email</th>
+    <th>Telefone</th>
     <!--<th></th>
     <th>Template</th>-->
     <th></th>
@@ -12,6 +14,8 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to project.book.title, admin_project_path(project) %>, (<%= project.book.organizer.name.presence || project.book.organizer.email %>, org.)</td>
+        <td><%= project.book.organizer.email %></td>
+        <td><%= project.book.organizer.telephone %></td>
         <!--<td><%= link_to 'Editar', edit_admin_project_path(project), :class => 'btn btn-mini' %></td>
         <td><%= project.book.template %></td>-->
         <td><%= admin_book_status(project.book) %></td>
@@ -19,7 +23,7 @@
         <% if project.book.document.present? %>
         <%= link_to "Download", project.book.document.url %>
         <% else %>
-        <%= "Nenhum documento" %>
+        <%= t('document_none') %>
         <% end %>
         </td>
       </tr>

@@ -37,10 +37,11 @@ class User < ActiveRecord::Base
   validates :email,         :email_format => { :message => 'Não é um formato válido de e-mail', :allow_blank => true },
                             :uniqueness => true,
                             :presence => true
+  validates :telephone,     :presence => true                          
   validates :password,      :presence => true, :on => :create
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :email, :name, :password, :password_confirmation, :asked_for_email
+  attr_accessible           :email, :name, :password, :password_confirmation, :asked_for_email, :telephone
 
   # Other methods
   def send_password_reset

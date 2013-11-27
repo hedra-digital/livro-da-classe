@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131126192541) do
+ActiveRecord::Schema.define(:version => 20131127160042) do
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20131126192541) do
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
     t.integer  "publisher_id"
+    t.text     "abstract"
   end
 
   create_table "books_users", :id => false, :force => true do |t|
@@ -223,6 +224,7 @@ ActiveRecord::Schema.define(:version => 20131126192541) do
     t.string   "provider"
     t.string   "uid"
     t.boolean  "asked_for_email"
+    t.string   "telephone"
   end
 
 end

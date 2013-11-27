@@ -2,6 +2,7 @@ pt-BR:
   my_books: 'Meus Originais'
   book_desc: 'Original'
   book_title: 'Título do Original'
+  book_abstract: 'Resumo do Original'
   book_create: 'Criar Original'
   book_update: 'Atualizar Original'
   book_document: 'Documento'
@@ -36,6 +37,7 @@ pt-BR:
   text_back: 'Voltar para o texto'
   document_upload: 'Carregar o documento'
   document_uploaded: 'Alterar o documento'
+  document_none: 'Nenhum documento'
   book_nav:
     overview: 'Mural'
     book_data: 'Dados do Original'
@@ -289,6 +291,7 @@ pt-BR:
       user:
         name: Nome
         email: E-mail
+        telephone: Telefone
         password: Senha
         password_confirmation: Confirmação da senha
         teacher: Professor?

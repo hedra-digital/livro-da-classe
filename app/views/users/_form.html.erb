@@ -1,6 +1,7 @@
 <%= simple_form_for @user do |f| %>
   <div class="form-inputs">
     <%= f.input :name %>
+    <%= f.input :telephone, :placeholder => 'Ex.: (11) 9999-9999' %>
     <%= f.input :email %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>

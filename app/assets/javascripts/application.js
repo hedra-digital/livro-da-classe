@@ -97,6 +97,10 @@ $(document).ready(function() {
       'maxChars': 54
   });
 
+  $('#book_abstract').jqEasyCounter({
+      'maxChars': 1200
+  });
+
   $('#book_cover_info_attributes_texto_quarta_capa').jqEasyCounter({
       'maxChars': 415
   });
