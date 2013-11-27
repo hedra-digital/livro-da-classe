@@ -228,7 +228,7 @@
   left: 0;
   display: block;
   float: left;
-  margin: 0 10px 0 0;
+  margin: 15px 10px 0 0 !important;
 }
 .navbar .nav.pull-right {
   float: right; // redeclare due to specificity

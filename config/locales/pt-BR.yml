@@ -3,6 +3,7 @@ pt-BR:
   book_desc: 'Original'
   book_title: 'Título do Original'
   book_create: 'Criar Original'
+  book_update: 'Atualizar Original'
   book_document: 'Documento'
   cover_info: 'Dados da capa'
   account: 'Perfil'
