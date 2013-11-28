@@ -1,8 +1,5 @@
 Livrodaclasse::Application.routes.draw do
 
-  resources :publishers
-
-
   get "scraps/:id" => "scraps#show", as: :scrap_show
   match "scraps/create" => "scraps#create", as: :scrap_create
 
@@ -58,5 +55,6 @@ Livrodaclasse::Application.routes.draw do
     resources :templates, :only => :index
     resources :expressions, :only => [:index, :create, :new, :edit, :update, :destroy]
     resources :book_statuses, :only => [:index, :create, :new, :edit, :update]
+    resources :publishers
   end
 end

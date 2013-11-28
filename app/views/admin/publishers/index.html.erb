@@ -1,0 +1,29 @@
+<% if @publishers.present? %>
+  <div class="row">
+    <div class="span9">
+      <h1>Expressões</h1>
+    </div>
+
+    <div class="span3">
+      <%= link_to 'Nova Editora', new_admin_publisher_path, :class => 'btn btn-primary btn-new' %>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <tr>
+      <th>Editora</th>
+      <th>URL</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @publishers.each do |publisher| %>
+      <tr>
+        <td><%= publisher.name %></td>
+        <td><%= publisher.url %></td>
+        <td><%= link_to 'Editar', edit_admin_publisher_path(publisher), :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Remover', admin_publisher_path(publisher), :class => 'btn btn-danger btn-mini', :confirm => 'Tem certeza que deseja apagar esta editora?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="blank">Nenhuma editora cadastrada. <%= link_to 'Definir uma nova editora?', new_admin_publisher_path %></p>
+<% end %>

@@ -1,0 +1,19 @@
+<%= simple_form_for([:admin, @publisher], :html => {:class => 'form-vertical' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :official_name %>
+    <%= f.input :url %>
+    <%= f.input :logo %>
+    <%= f.input :address %>
+    <%= f.input :district %>
+    <%= f.input :city %>
+    <%= f.input :uf %>
+    <%= f.input :telephone %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
