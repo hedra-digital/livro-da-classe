@@ -27,5 +27,5 @@
     <% end %>
   </table>
 <% else %>
-  <p class="blank">Você ainda não tem nenhum original. <%= link_to 'Faça o upload aqui.', new_book_path %></p>
+  <p class="blank"><%= link_to 'Cadastrar original', new_book_path %></p>
 <% end %>

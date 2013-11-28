@@ -80,7 +80,7 @@ class BooksController < ApplicationController
       #if @book.resize_images?
       #  redirect_to book_cover_info_path(@book.uuid)
       #else
-        redirect_to book_path(@book.uuid), notice: 'O original foi criado e já está disponível para você escrever o seu primeiro texto.'
+        redirect_to book_path(@book.uuid), notice: 'O original foi criado e em breve entraremos em contato contigo. Por favor aguarde. Qualquer dúvida, utilize o mural para falar com nossos editores.'
       #end
     else
       @book.build_project
