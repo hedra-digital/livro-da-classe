@@ -33,7 +33,7 @@ class Project < ActiveRecord::Base
   validates_with                ProjectValidator
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity, :engaged
+  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity, :engaged, :status
 
   accepts_nested_attributes_for :client, :book
 
@@ -102,6 +102,10 @@ class Project < ActiveRecord::Base
     else
       "Preço total não calculado"
     end
+  end
+
+  def status_to_s
+    BookStatus.find(self.status).desc
   end
 
 end

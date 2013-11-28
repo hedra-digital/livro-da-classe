@@ -252,6 +252,9 @@ pt-BR:
       book:
         one: Livro
         other: Livros
+      book_status:
+        one: Status para Livro
+        other: Status para Originais
       text:
         one: Texto
         other: Textos
@@ -306,6 +309,8 @@ pt-BR:
         cdu: 'CDU do livro'
         cdd: 'CDD do livro'
         keywords: 'Palavras Chave'
+      book_status:
+        desc: 'Descrição'
       text:
         title: 'Título'
         content: 'Conteúdo'

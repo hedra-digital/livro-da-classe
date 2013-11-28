@@ -15,6 +15,7 @@
       <th>Textos</th>
       <th>Papel</th>
       <th></th>
+      <th></th>
     </tr>
     <% @books.each do |book| %>
       <tr>
@@ -22,6 +23,7 @@
         <td><%= book_status_label(book) %></td>
         <td><%= raw book.texts.size %></td>
         <td><%= book_role_label(book, current_user) %></td>
+        <td><%= book_admin_status_label(book) %></td>
         <td><%= book_remove_label(book, current_user) %></td>
       </tr>
     <% end %>

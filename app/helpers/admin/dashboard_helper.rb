@@ -7,4 +7,8 @@ module Admin::DashboardHelper
     end
     tags.html_safe
   end
+
+  def admin_book_admin_status(book)
+  	book.project.engaged? ? book.project.status_to_s : ""
+  end
 end

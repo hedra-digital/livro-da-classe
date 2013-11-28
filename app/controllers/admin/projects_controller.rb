@@ -10,6 +10,7 @@ class Admin::ProjectsController < Admin::ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    @statuses = BookStatus.all.collect {|b| [ b.desc, b.id ] }
   end
 
   def update

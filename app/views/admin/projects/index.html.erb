@@ -5,6 +5,7 @@
     <th>Título</th>
     <th></th>
     <th>Template</th>
+    <th>Status</th>
     <th></th>
     <th>Textos</th>
   </tr>
@@ -14,6 +15,7 @@
         <td><%= link_to project.book.title, admin_project_path(project) %>, (<%= project.book.organizer.name.presence || project.book.organizer.email %>, org.)</td>
         <td><%= link_to 'Editar', edit_admin_project_path(project), :class => 'btn btn-mini' %></td>
         <td><%= project.book.template %></td>
+        <td><%= admin_book_admin_status(project.book) %></td>
         <td><%= admin_book_status(project.book) %></td>
         <td><%= raw project.book.texts.size %></td>
       </tr>
