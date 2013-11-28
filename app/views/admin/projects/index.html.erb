@@ -5,10 +5,11 @@
     <th>Título</th>
     <th>Email</th>
     <th>Telefone</th>
-    <!--<th></th>
-    <th>Template</th>-->
+    <!--<th>Template</th>-->
+    <th>Status</th>
     <th></th>
     <th>Documento</th>
+    <th></th>
   </tr>
   <% if @projects %>
     <% @projects.each do |project| %>
@@ -16,8 +17,8 @@
         <td><%= link_to project.book.title, admin_project_path(project) %>, (<%= project.book.organizer.name.presence || project.book.organizer.email %>, org.)</td>
         <td><%= project.book.organizer.email %></td>
         <td><%= project.book.organizer.telephone %></td>
-        <!--<td><%= link_to 'Editar', edit_admin_project_path(project), :class => 'btn btn-mini' %></td>
-        <td><%= project.book.template %></td>-->
+        <!--<td><%= project.book.template %></td>-->
+        <td><%= project.status_to_s %></td>
         <td><%= admin_book_status(project.book) %></td>
         <td>
         <% if project.book.document.present? %>
@@ -26,7 +27,9 @@
         <%= t('document_none') %>
         <% end %>
         </td>
+        <td><%= link_to 'Editar', edit_admin_project_path(project), :class => 'btn btn-mini' %></td>
       </tr>
     <% end %>
   <% end %>
 </table>
+

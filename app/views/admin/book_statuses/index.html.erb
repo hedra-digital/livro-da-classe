@@ -1,0 +1,25 @@
+<% if @statuses.present? %>
+  <div class="row">
+    <div class="span9">
+      <h1>Status</h1>
+    </div>
+
+    <div class="span3">
+      <%= link_to 'Novo Status', new_admin_book_status_path, :class => 'btn btn-primary btn-new' %>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <tr>
+      <th>Descrição</th>
+      <th></th>
+    </tr>
+    <% @statuses.each do |status| %>
+      <tr>
+        <td><%= status.desc %></td>
+        <td><%= link_to 'Editar', edit_admin_book_status_path(status), :class => 'btn btn-mini' %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="blank">Nenhum status cadastrado. <%= link_to 'Definir um novo status para projetos?', new_admin_book_status_path %></p>
+<% end %>

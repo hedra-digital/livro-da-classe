@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131127160042) do
+ActiveRecord::Schema.define(:version => 20131127184039) do
+
+  create_table "book_statuses", :force => true do |t|
+    t.string   "desc"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -166,6 +172,7 @@ ActiveRecord::Schema.define(:version => 20131127160042) do
     t.string   "publish_format"
     t.integer  "quantity",                 :default => 100
     t.boolean  "engaged",                  :default => false
+    t.integer  "status"                   
   end
 
   add_index "projects", ["book_id"], :name => "index_projects_on_book_id"

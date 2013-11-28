@@ -33,7 +33,7 @@ class Project < ActiveRecord::Base
   validates_with                ProjectValidator
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity, :engaged
+  attr_accessible               :book_id, :release_date, :client_attributes, :client, :terms_of_service, :book, :book_attributes, :school_logo, :publish_format, :quantity, :engaged, :status
 
   accepts_nested_attributes_for :client, :book
 
@@ -48,6 +48,16 @@ class Project < ActiveRecord::Base
     "14 x 21 cm" => 0.2,
     "16 x 23 cm" => 0.22
   }
+
+  #STATUS_TEXTS = ["Em fila", "Em análise", "Em parecer externo", "Recusado", "Aprovado"]
+
+  #STATUS_VALUES = {
+  # "Em fila" => 0,
+  # "Em análise" => 1, 
+  # "Em parecer externo" => 2, 
+  # "Recusado" => 3,
+  # "Aprovado" => 4
+  #}
 
   def school_logo_geometry(style = :original)
     @geometry ||= {}
@@ -102,6 +112,10 @@ class Project < ActiveRecord::Base
     else
       "Preço total não calculado"
     end
+  end
+
+  def status_to_s
+    BookStatus.find(self.status).desc
   end
 
 end

@@ -259,8 +259,11 @@ pt-BR:
         one: Usuário
         other: Usuários
       book:
-        one: Livro
-        other: Livros
+        one: Original
+        other: Originais
+      book_status:
+        one: Status para Original
+        other: Status para Originais
       text:
         one: Texto
         other: Textos
@@ -317,6 +320,8 @@ pt-BR:
         cdu: 'CDU do livro'
         cdd: 'CDD do livro'
         keywords: 'Palavras Chave'
+      book_status:
+        desc: 'Descrição'
       text:
         title: 'Título'
         content: 'Conteúdo'
