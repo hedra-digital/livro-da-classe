@@ -118,7 +118,7 @@ class Project < ActiveRecord::Base
   end
 
   def status_to_s
-    BookStatus.find(self.status).desc
+    self.status.nil? ? "" : BookStatus.find(self.status).desc
   end
 
 end
