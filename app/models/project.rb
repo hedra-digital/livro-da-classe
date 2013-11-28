@@ -43,11 +43,24 @@ class Project < ActiveRecord::Base
                       :small => ["300x300#", :png]
                     }
 
+  before_save    :check_status                  
+
   PUBLISH_FORMAT_PRICE = {
     "21 x 14 cm" => 0.4,
     "14 x 21 cm" => 0.2,
     "16 x 23 cm" => 0.22
   }
+
+  def check_status
+    if self.engaged?
+      if self.engaged_changed?
+        self.status = BookStatus.default.id
+        TrelloMailer.create_book_card(self, self.book, self.book.organizer).deliver
+      elsif self.status_changed?
+        UserMailer.status_changed(self).deliver
+      end
+    end
+  end
 
   def school_logo_geometry(style = :original)
     @geometry ||= {}
