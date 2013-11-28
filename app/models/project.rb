@@ -43,21 +43,19 @@ class Project < ActiveRecord::Base
                       :small => ["300x300#", :png]
                     }
 
+  after_save    :check_status
+
   PUBLISH_FORMAT_PRICE = {
     "21 x 14 cm" => 0.4,
     "14 x 21 cm" => 0.2,
     "16 x 23 cm" => 0.22
   }
 
-  #STATUS_TEXTS = ["Em fila", "Em análise", "Em parecer externo", "Recusado", "Aprovado"]
-
-  #STATUS_VALUES = {
-  # "Em fila" => 0,
-  # "Em análise" => 1, 
-  # "Em parecer externo" => 2, 
-  # "Recusado" => 3,
-  # "Aprovado" => 4
-  #}
+  def check_status
+    if self.status_changed?
+      UserMailer.status_changed(self).deliver
+    end
+  end
 
   def school_logo_geometry(style = :original)
     @geometry ||= {}
