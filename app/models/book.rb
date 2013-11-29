@@ -49,9 +49,21 @@ class Book < ActiveRecord::Base
                     :styles => {
                       :content => ['100%', :jpg],
                       :thumb => ['60x80>', :jpg]
-                    }
+                    }                  
 
   has_attached_file :document
+
+  validates_attachment_size :document,
+                            :less_than => 25.megabytes,
+                            :message => "O tamanho limite do arquivo (25MB) foi ultrapassado"   
+
+  after_validation :join_document_errors
+
+  def join_document_errors
+    if errors.messages.has_key?(:document_file_size)
+      errors.messages[:document] = errors.messages[:document_file_size]
+    end
+  end                            
 
   # Other methods
   def self.find_by_uuid_or_id(id)
