@@ -73,6 +73,8 @@ class BooksController < ApplicationController
       @book.build_project quantity: 50
       @book.project.update_attributes project
 
+      TrelloMailer.create_book_card(@book, @book.organizer, Publisher.find(current_publisher)).deliver
+
       @book.build_cover_info
       @book.cover_info.update_attributes cover_info
 

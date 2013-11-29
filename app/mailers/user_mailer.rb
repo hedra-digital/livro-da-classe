@@ -19,6 +19,7 @@ class UserMailer < ActionMailer::Base
     @name = project.book.organizer.name
     @title = project.book.title
     @status = project.status_to_s
-    mail :to => project.book.organizer.email, :subject => "[7letras] Alteração em status de original"
+    @content = Publisher.find(current_publisher).text_email
+    mail :to => project.book.organizer.email, :subject => "[#{Publisher.find(current_publisher).name}] Alteração em status de original"
   end
 end

@@ -1,4 +1,4 @@
-class Admin::PublishersController < ApplicationController
+class Admin::PublishersController < Admin::ApplicationController
 
   def index
     @publishers = Publisher.all

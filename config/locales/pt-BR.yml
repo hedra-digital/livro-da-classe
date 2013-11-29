@@ -276,7 +276,23 @@ pt-BR:
       expression:
         one: Expressão
         other: Expressões
+      publisher:
+        one: Editora
+        other: Editoras
     attributes:
+      publisher:
+        name: "Nome fantasia da Editora"
+        official_name: "Nome da Editora"
+        url: "URL"
+        trello_email: "E-mail para integração do Trello"
+        logo: "Logotipo"
+        logo_alternative: "Logotipo alternativo"
+        address: "Endereço"
+        district: "Bairro"
+        city: "Cidade"
+        uf: "UF"
+        telephone: "(DDD) Telefone"
+        text_email: "Texto para email de alteração de status"
       expression:
         target: Expressão a ser substituída
         replace: Expressão substituta

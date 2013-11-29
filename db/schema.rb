@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131127184039) do
+ActiveRecord::Schema.define(:version => 20131129123335) do
 
   create_table "book_statuses", :force => true do |t|
     t.string   "desc"
@@ -172,7 +172,7 @@ ActiveRecord::Schema.define(:version => 20131127184039) do
     t.string   "publish_format"
     t.integer  "quantity",                 :default => 100
     t.boolean  "engaged",                  :default => false
-    t.integer  "status"                   
+    t.integer  "status"
   end
 
   add_index "projects", ["book_id"], :name => "index_projects_on_book_id"
@@ -191,8 +191,14 @@ ActiveRecord::Schema.define(:version => 20131127184039) do
     t.string   "city"
     t.string   "uf"
     t.string   "telephone"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "trello_email"
+    t.text     "text_email"
+    t.string   "logo_alternative_file_name"
+    t.string   "logo_alternative_content_type"
+    t.integer  "logo_alternative_file_size"
+    t.datetime "logo_alternative_updated_at"
   end
 
   create_table "scraps", :force => true do |t|

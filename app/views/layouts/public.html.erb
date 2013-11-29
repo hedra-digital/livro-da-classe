@@ -49,15 +49,12 @@
     <footer>
       <div class="container">
         <div id="logo">
-          <%= image_tag '/assets/logo-7letras.png', :width => '130', :height => '130' %>
+          <%= image_tag publisher_logo, :width => '130', :height => '130' %>
         </div>
         <div id="address">
-          <h2>Editora 7letras</h2>
+          <h2><%= publisher_official_name %></h2>
           <address>
-            Rua Visconde de Pirajá, 580 Loja 320<br>
-            Ipanema<br>
-            Rio de Janeiro - RJ<br>
-            Tel. (21) 2540-0076<br>
+            <%= publisher_address_info %>
           </address>
         </div>
       </div>
