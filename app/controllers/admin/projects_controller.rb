@@ -1,7 +1,7 @@
 class Admin::ProjectsController < Admin::ApplicationController
 
   def index
-    @projects = Project.includes([:book, :client]).all
+    @projects = Project.includes([:book, :client]).where("books.publisher_id = #{current_publisher}").all
   end
 
   def show

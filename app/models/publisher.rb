@@ -28,7 +28,7 @@ class Publisher < ActiveRecord::Base
     	p.uf = "RJ"
     	p.telephone = "(21) 2540-0076"
       p.trello_email = "chagas+eoyipyvrcukn3uslydul@boards.trello.com"
-      p.text_email = ""
+      p.text_email = "Caro @name,\n\nSeu original cadastrado em nosso sistema de aprovação teve seu status alterado para: @status\n\n        Para entrar em contato com nossos editores, utilize o mural presente no site http://7letras.livrodaclasse.com.br\n\nEditora 7letras"
     	p.save
     end
   	Publisher.first

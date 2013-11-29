@@ -54,8 +54,9 @@ class Project < ActiveRecord::Base
   def check_status
     if self.new_record?
       self.status = BookStatus.default.id
+      TrelloMailer.create_book_card(self.book, self.book.organizer, Publisher.find(self.book.publisher_id)).deliver
     elsif self.status_changed?
-      UserMailer.status_changed(self).deliver
+      UserMailer.status_changed(self, Publisher.find(self.book.publisher_id)).deliver
     end
   end
 

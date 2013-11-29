@@ -15,11 +15,15 @@ class UserMailer < ActionMailer::Base
     mail :to => user.email, :subject => "Convite para um projeto no Livro da Classe"
   end
 
-  def status_changed(project)
+  def status_changed(project, publisher)
     @name = project.book.organizer.name
     @title = project.book.title
     @status = project.status_to_s
-    @content = Publisher.find(current_publisher).text_email
-    mail :to => project.book.organizer.email, :subject => "[#{Publisher.find(current_publisher).name}] Alteração em status de original"
+    @content = publisher.text_email
+
+    @content = @content.gsub("@name",@name)
+    @content = @content.gsub("@status",@status)
+
+    mail :to => project.book.organizer.email, :subject => "[#{publisher.name}] Alteração em status de original"
   end
 end
