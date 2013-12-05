@@ -1,9 +1,8 @@
 Livrodaclasse::Application.routes.draw do
 
-  get "scraps/:id" => "scraps#show", as: :scrap_show
-  match "scraps/create" => "scraps#create", as: :scrap_create
-
   mount Ckeditor::Engine => '/ckeditor'
+
+  match 'scraps/:id/new', :to => 'scraps#new', :as => :new_scrap
 
   get 'entrar', :to => 'sessions#new', :as => :signin
   get 'auth/:provider/callback', :to => 'sessions#create'
@@ -40,11 +39,18 @@ Livrodaclasse::Application.routes.draw do
   get 'books/:id/cover_info', to: 'books#cover_info', as: :book_cover_info
   match 'books/:id/update_cover_info', to: 'books#update_cover_info', as: :book_update_cover_info
   match 'books/:id/generate_cover', to: 'books#generate_cover', as: :book_generate_cover
+
+  match 'scraps/:id/thread', :to => 'scraps#thread', :as => :scraps_thread
+  match 'scraps/:id/answer', :to => 'scraps#answer', :as => :scraps_answer
+  resources :scraps, :only => [:index, :create, :edit, :update, :destroy]
   
   namespace :admin do
     root :to => 'dashboard#index'
 
-    get 'dashboard/scraps', :to => 'dashboard#scraps', :as => :scraps
+    match 'scraps/:id/thread', :to => 'scraps#thread', :as => :scraps_thread
+    match 'scraps/:id/answer', :to => 'scraps#answer', :as => :scraps_answer
+
+    #get 'dashboard/scraps', :to => 'dashboard#scraps', :as => :scraps
     get 'dashboard/default_cover', :to => 'dashboard#default_cover', :as => :default_cover
     match 'dashboard/update_default_cover', :to => 'dashboard#update_default_cover', :as => :update_default_cover
     resources :projects, :only => [:index, :show, :edit, :update] do
@@ -56,5 +62,6 @@ Livrodaclasse::Application.routes.draw do
     resources :expressions, :only => [:index, :create, :new, :edit, :update, :destroy]
     resources :book_statuses, :only => [:index, :create, :new, :edit, :update]
     resources :publishers, :only => [:index, :create, :new, :edit, :update, :destroy]
+    resources :scraps, :only => [:index, :create, :new, :edit, :update, :destroy]
   end
 end

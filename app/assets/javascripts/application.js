@@ -91,6 +91,7 @@ $(document).ready(function() {
       $("#text_novo_recado").val('');
     }
   });
+
   $('#book_zipcode').mask("99999-999");
   
   $('#book_title').jqEasyCounter({

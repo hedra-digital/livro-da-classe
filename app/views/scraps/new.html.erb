@@ -1,0 +1,14 @@
+<h3><%= "Novo Recado" %></h3>
+
+<%= simple_form_for(@scrap, :html => {:class => 'form-vertical' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<%= f.input :book_id, :as => :hidden, :input_html => { :value => @book.id}  %>
+    <%= f.input :content, :as => :text, :label => 'Conteúdo', :input_html => { :style => 'width:98%;' } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131129123335) do
+ActiveRecord::Schema.define(:version => 20131205145633) do
 
   create_table "book_statuses", :force => true do |t|
     t.string   "desc"
@@ -204,8 +204,12 @@ ActiveRecord::Schema.define(:version => 20131129123335) do
   create_table "scraps", :force => true do |t|
     t.integer  "book_id"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.boolean  "is_admin"
+    t.string   "admin_name"
+    t.integer  "parent_scrap_id"
+    t.boolean  "answered"
   end
 
   create_table "texts", :force => true do |t|

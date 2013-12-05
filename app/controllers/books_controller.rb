@@ -37,7 +37,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @scraps = @book.scraps.order("created_at desc")
+    @scraps = Scrap.where(:parent_scrap_id => nil, :book_id => @book.id).order('created_at DESC').all
     respond_to do |format|
       format.html # show.html.erb
       #format.pdf

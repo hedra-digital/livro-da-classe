@@ -279,7 +279,13 @@ pt-BR:
       publisher:
         one: Editora
         other: Editoras
+      scrap:
+        one: Recado
+        other: Recados
     attributes:
+      scrap:
+        book_id: Livro
+        content: Recado
       publisher:
         name: "Nome fantasia da Editora"
         official_name: "Nome da Editora"
