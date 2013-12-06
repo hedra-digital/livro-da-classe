@@ -1,6 +1,6 @@
 class AdminMailer < ActionMailer::Base
   default from: Livrodaclasse::Application.config.action_mailer.default_url_options[:sender_address]
-  default to: 'fellipe@vizir.com.br'#Livrodaclasse::Application.config.action_mailer.default_url_options[:exception_recipients]
+  default to: Livrodaclasse::Application.config.action_mailer.default_url_options[:exception_recipients]
 
   def pdf_to_latex_error(book, directory, error_file)
     @title = book.title
