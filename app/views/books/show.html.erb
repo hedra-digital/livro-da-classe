@@ -27,11 +27,12 @@
           <tr>
             <td><span class="label label-info"><%= scrap.created_at.strftime("%d/%m/%Y") %></span></td>
             <td><%= link_to scrap.book.title, book_path(scrap.book.uuid) %></td>
-            <td><%= scrap.content[0..20] %></td>
+            <td><%= "#{scrap.content[0..20]}..." %></td>
             <td><%= link_to 'Expandir', scraps_thread_path(scrap), :class => 'btn btn-mini' %></td>
           </tr>
         <% end %>
       </table>
+    </div>
     <!--</div>
   </div>
 </div>-->
