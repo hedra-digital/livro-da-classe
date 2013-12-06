@@ -1,0 +1,36 @@
+<script>
+  function answer(id){
+    var contentValue = $("#answer-content-"+id).val();
+    if (contentValue.length > 0){
+      $.post("answer", { parent: id, content: contentValue }, function( data ) {
+        $("#scrap-childs").append(data);
+      }, 'html');
+      $("#answer-content-"+id).val('');
+    }
+  }
+</script>
+
+<div class="row">
+  <div class="span9">
+    <h1>Conversa</h1>
+  </div>
+</div>
+<div class="scrap-parent">
+  <span class="badge"><%= @scrap.answered? ? '' : '!' %></span>
+  <span><%= @scrap.is_admin? ? @scrap.admin_name : @book.organizer.name %></span>
+  <span class="label label-info"><%= @scrap.created_at.strftime("%d/%m/%Y") %></span>
+  <div class="scrap-content"><span><%= @scrap.content %></span></div>
+</div>
+<div id="scrap-childs">
+  <% @scrap.childs.each do |child| %>
+    <div class="scrap-child">
+      <span><%= child.is_admin? ? child.admin_name : @book.organizer.name %></span>
+      <span class="label label-warning"><%= child.created_at.strftime("%d/%m/%Y") %></span>
+      <div class="scrap-content"><span><%= child.content %></span></div>
+    </div>
+  <% end %>
+</div>
+<div class="scrap-answer">
+  <textarea id=<%= "answer-content-#{@scrap.id}" %> rows="2" cols="30"></textarea>
+  <button type="button" class="btn btn-primary" onclick="answer(<%= @scrap.id %>);">Responder</button>
+</div>

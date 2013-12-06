@@ -1,17 +1,17 @@
-<input type="hidden" id="hidden_book_id" value="<%= @book.uuid %>"></input>
-
-<div>
+<% if @scraps.present? %>
   <div class="row">
     <div class="span9">
-      <h1>Mural de Conversas</h1>
+      <h1>Recados</h1>
     </div>
 
     <div class="span3">
-      <%= link_to 'Nova Conversa', new_scrap_path(@book.id), :class => 'btn btn-primary btn-new' %>
+      <%= link_to 'Novo Recado', new_admin_scrap_path, :class => 'btn btn-primary btn-new' %>
     </div>
   </div>
   <table class="table table-striped">
     <tr>
+      <th></th>
+      <th></th>
       <th>Data</th>
       <th>Original</th>
       <th>Conversa</th>
@@ -19,11 +19,15 @@
     </tr>
     <% @scraps.each do |scrap| %>
       <tr>
+        <td><span class="badge"><%= scrap.answered? ? '' : '!' %></span></td>
+        <td><%= "##{scrap.id}" %></td>
         <td><span class="label label-info"><%= scrap.created_at.strftime("%d/%m/%Y") %></span></td>
         <td><%= link_to scrap.book.title, book_path(scrap.book.uuid) %></td>
         <td><%= "#{scrap.content[0..20]}..." %></td>
-        <td><%= link_to 'Expandir', scraps_thread_path(scrap), :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Expandir', admin_scraps_thread_path(scrap), :class => 'btn btn-mini' %></td>
       </tr>
     <% end %>
   </table>
-</div>
+<% else %>
+  <p class="blank">Nenhum recado cadastrada. <%= link_to 'Definir uma novo recado?', new_admin_scrap_path %></p>
+<% end %>

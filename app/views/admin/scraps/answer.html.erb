@@ -1,0 +1,5 @@
+<div class="scrap-child">
+    <span><%= @scrap.is_admin? ? @scrap.admin_name : @scrap.book.organizer.name %></span>
+    <span class="label label-warning"><%= @scrap.created_at.strftime("%d/%m/%Y") %></span>
+    <div class="scrap-content"><span><%= @scrap.content %></span></div>
+</div>

@@ -12,6 +12,7 @@
         <td><span class="label label-info"><%= scrap.created_at.strftime("%d/%m/%Y") %></span></td>
         <td><%= link_to scrap.book.title, book_path(scrap.book.uuid) %></td>
         <td><%= scrap.content %></td>
+        <td><button type="button" id="botao_enviar" class="btn btn-mini">Responder</button></td>
       </tr>
     <% end %>
   </tbody>

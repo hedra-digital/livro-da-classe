@@ -267,7 +267,13 @@ pt-BR:
       expression:
         one: Expressão
         other: Expressões
+      scrap:
+        one: Recado
+        other: Recados
     attributes:
+      scrap:
+        book_id: Livro
+        content: Recado
       expression:
         target: Expressão a ser substituída
         replace: Expressão substituta
