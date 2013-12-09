@@ -134,8 +134,8 @@ class Book < ActiveRecord::Base
 
     input_files = ""
     self.texts.order("-position DESC").each do |text|
-      text.to_file(File.join(directory,"#{text.title.gsub(' ','')}.tex"))
-      input_files << "\\include{#{text.title.gsub(' ','')}.tex}\n"
+      text.to_file(File.join(directory,"#{text.title.gsub(' ','')}#{text.id}.tex"))
+      input_files << "\\include{#{text.title.gsub(' ','')}#{text.id}.tex}\n"
     end
 
     input_text = File.join(directory,'INPUTS.tex')
