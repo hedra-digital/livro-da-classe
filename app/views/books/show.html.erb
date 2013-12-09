@@ -12,15 +12,17 @@
   </div>
   <table class="table table-striped">
     <tr>
+      <th></th>
+      <th>Chamado</th>
       <th>Data</th>
-      <th>Original</th>
       <th>Conversa</th>
       <th></th>
     </tr>
     <% @scraps.each do |scrap| %>
       <tr>
+        <td><span class="badge"><%= scrap.answered? ? '!' : '' %></span></td>
+        <td><%= "##{scrap.id}" %></td>
         <td><span class="label label-info"><%= scrap.created_at.strftime("%d/%m/%Y") %></span></td>
-        <td><%= link_to scrap.book.title, book_path(scrap.book.uuid) %></td>
         <td><%= "#{scrap.content[0..20]}..." %></td>
         <td><%= link_to 'Expandir', scraps_thread_path(scrap), :class => 'btn btn-mini' %></td>
       </tr>

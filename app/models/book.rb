@@ -58,16 +58,6 @@ class Book < ActiveRecord::Base
     return response
   end
 
-  def full_text_latex
-    require "#{Rails.root}/lib/markup_latex.rb"
-
-    builder = proc do |text|
-      "\\chapter{#{text.title}}\n#{MarkupLatex.new(text.content).to_latex}\n" unless text.content.to_s.size == 0
-    end
-
-    texts.order("-position DESC").map(&builder).join
-  end
-
   def get_school_logo
     if !self.project.nil?
       school_logo = self.project.school_logo.url
@@ -139,11 +129,20 @@ class Book < ActiveRecord::Base
   def pdf
     directory = File.join(Rails.root,'public','books',"#{self.id}-#{self.title}".gsub(" ","_"))
     template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],'')
-    input_text = File.join(directory,'TEXTO.tex')
-    input_comands = File.join(directory,'comandos.sty')
+
     FileUtils.mkdir_p(directory)
-    File.open(input_comands,'wb') {|io| io.write(self.commands) }
-    File.open(input_text,'wb') {|io| io.write(self.content) }
+
+    input_files = ""
+    self.texts.order("-position DESC").each do |text|
+      text.to_file(File.join(directory,"#{text.title.gsub(' ','')}.tex"))
+      input_files << "\\include{#{text.title.gsub(' ','')}.tex}\n"
+    end
+
+    input_text = File.join(directory,'INPUTS.tex')
+    File.open(input_text,'wb') {|io| io.write(input_files) }
+
+    input_commands = File.join(directory,'comandos.sty')
+    File.open(input_commands,'wb') {|io| io.write(self.commands) }
 
     # build latex
     Process.waitpid(

@@ -18,6 +18,7 @@ class Text < ActiveRecord::Base
   # Callbacks
   before_save               :set_uuid
   before_save               :remove_expressions
+  before_save               :title_on_content
 
   # Relationships
   belongs_to                :book
@@ -30,7 +31,7 @@ class Text < ActiveRecord::Base
   validates :user_id,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :content, :title, :uuid, :content, :user_id, :enabled, :author, :image
+  attr_accessible           :book_id, :content, :title, :uuid, :user_id, :enabled, :author, :image, :valid_content
 
   has_attached_file :image,
                     :styles => {
@@ -54,6 +55,16 @@ class Text < ActiveRecord::Base
     self.image.exists? ? '' : self.image.path
   end
 
+  def to_file(file)
+    require "#{Rails.root}/lib/markup_latex.rb"
+    content = "#{MarkupLatex.new(self.content).to_latex}".html_safe
+    File.open(file,'wb') {|io| io.write(content) }
+  end
+
+  def self.validate_content
+    true
+  end
+
   private
 
   def set_uuid
@@ -63,6 +74,12 @@ class Text < ActiveRecord::Base
   def remove_expressions
     Expression.all.each do |exp|
       self.content = self.content.gsub(eval(exp.target), exp.replace)
+    end
+  end
+
+  def title_on_content
+    if !self.new_record? and self.valid_content_changed? and self.valid_content_was.nil? 
+      self.content = "<h1>#{self.title}</h1>#{self.content}"
     end
   end
 end

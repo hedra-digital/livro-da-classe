@@ -32,7 +32,7 @@ class MarkupLatex
   def compile_latex(array)
     array.each do |element|
       if element[0] == :html
-        element[1] = PandocRuby.new(element[1], :from => :html, :to => :latex).convert
+        element[1] = PandocRuby.convert(element[1], {:from => :html, :to => :latex}, :chapters)
         #element[1] = HedraLatex.convert(Kramdown::Document.new(element[1], :input => 'html').root)[0]
       elsif element[0] == :latex
         element[1] = ActionView::Base.full_sanitizer.sanitize(element[1])

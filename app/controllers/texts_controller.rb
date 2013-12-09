@@ -36,6 +36,7 @@ class TextsController < ApplicationController
 
   def update
     @text = Text.find_by_uuid_or_id(params[:id])
+    @text.valid_content = Text.validate_content
     if @text.update_attributes(params[:text])
       redirect_to book_text_path(@book.uuid, @text.uuid), :notice => t('activerecord.successful.messages.updated', :model => @text.class.model_name.human)
     else
