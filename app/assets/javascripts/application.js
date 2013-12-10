@@ -27,6 +27,11 @@
 //= require ckeditor/plugins/eqneditor/plugin
 //= require ckeditor/plugins/eqneditor/lang/en
 //= require ckeditor/plugins/eqneditor/dialogs/eqneditor
+//= require ckeditor/plugins/charcount/plugin
+//= require ckeditor/plugins/texttransform/plugin
+//= require ckeditor/plugins/texttransform/lang/en
+//= require ckeditor/plugins/texttransform/lang/pt-BR
+//= require ckeditor/plugins/texttransform/lang/tr
 //= require jquery.jqEasyCharCounter.min.js
 //= require jquery.mask.min.js
 //= require jscolor/jscolor

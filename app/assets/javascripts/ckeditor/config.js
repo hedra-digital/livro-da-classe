@@ -1,6 +1,10 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'eqneditor';
+  config.extraPlugins = 'eqneditor,charcount,texttransform';
+
+  /* Char Count Plugin */
+  config.maxLength = 0;
+  config.maxWords = 0;
 
   config.keystrokes =
   [
@@ -25,15 +29,28 @@ CKEDITOR.editorConfig = function(config) {
     [ CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse' ]
   ];
 
-  config.toolbar = [
+  config.toolbar = [    
+    { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+    { name: 'links', items : [ 'Anchor' ] },
+    { name: 'document', items : [ 'Source' ] },
+    { name: 'tools', items : [ 'Maximize', 'ShowBlocks' ] },
+    { name: 'plugins', items: [ 'TransformTextToUppercase', 'TransformTextToLowercase', 'TransformTextCapitalize', 'TransformTextSwitcher', '-','CharCount' ] },
+    '/',
+    { name: 'basicstyles', items : [ 'Bold','Italic','-','RemoveFormat' ] },
+    { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
+    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor' ] },
+    { name: 'styles', items : [ 'Format' ] }
+  ];
+
+  /*config.toolbar = [
     { name: 'basicstyles', items: [ 'Bold', 'Italic' ] },
     { name: 'insert', items: [ 'Image' ] },
     { name: 'clipboard', items: [ 'Cut', 'Copy', 'PasteText', '-', 'Undo', 'Redo' ] },
     { name: 'colors', items: [ 'BGColor' ] },
     { name: 'document', items: [ 'Source' ] },
     { name: 'latex', items: [ 'EqnEditor' ] }
-  ];
-
+  ];*/
+  
   config.language = 'pt-BR';
 
   /* Filebrowser routes */
@@ -61,7 +78,7 @@ CKEDITOR.editorConfig = function(config) {
   // Because of 
   config.hideDialogFields = "image:info:htmlPreview";
 
-  config.allowedContent =
+  /*config.allowedContent =
       'h1 h2 h3 h4 h5 h6 p blockquote strong em;' +
       'a[!href];' +
       'img(left,right)[!src,alt,width,height];' +
@@ -69,7 +86,8 @@ CKEDITOR.editorConfig = function(config) {
       'span{!font-family};' +
       'span{!color};' +
       'span(!marker);' +
-      'del ins';
+      'del ins'
+    */
 
   // Rails CSRF token
   config.filebrowserParams = function(){
@@ -170,17 +188,15 @@ CKEDITOR.editorConfig = function(config) {
     }
   });
 
-  CKEDITOR.on('instanceReady', function(ck) { 
+  /*CKEDITOR.on('instanceReady', function(ck) { 
     ck.editor.removeMenuItem('paste'); 
-  });
+  });*/
 
 };
 
 // Blocking the paste keystroke
-CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
+//CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
 
 CKEDITOR.addCss('.small-intention { zoom: 0.3; -moz-transform: scale(0.3); }');
 CKEDITOR.addCss('.medium-intention { zoom: 0.6; -moz-transform: scale(0.6); }');
 CKEDITOR.addCss('.big-intention { zoom: 1; -moz-transform: scale(1); }');
-
-
