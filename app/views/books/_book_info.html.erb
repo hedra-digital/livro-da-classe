@@ -28,6 +28,14 @@
             <% else %>
               <%= menu_item t(:book_data, :scope => :book_nav), edit_book_path(@book.uuid) %>
               <%= menu_item t(:overview, :scope => :book_nav), book_path(@book.uuid) %>
+
+              <!-- Criar regras para visualização destes menus -->
+
+              <%= menu_item t(:texts, :scope => :book_nav), book_texts_path(@book.uuid) %>
+              <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
+
+              <!-- -->
+
             <% end%>
           </ul>
         </nav>
