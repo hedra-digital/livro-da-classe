@@ -53,6 +53,36 @@ GEM
     bourbon (3.1.6)
       sass (>= 3.2.0)
       thor
+    brI18n (3.3.0)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    brazilian-rails (3.3.0)
+      brI18n (= 3.3.0)
+      brcep (= 3.3.0)
+      brcpfcnpj (= 3.3.0)
+      brdata (= 3.3.0)
+      brdinheiro (= 3.3.0)
+      brhelper (= 3.3.0)
+      brnumeros (= 3.3.0)
+      brstring (= 3.3.0)
+    brcep (3.3.0)
+    brcpfcnpj (3.3.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    brdata (3.3.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    brdinheiro (3.3.0)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      brnumeros (= 3.3.0)
+    brhelper (3.3.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    brnumeros (3.3.0)
+    brstring (3.3.0)
+      activesupport (>= 3.0.0)
     builder (3.0.4)
     callsite (0.0.11)
     capybara (2.1.0)
@@ -271,6 +301,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-datepicker-rails
   bourbon
+  brazilian-rails
   capybara
   capybara-webkit
   ckeditor!

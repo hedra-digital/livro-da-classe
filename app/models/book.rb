@@ -148,8 +148,9 @@ class Book < ActiveRecord::Base
 
     input_files = ""
     self.texts.order("-position DESC").each do |text|
-      text.to_file(File.join(directory,"#{text.title.gsub(' ','')}#{text.id}.tex"))
-      input_files << "\\include{#{text.title.gsub(' ','')}#{text.id}.tex}\n"
+      text_filename = "#{String.remover_acentos(text.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{text.id}.tex"
+      text.to_file(File.join(directory,text_filename))
+      input_files << "\\include{#{text_filename}}\n"
     end
 
     input_text = File.join(directory,'INPUTS.tex')
