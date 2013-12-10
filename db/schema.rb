@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131205145633) do
+ActiveRecord::Schema.define(:version => 20131209131435) do
 
   create_table "book_statuses", :force => true do |t|
     t.string   "desc"
@@ -227,6 +227,7 @@ ActiveRecord::Schema.define(:version => 20131205145633) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "valid_content"
   end
 
   create_table "users", :force => true do |t|
