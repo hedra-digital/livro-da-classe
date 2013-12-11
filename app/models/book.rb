@@ -49,13 +49,13 @@ class Book < ActiveRecord::Base
                     :styles => {
                       :content => ['100%', :jpg],
                       :thumb => ['60x80>', :jpg]
-                    }                  
+                    }
 
   has_attached_file :document
 
   validates_attachment_size :document,
                             :less_than => 25.megabytes,
-                            :message => "O tamanho limite do arquivo (25MB) foi ultrapassado"   
+                            :message => "O tamanho limite do arquivo (25MB) foi ultrapassado"
 
   after_validation :join_document_errors
 
@@ -63,7 +63,7 @@ class Book < ActiveRecord::Base
     if errors.messages.has_key?(:document_file_size)
       errors.messages[:document] = errors.messages[:document_file_size]
     end
-  end                            
+  end
 
   # Other methods
   def self.find_by_uuid_or_id(id)
@@ -84,7 +84,7 @@ class Book < ActiveRecord::Base
     end
   end
 
-  def count_pages 
+  def count_pages
     begin
       require 'open-uri'
       site_url = "http://#{Livrodaclasse::Application.config.action_mailer.default_url_options[:host]}"
@@ -150,7 +150,7 @@ class Book < ActiveRecord::Base
     self.texts.order("-position DESC").each do |text|
       text_filename = "#{String.remover_acentos(text.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{text.id}.tex"
       text.to_file(File.join(directory,text_filename))
-      input_files << "\\include{#{text_filename}}\n"
+      input_files << "\\input{#{text_filename}}\n"
     end
 
     input_text = File.join(directory,'INPUTS.tex')
@@ -183,7 +183,7 @@ class Book < ActiveRecord::Base
     end
     pdf_file
   end
-  
+
   private
 
   def set_uuid
