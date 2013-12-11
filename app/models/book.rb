@@ -70,7 +70,7 @@ class Book < ActiveRecord::Base
     end
   end
 
-  def count_pages 
+  def count_pages
     begin
       require 'open-uri'
       site_url = "http://#{Livrodaclasse::Application.config.action_mailer.default_url_options[:host]}"
@@ -136,7 +136,7 @@ class Book < ActiveRecord::Base
     self.texts.order("-position DESC").each do |text|
       text_filename = "#{String.remover_acentos(text.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{text.id}.tex"
       text.to_file(File.join(directory,text_filename))
-      input_files << "\\include{#{text_filename}}\n"
+      input_files << "\\input{#{text_filename}}\n"
     end
 
     input_text = File.join(directory,'INPUTS.tex')
@@ -169,7 +169,7 @@ class Book < ActiveRecord::Base
     end
     pdf_file
   end
-  
+
   private
 
   def set_uuid
