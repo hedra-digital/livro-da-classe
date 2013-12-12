@@ -264,6 +264,9 @@ pt-BR:
       book_status:
         one: Status para Original
         other: Status para Originais
+      profile:
+        one: Perfil
+        other: Perfis
       text:
         one: Texto
         other: Textos
@@ -343,6 +346,8 @@ pt-BR:
         cdd: 'CDD do livro'
         keywords: 'Palavras Chave'
       book_status:
+        desc: 'Descrição'
+      profile:
         desc: 'Descrição'
       text:
         title: 'Título'

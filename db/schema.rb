@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209131435) do
+ActiveRecord::Schema.define(:version => 20131212125736) do
 
   create_table "book_statuses", :force => true do |t|
     t.string   "desc"
@@ -154,6 +154,22 @@ ActiveRecord::Schema.define(:version => 20131209131435) do
   create_table "invitations", :force => true do |t|
     t.integer  "invited_id"
     t.integer  "book_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "permissions", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "book_status_id"
+    t.boolean  "read"
+    t.boolean  "write"
+    t.boolean  "execute"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.string   "desc"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
