@@ -62,6 +62,7 @@ Livrodaclasse::Application.routes.draw do
     resources :expressions, :only => [:index, :create, :new, :edit, :update, :destroy]
     resources :book_statuses, :only => [:index, :create, :new, :edit, :update]
     resources :profiles, :only => [:index, :create, :new, :edit, :update]
+    resources :permissions, :only => [:index, :edit, :update]
     resources :publishers, :only => [:index, :create, :new, :edit, :update, :destroy]
     resources :scraps, :only => [:index, :create, :new, :edit, :update, :destroy]
   end

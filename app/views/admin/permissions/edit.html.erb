@@ -1,0 +1,40 @@
+<h3><%= "Editando Permissões" %></h3>
+
+<table class="table table-striped">
+    <tr>
+      <th>Perfil</th>
+      <th>Status</th>
+      <th>Leitura</th>
+      <th>Escrita</th>
+      <th>Execução</th>
+      <th></th>
+    </tr>
+    <% @permissions.each do |permission| %>
+      <%= simple_form_for([:admin, permission], :html => {:class => 'form-vertical' }) do |f| %>
+        <tr>
+          <td><%= permission.profile.desc %></td>
+          <td><%= permission.book_status.desc %></td>
+          <td>
+            <div class="form-inputs">
+              <%= f.input :read, :label => "" %>
+            </div>
+          </td>
+          <td>
+            <div class="form-inputs">
+              <%= f.input :write, :label => "" %>
+            </div>
+          </td>
+          <td>
+            <div class="form-inputs">
+              <%= f.input :execute, :label => "" %>
+            </div>
+          </td>
+          <td>
+            <div class="form-inputs">
+              <%= f.button :submit %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+</table>

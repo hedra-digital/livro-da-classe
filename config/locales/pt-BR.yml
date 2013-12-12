@@ -267,6 +267,9 @@ pt-BR:
       profile:
         one: Perfil
         other: Perfis
+      permission:
+        one: Permissão
+        other: Permissões
       text:
         one: Texto
         other: Textos
@@ -349,6 +352,10 @@ pt-BR:
         desc: 'Descrição'
       profile:
         desc: 'Descrição'
+      permission:
+        read: 'Leitura'
+        write: 'Escrita'
+        execute: 'Executar'
       text:
         title: 'Título'
         content: 'Conteúdo'
