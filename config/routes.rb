@@ -50,7 +50,10 @@ Livrodaclasse::Application.routes.draw do
     match 'scraps/:id/thread', :to => 'scraps#thread', :as => :scraps_thread
     match 'scraps/:id/answer', :to => 'scraps#answer', :as => :scraps_answer
 
-    #get 'dashboard/scraps', :to => 'dashboard#scraps', :as => :scraps
+    match 'users/:id/books', :to => 'users#books', :as => :users_books
+    match 'users/add_book', :to => 'users#add_book', :as => :users_add_book
+    match 'users/remove_book', :to => 'users#remove_book', :as => :users_remove_book
+
     get 'dashboard/default_cover', :to => 'dashboard#default_cover', :as => :default_cover
     match 'dashboard/update_default_cover', :to => 'dashboard#update_default_cover', :as => :update_default_cover
     resources :projects, :only => [:index, :show, :edit, :update] do
@@ -65,5 +68,6 @@ Livrodaclasse::Application.routes.draw do
     resources :permissions, :only => [:index, :edit, :update]
     resources :publishers, :only => [:index, :create, :new, :edit, :update, :destroy]
     resources :scraps, :only => [:index, :create, :new, :edit, :update, :destroy]
+    resources :users, :only => [:index, :edit, :update]
   end
 end

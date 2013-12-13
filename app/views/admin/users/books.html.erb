@@ -1,0 +1,34 @@
+<h3><%= "Editando livros do usuário: #{@user.name}" %></h3>
+
+<% if @user_books.present? %>
+  <table class="table table-striped">
+    <tr>
+      <th>Nome do livro vinculado</th>
+      <th></th>
+    </tr>
+    <% @user_books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= user_book_remove_label(book, @user) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="blank">Nenhum livro associado.</p>
+<% end %>
+
+<% if @books.present? %>
+  <%= simple_form_for([:admin, @user], :url => admin_users_add_book_path(:id => @user.id), :html => {:class => 'form-vertical' }) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :book_id, :collection => @books, :include_blank => false %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, :class => 'btn btn-primary' %>
+    </div>
+  <% end %>
+<% else %>
+  <p class="blank">Nenhum livro disponível para associação.</p>
+<% end %>

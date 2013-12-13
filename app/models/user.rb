@@ -43,7 +43,9 @@ class User < ActiveRecord::Base
   validates :password,      :presence => true, :on => :create
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :email, :name, :password, :password_confirmation, :asked_for_email, :telephone, :profile
+  attr_accessible           :email, :name, :password, :password_confirmation, :asked_for_email, :telephone, :profile, :profile_id
+
+  attr_accessor :book_id
 
   accepts_nested_attributes_for :profile
 
