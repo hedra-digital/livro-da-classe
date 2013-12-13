@@ -33,5 +33,9 @@ class Permission < ActiveRecord::Base
       p.save
     end
   end
+
+  def self.get_permissions_for book_status_id, user_profile_id
+    Permission.where(:profile_id => user_profile_id, :book_status_id => book_status_id).first
+  end
   
 end

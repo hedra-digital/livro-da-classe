@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212125736) do
+ActiveRecord::Schema.define(:version => 20131213123602) do
 
   create_table "book_statuses", :force => true do |t|
     t.string   "desc"
@@ -259,6 +259,9 @@ ActiveRecord::Schema.define(:version => 20131212125736) do
     t.string   "uid"
     t.boolean  "asked_for_email"
     t.string   "telephone"
+    t.integer  "profile_id"
   end
+
+  add_index "users", ["profile_id"], :name => "index_users_on_profile_id"
 
 end

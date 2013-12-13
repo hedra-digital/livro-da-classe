@@ -13,8 +13,10 @@
 
   <div class="span10">
     <div>
-      <%= link_to t(:text_edit), edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
-      <%= link_to t(:text_delete), book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger', :method => "delete", :confirm => t(:text_confirm) %>
+      <% if can_write? %>
+        <%= link_to t(:text_edit), edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
+        <%= link_to t(:text_delete), book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger', :method => "delete", :confirm => t(:text_confirm) %>
+      <% end %>
       <%= link_to t(:text_back), book_path(@book), :class =>'btn' %>
     </div>
   </div>

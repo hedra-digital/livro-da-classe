@@ -1,6 +1,6 @@
 module TextsHelper
   def enable_or_disable_link(text)
-    return '' if !is_organizer?
+    return '' if !is_organizer? or !can_write?
     label = !text.is_enabled? ? 'Aprovado' : 'Aprovar'
     klass = !text.is_enabled? ? 'btn btn-success btn-mini text-btn-enabled' : 'btn btn-warning btn-mini text-btn-disabled'
     link_to(label, enable_or_disable_path(:uuid => text.uuid), :class => klass)

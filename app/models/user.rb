@@ -25,12 +25,14 @@ class User < ActiveRecord::Base
 
   # Callbacks
   before_create             { generate_token(:auth_token) }
+  before_create             :set_default_profile
 
   # Relationships
   has_many                  :organized_books, :class_name => "Book", :foreign_key => "organizer_id"
   has_and_belongs_to_many   :books
   has_many                  :invitations, :foreign_key => 'invited_id'
   has_one                   :client
+  belongs_to                :profile
 
   # Validations
   validates :name,          :presence => true
@@ -41,7 +43,9 @@ class User < ActiveRecord::Base
   validates :password,      :presence => true, :on => :create
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :email, :name, :password, :password_confirmation, :asked_for_email, :telephone
+  attr_accessible           :email, :name, :password, :password_confirmation, :asked_for_email, :telephone, :profile
+
+  accepts_nested_attributes_for :profile
 
   # Other methods
   def send_password_reset
@@ -72,5 +76,9 @@ class User < ActiveRecord::Base
     new_user = new({ :provider => auth['provider'], :uid => auth['uid'], :name => auth['info']['name'], :email => auth['info']['email'] }, :without_protection => true)
     new_user.save!(:validate => false)
     new_user
+  end
+
+  def set_default_profile
+    self.profile = Profile.first
   end
 end

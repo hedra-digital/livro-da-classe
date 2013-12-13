@@ -8,35 +8,31 @@
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? and @book.project.engaged? %>
         <nav role="navigation">
           <ul class="nav nav-pills">
-            <% if false %>
             <% if is_organizer? %>
               <%= menu_item t(:book_data, :scope => :book_nav), edit_book_path(@book.uuid) %>
             <% end %>
+
             <% if is_organizer? %>
               <%= menu_item t(:collaborators, :scope => :book_nav), book_collaborators_path(@book.uuid) %>
             <% end %>
-            <%= menu_item t(:texts, :scope => :book_nav), book_texts_path(@book.uuid) %>
-            <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
-            <% if is_organizer? && is_project? %>
+
+            <% if can_read? or can_write? %>
+              <%= menu_item t(:texts, :scope => :book_nav), book_texts_path(@book.uuid) %>
+            <% end %>
+
+            <% if can_execute? %>
+              <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
+            <% end %>
+
+            <% if is_organizer? && is_project? && can_execute? %>
               <%= menu_item t(:project, :scope => :book_nav), edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>
+            
             <%= menu_item t(:overview, :scope => :book_nav), book_path(@book.uuid) %>
             
-            <% if is_organizer? && !is_project? %>
+            <% if is_organizer? && !is_project? && can_execute? %>
               <%= menu_item t(:publish, :scope => :book_nav), edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>
-            <% else %>
-              <%= menu_item t(:book_data, :scope => :book_nav), edit_book_path(@book.uuid) %>
-              <%= menu_item t(:overview, :scope => :book_nav), book_path(@book.uuid) %>
-
-              <!-- Criar regras para visualização destes menus -->
-
-              <%= menu_item t(:texts, :scope => :book_nav), book_texts_path(@book.uuid) %>
-              <!--<%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>-->
-
-              <!-- -->
-
-            <% end%>
           </ul>
         </nav>
       </div>
