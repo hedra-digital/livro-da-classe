@@ -1,6 +1,6 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'eqneditor,charcount,texttransform';
+  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote';
 
   /* Char Count Plugin */
   config.maxLength = 0;
@@ -38,7 +38,7 @@ CKEDITOR.editorConfig = function(config) {
     '/',
     { name: 'basicstyles', items : [ 'Bold','Italic','-','RemoveFormat' ] },
     { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
-    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor' ] },
+    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor', 'FootNote' ] },
     { name: 'styles', items : [ 'Format' ] }
   ];
 
@@ -78,8 +78,8 @@ CKEDITOR.editorConfig = function(config) {
   // Because of 
   config.hideDialogFields = "image:info:htmlPreview";
 
-  /*config.allowedContent =
-      'h1 h2 h3 h4 h5 h6 p blockquote strong em;' +
+  config.allowedContent = true;
+  /*    'h1 h2 h3 h4 h5 h6 p blockquote strong em;' +
       'a[!href];' +
       'img(left,right)[!src,alt,width,height];' +
       'table tr th td caption;' +
