@@ -28,9 +28,10 @@ CKEDITOR.dialog.add( 'footnoteDialog', function( editor ) {
             fn.setAttribute( 'class', 'footnote-text' );
             editor.insertElement( fn );
 
-            var fnText = "<span class='footnote-show' id='" + footNoteId + "'>";
+            var fnText = "<p class='footnote-show'>";
+            fnText += "<span class='footnote-show' id='" + footNoteId + "'>";
             fnText += "[" + footNoteId + "] ";
-            fnText += dialog.getValueOf( 'tab-basic', 'foot-text' ) + "</span>";
+            fnText += dialog.getValueOf( 'tab-basic', 'foot-text' ) + "</span></p>";
 
             if ((editor.getData().match(/footnote-hr/g) || []).length == 0){
                 editor.setData(editor.getData() + "<hr class='footnote-hr'>" + fnText);

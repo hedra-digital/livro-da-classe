@@ -20,6 +20,7 @@ class MarkupLatex
 
   def build_array(content_text)
     content_text = prepare_image content_text
+    content_text = prepare_footnote content_text
     array = prepare_text content_text
     compiled_array = compile_latex array
   end
@@ -77,6 +78,30 @@ class MarkupLatex
       end
 
       text = text.sub(img_tag.to_s, latex_img)
+    end
+    text
+  end
+
+  def prepare_footnote(text)
+    while text.match /<sup class=\"footnote-text\"(.*?)<\/sup>/
+      footnote_tag = text.match /<sup class=\"footnote-text\"(.*?)<\/sup>/
+
+      footnote_text = text.match /foot-text=\"(.*?)\"/
+      footnote_texts = footnote_text.to_s.split("\"")
+      footnote_texts.shift #retirando o primeiro
+      footnote_text = footnote_texts.join("")
+
+      text = text.sub(footnote_tag.to_s, "{{\\footnote{#{footnote_text}} }}")
+    end
+    while text.match /<hr .*? \/>/
+      footnote_tag = text.match /<hr .*? \/>/ 
+
+      text = text.sub(footnote_tag.to_s, "")
+    end
+    while text.match /<span class=\"footnote-show\"(.*?)<\/span>/
+      footnote_tag = text.match /<span class=\"footnote-show\"(.*?)<\/span>/
+
+      text = text.sub(footnote_tag.to_s, "")
     end
     text
   end
