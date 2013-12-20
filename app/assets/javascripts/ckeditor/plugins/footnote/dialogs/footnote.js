@@ -20,25 +20,24 @@ CKEDITOR.dialog.add( 'footnoteDialog', function( editor ) {
         onOk: function() {
             var dialog = this;
 
-            var footNoteId = (editor.getData().match(/foot-text/g) || []).length + 1;
+            var footNoteId = (editor.getData().match(/id="sdfootnote/g) || []).length + 1;
 
-            var fn = editor.document.createElement( 'sup' );
+            var fn = editor.document.createElement( 'a' );            
+            fn.setAttribute( 'class', 'sdfootnoteanc' );
+            fn.setAttribute( 'href', '#sdfootnote'+ footNoteId +'sym' );
+            fn.setAttribute( 'name', 'sdfootnote'+ footNoteId +'anc' );
             fn.setAttribute( 'foot-text', dialog.getValueOf( 'tab-basic', 'foot-text' ) );
-            fn.setText( footNoteId );
-            fn.setAttribute( 'class', 'footnote-text' );
+            fn.appendHtml("<sup>"+footNoteId+"</sup>");
             editor.insertElement( fn );
 
-            var fnText = "<p class='footnote-show'>";
-            fnText += "<span class='footnote-show' id='" + footNoteId + "'>";
-            fnText += "[" + footNoteId + "] ";
-            fnText += dialog.getValueOf( 'tab-basic', 'foot-text' ) + "</span></p>";
+            var fnText = "<div id='sdfootnote"+ footNoteId +"'>";
+            fnText += "<p class='sdfootnote'>";
+            fnText += "<a class='sdfootnotesym' href='#sdfootnote"+ footNoteId +"anc' ";
+            fnText += "name='sdfootnote"+ footNoteId +"sym'>";
+            fnText += footNoteId + "</a>";
+            fnText += dialog.getValueOf( 'tab-basic', 'foot-text' ) + "</p></div>";
 
-            if ((editor.getData().match(/footnote-hr/g) || []).length == 0){
-                editor.setData(editor.getData() + "<hr class='footnote-hr'>" + fnText);
-            }
-            else{
-                editor.setData(editor.getData() + fnText);
-            }
+            editor.setData(editor.getData() + fnText);
         }
     };
 });

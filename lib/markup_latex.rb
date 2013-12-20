@@ -42,8 +42,8 @@ class MarkupLatex
   end
 
   def prepare_text(text)
-    l_begin = "{{"
-    l_end = "}}"
+    l_begin = "|>|"
+    l_end = "|<|"
     start_index = 0
     array_text = []
 
@@ -71,10 +71,10 @@ class MarkupLatex
       if img_type != 'imagemlatex'
         img_sub = get_image_sub(img_tag.to_s)
         img_src = get_image_src(img_tag.to_s)
-        latex_img = "{{\\#{img_type}{#{img_sub}}{#{img_src}} }}" 
+        latex_img = "|>|\\#{img_type}{#{img_sub}}{#{img_src}}|<|" 
       else
         img_sub = get_image_sub(img_tag.to_s)
-        latex_img = "{{\\ $ #{img_sub} $ }}"
+        latex_img = "|>|\\ $ #{img_sub} $ |<|"
       end
 
       text = text.sub(img_tag.to_s, latex_img)
@@ -83,25 +83,20 @@ class MarkupLatex
   end
 
   def prepare_footnote(text)
-    while text.match /<sup class=\"footnote-text\"(.*?)<\/sup>/
-      footnote_tag = text.match /<sup class=\"footnote-text\"(.*?)<\/sup>/
+    while text.match /<a class=\"sdfootnoteanc\"(.*?)<\/a>/
+      footnote_tag = text.match /<a class=\"sdfootnoteanc\"(.*?)<\/a>/
 
-      footnote_text = text.match /foot-text=\"(.*?)\"/
-      footnote_texts = footnote_text.to_s.split("\"")
-      footnote_texts.shift #retirando o primeiro
-      footnote_text = footnote_texts.join("")
+      footid = footnote_tag.to_s.split("name=\"sdfootnote").last
+      footid = footid.split("anc").first
 
-      text = text.sub(footnote_tag.to_s, "{{\\footnote{#{footnote_text}} }}")
-    end
-    while text.match /<hr .*? \/>/
-      footnote_tag = text.match /<hr .*? \/>/ 
+      text_tag = text.match /<div id(.*)sdfootnote#{footid}([[:ascii:]]*?)<\/div>/
 
-      text = text.sub(footnote_tag.to_s, "")
-    end
-    while text.match /<span class=\"footnote-show\"(.*?)<\/span>/
-      footnote_tag = text.match /<span class=\"footnote-show\"(.*?)<\/span>/
+      foottext = text_tag.to_s.split("</a>").last
+      foottext = foottext.split("</p>").first
 
-      text = text.sub(footnote_tag.to_s, "")
+      text = text.sub(footnote_tag.to_s, "|>|\\footnote{#{foottext}}|<|")
+
+      text = text.sub(text_tag.to_s, "")
     end
     text
   end

@@ -34,6 +34,7 @@
 //= require ckeditor/plugins/texttransform/lang/tr
 //= require ckeditor/plugins/footnote/plugin
 //= require ckeditor/plugins/footnote/dialogs/footnote
+//= require ckeditor/plugins/autogrow/plugin
 //= require jquery.jqEasyCharCounter.min.js
 //= require jquery.mask.min.js
 //= require jscolor/jscolor
