@@ -141,7 +141,7 @@ class Book < ActiveRecord::Base
   end
 
   def pdf
-    directory = File.join(Rails.root,'public','books',"#{self.id}-#{self.title}".gsub(" ","_"))
+    directory = File.join(Rails.root,'public','books',"#{self.title}-#{self.id}".gsub(" ","_"))
     template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],'')
 
     FileUtils.mkdir_p(directory)
