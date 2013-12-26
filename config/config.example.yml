@@ -13,3 +13,9 @@ sales:
 
 production:
   <<: *defaults
+
+sletras:
+  <<: *defaults
+
+tipostaging:
+  <<: *defaults

@@ -24,4 +24,10 @@ elsif Rails.env.sletras?
     provider :facebook, "462817203782895", "6ad0fab174bcd0d298195957fe68a48c"
     provider :google_oauth2, "1087006017149-2b0eihce0m6ft4eh5ie43umfotd3fi4o.apps.googleusercontent.com", "cica4cyWsWDmF_4HIQKtjALC"
   end
+elsif Rails.env.tipostaging?
+  Rails.application.config.middleware.use OmniAuth::Builder do
+    provider :twitter, "NnjbyC3WP9r8sJKnnRJDw", "Nha7HvAy95QdY8SsT45HHYhDTbmK53XI5wMkChLMyzI"
+    provider :facebook, "462817203782895", "6ad0fab174bcd0d298195957fe68a48c"
+    provider :google_oauth2, "1087006017149-2b0eihce0m6ft4eh5ie43umfotd3fi4o.apps.googleusercontent.com", "cica4cyWsWDmF_4HIQKtjALC"
+  end
 end
