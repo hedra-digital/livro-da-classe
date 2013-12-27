@@ -59,6 +59,7 @@ class Text < ActiveRecord::Base
     require "#{Rails.root}/lib/markup_latex.rb"
     content = "#{MarkupLatex.new(self.content).to_latex}".html_safe
     content = content.gsub("\n\\\\","\\\\\\\n") #para tabelas
+    content = content.gsub("\n\\footnote","\\footnote") #para footnote
     #content = content.gsub("\n\\\\","\n\n")
     #content = content.gsub("\\\\","\n\n")
     #content = content.gsub("\\ \\","\n\n")

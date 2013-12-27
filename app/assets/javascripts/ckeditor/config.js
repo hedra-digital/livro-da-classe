@@ -1,6 +1,6 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote,autogrow';
+  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote';
 
   /* Char Count Plugin */
   config.maxLength = 0;

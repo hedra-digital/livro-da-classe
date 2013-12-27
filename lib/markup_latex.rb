@@ -34,7 +34,6 @@ class MarkupLatex
     array.each do |element|
       if element[0] == :html
         element[1] = PandocRuby.convert(element[1], {:from => :html, :to => :latex}, :chapters)
-        #element[1] = HedraLatex.convert(Kramdown::Document.new(element[1], :input => 'html').root)[0]
       elsif element[0] == :latex
         element[1] = ActionView::Base.full_sanitizer.sanitize(element[1])
       end
@@ -83,16 +82,18 @@ class MarkupLatex
   end
 
   def prepare_footnote(text)
-    while text.match /<a class=\"sdfootnoteanc\"(.*?)<\/a>/
-      footnote_tag = text.match /<a class=\"sdfootnoteanc\"(.*?)<\/a>/
+    while text.match /<a(.*?)name=\"sdfootnote(.*?)anc\"(.*?)<\/a>/m
+      footnote_tag = text.match /<a(.*?)name=\"sdfootnote(.*?)anc\"(.*?)<\/a>/m
 
       footid = footnote_tag.to_s.split("name=\"sdfootnote").last
       footid = footid.split("anc").first
 
-      text_tag = text.match /<div id(.*)sdfootnote#{footid}([[:ascii:]]*?)<\/div>/
+      text_tag = text.match /<div id(.*?)sdfootnote(.*?)<\/div>/m
 
       foottext = text_tag.to_s.split("</a>").last
       foottext = foottext.split("</p>").first
+
+      foottext = PandocRuby.convert(foottext, {:from => :html, :to => :latex}, :chapters).gsub("\n","")
 
       text = text.sub(footnote_tag.to_s, "|>|\\footnote{#{foottext}}|<|")
 
