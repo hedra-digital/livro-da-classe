@@ -29,16 +29,18 @@ CKEDITOR.editorConfig = function(config) {
     [ CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse' ]
   ];
 
-  config.toolbar = [    
-    { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+  config.toolbar = [   
+    { name: 'clipboard', items : [ 'Undo','Redo' ] },
+    { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
     { name: 'links', items : [ 'Anchor' ] },
     { name: 'document', items : [ 'Source' ] },
     { name: 'tools', items : [ 'Maximize', 'ShowBlocks' ] },
     { name: 'plugins', items: [ 'TransformTextToUppercase', 'TransformTextToLowercase', 'TransformTextCapitalize', 'TransformTextSwitcher', '-','CharCount' ] },
     '/',
-    { name: 'basicstyles', items : [ 'Bold','Italic','-','RemoveFormat' ] },
-    { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
+    { name: 'basicstyles', items : [ 'Bold','Italic','Subscript','Superscript','-','RemoveFormat' ] },
+    { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },
     { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor', 'FootNote' ] },
+    { name: 'colors', items : [ 'TextColor','BGColor' ] },
     { name: 'styles', items : [ 'Format' ] }
   ];
 
