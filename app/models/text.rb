@@ -58,9 +58,10 @@ class Text < ActiveRecord::Base
   def to_file(file)
     require "#{Rails.root}/lib/markup_latex.rb"
     content = "#{MarkupLatex.new(self.content).to_latex}".html_safe
-    content = content.gsub("\n\\\\","\n\n")
-    content = content.gsub("\\\\","\n\n")
-    content = content.gsub("\\ \\","\n\n")
+    content = content.gsub("\n\\\\","\\\\\\\n") #para tabelas
+    #content = content.gsub("\n\\\\","\n\n")
+    #content = content.gsub("\\\\","\n\n")
+    #content = content.gsub("\\ \\","\n\n")
     File.open(file,'wb') {|io| io.write(content) }
   end
 
