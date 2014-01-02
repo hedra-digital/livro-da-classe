@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131213123602) do
+ActiveRecord::Schema.define(:version => 20140102121501) do
 
   create_table "book_statuses", :force => true do |t|
     t.string   "desc"
@@ -230,14 +230,14 @@ ActiveRecord::Schema.define(:version => 20131213123602) do
 
   create_table "texts", :force => true do |t|
     t.integer  "book_id"
-    t.text     "content"
+    t.text     "content",            :limit => 2147483647
     t.string   "title"
     t.string   "uuid"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
     t.integer  "position"
     t.integer  "user_id"
-    t.boolean  "enabled",            :default => true
+    t.boolean  "enabled",                                  :default => true
     t.string   "author"
     t.string   "image_file_name"
     t.string   "image_content_type"
