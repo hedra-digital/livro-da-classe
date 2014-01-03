@@ -20,7 +20,15 @@ CKEDITOR.dialog.add( 'footnoteDialog', function( editor ) {
         onOk: function() {
             var dialog = this;
 
-            var footNoteId = (editor.getData().match(/id="sdfootnote/g) || []).length + 1;
+            var footnotes = (editor.getData().match(/<div id="sdfootnote(.*?)">/g) || []);
+
+            if (footnotes.length == 0){
+                footNoteId = 1;
+            } else {
+                var aux = footnotes.pop();
+                aux = aux.match(/\d/g).join("");
+                footNoteId = parseInt(aux) + 1;
+            }
 
             var fn = editor.document.createElement( 'a' );            
             fn.setAttribute( 'class', 'sdfootnoteanc' );

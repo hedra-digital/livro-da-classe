@@ -89,7 +89,7 @@ class MarkupLatex
       footid = footnote_tag.to_s.split("name=\"sdfootnote").last
       footid = footid.split("anc").first
 
-      text_tag = text.match /<div id(.*?)sdfootnote(.*?)<\/div>/m
+      text_tag = text.match /<div id=\"sdfootnote#{footid}(.*?)<\/div>/m
 
       foottext = text_tag.to_s.split("</a>").last
       foottext = foottext.split("</p>").first
