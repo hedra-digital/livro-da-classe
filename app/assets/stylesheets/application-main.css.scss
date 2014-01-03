@@ -278,3 +278,13 @@ footer {
 .footnote-hr{
   border-top: 1px solid #c0c0c0;
 }
+
+.latex-inputbox{
+  background-color: #73b8f7; 
+  cursor: pointer; 
+  -webkit-border-radius: 3px; 
+  border-radius: 5px; 
+  padding: 3px; 
+  margin: 3px; 
+  margin-left: 5px;
+}

@@ -23,8 +23,8 @@ CKEDITOR.editorConfig = function(config) {
     [ CKEDITOR.CTRL + 73 /*I*/, 'italic' ],
     [ CKEDITOR.CTRL + 85 /*U*/, 'underline' ],
 
-    [ CKEDITOR.CTRL + 86 /*V*/, 'pastetext' ],
-    [ CKEDITOR.SHIFT + 45 /*INS*/, 'pastetext' ],
+    //[ CKEDITOR.CTRL + 86 /*V*/, 'pastetext' ],
+    //[ CKEDITOR.SHIFT + 45 /*INS*/, 'pastetext' ],
 
     [ CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse' ]
   ];
@@ -202,3 +202,31 @@ CKEDITOR.editorConfig = function(config) {
 CKEDITOR.addCss('.small-intention { zoom: 0.3; -moz-transform: scale(0.3); }');
 CKEDITOR.addCss('.medium-intention { zoom: 0.6; -moz-transform: scale(0.6); }');
 CKEDITOR.addCss('.big-intention { zoom: 1; -moz-transform: scale(1); }');
+CKEDITOR.addCss('.latex-inputbox { background-color: #73b8f7; cursor: pointer; -webkit-border-radius: 3px; border-radius: 5px; padding: 3px; margin: 3px; margin-left: 5px;}');
+CKEDITOR.addCss('.latex-close { cursor: pointer; font-size: 12px; color: #fff; padding: 5px; }')
+//CKEDITOR.addCss('.latex-close:before { content: "×"; }');
+
+CKEDITOR.instances.text_content.on('contentDom', function() {
+  CKEDITOR.instances.text_content.document.on('keyup', function(event) {
+    var key = event.data.getKey();
+    var editor = CKEDITOR.instances.text_content;
+    var content = editor.document.getBody().getHtml();
+    if (content.match(/@(.*?)@/) != null){
+      var inside = content.match(/@(.*?)@/)[0];
+      inside = inside.replace(/@/g,"");
+      if (inside.length != 0){
+        content = content.replace(/@(.*?)@/, "<span class='latex-inputbox'>"+inside+"<a class='latex-close' onclick='this.parentNode.remove();'>×</a></span><span>&nbsp;</span>");
+        editor.document.getBody().setHtml(content); 
+      }
+      var range = editor.createRange();
+      range.moveToElementEditEnd( range.root );
+      editor.getSelection().selectRanges( [ range ] );
+    }
+  });
+});
+
+CKEDITOR.instances.text_content.on('instanceReady', function() {
+  var content = CKEDITOR.instances.text_content.document.getBody().getHtml();
+  content = content.replace(/data-cke-pa-onclick/g, "onclick");
+  CKEDITOR.instances.text_content.document.getBody().setHtml(content);
+});

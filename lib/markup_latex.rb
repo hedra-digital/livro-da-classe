@@ -21,6 +21,7 @@ class MarkupLatex
   def build_array(content_text)
     content_text = prepare_image content_text
     content_text = prepare_footnote content_text
+    content_text = prepare_marker content_text
     array = prepare_text content_text
     compiled_array = compile_latex array
   end
@@ -97,6 +98,23 @@ class MarkupLatex
 
       text = text.sub(footnote_tag.to_s, "|>|\\footnote{#{foottext}}|<|")
 
+      text = text.sub(text_tag.to_s, "")
+    end
+    text
+  end
+
+  def prepare_marker(text)
+    while text.match /<span class=\"latex-inputbox\"(.*?)<\/span>/m
+      marker_tag = text.match /<span class=\"latex-inputbox\"(.*?)<\/span>/m
+
+      markertext = marker_tag.to_s.split("<a class=\"latex-close\"").first
+      markertext = markertext.split("<span class=\"latex-inputbox\">").last
+
+      text = text.sub(marker_tag.to_s, "|>|#{markertext}|<|")
+    end
+
+    while text.match /<span>[[:space:]]<\/span>/m
+      text_tag = text.match /<span>[[:space:]]<\/span>/m
       text = text.sub(text_tag.to_s, "")
     end
     text
