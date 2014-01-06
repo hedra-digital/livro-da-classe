@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140102121501) do
+ActiveRecord::Schema.define(:version => 20140106175937) do
 
   create_table "book_statuses", :force => true do |t|
     t.string   "desc"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(:version => 20140102121501) do
     t.string   "replace"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "level", :default => 1
   end
 
   create_table "invitations", :force => true do |t|

@@ -308,6 +308,7 @@ pt-BR:
       expression:
         target: Expressão a ser substituída
         replace: Expressão substituta
+        level: Nível
       cover_info: 
         autor: Autor 
         book_id: Livro 

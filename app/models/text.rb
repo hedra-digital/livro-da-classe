@@ -58,6 +58,11 @@ class Text < ActiveRecord::Base
   def to_file(file)
     require "#{Rails.root}/lib/markup_latex.rb"
     content = "#{MarkupLatex.new(self.content).to_latex}".html_safe
+
+    Expression.where(:level => 3).each do |exp|
+      content = content.gsub(eval(exp.target), exp.replace)
+    end
+
     content = content.gsub("\n\\\\","\\\\\\\n") #para tabelas
     content = content.gsub("\n\\footnote","\\footnote") #para footnote
     #content = content.gsub("\n\\\\","\n\n")
@@ -77,8 +82,12 @@ class Text < ActiveRecord::Base
   end
 
   def remove_expressions
-    Expression.all.each do |exp|
+    Expression.where(:level => 1).each do |exp|
       self.content = self.content.gsub(eval(exp.target), exp.replace)
+    end
+
+    Expression.where(:level => 2).each do |exp|
+      self.content = self.content.gsub(eval(exp.target), "<span style='background-color:#FFD700;'>#{exp.replace}</span>")
     end
   end
 
