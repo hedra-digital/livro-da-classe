@@ -19,9 +19,9 @@ class MarkupLatex
   end
 
   def build_array(content_text)
+    content_text = prepare_marker content_text
     content_text = prepare_image content_text
     content_text = prepare_footnote content_text
-    content_text = prepare_marker content_text
     array = prepare_text content_text
     compiled_array = compile_latex array
   end
