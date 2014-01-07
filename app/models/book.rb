@@ -22,7 +22,6 @@ class Book < ActiveRecord::Base
 
   # Callbacks
   before_save               :set_uuid
-  after_commit              :create_folder
   
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
@@ -134,6 +133,12 @@ class Book < ActiveRecord::Base
   def pdf
     directory = File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title}-#{self.template}-#{self.id}".gsub(" ","_"))
 
+    if !Dir.exists?(directory)
+      template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
+      FileUtils.mkdir_p(directory)
+      FileUtils.cp_r(Dir[template_directory], directory)
+    end
+
     # generate latex files
     input_files = ""
     self.texts.order("-position DESC").each do |text|
@@ -176,14 +181,5 @@ class Book < ActiveRecord::Base
 
   def set_uuid
     self.uuid = Guid.new.to_s if self.uuid.nil?
-  end
-
-  def create_folder
-    directory = File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title}-#{self.template}-#{self.id}".gsub(" ","_"))
-    if !Dir.exists?(directory)
-      template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
-      FileUtils.mkdir_p(directory)
-      FileUtils.cp_r(Dir[template_directory], directory)
-    end
   end
 end
