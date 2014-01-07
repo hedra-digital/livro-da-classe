@@ -22,6 +22,7 @@ class Book < ActiveRecord::Base
 
   # Callbacks
   before_save               :set_uuid
+  before_save               :rename_folder
   
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
@@ -181,5 +182,16 @@ class Book < ActiveRecord::Base
 
   def set_uuid
     self.uuid = Guid.new.to_s if self.uuid.nil?
+  end
+
+  def rename_folder
+    if self.title_changed?
+      directory = File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title_was}-#{self.template}-#{self.id}".gsub(" ","_"))
+      new_directory = File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title}-#{self.template}-#{self.id}".gsub(" ","_"))
+
+      if Dir.exists?(directory)
+        FileUtils.mv directory, new_directory
+      end
+    end
   end
 end
