@@ -4,6 +4,7 @@ restricted_area:
 
 development: &defaults
   latex_template_path: templates/
+  books_path: /home/fellipe/tipografia-books/
 
 test:
   <<: *defaults

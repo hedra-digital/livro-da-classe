@@ -132,7 +132,7 @@ class Book < ActiveRecord::Base
   end
 
   def pdf
-    directory = File.join(Rails.root,'public','books',"#{self.title}(#{self.template})-#{self.id}".gsub(" ","_"))
+    directory = File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title}-#{self.template}-#{self.id}".gsub(" ","_"))
 
     # generate latex files
     input_files = ""
@@ -143,10 +143,10 @@ class Book < ActiveRecord::Base
     end
 
     input_text = File.join(directory,'INPUTS.tex')
-    File.open(input_text,'wb') {|io| io.write(input_files) }
+    File.open(input_text,'w') {|io| io.write(input_files) }
 
     input_commands = File.join(directory,'comandos.sty')
-    File.open(input_commands,'wb') {|io| io.write(self.commands) }
+    File.open(input_commands,'w') {|io| io.write(self.commands) }
 
     # generate pdf
     Process.waitpid(
@@ -179,7 +179,7 @@ class Book < ActiveRecord::Base
   end
 
   def create_folder
-    directory = File.join(Rails.root,'public','books',"#{self.title}(#{self.template})-#{self.id}".gsub(" ","_"))
+    directory = File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title}-#{self.template}-#{self.id}".gsub(" ","_"))
     if !Dir.exists?(directory)
       template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
       FileUtils.mkdir_p(directory)
