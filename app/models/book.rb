@@ -159,7 +159,7 @@ class Book < ActiveRecord::Base
         begin
           system "cd #{directory}/ && make"
         rescue
-          #
+          system "cd #{directory}/ && make clean"
         ensure
           Process.exit! 1
         end
