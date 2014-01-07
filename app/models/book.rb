@@ -22,7 +22,8 @@ class Book < ActiveRecord::Base
 
   # Callbacks
   before_save               :set_uuid
-  #after_create              :create_dependencies
+  after_commit              :create_folder
+  
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
   has_and_belongs_to_many   :users
@@ -85,6 +86,7 @@ class Book < ActiveRecord::Base
   end
 
   def count_pages
+    # re-do it
     begin
       require 'open-uri'
       site_url = "http://#{Livrodaclasse::Application.config.action_mailer.default_url_options[:host]}"
@@ -129,23 +131,10 @@ class Book < ActiveRecord::Base
     commands
   end
 
-  def content
-    require "#{Rails.root}/lib/markup_latex.rb"
-
-    content = ""
-    self.texts.order("-position DESC").each do |text|
-      content << "\\begin{nucleo}{#{text.title}}[#{text.author}][#{text.default_image}]#{MarkupLatex.new(text.content).to_latex}\\end{nucleo}\n\n" unless text.content.to_s.size == 0
-    end
-
-    content.html_safe
-  end
-
   def pdf
-    directory = File.join(Rails.root,'public','books',"#{self.title}-#{self.id}".gsub(" ","_"))
-    template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],'')
+    directory = File.join(Rails.root,'public','books',"#{self.title}(#{self.template})-#{self.id}".gsub(" ","_"))
 
-    FileUtils.mkdir_p(directory)
-
+    # generate latex files
     input_files = ""
     self.texts.order("-position DESC").each do |text|
       text_filename = "#{String.remover_acentos(text.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{text.id}.tex"
@@ -159,11 +148,10 @@ class Book < ActiveRecord::Base
     input_commands = File.join(directory,'comandos.sty')
     File.open(input_commands,'wb') {|io| io.write(self.commands) }
 
-    # build latex
+    # generate pdf
     Process.waitpid(
       fork do
         begin
-          system "cp #{template_directory}#{self.template}/* #{directory}/"
           system "cd #{directory}/ && make"
         rescue
           #
@@ -188,5 +176,14 @@ class Book < ActiveRecord::Base
 
   def set_uuid
     self.uuid = Guid.new.to_s if self.uuid.nil?
+  end
+
+  def create_folder
+    directory = File.join(Rails.root,'public','books',"#{self.title}(#{self.template})-#{self.id}".gsub(" ","_"))
+    if !Dir.exists?(directory)
+      template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
+      FileUtils.mkdir_p(directory)
+      FileUtils.cp_r(Dir[template_directory], directory)
+    end
   end
 end
