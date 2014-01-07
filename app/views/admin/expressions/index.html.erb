@@ -10,6 +10,7 @@
   </div>
   <table class="table table-striped">
     <tr>
+      <th>Nível</th>
       <th>Expressão a ser substituída</th>
       <th>Expressão Substituta</th>
       <th></th>
@@ -17,6 +18,7 @@
     </tr>
     <% @expressions.each do |expression| %>
       <tr>
+        <td><%= expression.level %></td>        
         <td><%= expression.target %></td>
         <td><%= expression.replace %></td>
         <td><%= link_to 'Editar', edit_admin_expression_path(expression), :class => 'btn btn-mini' %></td>

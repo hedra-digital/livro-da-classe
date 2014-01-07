@@ -1,7 +1,7 @@
 class Admin::ExpressionsController < Admin::ApplicationController
 
   def index
-    @expressions = Expression.all
+    @expressions = Expression.order(:level)
   end
 
   def new
