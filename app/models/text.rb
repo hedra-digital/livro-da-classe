@@ -57,15 +57,21 @@ class Text < ActiveRecord::Base
 
   def to_file(file)
     require "#{Rails.root}/lib/markup_latex.rb"
+
+    self.content = self.content.gsub(/ <\/(.*?)>/m, '</\1>&nbsp;')
+    self.content = self.content.gsub(/<([a-z]+)> /m, '&nbsp;<\1>')
+     
     content = "#{MarkupLatex.new(self.content).to_latex}".html_safe
+
+    content = content.gsub("\n\\\\","\\\\\\\n") #para tabelas
+    content = content.gsub("\\textsuperscript{}","") #para footnote
+    content = content.gsub("\n\\footnote","\\footnote") #para footnote
+    content = content.gsub("\n.\\footnote",".\\footnote") #para footnote
 
     Expression.where(:level => 3).each do |exp|
       content = content.gsub(eval(exp.target), exp.replace)
     end
 
-    content = content.gsub("\n\\\\","\\\\\\\n") #para tabelas
-    content = content.gsub("\n\\footnote","\\footnote") #para footnote
-    content = content.gsub("\n.\\footnote",".\\footnote") #para footnote
     #content = content.gsub("\n\\\\","\n\n")
     #content = content.gsub("\\\\","\n\n")
     #content = content.gsub("\\ \\","\n\n")

@@ -71,7 +71,7 @@ class MarkupLatex
       if img_type != 'imagemlatex'
         img_sub = get_image_sub(img_tag.to_s)
         img_src = get_image_src(img_tag.to_s)
-        latex_img = "|>|\\#{img_type}{#{img_sub}}{#{img_src}}|<|" 
+        latex_img = "|>|\\#{img_type}{#{img_sub}}{#{img_src}} |<|" 
       else
         img_sub = get_image_sub(img_tag.to_s)
         latex_img = "|>|\\ $ #{img_sub} $ |<|"
@@ -96,7 +96,7 @@ class MarkupLatex
 
       foottext = PandocRuby.convert(foottext, {:from => :html, :to => :latex}, :chapters).gsub("\n","")
 
-      text = text.sub(footnote_tag.to_s, "|>|\\footnote{#{foottext}}|<|")
+      text = text.sub(footnote_tag.to_s, "|>|\\footnote{#{foottext}} |<|")
 
       text = text.sub(text_tag.to_s, "")
     end
@@ -110,7 +110,7 @@ class MarkupLatex
       markertext = marker_tag.to_s.split("<a class=\"latex-close\"").first
       markertext = markertext.split("<span class=\"latex-inputbox\">").last
 
-      text = text.sub(marker_tag.to_s, "|>|#{markertext}|<|")
+      text = text.sub(marker_tag.to_s, "|>|#{markertext} |<|")
     end
 
     while text.match /<span>[[:space:]]<\/span>/m
