@@ -60,7 +60,7 @@ class Text < ActiveRecord::Base
 
     self.content = self.content.gsub(/ <\/(.*?)>/m, '</\1>&nbsp;')
     self.content = self.content.gsub(/<([a-z]+)> /m, '&nbsp;<\1>')
-     
+
     content = "#{MarkupLatex.new(self.content).to_latex}".html_safe
 
     content = content.gsub("\n\\\\","\\\\\\\n") #para tabelas

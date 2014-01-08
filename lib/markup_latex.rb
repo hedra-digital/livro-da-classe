@@ -7,16 +7,10 @@ class MarkupLatex
   end
   
   def to_latex
-    build_string_from_array build_array decode @text.dup
+    build_array decode @text.dup
   end
 
   private
-
-  def build_string_from_array(compiled_array)
-    string = ""
-    compiled_array.each{|a| string << a[1]}
-    string
-  end
 
   def build_array(content_text)
     content_text = prepare_marker content_text
@@ -24,6 +18,7 @@ class MarkupLatex
     content_text = prepare_footnote content_text
     array = prepare_text content_text
     compiled_array = compile_latex array
+    compiled_array
   end
 
   def decode(content_text)
@@ -32,13 +27,27 @@ class MarkupLatex
   end
   
   def compile_latex(array)
+    t = ""
+    i = 0
     array.each do |element|
       if element[0] == :html
-        element[1] = PandocRuby.convert(element[1], {:from => :html, :to => :latex}, :chapters)
+        t << element[1]
       elsif element[0] == :latex
-        element[1] = ActionView::Base.full_sanitizer.sanitize(element[1])
+        t << "{{{{#{i}}}}}" 
       end
+      i += i + 1
     end
+
+    t = PandocRuby.convert(t, {:from => :html, :to => :latex}, :chapters)
+
+    i = 0
+    array.each do |element|
+      if element[0] == :latex
+        t = t.gsub("\\{\\{\\{\\{#{i}\\}\\}\\}\\}", ActionView::Base.full_sanitizer.sanitize(element[1]))
+      end
+      i += i + 1
+    end
+    t
   end
 
   def prepare_text(text)
