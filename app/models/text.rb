@@ -65,6 +65,7 @@ class Text < ActiveRecord::Base
 
     content = content.gsub("\n\\\\","\\\\\\\n") #para tabelas
     content = content.gsub("\\textsuperscript{}","") #para footnote
+    #content = content.gsub(/\\textsuperscript{(.*)\\footnote{(.*)}(.*)}/,'\1\\footnote{\2}')
     content = content.gsub("\n\\footnote","\\footnote") #para footnote
     content = content.gsub("\n.\\footnote",".\\footnote") #para footnote
 

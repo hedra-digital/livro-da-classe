@@ -103,7 +103,7 @@ class MarkupLatex
       foottext = text_tag.to_s.split("</a>").last
       foottext = foottext.split("</p>").first
 
-      foottext = PandocRuby.convert(foottext, {:from => :html, :to => :latex}, :chapters).gsub("\n","")
+      foottext = PandocRuby.convert(foottext, {:from => :html, :to => :latex}, :chapters)
 
       text = text.sub(footnote_tag.to_s, "|>|\\footnote{#{foottext}} |<|")
 
