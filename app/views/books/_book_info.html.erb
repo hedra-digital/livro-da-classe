@@ -20,7 +20,7 @@
               <%= menu_item t(:texts, :scope => :book_nav), book_texts_path(@book.uuid) %>
             <% end %>
 
-            <% if can_execute? and @book.valid? %>
+            <% if can_execute? and @book.valid %>
               <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
             <% end %>
 

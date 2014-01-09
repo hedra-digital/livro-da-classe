@@ -178,8 +178,8 @@ class Book < ActiveRecord::Base
     pdf_file
   end
 
-  def valid?
-    self.texts.where(:valid_content => false).size == 0
+  def valid
+    Text.where(:book_id => self.id, :valid_content => false).size == 0
   end
 
   private
