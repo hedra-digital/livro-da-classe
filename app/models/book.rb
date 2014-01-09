@@ -178,6 +178,10 @@ class Book < ActiveRecord::Base
     pdf_file
   end
 
+  def valid?
+    self.texts.where(:valid_content => false).size == 0
+  end
+
   private
 
   def set_uuid

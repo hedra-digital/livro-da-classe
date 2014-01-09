@@ -56,6 +56,11 @@ class Text < ActiveRecord::Base
   end
 
   def to_file(file)
+    content = self.to_latex
+    File.open(file,'wb') {|io| io.write(content) }
+  end
+
+  def to_latex
     require "#{Rails.root}/lib/markup_latex.rb"
 
     self.content = self.content.gsub(/ <\/(.*?)>/m, '</\1>&nbsp;')
@@ -65,7 +70,6 @@ class Text < ActiveRecord::Base
 
     content = content.gsub("\n\\\\","\\\\\\\n") #para tabelas
     content = content.gsub("\\textsuperscript{}","") #para footnote
-    #content = content.gsub(/\\textsuperscript{(.*)\\footnote{(.*)}(.*)}/,'\1\\footnote{\2}')
     content = content.gsub("\n\\footnote","\\footnote") #para footnote
     content = content.gsub("\n.\\footnote",".\\footnote") #para footnote
 
@@ -73,14 +77,16 @@ class Text < ActiveRecord::Base
       content = content.gsub(eval(exp.target), exp.replace)
     end
 
-    #content = content.gsub("\n\\\\","\n\n")
-    #content = content.gsub("\\\\","\n\n")
-    #content = content.gsub("\\ \\","\n\n")
-    File.open(file,'wb') {|io| io.write(content) }
+    content
   end
 
-  def self.validate_content
-    true
+  def validate_content
+    begin
+      self.to_latex
+      return true
+    rescue
+      return false
+    end
   end
 
   private
