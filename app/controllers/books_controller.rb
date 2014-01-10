@@ -45,6 +45,7 @@ class BooksController < ApplicationController
         pdf = @book.pdf
         if !pdf.nil?
           send_file(pdf, :filename => "#{@book.uuid}.pdf", :disposition => 'inline', :type => "application/pdf")
+          GC.start
         else
           raise "Error in pdf generation"
         end
