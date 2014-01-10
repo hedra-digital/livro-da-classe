@@ -13,11 +13,17 @@ class MarkupLatex
   private
 
   def build_array(content_text)
+    puts "1" * 100
     content_text = prepare_marker content_text
+    puts "2" * 100
     content_text = prepare_image content_text
+    puts "3" * 100
     content_text = prepare_footnote content_text
+    puts "4" * 100
     array = prepare_text content_text
+    puts "5" * 100
     compiled_array = compile_latex array
+    puts "6" * 100
     compiled_array
   end
 
@@ -117,7 +123,7 @@ class MarkupLatex
       marker_tag = text.match /<span class=\"latex-inputbox\"(.*?)<\/span>/m
 
       markertext = marker_tag.to_s.split("<a class=\"latex-close\"").first
-      markertext = markertext.split("<span class=\"latex-inputbox\">").last
+      markertext = markertext.split(/<span class=\"latex-inputbox\"(.*?)>/).last
 
       text = text.sub(marker_tag.to_s, "|>|#{markertext} |<|")
     end
