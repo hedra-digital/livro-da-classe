@@ -11,16 +11,20 @@
   <table class="table table-striped">
     <tr>
       <th>Nível</th>
+      <th>Id</th>
       <th>Expressão a ser substituída</th>
       <th>Expressão Substituta</th>
+      <th>Descrição</th>
       <th></th>
       <th></th>
     </tr>
     <% @expressions.each do |expression| %>
       <tr>
-        <td><%= expression.level %></td>        
+        <td><%= expression.level %></td>   
+        <td><%= "##{expression.id}" %></td>     
         <td><%= expression.target %></td>
         <td><%= expression.replace %></td>
+        <td><%= expression.description %></td>
         <td><%= link_to 'Editar', edit_admin_expression_path(expression), :class => 'btn btn-mini' %></td>
         <td><%= link_to 'Remover', admin_expression_path(expression), :class => 'btn btn-danger btn-mini', :confirm => 'Tem certeza que deseja apagar esta expressão de substituição?', :method => :delete %></td>
       </tr>
