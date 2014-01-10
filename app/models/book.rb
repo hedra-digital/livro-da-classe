@@ -173,8 +173,8 @@ class Book < ActiveRecord::Base
       pdf_file = File.join(directory,"#{self.uuid}.pdf")
     else
       pdf_file = nil
-      if File.exist?(File.join(directory, 'LIVRO.log')
-        AdminMailer.pdf_to_latex_error(self, directory, "#{directory}/LIVRO.log").deliver
+      if File.exist?(File.join(directory, 'LIVRO.log'))
+        AdminMailer.delay.pdf_to_latex_error(self, directory, "#{directory}/LIVRO.log")
       end
     end
     pdf_file
