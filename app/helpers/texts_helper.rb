@@ -9,5 +9,5 @@ module TextsHelper
   def text_title(book, text)
   	return link_to(text.title, book_text_path(book.uuid, text.uuid)) if is_organizer?
     !text.is_enabled? ? text.title : link_to(text.title, book_text_path(book.uuid, text.uuid))
-  end  
+  end
 end

@@ -4,6 +4,9 @@
   <div class="form-inputs">
     <div class="row">
       <div class="span7"><%= f.input :title, :label => false %></div>
+      <% if can_review? %>
+        <div class="span3 form-horizontal inline-checkbox"><%= f.input :revised %></div>
+      <% end %>
     </div>
     <%= f.input :content, :label => false, :as => :ckeditor %>
   </div>
