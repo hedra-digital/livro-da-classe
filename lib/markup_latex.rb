@@ -111,6 +111,8 @@ class MarkupLatex
 
       foottext = PandocRuby.convert(foottext, {:from => :html, :to => :latex}, :chapters)
 
+      foottext = foottext.sub("\\&", "$$$&")
+
       text = text.sub(footnote_tag.to_s, "|>|\\footnote{#{foottext}} |<|")
 
       text = text.sub(text_tag.to_s, "")

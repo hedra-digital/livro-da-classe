@@ -73,6 +73,8 @@ class Text < ActiveRecord::Base
     content = content.gsub("\n\\footnote","\\footnote") #para footnote
     content = content.gsub("\n.\\footnote",".\\footnote") #para footnote
 
+    content = content.gsub("$$$&", "\\\\&")
+
     Expression.where(:level => 3).each do |exp|
       content = content.gsub(eval(exp.target), exp.replace)
     end
