@@ -7,6 +7,7 @@
       <th>Leitura</th>
       <th>Escrita</th>
       <th>Execução</th>
+      <th>Revisão</th>
       <th></th>
     </tr>
     <% @permissions.each do |permission| %>
@@ -27,6 +28,11 @@
           <td>
             <div class="form-inputs">
               <%= f.input :execute, :label => "" %>
+            </div>
+          </td>
+          <td>
+            <div class="form-inputs">
+              <%= f.input :review, :label => "" %>
             </div>
           </td>
           <td>

@@ -31,7 +31,7 @@ class Text < ActiveRecord::Base
   validates :user_id,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :content, :title, :uuid, :user_id, :enabled, :author, :image, :valid_content
+  attr_accessible           :book_id, :content, :title, :uuid, :user_id, :enabled, :author, :image, :valid_content, :revised
 
   has_attached_file :image,
                     :styles => {
@@ -100,8 +100,10 @@ class Text < ActiveRecord::Base
       self.content = self.content.gsub(eval(exp.target), exp.replace)
     end
 
-    Expression.where(:level => 2).each do |exp|
-      self.content = self.content.gsub(eval(exp.target), "<span style='background-color:#FFD700;'>#{exp.replace}</span>")
+    unless revised
+      Expression.where(:level => 2).each do |exp|
+        self.content = self.content.gsub(eval(exp.target), "<span style='background-color:#FFD700;'>#{exp.replace}</span>")
+      end
     end
   end
 

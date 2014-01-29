@@ -361,6 +361,7 @@ pt-BR:
         title: 'Título'
         content: 'Conteúdo'
         author: 'Autor do Texto'
+        revised: 'Revisado'
       client:
         name: Nome
         emai: E-mail

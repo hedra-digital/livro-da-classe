@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140110192958) do
+ActiveRecord::Schema.define(:version => 20140127184317) do
 
   create_table "book_statuses", :force => true do |t|
     t.string   "desc"
@@ -166,8 +166,9 @@ ActiveRecord::Schema.define(:version => 20140110192958) do
     t.boolean  "read"
     t.boolean  "write"
     t.boolean  "execute"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "review",         :default => false
   end
 
   create_table "profiles", :force => true do |t|
@@ -235,8 +236,8 @@ ActiveRecord::Schema.define(:version => 20140110192958) do
     t.text     "content",            :limit => 2147483647
     t.string   "title"
     t.string   "uuid"
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.integer  "position"
     t.integer  "user_id"
     t.boolean  "enabled",                                  :default => true
@@ -246,6 +247,7 @@ ActiveRecord::Schema.define(:version => 20140110192958) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "valid_content"
+    t.boolean  "revised",                                  :default => false
   end
 
   create_table "users", :force => true do |t|
