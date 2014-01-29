@@ -98,7 +98,6 @@ class MarkupLatex
   end
 
   def prepare_footnote(text)
-    raise 1
     while text.match /<a(.*?)name=\"sdfootnote(.*?)anc\"(.*?)<\/a>/m
       footnote_tag = text.match /<a(.*?)name=\"sdfootnote(.*?)anc\"(.*?)<\/a>/m
 
