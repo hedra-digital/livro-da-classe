@@ -80,12 +80,13 @@ CKEDITOR.editorConfig = function(config) {
   // Because of 
   config.hideDialogFields = "image:info:htmlPreview";
 
-  config.allowedContent = 'h1 h2 h3 h4 h5 h6 strong em blockquote ol ul li;' +
+  config.allowedContent = 
+      'h1 h2 h3 h4 h5 h6 strong em blockquote ol ul li;' +
       'a(latex-close)[*]; a[!name,!href];' +
       'img[*];' +
       'table tr th td caption;' +
       'span(latex-inputbox); span{color,background-color};' +
-      'p{align,text-align};' +
+      'p[align]; p{align,text-align};' +
       'div[!id];';
 
   // Rails CSRF token

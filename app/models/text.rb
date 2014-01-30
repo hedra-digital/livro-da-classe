@@ -75,6 +75,9 @@ class Text < ActiveRecord::Base
 
     content = content.gsub("$$$&", "\\\\&")
 
+    content = content.gsub("\\textbar{}\\textgreater{}\\textbar{}", "")
+    content = content.gsub("\\textbar{}\\textless{}\\textbar{}", "")
+
     Expression.where(:level => 3).each do |exp|
       content = content.gsub(eval(exp.target), exp.replace)
     end

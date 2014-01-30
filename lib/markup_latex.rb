@@ -20,10 +20,12 @@ class MarkupLatex
     puts "3" * 100
     content_text = prepare_footnote content_text
     puts "4" * 100
-    array = prepare_text content_text
+    content_text = prepare_alignment content_text
     puts "5" * 100
-    compiled_array = compile_latex array
+    array = prepare_text content_text
     puts "6" * 100
+    compiled_array = compile_latex array
+    puts "7" * 100
     compiled_array
   end
 
@@ -116,6 +118,37 @@ class MarkupLatex
       text = text.sub(footnote_tag.to_s, "|>|\\footnote{#{foottext}} |<|")
 
       text = text.sub(text_tag.to_s, "")
+    end
+    text
+  end
+
+  def prepare_alignment(text)
+    while text.match /<p align="RIGHT">(.*?)<\/p>/m
+      paragraph = text.match /<p align="RIGHT">(.*?)<\/p>/m
+      paragraph_text = PandocRuby.convert(paragraph, {:from => :html, :to => :latex}, :chapters)
+      paragraph_text = paragraph_text.sub("\\&", "$$$&")
+      text = text.sub(paragraph.to_s, "|>|\\begin{flushright}#{paragraph_text}\\end{flushright}\n\r|<|")
+    end
+
+    while text.match /<p style="text-align: right;">(.*?)<\/p>/m
+      paragraph = text.match /<p style="text-align: right;">(.*?)<\/p>/m
+      paragraph_text = PandocRuby.convert(paragraph, {:from => :html, :to => :latex}, :chapters)
+      paragraph_text = paragraph_text.sub("\\&", "$$$&")
+      text = text.sub(paragraph.to_s, "|>|\\begin{flushright}#{paragraph_text}\\end{flushright}\n\r|<|")
+    end
+
+    while text.match /<p align="CENTER">(.*?)<\/p>/m
+      paragraph = text.match /<p align="CENTER">(.*?)<\/p>/m
+      paragraph_text = PandocRuby.convert(paragraph, {:from => :html, :to => :latex}, :chapters)
+      paragraph_text = paragraph_text.sub("\\&", "$$$&")
+      text = text.sub(paragraph.to_s, "|>|\\begin{center}#{paragraph_text}\\end{center}\n\r|<|")
+    end
+
+    while text.match /<p style="text-align: center;">(.*?)<\/p>/m
+      paragraph = text.match /<p style="text-align: center;">(.*?)<\/p>/m
+      paragraph_text = PandocRuby.convert(paragraph, {:from => :html, :to => :latex}, :chapters)
+      paragraph_text = paragraph_text.sub("\\&", "$$$&")
+      text = text.sub(paragraph.to_s, "|>|\\begin{center}#{paragraph_text}\\end{center}\n\r|<|")
     end
     text
   end
