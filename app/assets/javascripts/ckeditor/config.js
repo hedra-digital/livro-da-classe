@@ -81,10 +81,10 @@ CKEDITOR.editorConfig = function(config) {
   config.hideDialogFields = "image:info:htmlPreview";
 
   config.allowedContent = 'h1 h2 h3 h4 h5 h6 strong em blockquote ol ul li;' +
-      'a[!href,!name];' +
+      'a(latex-close)[*]; a[!name,!href];' +
       'img[*];' +
       'table tr th td caption;' +
-      'span{color,background-color};' +
+      'span(latex-inputbox); span{color,background-color};' +
       'p{align,text-align};' +
       'div[!id];';
 
