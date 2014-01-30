@@ -357,11 +357,12 @@ pt-BR:
         read: 'Leitura'
         write: 'Escrita'
         execute: 'Executar'
+        review: 'Revisar'
       text:
         title: 'Título'
         content: 'Conteúdo'
         author: 'Autor do Texto'
-        revised: 'Revisado'
+        revised: 'Revisar'
       client:
         name: Nome
         emai: E-mail

@@ -102,7 +102,7 @@ class Text < ActiveRecord::Base
       self.content = self.content.gsub(eval(exp.target), exp.replace)
     end
 
-    unless revised
+    if revised
       Expression.where(:level => 2).each do |exp|
         self.content = self.content.gsub(eval(exp.target), "<span style='background-color:#FFD700;'>#{exp.replace}</span>")
       end
