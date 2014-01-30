@@ -21,7 +21,7 @@
             <% end %>
 
             <% if can_execute? and @book.valid %>
-              <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf")  %>
+              <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf"), true  %>
             <% end %>
 
             <% if is_organizer? && is_project? && can_execute? %>
