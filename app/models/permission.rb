@@ -15,10 +15,12 @@ class Permission < ActiveRecord::Base
       p = Permission.new
       p.book_status = bs
       p.profile = profile
+      #TO-REFACTOR
       p.read = false
       p.write = false
       p.execute = false
       p.review = false
+      p.git = false
       p.save
     end
   end
@@ -28,10 +30,12 @@ class Permission < ActiveRecord::Base
       p = Permission.new
       p.book_status = book_status
       p.profile = pr
+      #TO-REFACTOR
       p.read = false
       p.write = false
       p.execute = false
       p.review = false
+      p.git = false
       p.save
     end
   end

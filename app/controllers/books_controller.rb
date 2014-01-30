@@ -39,10 +39,9 @@ class BooksController < ApplicationController
   def show
     @scraps = Scrap.where(:parent_scrap_id => nil, :book_id => @book.id).order('created_at DESC').all
     respond_to do |format|
-      format.html # show.html.erb
-      #format.pdf
+      format.html
       format.pdf do
-        pdf = @book.pdf
+        pdf = @book.pdf(current_user.profile.desc)
         if !pdf.nil?
           send_file(pdf, :filename => "#{@book.uuid}.pdf", :disposition => 'inline', :type => "application/pdf")
         else

@@ -64,4 +64,15 @@ module AuthorizationHelper
       Permission.get_permissions_for(book.project.status, user.profile.id).review
     end
   end
+
+  def can_git?(book=nil, user=nil)
+    book ||= @book
+    user ||= @current_user
+
+    if book.nil? || user.nil?
+      return false
+    else
+      Permission.get_permissions_for(book.project.status, user.profile.id).git
+    end
+  end
 end

@@ -358,6 +358,7 @@ pt-BR:
         write: 'Escrita'
         execute: 'Executar'
         review: 'Revisar'
+        git: 'Git'
       text:
         title: 'Título'
         content: 'Conteúdo'

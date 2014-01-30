@@ -131,20 +131,21 @@ class Book < ActiveRecord::Base
     commands
   end
 
-  def pdf
+  def pdf user_profile
     directory = File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title}-#{self.template}-#{self.id}".gsub(" ","_"))
 
     if !Dir.exists?(directory)
       template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
       FileUtils.mkdir_p(directory)
       FileUtils.cp_r(Dir[template_directory], directory)
+      Version.commit_directory directory, "New Book => #{self.title}"
     end
 
     # generate latex files
     input_files = ""
     self.texts.order("-position DESC").each do |text|
       text_filename = "#{String.remover_acentos(text.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{text.id}.tex"
-      text.to_file(File.join(directory,text_filename))
+      text.to_file(File.join(directory,text_filename), user_profile)
       input_files << "\\input{#{text_filename}}\n"
     end
 

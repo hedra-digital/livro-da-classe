@@ -55,9 +55,10 @@ class Text < ActiveRecord::Base
     self.image.exists? ? '' : self.image.path
   end
 
-  def to_file(file)
+  def to_file(file, user_profile)
     content = self.to_latex
     File.open(file,'wb') {|io| io.write(content) }
+    Version.commit_file file, "#{user_profile}"
   end
 
   def to_latex

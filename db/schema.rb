@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140127184317) do
+ActiveRecord::Schema.define(:version => 20140130175009) do
 
   create_table "book_statuses", :force => true do |t|
     t.string   "desc"
@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20140127184317) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
     t.boolean  "review",         :default => false
+    t.boolean  "git",            :default => false
   end
 
   create_table "profiles", :force => true do |t|
