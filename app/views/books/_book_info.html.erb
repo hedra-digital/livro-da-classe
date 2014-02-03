@@ -1,9 +1,9 @@
 <div id="book-info">
   <div class="container">
     <div class="row">
-      <!--<div class="span1">
+      <div class="span1">
         <%= book_cover %>
-      </div>-->
+      </div>
       <div class="span8">
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? and @book.project.engaged? %>
         <nav role="navigation">

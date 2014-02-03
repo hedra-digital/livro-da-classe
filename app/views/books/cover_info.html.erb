@@ -1,14 +1,6 @@
 <script type="text/javascript" charset="utf-8">
     var ratio = 1;
 
-    /*function updateLogoCoords(c) {
-        jQuery('#cover_info_logo_x1').val(Math.round(c.x * ratio));
-        jQuery('#cover_info_logo_y1').val(Math.round(c.y * ratio));
-        jQuery('#cover_info_logo_x2').val(Math.round(c.x2 * ratio));
-        jQuery('#cover_info_logo_y2').val(Math.round(c.y2 * ratio));
-        jQuery('#cover_info_logo_w').val(Math.round(c.w * ratio));
-        jQuery('#cover_info_logo_h').val(Math.round(c.h * ratio));
-    }*/
     function updateCapaCoords(c) {
         jQuery('#cover_info_capa_imagem_x1').val(Math.round(c.x * ratio));
         jQuery('#cover_info_capa_imagem_y1').val(Math.round(c.y * ratio));
@@ -27,14 +19,6 @@
     }
 
     jQuery(function ($) {
-        /*$('#logo-crop').Jcrop({
-            aspectRatio: 1,
-            onSelect: updateLogoCoords,
-            bgColor:'black',
-            bgOpacity: .7,
-            onChange: updateLogoCoords,
-            setSelect: <%= @book.cover_info.logo_area %>
-        });*/
         $('#capa-crop').Jcrop({
             aspectRatio: 1,
             onSelect: updateCapaCoords,
