@@ -6,7 +6,7 @@ class Permission < ActiveRecord::Base
   belongs_to                    :profile
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible               :book_status, :profile, :read, :write, :execute, :review
+  attr_accessible               :book_status, :profile, :read, :write, :execute, :review, :git
 
   accepts_nested_attributes_for :book_status, :profile
 

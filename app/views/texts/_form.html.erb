@@ -8,6 +8,13 @@
         <div class="span3 form-horizontal inline-checkbox"><%= f.input :revised %></div>
       <% end %>
     </div>
+    <% if can_git? %>
+      <div class="row">
+        <div class="span11 fill">
+          <%= f.input :git_message, :placeholder => 'Mensagem' %>
+        </div>
+      </div>
+    <% end %>
     <%= f.input :content, :label => false, :as => :ckeditor %>
   </div>
 

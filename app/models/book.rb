@@ -23,6 +23,7 @@ class Book < ActiveRecord::Base
   # Callbacks
   before_save               :set_uuid
   before_save               :rename_folder
+  after_save                :check_repository
   
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
@@ -132,21 +133,14 @@ class Book < ActiveRecord::Base
   end
 
   def pdf user_profile
-    directory = File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title}-#{self.template}-#{self.id}".gsub(" ","_"))
-
-    if !Dir.exists?(directory)
-      template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
-      FileUtils.mkdir_p(directory)
-      FileUtils.cp_r(Dir[template_directory], directory)
-      Version.commit_directory directory, "New Book => #{self.title}"
-    end
+    #check repository existence
+    self.check_repository
 
     # generate latex files
     input_files = ""
     self.texts.order("-position DESC").each do |text|
-      text_filename = "#{String.remover_acentos(text.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{text.id}.tex"
-      text.to_file(File.join(directory,text_filename), user_profile)
-      input_files << "\\input{#{text_filename}}\n"
+      text.to_file
+      input_files << "\\input{#{text.filename}}\n"
     end
 
     input_text = File.join(directory,'INPUTS.tex')
@@ -183,6 +177,19 @@ class Book < ActiveRecord::Base
 
   def valid
     Text.where(:book_id => self.id, :valid_content => false).size == 0
+  end
+
+  def directory
+    File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title}-#{self.template}-#{self.id}".gsub(" ","_"))
+  end
+
+  def check_repository
+    if !Dir.exists?(directory)
+      template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
+      FileUtils.mkdir_p(directory)
+      FileUtils.cp_r(Dir[template_directory], directory)
+      Version.commit_directory directory, "New Book => #{self.title}"
+    end
   end
 
   private

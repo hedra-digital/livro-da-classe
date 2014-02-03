@@ -31,7 +31,9 @@ class Text < ActiveRecord::Base
   validates :user_id,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :content, :title, :uuid, :user_id, :enabled, :author, :image, :valid_content, :revised
+  attr_accessible           :book_id, :content, :title, :uuid, :user_id, :enabled, :author, :image, :valid_content, :revised, :git_message
+
+  attr_accessor             :git_message
 
   has_attached_file :image,
                     :styles => {
@@ -55,10 +57,9 @@ class Text < ActiveRecord::Base
     self.image.exists? ? '' : self.image.path
   end
 
-  def to_file(file, user_profile)
+  def to_file
     content = self.to_latex
-    File.open(file,'wb') {|io| io.write(content) }
-    Version.commit_file file, "#{user_profile}"
+    File.open(self.filename,'wb') {|io| io.write(content) }
   end
 
   def to_latex
@@ -93,6 +94,11 @@ class Text < ActiveRecord::Base
     rescue
       return false
     end
+  end
+
+  def filename
+    text_filename = "#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{self.id}.tex"
+    File.join(self.book.directory,text_filename)
   end
 
   private

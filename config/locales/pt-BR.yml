@@ -364,6 +364,7 @@ pt-BR:
         content: 'Conteúdo'
         author: 'Autor do Texto'
         revised: 'Revisar'
+        git_message: 'Commit'
       client:
         name: Nome
         emai: E-mail
