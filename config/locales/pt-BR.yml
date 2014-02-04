@@ -46,6 +46,7 @@ pt-BR:
     pdf: 'PDF'
     project: 'Contrato'
     publish: 'Contratar'
+    git: 'Repositório'
   helpers:
     submit:
       create: "Incluir novo %{model}"

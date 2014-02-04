@@ -180,7 +180,11 @@ class Book < ActiveRecord::Base
   end
 
   def directory
-    File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title}-#{self.template}-#{self.id}".gsub(" ","_"))
+    File.join(CONFIG[Rails.env.to_sym]["books_path"],directory_name)
+  end
+
+  def directory_name
+    "#{self.title}-#{self.template}-#{self.id}".gsub(" ","_")
   end
 
   def check_repository
@@ -190,6 +194,10 @@ class Book < ActiveRecord::Base
       FileUtils.cp_r(Dir[template_directory], directory)
       Version.commit_directory directory, "New Book => #{self.title}"
     end
+  end
+
+  def git_url
+    "#{CONFIG[Rails.env.to_sym]["git_url"]}#{directory_name}"
   end
 
   private
