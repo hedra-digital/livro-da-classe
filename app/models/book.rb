@@ -75,18 +75,6 @@ class Book < ActiveRecord::Base
     return response
   end
 
-  def get_school_logo
-    if !self.project.nil?
-      school_logo = self.project.school_logo.url
-      if !school_logo.index("?").nil?
-        school_logo = school_logo[0..school_logo.index("?") -1]
-      end
-      return Rails.public_path + school_logo
-    else
-      return Rails.public_path + "/default_logo.jpg"
-    end
-  end
-
   def count_pages
     # re-do it
     begin
@@ -104,35 +92,6 @@ class Book < ActiveRecord::Base
     self.cover_info.capa_imagem.present? or self.cover_info.capa_detalhe.present?
   end
 
-  def commands
-    commands = ""
-    commands << "\\newcommand\\logoescola{#{self.get_school_logo}}\n"
-    commands << "\\newcommand\\titulo{#{self.title}}\n"
-    commands << "\\newcommand\\autor{#{self.organizer.name}}\n"
-    commands << "\\newcommand\\organizador{#{self.organizers}}\n"
-    commands << "\\newcommand\\tradutor{Tradutor}\n"
-    commands << "\\newcommand\\cidade{São Paulo}\n"
-    commands << "\\newcommand\\ano{2013}\n"
-    commands << "\\newcommand\\direitos{Hedra}\n"
-    commands << "\\newcommand\\introducao{\\chapter{Introdução}\\lipsum[1-4]}\n"
-    commands << "\\newcommand\\instituicao{#{self.institution}}\n"
-    commands << "\\newcommand\\logradouro{#{self.street}}\n"
-    commands << "\\newcommand\\numero{#{self.number}}\n"
-    commands << "\\newcommand\\cidadeinstituicao{#{self.city}}\n"
-    commands << "\\newcommand\\estado{#{self.state}}\n"
-    commands << "\\newcommand\\cep{#{self.zipcode}}\n"
-    commands << "\\newcommand\\diretor{#{self.directors}}\n"
-    commands << "\\newcommand\\coordenador{#{self.coordinators}}\n"
-    commands << "\\newcommand\\turma{#{self.klass}}\n"
-    commands << "\\newcommand\\quartacapa{#{self.cover_info.texto_quarta_capa}}\n"
-    commands << "\\newcommand\\logo{#{self.get_school_logo}}\n"
-    commands << "\\newcommand\\bibliotecario{#{self.librarian_name}}\n"
-    commands << "\\newcommand\\cdd{#{self.cdd}}\n"
-    commands << "\\newcommand\\cdu{#{self.cdu}}\n"
-    commands << "\\newcommand\\palavraschave{#{self.keywords}}\n"
-    commands
-  end
-
   def pdf user_profile
     #check repository existence
     self.check_repository
@@ -147,8 +106,8 @@ class Book < ActiveRecord::Base
     input_text = File.join(directory,'INPUTS.tex')
     File.open(input_text,'w') {|io| io.write(input_files) }
 
-    input_commands = File.join(directory,'comandos.sty')
-    File.open(input_commands,'w') {|io| io.write(self.commands) }
+    input_commands = File.join(directory,'fichatecnica.sty')
+    File.open(input_commands,'w') {|io| io.write(self.book_data.to_file) }
 
     # generate pdf
     Process.waitpid(
