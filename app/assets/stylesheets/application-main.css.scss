@@ -64,6 +64,19 @@ textarea {
   width: 100%;
 }
 
+.collapse-click {
+  cursor: pointer;
+}
+
+.collapse-head {
+  background: #5ba0d0;
+  margin-bottom: 10px;
+  color: #fff;
+  padding-left: 15px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px; 
+}
+
 /* ==========================================================================
    Menu
    ========================================================================== */

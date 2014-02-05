@@ -11,7 +11,72 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140130175009) do
+ActiveRecord::Schema.define(:version => 20140205123733) do
+
+  create_table "book_datas", :force => true do |t|
+    t.integer  "book_id"
+    t.string   "subtit"
+    t.string   "autor"
+    t.string   "sumariotitulo"
+    t.string   "sumarioautor"
+    t.string   "organizador"
+    t.string   "introdutor"
+    t.string   "tradutor"
+    t.text     "orelha"
+    t.text     "quartacapa",               :limit => 255
+    t.string   "copyrightlivro"
+    t.string   "copyrighttraducao"
+    t.string   "copyrightorganizacao"
+    t.string   "copyrightilustracao"
+    t.string   "copyrightintroducao"
+    t.string   "titulooriginal"
+    t.string   "edicaoconsultada"
+    t.string   "primeiraedicao"
+    t.string   "agradecimentos"
+    t.string   "indicacao"
+    t.string   "isbn"
+    t.string   "ano"
+    t.string   "edicao"
+    t.string   "coedicao"
+    t.string   "assistencia"
+    t.string   "revisao"
+    t.string   "preparacao"
+    t.string   "capa"
+    t.string   "imagemcapa"
+    t.string   "imagemficha_file_name"
+    t.string   "imagemficha_content_type"
+    t.integer  "imagemficha_file_size"
+    t.datetime "imagemficha_updated_at"
+    t.string   "instituicao"
+    t.string   "logradouro"
+    t.string   "numero"
+    t.string   "cidadeinstituicao"
+    t.string   "estado"
+    t.string   "cep"
+    t.string   "diretor"
+    t.string   "coordenador"
+    t.string   "turma"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "cidade"
+    t.text     "release"
+    t.text     "trechotexto"
+    t.text     "sobreobra"
+    t.text     "sobreautor"
+    t.text     "sobreorganizador"
+    t.text     "sobretradutor"
+    t.text     "resumo"
+    t.string   "dimensao"
+    t.string   "peso"
+    t.string   "gramaturamiolo"
+    t.string   "cormiolo"
+    t.string   "palavraschave"
+    t.boolean  "publicaebook"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+  end
 
   create_table "book_statuses", :force => true do |t|
     t.string   "desc"

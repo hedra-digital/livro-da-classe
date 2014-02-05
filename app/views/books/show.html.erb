@@ -1,40 +1,31 @@
 <input type="hidden" id="hidden_book_id" value="<%= @book.uuid %>"></input>
 
-<!--<div id="recados">
-  <div id="novo_recado">
-    <textarea id="text_novo_recado" rows="1" cols="30" style="resize:none;"></textarea>
-    <button type="button" id="botao_enviar" class="btn btn-primary">Enviar</button>
-  </div>
-  <div id="listar_recados">-->
-    <div>
-      <div class="row">
-        <div class="span9">
-          <h1>Mural</h1>
-        </div>
-
-        <div class="span3">
-          <%= link_to 'Nova Conversa', new_scrap_path(@book.id), :class => 'btn btn-primary btn-new' %>
-        </div>
-      </div>
-      <table class="table table-striped">
-        <tr>
-          <th></th>
-          <th>Chamado</th>
-          <th>Data</th>
-          <th>Conversa</th>
-          <th></th>
-        </tr>
-        <% @scraps.each do |scrap| %>
-          <tr>
-            <td><span class="badge"><%= scrap.answered? ? '!' : '' %></span></td>
-            <td><%= "##{scrap.id}" %></td>
-            <td><span class="label label-info"><%= scrap.created_at.strftime("%d/%m/%Y") %></span></td>
-            <td><%= "#{scrap.content[0..20]}..." %></td>
-            <td><%= link_to 'Expandir', scraps_thread_path(scrap), :class => 'btn btn-mini' %></td>
-          </tr>
-        <% end %>
-      </table>
+<div>
+  <div class="row">
+    <div class="span9">
+      <h1>Mural</h1>
     </div>
-    <!--</div>
+
+    <div class="span3">
+      <%= link_to 'Nova Conversa', new_scrap_path(@book.id), :class => 'btn btn-primary btn-new' %>
+    </div>
   </div>
-</div>-->
+  <table class="table table-striped">
+    <tr>
+      <th></th>
+      <th>Chamado</th>
+      <th>Data</th>
+      <th>Conversa</th>
+      <th></th>
+    </tr>
+    <% @scraps.each do |scrap| %>
+      <tr>
+        <td><span class="badge"><%= scrap.answered? ? '!' : '' %></span></td>
+        <td><%= "##{scrap.id}" %></td>
+        <td><span class="label label-info"><%= scrap.created_at.strftime("%d/%m/%Y") %></span></td>
+        <td><%= "#{scrap.content[0..20]}..." %></td>
+        <td><%= link_to 'Expandir', scraps_thread_path(scrap), :class => 'btn btn-mini' %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

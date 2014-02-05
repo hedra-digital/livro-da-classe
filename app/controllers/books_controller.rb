@@ -19,7 +19,7 @@ class BooksController < ApplicationController
   def update_cover_info
     if @book.cover_info.update_attributes(params[:cover_info])
       BookCover.new(@book.cover_info).generate_cover
-      redirect_to book_cover_info_path(@book.uuid), notice: 'Capa atualizada com sucesso'
+      redirect_to book_path(@book.uuid), notice: 'Capa atualizada com sucesso'
     else
       render :edit
     end
@@ -55,26 +55,32 @@ class BooksController < ApplicationController
     @book = current_user.organized_books.new
     @book.build_project
     @book.build_cover_info
+    @book.build_book_data
   end
 
-  def create    
-    project = params[:book][:project_attributes]
-    params[:book].delete :project_attributes
-    cover_info = params[:book][:cover_info_attributes]
-    params[:book].delete :cover_info_attributes
+  def create
+    cover_info = params[:book][:book_data][:cover_info]
+    params[:book][:book_data].delete :cover_info
+
+    book_data = params[:book][:book_data]
+    params[:book].delete :book_data
 
     @book = current_user.organized_books.new(params[:book].merge(:template => Livrodaclasse::Application.latex_templates[0]))
+    
     @book.organizer = current_user
     @book.publisher_id = current_publisher
 
     if @book.save
-      @book.build_project quantity: 50
-      @book.project.update_attributes project
+      @book.create_project quantity: 50
 
       @book.build_cover_info
       @book.cover_info.update_attributes cover_info
 
+      @book.build_book_data
+      @book.book_data.update_attributes book_data
+
       BookCover.new(@book.cover_info).generate_cover
+
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else
@@ -83,6 +89,7 @@ class BooksController < ApplicationController
     else
       @book.build_project
       @book.build_cover_info
+      @book.build_book_data
       render :new
     end
   end
@@ -94,15 +101,25 @@ class BooksController < ApplicationController
   end
 
   def update
-    params[:book].delete :project_attributes if params[:book][:project_attributes][:school_logo].blank?
-    params[:book][:cover_info_attributes].delete :capa_imagem        if params[:book][:cover_info_attributes][:capa_imagem].blank? 
-    params[:book][:cover_info_attributes].delete :capa_detalhe       if params[:book][:cover_info_attributes][:capa_detalhe].blank?
-    params[:book][:cover_info_attributes].delete :texto_quarta_capa  if params[:book][:cover_info_attributes][:texto_quarta_capa].blank?
+    cover_info = params[:book][:book_data][:cover_info]
+    params[:book][:book_data].delete :cover_info
+
+    book_data = params[:book][:book_data]
+    params[:book].delete :book_data
+
+    cover_info.delete :capa_imagem        if cover_info[:capa_imagem].blank? 
+    cover_info.delete :capa_detalhe       if cover_info[:capa_detalhe].blank?
+    cover_info.delete :texto_quarta_capa  if cover_info[:texto_quarta_capa].blank?
+
     @book.publisher_id = current_publisher
     
-    if @book.update_attributes(params[:book])
+    if @book.update_attributes(params[:book]) and @book.cover_info.update_attributes(cover_info) and @book.book_data.update_attributes(book_data)    
       BookCover.new(@book.cover_info).generate_cover
-      redirect_to book_path(@book.uuid), notice: 'O original foi atualizado.'
+      if @book.resize_images?
+        redirect_to book_cover_info_path(@book.uuid)
+      else
+        redirect_to book_path(@book.uuid), notice: 'O original foi atualizado.'
+      end
     else
       render :edit
     end

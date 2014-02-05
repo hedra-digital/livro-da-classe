@@ -1,0 +1,51 @@
+<div class="cover-container">
+  <h3 id="cover" class="collapse-click collapse-head">Capa</h3>
+  <div class="fields">
+    <div class="row">
+      <div class="span5"><%= f.input :orelha, :label => t('book_data.orelha') %></div>
+      <div class="span5"><%= f.input :quartacapa, :label => t('book_data.quartacapa') %></div>
+    </div>
+
+    <%= f.simple_fields_for :cover_info do |c| %>
+      <div class="row">
+        <div class="span5">
+          <label for="cover_info_capa_imagem"><%= t('book_data.capaimagem') %></label>
+          <div class="fileupload <%= @book.cover_info.capa_imagem.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
+            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
+            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+              <%= image_tag(@book.cover_info.capa_imagem.url(:small)) if @book.cover_info.capa_imagem.present? %>
+            </div>
+            <div>
+              <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
+                <%= c.input_field :capa_imagem, :as => :file %>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="span5">
+          <label for="cover_info_capa_detalhe"><%= t('book_data.capadetalhe') %></label>
+          <div class="fileupload <%= @book.cover_info.capa_detalhe.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
+            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
+            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+              <%= image_tag(@book.cover_info.capa_detalhe.url(:small)) if @book.cover_info.capa_detalhe.present? %>
+            </div>
+            <div>
+              <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
+                <%= c.input_field :capa_detalhe, :as => :file %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span5">
+          <%= c.input :cor_primaria, :label => t('book_data.corprimaria'), :input_html => { :class => 'color', :value => @book.cover_info.primaria } %>
+        </div>
+        <div class="span5">  
+          <%= c.input :cor_secundaria, :label => t('book_data.corsecundaria'), :input_html => { :class => 'color', :value => @book.cover_info.secundaria  }  %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

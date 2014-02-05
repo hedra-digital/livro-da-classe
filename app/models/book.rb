@@ -31,6 +31,7 @@ class Book < ActiveRecord::Base
   has_many                  :texts, :dependent => :destroy
   has_one                   :project
   has_one                   :cover_info
+  has_one                   :book_data
   has_many                  :invitations, :dependent => :destroy
   has_many                  :scraps, :dependent => :destroy
 
@@ -40,11 +41,11 @@ class Book < ActiveRecord::Base
   validates                 :number,    :numericality => true, :allow_blank => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :project_attributes, :cover_info_attributes, :coordinators, :directors, :organizers, :published_at, :subtitle, :title, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords, :document, :publisher_id, :abstract
+  attr_accessible           :project_attributes, :cover_info_attributes, :book_data, :coordinators, :directors, :organizers, :published_at, :title, :subtitle, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords, :document, :publisher_id, :abstract
 
   attr_accessor             :finished_at
 
-  accepts_nested_attributes_for :cover_info, :project
+  accepts_nested_attributes_for :cover_info, :project, :book_data
 
   # Paperclip attachment
   has_attached_file :cover,

@@ -30,7 +30,7 @@
   width: 404px;
 }
 
-#team, #address, #cover, #cataloging{
+#team, #address{
   font-size: 18px;
   display: block;
   margin-bottom: 10px;
@@ -47,12 +47,12 @@
   resize: none;
 }
 
-.cataloging-container{
+/*.cataloging-container{
   width: 100%;
   float: left;
   margin-top: 10px;
   margin-left: 23px;
-}
+}*/
 
 #cover a{
   float: right;
