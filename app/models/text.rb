@@ -97,8 +97,11 @@ class Text < ActiveRecord::Base
   end
 
   def filename
-    text_filename = "#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{self.id}.tex"
-    File.join(self.book.directory,text_filename)
+    File.join(self.book.directory,short_filename)
+  end
+
+  def short_filename
+    "#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{self.id}.tex"
   end
 
   private

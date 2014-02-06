@@ -100,7 +100,7 @@ class Book < ActiveRecord::Base
     input_files = ""
     self.texts.order("-position DESC").each do |text|
       text.to_file
-      input_files << "\\input{#{text.filename}}\n"
+      input_files << "\\input{#{text.short_filename}}\n"
     end
 
     input_text = File.join(directory,'INPUTS.tex')
