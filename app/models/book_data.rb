@@ -13,6 +13,7 @@ class BookData < ActiveRecord::Base
                   :quartacapa,
                   :capaimagem,
                   :capadetalhe,
+                  :capainteira,
 
                   #Página de Créditos
                   :copyrightlivro,
@@ -85,6 +86,12 @@ class BookData < ActiveRecord::Base
                     :styles => {
                           :normal => ["600x600>", :png],
                           :small => ["300x300#", :png]
+                    }
+
+  has_attached_file :capainteira,
+                    :styles => {
+                      :content => ['100%', :jpg],
+                      :thumb => ['60x80>', :jpg]
                     }
 
   def get_fullpath_for url

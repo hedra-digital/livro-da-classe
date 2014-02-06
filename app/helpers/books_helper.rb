@@ -39,8 +39,8 @@ module BooksHelper
   end
 
   def book_cover
-    if @book.cover.exists?
-      link_to(image_tag(@book.cover.url(:thumb)), @book.cover.url(:content), :class => 'cover-modal')
+    if @book.book_data.capainteira.exists?
+      link_to(image_tag(@book.book_data.capainteira.url(:thumb)), @book.book_data.capainteira.url(:content), :class => 'cover-modal')
     elsif !DefaultCover.first.nil?
       link_to(image_tag(DefaultCover.first.default_cover.url(:thumb)), DefaultCover.first.default_cover.url, :class => 'cover-modal')
     else

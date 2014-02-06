@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140205123733) do
+ActiveRecord::Schema.define(:version => 20140206181713) do
 
   create_table "book_datas", :force => true do |t|
     t.integer  "book_id"
@@ -76,6 +76,10 @@ ActiveRecord::Schema.define(:version => 20140205123733) do
     t.boolean  "publicaebook"
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
+    t.string   "capainteira_file_name"
+    t.string   "capainteira_content_type"
+    t.integer  "capainteira_file_size"
+    t.datetime "capainteira_updated_at"
   end
 
   create_table "book_statuses", :force => true do |t|
