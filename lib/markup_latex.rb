@@ -22,12 +22,14 @@ class MarkupLatex
     puts "4" * 100
     content_text = prepare_epigraph content_text
     puts "5" * 100
-    content_text = prepare_alignment content_text
+    content_text = prepare_verse content_text
     puts "6" * 100
-    array = prepare_text content_text
+    content_text = prepare_alignment content_text
     puts "7" * 100
-    compiled_array = compile_latex array
+    array = prepare_text content_text
     puts "8" * 100
+    compiled_array = compile_latex array
+    puts "9" * 100
     compiled_array
   end
 
@@ -125,24 +127,46 @@ class MarkupLatex
   end
 
   def prepare_epigraph(text)
-    while text.match /<div class="epigraph">(.*?)<\/div>/m
-      epigraph = text.match /<div class="epigraph">(.*?)<\/div>/m
+    while text.match /<section class="epigraph">(.*?)<\/section>/m
+      epigraph = text.match /<section class="epigraph">(.*?)<\/section>/m
 
-      epigraph_text = epigraph.to_s.match /<p class="epigraph-text">(.*?)<\/p>/m
+      epigraph_text = epigraph.to_s.match /<div class="epigraph-text">(.*?)<\/div>/m
       epigraph_text = PandocRuby.convert(epigraph_text, {:from => :html, :to => :latex}, :chapters)
       epigraph_text = epigraph_text.sub("\\&", "$$$&")
-      epigraph_text.chomp("\n")
+      epigraph_text = epigraph_text.chomp("\n")
 
-      if epigraph.to_s.match /<p class="epigraph-author">(.*?)<\/p>/m
-        epigraph_author = epigraph.to_s.match /<p class="epigraph-author">(.*?)<\/p>/m
+      if epigraph.to_s.match /<span class="epigraph-author">(.*?)<\/span>/m
+        epigraph_author = epigraph.to_s.match /<span class="epigraph-author">(.*?)<\/span>/m
         epigraph_author = PandocRuby.convert(epigraph_author, {:from => :html, :to => :latex}, :chapters)
         epigraph_author = epigraph_author.sub("\\&", "$$$&")
-        epigraph_author.chomp("\n")
+        epigraph_author = epigraph_author.chomp("\n")
       else
         epigraph_author = ""
       end
 
       text = text.sub(epigraph.to_s, "|>|\\epigraph{#{epigraph_text}}{#{epigraph_author}} |<|")
+    end
+    text
+  end
+
+  def prepare_verse(text)
+    while text.match /<div class="verse">(.*?)<\/div>/m
+      verse = text.match /<div class="verse">(.*?)<\/div>/m
+
+      v = verse.to_s.gsub("<br />","<br />VeRsO")
+
+      verse_text = PandocRuby.convert(v, {:from => :html, :to => :latex}, :chapters)
+
+      verse_text = verse_text.chomp("\n")
+      verse_text = verse_text.sub("\\&", "$$$&")
+      verse_text = verse_text.gsub("VeRsO ","\n")
+      verse_text = verse_text.gsub("VeRsO\n","\n")
+      verse_text = verse_text.gsub("VeRsO","\n")
+
+      verse_text = verse_text.gsub("\n\n", "\\!\\&")
+      verse_text = verse_text.gsub("\\\\\n\\\\", "\\!\n")
+
+      text = text.sub(verse.to_s, "|>|\n\\begin{verse}\n#{verse_text}\\!\n\\end{verse} |<|")
     end
     text
   end

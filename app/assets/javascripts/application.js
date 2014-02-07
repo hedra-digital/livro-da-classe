@@ -36,6 +36,7 @@
 //= require ckeditor/plugins/footnote/dialogs/footnote
 //= require ckeditor/plugins/epigraph/plugin
 //= require ckeditor/plugins/epigraph/dialogs/epigraph
+//= require ckeditor/plugins/verse/plugin
 //= require ckeditor/plugins/autogrow/plugin
 //= require jquery.jqEasyCharCounter.min.js
 //= require jquery.mask.min.js

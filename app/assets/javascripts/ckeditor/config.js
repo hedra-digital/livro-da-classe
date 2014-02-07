@@ -1,6 +1,6 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote,epigraph';
+  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote,epigraph,verse';
 
   /* Char Count Plugin */
   config.maxLength = 0;
@@ -39,7 +39,7 @@ CKEDITOR.editorConfig = function(config) {
     '/',
     { name: 'basicstyles', items : [ 'Bold','Italic','Subscript','Superscript','-','RemoveFormat' ] },
     { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },
-    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor', 'FootNote', 'Epigraph' ] },
+    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor', 'FootNote', 'Epigraph', 'Verse' ] },
     { name: 'colors', items : [ 'TextColor','BGColor' ] },
     { name: 'styles', items : [ 'Format' ] }
   ];
@@ -85,9 +85,11 @@ CKEDITOR.editorConfig = function(config) {
       'a(latex-close)[*]; a[!name,!href];' +
       'img[*];' +
       'table tr th td caption;' +
-      'span(latex-inputbox); span{color,background-color};' +
-      'p[align]; p{align,text-align}; p(epigraph-text); p(epigraph-author);' +
-      'div[!id]; div(epigraph);';
+      'span(latex-inputbox); span(epigraph-author); span{color,background-color};' +
+      'p[align]; p{align,text-align};' +
+      'div[!id]; div(epigraph-text);' +
+      'section(epigraph);' +
+      'div(verse)';
 
   // Rails CSRF token
   config.filebrowserParams = function(){
@@ -199,7 +201,8 @@ CKEDITOR.addCss('.latex-close { cursor: pointer; font-size: 12px; color: #fff; p
 /*Epigraph Plugin*/
 CKEDITOR.addCss('.epigraph-text { padding-left: 27%; }');
 CKEDITOR.addCss('.epigraph-author { float: right; }');
-
+/*Verse Plugin*/
+CKEDITOR.addCss('.verse{ font-style: oblique; background-color: #F5F9FA;');
 
 CKEDITOR.instances.text_content.on('contentDom', function() {
   CKEDITOR.instances.text_content.document.on('keyup', function(event) {
