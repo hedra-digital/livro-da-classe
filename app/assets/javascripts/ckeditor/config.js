@@ -1,6 +1,6 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote';
+  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote,epigraph';
 
   /* Char Count Plugin */
   config.maxLength = 0;
@@ -39,7 +39,7 @@ CKEDITOR.editorConfig = function(config) {
     '/',
     { name: 'basicstyles', items : [ 'Bold','Italic','Subscript','Superscript','-','RemoveFormat' ] },
     { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },
-    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor', 'FootNote' ] },
+    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor', 'FootNote', 'Epigraph' ] },
     { name: 'colors', items : [ 'TextColor','BGColor' ] },
     { name: 'styles', items : [ 'Format' ] }
   ];
@@ -86,8 +86,8 @@ CKEDITOR.editorConfig = function(config) {
       'img[*];' +
       'table tr th td caption;' +
       'span(latex-inputbox); span{color,background-color};' +
-      'p[align]; p{align,text-align};' +
-      'div[!id];';
+      'p[align]; p{align,text-align}; p(epigraph-text); p(epigraph-author);' +
+      'div[!id]; div(epigraph);';
 
   // Rails CSRF token
   config.filebrowserParams = function(){
@@ -187,22 +187,19 @@ CKEDITOR.editorConfig = function(config) {
       }; 
     }
   });
-
-  /*CKEDITOR.on('instanceReady', function(ck) { 
-    ck.editor.removeMenuItem('paste'); 
-  });*/
-
 };
 
-// Blocking the paste keystroke
-//CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
-
+/*Image Upload Customization*/
 CKEDITOR.addCss('.small-intention { zoom: 0.3; -moz-transform: scale(0.3); }');
 CKEDITOR.addCss('.medium-intention { zoom: 0.6; -moz-transform: scale(0.6); }');
 CKEDITOR.addCss('.big-intention { zoom: 1; -moz-transform: scale(1); }');
+/*LaTeX Input Plugin*/
 CKEDITOR.addCss('.latex-inputbox { background-color: #73b8f7; cursor: pointer; -webkit-border-radius: 3px; border-radius: 5px; padding: 3px; margin: 3px; margin-left: 5px;}');
-CKEDITOR.addCss('.latex-close { cursor: pointer; font-size: 12px; color: #fff; padding: 5px; }')
-//CKEDITOR.addCss('.latex-close:before { content: "×"; }');
+CKEDITOR.addCss('.latex-close { cursor: pointer; font-size: 12px; color: #fff; padding: 5px; }');
+/*Epigraph Plugin*/
+CKEDITOR.addCss('.epigraph-text { padding-left: 27%; }');
+CKEDITOR.addCss('.epigraph-author { float: right; }');
+
 
 CKEDITOR.instances.text_content.on('contentDom', function() {
   CKEDITOR.instances.text_content.document.on('keyup', function(event) {

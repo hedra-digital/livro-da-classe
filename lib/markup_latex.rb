@@ -20,12 +20,14 @@ class MarkupLatex
     puts "3" * 100
     content_text = prepare_footnote content_text
     puts "4" * 100
-    content_text = prepare_alignment content_text
+    content_text = prepare_epigraph content_text
     puts "5" * 100
-    array = prepare_text content_text
+    content_text = prepare_alignment content_text
     puts "6" * 100
-    compiled_array = compile_latex array
+    array = prepare_text content_text
     puts "7" * 100
+    compiled_array = compile_latex array
+    puts "8" * 100
     compiled_array
   end
 
@@ -118,6 +120,29 @@ class MarkupLatex
       text = text.sub(footnote_tag.to_s, "|>|\\footnote{#{foottext}} |<|")
 
       text = text.sub(text_tag.to_s, "")
+    end
+    text
+  end
+
+  def prepare_epigraph(text)
+    while text.match /<div class="epigraph">(.*?)<\/div>/m
+      epigraph = text.match /<div class="epigraph">(.*?)<\/div>/m
+
+      epigraph_text = epigraph.to_s.match /<p class="epigraph-text">(.*?)<\/p>/m
+      epigraph_text = PandocRuby.convert(epigraph_text, {:from => :html, :to => :latex}, :chapters)
+      epigraph_text = epigraph_text.sub("\\&", "$$$&")
+      epigraph_text.chomp("\n")
+
+      if epigraph.to_s.match /<p class="epigraph-author">(.*?)<\/p>/m
+        epigraph_author = epigraph.to_s.match /<p class="epigraph-author">(.*?)<\/p>/m
+        epigraph_author = PandocRuby.convert(epigraph_author, {:from => :html, :to => :latex}, :chapters)
+        epigraph_author = epigraph_author.sub("\\&", "$$$&")
+        epigraph_author.chomp("\n")
+      else
+        epigraph_author = ""
+      end
+
+      text = text.sub(epigraph.to_s, "|>|\\epigraph{#{epigraph_text}}{#{epigraph_author}} |<|")
     end
     text
   end
