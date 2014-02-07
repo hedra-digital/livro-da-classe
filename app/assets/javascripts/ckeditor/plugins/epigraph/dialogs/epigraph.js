@@ -29,16 +29,16 @@ CKEDITOR.dialog.add( 'epigraphDialog', function( editor ) {
             var d = editor.document.createElement('section');            
             d.setAttribute('class','epigraph');
 
-            dText = editor.document.createElement('div');
-            dText.setAttribute('class','epigraph-text');
-            dText.setText(dialog.getValueOf('tab-basic','epigraph-text'));
+            d.setText(dialog.getValueOf('tab-basic','epigraph-text'));
 
-            dAuthor = editor.document.createElement('div');
+            dAuthorContainer = editor.document.createElement('div');
+            
+            dAuthor = editor.document.createElement('span');
             dAuthor.setAttribute('class','epigraph-author');
             dAuthor.setText(dialog.getValueOf('tab-basic','epigraph-author'));
 
-            d.append(dText);
-            d.append(dAuthor);
+            dAuthorContainer.append(dAuthor);
+            d.append(dAuthorContainer);
 
             editor.insertElement(d);
         }

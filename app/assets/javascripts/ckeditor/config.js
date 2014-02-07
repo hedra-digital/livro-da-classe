@@ -87,7 +87,7 @@ CKEDITOR.editorConfig = function(config) {
       'table tr th td caption;' +
       'span(latex-inputbox); span(epigraph-author); span{color,background-color};' +
       'p[align]; p{align,text-align};' +
-      'div[!id]; div(epigraph-text);' +
+      'div[!id];' +
       'section(epigraph);' +
       'div(verse)';
 
@@ -199,8 +199,8 @@ CKEDITOR.addCss('.big-intention { zoom: 1; -moz-transform: scale(1); }');
 CKEDITOR.addCss('.latex-inputbox { background-color: #73b8f7; cursor: pointer; -webkit-border-radius: 3px; border-radius: 5px; padding: 3px; margin: 3px; margin-left: 5px;}');
 CKEDITOR.addCss('.latex-close { cursor: pointer; font-size: 12px; color: #fff; padding: 5px; }');
 /*Epigraph Plugin*/
-CKEDITOR.addCss('.epigraph-text { padding-left: 27%; }');
-CKEDITOR.addCss('.epigraph-author { float: right; }');
+CKEDITOR.addCss('.epigraph { padding-left: 300px; }');
+CKEDITOR.addCss('.epigraph-author { display: block; float: right; }');
 /*Verse Plugin*/
 CKEDITOR.addCss('.verse{ font-style: oblique; background-color: #F5F9FA;');
 

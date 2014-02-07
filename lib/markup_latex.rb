@@ -20,16 +20,14 @@ class MarkupLatex
     puts "3" * 100
     content_text = prepare_footnote content_text
     puts "4" * 100
-    content_text = prepare_epigraph content_text
-    puts "5" * 100
     content_text = prepare_verse content_text
+    puts "5" * 100
+    content_text = prepare_epigraph content_text
     puts "6" * 100
     content_text = prepare_alignment content_text
     puts "7" * 100
-    array = prepare_text content_text
+    compiled_array = compile_latex(prepare_text content_text)
     puts "8" * 100
-    compiled_array = compile_latex array
-    puts "9" * 100
     compiled_array
   end
 
@@ -130,17 +128,19 @@ class MarkupLatex
     while text.match /<section class="epigraph">(.*?)<\/section>/m
       epigraph = text.match /<section class="epigraph">(.*?)<\/section>/m
 
-      epigraph_text = epigraph.to_s.match /<div class="epigraph-text">(.*?)<\/div>/m
-      epigraph_text = PandocRuby.convert(epigraph_text, {:from => :html, :to => :latex}, :chapters)
-      epigraph_text = epigraph_text.sub("\\&", "$$$&")
-      epigraph_text = epigraph_text.chomp("\n")
-
       if epigraph.to_s.match /<span class="epigraph-author">(.*?)<\/span>/m
         epigraph_author = epigraph.to_s.match /<span class="epigraph-author">(.*?)<\/span>/m
+        
+        epigraph_text = epigraph.to_s.gsub(epigraph_author.to_s, "")
+        epigraph_text = compile_latex(prepare_text(epigraph_text))
+        epigraph_text = epigraph_text.sub("\\&", "$$$&")
+        epigraph_text = epigraph_text.chomp("\n")
+
         epigraph_author = PandocRuby.convert(epigraph_author, {:from => :html, :to => :latex}, :chapters)
         epigraph_author = epigraph_author.sub("\\&", "$$$&")
         epigraph_author = epigraph_author.chomp("\n")
       else
+        epigraph_text = ""
         epigraph_author = ""
       end
 
