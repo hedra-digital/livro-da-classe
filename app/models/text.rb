@@ -80,6 +80,8 @@ class Text < ActiveRecord::Base
     content = content.gsub("\\textbar{}\\textgreater{}\\textbar{}", "")
     content = content.gsub("\\textbar{}\\textless{}\\textbar{}", "")
 
+    content = content.gsub("#\\","\\") #para versos
+
     Expression.where(:level => 3).each do |exp|
       content = content.gsub(eval(exp.target), exp.replace)
     end

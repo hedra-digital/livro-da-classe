@@ -159,14 +159,14 @@ class MarkupLatex
 
       verse_text = verse_text.chomp("\n")
       verse_text = verse_text.sub("\\&", "$$$&")
-      verse_text = verse_text.gsub("VeRsO ","\n")
-      verse_text = verse_text.gsub("VeRsO\n","\n")
-      verse_text = verse_text.gsub("VeRsO","\n")
+      verse_text = verse_text.gsub("VeRsO ","#\\\n")
+      verse_text = verse_text.gsub("VeRsO\n","#\\\n")
+      verse_text = verse_text.gsub("VeRsO","#\\\n")
 
-      verse_text = verse_text.gsub("\n\n", "\\!\\&")
-      verse_text = verse_text.gsub("\\\\\n\\\\", "\\!\n")
+      verse_text = verse_text.gsub("\n\n", "\\#\\!\\&")
+      verse_text = verse_text.gsub("\\\\\n\\\\", "\\#\\!\n")
 
-      text = text.sub(verse.to_s, "|>|\n\\begin{verse}\n#{verse_text}\\!\n\\end{verse} |<|")
+      text = text.sub(verse.to_s, "|>|\n\\begin{verse}\n#{verse_text}\\#\\!\n\\end{verse} |<|")
     end
     text
   end
