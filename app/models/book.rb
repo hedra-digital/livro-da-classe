@@ -144,11 +144,11 @@ class Book < ActiveRecord::Base
   end
 
   def directory_name
-    "#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}#{self.template}#{self.id}"
+    "#{String.remover_acentos(self.book_data.autor+self.title).gsub(/[^0-9A-Za-z]/, '')}#{self.template}#{self.id}"
   end
 
   def check_repository
-    if !Dir.exists?(directory)
+    if !self.book_data.nil? && !Dir.exists?(directory)
       template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
       FileUtils.mkdir_p(directory)
       FileUtils.cp_r(Dir[template_directory], directory)

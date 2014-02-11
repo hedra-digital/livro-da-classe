@@ -2,6 +2,7 @@ class Admin::ProjectsController < Admin::ApplicationController
 
   def index
     @projects = Project.includes([:book, :client]).where("books.publisher_id = #{current_publisher}").all
+    @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
   end
 
   def show
