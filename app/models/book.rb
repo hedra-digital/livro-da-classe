@@ -143,11 +143,11 @@ class Book < ActiveRecord::Base
   end
 
   def autor
-    self.book_data.nil? or self.book_data.autor.nil? ? "" : "#{self.book_data.autor}-"
+    self.book_data.nil? or self.book_data.autor.nil? ? "" : "#{String.remover_acentos(self.book_data.autor).gsub(/[^0-9A-Za-z]/, '')}-"
   end
 
   def directory_name
-    "#{String.remover_acentos(self.autor).gsub(/[^0-9A-Za-z]/, '')}#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
+    "#{self.autor}#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
   end
 
   def check_repository
