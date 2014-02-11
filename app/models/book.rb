@@ -152,7 +152,7 @@ class Book < ActiveRecord::Base
       template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
       FileUtils.mkdir_p(directory)
       FileUtils.cp_r(Dir[template_directory], directory)
-      Version.commit_directory directory, "New Book => #{self.title}"
+      Version.commit_directory directory, "New Book => #{self.title}", directory_name
     end
   end
 
