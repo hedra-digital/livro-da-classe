@@ -143,8 +143,12 @@ class Book < ActiveRecord::Base
     File.join(CONFIG[Rails.env.to_sym]["books_path"],directory_name)
   end
 
+  def autor
+    self.book_data.nil? ? "" : self.book_data.autor
+  end
+
   def directory_name
-    "#{String.remover_acentos(self.book_data.autor+self.title).gsub(/[^0-9A-Za-z]/, '')}#{self.template}#{self.id}"
+    "#{String.remover_acentos(self.autor+self.title).gsub(/[^0-9A-Za-z]/, '')}#{self.template}#{self.id}"
   end
 
   def check_repository
