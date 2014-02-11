@@ -144,7 +144,7 @@ class Book < ActiveRecord::Base
   end
 
   def directory_name
-    "#{self.title}-#{self.template}-#{self.id}".gsub(" ","_")
+    "#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}#{self.template}#{self.id}"
   end
 
   def check_repository
@@ -154,10 +154,6 @@ class Book < ActiveRecord::Base
       FileUtils.cp_r(Dir[template_directory], directory)
       Version.commit_directory directory, "New Book => #{self.title}", directory_name
     end
-  end
-
-  def git_url
-    "#{CONFIG[Rails.env.to_sym]["git_url"]}#{directory_name}"
   end
 
   private
