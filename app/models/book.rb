@@ -22,7 +22,6 @@ class Book < ActiveRecord::Base
 
   # Callbacks
   before_save               :set_uuid
-  before_save               :rename_folder
   after_save                :check_repository
   
   # Relationships
@@ -148,7 +147,7 @@ class Book < ActiveRecord::Base
   end
 
   def directory_name
-    "#{String.remover_acentos(self.autor+self.title).gsub(/[^0-9A-Za-z]/, '')}#{self.template}#{self.id}"
+    "#{String.remover_acentos(self.autor).gsub(/[^0-9A-Za-z]/, '')}-#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
   end
 
   def check_repository
@@ -164,16 +163,5 @@ class Book < ActiveRecord::Base
 
   def set_uuid
     self.uuid = Guid.new.to_s if self.uuid.nil?
-  end
-
-  def rename_folder
-    if self.title_changed?
-      directory = File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title_was}-#{self.template}-#{self.id}".gsub(" ","_"))
-      new_directory = File.join(CONFIG[Rails.env.to_sym]["books_path"],"#{self.title}-#{self.template}-#{self.id}".gsub(" ","_"))
-
-      if Dir.exists?(directory)
-        FileUtils.mv directory, new_directory
-      end
-    end
   end
 end
