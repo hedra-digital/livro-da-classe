@@ -147,7 +147,11 @@ class Book < ActiveRecord::Base
   end
 
   def directory_name
-    "#{String.remover_acentos(self.autor).gsub(/[^0-9A-Za-z]/, '')}-#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
+    begin
+      "#{String.remover_acentos(self.autor).gsub(/[^0-9A-Za-z]/, '')}-#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
+    rescue
+      raise self.id
+    end
   end
 
   def check_repository
