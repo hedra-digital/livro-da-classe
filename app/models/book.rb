@@ -143,7 +143,7 @@ class Book < ActiveRecord::Base
   end
 
   def autor
-    self.book_data.nil? or self.book_data.autor.nil? ? "" : self.book_data.autor
+    self.book_data.nil? or self.book_data.autor.nil? ? self.organizer.name : self.book_data.autor
   end
 
   def directory_name
