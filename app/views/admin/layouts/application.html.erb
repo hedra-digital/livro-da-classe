@@ -29,7 +29,7 @@
               <li><%= link_to "Perfis", admin_profiles_path %></li>
               <li><%= link_to "Permissões", admin_permissions_path %></li>
               <li><%= link_to "Usuários", admin_users_path %></li>
-              <li><%= link_to "Repositório", CONFIG[Rails.env.to_sym]["git_url"], :target => "_blank" %></li>
+              <li><%= link_to "Repositório", admin_revision_path %></li>
             </ul>
           </div>
         </div>

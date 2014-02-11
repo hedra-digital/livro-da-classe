@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
   before_filter :ominiauth_user_gate, :except => [:show]
   before_filter :secure_organizer_id, :only => [:create, :update]
-  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover]
+  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision]
 
   require "#{Rails.root}/lib/book_cover.rb"
 
@@ -129,6 +129,10 @@ class BooksController < ApplicationController
     @book.project.destroy
     @book.destroy
     redirect_to books_url
+  end
+
+  def revision
+    @name = @book.directory_name
   end
   
   private

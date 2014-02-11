@@ -6,8 +6,11 @@ class Version
   end
 
   def self.commit_file directory, text, user_profile, message
+    puts "u" * 500
     text.to_file
+    puts "z" * 500
     message = "(#{message})" unless message.blank?
     system "cd #{directory}/ && git pull origin master && git add #{text.filename} && git commit -a -m \"#{user_profile} #{message}\" && git push origin master"
+    puts "y" * 500
   end
 end

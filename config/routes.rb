@@ -37,6 +37,7 @@ Livrodaclasse::Application.routes.draw do
     resources :projects
   end
   get 'books/:id/cover_info', to: 'books#cover_info', as: :book_cover_info
+  get 'books/:id/revision', to: 'books#revision', as: :book_revision
   match 'books/:id/update_cover_info', to: 'books#update_cover_info', as: :book_update_cover_info
   match 'books/:id/generate_cover', to: 'books#generate_cover', as: :book_generate_cover
 
@@ -56,6 +57,9 @@ Livrodaclasse::Application.routes.draw do
 
     get 'dashboard/default_cover', :to => 'dashboard#default_cover', :as => :default_cover
     match 'dashboard/update_default_cover', :to => 'dashboard#update_default_cover', :as => :update_default_cover
+
+    match 'dashboard/revision', :to => 'dashboard#revision', :as => :revision
+
     resources :projects, :only => [:index, :show, :edit, :update] do
       member do
         get 'impersonate'

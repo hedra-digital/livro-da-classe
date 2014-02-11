@@ -25,4 +25,7 @@ class Admin::DashboardController < Admin::ApplicationController
   def scraps
     @scraps = Scrap.includes(:book).order("created_at DESC").all
   end
+
+  def revision
+  end
 end

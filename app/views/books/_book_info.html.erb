@@ -35,7 +35,7 @@
             <% end %>
 
             <% if can_git? %>
-              <%= menu_item t(:git, :scope => :book_nav), @book.git_url, true %>
+              <%= menu_item t(:git, :scope => :book_nav), book_revision_path(@book.uuid) %>
             <% end %>
           </ul>
         </nav>
