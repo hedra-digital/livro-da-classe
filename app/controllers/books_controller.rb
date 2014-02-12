@@ -11,6 +11,7 @@ class BooksController < ApplicationController
   def index
     @books = []
     @books.concat(current_user.organized_books).concat(current_user.books).flatten
+    @books.sort! { |a,b| a.directory_name.downcase <=> b.directory_name.downcase }
   end
 
   def cover_info

@@ -18,7 +18,7 @@
     </tr>
     <% @books.each do |book| %>
       <tr>
-        <td><%= link_to book.title, book_path(book.uuid) %>, (<%= book.organizer.name.presence || book.organizer.email %>, org.)</td>
+        <td><%= link_to title_text(book), book_path(book.uuid) %>, (<%= book.organizer.name.presence || book.organizer.email %>, org.)</td>
         <td><%= book.document.present? ? book.document_file_name : "Nenhum documento" %></td>
         <td><%= book.project.status_to_s %></td>
         <!--<td><%= book_status_label(book) %></td>-->
