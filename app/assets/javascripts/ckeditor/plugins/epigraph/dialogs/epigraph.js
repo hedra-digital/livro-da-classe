@@ -1,6 +1,6 @@
 CKEDITOR.dialog.add( 'epigraphDialog', function( editor ) {
     return {
-        title: 'Epigráfo',
+        title: 'Epígrafo',
         minWidth: 400,
         minHeight: 200,
         contents: [

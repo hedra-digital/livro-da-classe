@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140206181713) do
+ActiveRecord::Schema.define(:version => 20140212130714) do
 
   create_table "book_datas", :force => true do |t|
     t.integer  "book_id"
@@ -318,6 +318,7 @@ ActiveRecord::Schema.define(:version => 20140206181713) do
     t.datetime "image_updated_at"
     t.boolean  "valid_content"
     t.boolean  "revised",                                  :default => false
+    t.string   "subtitle"
   end
 
   create_table "users", :force => true do |t|

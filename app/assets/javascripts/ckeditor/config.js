@@ -1,10 +1,13 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote,epigraph,verse';
+  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote,epigraph,verse,chapter';
 
   /* Char Count Plugin */
   config.maxLength = 0;
   config.maxWords = 0;
+
+  config.font_defaultLabel = 'Courier';
+  config.fontSize_defaultLabel = '12px';
 
   config.keystrokes =
   [
@@ -39,7 +42,7 @@ CKEDITOR.editorConfig = function(config) {
     '/',
     { name: 'basicstyles', items : [ 'Bold','Italic','Subscript','Superscript','-','RemoveFormat' ] },
     { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },
-    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor', 'FootNote', 'Epigraph', 'Verse' ] },
+    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor', 'FootNote', 'Epigraph', 'Verse', 'Chapter' ] },
     { name: 'colors', items : [ 'TextColor','BGColor' ] },
     { name: 'styles', items : [ 'Format' ] }
   ];
@@ -88,8 +91,8 @@ CKEDITOR.editorConfig = function(config) {
       'span(latex-inputbox); span(epigraph-author); span{color,background-color};' +
       'p[align]; p{align,text-align};' +
       'div[!id];' +
-      'section(epigraph);' +
-      'div(verse)';
+      'section(epigraph); section(chapter);' +
+      'div(verse);';
 
   // Rails CSRF token
   config.filebrowserParams = function(){
@@ -191,6 +194,7 @@ CKEDITOR.editorConfig = function(config) {
   });
 };
 
+CKEDITOR.addCss('body { font-family: Courier; font-size: 12px; }');
 /*Image Upload Customization*/
 CKEDITOR.addCss('.small-intention { zoom: 0.3; -moz-transform: scale(0.3); }');
 CKEDITOR.addCss('.medium-intention { zoom: 0.6; -moz-transform: scale(0.6); }');
@@ -202,7 +206,11 @@ CKEDITOR.addCss('.latex-close { cursor: pointer; font-size: 12px; color: #fff; p
 CKEDITOR.addCss('.epigraph { padding-left: 300px; }');
 CKEDITOR.addCss('.epigraph-author { display: block; float: right; }');
 /*Verse Plugin*/
-CKEDITOR.addCss('.verse{ font-style: oblique; background-color: #F5F9FA;');
+CKEDITOR.addCss('.verse{ font-style: oblique; background-color: #F5F9FA; }');
+/*Chapter Plugin*/
+CKEDITOR.addCss('.chapter { background-color: #5e5e5e; color: #fff; }');
+CKEDITOR.addCss('.chapter p{ text-align:right; }');
+CKEDITOR.addCss('.chapter h3{ font-style: oblique; }');
 
 CKEDITOR.instances.text_content.on('contentDom', function() {
   CKEDITOR.instances.text_content.document.on('keyup', function(event) {

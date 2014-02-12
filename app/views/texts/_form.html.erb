@@ -3,9 +3,11 @@
 
   <div class="form-inputs">
     <div class="row">
-      <div class="span7"><%= f.input :title, :label => false %></div>
+      <div class="span3"><%= f.input :title, :label => false %></div>
+      <div class="span3"><%= f.input :subtitle, :label => false,  :placeholder => 'Subtítulo' %></div>
+      <div class="span2"><%= f.input :author, :label => false, :placeholder => 'Autor do Texto' %></div>
       <% if can_review? %>
-        <div class="span3 form-horizontal inline-checkbox"><%= f.input :revised %></div>
+        <div class="span2 form-horizontal inline-checkbox"><%= f.input :revised %></div>
       <% end %>
     </div>
     <% if can_git? %>

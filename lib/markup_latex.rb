@@ -24,10 +24,12 @@ class MarkupLatex
     puts "5" * 100
     content_text = prepare_epigraph content_text
     puts "6" * 100
-    content_text = prepare_alignment content_text
+    content_text = prepare_chapter content_text
     puts "7" * 100
-    compiled_array = compile_latex(prepare_text content_text)
+    content_text = prepare_alignment content_text
     puts "8" * 100
+    compiled_array = compile_latex(prepare_text content_text)
+    puts "9" * 100
     compiled_array
   end
 
@@ -145,6 +147,39 @@ class MarkupLatex
       end
 
       text = text.sub(epigraph.to_s, "|>|\\epigraph{#{epigraph_text}}{#{epigraph_author}} |<|")
+    end
+    text
+  end
+
+  def prepare_chapter(text)
+    while text.match /<section class="chapter">(.*?)<\/section>/m
+      chapter = text.match /<section class="chapter">(.*?)<\/section>/m
+
+      if chapter.to_s.match /<h1>(.*?)<\/h1>/m
+        title = (chapter.to_s.match /<h1>(.*?)<\/h1>/m)[1]
+        title = PandocRuby.convert(title.to_s, {:from => :html, :to => :latex}, :chapters)
+        title = title.chomp("\n")
+      else
+        title = ""
+      end
+
+      if chapter.to_s.match /<h3>(.*?)<\/h3>/m
+        subtitle = (chapter.to_s.match /<h3>(.*?)<\/h3>/m)[1]
+        subtitle = PandocRuby.convert(subtitle.to_s, {:from => :html, :to => :latex}, :chapters)
+        subtitle = subtitle.chomp("\n")
+      else
+        subtitle = ""
+      end
+        
+      if chapter.to_s.match /<p>(.*?)<\/p>/m
+        author = (chapter.to_s.match /<p>(.*?)<\/p>/m)[1]
+        author = PandocRuby.convert(author.to_s, {:from => :html, :to => :latex}, :chapters)
+        author = author.chomp("\n")
+      else
+        author = ""
+      end
+
+      text = text.sub(chapter.to_s, "|>|\\chapterspecial{#{title}}{#{subtitle}}{#{author}}\n |<|")
     end
     text
   end
