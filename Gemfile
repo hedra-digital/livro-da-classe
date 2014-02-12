@@ -24,6 +24,7 @@ gem 'wicked_pdf'
 gem "debugger", "~> 1.6.1"
 gem "htmlentities"
 gem 'nokogiri'
+gem 'nokogiri-styles'
 gem 'brazilian-rails'
 
 group :assets do

@@ -165,6 +165,8 @@ GEM
     mysql2 (0.3.11)
     newrelic_rpm (3.6.2.96)
     nokogiri (1.5.9)
+    nokogiri-styles (0.1.2)
+      nokogiri
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -333,6 +335,7 @@ DEPENDENCIES
   mysql2
   newrelic_rpm
   nokogiri
+  nokogiri-styles
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter

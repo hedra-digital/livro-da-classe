@@ -58,6 +58,7 @@ class Text < ActiveRecord::Base
   end
 
   def to_file
+    self.book.check_repository
     content = self.to_latex
     File.open(self.filename,'wb') {|io| io.write(content) }
   end
