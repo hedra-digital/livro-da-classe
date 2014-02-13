@@ -127,8 +127,7 @@ class Text < ActiveRecord::Base
 
   def title_on_content
     if !self.new_record? and self.valid_content_changed? and self.valid_content_was.nil? 
-      self.content = "<h1>#{self.title}</h1>#{self.content}"
+      self.content = "<section class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
     end
   end
 end
-
