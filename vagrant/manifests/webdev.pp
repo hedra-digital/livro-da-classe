@@ -114,7 +114,7 @@ package { 'libqtwebkit-dev':
 
 package { 'inkscape':
   ensure => installed,
-  require => Package['pdflatex']
+  require => Package['libqtwebkit-dev']
 }
 
 package { 'pandoc':
