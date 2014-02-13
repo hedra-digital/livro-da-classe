@@ -19,10 +19,6 @@ sudo apt-get install libmagickwand-dev libmagickcore-dev imagemagick
 
 sudo apt-get install libqt4-dev libqtwebkit-dev
 
-###Symlink LaTeX template directory
-
-sudo ln -s /etc/texmf/tex/generic/ ~/apps/livrodaclasse/current/templates
-
 ###License
 
 MIT License. Copyright 2012, 2013 Editora Hedra. http://hedra.com.br
@@ -36,27 +32,21 @@ $ git clone git@github.com/hedra-digital/livro-da-classe.git
 
 ### Instalar ruby
 <code>
-$ cd hedra-site
+$ cd livro-da-classe
 $ rvm install ruby-2.0.0-p247
 </code>
 
 ### Criar gemset
 <code>
 $ rvm use ruby-2.0.0-p247
-$ rvm gemset create ruby-2.0.0-p247 hedra-site
-$ rvm use ruby-2.0.0-p247@hedra-site
+$ rvm gemset create ruby-2.0.0-p247 livro-da-classe
+$ rvm use ruby-2.0.0-p247@livro-da-classe
 </code>
 
 ### Instalar Gems do projeto
 <code>
 $ bundle install
 </code>
-
-sudo apt-get install libmagickwand-dev libmagickcore-dev imagemagick 
-    
-### Others 
-
-sudo apt-get install libqt4-dev libqtwebkit-dev
 
 ### Configurar banco de dados da aplicação
 <code>
@@ -70,10 +60,19 @@ Configure usuário e senha de acesso ao MySQL no arquivo config/database.yml
 $ cp config/config.example.yml config/config.yml
 </code>
 
-### Configurações do LateX
+### Instalação PDF Latex
 <code>
-$ cd /etc/texmf/tex/generic/
-$ sudo ln -s [PASTA DA APLICAÇÃO]/templates/ latex
+$ sudo apt-get install pdflatex
+</code>
+
+### Instalação Inkscape
+<code>
+$ sudo apt-get install inkscape
+</code>
+
+### Instalação Pandoc (versão 1.10.1)
+<code>
+$ sudo apt-get install pandoc
 </code>
 
 Configure usuário e senha de acesso a area restrita e pasta dos templates no arquivo config/config.ym
