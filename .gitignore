@@ -46,5 +46,4 @@ pickle-email-*.html
 /db/sphinx/
 /log/searchd.development.pid
 .vagrant
-Vagrantfile
 /public/ckeditor_assets/

@@ -39,7 +39,7 @@ package { 'git-core':
 }
 
 # Nokogiri dependencies.
-package { ['libxml2', 'libxml2-dev', 'libxslt1-dev']:
+package { ['libxml2', 'libxml2-dev', 'libxslt1-dev']:                                     
   ensure => installed,
   require => Package['git-core']
 }
@@ -67,7 +67,7 @@ package { 'libmysqlclient15-dev':
   require => Package['redis-server']
 }
 
-package { 'postgresql-client':
+package { 'postgresql-client':                                                                                                                                                                                                                    
   ensure => installed,
   require => Package['libmysqlclient15-dev']
 }
