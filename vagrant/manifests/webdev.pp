@@ -112,11 +112,6 @@ package { 'libqtwebkit-dev':
   require => Package['libqt4-dev']
 }
 
-package { 'pdflatex':
-  ensure => installed,
-  require => Package['libqtwebkit-dev']
-}
-
 package { 'inkscape':
   ensure => installed,
   require => Package['pdflatex']
