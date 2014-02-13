@@ -56,13 +56,6 @@ package { 'vim':
   require => Package['nodejs']
 }
 
-
-package { 'imagemagick':
-  ensure => installed,
-  require => Package['vim']
-}
-
-
 # RedisServer.
 package { 'redis-server':
   ensure => installed,
