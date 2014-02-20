@@ -49,7 +49,6 @@ class BookData < ActiveRecord::Base
                   :diretor,
                   :coordenador,
                   :turma,
-                  :quartacapa,
                   :logo,
                   :cidade,
 
@@ -149,7 +148,6 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\diretor{#{self.diretor}}\n", self.diretor)
     commands << check("\\newcommand\\coordenador{#{self.coordenador}}\n", self.coordenador)
     commands << check("\\newcommand\\turma{#{self.turma}}\n", self.turma)
-    commands << check("\\newcommand\\quartacapa{#{self.quartacapa}}\n", self.quartacapa)
     commands << check("\\newcommand\\logo{#{get_fullpath_for(self.logo.url)}}\n", self.logo, true)
     commands << check("\\newcommand\\cidade{#{self.cidade}}\n", self.cidade)
     commands << "\n% Aparatos\n"
@@ -159,7 +157,6 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\sobreautor{#{self.sobreautor}}\n", self.sobreautor)
     commands << check("\\newcommand\\sobreorganizador{#{self.sobreorganizador}}\n", self.sobreorganizador)
     commands << check("\\newcommand\\sobretradutor{#{self.sobretradutor}}\n", self.sobretradutor)
-    commands << check("\\newcommand{\\resumo}{\\item[Autor] \\lipsum[1] \\item[Obra] \\lipsum[2] \\item[Tradutor] \\lipsum[3]}\\newcommand{\\orelha}{#{self.resumo}}\n", self.resumo)
     commands << "\n% Informações técnicas\n"
     commands << check("\\newcommand\\dimensao{#{self.dimensao}}\n", self.dimensao)
     commands << check("\\newcommand\\peso{#{self.peso}}\n", self.peso)
