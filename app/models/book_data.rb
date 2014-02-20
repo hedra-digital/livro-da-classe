@@ -127,6 +127,7 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\edicaoconsultada{#{self.edicaoconsultada}}\n", self.edicaoconsultada)
     commands << check("\\newcommand\\primeiraedicao{#{self.primeiraedicao}}\n", self.primeiraedicao)
     commands << check("\\newcommand\\agradecimentos{#{self.agradecimentos}}\n", self.agradecimentos)
+    commands << check("\\newcommand\\indicacao{#{self.indicacao}}\n", self.indicacao)
     commands << check("\\newcommand\\ISBN{#{self.isbn}}\n", self.isbn)
     commands << check("\\newcommand\\ano{#{self.ano}}\n", self.ano)
     commands << check("\\newcommand\\edicao{#{self.edicao}}\n", self.edicao)
