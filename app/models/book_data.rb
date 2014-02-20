@@ -100,6 +100,10 @@ class BookData < ActiveRecord::Base
     Rails.public_path + url
   end
 
+  def cover_directory
+    raise 1
+  end
+
   def check value, field, is_image=false
     (field.blank? or (is_image && !field.exists?)) ? "" : value
   end   
@@ -117,6 +121,7 @@ class BookData < ActiveRecord::Base
     commands << "\n% Capa\n"
     commands << check("\\newcommand{\\orelha}{#{self.orelha}}\n", self.orelha)
     commands << check("\\newcommand{\\quartacapa}{#{self.quartacapa}}\n", self.quartacapa)
+    commands << check("\\newcommand{\\dircapa}{#{self.cover_directory}}\n", self.cover_directory)
     commands << "\n% Página de créditos\n"
     commands << check("\\newcommand\\copyrightlivro{#{self.copyrightlivro}}\n", self.copyrightlivro)
     commands << check("\\newcommand\\copyrighttraducao{#{self.copyrighttraducao}}\n", self.copyrighttraducao)
