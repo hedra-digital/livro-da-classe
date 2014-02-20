@@ -62,6 +62,7 @@ class BookData < ActiveRecord::Base
                   :sobreorganizador,
                   :sobretradutor,
                   :resumo,
+                  :numeroedicao,
 
                   #Informações Técnicas
                   :dimensao,
@@ -77,6 +78,8 @@ class BookData < ActiveRecord::Base
                   :publicaebook
 
   belongs_to                :book
+
+  validates_numericality_of     :numeroedicao, :greater_than_or_equal_to => 1, :less_than_or_equal_to=>100
 
   has_attached_file :logo,
                     :styles => {
@@ -163,6 +166,7 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\sobreautor{#{self.sobreautor}}\n", self.sobreautor)
     commands << check("\\newcommand\\sobreorganizador{#{self.sobreorganizador}}\n", self.sobreorganizador)
     commands << check("\\newcommand\\sobretradutor{#{self.sobretradutor}}\n", self.sobretradutor)
+    commands << check("\\newcommand\\numeroedicao{#{self.numeroedicao}}\n", self.numeroedicao)
     commands << "\n% Informações técnicas\n"
     commands << check("\\newcommand\\dimensao{#{self.dimensao}}\n", self.dimensao)
     commands << check("\\newcommand\\peso{#{self.peso}}\n", self.peso)
