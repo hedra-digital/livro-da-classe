@@ -6,8 +6,17 @@
 <% end %>
 
 <div class="row">
+  <div class="span pull-right">
+    <div>
+      <% if can_write? %>
+        <%= link_to t(:text_edit), edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   <div class="span12">
-    <!--<h2><%= @text.title %></h2>-->
     <div style="padding: 10px;"><%= @text.content.html_safe %></div>
   </div>
 
