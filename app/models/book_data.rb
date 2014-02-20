@@ -35,6 +35,8 @@ class BookData < ActiveRecord::Base
                   :preparacao,
                   :capa,
                   :imagemcapa,
+                  :grafica,
+                  :papelmiolo,
 
                   #Ficha Catalografica
                   :imagemficha,
@@ -66,6 +68,7 @@ class BookData < ActiveRecord::Base
                   :peso,
                   :gramaturamiolo,
                   :cormiolo,
+        
 
                   #Metadados
                   :palavraschave,
@@ -137,6 +140,8 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\preparacao{#{self.preparacao}}\n", self.preparacao)
     commands << check("\\newcommand\\capa{#{self.capa}}\n", self.capa)
     commands << check("\\newcommand\\imagemcapa{#{self.imagemcapa}}\n", self.imagemcapa)
+    commands << check("\\newcommand\\grafica{#{self.grafica}}\n", self.grafica)
+    commands << check("\\newcommand\\papelmiolo{#{self.papelmiolo}}\n", self.papelmiolo)
     commands << "\n% Ficha catalográfica\n"
     commands << check("\\newcommand\\imagemficha{#{get_fullpath_for(self.imagemficha.url)}}\n", self.imagemficha, true)
     commands << "\n% Parceiro\n"

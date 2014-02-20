@@ -42,6 +42,7 @@ pickle-email-*.html
 .DS_Store
 /public/assets
 /coverage
+/tipografia-books
 
 /db/sphinx/
 /log/searchd.development.pid

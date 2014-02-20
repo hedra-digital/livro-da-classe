@@ -97,6 +97,8 @@ pt-BR:
     publicaebook: 'Publicação em formato de ebook'
     corprimaria: 'Cor Primária'
     corsecundaria: 'Cor Secundária'
+    grafica: 'Gráfica'
+    papelmiolo: 'Papel Miolo'    
   book_nav:
     overview: 'Mural'
     book_data: 'Dados do Original'
