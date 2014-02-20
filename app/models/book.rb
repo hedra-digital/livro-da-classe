@@ -153,6 +153,7 @@ class Book < ActiveRecord::Base
   def check_repository
     if !self.book_data.nil? && !Dir.exists?(directory)
       template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
+      p template_directory
       FileUtils.mkdir_p(directory)
       FileUtils.cp_r(Dir[template_directory], directory)
       Version.commit_directory directory, "New Book => #{self.title}", directory_name
