@@ -48,6 +48,7 @@ class Book < ActiveRecord::Base
 
   # Paperclip attachment
   has_attached_file :cover,
+                    :url => "/system/:class/:attachment/:id_partition/:style/Capa.:extension",
                     :styles => {
                       :content => ['100%', :jpg],
                       :thumb => ['60x80>', :jpg]

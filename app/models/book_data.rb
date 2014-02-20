@@ -91,6 +91,7 @@ class BookData < ActiveRecord::Base
                     }
 
   has_attached_file :capainteira,
+                    :url => "/system/:class/:attachment/:id_partition/:style/Capa.:extension",
                     :styles => {
                       :content => ['100%', :jpg],
                       :thumb => ['60x80>', :jpg]
@@ -104,7 +105,13 @@ class BookData < ActiveRecord::Base
   end
 
   def cover_directory
-    raise 1
+    if self.capainteira.exists? 
+      File.dirname(self.capainteira.path)
+    elsif self.book.cover.exists?
+      File.dirname(self.book.cover.path)
+    else
+      nil
+    end
   end
 
   def check value, field, is_image=false
