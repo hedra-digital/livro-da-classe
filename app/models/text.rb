@@ -59,40 +59,13 @@ class Text < ActiveRecord::Base
 
   def to_file
     self.book.check_repository
-    content = self.to_latex
+    content = LatexConverter.to_latex(self.content)
     File.open(self.filename,'wb') {|io| io.write(content) }
-  end
-
-  def to_latex
-    require "#{Rails.root}/lib/markup_latex.rb"
-
-    self.content = self.content.gsub(/ <\/(.*?)>/m, '</\1>&nbsp;')
-    self.content = self.content.gsub(/<([a-z]+)> /m, '&nbsp;<\1>')
-
-    content = "#{MarkupLatex.new(self.content).to_latex}".html_safe
-
-    content = content.gsub("\n\\\\","\\\\\\\n") #para tabelas
-    content = content.gsub("\\textsuperscript{}","") #para footnote
-    content = content.gsub("\n\\footnote","\\footnote") #para footnote
-    content = content.gsub("\n.\\footnote",".\\footnote") #para footnote
-
-    content = content.gsub("$$$&", "\\\\&")
-
-    content = content.gsub("\\textbar{}\\textgreater{}\\textbar{}", "")
-    content = content.gsub("\\textbar{}\\textless{}\\textbar{}", "")
-
-    content = content.gsub("#\\","\\") #para versos
-
-    Expression.where(:level => 3).each do |exp|
-      content = content.gsub(eval(exp.target), exp.replace)
-    end
-
-    content
   end
 
   def validate_content
     begin
-      self.to_latex
+      LatexConverter.to_latex(self.content)
       return true
     rescue
       return false

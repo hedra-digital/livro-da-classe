@@ -212,27 +212,36 @@ CKEDITOR.addCss('.chapter { background-color: #5e5e5e; color: #fff; }');
 CKEDITOR.addCss('.chapter p{ text-align:right; }');
 CKEDITOR.addCss('.chapter h3{ font-style: oblique; }');
 
-CKEDITOR.instances.text_content.on('contentDom', function() {
-  CKEDITOR.instances.text_content.document.on('keyup', function(event) {
-    var key = event.data.getKey();
-    var editor = CKEDITOR.instances.text_content;
-    var content = editor.document.getBody().getHtml();
-    if (content.match(/@(.*?)@/) != null){
-      var inside = content.match(/@(.*?)@/)[0];
-      inside = inside.replace(/@/g,"");
-      if (inside.length != 0){
-        content = content.replace(/@(.*?)@/, "<span class='latex-inputbox'>"+inside+"<a class='latex-close' onclick='this.parentNode.remove();'>×</a></span><span>&nbsp;</span>");
-        editor.document.getBody().setHtml(content); 
-      }
-      var range = editor.createRange();
-      range.moveToElementEditEnd( range.root );
-      editor.getSelection().selectRanges( [ range ] );
-    }
-  });
-});
+for (var i in CKEDITOR.instances) {
+    (function(i){
+        CKEDITOR.instances[i].on('contentDom', function() {
+          CKEDITOR.instances[i].document.on('keyup', function(event) {
+              var key = event.data.getKey();
+              var editor = CKEDITOR.instances[i];
+              var content = editor.document.getBody().getHtml();
+              if (content.match(/@(.*?)@/) != null){
+                var inside = content.match(/@(.*?)@/)[0];
+                inside = inside.replace(/@/g,"");
+                if (inside.length != 0){
+                  content = content.replace(/@(.*?)@/, "<span class='latex-inputbox'>"+inside+"<a class='latex-close' onclick='this.parentNode.remove();'>×</a></span><span>&nbsp;</span>");
+                  editor.document.getBody().setHtml(content); 
+                }
+                var range = editor.createRange();
+                range.moveToElementEditEnd( range.root );
+                editor.getSelection().selectRanges( [ range ] );
+              }
+            });
+        });
 
-CKEDITOR.instances.text_content.on('instanceReady', function() {
-  var content = CKEDITOR.instances.text_content.document.getBody().getHtml();
-  content = content.replace(/data-cke-pa-onclick/g, "onclick");
-  CKEDITOR.instances.text_content.document.getBody().setHtml(content);
-});
+
+        CKEDITOR.instances[i].on('instanceReady', function() {
+          var content = CKEDITOR.instances[i].document.getBody().getHtml();
+          content = content.replace(/data-cke-pa-onclick/g, "onclick");
+          CKEDITOR.instances[i].document.getBody().setHtml(content);
+        });
+
+
+    })(i);
+}
+
+

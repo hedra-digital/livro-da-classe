@@ -2,31 +2,31 @@
   <h3 id="apparatus" class="collapse-click collapse-head">Aparatos</h3>
   <div class="fields">
     <div class="row">
-      <div class="span11"><%= f.input :release, :label => t('book_data.release'), as: :text, input_html: {rows: 2} %></div>
+      <div class="span11"><%= f.input :release, :label => t('book_data.release'), as: :ckeditor, input_html: {rows: 2} %></div>
     </div>
 
     <div class="row">
-      <div class="span11"><%= f.input :trechotexto, :label => t('book_data.trechotexto'), as: :text, input_html: {rows: 2} %></div>
+      <div class="span11"><%= f.input :trechotexto, :label => t('book_data.trechotexto'), as: :ckeditor, input_html: {rows: 2} %></div>
     </div>
 
     <div class="row">
-      <div class="span11"><%= f.input :sobreobra, :label => t('book_data.sobreobra'), as: :text, input_html: {rows: 2} %></div>
+      <div class="span11"><%= f.input :sobreobra, :label => t('book_data.sobreobra'), as: :ckeditor, input_html: {rows: 2} %></div>
     </div>
 
     <div class="row">
-      <div class="span11"><%= f.input :sobreautor, :label => t('book_data.sobreautor'), as: :text, input_html: {rows: 2} %></div>
+      <div class="span11"><%= f.input :sobreautor, :label => t('book_data.sobreautor'), as: :ckeditor, input_html: {rows: 2} %></div>
     </div>
 
     <div class="row">
-      <div class="span11"><%= f.input :sobreorganizador, :label => t('book_data.sobreorganizador'), as: :text, input_html: {rows: 2} %></div>
+      <div class="span11"><%= f.input :sobreorganizador, :label => t('book_data.sobreorganizador'), as: :ckeditor, input_html: {rows: 2} %></div>
     </div>
     
     <div class="row">
-      <div class="span11"><%= f.input :sobretradutor, :label => t('book_data.sobretradutor'), as: :text, input_html: {rows: 2} %></div>
+      <div class="span11"><%= f.input :sobretradutor, :label => t('book_data.sobretradutor'), as: :ckeditor, input_html: {rows: 2} %></div>
     </div>
 
     <div class="row">
-      <div class="span11"><%= f.input :resumo, :label => t('book_data.resumo'), as: :text, input_html: {rows: 2} %></div>
+      <div class="span11"><%= f.input :resumo, :label => t('book_data.resumo'), as: :ckeditor, input_html: {rows: 2} %></div>
     </div>
     <div class="row">
       <div class="span2"><%= f.input :numeroedicao, :label => t('book_data.numeroedicao'), as: :integer, input_html: { rows: 2, min: 1, max: 100 }%></div>

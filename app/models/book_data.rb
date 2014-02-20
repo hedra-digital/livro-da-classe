@@ -110,6 +110,10 @@ class BookData < ActiveRecord::Base
     (field.blank? or (is_image && !field.exists?)) ? "" : value
   end   
 
+  def to_latex content
+    LatexConverter.to_latex(content)
+  end
+
   def to_file
     commands = "% Gerais\n"
     commands << check("\\newcommand{\\titulo}{#{self.book.title}}\n", self.book.title)
@@ -160,12 +164,12 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\logo{#{get_fullpath_for(self.logo.url)}}\n", self.logo, true)
     commands << check("\\newcommand\\cidade{#{self.cidade}}\n", self.cidade)
     commands << "\n% Aparatos\n"
-    commands << check("\\newcommand\\release{#{self.release}}\n", self.release)
-    commands << check("\\newcommand\\trechotexto{#{self.trechotexto}}{\\lipsum}\n", self.trechotexto)
-    commands << check("\\newcommand\\sobreobra{#{self.sobreobra}}\n", self.sobreobra)
-    commands << check("\\newcommand\\sobreautor{#{self.sobreautor}}\n", self.sobreautor)
-    commands << check("\\newcommand\\sobreorganizador{#{self.sobreorganizador}}\n", self.sobreorganizador)
-    commands << check("\\newcommand\\sobretradutor{#{self.sobretradutor}}\n", self.sobretradutor)
+    commands << check("\\newcommand\\release{#{to_latex(self.release)}}\n", self.release)
+    commands << check("\\newcommand\\trechotexto{#{to_latex(self.trechotexto)}}{\\lipsum}\n", self.trechotexto)
+    commands << check("\\newcommand\\sobreobra{#{to_latex(self.sobreobra)}}\n", self.sobreobra)
+    commands << check("\\newcommand\\sobreautor{#{to_latex(self.sobreautor)}}\n", self.sobreautor)
+    commands << check("\\newcommand\\sobreorganizador{#{to_latex(self.sobreorganizador)}}\n", self.sobreorganizador)
+    commands << check("\\newcommand\\sobretradutor{#{to_latex(self.sobretradutor)}}\n", self.sobretradutor)
     commands << check("\\newcommand\\numeroedicao{#{self.numeroedicao}}\n", self.numeroedicao)
     commands << "\n% Informações técnicas\n"
     commands << check("\\newcommand\\dimensao{#{self.dimensao}}\n", self.dimensao)
