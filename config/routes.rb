@@ -2,6 +2,9 @@ Livrodaclasse::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web, at: '/sidekiq'
+
   match 'scraps/:id/new', :to => 'scraps#new', :as => :new_scrap
 
   get 'entrar', :to => 'sessions#new', :as => :signin
