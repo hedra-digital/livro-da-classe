@@ -39,6 +39,9 @@
 //= require ckeditor/plugins/chapter/plugin
 //= require ckeditor/plugins/chapter/dialogs/chapter
 //= require ckeditor/plugins/verse/plugin
+//= require ckeditor/plugins/smallskip/plugin
+//= require ckeditor/plugins/medskip/plugin
+//= require ckeditor/plugins/bigskip/plugin
 //= require ckeditor/plugins/autogrow/plugin
 //= require jquery.jqEasyCharCounter.min.js
 //= require jquery.mask.min.js

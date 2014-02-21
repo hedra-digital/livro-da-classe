@@ -3,6 +3,12 @@ class MarkupLatex
   require 'nokogiri'
   require 'nokogiri-styles'
 
+  module Skips
+    SMALL = "smallskip"
+    MEDIUM = "medskip"
+    BIG = "bigskip"
+  end
+
   def initialize(text)
     @text  = text    
   end
@@ -23,6 +29,9 @@ class MarkupLatex
     content_text = prepare_image content_text
     content_text = prepare_footnote content_text
     content_text = prepare_verse content_text
+    content_text = prepare_skip content_text, Skips::SMALL
+    content_text = prepare_skip content_text, Skips::MEDIUM
+    content_text = prepare_skip content_text, Skips::BIG
     content_text = prepare_epigraph content_text
     content_text = prepare_chapter content_text
     content_text = prepare_alignment content_text
@@ -95,6 +104,13 @@ class MarkupLatex
       verse_text = verse_text.gsub("\n\n","\\#\\!\n\n")
       text = text.gsub("<br />", "<br>")
       text = text.sub(verse.to_s, "<font>|>|\n\\begin{verse}\n#{verse_text}\\#\\!\n\\end{verse} |<|</font>")
+    end
+    text
+  end
+
+  def prepare_skip(text, skip_type)
+    Nokogiri::HTML(text).css("div.#{skip_type}").each do |verse|
+      text = text.sub(verse.to_s, "<font>|>|\\#{skip_type}{} |<|</font>")
     end
     text
   end

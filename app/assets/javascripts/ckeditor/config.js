@@ -1,6 +1,6 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote,epigraph,verse,chapter';
+  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote,epigraph,verse,chapter,smallskip,medskip,bigskip';
 
   /* Char Count Plugin */
   config.maxLength = 0;
@@ -26,9 +26,6 @@ CKEDITOR.editorConfig = function(config) {
     [ CKEDITOR.CTRL + 73 /*I*/, 'italic' ],
     [ CKEDITOR.CTRL + 85 /*U*/, 'underline' ],
 
-    //[ CKEDITOR.CTRL + 86 /*V*/, 'pastetext' ],
-    //[ CKEDITOR.SHIFT + 45 /*INS*/, 'pastetext' ],
-
     [ CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse' ]
   ];
 
@@ -44,17 +41,8 @@ CKEDITOR.editorConfig = function(config) {
     { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },
     { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor', 'FootNote', 'Epigraph', 'Verse', 'Chapter' ] },
     { name: 'colors', items : [ 'TextColor','BGColor' ] },
-    { name: 'styles', items : [ 'Format' ] }
+    { name: 'styles', items : [ 'Format', 'Smallskip', 'Medskip', 'Bigskip' ] }
   ];
-
-  /*config.toolbar = [
-    { name: 'basicstyles', items: [ 'Bold', 'Italic' ] },
-    { name: 'insert', items: [ 'Image' ] },
-    { name: 'clipboard', items: [ 'Cut', 'Copy', 'PasteText', '-', 'Undo', 'Redo' ] },
-    { name: 'colors', items: [ 'BGColor' ] },
-    { name: 'document', items: [ 'Source' ] },
-    { name: 'latex', items: [ 'EqnEditor' ] }
-  ];*/
   
   config.language = 'pt-BR';
 
@@ -92,7 +80,7 @@ CKEDITOR.editorConfig = function(config) {
       'p[align]; p{align,text-align};' +
       'div[!id];' +
       'section(epigraph); section(chapter);' +
-      'div(verse);';
+      'div(verse); div(smallskip); div(medskip); div(bigskip);';
 
   // Rails CSRF token
   config.filebrowserParams = function(){
@@ -211,6 +199,12 @@ CKEDITOR.addCss('.verse{ font-style: oblique; background-color: #F5F9FA; }');
 CKEDITOR.addCss('.chapter { background-color: #5e5e5e; color: #fff; }');
 CKEDITOR.addCss('.chapter p{ text-align:right; }');
 CKEDITOR.addCss('.chapter h3{ font-style: oblique; }');
+/*SmallSkip Plugin*/
+CKEDITOR.addCss('.smallskip { background-color: #f0f0f0; height: 14px; }');
+/*MedSkip Plugin*/
+CKEDITOR.addCss('.medskip { background-color: #e0e0e0; height: 28px; }');
+/*BigSkip Plugin*/
+CKEDITOR.addCss('.bigskip { background-color: #d0d0d0; height: 56px; }');
 
 for (var i in CKEDITOR.instances) {
     (function(i){
@@ -243,5 +237,3 @@ for (var i in CKEDITOR.instances) {
 
     })(i);
 }
-
-
