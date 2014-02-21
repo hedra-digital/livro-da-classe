@@ -49,4 +49,8 @@ module BooksHelper
       ''
     end
   end
+
+  def book_pages(book)
+    book.pages_count > 0 ? "#{book.pages_count} páginas" : ""
+  end
 end

@@ -40,7 +40,7 @@ class Book < ActiveRecord::Base
   validates                 :number,    :numericality => true, :allow_blank => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :project_attributes, :cover_info_attributes, :book_data, :coordinators, :directors, :organizers, :published_at, :title, :subtitle, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords, :document, :publisher_id, :abstract, :valid_pdf
+  attr_accessible           :project_attributes, :cover_info_attributes, :book_data, :coordinators, :directors, :organizers, :published_at, :title, :subtitle, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords, :document, :publisher_id, :abstract, :valid_pdf, :pages_count
 
   attr_accessor             :finished_at
 
@@ -73,19 +73,6 @@ class Book < ActiveRecord::Base
     response   = Book.find_by_uuid(id.to_s)
     response ||= Book.find_by_id(id)
     return response
-  end
-
-  def count_pages
-    # re-do it
-    begin
-      require 'open-uri'
-      site_url = "http://#{Livrodaclasse::Application.config.action_mailer.default_url_options[:host]}"
-      site_url = "#{site_url}/books/#{self.uuid}.pdf"
-      reader = PDF::Reader.new(open(site_url))
-      return reader.page_count
-    rescue
-      return 0
-    end
   end
 
   def resize_images?
@@ -126,7 +113,9 @@ class Book < ActiveRecord::Base
     if File.exist?(pdf_file = File.join(directory, 'LIVRO.pdf'))
       File.rename(pdf_file, File.join(directory,"#{self.uuid}.pdf"))
       pdf_file = File.join(directory,"#{self.uuid}.pdf")
-      self.update_attributes(:valid_pdf => true)
+      pages = PDF::Reader.new(pdf_file).page_count
+
+      self.update_attributes(:valid_pdf => true, :pages_count => pages)
     else
       pdf_file = nil
       if File.exist?(File.join(directory, 'LIVRO.log'))
