@@ -29,4 +29,11 @@ class Admin::ProjectsController < Admin::ApplicationController
     session[:auth_token] = @project.book.organizer.auth_token
     redirect_to app_home_path
   end
+
+  def refresh
+    Project.all.each do |project|
+      project.book.pdf
+    end
+    redirect_to admin_root_path, :notice => "Os projetos estão sendo atualizados..."
+  end
 end

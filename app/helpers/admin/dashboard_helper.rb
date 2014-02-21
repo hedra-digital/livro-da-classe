@@ -7,4 +7,8 @@ module Admin::DashboardHelper
     end
     tags.html_safe
   end
+
+  def pdf_status(book)
+    book.valid ? '<span class="badge badge-success">✓</span>'.html_safe : '<span class="badge badge-important">✗</span>'.html_safe
+  end
 end

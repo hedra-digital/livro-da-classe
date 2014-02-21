@@ -6,6 +6,7 @@ pt-BR:
   book_create: 'Criar Original'
   book_update: 'Atualizar Original'
   book_document: 'Documento'
+  book_pdf_check: 'Atualizar Status dos Projetos'
   cover_info: 'Dados da capa'
   account: 'Perfil'
   sign_out: 'Sair'

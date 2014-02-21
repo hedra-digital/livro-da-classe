@@ -60,9 +60,12 @@ Livrodaclasse::Application.routes.draw do
 
     match 'dashboard/revision', :to => 'dashboard#revision', :as => :revision
 
+    match 'projects/refresh', :to => 'projects#refresh', :as => :projects_refresh
+
     resources :projects, :only => [:index, :show, :edit, :update] do
       member do
         get 'impersonate'
+        get 'refresh'
       end
     end
     resources :templates, :only => :index

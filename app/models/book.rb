@@ -28,7 +28,7 @@ class Book < ActiveRecord::Base
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
   has_and_belongs_to_many   :users
   has_many                  :texts, :dependent => :destroy
-  has_one                   :project
+  has_one                   :project, :dependent => :destroy
   has_one                   :cover_info
   has_one                   :book_data
   has_many                  :invitations, :dependent => :destroy
@@ -40,7 +40,7 @@ class Book < ActiveRecord::Base
   validates                 :number,    :numericality => true, :allow_blank => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :project_attributes, :cover_info_attributes, :book_data, :coordinators, :directors, :organizers, :published_at, :title, :subtitle, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords, :document, :publisher_id, :abstract
+  attr_accessible           :project_attributes, :cover_info_attributes, :book_data, :coordinators, :directors, :organizers, :published_at, :title, :subtitle, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords, :document, :publisher_id, :abstract, :valid_pdf
 
   attr_accessor             :finished_at
 
@@ -92,7 +92,7 @@ class Book < ActiveRecord::Base
     self.cover_info.capa_imagem.present? or self.cover_info.capa_detalhe.present?
   end
 
-  def pdf user_profile
+  def pdf user_profile=nil
     #check repository existence
     self.check_repository
 
@@ -126,17 +126,19 @@ class Book < ActiveRecord::Base
     if File.exist?(pdf_file = File.join(directory, 'LIVRO.pdf'))
       File.rename(pdf_file, File.join(directory,"#{self.uuid}.pdf"))
       pdf_file = File.join(directory,"#{self.uuid}.pdf")
+      self.update_attributes(:valid_pdf => true)
     else
       pdf_file = nil
       if File.exist?(File.join(directory, 'LIVRO.log'))
         AdminMailer.pdf_to_latex_error(self, directory, "#{directory}/LIVRO.log").deliver
       end
+      self.update_attributes(:valid_pdf => false)
     end
     pdf_file
   end
 
   def valid
-    Text.where(:book_id => self.id, :valid_content => false).size == 0
+    self.valid_pdf
   end
 
   def directory
