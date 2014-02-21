@@ -96,6 +96,7 @@ GEM
       json
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
@@ -309,6 +310,9 @@ GEM
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     validates_email_format_of (1.5.3)
+    whenever (0.9.0)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
     wicked_pdf (0.9.6)
       rails
     wkhtmltopdf-binary (0.9.9.1)
@@ -370,6 +374,7 @@ DEPENDENCIES
   terminal-notifier-guard
   uglifier (>= 1.0.3)
   validates_email_format_of
+  whenever
   wicked_pdf
   wkhtmltopdf-binary
   xml-simple
