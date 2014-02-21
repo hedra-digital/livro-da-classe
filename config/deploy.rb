@@ -1,5 +1,6 @@
 require 'bundler/capistrano'
 require 'capistrano/ext/multistage'
+require 'sidekiq/capistrano'
 
 set :stages, ["staging", "sales", "sletras", "production", "tipostaging"]
 set :default_stage, "staging"
