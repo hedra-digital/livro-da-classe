@@ -1,4 +1,7 @@
 <div id="book-info">
+  <div>
+    <%= progress_notification %>  
+  </div>
   <div class="container">
     <div class="row">
       <div class="span1">
@@ -21,7 +24,7 @@
             <% end %>
 
             <% if can_execute? and @book.valid %>
-              <%= menu_item t(:pdf, :scope => :book_nav), book_path(@book.uuid, :format => "pdf"), true  %>
+              <%= menu_item t(:pdf, :scope => :book_nav), '#', true  %>
             <% end %>
 
             <% if is_organizer? && is_project? && can_execute? %>
@@ -46,3 +49,49 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  var bookurl = '<%= book_generate_pdf_path(@book.uuid) %>';
+
+  $("#generate-pdf").on("click", function (){
+    $.ajax({
+      url: bookurl,
+      dataType: 'json',
+      beforeSend: function () {
+        $(".progress-modal").fancybox({
+          helpers : {
+              overlay : {
+                  locked : true,
+                  closeClick : false
+              },
+              title: {
+                type: 'inside',
+                position: 'bottom'
+              }
+        
+          },
+          title: " <%= t(:progress_title) %>",
+          autoSize: true,
+          minHeight: 10,
+          closeBtn: true,
+          autoCenter: true
+
+        }).trigger('click')
+      },
+      context: document.body
+    }).done(function(response) {
+
+      if (response.result == "success") {
+        parent.jQuery.fancybox.close();
+        window.location = response.path;
+      } else {
+        var link = $(document.createElement('a')).attr('href',response.path).text('<%= t(:click_here) %>');
+        $('img.progress-modal').hide();
+        $('div.fancybox-title').text('<%= t(:pdf_generation_download) %>').append(link);
+        $('div.fancybox-title').html();
+      }
+
+    }).fail(function(response) {
+      alert("<%= t(:pdf_generation_error) %>");
+    });
+  });
+</script>

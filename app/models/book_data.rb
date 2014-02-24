@@ -35,8 +35,7 @@ class BookData < ActiveRecord::Base
                   :preparacao,
                   :capa,
                   :imagemcapa,
-                  :grafica,
-                  :papelmiolo,
+                  :numeroedicao,
 
                   #Ficha Catalografica
                   :imagemficha,
@@ -62,14 +61,15 @@ class BookData < ActiveRecord::Base
                   :sobreorganizador,
                   :sobretradutor,
                   :resumo,
-                  :numeroedicao,
 
                   #Informações Técnicas
                   :dimensao,
                   :peso,
                   :gramaturamiolo,
                   :cormiolo,
-        
+                  :grafica,
+                  :papelmiolo,
+
 
                   #Metadados
                   :palavraschave,
@@ -159,8 +159,7 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\preparacao{#{self.preparacao}}\n", self.preparacao)
     commands << check("\\newcommand\\capa{#{self.capa}}\n", self.capa)
     commands << check("\\newcommand\\imagemcapa{#{self.imagemcapa}}\n", self.imagemcapa)
-    commands << check("\\newcommand\\grafica{#{self.grafica}}\n", self.grafica)
-    commands << check("\\newcommand\\papelmiolo{#{self.papelmiolo}}\n", self.papelmiolo)
+    commands << check("\\newcommand\\numeroedicao{#{self.numeroedicao}}\n", self.numeroedicao)    
     commands << "\n% Ficha catalográfica\n"
     commands << check("\\newcommand\\imagemficha{#{get_fullpath_for(self.imagemficha.url)}}\n", self.imagemficha, true)
     commands << "\n% Parceiro\n"
@@ -182,12 +181,13 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\sobreautor{#{to_latex(self.sobreautor)}}\n", self.sobreautor)
     commands << check("\\newcommand\\sobreorganizador{#{to_latex(self.sobreorganizador)}}\n", self.sobreorganizador)
     commands << check("\\newcommand\\sobretradutor{#{to_latex(self.sobretradutor)}}\n", self.sobretradutor)
-    commands << check("\\newcommand\\numeroedicao{#{self.numeroedicao}}\n", self.numeroedicao)
     commands << "\n% Informações técnicas\n"
     commands << check("\\newcommand\\dimensao{#{self.dimensao}}\n", self.dimensao)
     commands << check("\\newcommand\\peso{#{self.peso}}\n", self.peso)
     commands << check("\\newcommand\\gramaturamiolo{#{self.gramaturamiolo}}\n", self.gramaturamiolo)
     commands << check("\\newcommand\\cormiolo{#{self.cormiolo}}\n", self.cormiolo)
+    commands << check("\\newcommand\\grafica{#{self.grafica}}\n", self.grafica)
+    commands << check("\\newcommand\\papelmiolo{#{self.papelmiolo}}\n", self.papelmiolo)    
     commands << "\n% Metadados\n"
     commands << check("\\newcommand\\palavraschave{#{self.palavraschave}}\n", self.palavraschave)
     commands << "\n% ebook\n"

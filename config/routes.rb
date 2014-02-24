@@ -40,6 +40,7 @@ Livrodaclasse::Application.routes.draw do
   get 'books/:id/revision', to: 'books#revision', as: :book_revision
   match 'books/:id/update_cover_info', to: 'books#update_cover_info', as: :book_update_cover_info
   match 'books/:id/generate_cover', to: 'books#generate_cover', as: :book_generate_cover
+  match 'books/:id/generate_pdf', to: 'books#generate_pdf', as: :book_generate_pdf
 
   match 'scraps/:id/thread', :to => 'scraps#thread', :as => :scraps_thread
   match 'scraps/:id/answer', :to => 'scraps#answer', :as => :scraps_answer
