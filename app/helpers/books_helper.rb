@@ -53,4 +53,8 @@ module BooksHelper
   def progress_notification
       image_tag('/assets/ajax-loader.gif', :class => 'progress-modal', :style => 'display: none;')
   end  
+
+  def book_pages(book)
+    book.pages_count > 0 ? "#{book.pages_count} páginas" : ""
+  end
 end

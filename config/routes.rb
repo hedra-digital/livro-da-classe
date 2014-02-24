@@ -2,6 +2,9 @@ Livrodaclasse::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web, at: '/sidekiq'
+
   match 'scraps/:id/new', :to => 'scraps#new', :as => :new_scrap
 
   get 'entrar', :to => 'sessions#new', :as => :signin
@@ -61,9 +64,12 @@ Livrodaclasse::Application.routes.draw do
 
     match 'dashboard/revision', :to => 'dashboard#revision', :as => :revision
 
+    match 'projects/refresh', :to => 'projects#refresh', :as => :projects_refresh
+
     resources :projects, :only => [:index, :show, :edit, :update] do
       member do
         get 'impersonate'
+        get 'refresh'
       end
     end
     resources :templates, :only => :index
