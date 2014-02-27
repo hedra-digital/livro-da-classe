@@ -8,9 +8,9 @@ class Version
   end
 
   def self.commit_file directory, text, user_profile, user_name, message
-    puts "@" * 100
     text.to_file
     message = ":: #{message}" unless message.blank?
+    directory = File.join(Rails.root, directory)
     system "cd #{directory}/ && git pull origin master && git add #{text.filename} && git commit -a -m \"#{user_profile} (#{user_name}) #{message}\" && git push origin master"
   end
 
