@@ -197,6 +197,7 @@ class Book < ActiveRecord::Base
       FileUtils.cp_r(Dir[File.join(template_directory,"*")], directory)
       Version.commit_directory directory, "New Book => #{self.title}", directory_name
       pdf #make sure that has a file .pdf
+      ebook if has_ebook? #make sure that has a file .epub and .ivk if template supports ebook
     end
   end
 
