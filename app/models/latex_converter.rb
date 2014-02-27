@@ -3,6 +3,8 @@ class LatexConverter
   def self.to_latex content
     require "#{Rails.root}/lib/markup_latex.rb"
 
+    return "" if content.nil?
+
     content = content.gsub(/ <\/(.*?)>/m, '</\1>&nbsp;')
     content = content.gsub(/<([a-z]+)> /m, '&nbsp;<\1>')
 

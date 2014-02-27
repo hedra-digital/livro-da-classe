@@ -32,10 +32,10 @@ module BooksHelper
     tags.html_safe
   end
 
-  def menu_item(name, path, external=nil)
+  def menu_item(name, path, external=nil, type="")
     options = {}
     options[:class] = 'active' if current_page?(path)
-    external.nil? ? content_tag(:li, link_to(name, path), options) : content_tag(:li, link_to(name, path, :id => "generate-pdf"), options)
+    external.nil? ? content_tag(:li, link_to(name, path), options) : content_tag(:li, link_to(name, path, :id => type), options)
   end
 
   def book_cover
@@ -56,5 +56,9 @@ module BooksHelper
 
   def book_pages(book)
     book.pages_count > 0 ? "#{book.pages_count} páginas" : ""
+  end
+
+  def has_ebook?(book)
+    book.has_ebook?
   end
 end

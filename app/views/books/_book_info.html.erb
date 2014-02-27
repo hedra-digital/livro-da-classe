@@ -7,10 +7,10 @@
       <div class="span1">
         <%= book_cover %>
       </div>
-      <div class="span8">
+      <div class="span11">
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? and @book.project.engaged? %>
         <nav role="navigation">
-          <ul class="nav nav-pills">
+          <ul class="nav nav-pills fill-width">
             <% if is_organizer? %>
               <%= menu_item t(:book_data, :scope => :book_nav), edit_book_path(@book.uuid) %>
             <% end %>
@@ -24,7 +24,15 @@
             <% end %>
 
             <% if can_execute?  %>
-              <%= menu_item t(:pdf, :scope => :book_nav), '#', true  %>
+              <%= menu_item t(:pdf, :scope => :book_nav), '#', true, 'generate-pdf'  %>
+            <% end %>
+
+            <% if can_execute? and has_ebook?(@book)  %>
+              <%= menu_item t(:ebook, :scope => :book_nav), '#', true, 'generate-ebook'  %>
+            <% end %>
+
+            <% if can_execute? and has_ebook?(@book)  %>
+              <%= menu_item t(:kindle, :scope => :book_nav), '#', true, 'generate-kindle'  %>
             <% end %>
 
             <% if is_organizer? && is_project? && can_execute? %>
@@ -51,10 +59,37 @@
 </div>
 <script type="text/javascript">
   var bookurl = '<%= book_generate_pdf_path(@book.uuid) %>';
+  var ebookurl = '<%= book_generate_ebook_path(@book.uuid) %>';
 
-  $("#generate-pdf").on("click", function (){
+  function getByType(type){
+    if (type == "pdf"){
+      return { 
+        url : bookurl,
+        title: "<%= t(:pdf_progress_title) %>",
+        download: "<%= t(:pdf_generation_download) %>",
+        error: "<%= t(:pdf_generation_error) %>"
+      };
+    } else if (type == "ebook"){
+      return { 
+        url : ebookurl,
+        title: "<%= t(:ebook_progress_title) %>",
+        download: "<%= t(:ebook_generation_download) %>",
+        error: "<%= t(:ebook_generation_error) %>"
+      };
+    } else {
+      return { 
+        url : ebookurl + "?kindle=true",
+        title: "<%= t(:kindle_progress_title) %>",
+        download: "<%= t(:kindle_generation_download) %>",
+        error: "<%= t(:kindle_generation_error) %>"
+      };
+    }
+  }
+
+  function generate(type){
+    var o = getByType(type);
     $.ajax({
-      url: bookurl,
+      url: o.url,
       dataType: 'json',
       beforeSend: function () {
         $(".progress-modal").fancybox({
@@ -67,31 +102,39 @@
                 type: 'inside',
                 position: 'bottom'
               }
-        
           },
-          title: " <%= t(:progress_title) %>",
+          title: o.title,
           autoSize: true,
           minHeight: 10,
           closeBtn: true,
           autoCenter: true
-
         }).trigger('click')
       },
       context: document.body
     }).done(function(response) {
-
       if (response.result == "success") {
         parent.jQuery.fancybox.close();
         window.location = response.path;
       } else {
         var link = $(document.createElement('a')).attr('href',response.path).text('<%= t(:click_here) %>');
         $('img.progress-modal').hide();
-        $('div.fancybox-title').text('<%= t(:pdf_generation_download) %>').append(link);
+        $('div.fancybox-title').text(o.download).append(link);
         $('div.fancybox-title').html();
       }
-
     }).fail(function(response) {
-      alert("<%= t(:pdf_generation_error) %>");
+      alert(o.error);
     });
+  }
+
+  $("#generate-pdf").on("click", function (){
+    generate("pdf");
+  });
+
+  $("#generate-ebook").on("click", function (){
+    generate("ebook");
+  });
+
+  $("#generate-kindle").on("click", function (){
+    generate("kindle");
   });
 </script>

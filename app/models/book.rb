@@ -79,22 +79,16 @@ class Book < ActiveRecord::Base
     self.cover_info.capa_imagem.present? or self.cover_info.capa_detalhe.present?
   end
 
+  def has_ebook?
+    File.directory? File.join(template_directory,"ebook")
+  end
+
   def pdf user_profile=nil
     #check repository existence
     self.check_repository
 
     # generate latex files
-    input_files = ""
-    self.texts.order("-position DESC").each do |text|
-      text.to_file
-      input_files << "\\input{#{text.short_filename}}\n"
-    end
-
-    input_text = File.join(directory,'INPUTS.tex')
-    File.open(input_text,'w') {|io| io.write(input_files) }
-
-    input_commands = File.join(directory,'fichatecnica.sty')
-    File.open(input_commands,'w') {|io| io.write(self.book_data.to_file) }
+    self.generate_latex_files
 
     # generate pdf
     Process.waitpid(
@@ -126,6 +120,57 @@ class Book < ActiveRecord::Base
     pdf_file
   end
 
+  def ebook is_kindle=false
+    #check repository existence
+    self.check_repository
+
+    # generate latex files
+    self.generate_latex_files
+
+    # generate ebook
+    if is_kindle
+      Process.waitpid(
+        fork do
+          begin
+            system "cd #{directory}/ebook/ && make mobi"
+          rescue
+            system "cd #{directory}/ebook/ && make clean"
+          ensure
+            Process.exit! 1
+          end
+        end
+      )
+      # check rotine success
+      if File.exist?(ebook_file = File.join(directory, 'ebook', 'EBOOK.idv'))
+        File.rename(ebook_file, File.join(directory, 'ebook',"#{self.uuid}.idv"))
+        ebook_file = File.join(directory, 'ebook', "#{self.uuid}.idv")
+      else
+        ebook_file = nil
+      end
+    else
+      Process.waitpid(
+        fork do
+          begin
+            system "cd #{directory}/ebook/ && make"
+          rescue
+            system "cd #{directory}/ebook/ && make clean"
+          ensure
+            Process.exit! 1
+          end
+        end
+      )
+      # check rotine success
+      if File.exist?(ebook_file = File.join(directory, 'ebook', 'EBOOK.epub'))
+        File.rename(ebook_file, File.join(directory, 'ebook',"#{self.uuid}.epub"))
+        ebook_file = File.join(directory, 'ebook', "#{self.uuid}.epub")
+      else
+        ebook_file = nil
+      end
+    end
+    
+    ebook_file
+  end
+
   def valid
     self.valid_pdf
   end
@@ -142,14 +187,31 @@ class Book < ActiveRecord::Base
     "#{self.autor}#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
   end
 
+  def template_directory
+    File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}")
+  end
+
   def check_repository
     if !self.book_data.nil? && !Dir.exists?(directory)
-      template_directory = File.join(CONFIG[Rails.env.to_sym]["latex_template_path"],"#{self.template}","*")
-      p template_directory
       FileUtils.mkdir_p(directory)
-      FileUtils.cp_r(Dir[template_directory], directory)
+      FileUtils.cp_r(Dir[File.join(template_directory,"*")], directory)
       Version.commit_directory directory, "New Book => #{self.title}", directory_name
+      pdf #make sure that has a file .pdf
     end
+  end
+
+  def generate_latex_files
+    input_files = ""
+    self.texts.order("-position DESC").each do |text|
+      text.to_file
+      input_files << "\\input{#{text.short_filename}}\n"
+    end
+
+    input_text = File.join(directory,'INPUTS.tex')
+    File.open(input_text,'w') {|io| io.write(input_files) }
+
+    input_commands = File.join(directory,'fichatecnica.sty')
+    File.open(input_commands,'w') {|io| io.write(self.book_data.to_file) }
   end
 
   private
@@ -157,4 +219,5 @@ class Book < ActiveRecord::Base
   def set_uuid
     self.uuid = Guid.new.to_s if self.uuid.nil?
   end
+  
 end

@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
   before_filter :ominiauth_user_gate, :except => [:show]
   before_filter :secure_organizer_id, :only => [:create, :update]
-  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf]
+  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :generate_ebook]
 
   require "#{Rails.root}/lib/book_cover.rb"
 
@@ -43,15 +43,25 @@ class BooksController < ApplicationController
     end
   end
 
-
   def generate_pdf
-    pdf = @book.pdf(current_user.profile.desc)
+    pdf = @book.pdf
     pdf_path = pdf.to_s.gsub('public/','')
     if !pdf.nil?
-      render :json => {:path => "#{request.protocol}#{request.host_with_port}/#{pdf_path}", :result => "success" }
+      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{pdf_path}", :result => "success" }
     else
       pdf_path = File.join(@book.directory,"#{@book.uuid}.pdf").gsub('public', '')
-      render :json => {:path => "#{request.protocol}#{request.host_with_port}/#{pdf_path}", :result => "fail" }
+      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{pdf_path}", :result => "fail" }
+    end
+  end
+
+  def generate_ebook
+    ebook = @book.ebook params[:kindle].present?
+    ebook_path = ebook.to_s.gsub('public/','')
+    if !ebook.nil?
+      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "success" }
+    else
+      ebook_path = params[:kindle].present? ? File.join(@book.directory,"ebook","#{@book.uuid}.idv").gsub('public', '') : File.join(@book.directory,"ebook","#{@book.uuid}.epub").gsub('public', '')
+      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "fail" }
     end
   end
 
