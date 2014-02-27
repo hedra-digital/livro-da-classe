@@ -75,7 +75,11 @@ $ sudo apt-get install inkscape
 $ sudo apt-get install pandoc
 </code>
 
-Configure usuário e senha de acesso a area restrita e pasta dos templates no arquivo config/config.ym
+Configure usuário e senha de acesso a area restrita e pasta dos templates no arquivo config/config.yml
+
+### Setar repositório para o submodulo dos projetos
+
+Definir e iniciar um repositório git e colocar seu caminho na variável "books_submodule_path" do arquivo de configurações.
 
 ### Criar estrutura do banco de dados da aplicação
 <code>
