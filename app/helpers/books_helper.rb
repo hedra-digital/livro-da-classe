@@ -35,7 +35,7 @@ module BooksHelper
   def menu_item(name, path, external=nil)
     options = {}
     options[:class] = 'active' if current_page?(path)
-    external.nil? ? content_tag(:li, link_to(name, path), options) : content_tag(:li, link_to(name, path, :target => "_blank"), options)
+    external.nil? ? content_tag(:li, link_to(name, path), options) : content_tag(:li, link_to(name, path, :id => "generate-pdf"), options)
   end
 
   def book_cover
@@ -49,6 +49,10 @@ module BooksHelper
       ''
     end
   end
+
+  def progress_notification
+      image_tag('/assets/ajax-loader.gif', :class => 'progress-modal', :style => 'display: none;')
+  end  
 
   def book_pages(book)
     book.pages_count > 0 ? "#{book.pages_count} páginas" : ""

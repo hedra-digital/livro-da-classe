@@ -39,6 +39,10 @@ pt-BR:
   document_upload: 'Carregar o documento'
   document_uploaded: 'Alterar o documento'
   document_none: 'Nenhum documento'
+  progress_title: 'Aguarde, estamos gerando seu livro.'
+  pdf_generation_download: 'Inconsistências no PDF gerado, para consultar o último válido '
+  click_here: 'Clique aqui'
+  pdf_generation_error: 'Ocorreu uma falha ao gerar o livro.'
   book_data:
     titulo: 'Título'
     subtit: 'Subtítulo'
