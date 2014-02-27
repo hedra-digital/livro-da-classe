@@ -38,6 +38,10 @@ class TextsController < ApplicationController
     @text = Text.find_by_uuid_or_id(params[:id])
     @text.valid_content = @text.validate_content
     if @text.update_attributes(params[:text])
+      p @text.book.directory
+      p current_user.profile.desc
+      p current_user.name
+      p params[:text][:git_message]
       Version.commit_file(@text.book.directory, @text, current_user.profile.desc, current_user.name, params[:text][:git_message])
       redirect_to book_text_path(@book.uuid, @text.uuid), :notice => t('activerecord.successful.messages.updated', :model => @text.class.model_name.human)
     else
