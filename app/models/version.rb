@@ -7,10 +7,10 @@ class Version
     Version.add_to_submodule directory_name
   end
 
-  def self.commit_file directory, text, user_profile, message
+  def self.commit_file directory, text, user_profile, user_name, message
     text.to_file
-    message = "(#{message})" unless message.blank?
-    system "cd #{directory}/ && git pull origin master && git add #{text.filename} && git commit -a -m \"#{user_profile} #{message}\" && git push origin master"
+    message = ":: #{message}" unless message.blank?
+    system "cd #{directory}/ && git pull origin master && git add #{text.filename} && git commit -a -m \"#{user_profile} (#{user_name}) #{message}\" && git push origin master"
   end
 
   def self.add_to_submodule directory_name
