@@ -25,6 +25,7 @@ class MarkupLatex
   end
 
   def build_array(content_text)
+    content_text = Nokogiri::HTML(content_text).to_s
     content_text = prepare_marker content_text
     content_text = prepare_image content_text
     content_text = prepare_footnote content_text
@@ -74,7 +75,7 @@ class MarkupLatex
   end
 
   def prepare_footnote(text)
-    t = Nokogiri::HTML(text).to_s
+    t = text
     Nokogiri::HTML(text).css("a[name]").each do |footnote|
       footnote_id = footnote['name']
       Nokogiri::HTML(text).css("a[href='##{footnote_id}']").each do |footnote_ref|
@@ -89,13 +90,14 @@ class MarkupLatex
   end
 
   def prepare_marker(text)
+    t = Nokogiri::HTML(text).to_s
     Nokogiri::HTML(text).css("span.latex-inputbox").each do |marker|
       marker_container = marker.to_s
       marker.children.css('a').remove
       marker_text = marker.text
-      text = text.sub(marker_container, "<font>|>|#{marker_text} |<|</font>")
+      t = t.sub(marker_container, "<font>|>|#{marker_text} |<|</font>")
     end
-    text
+    t
   end
 
   def prepare_verse(text)
