@@ -91,7 +91,7 @@ class MarkupLatex
     Nokogiri::HTML(text).css("span.latex-inputbox").each do |marker|
       marker_container = marker.to_s
       marker.children.css('a').remove
-      marker_text = convert_with_pandoc marker.text
+      marker_text = marker.text
       text = text.sub(marker_container, "<font>|>|#{marker_text} |<|</font>")
     end
     text
