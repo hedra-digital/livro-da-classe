@@ -82,7 +82,7 @@ class MarkupLatex
         footnote_container = footnote_ref.parent
         t = t.sub(footnote_container.parent.to_s, "")
         footnote_ref.remove
-        footnote_text = convert_with_pandoc footnote_container.text
+        footnote_text = convert_with_pandoc footnote_container.to_s
         t = t.sub(footnote.to_s, "<font>|>|\\footnote{#{footnote_text}} |<|</font>")        
       end
     end
