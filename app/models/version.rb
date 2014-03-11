@@ -11,7 +11,7 @@ class Version
     text.to_file
     message = ":: #{message}" unless message.blank?
     filename = File.join(Rails.root, text.filename)
-    system "cd #{directory}/ && git pull origin master && git add #{filename} && git commit -a -m \"#{user_profile} (#{user_name}) #{message}\" && git push origin master"
+    system "cd #{directory}/ && git pull origin master && git add . && git commit -a -m \"#{user_profile} (#{user_name}) #{message}\" && git push origin master"
   end
 
   def self.add_to_submodule directory_name
