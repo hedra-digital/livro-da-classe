@@ -11,12 +11,16 @@ class Version
     text.to_file
     message = ":: #{message}" unless message.blank?
     filename = File.join(Rails.root, text.filename)
-    system "cd #{directory}/ && git pull origin master && git add . && git commit -a -m \"#{user_profile} (#{user_name}) #{message}\" && git push origin master"
+    system "cd #{directory}/ && git pull origin master && git add . && git commit -a -m \"#{user_profile} (#{user_name}) #{message}\""
   end
 
   def self.add_to_submodule directory_name
     submodule_directory = CONFIG[Rails.env.to_sym]["books_submodule_path"]
     git_repo = "#{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git"
     system "cd #{submodule_directory}/ && git submodule add #{git_repo} && git add . && git commit -a -m \"New Book -> #{directory_name}\" && git push origin master"
+  end
+
+  def self.push_to_repository directory
+    system "cd #{directory}/ && git push origin master"
   end
 end

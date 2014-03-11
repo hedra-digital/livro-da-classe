@@ -7,6 +7,8 @@ pt-BR:
   book_update: 'Atualizar Original'
   book_document: 'Documento'
   book_pdf_check: 'Atualizar Status dos Projetos'
+  admin_taks: 'Rotinas'
+  book_push_all: 'Atualizar Servidor de Repositórios'
   cover_info: 'Dados da capa'
   account: 'Perfil'
   sign_out: 'Sair'

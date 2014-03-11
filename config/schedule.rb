@@ -22,3 +22,7 @@
 every 1.day, :at => '2:30 am' do
   runner "BooksGenerateWorker.perform_async"
 end
+
+every 1.hour do
+  runner "VersionWorker.perform_async"
+end

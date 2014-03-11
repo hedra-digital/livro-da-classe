@@ -215,6 +215,12 @@ class Book < ActiveRecord::Base
     File.open(input_commands,'w') {|io| io.write(self.book_data.to_file) }
   end
 
+  def self.push_all_to_repository
+    Book.all.each do |book|
+      Version.push_to_repository book.directory
+    end
+  end
+
   private
 
   def set_uuid

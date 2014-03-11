@@ -67,10 +67,13 @@ Livrodaclasse::Application.routes.draw do
 
     match 'projects/refresh', :to => 'projects#refresh', :as => :projects_refresh
 
+    match 'projects/push', :to => 'projects#push', :as => :projects_push
+
     resources :projects, :only => [:index, :show, :edit, :update] do
       member do
         get 'impersonate'
         get 'refresh'
+        get 'push'
       end
     end
     resources :templates, :only => :index

@@ -34,4 +34,9 @@ class Admin::ProjectsController < Admin::ApplicationController
     BooksGenerateWorker.perform_async
     redirect_to admin_root_path, :notice => "Os projetos estão sendo atualizados..."
   end
+
+  def push
+    VersionWorker.perform_async
+    redirect_to admin_root_path, :notice => "Os projetos estão sendo enviados para o repositório..."
+  end
 end
