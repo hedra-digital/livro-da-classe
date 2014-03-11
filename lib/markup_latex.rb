@@ -31,7 +31,7 @@ class MarkupLatex
   end
 
   def build_array(content_text)
-    content_text = Nokogiri::HTML(content_text).to_s
+    content_text = convert_to_html content_text
     content_text = prepare_marker content_text
     content_text = prepare_image content_text, 'small-intention'
     content_text = prepare_image content_text, 'medium-intention'
@@ -45,6 +45,15 @@ class MarkupLatex
     content_text = prepare_chapter content_text
     content_text = prepare_alignment content_text
     compile_latex(prepare_text(content_text))
+  end
+
+  def convert_to_html text
+    text = text.gsub("|>|","start_latex")
+    text = text.gsub("|<|","end_latex")
+    text = Nokogiri::HTML(text).to_s
+    text = text.gsub("start_latex","<font>|>|")
+    text = text.gsub("end_latex","|<|</font>")
+    text
   end
 
   def convert_with_pandoc text
@@ -83,29 +92,27 @@ class MarkupLatex
   end
 
   def prepare_footnote(text)
-    t = text
     Nokogiri::HTML(text).css("a[name]").each do |footnote|
       footnote_id = footnote['name']
       Nokogiri::HTML(text).css("a[href='##{footnote_id}']").each do |footnote_ref|
         footnote_container = footnote_ref.parent
-        t = t.sub(footnote_container.parent.to_s, "")
+        text = text.sub(footnote_container.parent.to_s, "")
         footnote_ref.remove
         footnote_text = convert_with_pandoc footnote_container.to_s
-        t = t.sub(footnote.to_s, "<font>|>|\\footnote{#{footnote_text}} |<|</font>")        
+        text = text.sub(footnote.to_s, "<font>|>|\\footnote{#{footnote_text}} |<|</font>")        
       end
     end
-    t
+    text
   end
 
   def prepare_marker(text)
-    t = Nokogiri::HTML(text).to_s
     Nokogiri::HTML(text).css("span.latex-inputbox").each do |marker|
       marker_container = marker.to_s
       marker.children.css('a').remove
       marker_text = marker.text
-      t = t.sub(marker_container, "<font>|>|#{marker_text} |<|</font>")
+      text = text.sub(marker_container, "<font>|>|#{marker_text} |<|</font>")
     end
-    t
+    text
   end
 
   def prepare_verse(text)
