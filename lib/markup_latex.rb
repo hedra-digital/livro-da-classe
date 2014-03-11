@@ -9,6 +9,12 @@ class MarkupLatex
     BIG = "bigskip"
   end
 
+  IMAGE_TAGS = { 
+    'small-intention' => 'imagempequena',
+    'medium-intention' => 'imagemmedia',
+    'big-intention' => 'imagemgrande'
+  }
+
   def initialize(text)
     @text  = text    
   end
@@ -27,7 +33,9 @@ class MarkupLatex
   def build_array(content_text)
     content_text = Nokogiri::HTML(content_text).to_s
     content_text = prepare_marker content_text
-    content_text = prepare_image content_text
+    content_text = prepare_image content_text, 'small-intention'
+    content_text = prepare_image content_text, 'medium-intention'
+    content_text = prepare_image content_text, 'big-intention'
     content_text = prepare_footnote content_text
     content_text = prepare_verse content_text
     content_text = prepare_skip content_text, Skips::SMALL
@@ -118,6 +126,16 @@ class MarkupLatex
     text
   end
 
+  def prepare_image(text, image_class)
+    Nokogiri::HTML(text).css("img.#{image_class}").each do |image|
+      image_type = IMAGE_TAGS[image_class]
+      image_src = "#{Rails.public_path}#{image['src']}"
+      image_alt = image['alt']
+      text = text.sub(image.to_s, "<font>|>|\\#{image_type}{#{image_alt}}{#{image_src}} |<|</font>" )
+    end
+    text
+  end
+
   def compile_latex(array)
     t = ""
     i = 0
@@ -161,50 +179,6 @@ class MarkupLatex
       end 
     end
     array_text
-  end
-
-  #Imagens
-
-  def prepare_image(text)
-    while text.match /<img .*? \/>/
-      img_tag = text.match /<img .*? \/>/ 
-
-      img_type = get_image_type(img_tag.to_s)
-
-      if img_type != 'imagemlatex'
-        img_sub = get_image_sub(img_tag.to_s)
-        img_src = get_image_src(img_tag.to_s)
-        latex_img = "|>|\\#{img_type}{#{img_sub}}{#{img_src}} |<|" 
-      else
-        img_sub = get_image_sub(img_tag.to_s)
-        latex_img = "|>|\\ $ #{img_sub} $ |<|"
-      end
-
-      text = text.sub(img_tag.to_s, latex_img)
-    end
-    text
-  end
-
-  def get_image_type(img_tag)
-    if img_tag.include? "latex-plugin"
-      'imagemlatex'
-    elsif img_tag.include? "small-intention"
-      'imagempequena'
-    elsif img_tag.include? "medium-intention"
-      'imagemmedia'
-    else
-      'imagemgrande'
-    end
-  end
-
-  def get_image_sub(img_tag)
-    sub = img_tag[/img.*?alt="(.*?)"/i,1]
-    sub.nil? ? "" : sub
-  end
-
-  def get_image_src(img_tag)
-    src = img_tag[/img.*?src="(.*?)"/i,1]
-    src.nil? ? "" : "#{Rails.public_path}#{src}"
   end
 
 end

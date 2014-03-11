@@ -74,7 +74,7 @@ CKEDITOR.editorConfig = function(config) {
   config.allowedContent = 
       'h1 h2 h3 h4 h5 h6 strong em blockquote ol ul li;' +
       'a(latex-close)[*]; a[!name,!href];' +
-      'img[*];' +
+      'img(small-intention)[*]; img(medium-intention)[*]; img(big-intention)[*];' +
       'table tr th td caption;' +
       'span(latex-inputbox); span(epigraph-author); span{color,background-color};' +
       'p[align]; p{align,text-align};' +
@@ -173,6 +173,9 @@ CKEDITOR.editorConfig = function(config) {
 
         var elem = dialog.getContentElement('info','htmlPreview');     
         elem.getElement().hide(); 
+
+        $(".cke_dialog_ui_select").show();
+        $(".cke_dialog_ui_input_select").show();
 
         $('#cke_50_textInput').attr('disabled','disabled');
          
