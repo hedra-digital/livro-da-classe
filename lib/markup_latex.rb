@@ -72,9 +72,10 @@ class MarkupLatex
 
   def prepare_epigraph(text)
     Nokogiri::HTML(text).css("section.epigraph").each do |epigraph|
+      epigraph_origin = epigraph.to_s
+      epigraph_author = convert_with_pandoc epigraph.css("span.epigraph-author").remove.text
       epigraph_text = convert_with_pandoc epigraph
-      epigraph_author = convert_with_pandoc epigraph.css("span.epigraph-author").text
-      text = text.sub(epigraph.to_s, "<font>|>|\\epigraph{#{epigraph_text}}{#{epigraph_author}} |<|</font>")
+      text = text.sub(epigraph_origin, "<font>|>|\\epigraph{#{epigraph_text}}{#{epigraph_author}} |<|</font>")
     end
     text
   end
