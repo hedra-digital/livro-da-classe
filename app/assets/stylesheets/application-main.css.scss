@@ -56,6 +56,39 @@ textarea {
   float: right;
 }
 
+.inline-checkbox label{
+  min-height: 0px !important;
+}
+
+.fill *{
+  width: 100%;
+}
+
+.collapse-click {
+  cursor: pointer;
+}
+
+.collapse-head {
+  background: #5ba0d0;
+  margin-bottom: 10px;
+  color: #fff;
+  padding-left: 15px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px; 
+}
+
+/* ==========================================================================
+   Menu
+   ========================================================================== */
+
+.brand img{
+  height: 40px;
+}
+
+.fill-width{
+  width: 100% !important;
+}
+
 /* ==========================================================================
    Areas
    ========================================================================== */
@@ -238,6 +271,12 @@ footer {
   width: 98%;
 }
 
+/*Book Revision*/
+
+.revision{
+  width: 100%;
+  height: 700px;
+}
 
 /* ==========================================================================
    CKEditor customizations
@@ -265,4 +304,61 @@ footer {
 .big-intention {
   zoom: 1; /* all browsers */
   -moz-transform: scale(0.3);  /* Firefox */
+}
+
+.footnote-hr{
+  border-top: 1px solid #c0c0c0;
+}
+
+.latex-inputbox{
+  background-color: #73b8f7; 
+  cursor: pointer; 
+  -webkit-border-radius: 3px; 
+  border-radius: 5px; 
+  padding: 3px; 
+  margin: 3px; 
+  margin-left: 5px;
+}
+
+.epigraph{ 
+  padding-left: 300px;
+}
+
+.epigraph-author{
+  display: block;
+  float: right;
+}
+
+.verse{
+  font-style: oblique;
+  background-color: #F5F9FA;
+}
+
+.chapter{
+  background-color: #5e5e5e; 
+  color: #fff;
+  padding: 10px;
+}
+
+.chapter p{ 
+  text-align:right; 
+}
+
+.chapter h3{ 
+  font-style: oblique; 
+}
+
+.smallskip{
+  background-color: #f0f0f0; 
+  height: 14px;
+}
+
+.medskip{
+  background-color: #e0e0e0;
+  height: 28px;
+}
+
+.bigskip{
+  background-color: #d0d0d0;
+  height: 56px;
 }

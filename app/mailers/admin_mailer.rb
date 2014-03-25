@@ -1,6 +1,6 @@
 class AdminMailer < ActionMailer::Base
-  default from: Livrodaclasse::Application.config.action_mailer.default_url_options[:sender_address]
-  default to: Livrodaclasse::Application.config.action_mailer.default_url_options[:exception_recipients]
+  default from: "nao-responda@livrodaclasse.com.br"
+  default to: 'jorge@hedra.com.br; vizir@hedra.com.br; fellipe@vizir.com.br'
 
   def pdf_to_latex_error(book, directory, error_file)
     @title = book.title
@@ -14,4 +14,12 @@ class AdminMailer < ActionMailer::Base
     
     mail(subject: "[LATEX] #{Livrodaclasse::Application.config.action_mailer.default_url_options[:email_prefix]} - #{@title.upcase}")
   end
+
+  def scrap_notifier(book, scrap)
+    @title = book.title
+    @content = scrap.content
+    
+    mail(subject: "Originais - Novo recado em #{@title.upcase}")
+  end
+
 end

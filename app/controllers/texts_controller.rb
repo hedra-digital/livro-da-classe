@@ -4,7 +4,7 @@ class TextsController < ApplicationController
   before_filter :secure_book, :only => [:update, :create]
 
   def index
-    @texts = is_organizer?(@book, current_user) ? @book.texts.order('-position DESC') : @book.texts.where(:user_id => current_user.id)
+    @texts = @book.texts.order('-position DESC')
   end
 
   def show
@@ -36,8 +36,9 @@ class TextsController < ApplicationController
 
   def update
     @text = Text.find_by_uuid_or_id(params[:id])
-    @text.valid_content = Text.validate_content
+    @text.valid_content = @text.validate_content
     if @text.update_attributes(params[:text])
+      Version.commit_file(@text.book.directory, @text, current_user.profile.desc, current_user.name, params[:text][:git_message])
       redirect_to book_text_path(@book.uuid, @text.uuid), :notice => t('activerecord.successful.messages.updated', :model => @text.class.model_name.human)
     else
       render :edit

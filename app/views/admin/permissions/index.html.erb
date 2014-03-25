@@ -1,0 +1,35 @@
+<% if @permissions.present? %>
+  <div class="row">
+    <div class="span9">
+      <h1>Permissões</h1>
+    </div>
+
+    <div class="span3">
+      <%= link_to 'Editar Permissões', edit_admin_permission_path(@permissions.first), :class => 'btn btn-primary btn-new' %>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <tr>
+      <th>Status</th>
+      <th>Perfil</th>
+      <th>Leitura</th>
+      <th>Escrita</th>
+      <th>Execução</th>
+      <th>Revisão</th>
+      <th>Git</th>
+    </tr>
+    <% @permissions.each do |permission| %>
+      <tr>
+        <td><%= permission.book_status.desc %></td>
+        <td><%= permission.profile.desc %></td>
+        <td><%= active_or_not(permission.read) %></td>
+        <td><%= active_or_not(permission.write) %></td>
+        <td><%= active_or_not(permission.execute) %></td>
+        <td><%= active_or_not(permission.review) %></td>
+        <td><%= active_or_not(permission.git) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="blank">Nenhuma permissão definida.</p>
+<% end %>

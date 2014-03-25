@@ -1,6 +1,15 @@
 pt-BR:
+  my_books: 'Meus Originais'
+  book_desc: 'Original'
+  book_title: 'Título do Original'
+  book_abstract: 'Resumo do Original'
+  book_create: 'Criar Original'
+  book_update: 'Atualizar Original'
+  book_document: 'Documento'
+  book_pdf_check: 'Atualizar Status dos Projetos'
+  admin_tasks: 'Rotinas'
+  book_push_all: 'Atualizar Servidor de Repositórios'
   cover_info: 'Dados da capa'
-  my_books: 'Meus livros'
   account: 'Perfil'
   sign_out: 'Sair'
   sign_in: 'Entrar no site'
@@ -29,14 +38,92 @@ pt-BR:
   text_delete: 'Apagar texto'
   text_confirm: 'Tem certeza de que deseja apagar o texto?'
   text_back: 'Voltar para o texto'
+  document_upload: 'Carregar o documento'
+  document_uploaded: 'Alterar o documento'
+  document_none: 'Nenhum documento'
+  pdf_progress_title: 'Aguarde, estamos gerando seu livro.'
+  ebook_progress_title: 'Aguarde, estamos gerando seu ebook.'
+  kindle_progress_title: 'Aguarde, estamos gerando seu livro no formato Kindle.'
+  pdf_generation_download: 'Inconsistências no PDF gerado, para consultar o último válido '
+  ebook_generation_download: 'Inconsistências no Ebook gerado, para consultar o último válido '
+  kindle_generation_download: 'Inconsistências no livro em formato Kindle gerado, para consultar o último válido '
+  click_here: 'Clique aqui'
+  pdf_generation_error: 'Ocorreu uma falha ao gerar o livro.'
+  ebook_generation_error: 'Ocorreu uma falha ao gerar o ebook.'
+  kindle_generation_error: 'Ocorreu uma falha ao gerar o seu livro em formato Kindle.'
+  book_data:
+    titulo: 'Título'
+    subtit: 'Subtítulo'
+    autor: 'Autor'
+    sumariotitulo: 'Título para o cabeço'
+    sumarioautor: 'Autor do cabeço'
+    organizador: 'Organizador'
+    introdutor: 'Introdutor'
+    tradutor: 'Tradutor'
+    orelha: 'Orelha'
+    quartacapa: 'Texto da 4ª Capa'
+    capaimagem: 'Imagem da Capa'
+    capadetalhe: 'Imagem de Detalhe na Capa'
+    capainteira: 'Imagem de Capa Inteira'
+    copyrightlivro: 'Copyright do Livro'
+    copyrighttraducao: 'Copyright da Tradução'
+    copyrightorganizacao: 'Copyright da Organização'
+    copyrightilustracao: 'Copyright da Ilustração'
+    copyrightintroducao: 'Copyright da Introdução'
+    titulooriginal: 'Título Original'
+    edicaoconsultada: 'Edição Consultada'
+    primeiraedicao: 'Primeira Edição'
+    agradecimentos: 'Agradecimentos'
+    indicacao: 'Indicação'
+    isbn: 'ISBN'
+    ano: 'Ano'
+    edicao: 'Edição'
+    coedicao: 'Co-edição'
+    assistencia: 'Assistência'
+    revisao: 'Revisão'
+    preparacao: 'Preparação'
+    capa: 'Capa'
+    imagemcapa: 'Imagem da Capa'
+    imagemficha: 'Imagem da Ficha'
+    instituicao: 'Instituição'
+    logradouro: 'Logradouro'
+    numero: 'Número'
+    cidadeinstituicao: 'Cidade da Instituição'
+    estado: 'Estado'
+    cep: 'CEP'
+    diretor: 'Diretor'
+    coordenador: 'Coordenador'
+    turma: 'Turma'
+    logo: 'Logotipo da Instituição'
+    release: 'Release'
+    trechotexto: 'Trecho do Texto'
+    sobreobra: 'Sobre a Obra'
+    sobreautor: 'Sobre o Autor'
+    sobreorganizador: 'Sobre o Organizador'
+    sobretradutor: 'Sobre o Tradutor'
+    resumo: 'Resumo'
+    numeroedicao: 'Número de Edição'
+    dimensao: 'Dimensão'
+    peso: 'Peso'
+    gramaturamiolo: 'Gramatura do Miolo'
+    cormiolo: 'Cor do Miolo'
+    palavraschave: 'Palavras-chave'
+    publicaebook: 'Publicação em formato de ebook'
+    corprimaria: 'Cor Primária'
+    corsecundaria: 'Cor Secundária'
+    grafica: 'Gráfica'
+    papelmiolo: 'Papel Miolo'    
   book_nav:
     overview: 'Mural'
-    book_data: 'Ficha técnica'
+    book_data: 'Dados do Original'
     texts: 'Textos'
-    collaborators: 'Alunos'
+    collaborators: 'Colaboradores'
     pdf: 'PDF'
+    ebook: 'Ebook'
+    kindle: 'Kindle'
     project: 'Contrato'
     publish: 'Contratar'
+    git: 'Revisão'
   helpers:
     submit:
       create: "Incluir novo %{model}"
@@ -254,7 +341,16 @@ pt-BR:
         other: Livros
       book_status:
         one: Status para Livro
-        other: Status para Originais
+        other: Status para Livros
+      book_data:
+        one: Dados do Livro
+        other: Dados dos Livros
+      profile:
+        one: Perfil
+        other: Perfis
+      permission:
+        one: Permissão
+        other: Permissões
       text:
         one: Texto
         other: Textos
@@ -267,6 +363,9 @@ pt-BR:
       expression:
         one: Expressão
         other: Expressões
+      publisher:
+        one: Editora
+        other: Editoras
       scrap:
         one: Recado
         other: Recados
@@ -274,9 +373,23 @@ pt-BR:
       scrap:
         book_id: Livro
         content: Recado
+      publisher:
+        name: "Nome fantasia da Editora"
+        official_name: "Nome da Editora"
+        url: "URL"
+        trello_email: "E-mail para integração do Trello"
+        logo: "Logotipo"
+        logo_alternative: "Logotipo alternativo"
+        address: "Endereço"
+        district: "Bairro"
+        city: "Cidade"
+        uf: "UF"
+        telephone: "(DDD) Telefone"
+        text_email: "Texto para email de alteração de status"
       expression:
         target: Expressão a ser substituída
         replace: Expressão substituta
+        level: Nível
       cover_info: 
         autor: Autor 
         book_id: Livro 
@@ -291,13 +404,15 @@ pt-BR:
       user:
         name: Nome
         email: E-mail
+        telephone: Telefone
         password: Senha
         password_confirmation: Confirmação da senha
         teacher: Professor?
         student_count: Número de alunos
         school_name: Nome da escola
       book:
-        title: 'Título do livro'
+        title: 'Título do original'
+        document: 'Documento atual'
         subtitle: 'Subtítulo'
         organizers: 'Organizador'
         directors: 'Diretor'
@@ -317,10 +432,20 @@ pt-BR:
         keywords: 'Palavras Chave'
       book_status:
         desc: 'Descrição'
+      profile:
+        desc: 'Descrição'
+      permission:
+        read: 'Leitura'
+        write: 'Escrita'
+        execute: 'Executar'
+        review: 'Revisar'
+        git: 'Git'
       text:
         title: 'Título'
         content: 'Conteúdo'
         author: 'Autor do Texto'
+        revised: 'Revisar'
+        git_message: 'Motivo da revisão'
       client:
         name: Nome
         emai: E-mail

@@ -1,7 +1,8 @@
 class Admin::ProjectsController < Admin::ApplicationController
 
   def index
-    @projects = Project.includes([:book, :client]).all
+    @projects = Project.includes([:book, :client]).where("books.publisher_id = #{current_publisher}").all
+    @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
   end
 
   def show
@@ -27,5 +28,15 @@ class Admin::ProjectsController < Admin::ApplicationController
     @project = Project.find(params[:id])
     session[:auth_token] = @project.book.organizer.auth_token
     redirect_to app_home_path
+  end
+
+  def refresh
+    BooksGenerateWorker.perform_async
+    redirect_to admin_root_path, :notice => "Os projetos estão sendo atualizados..."
+  end
+
+  def push
+    VersionWorker.perform_async
+    redirect_to admin_root_path, :notice => "Os projetos estão sendo enviados para o repositório..."
   end
 end

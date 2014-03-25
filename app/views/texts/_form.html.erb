@@ -3,8 +3,20 @@
 
   <div class="form-inputs">
     <div class="row">
-      <div class="span4"><%= f.input :title %></div>
+      <div class="span3"><%= f.input :title, :label => false %></div>
+      <div class="span3"><%= f.input :subtitle, :label => false,  :placeholder => 'Subtítulo' %></div>
+      <div class="span2"><%= f.input :author, :label => false, :placeholder => 'Autor do Texto' %></div>
+      <% if can_review? %>
+        <div class="span2 form-horizontal inline-checkbox"><%= f.input :revised %></div>
+      <% end %>
     </div>
+    <% if can_git? %>
+      <div class="row">
+        <div class="span11 fill">
+          <%= f.input :git_message, :placeholder => 'Mensagem' %>
+        </div>
+      </div>
+    <% end %>
     <%= f.input :content, :label => false, :as => :ckeditor %>
   </div>
 

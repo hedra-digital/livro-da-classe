@@ -7,6 +7,8 @@ Livrodaclasse::Application.configure do
   config.cache_classes = false
   config.serve_static_assets = false
 
+  config.serve_static_assets = true
+
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
@@ -15,7 +17,7 @@ Livrodaclasse::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { :host => "localhost:3000", :sender_address => "vizir@hedra.com.br", :email_prefix => "[DEV - LIVRO DA CLASSE] ERRO NO SISTEMA "}
 
@@ -35,11 +37,18 @@ Livrodaclasse::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = true
+
+  # Debug mode disables concatenation and preprocessing of assets.
+  # This option may cause significant delays in view rendering with a large
+  # number of complex assets.
+  config.assets.debug = true
+
   #Permit multiple threads
-  config.threadsafe!
+  #config.threadsafe!
 
   # Email gem configuration for help debug [VIZIR]
-  config.assets.debug = true
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -52,7 +61,7 @@ Livrodaclasse::Application.configure do
 
   config.middleware.use ExceptionNotifier,
   sender_address: 'vizir@hedra.com.br',
-  exception_recipients: '',
+  exception_recipients: 'fellipe@vizir.com.br',
   email_prefix: "[DEV - LIVRO DA CLASSE] ERRO NO SISTEMA - ",
   sections: %w(impersonate)
 end

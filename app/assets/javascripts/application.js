@@ -24,14 +24,17 @@
 //= require reorder
 //= require_self
 //= require ckeditor/init
-//= require ckeditor/plugins/eqneditor/plugin
-//= require ckeditor/plugins/eqneditor/lang/en
-//= require ckeditor/plugins/eqneditor/dialogs/eqneditor
-//= require ckeditor/plugins/charcount/plugin
-//= require ckeditor/plugins/texttransform/plugin
-//= require ckeditor/plugins/texttransform/lang/en
-//= require ckeditor/plugins/texttransform/lang/pt-BR
-//= require ckeditor/plugins/texttransform/lang/tr
+//= require ckeditor/plugins/footnote/plugin
+//= require ckeditor/plugins/footnote/dialogs/footnote
+//= require ckeditor/plugins/epigraph/plugin
+//= require ckeditor/plugins/epigraph/dialogs/epigraph
+//= require ckeditor/plugins/chapter/plugin
+//= require ckeditor/plugins/chapter/dialogs/chapter
+//= require ckeditor/plugins/verse/plugin
+//= require ckeditor/plugins/smallskip/plugin
+//= require ckeditor/plugins/medskip/plugin
+//= require ckeditor/plugins/bigskip/plugin
+//= require ckeditor/plugins/autogrow/plugin
 //= require jquery.jqEasyCharCounter.min.js
 //= require jquery.mask.min.js
 //= require jscolor/jscolor
@@ -96,13 +99,25 @@ $(document).ready(function() {
       $("#text_novo_recado").val('');
     }
   });
+
   $('#book_zipcode').mask("99999-999");
+  
   $('#book_title').jqEasyCounter({
       'maxChars': 54
   });
+
+  $('#book_abstract').jqEasyCounter({
+      'maxChars': 1200
+  });
+
+  $('#book_cover_info_attributes_texto_quarta_capa').jqEasyCounter({
+      'maxChars': 415
+  });
+  
   $('#book_organizers').jqEasyCounter({
       'maxChars': 25
   });
+
   $('#book_directors').jqEasyCounter({
       'maxChars': 25
   });
@@ -126,4 +141,6 @@ $(document).ready(function() {
   $('#book_keywords').jqEasyCounter({
       'maxChars': 80
   });
+
+
 });

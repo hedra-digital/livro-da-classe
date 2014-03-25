@@ -1,0 +1,50 @@
+<div class="credits-container">
+  <h3 id="credits" class="collapse-click collapse-head">Página de créditos</h3>
+  <div class="fields">
+    <div class="row">
+      <div class="span4"><%= f.input :copyrightlivro, :label => t('book_data.copyrightlivro') %></div>
+      <div class="span4"><%= f.input :copyrighttraducao, :label => t('book_data.copyrighttraducao') %></div>
+    </div>
+
+    <div class="row">
+      <div class="span4"><%= f.input :copyrightorganizacao, :label => t('book_data.copyrightorganizacao') %></div>
+      <div class="span4"><%= f.input :copyrightilustracao, :label => t('book_data.copyrightilustracao') %></div>
+      <div class="span4"><%= f.input :copyrightintroducao, :label => t('book_data.copyrightintroducao') %></div>
+    </div>
+
+    <div class="row">
+      <div class="span4"><%= f.input :titulooriginal, :label => t('book_data.titulooriginal') %></div>
+      <div class="span4"><%= f.input :edicaoconsultada, :label => t('book_data.edicaoconsultada') %></div>
+      <div class="span4"><%= f.input :primeiraedicao, :label => t('book_data.primeiraedicao') %></div>
+    </div>
+
+    <div class="row">
+      <div class="span4"><%= f.input :agradecimentos, :label => t('book_data.agradecimentos') %></div>
+      <div class="span4"><%= f.input :indicacao, :label => t('book_data.indicacao') %></div>
+    </div>
+
+    <div class="row">
+      <div class="span4"><%= f.input :isbn, :label => t('book_data.isbn') %></div>
+      <div class="span4"><%= f.input :ano, :label => t('book_data.ano') %></div>
+      <div class="span4"><%= f.input :edicao, :label => t('book_data.edicao') %></div>
+    </div>
+
+    <div class="row">
+      <div class="span4"><%= f.input :coedicao, :label => t('book_data.coedicao') %></div>
+      <div class="span4"><%= f.input :assistencia, :label => t('book_data.assistencia') %></div>
+    </div>
+
+    <div class="row">
+      <div class="span4"><%= f.input :revisao, :label => t('book_data.revisao') %></div>
+      <div class="span4"><%= f.input :preparacao, :label => t('book_data.preparacao') %></div>
+    </div>
+
+    <div class="row">
+      <div class="span4"><%= f.input :capa, :label => t('book_data.capa') %></div>
+      <div class="span4"><%= f.input :imagemcapa, :label => t('book_data.imagemcapa') %></div>
+    </div>
+    <div class="row">
+      <div class="span2"><%= f.input :numeroedicao, :label => t('book_data.numeroedicao'), as: :integer, input_html: { rows: 2, min: 1, max: 100 }%></div>
+    </div>    
+  </div>
+</div>

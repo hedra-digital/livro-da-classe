@@ -1,0 +1,13 @@
+<h3><%= "Editando Usuário: #{@user.name}" %></h3>
+
+<%= simple_form_for([:admin, @user], :html => {:class => 'form-vertical' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<%= f.input :profile_id, :collection => @profiles, :label => "Perfil", :include_blank => false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

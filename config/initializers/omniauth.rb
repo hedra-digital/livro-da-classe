@@ -21,7 +21,13 @@ elsif Rails.env.staging? || Rails.env.test? || Rails.env.development?
 elsif Rails.env.sletras?
   Rails.application.config.middleware.use OmniAuth::Builder do
     provider :twitter, "NnjbyC3WP9r8sJKnnRJDw", "Nha7HvAy95QdY8SsT45HHYhDTbmK53XI5wMkChLMyzI"
-    provider :facebook, "462817203782895", "6ad0fab174bcd0d298195957fe68a48c"
-    provider :google_oauth2, "1087006017149-2b0eihce0m6ft4eh5ie43umfotd3fi4o.apps.googleusercontent.com", "cica4cyWsWDmF_4HIQKtjALC"
+    provider :facebook, "1450227325205442", "6a5fe19a02b4cc55538dd27296b6911f"
+    provider :google_oauth2, "74091404785.apps.googleusercontent.com", "jG8HtUkT5RuL4z5AdeJMi1kI"
+  end
+elsif Rails.env.tipostaging?
+  Rails.application.config.middleware.use OmniAuth::Builder do
+    provider :twitter, "NnjbyC3WP9r8sJKnnRJDw", "Nha7HvAy95QdY8SsT45HHYhDTbmK53XI5wMkChLMyzI"
+    provider :facebook, "1450227325205442", "6a5fe19a02b4cc55538dd27296b6911f"
+    provider :google_oauth2, "74091404785.apps.googleusercontent.com", "jG8HtUkT5RuL4z5AdeJMi1kI"
   end
 end

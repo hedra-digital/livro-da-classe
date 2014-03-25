@@ -4,7 +4,7 @@ class Scrap < ActiveRecord::Base
   belongs_to :book
 
   def childs
-          Scrap.where(:parent_scrap_id => self.id).order('created_at ASC').all
+  	Scrap.where(:parent_scrap_id => self.id).order('created_at ASC').all
   end
 
 end

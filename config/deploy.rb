@@ -1,7 +1,8 @@
 require 'bundler/capistrano'
 require 'capistrano/ext/multistage'
+require 'sidekiq/capistrano'
 
-set :stages, ["staging", "sales", "sletras", "production"]
+set :stages, ["staging", "sales", "sletras", "production", "tipostaging"]
 set :default_stage, "staging"
 
 set :application, "Livro da Classe"
@@ -31,6 +32,7 @@ namespace :deploy do
   task :symlink_assets, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/ckeditor_assets #{release_path}/public/"
     run "ln -nfs #{deploy_to}/shared/covers #{release_path}/public/"
+    run "ln -nfs #{deploy_to}/shared/books #{release_path}/public/"
   end
 
   task :restart do

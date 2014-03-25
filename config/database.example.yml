@@ -18,3 +18,7 @@ test:
 production:
   <<: *DEFAULTS
   database: livrodaclasse_production
+
+tipostaging:
+  <<: *DEFAULTS
+  database: tipografia_staging

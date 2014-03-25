@@ -36,4 +36,21 @@ module ApplicationHelper
       book.project.present? and book.project.engaged?
     end
   end
+
+  def publisher_logo
+    Publisher.get_current(request.host).logo.url(:normal)
+  end
+
+  def publisher_official_name
+    Publisher.get_current(request.host).official_name
+  end
+
+  def publisher_name
+    Publisher.get_current(request.host).name
+  end
+
+  def publisher_address_info
+    p = Publisher.get_current(request.host)
+    "#{p.address}<br>#{p.district}<br>#{p.city} - #{p.uf}<br>Tel. #{p.telephone}<br>".html_safe
+  end
 end

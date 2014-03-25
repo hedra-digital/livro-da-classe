@@ -24,6 +24,7 @@ gem 'wicked_pdf'
 gem "debugger", "~> 1.6.1"
 gem "htmlentities"
 gem 'nokogiri'
+gem 'nokogiri-styles'
 gem 'brazilian-rails'
 
 group :assets do
@@ -59,3 +60,7 @@ end
 gem "exception_notification", "~> 3.0.1"
 gem "pdf-reader"
 gem 'xml-simple'
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+gem 'whenever', :require => false

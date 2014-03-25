@@ -1,10 +1,13 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'eqneditor,charcount,texttransform';
+  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote,epigraph,verse,chapter,smallskip,medskip,bigskip';
 
   /* Char Count Plugin */
   config.maxLength = 0;
   config.maxWords = 0;
+
+  config.font_defaultLabel = 'Courier';
+  config.fontSize_defaultLabel = '12px';
 
   config.keystrokes =
   [
@@ -23,33 +26,23 @@ CKEDITOR.editorConfig = function(config) {
     [ CKEDITOR.CTRL + 73 /*I*/, 'italic' ],
     [ CKEDITOR.CTRL + 85 /*U*/, 'underline' ],
 
-    [ CKEDITOR.CTRL + 86 /*V*/, 'pastetext' ],
-    [ CKEDITOR.SHIFT + 45 /*INS*/, 'pastetext' ],
-
     [ CKEDITOR.ALT + 109 /*-*/, 'toolbarCollapse' ]
   ];
 
-  config.toolbar = [    
-    { name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+  config.toolbar = [   
+    { name: 'clipboard', items : [ 'Undo','Redo' ] },
+    { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
     { name: 'links', items : [ 'Anchor' ] },
     { name: 'document', items : [ 'Source' ] },
     { name: 'tools', items : [ 'Maximize', 'ShowBlocks' ] },
     { name: 'plugins', items: [ 'TransformTextToUppercase', 'TransformTextToLowercase', 'TransformTextCapitalize', 'TransformTextSwitcher', '-','CharCount' ] },
     '/',
-    { name: 'basicstyles', items : [ 'Bold','Italic','-','RemoveFormat' ] },
-    { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote' ] },
-    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor' ] },
-    { name: 'styles', items : [ 'Format' ] }
+    { name: 'basicstyles', items : [ 'Bold','Italic','Subscript','Superscript','-','RemoveFormat' ] },
+    { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },
+    { name: 'insert', items : [ 'Image','Table','HorizontalRule','SpecialChar','EqnEditor', 'FootNote', 'Epigraph', 'Verse', 'Chapter' ] },
+    { name: 'colors', items : [ 'TextColor','BGColor' ] },
+    { name: 'styles', items : [ 'Format', 'Smallskip', 'Medskip', 'Bigskip' ] }
   ];
-
-  /*config.toolbar = [
-    { name: 'basicstyles', items: [ 'Bold', 'Italic' ] },
-    { name: 'insert', items: [ 'Image' ] },
-    { name: 'clipboard', items: [ 'Cut', 'Copy', 'PasteText', '-', 'Undo', 'Redo' ] },
-    { name: 'colors', items: [ 'BGColor' ] },
-    { name: 'document', items: [ 'Source' ] },
-    { name: 'latex', items: [ 'EqnEditor' ] }
-  ];*/
   
   config.language = 'pt-BR';
 
@@ -78,16 +71,16 @@ CKEDITOR.editorConfig = function(config) {
   // Because of 
   config.hideDialogFields = "image:info:htmlPreview";
 
-  /*config.allowedContent =
-      'h1 h2 h3 h4 h5 h6 p blockquote strong em;' +
-      'a[!href];' +
-      'img(left,right)[!src,alt,width,height];' +
+  config.allowedContent = 
+      'h1 h2 h3 h4 h5 h6 strong em blockquote ol ul li;' +
+      'a(latex-close)[*]; a[!name,!href];' +
+      'img(small-intention)[*]; img(medium-intention)[*]; img(big-intention)[*];' +
       'table tr th td caption;' +
-      'span{!font-family};' +
-      'span{!color};' +
-      'span(!marker);' +
-      'del ins'
-    */
+      'span(latex-inputbox); span(epigraph-author); span{color,background-color};' +
+      'p[align]; p{align,text-align};' +
+      'div[!id];' +
+      'section(epigraph); section(chapter);' +
+      'div(verse); div(smallskip); div(medskip); div(bigskip);';
 
   // Rails CSRF token
   config.filebrowserParams = function(){
@@ -181,22 +174,69 @@ CKEDITOR.editorConfig = function(config) {
         var elem = dialog.getContentElement('info','htmlPreview');     
         elem.getElement().hide(); 
 
+        $(".cke_dialog_ui_select").show();
+        $(".cke_dialog_ui_input_select").show();
+
         $('#cke_50_textInput').attr('disabled','disabled');
          
         dialog.hidePage('advanced'); 
       }; 
     }
   });
-
-  /*CKEDITOR.on('instanceReady', function(ck) { 
-    ck.editor.removeMenuItem('paste'); 
-  });*/
-
 };
 
-// Blocking the paste keystroke
-//CKEDITOR.config.blockedKeystrokes.push(CKEDITOR.CTRL + 86 /*V*/);
-
+CKEDITOR.addCss('body { font-family: Courier; font-size: 12px; }');
+/*Image Upload Customization*/
 CKEDITOR.addCss('.small-intention { zoom: 0.3; -moz-transform: scale(0.3); }');
 CKEDITOR.addCss('.medium-intention { zoom: 0.6; -moz-transform: scale(0.6); }');
 CKEDITOR.addCss('.big-intention { zoom: 1; -moz-transform: scale(1); }');
+/*LaTeX Input Plugin*/
+CKEDITOR.addCss('.latex-inputbox { background-color: #73b8f7; cursor: pointer; -webkit-border-radius: 3px; border-radius: 5px; padding: 3px; margin: 3px; margin-left: 5px;}');
+CKEDITOR.addCss('.latex-close { cursor: pointer; font-size: 12px; color: #fff; padding: 5px; }');
+/*Epigraph Plugin*/
+CKEDITOR.addCss('.epigraph { padding-left: 300px; }');
+CKEDITOR.addCss('.epigraph-author { display: block; float: right; }');
+/*Verse Plugin*/
+CKEDITOR.addCss('.verse{ font-style: oblique; background-color: #F5F9FA; }');
+/*Chapter Plugin*/
+CKEDITOR.addCss('.chapter { background-color: #5e5e5e; color: #fff; }');
+CKEDITOR.addCss('.chapter p{ text-align:right; }');
+CKEDITOR.addCss('.chapter h3{ font-style: oblique; }');
+/*SmallSkip Plugin*/
+CKEDITOR.addCss('.smallskip { background-color: #f0f0f0; height: 14px; }');
+/*MedSkip Plugin*/
+CKEDITOR.addCss('.medskip { background-color: #e0e0e0; height: 28px; }');
+/*BigSkip Plugin*/
+CKEDITOR.addCss('.bigskip { background-color: #d0d0d0; height: 56px; }');
+
+for (var i in CKEDITOR.instances) {
+    (function(i){
+        CKEDITOR.instances[i].on('contentDom', function() {
+          CKEDITOR.instances[i].document.on('keyup', function(event) {
+              var key = event.data.getKey();
+              var editor = CKEDITOR.instances[i];
+              var content = editor.document.getBody().getHtml();
+              if (content.match(/@(.*?)@/) != null){
+                var inside = content.match(/@(.*?)@/)[0];
+                inside = inside.replace(/@/g,"");
+                if (inside.length != 0){
+                  content = content.replace(/@(.*?)@/, "<span class='latex-inputbox'>"+inside+"<a class='latex-close' onclick='this.parentNode.remove();'>×</a></span><span>&nbsp;</span>");
+                  editor.document.getBody().setHtml(content); 
+                }
+                var range = editor.createRange();
+                range.moveToElementEditEnd( range.root );
+                editor.getSelection().selectRanges( [ range ] );
+              }
+            });
+        });
+
+
+        CKEDITOR.instances[i].on('instanceReady', function() {
+          var content = CKEDITOR.instances[i].document.getBody().getHtml();
+          content = content.replace(/data-cke-pa-onclick/g, "onclick");
+          CKEDITOR.instances[i].document.getBody().setHtml(content);
+        });
+
+
+    })(i);
+}

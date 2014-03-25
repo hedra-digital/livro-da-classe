@@ -2,7 +2,8 @@
 class Admin::DashboardController < Admin::ApplicationController
   def index
   	if params[:impersonate_user_id].blank?
-  		@projects = Project.includes([:book, :client]).all
+      @projects = Project.includes([:book, :client]).where("books.publisher_id = #{current_publisher}").all
+      @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
   	else
     	@user = User.find(params[:impersonate_user_id])
 	    session[:auth_token] = @user.auth_token
@@ -24,5 +25,8 @@ class Admin::DashboardController < Admin::ApplicationController
 
   def scraps
     @scraps = Scrap.includes(:book).order("created_at DESC").all
+  end
+
+  def revision
   end
 end

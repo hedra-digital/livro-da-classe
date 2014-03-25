@@ -1,0 +1,27 @@
+<% if @users.present? %>
+  <div class="row">
+    <div class="span9">
+      <h1>Usuários</h1>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Perfil</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.profile.desc %></td>
+        <td><%= link_to 'Editar', edit_admin_user_path(user), :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Vincular', admin_users_books_path(user), :class => 'btn btn-mini' %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="blank">Nenhum usuário cadastrado.</p>
+<% end %>

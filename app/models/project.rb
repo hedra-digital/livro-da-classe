@@ -55,7 +55,7 @@ class Project < ActiveRecord::Base
     if self.engaged?
       if self.engaged_changed?
         self.status = BookStatus.default.id
-        TrelloMailer.create_book_card(self, self.book, self.book.organizer).deliver
+        TrelloMailer.create_book_card(self.book, self.book.organizer).deliver
       elsif self.status_changed?
         UserMailer.status_changed(self).deliver
       end
@@ -86,7 +86,7 @@ class Project < ActiveRecord::Base
   end
 
   def calculated_pages
-    [self.book.count_pages, 100].max
+    [self.book.pages_count, 100].max
   end
 
   def price_number
@@ -118,7 +118,7 @@ class Project < ActiveRecord::Base
   end
 
   def status_to_s
-    self.status.nil? ? "" : BookStatus.find(self.status).desc
+    BookStatus.find(self.status).desc
   end
 
 end

@@ -3,22 +3,25 @@
 <table class="table table-striped">
   <tr>
     <th>Título</th>
-    <th></th>
+    <th>Email</th>
+    <th>Telefone</th>
     <th>Template</th>
     <th>Status</th>
     <th></th>
-    <th>Textos</th>
+    <th></th>
   </tr>
   <% if @projects %>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= link_to project.book.title, admin_project_path(project) %>, (<%= project.book.organizer.name.presence || project.book.organizer.email %>, org.)</td>
-        <td><%= link_to 'Editar', edit_admin_project_path(project), :class => 'btn btn-mini' %></td>
+        <td><%= link_to title_text(project.book), admin_project_path(project) %>, (<%= project.book.organizer.name.presence || project.book.organizer.email %>, org.)</td>
+        <td><%= project.book.organizer.email %></td>
+        <td><%= project.book.organizer.telephone %></td>
         <td><%= project.book.template %></td>
-        <td><%= admin_book_admin_status(project.book) %></td>
+        <td><%= project.status_to_s %></td>
         <td><%= admin_book_status(project.book) %></td>
-        <td><%= raw project.book.texts.size %></td>
+        <td><%= link_to 'Editar', edit_admin_project_path(project), :class => 'btn btn-mini' %></td>
       </tr>
     <% end %>
   <% end %>
 </table>
+

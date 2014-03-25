@@ -17,6 +17,9 @@ class ScrapsController < ApplicationController
   def create
     @scrap = Scrap.create(content: params[:scrap][:content], is_admin: false, answered: false, book_id: params[:scrap][:book_id])
     @book = Book.find(params[:scrap][:book_id])
+
+    AdminMailer.scrap_notifier(@book, @scrap).deliver
+
     @book.scraps << @scrap
     redirect_to book_path(@book), :notice => "Recado criado."
   end
@@ -33,6 +36,8 @@ class ScrapsController < ApplicationController
     @scrap.content = params[:content]
     @scrap.book_id = parent_scrap.book.id
     @scrap.save
+
+    AdminMailer.scrap_notifier(parent_scrap.book, @scrap).deliver
 
     parent_scrap.answered = false
     parent_scrap.save

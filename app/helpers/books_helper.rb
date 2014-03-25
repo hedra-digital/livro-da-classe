@@ -15,7 +15,7 @@ module BooksHelper
     tags = ""
     if book.project.present? and !book.project.engaged?
       tags << link_to('Remover', book_path(book), :class => 'btn btn-danger btn-mini',
-       :confirm => 'Tem certeza que deseja apagar este livro?', :method => :delete)
+       :confirm => 'Tem certeza que deseja apagar este original?', :method => :delete)
     end
     tags.html_safe
   end
@@ -35,19 +35,33 @@ module BooksHelper
     tags.html_safe
   end
 
-  def menu_item(name, path)
+  def menu_item(name, path, external=nil, type="")
     options = {}
     options[:class] = 'active' if current_page?(path)
-    content_tag(:li, link_to(name, path), options)
+    external.nil? ? content_tag(:li, link_to(name, path), options) : content_tag(:li, link_to(name, path, :id => type), options)
   end
 
   def book_cover
-    if @book.cover.present?
+    if @book.book_data.capainteira.exists?
+      link_to(image_tag(@book.book_data.capainteira.url(:thumb)), @book.book_data.capainteira.url(:content), :class => 'cover-modal')
+    elsif @book.cover.exists?
       link_to(image_tag(@book.cover.url(:thumb)), @book.cover.url(:content), :class => 'cover-modal')
     elsif !DefaultCover.first.nil?
       link_to(image_tag(DefaultCover.first.default_cover.url(:thumb)), DefaultCover.first.default_cover.url, :class => 'cover-modal')
     else
       ''
     end
+  end
+
+  def progress_notification
+      image_tag('/assets/ajax-loader.gif', :class => 'progress-modal', :style => 'display: none;')
+  end  
+
+  def book_pages(book)
+    book.pages_count > 0 ? "#{book.pages_count} páginas" : ""
+  end
+
+  def has_ebook?(book)
+    book.has_ebook?
   end
 end

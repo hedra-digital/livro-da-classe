@@ -24,8 +24,8 @@ class Ckeditor::Picture < Ckeditor::Asset
                     }
 
   validates_attachment_size           :data,
-                                      :less_than => 5.megabytes,
-                                      :message => "has to be under 5 MB size"
+                                      :less_than => 50.megabytes,
+                                      :message => "has to be under 50 MB size"
   validates_attachment_presence       :data
   validates_attachment_content_type   :data,
                                       :content_type => [
@@ -38,18 +38,18 @@ class Ckeditor::Picture < Ckeditor::Asset
                                         ],
                                       :message => "has to be in a proper format"
 
-  #before_create :randomize_file_name
+  before_create :randomize_file_name
 
   def url_content
     url(:content)
   end
 
-#private
+private
 
-  #def randomize_file_name
-  #  extension = File.extname(data_file_name).downcase
-  #  name = File.basename(data_file_name, extension).downcase
-  #  self.data.instance_write(:file_name, "#{name}#{"%.0f" % Time.new.to_f}#{extension}")
-  #end
+  def randomize_file_name
+    extension = File.extname(data_file_name).downcase
+    name = File.basename(data_file_name, extension).downcase
+    self.data.instance_write(:file_name, "#{name}#{"%.0f" % Time.new.to_f}#{extension}")
+  end
 
 end

@@ -4,6 +4,8 @@
   <div class="form-inputs">
         <%= f.input :target %>
         <%= f.input :replace %>
+        <%= f.input :description %>
+        <%= f.input :level, :default_value => 1, :input_html => {:min => 1, :max => 3} %>
   </div>
 
   <div class="form-actions">

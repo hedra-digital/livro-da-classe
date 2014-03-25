@@ -13,6 +13,15 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def current_publisher
+    publisher = Publisher.where("url LIKE ?", "%#{request.host}%").first
+    if publisher.nil?
+      session[:publisher] = Publisher.get_default.id
+    else
+      session[:publisher] = publisher.id
+    end
+  end
+
   def current_user
     session[:auth_token] = cookies[:auth_token] if cookies[:auth_token]
     @current_user ||= User.find_by_auth_token(session[:auth_token]) if session[:auth_token]

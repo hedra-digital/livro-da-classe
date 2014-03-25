@@ -5,23 +5,28 @@
     </div>
 
     <div class="span3">
-      <%= link_to 'Novo Texto', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
+      <% if can_write? %>
+        <%= link_to 'Novo Texto', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
+      <% end %>
     </div>
   </div>
 
-  <% if is_organizer? %>
+  <% if is_organizer? and can_write? %>
     <ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" class="text-list-organizer">
   <% else %>
-    <ul  class="text-list-collaborator">
+    <ul class="text-list-collaborator">
   <% end %>
   <% @texts.each do |text| %>
     <%= content_tag_for :li, text do %>
-      <%= raw('<i class="icon-move handle"></i>&nbsp;') if is_organizer? %>
+      <%= raw('<i class="icon-move handle"></i>&nbsp;') if is_organizer? and can_write? %>
       <%= enable_or_disable_link(text) %>
       <strong class="text-list-title"><%= text_title(@book, text) %></strong>, por <span class="text-list-author"><%= text.user.name.presence || text.user.email %></span>
+      <%= "<span class='label label-important'>Conteúdo Inválido</span>".html_safe unless text.valid_content %>
     <% end %>
   <% end %>
   </ul>
 <% else %>
-  <p class="blank">Nenhum texto encontrado. Que tal <%= link_to 'criar um novo texto?', new_book_text_path(@book.uuid) %></p>
+  <% if can_write? %>
+    <p class="blank">Nenhum texto encontrado. Que tal <%= link_to 'criar um novo texto?', new_book_text_path(@book.uuid) %></p>
+  <% end %>
 <% end %>

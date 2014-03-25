@@ -11,7 +11,85 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209131435) do
+ActiveRecord::Schema.define(:version => 20140221181707) do
+
+  create_table "book_datas", :force => true do |t|
+    t.integer  "book_id"
+    t.string   "subtit"
+    t.string   "autor"
+    t.string   "sumariotitulo"
+    t.string   "sumarioautor"
+    t.string   "organizador"
+    t.string   "introdutor"
+    t.string   "tradutor"
+    t.text     "orelha"
+    t.text     "quartacapa",               :limit => 255
+    t.string   "copyrightlivro"
+    t.string   "copyrighttraducao"
+    t.string   "copyrightorganizacao"
+    t.string   "copyrightilustracao"
+    t.string   "copyrightintroducao"
+    t.string   "titulooriginal"
+    t.string   "edicaoconsultada"
+    t.string   "primeiraedicao"
+    t.string   "agradecimentos"
+    t.string   "indicacao"
+    t.string   "isbn"
+    t.string   "ano"
+    t.string   "edicao"
+    t.string   "coedicao"
+    t.string   "assistencia"
+    t.string   "revisao"
+    t.string   "preparacao"
+    t.string   "capa"
+    t.string   "imagemcapa"
+    t.string   "imagemficha_file_name"
+    t.string   "imagemficha_content_type"
+    t.integer  "imagemficha_file_size"
+    t.datetime "imagemficha_updated_at"
+    t.string   "instituicao"
+    t.string   "logradouro"
+    t.string   "numero"
+    t.string   "cidadeinstituicao"
+    t.string   "estado"
+    t.string   "cep"
+    t.string   "diretor"
+    t.string   "coordenador"
+    t.string   "turma"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "cidade"
+    t.text     "release"
+    t.text     "trechotexto"
+    t.text     "sobreobra"
+    t.text     "sobreautor"
+    t.text     "sobreorganizador"
+    t.text     "sobretradutor"
+    t.text     "resumo"
+    t.string   "dimensao"
+    t.string   "peso"
+    t.string   "gramaturamiolo"
+    t.string   "cormiolo"
+    t.string   "palavraschave"
+    t.boolean  "publicaebook"
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
+    t.string   "capainteira_file_name"
+    t.string   "capainteira_content_type"
+    t.integer  "capainteira_file_size"
+    t.datetime "capainteira_updated_at"
+    t.string   "grafica"
+    t.string   "papelmiolo"
+    t.integer  "numeroedicao",                            :default => 1
+  end
+
+  create_table "book_statuses", :force => true do |t|
+    t.string   "desc"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "books", :force => true do |t|
     t.datetime "published_at"
@@ -21,8 +99,8 @@ ActiveRecord::Schema.define(:version => 20131209131435) do
     t.text     "organizers"
     t.text     "directors"
     t.text     "coordinators"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.integer  "organizer_id"
     t.string   "template"
     t.string   "cover_file_name"
@@ -40,6 +118,14 @@ ActiveRecord::Schema.define(:version => 20131209131435) do
     t.string   "cdu"
     t.string   "cdd"
     t.string   "keywords"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.integer  "publisher_id"
+    t.text     "abstract"
+    t.boolean  "valid_pdf",             :default => true
+    t.integer  "pages_count",           :default => -1
   end
 
   create_table "books_users", :id => false, :force => true do |t|
@@ -135,13 +221,33 @@ ActiveRecord::Schema.define(:version => 20131209131435) do
   create_table "expressions", :force => true do |t|
     t.string   "target"
     t.string   "replace"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "level"
+    t.text     "description"
   end
 
   create_table "invitations", :force => true do |t|
     t.integer  "invited_id"
     t.integer  "book_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "permissions", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "book_status_id"
+    t.boolean  "read"
+    t.boolean  "write"
+    t.boolean  "execute"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "review",         :default => false
+    t.boolean  "git",            :default => false
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.string   "desc"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -158,12 +264,36 @@ ActiveRecord::Schema.define(:version => 20131209131435) do
     t.integer  "school_logo_file_size"
     t.datetime "school_logo_updated_at"
     t.string   "publish_format"
-    t.integer  "quantity"
+    t.integer  "quantity",                 :default => 100
     t.boolean  "engaged",                  :default => false
+    t.integer  "status"
   end
 
   add_index "projects", ["book_id"], :name => "index_projects_on_book_id"
   add_index "projects", ["client_id"], :name => "index_projects_on_client_id"
+
+  create_table "publishers", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "official_name"
+    t.string   "address"
+    t.string   "district"
+    t.string   "city"
+    t.string   "uf"
+    t.string   "telephone"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "trello_email"
+    t.text     "text_email"
+    t.string   "logo_alternative_file_name"
+    t.string   "logo_alternative_content_type"
+    t.integer  "logo_alternative_file_size"
+    t.datetime "logo_alternative_updated_at"
+  end
 
   create_table "scraps", :force => true do |t|
     t.integer  "book_id"
@@ -178,20 +308,22 @@ ActiveRecord::Schema.define(:version => 20131209131435) do
 
   create_table "texts", :force => true do |t|
     t.integer  "book_id"
-    t.text     "content"
+    t.text     "content",            :limit => 2147483647
     t.string   "title"
     t.string   "uuid"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.integer  "position"
     t.integer  "user_id"
-    t.boolean  "enabled",            :default => true
+    t.boolean  "enabled",                                  :default => true
     t.string   "author"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "valid_content"
+    t.boolean  "revised",                                  :default => false
+    t.string   "subtitle"
   end
 
   create_table "users", :force => true do |t|
@@ -206,6 +338,10 @@ ActiveRecord::Schema.define(:version => 20131209131435) do
     t.string   "provider"
     t.string   "uid"
     t.boolean  "asked_for_email"
+    t.string   "telephone"
+    t.integer  "profile_id"
   end
+
+  add_index "users", ["profile_id"], :name => "index_users_on_profile_id"
 
 end

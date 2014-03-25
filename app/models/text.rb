@@ -31,7 +31,9 @@ class Text < ActiveRecord::Base
   validates :user_id,       :presence => true
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible           :book_id, :content, :title, :uuid, :user_id, :enabled, :author, :image, :valid_content
+  attr_accessible           :book_id, :content, :title, :subtitle, :uuid, :user_id, :enabled, :author, :image, :valid_content, :revised, :git_message
+
+  attr_accessor             :git_message
 
   has_attached_file :image,
                     :styles => {
@@ -55,17 +57,27 @@ class Text < ActiveRecord::Base
     self.image.exists? ? '' : self.image.path
   end
 
-  def to_file(file)
-    require "#{Rails.root}/lib/markup_latex.rb"
-    content = "#{MarkupLatex.new(self.content).to_latex}".html_safe
-    content = content.gsub("\n\\\\","\n\n")
-    content = content.gsub("\\\\","\n\n")
-    content = content.gsub("\\ \\","\n\n")
-    File.open(file,'wb') {|io| io.write(content) }
+  def to_file
+    self.book.check_repository
+    content = LatexConverter.to_latex(self.content)
+    File.open(self.filename,'wb') {|io| io.write(content) }
   end
 
-  def self.validate_content
-    true
+  def validate_content
+    begin
+      LatexConverter.to_latex(self.content)
+      return true
+    rescue
+      return false
+    end
+  end
+
+  def filename
+    File.join(self.book.directory,short_filename)
+  end
+
+  def short_filename
+    "#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{self.id}.tex"
   end
 
   private
@@ -75,8 +87,20 @@ class Text < ActiveRecord::Base
   end
 
   def remove_expressions
-    Expression.all.each do |exp|
+    Expression.where(:level => 1).each do |exp|
       self.content = self.content.gsub(eval(exp.target), exp.replace)
+    end
+
+    if revised
+      Expression.where(:level => 2).each do |exp|
+        self.content = self.content.gsub(eval(exp.target), "<span style='background-color:#FFD700;'>#{exp.replace}</span>")
+      end
+    end
+  end
+
+  def title_on_content
+    if !self.new_record? and self.valid_content_changed? and self.valid_content_was.nil? 
+      self.content = "<section class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
     end
   end
 

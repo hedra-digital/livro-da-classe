@@ -4,6 +4,9 @@ restricted_area:
 
 development: &defaults
   latex_template_path: templates/
+  books_path: /home/user/tipografia-books/
+  books_submodule_path: /home/user/tipografia-submodule/
+  git: https://user:pass@bitbucket.org/repo
 
 test:
   <<: *defaults
@@ -12,4 +15,10 @@ sales:
   <<: *defaults
 
 production:
+  <<: *defaults
+
+sletras:
+  <<: *defaults
+
+tipostaging:
   <<: *defaults

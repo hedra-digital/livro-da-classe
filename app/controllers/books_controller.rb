@@ -4,13 +4,14 @@ class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
   before_filter :ominiauth_user_gate, :except => [:show]
   before_filter :secure_organizer_id, :only => [:create, :update]
-  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover]
+  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :generate_ebook]
 
   require "#{Rails.root}/lib/book_cover.rb"
 
   def index
     @books = []
     @books.concat(current_user.organized_books).concat(current_user.books).flatten
+    @books.sort! { |a,b| a.directory_name.downcase <=> b.directory_name.downcase }
   end
 
   def cover_info
@@ -19,8 +20,7 @@ class BooksController < ApplicationController
   def update_cover_info
     if @book.cover_info.update_attributes(params[:cover_info])
       BookCover.new(@book.cover_info).generate_cover
-      redirect_to book_path(@book.uuid), notice: 'As definições feitas no livro foram realizadas com sucesso.'
-      #redirect_to book_cover_info_path(@book.uuid), notice: 'Capa atualizada com sucesso'
+      redirect_to book_path(@book.uuid), notice: 'Capa atualizada com sucesso'
     else
       render :edit
     end
@@ -39,16 +39,29 @@ class BooksController < ApplicationController
   def show
     @scraps = Scrap.where(:parent_scrap_id => nil, :book_id => @book.id).order('created_at DESC').all
     respond_to do |format|
-      format.html # show.html.erb
-      #format.pdf
-      format.pdf do
-        pdf = @book.pdf
-        if !pdf.nil?
-          send_file(pdf, :filename => "#{@book.uuid}.pdf", :disposition => 'inline', :type => "application/pdf")
-        else
-          raise "Error in pdf generation"
-        end
-      end
+      format.html
+    end
+  end
+
+  def generate_pdf
+    pdf = @book.pdf
+    pdf_path = pdf.to_s.gsub('public/','')
+    if !pdf.nil?
+      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{pdf_path}", :result => "success" }
+    else
+      pdf_path = File.join(@book.directory,"#{@book.uuid}.pdf").gsub('public', '')
+      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{pdf_path}", :result => "fail" }
+    end
+  end
+
+  def generate_ebook
+    ebook = @book.ebook params[:kindle].present?
+    ebook_path = ebook.to_s.gsub('public/','')
+    if !ebook.nil?
+      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "success" }
+    else
+      ebook_path = params[:kindle].present? ? File.join(@book.directory,"ebook","#{@book.uuid}.idv").gsub('public', '') : File.join(@book.directory,"ebook","#{@book.uuid}.epub").gsub('public', '')
+      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "fail" }
     end
   end
 
@@ -57,33 +70,41 @@ class BooksController < ApplicationController
     @book = current_user.organized_books.new
     @book.build_project
     @book.build_cover_info
+    @book.build_book_data
   end
 
-  def create    
-    project = params[:book][:project_attributes]
-    params[:book].delete :project_attributes
-    cover_info = params[:book][:cover_info_attributes]
-    params[:book].delete :cover_info_attributes
+  def create
+    cover_info = params[:book][:book_data][:cover_info]
+    params[:book][:book_data].delete :cover_info
+
+    book_data = params[:book][:book_data]
+    params[:book].delete :book_data
 
     @book = current_user.organized_books.new(params[:book].merge(:template => Livrodaclasse::Application.latex_templates[0]))
+    
     @book.organizer = current_user
+    @book.publisher_id = current_publisher
 
     if @book.save
-      @book.build_project quantity: 50
-      @book.project.update_attributes project
+      @book.create_project quantity: 50
 
       @book.build_cover_info
       @book.cover_info.update_attributes cover_info
 
+      @book.build_book_data
+      @book.book_data.update_attributes book_data
+
       BookCover.new(@book.cover_info).generate_cover
+
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else
-        redirect_to book_path(@book.uuid), notice: 'O livro foi criado e já está disponível para você escrever o seu primeiro texto.'
+        redirect_to book_path(@book.uuid), notice: 'O original foi criado e em breve entraremos em contato contigo. Por favor aguarde. Qualquer dúvida, utilize o mural para falar com nossos editores.'
       end
     else
       @book.build_project
       @book.build_cover_info
+      @book.build_book_data
       render :new
     end
   end
@@ -95,17 +116,24 @@ class BooksController < ApplicationController
   end
 
   def update
-    params[:book].delete :project_attributes if params[:book][:project_attributes][:school_logo].blank?
-    params[:book][:cover_info_attributes].delete :capa_imagem        if params[:book][:cover_info_attributes][:capa_imagem].blank? 
-    params[:book][:cover_info_attributes].delete :capa_detalhe       if params[:book][:cover_info_attributes][:capa_detalhe].blank?
-    params[:book][:cover_info_attributes].delete :texto_quarta_capa  if params[:book][:cover_info_attributes][:texto_quarta_capa].blank?
+    cover_info = params[:book][:book_data][:cover_info]
+    params[:book][:book_data].delete :cover_info
+
+    book_data = params[:book][:book_data]
+    params[:book].delete :book_data
+
+    cover_info.delete :capa_imagem        if cover_info[:capa_imagem].blank? 
+    cover_info.delete :capa_detalhe       if cover_info[:capa_detalhe].blank?
+    cover_info.delete :texto_quarta_capa  if cover_info[:texto_quarta_capa].blank?
+
+    @book.publisher_id = current_publisher
     
-    if @book.update_attributes(params[:book])
+    if @book.update_attributes(params[:book]) and @book.cover_info.update_attributes(cover_info) and @book.book_data.update_attributes(book_data)    
       BookCover.new(@book.cover_info).generate_cover
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else
-        redirect_to book_path(@book.uuid), notice: 'O livro foi atualizado.'
+        redirect_to book_path(@book.uuid), notice: 'O original foi atualizado.'
       end
     else
       render :edit
@@ -116,6 +144,10 @@ class BooksController < ApplicationController
     @book.project.destroy
     @book.destroy
     redirect_to books_url
+  end
+
+  def revision
+    @name = @book.directory_name
   end
   
   private

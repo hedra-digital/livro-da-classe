@@ -4,23 +4,7 @@
   <div class="form-inputs">
     <%= f.input :status, :collection => @statuses, :include_blank => false %>
     <%= f.simple_fields_for :book do |b| %>
-      <%= b.input :template, :collection => Livrodaclasse::Application.latex_templates %>
-
-      <label for="project_book_attributes_cover">Capa</label>
-      <div class="fileupload <%= @project.book.cover.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
-        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" />
-        </div>
-        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-          <%= image_tag(@project.book.cover.url) if @project.book.cover.present? %>
-        </div>
-        <div>
-          <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
-            <%= b.input_field :cover, :as => :file %>
-          </span>
-          <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remover</a>
-        </div>
-      </div>
+      <%= b.input :template, :collection => Livrodaclasse::Application.latex_templates, :include_blank => false %>
     <% end %>
   </div>
 
