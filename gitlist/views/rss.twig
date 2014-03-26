@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+        <title>Latest commits in {{ repo }}:{{ branch }}</title>
+        <description>RSS provided by GitList</description>
+        <link>{{ url('homepage') }}</link>
+
+        {% for commit in commits %}
+        <item>
+            <title>{{ commit.message }}</title>
+            <description>{{ commit.author.name }} authored {{ commit.shortHash }} in {{ commit.date | date('d/m/Y \\a\\t H:i:s') }}</description>
+            <link>{{ url('commit', {repo: repo, commit: commit.hash}) }}</link>
+            <pubDate>{{ commit.date | date('r') }}</pubDate>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>
