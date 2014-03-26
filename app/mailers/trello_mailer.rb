@@ -1,7 +1,7 @@
 class TrelloMailer < ActionMailer::Base
   default from: "nao-responda@livrodaclasse.com.br"
 
-  def create_book_card(book, user, publisher)
+  def create_book_card(book, user)
     @title = book.title
     @name = user.name
     @email = user.email
@@ -11,7 +11,7 @@ class TrelloMailer < ActionMailer::Base
     @date = book.created_at.strftime("%d/%m/%Y")
     @release_date = book.project.release_date.strftime("%d/%m/%Y")
 
-    if project.school_logo.exists?
+    if book.project.school_logo.exists?
       attachments["#{project.school_logo_file_name}"] = File.read(project.school_logo.path)
     end
 

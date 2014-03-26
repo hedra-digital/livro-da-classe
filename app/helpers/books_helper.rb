@@ -15,7 +15,7 @@ module BooksHelper
     tags = ""
     if book.project.present? and !book.project.engaged?
       tags << link_to('Remover', book_path(book), :class => 'btn btn-danger btn-mini',
-       :confirm => 'Tem certeza que deseja apagar este original?', :method => :delete)
+       :confirm => 'Tem certeza que deseja apagar este livro?', :method => :delete)
     end
     tags.html_safe
   end

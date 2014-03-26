@@ -7,6 +7,8 @@ development: &defaults
   books_path: /home/user/tipografia-books/
   books_submodule_path: /home/user/tipografia-submodule/
   git: https://user:pass@bitbucket.org/repo
+  git_user_pass: user:password
+  revision_url: http://revisao.tipografiadigital.com.br/
 
 test:
   <<: *defaults

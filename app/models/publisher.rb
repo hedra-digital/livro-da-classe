@@ -19,16 +19,16 @@ class Publisher < ActiveRecord::Base
   def self.get_default
     if Publisher.all.size == 0
     	p = Publisher.new
-    	p.name = "7letras"
-    	p.url = "7letras.livrodaclasse.com.br"
-    	p.official_name = "Viveiros de Castro Editora Ltda."
-    	p.address = "Rua Visconde de Pirajá, 580 Loja 320"
-    	p.district = "Ipanema"
-    	p.city = "Rio de Janeiro"
-    	p.uf = "RJ"
-    	p.telephone = "(21) 2540-0076"
+    	p.name = "Editora Hedra"
+    	p.url = "livrodaclasse.com.br"
+    	p.official_name = "Hedra Educação Ltda."
+    	p.address = "Rua Fradique Coutinho 1139 Subsolo"
+    	p.district = "Vila Madalena"
+    	p.city = "São Paulo"
+    	p.uf = "SP"
+    	p.telephone = "(11) 3097-8304"
       p.trello_email = "chagas+eoyipyvrcukn3uslydul@boards.trello.com"
-      p.text_email = "Caro @name,\n\nSeu original cadastrado em nosso sistema de aprovação teve seu status alterado para: @status\n\n        Para entrar em contato com nossos editores, utilize o mural presente no site http://7letras.livrodaclasse.com.br\n\nEditora 7letras"
+      p.text_email = "Caro @name,\n\nSeu livro da classe cadastrado em nosso sistema de aprovação teve seu status alterado para: @status\n\n        Para entrar em contato com nossos editores, utilize o mural presente no site http://livrodaclasse.com.br\n\nEditora Hedra"
     	p.save
     end
   	Publisher.first

@@ -221,9 +221,9 @@ ActiveRecord::Schema.define(:version => 20140221181707) do
   create_table "expressions", :force => true do |t|
     t.string   "target"
     t.string   "replace"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "level"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "level",       :default => 1
     t.text     "description"
   end
 

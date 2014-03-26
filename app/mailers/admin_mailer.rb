@@ -19,7 +19,7 @@ class AdminMailer < ActionMailer::Base
     @title = book.title
     @content = scrap.content
     
-    mail(subject: "Originais - Novo recado em #{@title.upcase}")
+    mail(subject: "Livro da Classe - Novo recado em #{@title.upcase}")
   end
 
 end

@@ -1,10 +1,10 @@
 pt-BR:
-  my_books: 'Meus Originais'
-  book_desc: 'Original'
-  book_title: 'Título do Original'
-  book_abstract: 'Resumo do Original'
-  book_create: 'Criar Original'
-  book_update: 'Atualizar Original'
+  my_books: 'Meus Livros'
+  book_desc: 'Livro'
+  book_title: 'Título do Livro'
+  book_abstract: 'Resumo do Livro'
+  book_create: 'Criar Livro'
+  book_update: 'Atualizar Livro'
   book_document: 'Documento'
   book_pdf_check: 'Atualizar Status dos Projetos'
   admin_tasks: 'Rotinas'
@@ -115,7 +115,7 @@ pt-BR:
     papelmiolo: 'Papel Miolo'    
   book_nav:
     overview: 'Mural'
-    book_data: 'Dados do Original'
+    book_data: 'Dados do Livro'
     texts: 'Textos'
     collaborators: 'Colaboradores'
     pdf: 'PDF'
@@ -411,7 +411,7 @@ pt-BR:
         student_count: Número de alunos
         school_name: Nome da escola
       book:
-        title: 'Título do original'
+        title: 'Título do livro'
         document: 'Documento atual'
         subtitle: 'Subtítulo'
         organizers: 'Organizador'

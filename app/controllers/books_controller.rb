@@ -86,7 +86,7 @@ class BooksController < ApplicationController
     @book.publisher_id = current_publisher
 
     if @book.save
-      @book.create_project quantity: 50
+      @book.create_project quantity: 50, status: BookStatus.all.first.id
 
       @book.build_cover_info
       @book.cover_info.update_attributes cover_info
@@ -99,7 +99,7 @@ class BooksController < ApplicationController
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else
-        redirect_to book_path(@book.uuid), notice: 'O original foi criado e em breve entraremos em contato contigo. Por favor aguarde. Qualquer dúvida, utilize o mural para falar com nossos editores.'
+        redirect_to book_path(@book.uuid), notice: 'O livro foi criado. Qualquer dúvida, utilize o mural para falar com nossos editores.'
       end
     else
       @book.build_project
@@ -133,7 +133,7 @@ class BooksController < ApplicationController
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else
-        redirect_to book_path(@book.uuid), notice: 'O original foi atualizado.'
+        redirect_to book_path(@book.uuid), notice: 'O livro foi atualizado.'
       end
     else
       render :edit
