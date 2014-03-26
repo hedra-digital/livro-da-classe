@@ -99,7 +99,7 @@ class BooksController < ApplicationController
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else
-        redirect_to book_path(@book.uuid), notice: 'O livro foi criado. Qualquer dúvida, utilize o mural para falar com nossos editores.'
+        redirect_to book_path(@book.uuid), notice: t('book_created')
       end
     else
       @book.build_project
@@ -133,7 +133,7 @@ class BooksController < ApplicationController
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else
-        redirect_to book_path(@book.uuid), notice: 'O livro foi atualizado.'
+        redirect_to book_path(@book.uuid), notice: t('book_updated')
       end
     else
       render :edit

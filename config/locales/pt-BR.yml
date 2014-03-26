@@ -51,6 +51,8 @@ pt-BR:
   pdf_generation_error: 'Ocorreu uma falha ao gerar o livro.'
   ebook_generation_error: 'Ocorreu uma falha ao gerar o ebook.'
   kindle_generation_error: 'Ocorreu uma falha ao gerar o seu livro em formato Kindle.'
+  book_created: 'O livro foi criado. Qualquer dúvida, utilize o mural para falar com nossos editores.'
+  book_updated: 'O livro foi atualizado.'
   book_data:
     titulo: 'Título'
     subtit: 'Subtítulo'
