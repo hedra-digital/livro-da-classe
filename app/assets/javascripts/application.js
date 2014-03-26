@@ -24,6 +24,14 @@
 //= require reorder
 //= require_self
 //= require ckeditor/init
+//= require ckeditor/plugins/eqneditor/plugin
+//= require ckeditor/plugins/eqneditor/lang/en
+//= require ckeditor/plugins/eqneditor/dialogs/eqneditor
+//= require ckeditor/plugins/charcount/plugin
+//= require ckeditor/plugins/texttransform/plugin
+//= require ckeditor/plugins/texttransform/lang/en
+//= require ckeditor/plugins/texttransform/lang/pt-BR
+//= require ckeditor/plugins/texttransform/lang/tr
 //= require ckeditor/plugins/footnote/plugin
 //= require ckeditor/plugins/footnote/dialogs/footnote
 //= require ckeditor/plugins/epigraph/plugin
