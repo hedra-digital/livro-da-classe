@@ -9,6 +9,8 @@ development: &defaults
   git: https://user:pass@bitbucket.org/repo
   git_user_pass: user:password
   revision_url: http://revisao.tipografiadigital.com.br/
+  git_team: tipografiadigital
+  app_name: Tipografia Digital
 
 test:
   <<: *defaults

@@ -28,7 +28,7 @@ class Publisher < ActiveRecord::Base
     	p.uf = "SP"
     	p.telephone = "(11) 3097-8304"
       p.trello_email = "chagas+eoyipyvrcukn3uslydul@boards.trello.com"
-      p.text_email = "Caro @name,\n\nSeu livro da classe cadastrado em nosso sistema de aprovação teve seu status alterado para: @status\n\n        Para entrar em contato com nossos editores, utilize o mural presente no site http://livrodaclasse.com.br\n\nEditora Hedra"
+      p.text_email = "Caro @name,\n\nSeu livro cadastrado em nosso sistema de aprovação teve seu status alterado para: @status\n\n        Para entrar em contato com nossos editores, utilize o mural presente no site http://livrodaclasse.com.br\n\nEditora Hedra"
     	p.save
     end
   	Publisher.first
@@ -41,6 +41,10 @@ class Publisher < ActiveRecord::Base
     else
       publisher
     end
+  end
+
+  def self.get_current_app
+    "#{CONFIG[Rails.env.to_sym]["app_name"]}"
   end
 
 end

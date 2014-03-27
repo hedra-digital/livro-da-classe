@@ -55,7 +55,7 @@ class Project < ActiveRecord::Base
     if self.engaged?
       if self.engaged_changed?
         self.status = BookStatus.default.id
-        TrelloMailer.create_book_card(self.book, self.book.organizer).deliver
+        TrelloMailer.create_book_card(self.book, self.book.organizer, Publisher.find(self.book.publisher_id)).deliver
       elsif self.status_changed?
         UserMailer.status_changed(self).deliver
       end

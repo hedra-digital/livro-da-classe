@@ -12,7 +12,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @inviter = inviter
     @book_uuid = book_uuid
-    mail :to => user.email, :subject => "Convite para um projeto no Livro da Classe"
+    mail :to => user.email, :subject => "Convite para um projeto em #{Publisher.get_current_app}"
   end
 
   def status_changed(project)

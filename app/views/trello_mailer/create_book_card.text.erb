@@ -2,8 +2,16 @@ Email: <%= @email %>
 
 Telefone: <%= @telephone %>
 
-Escola: <%= @institution %>
+<%- if @institution %>
+  Escola: <%= @institution %>
+<%- end %>
 
-Data do contrato: <%= @date %>
+Data: <%= @date %>
 
-Data de lançamento: <%= @release_date %>
+<%- if @release_date %>
+  Data de lançamento: <%= @release_date %>
+<%- end %>
+
+<%- if @abstract %>
+  Resumo da obra: <%= @abstract %>
+<%- end %>
