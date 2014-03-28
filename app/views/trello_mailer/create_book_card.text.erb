@@ -2,8 +2,16 @@ Email: <%= @email %>
 
 Telefone: <%= @telephone %>
 
-Resumo da obra: <%= @abstract %>
-
-Link para ambiente do autor: <%= @impersonate %>
+<%- if @institution %>
+  Escola: <%= @institution %>
+<%- end %>
 
 Data: <%= @date %>
+
+<%- if @release_date %>
+  Data de lançamento: <%= @release_date %>
+<%- end %>
+
+<%- if @abstract %>
+  Resumo da obra: <%= @abstract %>
+<%- end %>

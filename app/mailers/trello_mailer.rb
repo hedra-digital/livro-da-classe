@@ -6,9 +6,15 @@ class TrelloMailer < ActionMailer::Base
     @name = user.name
     @email = user.email
     @telephone = user.telephone
-    @abstract = book.abstract
-    @impersonate = "http://#{publisher.url}/admin?impersonate_user_id=#{book.organizer.id}"
+    @institution = book.institution
     @date = book.created_at.strftime("%d/%m/%Y")
+    @release_date = book.project.release_date ? book.project.release_date.strftime("%d/%m/%Y") : nil
+    @abstract = book.abstract
+
+    if book.project.school_logo.exists?
+      attachments["#{project.school_logo_file_name}"] = File.read(book.project.school_logo.path)
+    end
+
     mail :to => "#{publisher.trello_email}", :subject => "#{@title} (#{@name})"
   end
 end

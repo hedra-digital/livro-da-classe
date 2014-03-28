@@ -43,7 +43,7 @@ class Project < ActiveRecord::Base
                       :small => ["300x300#", :png]
                     }
 
-  before_save    :check_status
+  after_save    :check_status                  
 
   PUBLISH_FORMAT_PRICE = {
     "21 x 14 cm" => 0.4,
@@ -52,11 +52,13 @@ class Project < ActiveRecord::Base
   }
 
   def check_status
-    if self.new_record?
-      self.status = BookStatus.default.id
-      TrelloMailer.create_book_card(self.book, self.book.organizer, Publisher.find(self.book.publisher_id)).deliver
-    elsif self.status_changed?
-      UserMailer.status_changed(self, Publisher.find(self.book.publisher_id)).deliver
+    if self.engaged?
+      if self.engaged_changed?
+        self.status = BookStatus.default.id
+        TrelloMailer.create_book_card(self.book, self.book.organizer, Publisher.find(self.book.publisher_id)).deliver
+      elsif self.status_changed?
+        UserMailer.status_changed(self).deliver
+      end
     end
   end
 

@@ -1,95 +1,111 @@
+#Livro da Classe & Tipografia Digital
+
 ## Como configurar o ambiente de desenvolvimento
 
 ### Pré requisitos
-* Git (http://git-scm.com/)
-* RVM (https://rvm.io/rvm/install)
-* MySQL (http://www.mysql.com/)
-
-[![Build Status](https://travis-ci.org/hedra-digital/livro-da-classe.png)](https://travis-ci.org/hedra-digital/livro-da-classe) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/hedra-digital/livro-da-classe)
-
-### Install Texlive
-
-sudo apt-get texlive-full
-
-### Install ImageMagick
-
-sudo apt-get install libmagickwand-dev libmagickcore-dev imagemagick 
-
-###Others
-
-sudo apt-get install libqt4-dev libqtwebkit-dev
-
-###License
-
-MIT License. Copyright 2012, 2013 Editora Hedra. http://hedra.com.br
-
-###Passos para instalação
+* Vagrant (http://www.vagrantup.com)
 
 ### Clonar a aplicação
 <code>
 $ git clone git@github.com/hedra-digital/livro-da-classe.git
 </code>
 
-### Instalar ruby
+### Iniciar Vagrant
 <code>
-$ cd livro-da-classe
-$ rvm install ruby-2.0.0-p247
+$ vagrant up
+$ vagrant ssh
+$ cd /project
 </code>
 
-### Criar gemset
-<code>
-$ rvm use ruby-2.0.0-p247
-$ rvm gemset create ruby-2.0.0-p247 livro-da-classe
-$ rvm use ruby-2.0.0-p247@livro-da-classe
-</code>
-
-### Instalar Gems do projeto
+### Instalar Gemas do projeto
 <code>
 $ bundle install
 </code>
 
-### Configurar banco de dados da aplicação
-<code>
-$ cp config/database.example.yml config/database.yml
-</code>
-
-Configure usuário e senha de acesso ao MySQL no arquivo config/database.yml
-
 ### Configurações da aplicação
 <code>
 $ cp config/config.example.yml config/config.yml
+$ cp config/database.example.yml config/database.yml
 </code>
 
-### Instalação PDF Latex
+### Configurações para o Submodulo
+
+Clonar a pasta do submodulo de desenvolvimento.
+
 <code>
-$ sudo apt-get install pdflatex
+$ git clone https://bitbucket.org/tipografiadigital/tipografia-submodule-dev
 </code>
 
-### Instalação Inkscape
+Adicionar a pasta na configuração do vagrant (Vagrantfile)
+
 <code>
-$ sudo apt-get install inkscape
+  config.vm.synced_folder "/local-submodule-path", "/submodule-path"
 </code>
 
-### Instalação Pandoc (versão 1.10.1)
+Colocar seu caminho na variável "books_submodule_path" do arquivo de configurações (config/config.yml)
+
+### Configurações para o armazenamento dos livros
+
+Criar outra pasta local para armazenar os livros criados pela aplicação.
+
 <code>
-$ sudo apt-get install pandoc
+$ mkdir books
 </code>
 
-Configure usuário e senha de acesso a area restrita e pasta dos templates no arquivo config/config.yml
+Adicionar a pasta na configuração do vagrant (Vagrantfile)
 
-### Setar repositório para o submodulo dos projetos
+<code>
+  config.vm.synced_folder "/local-books-path", "/books-path"
+</code>
 
-Definir e iniciar um repositório git e colocar seu caminho na variável "books_submodule_path" do arquivo de configurações.
+Colocar seu caminho na variável "books_path" do arquivo de configurações (config/config.yml)
+
+### Configurações para o ambiente LaTeX
+
+Clonar a projeto do texmf.
+
+<code>
+$ git clone https://github.com/hedra-digital/latex.git texmf && cd texmf && git checkout td-producao-texmf
+</code>
+
+Adicionar a pasta na configuração do vagrant (Vagrantfile)
+
+<code>
+  config.vm.synced_folder "/local-latex-texmf", "/texmf"
+</code>
+
+### Configurações para o template LaTeX
+
+Clonar a projeto do texmf.
+
+<code>
+$ git clone https://github.com/hedra-digital/latex.git templates && cd templates && git checkout td-producao
+</code>
+
+Adicionar a pasta na configuração do vagrant (Vagrantfile)
+
+<code>
+  config.vm.synced_folder "/local-templates", "/templates"
+</code>
+
+Colocar seu caminho na variável "templates_path" do arquivo de configurações (config/config.yml)
 
 ### Criar estrutura do banco de dados da aplicação
+
 <code>
 $ rake db:create
 $ rake db:migrate
+$ rake db:seed
 </code>
 
 ### Executar aplicação local
+
 <code>
 $ rails server
 </code>
 
-Acesse a aplicação através da url http://127.0.0.1:3000
+Acesse a aplicação através da url http://127.0.0.1:3012
+
+###License
+
+MIT License. Copyright 2012, 2013, 2014 Editora Hedra. http://hedra.com.br

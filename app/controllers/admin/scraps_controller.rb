@@ -32,7 +32,7 @@ class Admin::ScrapsController < Admin::ApplicationController
     @scrap.parent_scrap_id = parent_scrap.id
     @scrap.content = params[:content]
     @scrap.is_admin = true
-    @scrap.admin_name = Publisher.find(current_publisher).name
+    @scrap.admin_name = 'Editora Hedra'
     @scrap.book_id = parent_scrap.book.id
     @scrap.save
 

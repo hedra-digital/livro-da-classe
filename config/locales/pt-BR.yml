@@ -1,10 +1,10 @@
 pt-BR:
-  my_books: 'Meus Originais'
-  book_desc: 'Original'
-  book_title: 'Título do Original'
-  book_abstract: 'Resumo do Original'
-  book_create: 'Criar Original'
-  book_update: 'Atualizar Original'
+  my_books: 'Meus Livros'
+  book_desc: 'Livro'
+  book_title: 'Título do Livro'
+  book_abstract: 'Resumo do Livro'
+  book_create: 'Criar Livro'
+  book_update: 'Atualizar Livro'
   book_document: 'Documento'
   book_pdf_check: 'Atualizar Status dos Projetos'
   admin_tasks: 'Rotinas'
@@ -51,6 +51,8 @@ pt-BR:
   pdf_generation_error: 'Ocorreu uma falha ao gerar o livro.'
   ebook_generation_error: 'Ocorreu uma falha ao gerar o ebook.'
   kindle_generation_error: 'Ocorreu uma falha ao gerar o seu livro em formato Kindle.'
+  book_created: 'O livro foi criado. Qualquer dúvida, utilize o mural para falar com nossos editores.'
+  book_updated: 'O livro foi atualizado.'
   book_data:
     titulo: 'Título'
     subtit: 'Subtítulo'
@@ -115,7 +117,7 @@ pt-BR:
     papelmiolo: 'Papel Miolo'    
   book_nav:
     overview: 'Mural'
-    book_data: 'Dados do Original'
+    book_data: 'Dados do Livro'
     texts: 'Textos'
     collaborators: 'Colaboradores'
     pdf: 'PDF'
@@ -337,14 +339,14 @@ pt-BR:
         one: Usuário
         other: Usuários
       book:
-        one: Original
-        other: Originais
+        one: Livro
+        other: Livros
       book_status:
-        one: Status para Original
-        other: Status para Originais
+        one: Status para Livro
+        other: Status para Livros
       book_data:
-        one: Dados do Original
-        other: Dados dos Originais
+        one: Dados do Livro
+        other: Dados dos Livros
       profile:
         one: Perfil
         other: Perfis
@@ -411,7 +413,7 @@ pt-BR:
         student_count: Número de alunos
         school_name: Nome da escola
       book:
-        title: 'Título do original'
+        title: 'Título do livro'
         document: 'Documento atual'
         subtitle: 'Subtítulo'
         organizers: 'Organizador'

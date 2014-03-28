@@ -5,10 +5,9 @@
     <th>Título</th>
     <th>Email</th>
     <th>Telefone</th>
-    <!--<th>Template</th>-->
+    <th>Template</th>
     <th>Status</th>
     <th></th>
-    <th>Documento</th>
     <th></th>
   </tr>
   <% if @projects %>
@@ -17,16 +16,9 @@
         <td><%= link_to title_text(project.book), admin_project_path(project) %>, (<%= project.book.organizer.name.presence || project.book.organizer.email %>, org.)</td>
         <td><%= project.book.organizer.email %></td>
         <td><%= project.book.organizer.telephone %></td>
-        <!--<td><%= project.book.template %></td>-->
+        <td><%= project.book.template %></td>
         <td><%= project.status_to_s %></td>
         <td><%= admin_book_status(project.book) %></td>
-        <td>
-        <% if project.book.document.present? %>
-        <%= link_to "Download", project.book.document.url %>
-        <% else %>
-        <%= t('document_none') %>
-        <% end %>
-        </td>
         <td><%= link_to 'Editar', edit_admin_project_path(project), :class => 'btn btn-mini' %></td>
       </tr>
     <% end %>

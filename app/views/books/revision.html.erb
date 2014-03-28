@@ -1,1 +1,1 @@
-<iframe src="http://revisao.tipografiadigital.com.br/<%= @name %>/" class="revision"></iframe>
+<iframe src=<%="#{CONFIG[Rails.env.to_sym]['revision_url']}#{@name}/"%> class="revision"></iframe>

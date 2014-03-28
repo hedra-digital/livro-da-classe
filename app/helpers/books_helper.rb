@@ -6,8 +6,6 @@ module BooksHelper
     tags = ""
     if book.project.present? and book.project.engaged?
       tags << remaining_label(book.project)
-    elsif book.project.present? and !book.project.engaged?
-      tags << link_to('Contratar', edit_book_project_path(book.uuid, book.project.id), :class => 'btn btn-mini')
     end
     tags.html_safe
   end
@@ -17,9 +15,14 @@ module BooksHelper
     tags = ""
     if book.project.present? and !book.project.engaged?
       tags << link_to('Remover', book_path(book), :class => 'btn btn-danger btn-mini',
-       :confirm => 'Tem certeza que deseja apagar este original?', :method => :delete)
+       :confirm => 'Tem certeza que deseja apagar este livro?', :method => :delete)
     end
     tags.html_safe
+  end
+
+  def book_admin_status_label(book)
+    return unless is_organizer?(book, current_user)
+    book.project.engaged? ? book.project.status_to_s : link_to('Contratar', edit_book_project_path(book.uuid, book.project.id), :class => 'btn btn-mini').html_safe
   end
 
   def book_role_label(book, user)

@@ -103,4 +103,5 @@ class Text < ActiveRecord::Base
       self.content = "<section class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
     end
   end
+
 end

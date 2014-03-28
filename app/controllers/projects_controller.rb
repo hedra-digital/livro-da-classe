@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project].merge(:book_id => @book.id))
     if @project.save
-      redirect_to book_path(@book.uuid), :notice => "Seu Livro da Classe já foi criado."
+      redirect_to book_path(@book.uuid), :notice => t('book_created')
     else
       render :new
     end

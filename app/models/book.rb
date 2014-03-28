@@ -62,6 +62,18 @@ class Book < ActiveRecord::Base
 
   after_validation :join_document_errors
 
+  def get_school_logo
+    if !self.project.nil?
+      school_logo = self.project.school_logo.url
+      if !school_logo.index("?").nil?
+        school_logo = school_logo[0..school_logo.index("?") -1]
+      end
+      return Rails.public_path + school_logo
+    else
+      return Rails.public_path + "/default_logo.jpg"
+    end
+  end
+
   def join_document_errors
     if errors.messages.has_key?(:document_file_size)
       errors.messages[:document] = errors.messages[:document_file_size]

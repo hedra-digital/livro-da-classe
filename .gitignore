@@ -43,6 +43,7 @@ pickle-email-*.html
 /public/assets
 /coverage
 /tipografia-books
+Vagrantfile
 
 /db/sphinx/
 /log/searchd.development.pid
