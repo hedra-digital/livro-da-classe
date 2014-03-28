@@ -119,6 +119,7 @@ class MarkupLatex
   def prepare_verse(text)
     Nokogiri::HTML(text).css("div.verse").each do |verse|
       verse_text = convert_with_pandoc verse
+      verse_text = verse_text.gsub("\\\\\n","\\#\\\n")
       verse_text = verse_text.gsub("\\\\","\\#\\\n")
       verse_text = verse_text.gsub("\n\n","\\#\\!\n\n")
       text = text.gsub("<br />", "<br>")
