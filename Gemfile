@@ -55,6 +55,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'annotate', '>=2.5.0'
+  gem 'capistrano', '~> 2.15.5'
 end
 
 gem "exception_notification", "~> 3.0.1"
