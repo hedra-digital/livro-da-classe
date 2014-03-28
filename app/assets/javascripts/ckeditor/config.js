@@ -39,9 +39,9 @@ CKEDITOR.editorConfig = function(config) {
     '/',
     { name: 'basicstyles', items : [ 'Bold','Italic','Subscript','Superscript','-','RemoveFormat' ] },
     { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },
-    { name: 'insert', items : [ 'Image','Table','HorizontalRule' ]}, //'SpecialChar','EqnEditor', 'FootNote', 'Epigraph', 'Verse', 'Chapter' ] },
+    { name: 'insert', items : [ 'Image','Table','HorizontalRule', 'SpecialChar','EqnEditor', 'FootNote', 'Epigraph', 'Verse', 'Chapter' ] },
     { name: 'colors', items : [ 'TextColor','BGColor' ] },
-    { name: 'styles', items : [ 'Format' ] } //'Smallskip', 'Medskip', 'Bigskip' ] }
+    { name: 'styles', items : [ 'Format', 'Smallskip', 'Medskip', 'Bigskip' ] }
   ];
   
   config.language = 'pt-BR';
