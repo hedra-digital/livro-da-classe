@@ -309,6 +309,11 @@
     border-top-color: #c35923;
   }
 
+  .planos li.plano:nth-child(1) p{
+      padding-top: 17px;
+      padding-bottom: 8px;
+}
+
 
   .planos li.plano ul li{
       color: #3a3a3a;
