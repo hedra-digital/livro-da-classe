@@ -104,9 +104,4 @@ class Text < ActiveRecord::Base
     end
   end
 
-  def title_on_content
-    if !self.new_record? and self.valid_content_changed? and self.valid_content_was.nil? 
-      self.content = "<h1>#{self.title}</h1>#{self.content}"
-    end
-  end
 end
