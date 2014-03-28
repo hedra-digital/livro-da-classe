@@ -7,6 +7,10 @@ Livrodaclasse::Application.routes.draw do
 
   match 'scraps/:id/new', :to => 'scraps#new', :as => :new_scrap
 
+  get 'wizard', :to => 'new_ui#index', :as => :signin
+  get 'home', :to => 'new_ui#home', :as => :signin
+
+
   get 'entrar', :to => 'sessions#new', :as => :signin
   get 'auth/:provider/callback', :to => 'sessions#create'
   delete 'sair', :to => 'sessions#destroy', :as => :signout
@@ -49,7 +53,7 @@ Livrodaclasse::Application.routes.draw do
   match 'scraps/:id/thread', :to => 'scraps#thread', :as => :scraps_thread
   match 'scraps/:id/answer', :to => 'scraps#answer', :as => :scraps_answer
   resources :scraps, :only => [:index, :create, :edit, :update, :destroy]
-  
+
   namespace :admin do
     root :to => 'dashboard#index'
 

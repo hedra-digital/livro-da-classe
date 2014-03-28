@@ -47,6 +47,9 @@
 //= require jquery.mask.min.js
 //= require jscolor/jscolor
 //= require jcrop/jquery.Jcrop
+//= require carousel
+//= require adipoli
+//= require scrollTo
 
 // Bootstrap Datepicker
 
@@ -109,7 +112,7 @@ $(document).ready(function() {
   });
 
   $('#book_zipcode').mask("99999-999");
-  
+
   $('#book_title').jqEasyCounter({
       'maxChars': 54
   });
@@ -121,7 +124,7 @@ $(document).ready(function() {
   $('#book_cover_info_attributes_texto_quarta_capa').jqEasyCounter({
       'maxChars': 415
   });
-  
+
   $('#book_organizers').jqEasyCounter({
       'maxChars': 25
   });
