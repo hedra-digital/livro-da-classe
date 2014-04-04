@@ -12,4 +12,8 @@ class NewUiController < ApplicationController
 
   end
 
+  def saiba
+
+  end
+
 end

@@ -44,6 +44,7 @@ pickle-email-*.html
 /coverage
 /tipografia-books
 Vagrantfile
+*.swp
 
 /db/sphinx/
 /log/searchd.development.pid

@@ -7,9 +7,9 @@ Livrodaclasse::Application.routes.draw do
 
   match 'scraps/:id/new', :to => 'scraps#new', :as => :new_scrap
 
-  get 'wizard', :to => 'new_ui#index', :as => :signin
-  get 'home', :to => 'new_ui#home', :as => :signin
-
+  get 'wizard', :to => 'new_ui#index'
+  get 'home', :to => 'new_ui#home'
+  get 'saiba', :to => 'new_ui#saiba'
 
   get 'entrar', :to => 'sessions#new', :as => :signin
   get 'auth/:provider/callback', :to => 'sessions#create'

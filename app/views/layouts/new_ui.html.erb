@@ -10,68 +10,63 @@
     <%= csrf_meta_tags %>
     <%= yield :meta_tags %>
   </head>
-
-
   <body>
 
-    <div id="wrap">
-
-      <header class="main-header" role="banner">
+    <div class="wrap">
+      <header class="main-header">
         <div class="navbar">
-          <a href="/" class="logo">
-            <%= image_tag 'new_ui/logo.png' %>
-          </a>
-          <div class="navbar-inner">
-            <div class="nav-collapse collapse navbar-responsive-collapse">
-              <nav class="main-nav" role="navigation">
-                <ul class="nav">
-                  <li class="active"><a class="dropdown-toggle" data-toggle="dropdown" href="#video">Home<b class="caret"></b></a></li>
-                  <li><a href="#como-funciona">Como Funciona</a></li>
-                  <li><a href="#quem-somos">Quem Somos</a></li>
-                  <li><a href="#planos">Planos</a></li>
-                  <li><a href="#contato">Contato</a></li>
-                </ul>
-              </nav>
-              <div class="navadd">
-                <div class="user">
-                  <label for="">Nome Sobrenome</label>
-                  <figure>
-                    <%= image_tag 'new_ui/avatar.jpg' %>
-                  </figure>
-                </div>
-                <div class="cart">
-                  <img alt="Cart" src="http://www.hedra.com.br/assets/cart-98b2f98cb1b9ed14a0d844991f5784da.png">
-                </div>
-              </div>
+          <div class="navbar-inner navbar-top">
+            <div class="navbar-logo">
+              <%= link_to "#{Publisher.get_current(request.host).name}", home_path, :class => 'logo' %>
             </div>
+            <div class="navbar-user">
+              <% if current_user.nil? %>
+                <label><%= link_to "Acesse sua conta", signin_path %> ou <%= link_to "Cadastre-se", new_user_path %></label>
+              <% else %>
+                <figure>
+                  <%= image_tag 'new_ui/avatar.jpg' %>
+                </figure>
+                <label>Bem vindo, <%= link_to current_user.name, user_path(current_user) %></label>
+              <% end %>
+            </div>
+          </div>
+          <div class="navbar-inner navbar-bottom">
+            <ul class="nav">
+              <li <%= "class=active" if current_page?(home_path) %>><a href="/home#video">Home</a></li>
+              <li><a href="/home#quem-somos">Quem Somos</a></li>
+              <li><a href="/home#como-funciona">Como Funciona</a></li>
+              <li><a href="/home#clientes">Clientes</a></li>
+              <li><a href="/home#contato">Contato</a></li>
+            </ul>
           </div>
         </div>
       </header>
 
       <%= yield %>
 
-    <footer class="main-footer">
-
-      <div class="container">
-        <div class="row">
-          <div class="span12">
-            <nav id="secondary-nav">
-              <ul class="nav nav-pills">
-                <li><a href="/sobre">Sobre</a></li>
-                <li><a href="/contato">Contato</a></li>
-                <li><a href="https://trello.com/b/ljDooqSg/hedra-lancamentos-eventos-promos/">Em breve</a></li>
-              </ul>
-            </nav>
-            <p class="company-copyright">Copyright © 2014, Hedra.</p>
-          </div>
+      <footer class="main-footer">
+        <div class="footer-top">
+          <ul class="nav">
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/saiba">Saiba mais</a></li>
+            <li><a href="https://trello.com/b/ljDooqSg/hedra-lancamentos-eventos-promos/">Em breve</a></li>
+          </ul>
         </div>
-        <div id="company-address" class="row">
-          <address class="span12">
-            Rua Fradique Coutinho 1139, Subsolo CEP 05416-011 - São Paulo - SP Tel.: (11) 3097-8304
-          </address>
+        <div class="footer-bottom">
+          <div class="address">Rua Fradique Coutinho 1139, Subsolo CEP 05416-011 - São Paulo - SP Tel.: (11) 3097-8304</div>
+          <div class="copyright">Copyright © 2014, Hedra.</div>
         </div>
-      </div>
+      </footer>
+    </div>
 
-    </footer>
   </body>
 </html>
+
+<script>
+  $('.main-header').affix({
+    offset: {
+      top: $('.main-header').height(),
+      bottom: $('.main-footer').outerHeight(true)
+    }
+  });
+</script>

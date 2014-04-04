@@ -18,6 +18,7 @@
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR
 //= require bootstrap-fileupload
+//= require bootstrap-affix
 //= require jquery.tipsy
 //= require jquery.fancybox
 //= require bindWithDelay

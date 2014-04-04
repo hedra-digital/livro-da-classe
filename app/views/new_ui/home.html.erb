@@ -1,22 +1,28 @@
-<div class="home-wrapper">
+<div id="home">
 
-  <section id="video" class="video">
-    <div class="content-wrapper home">
-    <article>
-      <ul>
-        <li><span class="icons"></span>Diagramação Online</li>
-        <li><span class="icons"></span>Apoio Editorial</li>
-        <li><span class="icons"></span>Impressão Digital</li>
-      </ul>
-      <div class="embed"></div>
-    </article>
-    <a class="saiba-mais" href="#"> Saiba Mais</a>
-    <a class="contrate" href="#">Contrate</a>
+  <section id="video">
+    <div class="video">
+      <div class="top">
+        <div class="links">
+          <ul>
+            <li><span class="icon"></span><span class="text">Diagramação Online</span></li>
+            <li><span class="icon"></span><span class="text">Apoio Editorial</span></li>
+            <li><span class="icon"></span><span class="text">Impressão Digital</span></li>
+          </ul>
+        </div>
+        <div class="video">
+          <div class="embed"></div>
+        </div>
+      </div>
+      <div class="bottom">
+        <%= link_to ' Saiba Mais', saiba_path, class: "saiba-mais" %>
+        <%= link_to ' Contrate', wizard_path, class: "contrate" %>
+      </div>
     </div>
   </section>
 
-  <section id="quem-somos" class="quem-somos">
-    <div class="content-wrapper home">
+  <section id="quem-somos">
+    <div class="quem-somos">
       <h1>Quem Somos</h1>
       <ul>
         <li>
@@ -56,23 +62,23 @@
     </div>
   </section>
 
-  <section id="como-funciona" class="como-funciona">
-    <div class="content-wrapper home">
+  <section id="como-funciona">
+    <div class="como-funciona">
       <h1>Como Funciona</h1>
       <article>
-        <figure class="round">
+        <figure>
           <%= image_tag 'new_ui/big-icons-1.png' %>
         </figure>
         <p>Uma plataforma de edição colaborativa, com apoio editorial e impressão digital, na qual professor e alunos interagem para produzir livros de modo fácil e rápido. </p>
       </article>
       <article>
-        <figure class="round">
+        <figure>
           <%= image_tag 'new_ui/big-icons-2.png' %>
         </figure>
         <p>Apoio editorial por profissionais da área, para editar e <br>produzir seu livro.</p>
       </article>
       <article>
-        <figure class="round">
+        <figure>
           <%= image_tag 'new_ui/big-icons-3.png' %>
         </figure>
         <p>Arquivos ebook ou pdf gratuito e a possibilidade de imprimir <br> o livro da sua escola na tiragem desejada.</p>
@@ -80,124 +86,31 @@
     </div>
   </section>
 
-  <section id="clientes" class="clientes">
-    <div class="content-wrapper list_carousel home">
+  <section id="clientes">
+    <div class="clientes list-carousel">
       <h1>Clientes</h1>
-      <ul id="foo0">
-        <li>
-          <img alt="Qranio" src="assets/participantes/qranio.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Scup" src="assets/participantes/scup.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Startupfarm" src="assets/participantes/startupfarm.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Digilant" src="assets/participantes/digilant.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Qranio" src="assets/participantes/qranio.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Scup" src="assets/participantes/scup.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Startupfarm" src="assets/participantes/startupfarm.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Digilant" src="assets/participantes/digilant.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Qranio" src="assets/participantes/qranio.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Scup" src="assets/participantes/scup.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Startupfarm" src="assets/participantes/startupfarm.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Digilant" src="assets/participantes/digilant.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Qranio" src="assets/participantes/qranio.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Scup" src="assets/participantes/scup.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Startupfarm" src="assets/participantes/startupfarm.png" style="display: none;">
-        </li>
-        <li>
-          <img alt="Digilant" src="assets/participantes/digilant.png" style="display: none;">
-        </li>
+      <ul id="clientescarousel">
+        <li><%= image_tag 'new_ui/participantes/exemplo_1.jpg' %></li>
+        <li><%= image_tag 'new_ui/participantes/exemplo_2.jpg' %></li>
+        <li><%= image_tag 'new_ui/participantes/exemplo_3.jpg' %></li>
+        <li><%= image_tag 'new_ui/participantes/exemplo_4.jpg' %></li>
+        <li><%= image_tag 'new_ui/participantes/exemplo_5.jpg' %></li>
+        <li><%= image_tag 'new_ui/participantes/exemplo_6.jpg' %></li>
+        <li><%= image_tag 'new_ui/participantes/exemplo_7.jpg' %></li>
+        <li><%= image_tag 'new_ui/participantes/exemplo_8.jpg' %></li>
+        <li><%= image_tag 'new_ui/participantes/exemplo_9.jpg' %></li>
       </ul>
     </div>
   </section>
 
-  <section id="planos" class="planos">
-    <div class="content-wrapper home">
-      <h1>Planos</h1>
-      <ul>
-        <li class="plano">
-          <header>Plano Básico</header>
-          <div class="preco">
-            <p>Gratuito</p>
-          </div>
-          <ul>
-            <li>Edição Colaborativa</li>
-            <li>PDF</li>
-            <li>E-book</li>
-          </ul>
-          <a href="">Contratar</a>
-        </li>
-        <li class="plano">
-          <header>Plano Intermediário</header>
-          <div class="preco">
-            <p><span>R$</span>90</p>
-            <span>por mês</span>
-          </div>
-          <ul>
-            <li>Edição Colaborativa</li>
-            <li>PDF</li>
-            <li>E-book</li>
-            <li>Suporte por e-mail</li>
-            <li>Alteraação da capa</li>
-          </ul>
-          <a href="">Contratar</a>
-        </li>
-        <li class="plano">
-          <header>Plano Completo</header>
-          <div class="preco">
-            <p><span>R$</span>990</p>
-            <span>por projeto</span>
-          </div>
-          <ul>
-            <li>Edição Colaborativa</li>
-            <li>PDF</li>
-            <li>E-book</li>
-            <li>Suporte por chat/telefone</li>
-            <li>Alteração de Templates</li>
-            <li>Rotinas de Revisão</li>
-            <li>Diagramação Assistida</li>
-            <li>Produção Grafica</li>
-            <li>Até 5 livros por plano</li>
-          </ul>
-          <a href="">Contratar</a>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="contato" class="contato">
-    <div class="content-wrapper home">
+  <section id="contato">
+    <div class="contato">
       <h1>Contato</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
       <form action="">
-        <input type="text">
-        <input type="text">
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Email">
+        <textarea name="" id="" rows="10" placeholder="Mensagem"></textarea>
         <input type="submit">
       </form>
     </div>
@@ -205,26 +118,26 @@
 
 </div>
 
+
 <script>
+  $('.main-header .nav li a').click(function() {
+    $(window).scrollTo($(this).attr('href'), 1000, {
+      offset: -46
+    })
+  })
 
-$('#wrap header.main-header .main-nav ul li a').click(function(){
-  $(window).scrollTo($(this).attr('href'), 1000)
-})
-
-  //  Basic carousel, no options
-  $("#foo0").carouFredSel({
-    auto  : {
-      items       : 5,
-      duration    : 22000,
-      easing      : "linear",
-      timeoutDuration : 10000,
-      pauseOnHover  : "immediate"
+  $("#clientescarousel").carouFredSel({
+    auto: {
+      items: 5,
+      duration: 10000,
+      easing: "linear",
+      timeoutDuration: 2000,
+      pauseOnHover: "immediate"
     }
   });
 
-
-  $('#foo0 img').adipoli({
-      'startEffect' : 'grayscale',
-      'hoverEffect' : 'normal'
-  });
+  //$('#clientescarousel img').adipoli({
+  //  'startEffect': 'grayscale',
+  //  'hoverEffect': 'normal'
+  //});
 </script>

@@ -54,8 +54,8 @@ $iconWhiteSpritePath:             asset_path("glyphicons-halflings-white.png", i
    Fonts
    ========================================================================== */
 
-@include font-face(Miso, '/assets/miso-regular', normal, normal);
-@include font-face(Miso, '/assets/miso-bold', bold, normal);
+@include font-face(Miso, 'fonts/miso-regular', normal, normal);
+@include font-face(Miso, 'fonts/miso-bold', bold, normal);
 
 
 /* ==========================================================================
