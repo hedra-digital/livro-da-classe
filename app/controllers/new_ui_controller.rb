@@ -12,7 +12,7 @@ class NewUiController < ApplicationController
 
   end
 
-  def saiba
+  def wizard
 
   end
 

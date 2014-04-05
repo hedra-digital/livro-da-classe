@@ -192,6 +192,7 @@ h1, h2 {
     z-index: 1000;
     left: 15px;
     right: 15px;
+    top: 0px;
     position: fixed;
     .navbar {
       .navbar-top {
@@ -521,3 +522,143 @@ section {
 #saiba .answer {
   margin-bottom: 36px;
 }
+
+#wizard .steps {
+  margin: 0 auto;
+  padding: 40px 0 60px 0;
+  width: 800px;
+  .bar {
+    background: #fff;
+    border: 1px dotted #e7611d;
+    border-radius: 10px;
+    height: 12px;
+    ul {
+      margin: 0 -12px;
+      position: relative;
+      &:after {
+        content: '';
+        background: #fff;
+        border-radius: 10px;
+        left: 12px;
+        height: 12px;
+        width: 800px;
+        position: absolute;
+      }
+      li {
+        background: #fff;
+        border: 1px dotted #e7611d;
+        border-radius: 100px;
+        box-shadow: inset 0 0 0 3px #fff;
+        float: left;
+        height: 22px;
+        width: 22px;
+        margin-right: 242px;
+        margin-top: -6px;
+        position: relative;
+        &:last-child {
+          margin-right: 0;
+        }
+        a {
+          color: #838383;
+          font-size: 13px;
+          text-align: center;
+          left: -64px;
+          top: -32px;
+          width: 150px;
+          position: absolute;
+        }
+        &.past, &.active {
+          background: #e7611d;
+          box-shadow: inset 0 0 0 2px #fff;
+        }
+        &.past {
+          z-index: 110;
+          &:after {
+            content: '';
+            background: #e7611d;
+            left: 12px;
+            top: 7px;
+            height: 8px;
+            width: 266.6px;
+            position: absolute;
+          }
+        }
+        &.active {
+          z-index: 109;
+        }
+      }
+    }
+  }
+} 
+
+#wizard .substeps {
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0px 0px 82px rgba(0, 0, 0, 0.1);
+  display: flex;
+  .buttons {
+    background: #88b2c2;
+    width: 300px;
+    min-height: 500px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.1);
+    ul {
+      background: #fff;
+      li {
+        border-top: 1px solid #DBDBDB;
+        padding: 18px;
+        text-transform: uppercase;
+        a {
+          color: #555;
+          font-size: 15px;
+          line-height: 20px;
+          text-decoration: none;
+        }
+        &:first-child {
+          border-top: none;
+          border-top-left-radius: 3px;
+        }
+        &.selected {
+          background-color: #39a0c1;
+          a {
+            color: #fff;
+          }
+          &:before {
+            content: '';
+            border-top: 29px solid transparent;
+            border-bottom: 29px solid transparent;
+            border-left: 18px solid #39a0c1;
+            position: absolute;
+            margin-left: 282px;
+            margin-top: -18px;
+          }
+        }
+      }
+    }
+  }
+  .substep {
+    width: 540px;
+    margin: 40px 50px;
+    form {
+      margin: 20px 0;
+      span {
+        margin: 0 15px 15px 15px;
+        padding: 5px;
+        width: 228px;
+        border-bottom: 1px dashed #ccc;
+        display: inline-block;
+        input {
+          margin: 0;
+          margin-bottom: 5px;
+        }
+        label {
+          margin: 0 0 0 5px;
+          display: inline-block;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+}
+

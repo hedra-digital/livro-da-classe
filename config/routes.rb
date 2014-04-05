@@ -7,7 +7,7 @@ Livrodaclasse::Application.routes.draw do
 
   match 'scraps/:id/new', :to => 'scraps#new', :as => :new_scrap
 
-  get 'wizard', :to => 'new_ui#index'
+  get 'wizard', :to => 'new_ui#wizard'
   get 'home', :to => 'new_ui#home'
   get 'saiba', :to => 'new_ui#saiba'
 
