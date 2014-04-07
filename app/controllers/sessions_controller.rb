@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   layout :choose_layout
 
   def new
-    render :layout => 'public'
   end
 
   def create
@@ -19,11 +18,11 @@ class SessionsController < ApplicationController
           redirect_to app_home_path
         else
           flash.now.alert = 'Usuário ou senha inválidos'
-          render :new, :layout => 'public'
+          render :new
         end
       rescue #BCrypt::Errors::InvalidHash
         flash.now.alert = 'Usuário ou senha inválidos'
-        render :new, :layout => 'public'
+        render :new
       end
     elsif env['omniauth.auth']
       user = User.from_omniauth(env['omniauth.auth'])

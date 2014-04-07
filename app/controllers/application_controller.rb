@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def choose_layout
-    current_user ? "application" : "public"
+    current_user ? "application" : "new_ui"
   end
 
   def ckeditor_before_create_asset(asset)

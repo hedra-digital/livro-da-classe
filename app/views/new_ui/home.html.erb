@@ -15,8 +15,8 @@
         </div>
       </div>
       <div class="bottom">
-        <%= link_to ' Saiba Mais', saiba_path, class: "saiba-mais" %>
-        <%= link_to ' Contrate', wizard_path, class: "contrate" %>
+        <%= link_to 'Saiba Mais', saiba_path, class: "saiba-mais" %>
+        <%= link_to 'Comece agora', wizard_path, class: "comece-agora" %>
       </div>
     </div>
   </section>
@@ -111,7 +111,7 @@
         <input type="text" placeholder="Nome">
         <input type="text" placeholder="Email">
         <textarea name="" id="" rows="10" placeholder="Mensagem"></textarea>
-        <input type="submit">
+        <input type="submit" value="Enviar">
       </form>
     </div>
   </section>
@@ -123,8 +123,8 @@
   $('.main-header .nav li a').click(function() {
     $(window).scrollTo($(this).attr('href'), 1000, {
       offset: -46
-    })
-  })
+    });
+  });
 
   $("#clientescarousel").carouFredSel({
     auto: {
