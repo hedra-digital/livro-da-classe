@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "cadastro-login";
 
 @font-face {
   font-family: 'Calluna Sans';
@@ -364,7 +365,7 @@ section {
           }
         }
       }
-    }  
+    }
     .video {
       float: right;
       height: 418px;
@@ -619,7 +620,7 @@ section {
       }
     }
   }
-} 
+}
 
 #wizard .substeps {
   background: #fff;

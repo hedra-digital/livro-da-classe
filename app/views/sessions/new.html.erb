@@ -1,5 +1,18 @@
 <section id="new_session">
-  <div class="new_session">
+  <div class="new_session cadastro-login">
+
+    <ul class="social-connect">
+      <span>Conecte-se com</span>
+      <li class="facebook"><a href="#"></a></li>
+      <li class="twitter"><a href="#"></a></li>
+      <li class="google"><a href="#"></a></li>
+    </ul>
+
+    <div class="tabs">
+      <%= link_to "Login", signin_path, class: "active" %>
+      <%= link_to "Cadastre-se", new_user_path %>
+    </div>
+
     <h1>Entrar no site</h1>
     <%= simple_form_for :signin, { :url => sessions_path } do |f| %>
       <%= f.input :email %>
@@ -10,3 +23,11 @@
     <% end %>
   </div>
 </section>
+
+<script>
+  $.each($("form div"), function() {
+    var label = $("label",$(this)).text();
+    $("label",$(this)).hide();
+    $("div input",$(this)).prop("placeholder",label);
+  });
+</script>

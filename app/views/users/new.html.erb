@@ -1,7 +1,29 @@
 <section id="new_user">
-  <div class="new_user">
-    <h1><%=t :get_started %></h1>
+  <div class="new_user cadastro-login">
 
+    <ul class="social-connect">
+      <span>Conecte-se com</span>
+      <li class="facebook"><a href="#"></a></li>
+      <li class="twitter"><a href="#"></a></li>
+      <li class="google"><a href="#"></a></li>
+    </ul>
+
+    <div class="tabs">
+      <%= link_to "Login", signin_path %>
+      <%= link_to "Cadastre-se", new_user_path, class: "active" %>
+    </div>
+
+    <h1><%=t :get_started %></h1>
     <%= render 'form' %>
   </div>
 </section>
+
+<script>
+  $.each($(".form-inputs div"), function() {
+    var label = $("label",$(this)).text();
+    $("label",$(this)).hide();
+    $("div input",$(this)).prop("placeholder",label);
+  });
+</script>
+
+

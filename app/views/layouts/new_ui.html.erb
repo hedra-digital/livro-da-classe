@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= yield(:title).presence || content_tag(:title, "#{Publisher.get_current(request.host).name}") %>
     <%= stylesheet_link_tag    "new_ui" %>
+    <%= stylesheet_link_tag    "cadastro-login" %>
     <%= javascript_include_tag "application" %>
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
