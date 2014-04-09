@@ -1,24 +1,243 @@
-<div id="intro" class="row">
-  <div id="description" class="span7">
-    <p class="high text">Quero fazer um livro com meus <em>alunos</em></p>
-    <p class="text">Com o Livro da Classe você tem a consultoria editorial e um processo de impressão digital para fazer isso acontecer.</p>
-  </div>
-  <div id="illustration" class="span5">
-    <%= image_tag '/assets/livros.png', :width => '452', :height => '387' %>
-  </div>
+<div id="home">
+
+  <section id="video">
+    <div class="video">
+      <div class="top">
+        <div class="links">
+          <ul>
+            <li><span class="icon"></span><span class="text">Diagramação Online</span></li>
+            <li><span class="icon"></span><span class="text">Apoio Editorial</span></li>
+            <li><span class="icon"></span><span class="text">Impressão Digital</span></li>
+          </ul>
+        </div>
+        <div class="video">
+          <div class="embed"></div>
+        </div>
+      </div>
+      <div class="bottom">
+        <%= link_to 'Saiba Mais', nil, class: "saiba-mais" %>
+        <div class="modal fade" id="saiba-mais-content" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Saiba mais</h4>
+              </div>
+              <div class="modal-body">
+                <div class="saiba-mais">
+                  <p class="question">
+                    O que é o Livro da Classe?
+                  </p>
+                  <p class="answer">
+                    É uma plataforma de edição colaborativa, com apoio editorial e impressão digital. 
+                  </p>
+
+                  <p class="question">
+                    Por que usar o Livro da Classe?
+                  </p>
+                  <p class="answer">
+                    Ajuda e orienta professores e alunos a produzir um livro com a qualidade
+                    editorial desejável e as facilidades de uma produção automatizada e em rede.
+                  </p>
+
+                  <p class="question">
+                    Quais serviços o Livro da Classe oferece?
+                  </p>
+                  <p class="answer">
+                    Acompanhamento editorial: atendimento ao professor, orientação de uso da
+                    plataforma, contato com prestadores de serviço (editor, preparador, revisor,
+                    capista etc.), produção gráfica, ISBN e Ficha catalográfica etc.<br /><br />
+                    Editor: responsável pela produção do livro<br />
+                    Preparador: responsável pela preparação; esse serviço pode ser utilizado por
+                    aqueles que entendem que querem aperfeiçoar aspectos de texto<br />
+                    Revisão: responsável pela correção gramatical do livro<br />
+                    Capista: responsável pela confecção de capas costumizadas 
+                  </p>
+
+                  <p class="question">
+                    Preciso de ISBN e Ficha catalográfica para o meu projeto? 
+                  </p>
+                  <p class="answer">
+                    Segundo a lei brasileira, todo folheto com mais de seis páginas que se presta
+                    à divulgação de determinado conteúdo deve ter o número de ISBN e uma Ficha
+                    Catalográfica. O ISBN (International Standard Book Number) é um sistema que
+                    identifica numericamente os livros segundo título, autor, país e a editora,
+                    individualizando-os por edição. Já a Ficha contém informações bibliográficas
+                    para identificar e localizar um livro no acervo de uma biblioteca.
+                  </p>
+
+                  <p class="question">
+                    Como costumizar o seu projeto?
+                  </p>
+                  <p class="answer">
+                    Se há intenção de dar um aspecto gráfico editorial diferenciado para cada
+                    projeto e não usar o standard sugere-se a aquisição de um de nossos planos
+                    pagos. 
+                  </p>
+
+                  <p class="question">
+                    Há limites de projetos por usuário?
+                  </p>
+                  <p class="answer">
+                    Não há limite de projeto. Se a escola ou o professor escolher usar apenas a plataforma não há problema algum. 
+                  </p>
+
+                  <p class="question">
+                    Há limite mínimo e máximo do número de páginas por projeto?
+                  </p>
+                  <p class="answer">
+                    O projeto deve ter no mínimo 72 páginas. Não há limite de páginas; no entanto
+                    advertimos desde já que se o livro for muito grande pode encarecer o projeto a
+                    ponto de não ser tão interessante para a escola.
+                  </p>
+
+                  <p class="question">
+                    É possível usar a pĺataforma sem serviços e no fim do projeto adquirir alguns exemplares?
+                  </p>
+                  <p class="answer">
+                    Sim, é possível adquirir, com tiragem mínima de 100 exemplares. 
+                  </p>
+
+                  <p class="question">
+                    Qual a tiragem adequada ao meu projeto?
+                  </p>
+                  <p class="answer">
+                    A tiragem mínima é de 100 exemplares, a partir disso, pode ser solicitado qualquer quantidade desejada.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= link_to 'Comece agora', wizard_path, class: "comece-agora" %>
+      </div>
+    </div>
+  </section>
+
+  <section id="quem-somos">
+    <div class="quem-somos">
+      <h1>Quem Somos</h1>
+      <ul>
+        <li>
+          <div class="user">
+            <figure>
+              <%= image_tag 'avatar.jpg' %>
+            </figure>
+            <h2 for="">Jorge Sallum</h2>
+          </div>
+          <article>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </article>
+        </li>
+        <li>
+          <div class="user">
+            <figure>
+              <%= image_tag 'avatar.jpg' %>
+            </figure>
+            <h2 for="">Nome Sobrenome</h2>
+          </div>
+          <article>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </article>
+        </li>
+        <li>
+          <div class="user">
+            <figure>
+              <%= image_tag 'avatar.jpg' %>
+            </figure>
+            <h2 for="">Nome Sobrenome</h2>
+          </div>
+          <article>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </article>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="como-funciona">
+      <h1>Como Funciona</h1>
+      <article>
+        <figure>
+          <%= image_tag 'big-icons-1.png' %>
+        </figure>
+        <p>Uma plataforma de edição colaborativa, com apoio editorial e impressão digital, na qual professor e alunos interagem para produzir livros de modo fácil e rápido. </p>
+      </article>
+      <article>
+        <figure>
+          <%= image_tag 'big-icons-2.png' %>
+        </figure>
+        <p>Apoio editorial por profissionais da área, para editar e <br>produzir seu livro.</p>
+      </article>
+      <article>
+        <figure>
+          <%= image_tag 'big-icons-3.png' %>
+        </figure>
+        <p>Arquivos ebook ou pdf gratuito e a possibilidade de imprimir <br> o livro da sua escola na tiragem desejada.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="clientes">
+    <div class="clientes list-carousel">
+      <h1>Clientes</h1>
+      <ul id="clientescarousel">
+        <li><%= image_tag 'participantes/exemplo_1.jpg' %></li>
+        <li><%= image_tag 'participantes/exemplo_2.jpg' %></li>
+        <li><%= image_tag 'participantes/exemplo_3.jpg' %></li>
+        <li><%= image_tag 'participantes/exemplo_4.jpg' %></li>
+        <li><%= image_tag 'participantes/exemplo_5.jpg' %></li>
+        <li><%= image_tag 'participantes/exemplo_6.jpg' %></li>
+        <li><%= image_tag 'participantes/exemplo_7.jpg' %></li>
+        <li><%= image_tag 'participantes/exemplo_8.jpg' %></li>
+        <li><%= image_tag 'participantes/exemplo_9.jpg' %></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="contato">
+      <h1>Contato</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <form action="">
+        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Email">
+        <textarea name="" id="" rows="10" placeholder="Mensagem"></textarea>
+        <input type="submit" value="Enviar" data-disable-with="Enviando...">
+      </form>
+    </div>
+  </section>
+
 </div>
-<hr class="faded">
-<div id="benefits" class="row">
-  <div class="benefit-item span4">
-    <h2>Apoio editorial</h2>
-    <p class="body-text">Você conta com os 15 anos de experiência editorial da Editora Hedra. Nossa equipe fica à sua disposição ao longo do projeto, orientando alunos e professores.</p>
-  </div>
-  <div class="benefit-item span4">
-    <h2>Impressão digital</h2>
-    <p class="body-text">O seu livro é resultado do processo único de impressão digital da Editora Hedra, que gera um produto de alta qualidade com tiragens pequenas &ndash; do tamanho da sua escola.</p>
-  </div>
-  <div class="benefit-item span4">
-    <h2>De alunos a autores</h2>
-    <p class="body-text">Todos os textos do Livro da Classe são considerados na seleção de jovens talentos feita pela Editora Hedra. Os melhores serão publicados na nossa Antologia de Jovens Autores.</p>
-  </div>
-</div>
+
+
+<script>
+  $('.main-header .nav li a').click(function() {
+    $(window).scrollTo($(this).attr('href'), 1000, {
+      offset: -46
+    });
+  });
+
+  $("#clientescarousel").carouFredSel({
+    auto: {
+      items: 5,
+      duration: 10000,
+      easing: "linear",
+      timeoutDuration: 2000,
+      pauseOnHover: "immediate"
+    }
+  });
+
+  $('#clientescarousel img').adipoli({
+    'startEffect': 'grayscale',
+    'hoverEffect': 'normal'
+  });
+
+  $('body').scrollspy({ target: '.navbar-bottom', offset: 47 });
+
+  $('.saiba-mais').click(function() {
+    $('#saiba-mais-content').modal();
+    return false;
+  });
+</script>

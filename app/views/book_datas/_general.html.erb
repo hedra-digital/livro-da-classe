@@ -1,23 +1,27 @@
 <div class="general-container">
-  <h3 id="general" class="collapse-head">Informações Gerais</h3>
-  
-  <div class="row">
-    <div class="span11"><%= b.input :title, :label => t('book_data.titulo'), :input_html => {:maxlength => 54 } %></div>
-  </div>
+  <p>Descrição...</p>
 
-  <div class="row">
-    <div class="span4"><%= f.input :subtit, :label => t('book_data.subtit'), :input_html => {:maxlength => 54 } %></div>
-    <div class="span4"><%= f.input :autor, :label => t('book_data.autor'), :input_html => {:maxlength => 54 } %></div>
-  </div>
-
-  <div class="row">
-    <div class="span4"><%= f.input :sumariotitulo, :label => t('book_data.sumariotitulo') %></div>
-    <div class="span4"><%= f.input :sumarioautor, :label => t('book_data.sumarioautor') %></div>
-  </div>
-
-  <div class="row">
-    <div class="span4"><%= f.input :organizador, :label => t('book_data.organizador') %></div>
-    <div class="span4"><%= f.input :introdutor, :label => t('book_data.introdutor') %></div>
-    <div class="span4"><%= f.input :tradutor, :label => t('book_data.tradutor') %></div>
-  </div>
+  <%= b.input :title, :label => t('book_data.titulo'), :input_html => {:maxlength => 54 } %>
+  <%= f.input :subtit, :label => t('book_data.subtit'), :input_html => {:maxlength => 54 } %>
+  <%= f.input :autor, :label => t('book_data.autor'), :input_html => {:maxlength => 54 } %>
+  <%= f.input :sumariotitulo, :label => t('book_data.sumariotitulo') %>
+  <%= f.input :sumarioautor, :label => t('book_data.sumarioautor') %>
+  <%= f.input :organizador, :label => t('book_data.organizador') %>
+  <%= f.input :introdutor, :label => t('book_data.introdutor') %>
+  <%= f.input :tradutor, :label => t('book_data.tradutor') %>
 </div>
+
+<script>
+  $('#book_title').on('focus', function() {
+    $('.book_title span').remove();
+    $('.book_title label').append("<span> (" + $(this).val().length + "/" + $(this).attr('maxlength') + ")</span>");
+  });
+    
+  $('#book_title').bind('keydown keyup keypress', function() {
+    $('.book_title span').html(" (" + $(this).val().length + "/" + $(this).attr('maxlength') + ")");
+  });
+
+  $('#book_title').on('blur', function() {
+    $('.book_title span').remove();
+  });
+</script>

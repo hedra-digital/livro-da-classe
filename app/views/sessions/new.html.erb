@@ -3,9 +3,9 @@
 
     <ul class="social-connect">
       <span>Conecte-se com</span>
-      <li class="facebook"><a href="#"></a></li>
-      <li class="twitter"><a href="#"></a></li>
-      <li class="google"><a href="#"></a></li>
+      <li class="facebook"><%= link_to '', '/auth/facebook', :id => 'facebook-oauth' %></li>
+      <li class="twitter"><%= link_to '', '/auth/twitter', :id => 'twitter-oauth' %></li>
+      <li class="google"><%= link_to '', '/auth/google_oauth2', :id => 'google-oauth' %></li>
     </ul>
 
     <div class="tabs">
@@ -19,7 +19,7 @@
       <%= f.input :password %>
       <%= f.input :remember_me, :as => :boolean, :inline_label => 'Permanecer logado', :label => false %>
       <%= content_tag :p, link_to("Esqueceu sua senha?", new_password_reset_path) %>
-      <%= submit_tag 'Entrar' %>
+      <%= submit_tag 'Entrar', disable_with: 'Entrando...' %>
     <% end %>
   </div>
 </section>

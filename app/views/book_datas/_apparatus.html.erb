@@ -1,32 +1,10 @@
 <div class="apparatus-container">
-  <h3 id="apparatus" class="collapse-click collapse-head">Aparatos</h3>
-  <div class="fields">
-    <div class="row">
-      <div class="span11"><%= f.input :release, :label => t('book_data.release'), as: :ckeditor, input_html: {rows: 2} %></div>
-    </div>
-
-    <div class="row">
-      <div class="span11"><%= f.input :trechotexto, :label => t('book_data.trechotexto'), as: :ckeditor, input_html: {rows: 2} %></div>
-    </div>
-
-    <div class="row">
-      <div class="span11"><%= f.input :sobreobra, :label => t('book_data.sobreobra'), as: :ckeditor, input_html: {rows: 2} %></div>
-    </div>
-
-    <div class="row">
-      <div class="span11"><%= f.input :sobreautor, :label => t('book_data.sobreautor'), as: :ckeditor, input_html: {rows: 2} %></div>
-    </div>
-
-    <div class="row">
-      <div class="span11"><%= f.input :sobreorganizador, :label => t('book_data.sobreorganizador'), as: :ckeditor, input_html: {rows: 2} %></div>
-    </div>
-    
-    <div class="row">
-      <div class="span11"><%= f.input :sobretradutor, :label => t('book_data.sobretradutor'), as: :ckeditor, input_html: {rows: 2} %></div>
-    </div>
-
-    <div class="row">
-      <div class="span11"><%= f.input :resumo, :label => t('book_data.resumo'), as: :ckeditor, input_html: {rows: 2} %></div>
-    </div>
-  </div>
+  <p>Descrição...</p>
+  <%= f.input :release, :label => t('book_data.release'), as: :ckeditor, input_html: {rows: 2} %>
+  <%= f.input :trechotexto, :label => t('book_data.trechotexto'), as: :ckeditor, input_html: {rows: 2} %>
+  <%= f.input :sobreobra, :label => t('book_data.sobreobra'), as: :ckeditor, input_html: {rows: 2} %>
+  <%= f.input :sobreautor, :label => t('book_data.sobreautor'), as: :ckeditor, input_html: {rows: 2} %>
+  <%= f.input :sobreorganizador, :label => t('book_data.sobreorganizador'), as: :ckeditor, input_html: {rows: 2} %>
+  <%= f.input :sobretradutor, :label => t('book_data.sobretradutor'), as: :ckeditor, input_html: {rows: 2} %>
+  <%= f.input :resumo, :label => t('book_data.resumo'), as: :ckeditor, input_html: {rows: 2} %>
 </div>

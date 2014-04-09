@@ -1,15 +1,8 @@
 <input type="hidden" id="hidden_book_id" value="<%= @book.uuid %>"></input>
 
-<div>
-  <div class="row">
-    <div class="span9">
-      <h1>Mural de Conversas</h1>
-    </div>
+<h1>Mural de Conversas</h1>
 
-    <div class="span3">
-      <%= link_to 'Nova Conversa', new_scrap_path(@book.id), :class => 'btn btn-primary btn-new' %>
-    </div>
-  </div>
+<% if @scraps.present? %>
   <table class="table table-striped">
     <tr>
       <th></th>
@@ -28,4 +21,11 @@
       </tr>
     <% end %>
   </table>
-</div>
+  <div class="btn-group">
+    <%= link_to 'Nova Conversa', new_scrap_path(@book.id), :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
+<% else %>
+  <% if can_write? %>
+    <p class="blank">Nenhuma conversa encontrada. <%= link_to 'Criar uma nova conversa?', new_book_text_path(@book.uuid) %></p>
+  <% end %>
+<% end %>

@@ -14,11 +14,10 @@
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
-    <div id="wrap">
-      <div class="navbar navbar-static-top">
-        <div class="navbar-inner">
-          <div class="container">
-            <%= link_to "#{Publisher.get_current(request.host).name} <span style='color: firebrick; font-weight: bold;''>Admin</span>".html_safe, admin_root_path, :class => 'brand' %>
+    <div class="wrap">
+      <header class="main-header">
+        <div class="navbar">
+          <div class="navbar-inner navbar-left">
             <ul class="nav">
               <!--<li><%= link_to "Templates", admin_templates_path %></li>-->
               <!--<li><%= link_to "Capa Padrão", admin_default_cover_path %></li>-->
@@ -31,15 +30,38 @@
               <li><%= link_to "Repositório", admin_revision_path %></li>
             </ul>
           </div>
+          <div class="navbar-inner navbar-right">
+            <div class="navbar-logo">
+              <%= link_to 'Admin', admin_root_path, :class => 'logo' %>
+            </div>
+          </div>
         </div>
-      </div>
+      </header>
+
       <%= flash_message %>
-      <div id="main" role="main">
-        <div class="container">
+      <section>
+        <div>
           <%= yield %>
         </div>
-      </div>
-      <div id="push"></div>
+      </section>
+
+      <footer class="main-footer">
+        <div class="footer-top">
+          <ul class="nav">
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/saiba">Saiba mais</a></li>
+            <li><a href="https://trello.com/b/ljDooqSg/hedra-lancamentos-eventos-promos/">Em breve</a></li>
+          </ul>
+        </div>
+        <div class="footer-bottom">
+          <%#= image_tag publisher_logo, :width => '130', :height => '130' %>
+          <%#= publisher_official_name %>
+          <%#= publisher_address_info %>
+          <div class="address">Rua Fradique Coutinho 1139, Subsolo CEP 05416-011 - São Paulo - SP Tel.: (11) 3097-8304</div>
+          <div class="copyright">Copyright © 2014, Hedra.</div>
+        </div>
+      </footer>
+
     </div>
   </body>
 </html>

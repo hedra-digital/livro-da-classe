@@ -19,6 +19,8 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR
 //= require bootstrap-fileupload
 //= require bootstrap-affix
+//= require bootstrap-scrollspy
+//= require bootstrap-modal
 //= require jquery.tipsy
 //= require jquery.fancybox
 //= require bindWithDelay
@@ -113,10 +115,6 @@ $(document).ready(function() {
   });
 
   $('#book_zipcode').mask("99999-999");
-
-  $('#book_title').jqEasyCounter({
-      'maxChars': 54
-  });
 
   $('#book_abstract').jqEasyCounter({
       'maxChars': 1200

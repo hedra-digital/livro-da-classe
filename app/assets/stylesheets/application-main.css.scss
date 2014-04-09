@@ -1,3 +1,46 @@
+@font-face {
+  font-family: 'Calluna Sans';
+  src: url('fonts/callunasans-regular.eot');
+  src: url('fonts/callunasans-regular.eot?#iefix') format('embedded-opentype'),
+   url('fonts/callunasans-regular.woff') format('woff'),
+   url('fonts/callunasans-regular.ttf') format('truetype'),
+   url('fonts/callunasans-regular.svg#calluna_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'Calluna';
+  src: url('fonts/calluna-regular.eot');
+  src: url('fonts/calluna-regular.eot?#iefix') format('embedded-opentype'),
+    url('fonts/calluna-regular.woff') format('woff'),
+    url('fonts/calluna-regular.ttf') format('truetype'),
+    url('fonts/calluna-regular.svg#callunaregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Miso';
+  src: url('fonts/miso-regular.eot');
+  src: url('fonts/miso-regular.eot?#iefix') format('embedded-opentype'),
+    url('fonts/miso-regular.woff') format('woff'),
+    url('fonts/miso-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Miso';
+  src: url('fonts/miso-bold.eot');
+  src: url('fonts/miso-bold.eot?#iefix') format('embedded-opentype'),
+    url('fonts/miso-bold.woff') format('woff'),
+    url('fonts/miso-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 /* ==========================================================================
   Variables
   ========================================================================== */
@@ -98,7 +141,7 @@ textarea {
 }
 
 #book-info {
-  margin-top: 20px;
+  margin-bottom: 20px;
   color: #444;
   .book-title {
     display: inline-block;
@@ -146,29 +189,7 @@ textarea {
   background-color: #fff;
 }
 
-footer {
-  color: white;
-  background: #434343 url('/assets/footer-border.png') top repeat-x;
-  #logo {
-    margin-top: 60px;
-    float: left;
-  }
-  #address {
-    margin-top: 60px;
-    padding: 0 0 0 170px;
-    h2 {
-      margin: 0;
-      font-size: 20px;
-      line-height: 1.5;
-    }
-    address {
-      font-size: 19px;
-      line-height: 1.4;
-    }
-  }
-}
-
-@include sticky-footer(240px, "#wrap", "#push", "footer");
+//@include sticky-footer(240px, "#wrap", "#push", "footer");
 
 
 /* ==========================================================================
@@ -362,3 +383,4 @@ footer {
   background-color: #d0d0d0;
   height: 56px;
 }
+

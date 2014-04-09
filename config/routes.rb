@@ -7,9 +7,6 @@ Livrodaclasse::Application.routes.draw do
 
   match 'scraps/:id/new', :to => 'scraps#new', :as => :new_scrap
 
-  get 'wizard', :to => 'new_ui#wizard'
-  get 'home', :to => 'new_ui#home'
-  get 'saiba', :to => 'new_ui#saiba'
 
   get 'entrar', :to => 'sessions#new', :as => :signin
   get 'auth/:provider/callback', :to => 'sessions#create'
@@ -19,7 +16,7 @@ Livrodaclasse::Application.routes.draw do
   get 'auth/failure', :to => redirect('/')
   get 'projects/terms_of_service', :to => 'projects#terms_of_service', :as => :terms_of_service
   match 'texts/enable_or_disable', :to => 'texts#enable_or_disable', :as => :enable_or_disable
-  root :to => 'new_ui#home'
+  root :to => 'pages#home'
 
   resources :users do
     collection do

@@ -99,11 +99,8 @@ padding-bottom: 15px;
 .cadastro-login input[type="tel"],
 .cadastro-login input[type="password"],
 .cadastro-login input[type="email"]{
-  width: 100%;
-  padding: 22px 12px;
-  box-sizing: border-box;
-  -mox-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+  width: 300px;
+  padding: 15px;
 }
 
 .cadastro-login input[type="submit"]{

@@ -1,0 +1,129 @@
+<div id="wizard">
+
+  <div class="steps">
+    <div class="bar">
+      <ul>
+        <li class="active">
+          <a>Passo Um</a>
+        </li>
+        <li>
+          <a>Passo Dois</a>
+        </li>
+        <li>
+          <a>Passo Três</a>
+        </li>
+        <li>
+          <a>Passo Quatro</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <%= simple_form_for(@book, :html => {:class => 'form-vertical', :multipart => true}) do |b| %>
+    <div class="substeps">
+      <div class="buttons">
+        <ul>
+          <li class="selected">
+            <button id="general">Informações gerais</button>
+          </li>
+          <li>
+            <button id="cover">Capa</button>
+          </li>
+          <li>
+            <button id="credits">Página de créditos</button>
+          </li>
+          <li>
+            <button id="cataloging">Ficha catalográfica</button>
+          </li>
+          <li>
+            <button id="partners">Parceiro</button>
+          </li>
+          <li>
+            <button id="apparatus">Aparatos</button>
+          </li>
+          <li>
+            <button id="technical">Informações técnicas</button>
+          </li>
+          <li>
+            <button id="metadata">Metadata</button>
+          </li>
+          <li>
+            <button id="ebook">Ebook</button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="substep">
+        <%= b.error_notification %>
+        <div class="form-inputs">
+          <%= b.simple_fields_for @book.book_data do |f| %>
+            <div class="substep-content" id="content-general">
+              <%= render :partial => '/book_datas/general', :locals => {:f => f, :b => b} %>
+            </div>
+            <div class="substep-content" id="content-cover" hidden>
+              <%= render :partial => '/book_datas/cover', :locals => {:f => f, :b => b} %>
+            </div>
+            <div class="substep-content" id="content-credits" hidden>
+              <%= render :partial => '/book_datas/credits', :locals => {:f => f} %>
+            </div>
+            <div class="substep-content" id="content-cataloging" hidden>
+              <%= render :partial => '/book_datas/cataloging', :locals => {:f => f} %>
+            </div>
+            <div class="substep-content" id="content-partners" hidden>
+              <%= render :partial => '/book_datas/partners', :locals => {:f => f} %>
+            </div>
+            <div class="substep-content" id="content-apparatus" hidden>
+              <%= render :partial => '/book_datas/apparatus', :locals => {:f => f} %>
+            </div>
+            <div class="substep-content" id="content-technical" hidden>
+              <%= render :partial => '/book_datas/technical', :locals => {:f => f} %>
+            </div>
+            <div class="substep-content" id="content-metadata" hidden>
+              <%= render :partial => '/book_datas/metadata', :locals => {:f => f} %>
+            </div>
+            <div class="substep-content" id="content-ebook" hidden>
+              <%= render :partial => '/book_datas/ebook', :locals => {:f => f} %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <%= b.button :submit, @book.new_record? ? t('book_create') : t('book_update') %>
+      <%= link_to 'Voltar', @book, class: 'btn btn-blue' unless @book.new_record? %>
+    </div>
+  <% end %>
+
+</div>
+
+<script>
+  $('.buttons ul li button').click(function() {
+    $('.buttons .selected').removeClass('selected');
+    $(this).parent().addClass('selected');
+    $('.substep-content').hide();
+    $('#content-'+$(this).attr('id')).show();
+    return false;
+  });
+  $('.buttons ul li button:lt(2)').click(function() {
+    $('.bar ul li').removeClass('active');
+    $('.bar ul li').removeClass('past');
+    $('.bar ul li:nth-child(1)').addClass('active');
+  });
+  $('.buttons ul li button:gt(1)').click(function() {
+    $('.bar ul li').removeClass('active');
+    $('.bar ul li').removeClass('past');
+    $('.bar ul li:lt(1)').addClass('past');
+    $('.bar ul li:nth-child(2)').addClass('active');
+  });
+  $('.buttons ul li button:gt(4)').click(function() {
+    $('.bar ul li').removeClass('active');
+    $('.bar ul li').removeClass('past');
+    $('.bar ul li:lt(2)').addClass('past');
+    $('.bar ul li:nth-child(3)').addClass('active');
+  });
+  $('.buttons ul li button:gt(6)').click(function() {
+    $('.bar ul li:lt(3)').addClass('past');
+    $('.bar ul li:nth-child(4)').addClass('active');
+  });
+</script>

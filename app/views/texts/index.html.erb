@@ -1,15 +1,5 @@
 <% if @texts.present? %>
-  <div class="row">
-    <div class="span9">
-      <h1>Textos</h1>
-    </div>
-
-    <div class="span3">
-      <% if can_write? %>
-        <%= link_to 'Novo Texto', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
-      <% end %>
-    </div>
-  </div>
+  <h1>Textos</h1>
 
   <% if is_organizer? and can_write? %>
     <ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" class="text-list-organizer">
@@ -29,4 +19,10 @@
   <% if can_write? %>
     <p class="blank">Nenhum texto encontrado. Que tal <%= link_to 'criar um novo texto?', new_book_text_path(@book.uuid) %></p>
   <% end %>
+<% end %>
+
+<% if can_write? %>
+  <div class="btn-group">
+    <%= link_to 'Novo Texto', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
 <% end %>

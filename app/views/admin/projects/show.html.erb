@@ -1,7 +1,9 @@
 <h1>Projeto: <%= @project.book.title %></h1>
 <h4 style="margin: 0 0 40px 0;">
-  Usuário: <%= link_to @project.book.organizer.email, impersonate_admin_project_path(@project) %>
+  Usuário: <%= @project.book.organizer.name %> (<%= @project.book.organizer.email %>)
 </h4>
+
+<%= link_to 'Acessar...', impersonate_admin_project_path(@project), class: 'btn btn-large', disable_with: 'Acessando...' %>
 
 <% if @project.engaged? %>
 <dl>

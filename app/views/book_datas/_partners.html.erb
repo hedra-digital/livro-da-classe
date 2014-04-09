@@ -1,42 +1,25 @@
 <div class="partners-container">
-  <h3 id="partners" class="collapse-click collapse-head">Parceiro</h3>
-  <div class="fields">
-    <div class="row">
-      <div class="span11"><%= f.input :instituicao, :label => t('book_data.instituicao') %></div>
-    </div>
+  <p>Descrição...</p>
+  <%= f.input :instituicao, :label => t('book_data.instituicao') %>
+  <%= f.input :logradouro, :label => t('book_data.logradouro') %>
+  <%= f.input :numero, :label => t('book_data.numero') %>
+  <%= f.input :cidadeinstituicao, :label => t('book_data.cidadeinstituicao') %>
+  <%= f.input :estado, :label => t('book_data.estado') %>
+  <%= f.input :cep, :label => t('book_data.cep') %>
+  <%= f.input :diretor, :label => t('book_data.diretor') %>
+  <%= f.input :coordenador, :label => t('book_data.coordenador') %>
+  <%= f.input :turma, :label => t('book_data.turma') %>
 
-    <div class="row">
-      <div class="span4"><%= f.input :logradouro, :label => t('book_data.logradouro') %></div>
-      <div class="span4"><%= f.input :numero, :label => t('book_data.numero') %></div>
+  <label for="book_datas_logo"><%= t(:logo) %></label>
+  <div class="fileupload <%= @book.book_data.logo.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
+    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
+    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+      <%= image_tag(@book.book_data.logo.url(:small)) if @book.book_data.logo.present? %>
     </div>
-
-    <div class="row">
-      <div class="span4"><%= f.input :cidadeinstituicao, :label => t('book_data.cidadeinstituicao') %></div>
-      <div class="span4"><%= f.input :estado, :label => t('book_data.estado') %></div>
-      <div class="span4"><%= f.input :cep, :label => t('book_data.cep') %></div>
-    </div>
-
-    <div class="row">
-      <div class="span4"><%= f.input :diretor, :label => t('book_data.diretor') %></div>
-      <div class="span4"><%= f.input :coordenador, :label => t('book_data.coordenador') %></div>
-      <div class="span4"><%= f.input :turma, :label => t('book_data.turma') %></div>
-    </div>
-
-    <div class="row">
-      <div class="span4">
-        <label for="book_datas_logo"><%= t(:logo) %></label>
-        <div class="fileupload <%= @book.book_data.logo.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
-          <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
-          <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-            <%= image_tag(@book.book_data.logo.url(:small)) if @book.book_data.logo.present? %>
-          </div>
-          <div>
-            <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
-              <%= f.input_field :logo, :as => :file %>
-            </span>
-          </div>
-        </div>
-      </div>
+    <div>
+      <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
+        <%= f.input_field :logo, :as => :file %>
+      </span>
     </div>
   </div>
 </div>
