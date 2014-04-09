@@ -1,5 +1,4 @@
 @import "bootstrap";
-@import "cadastro-login";
 
 @font-face {
   font-family: 'Calluna Sans';
@@ -549,10 +548,17 @@ section {
         background: #fd8142;
       }
     }
-    .saiba-mais {
+    .modal-title {
+      color: #519fc0;
+      text-transform: uppercase;
+    }
+    .modal-body {
       .question {
+        color: #519fc0;
         font-weight: bold;
-        font-size: large;
+        font-size: 20px;
+        font-family: 'Calluna Sans';
+        text-rendering: optimizelegibility;
       }
       .answer {
         margin-bottom: 36px;
@@ -874,6 +880,105 @@ section {
         }
       }
     }
+  }
+}
+
+.cadastro-login {
+  position: relative;
+  margin: 0 auto;
+  clear: both;
+  width: 330px;
+  padding: 40px 50px 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffffff 0%, #e6e6e8 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e6e6e8)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffffff 0%,#e6e6e8 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffffff 0%,#e6e6e8 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffffff 0%,#e6e6e8 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffffff 0%,#e6e6e8 100%); /* W3C */
+  .social-connect {
+    position: absolute;
+    right: 33px;
+    top: 35px;
+    span {
+      position: absolute;
+      top: -20px;
+    }
+    li {
+      display: block;
+      float: left;
+      width: 36px;
+      height: 36px;
+      a {
+        display: block;
+        float: left;
+        background-image: url(social-connect.png);
+        width: 100%;
+        height: 100%;
+      }
+      &.facebook a {
+        background-position: 0px 0px;
+      }
+      &.twitter a {
+        background-position: -40px 0px;
+      }
+      &.google a {
+        background-position: -78px 0px;
+      }
+    }
+  }
+  .tabs {
+    display: block;
+    width: 430px;
+    border-bottom: 1px solid #ccc;
+    margin-left: -50px;
+    margin-bottom: 30px;
+    float: left;
+    a {
+      display: block;
+      float: left;
+      margin: 0px -45px -1px 50px;
+      border: 1px solid #ccc;
+      background: #f1f1f3; /* Old browsers */
+      background: -moz-linear-gradient(top,  #f1f1f3 0%, #fcfcfc 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1f1f3), color-stop(100%,#fcfcfc)); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top,  #f1f1f3 0%,#fcfcfc 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top,  #f1f1f3 0%,#fcfcfc 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top,  #f1f1f3 0%,#fcfcfc 100%); /* IE10+ */
+      background: linear-gradient(to bottom,  #f1f1f3 0%,#fcfcfc 100%); /* W3C */
+      padding: 14px 16px;
+      text-transform: uppercase;
+      box-shadow: inset 0px 1px 0px #fff;
+    }
+  }
+  a.active {
+    border-bottom: none;
+    color: #222;
+    margin-top: 0px;
+    padding-bottom: 15px;
+  }
+  h1 {
+    display: none;
+  }
+  form div {
+    margin: 4px 0;
+    padding: 0;
+  }
+  input[type="text"],
+  input[type="tel"],
+  input[type="password"],
+  input[type="email"]{
+    width: 300px;
+    padding: 15px;
+  }
+  input[type="submit"] {
+    text-transform: uppercase;
+    background: #39a0c1;
+    width: auto;
+    padding: 14px;
+    margin: 10px 0 0;
   }
 }
 
