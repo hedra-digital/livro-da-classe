@@ -1,24 +1,5 @@
-<div class="row">
-  <div class="span10">
-    <h1>Lista de projetos</h1>
-  </div>
+<h1>Lista de projetos</h1>
 
-  <div class="span2">
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-        <%= t('admin_tasks') %> <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li>
-          <%= link_to t('book_pdf_check'), admin_projects_refresh_path %>
-        </li>
-        <li>
-          <%= link_to t('book_push_all'), admin_projects_push_path %>
-        </li>
-      </ul>
-    </div> 
-  </div>
-</div>
 <table class="table table-striped">
   <tr>
     <th></th>
@@ -45,3 +26,17 @@
     <% end %>
   <% end %>
 </table>
+
+<div class="btn-group dropdown">
+  <button type="button" class="btn btn-primary btn-small dropdown-toggle" data-toggle="dropdown">
+    <%= t('admin_tasks') %> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <%= link_to t('book_pdf_check'), admin_projects_refresh_path %>
+    </li>
+    <li>
+      <%= link_to t('book_push_all'), admin_projects_push_path %>
+    </li>
+  </ul>
+</div> 

@@ -1,13 +1,6 @@
-<% if @scraps.present? %>
-  <div class="row">
-    <div class="span9">
-      <h1>Recados</h1>
-    </div>
+<h1>Recados</h1>
 
-    <div class="span3">
-      <%= link_to 'Novo Recado', new_admin_scrap_path, :class => 'btn btn-primary btn-new' %>
-    </div>
-  </div>
+<% if @scraps.present? %>
   <table class="table table-striped">
     <tr>
       <th></th>
@@ -28,6 +21,9 @@
       </tr>
     <% end %>
   </table>
+  <div class="btn-group">
+    <%= link_to 'Novo Recado', new_admin_scrap_path, :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
 <% else %>
   <p class="blank">Nenhum recado cadastrada. <%= link_to 'Definir um novo recado?', new_admin_scrap_path %></p>
 <% end %>

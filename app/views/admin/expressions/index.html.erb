@@ -1,13 +1,6 @@
-<% if @expressions.present? %>
-  <div class="row">
-    <div class="span9">
-      <h1>Expressões</h1>
-    </div>
+<h1>Expressões</h1>
 
-    <div class="span3">
-      <%= link_to 'Nova Expressão', new_admin_expression_path, :class => 'btn btn-primary btn-new' %>
-    </div>
-  </div>
+<% if @expressions.present? %>
   <table class="table table-striped">
     <tr>
       <th>Nível</th>
@@ -30,6 +23,9 @@
       </tr>
     <% end %>
   </table>
+  <div class='btn-group'>
+    <%= link_to 'Nova Expressão', new_admin_expression_path, :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
 <% else %>
   <p class="blank">Nenhuma expressão cadastrada. <%= link_to 'Definir uma nova expressão de substituição?', new_admin_expression_path %></p>
 <% end %>

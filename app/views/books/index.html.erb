@@ -1,6 +1,6 @@
-<% if @books.present? %>
-  <h1>Meus livros</h1>
+<h1>Meus livros</h1>
 
+<% if @books.present? %>
   <table class="table table-striped">
     <tr>
       <th>Título</th>
@@ -21,7 +21,6 @@
       </tr>
     <% end %>
   </table>
-
   <div class="btn-group">
     <%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary btn-new btn-small' %>
   </div>

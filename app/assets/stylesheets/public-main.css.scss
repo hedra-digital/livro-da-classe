@@ -399,6 +399,7 @@ section {
         }
         .dropdown-menu {
           top: 47px;
+          padding: 0;
           background-color: #f1f1f5;
           background-image: -moz-linear-gradient(top, #f7f7f9, #eaeaef);
           background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f7f7f9), to(#eaeaef));

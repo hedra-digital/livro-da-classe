@@ -1,13 +1,6 @@
-<% if @publishers.present? %>
-  <div class="row">
-    <div class="span9">
-      <h1>Expressões</h1>
-    </div>
+<h1>Expressões</h1>
 
-    <div class="span3">
-      <%= link_to 'Nova Editora', new_admin_publisher_path, :class => 'btn btn-primary btn-new' %>
-    </div>
-  </div>
+<% if @publishers.present? %>
   <table class="table table-striped">
     <tr>
       <th>Editora</th>
@@ -24,6 +17,9 @@
       </tr>
     <% end %>
   </table>
+  <div class="btn-group">
+    <%= link_to 'Nova Editora', new_admin_publisher_path, :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
 <% else %>
   <p class="blank">Nenhuma editora cadastrada. <%= link_to 'Definir uma nova editora?', new_admin_publisher_path %></p>
 <% end %>

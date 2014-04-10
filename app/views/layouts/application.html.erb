@@ -34,8 +34,7 @@
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= current_user.name %></li>
-                  <li><%= link_to t(:account), user_path(current_user) %></li>
+                  <li><%= link_to current_user.name, user_path(current_user) %></li>
                   <li><%= link_to t(:sign_out), signout_path, :method => :delete %></li>
                 </ul>
               </div>
@@ -59,8 +58,6 @@
       <footer class="main-footer">
         <div class="footer-top">
           <ul class="nav">
-            <li><a href="/sobre">Sobre</a></li>
-            <li><a href="/saiba">Saiba mais</a></li>
             <li><a href="https://trello.com/b/ljDooqSg/hedra-lancamentos-eventos-promos/">Em breve</a></li>
           </ul>
         </div>

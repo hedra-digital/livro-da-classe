@@ -1,13 +1,6 @@
-<% if @statuses.present? %>
-  <div class="row">
-    <div class="span9">
-      <h1>Status</h1>
-    </div>
+<h1>Status</h1>
 
-    <div class="span3">
-      <%= link_to 'Novo Status', new_admin_book_status_path, :class => 'btn btn-primary btn-new' %>
-    </div>
-  </div>
+<% if @statuses.present? %>
   <table class="table table-striped">
     <tr>
       <th>Descrição</th>
@@ -20,6 +13,9 @@
       </tr>
     <% end %>
   </table>
+  <div class="btn-group">
+    <%= link_to 'Novo Status', new_admin_book_status_path, :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
 <% else %>
   <p class="blank">Nenhum status cadastrado. <%= link_to 'Definir um novo status para projetos?', new_admin_book_status_path %></p>
 <% end %>

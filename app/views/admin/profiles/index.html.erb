@@ -1,13 +1,6 @@
-<% if @profiles.present? %>
-  <div class="row">
-    <div class="span9">
-      <h1>Perfis</h1>
-    </div>
+<h1>Perfis</h1>
 
-    <div class="span3">
-      <%= link_to 'Novo Perfil', new_admin_profile_path, :class => 'btn btn-primary btn-new' %>
-    </div>
-  </div>
+<% if @profiles.present? %>
   <table class="table table-striped">
     <tr>
       <th>Descrição</th>
@@ -20,6 +13,9 @@
       </tr>
     <% end %>
   </table>
+  <div class="btn-group">
+    <%= link_to 'Novo Perfil', new_admin_profile_path, :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
 <% else %>
   <p class="blank">Nenhum perfil cadastrado. <%= link_to 'Definir um novo perfil para o sistema?', new_admin_profile_path %></p>
 <% end %>

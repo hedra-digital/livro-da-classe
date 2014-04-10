@@ -1,13 +1,6 @@
-<% if @permissions.present? %>
-  <div class="row">
-    <div class="span9">
-      <h1>Permissões</h1>
-    </div>
+<h1>Permissões</h1>
 
-    <div class="span3">
-      <%= link_to 'Editar Permissões', edit_admin_permission_path(@permissions.first), :class => 'btn btn-primary btn-new' %>
-    </div>
-  </div>
+<% if @permissions.present? %>
   <table class="table table-striped">
     <tr>
       <th>Status</th>
@@ -30,6 +23,9 @@
       </tr>
     <% end %>
   </table>
+  <div class="btn-group">
+    <%= link_to 'Editar Permissões', edit_admin_permission_path(@permissions.first), :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
 <% else %>
   <p class="blank">Nenhuma permissão definida.</p>
 <% end %>

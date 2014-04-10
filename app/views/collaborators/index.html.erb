@@ -1,15 +1,6 @@
 <h1>Colaboradores</h1>
 
 <% if @collaborators.present? || @invited_users.present? %>
-  <div class="row">
-    <div class="span9">
-      <h1>Colaboradores</h1>
-    </div>
-
-    <div class="span3">
-      <%= link_to t(:invite_new_collaborator), new_book_collaborator_path(@book.uuid), :class => 'btn btn-primary btn-new' %>
-    </div>
-  </div>
 
   <% if @collaborators.present? %>
     <h3><%=t :current_collaborators %></h3>
@@ -42,6 +33,10 @@
       <% end %>
     </table>
   <% end %>
+
+  <div class="btn-group">
+    <%= link_to t(:invite_new_collaborator), new_book_collaborator_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
 <% else %>
   <p class="blank">Seu livro ainda não tem colaboradores. Que tal <%= link_to 'convidar o primeiro', new_book_collaborator_path(@book.uuid) %>?</p>
 <% end %>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= yield(:title).presence || content_tag(:title, "#{Publisher.get_current(request.host).name} - Admin") %>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "public", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
@@ -14,8 +14,8 @@
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
-    <div class="wrap">
-      <header class="main-header">
+    <div class="wrap wrap-app">
+      <header class="main-header main-header-app">
         <div class="navbar">
           <div class="navbar-inner navbar-left">
             <ul class="nav">
@@ -48,8 +48,6 @@
       <footer class="main-footer">
         <div class="footer-top">
           <ul class="nav">
-            <li><a href="/sobre">Sobre</a></li>
-            <li><a href="/saiba">Saiba mais</a></li>
             <li><a href="https://trello.com/b/ljDooqSg/hedra-lancamentos-eventos-promos/">Em breve</a></li>
           </ul>
         </div>
