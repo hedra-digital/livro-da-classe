@@ -189,7 +189,7 @@ textarea {
   background-color: #fff;
 }
 
-//@include sticky-footer(240px, "#wrap", "#push", "footer");
+@include sticky-footer(240px, "#wrap", "#push", "footer");
 
 
 /* ==========================================================================

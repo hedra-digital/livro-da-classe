@@ -497,20 +497,21 @@ section {
             height: 55px;
             margin-left: 5px;
             line-height: 22px;
+            text-decoration: none;
           }
           &:nth-child(1) span.icon {
-            background-position: 0px -40px;
+            background-position: 0px -45px;
           }
           &:nth-child(2) {
             background: #ededf1;
             border-top: 1px solid #ccc;
             border-bottom: 1px solid #ccc;
             span.icon {
-              background-position: 0px -180px;
+              background-position: 0px -185px;
             }
           }
           &:nth-child(3) span.icon {
-            background-position: 0px -325px;
+            background-position: 0px -330px;
           }
         }
       }
@@ -980,6 +981,25 @@ section {
     width: auto;
     padding: 14px;
     margin: 10px 0 0;
+  }
+}
+
+.chapter {
+  min-height: 0;
+  width: auto;
+  background-color: #aeaeae; 
+  color: #fff;
+  padding: 10px;
+  p {
+    color: #fff;
+    text-align: right; 
+  }
+  h1 {
+    color: #fff;
+  }
+  h3 {
+    color: #fff;
+    font-style: oblique; 
   }
 }
 

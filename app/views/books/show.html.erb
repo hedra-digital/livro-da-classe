@@ -26,6 +26,6 @@
   </div>
 <% else %>
   <% if can_write? %>
-    <p class="blank">Nenhuma conversa encontrada. <%= link_to 'Criar uma nova conversa?', new_book_text_path(@book.uuid) %></p>
+    <p class="blank">Nenhuma conversa encontrada. <%= link_to 'Criar uma nova conversa?', new_scrap_path(@book.id) %></p>
   <% end %>
 <% end %>

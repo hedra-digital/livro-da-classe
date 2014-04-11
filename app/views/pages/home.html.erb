@@ -5,9 +5,9 @@
       <div class="top">
         <div class="links">
           <ul>
-            <li><span class="icon"></span><span class="text">Diagramação Online</span></li>
-            <li><span class="icon"></span><span class="text">Apoio Editorial</span></li>
-            <li><span class="icon"></span><span class="text">Impressão Digital</span></li>
+            <li><span class="icon"></span><a href="#como-funciona" class="text">Diagramação Online</a></li>
+            <li><span class="icon"></span><a href="#como-funciona" class="text">Apoio Editorial</a></li>
+            <li><span class="icon"></span><a href="#como-funciona" class="text">Impressão Digital</a></li>
           </ul>
         </div>
         <div class="video">
@@ -211,7 +211,7 @@
 
 
 <script>
-  $('.main-header .nav li a').click(function() {
+  $('.main-header .nav li a, .video .links ul li a').click(function() {
     $(window).scrollTo($(this).attr('href'), 1000, {
       offset: -46
     });

@@ -47,6 +47,12 @@
   resize: none;
 }
 
+.cover-modal img {
+  -webkit-box-shadow: 2px 3px 8px rgba(0,0,0,0.4);
+  -moz-box-shadow: 2px 3px 8px rgba(0,0,0,0.4);
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.4);
+}
+
 /*.cataloging-container{
   width: 100%;
   float: left;
