@@ -11,7 +11,9 @@
           </ul>
         </div>
         <div class="video">
-          <div class="embed"></div>
+          <div class="embed">
+            <%= video_tag '/assets/videos/EDITORAHEDRA_LivroDaClasse_Preview_A.mp4', size: "738x418", controls: true %>
+          </div>
         </div>
       </div>
       <div class="bottom">
@@ -119,34 +121,34 @@
         <li>
           <div class="user">
             <figure>
-              <%= image_tag 'avatar.jpg' %>
+              <%= image_tag 'jorge_quem-somos.jpg' %>
             </figure>
-            <h2 for="">Jorge Sallum</h2>
+            <h2 for="">Jorge Sallum, editor</h2>
           </div>
           <article>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Sou editor há mais de quinze anos e para mim é um prazer poder orientar os professores a publicar seus livros. Qualquer um pode escrever um livro, mas editá-lo requer alguns cuidados especiais.</p>
           </article>
         </li>
         <li>
           <div class="user">
             <figure>
-              <%= image_tag 'avatar.jpg' %>
+              <%= image_tag 'luan_quem-somos.jpg' %>
             </figure>
-            <h2 for="">Nome Sobrenome</h2>
+            <h2 for="">Luan Maitan, editor assistente</h2>
           </div>
           <article>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>O livro é o resultado de um longo processo. É como uma foto, em que os alunos podem se reconhecer. Mas, ao contrário disso, o que fica é a reflexão. Procuro ajudar o professor a tirar o máximo desse processo criativo.</p>
           </article>
         </li>
         <li>
           <div class="user">
             <figure>
-              <%= image_tag 'avatar.jpg' %>
+              <%= image_tag 'fernando_quem-somos.jpg' %>
             </figure>
-            <h2 for="">Nome Sobrenome</h2>
+            <h2 for="">Fernando Quinteiro, gerente comercial</h2>
           </div>
           <article>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>A escola é uma instituição bastante especial, pois o produto são alunos bem preparados. Nesse últimos três anos, criamos, com o Livro da classe, algo que retrata a experiência escolar.</p>
           </article>
         </li>
       </ul>
@@ -197,7 +199,7 @@
   <section id="contato">
     <div class="contato">
       <h1>Contato</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Caro professor, estamos à disposição para tirar qualquer dúvida. Deixe um recado aqui que entraremos em contato.</p>
       <form action="">
         <input type="text" placeholder="Nome">
         <input type="text" placeholder="Email">
@@ -232,7 +234,7 @@
     'hoverEffect': 'normal'
   });
 
-  $('body').scrollspy({ target: '.navbar-bottom', offset: 47 });
+  $('body').scrollspy({ target: '.navbar-bottom', offset: 150 });
 
   $('.saiba-mais').click(function() {
     $('#saiba-mais-content').modal();

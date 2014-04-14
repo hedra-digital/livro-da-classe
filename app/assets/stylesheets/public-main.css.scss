@@ -522,7 +522,9 @@ section {
       width: 738px;
       border: 1px solid #ccc;
       border-left: none;
-      background: #515151;
+      video {
+        background: #f7f7f9;
+      }
     }
   }
   .bottom {
@@ -577,17 +579,19 @@ section {
       font-size: 17px;
       line-height: 22px;
       display: inline-block;
+      vertical-align: top;
       .user {
         margin-bottom: 20px;
         h2 {
           font-size: 22px;
         }
         figure {
-          -webkit-border-radius: 60px;
-          -moz-border-radius: 60px;
-          border-radius: 60px;
+          -webkit-border-radius: 100px;
+          -moz-border-radius: 100px;
+          border-radius: 100px;
           overflow: hidden;
           width: 130px;
+          height: 130px;
         }
       }
       article p {
