@@ -36,18 +36,18 @@
             <button id="cataloging">Ficha catalográfica</button>
           </li>
           <li>
-            <button id="partners">Parceiro</button>
+            <button id="partners">Dados da escola</button>
           </li>
-          <li>
+          <li hidden>
             <button id="apparatus">Aparatos</button>
           </li>
-          <li>
+          <li hidden>
             <button id="technical">Informações técnicas</button>
           </li>
-          <li>
+          <li hidden>
             <button id="metadata">Metadata</button>
           </li>
-          <li>
+          <li hidden>
             <button id="ebook">Ebook</button>
           </li>
         </ul>
@@ -116,13 +116,13 @@
     $('.bar ul li:lt(1)').addClass('past');
     $('.bar ul li:nth-child(2)').addClass('active');
   });
-  $('.buttons ul li button:gt(4)').click(function() {
+  $('.buttons ul li button:gt(2)').click(function() {
     $('.bar ul li').removeClass('active');
     $('.bar ul li').removeClass('past');
     $('.bar ul li:lt(2)').addClass('past');
     $('.bar ul li:nth-child(3)').addClass('active');
   });
-  $('.buttons ul li button:gt(6)').click(function() {
+  $('.buttons ul li button:gt(3)').click(function() {
     $('.bar ul li:lt(3)').addClass('past');
     $('.bar ul li:nth-child(4)').addClass('active');
   });

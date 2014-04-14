@@ -30,7 +30,7 @@
                 <a href="#" data-toggle="dropdown">
                   <b class="caret"></b>
                   <figure>
-                    <%= image_tag 'avatar.jpg' %>
+                    <%= user_id(current_user) %>
                   </figure>
                   <label><%= link_to current_user.name, user_path(current_user) %></label>
                 </a>
