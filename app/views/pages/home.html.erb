@@ -12,7 +12,7 @@
         </div>
         <div class="video">
           <div class="embed">
-            <%= video_tag '/assets/videos/EDITORAHEDRA_LivroDaClasse_Preview_A.mp4', size: "738x418", controls: true %>
+            <%= video_tag '/assets/videos/EditoraHedra_LivroDaClasse_01.mp4', size: "738x418", controls: true %>
           </div>
         </div>
       </div>
@@ -183,16 +183,24 @@
     <div class="clientes list-carousel">
       <h1>Clientes</h1>
       <ul id="clientescarousel">
-        <li><%= image_tag 'participantes/exemplo_1.jpg' %></li>
-        <li><%= image_tag 'participantes/exemplo_2.jpg' %></li>
-        <li><%= image_tag 'participantes/exemplo_3.jpg' %></li>
-        <li><%= image_tag 'participantes/exemplo_4.jpg' %></li>
-        <li><%= image_tag 'participantes/exemplo_5.jpg' %></li>
-        <li><%= image_tag 'participantes/exemplo_6.jpg' %></li>
-        <li><%= image_tag 'participantes/exemplo_7.jpg' %></li>
-        <li><%= image_tag 'participantes/exemplo_8.jpg' %></li>
-        <li><%= image_tag 'participantes/exemplo_9.jpg' %></li>
-      </ul>
+        <li><%= image_tag 'participantes/logo-cachoeirinha.png' %></li>
+        <li><%= image_tag 'participantes/logo_bomjesus.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_chromos.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_ciman.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_claretiano.png' %></li>
+        <li><%= image_tag 'participantes/logo_degraus.png' %></li>
+        <li><%= image_tag 'participantes/logo_espacovida.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_franciscano.png' %></li>
+        <li><%= image_tag 'participantes/logo_mackenzie.png' %></li>
+        <li><%= image_tag 'participantes/logo_maxwell.png' %></li>
+        <li><%= image_tag 'participantes/logo_omni.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_piaget.png' %></li>
+        <li><%= image_tag 'participantes/logo_santoagostinho.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_santoantonio.png' %></li>
+        <li><%= image_tag 'participantes/logo_saoluis.png' %></li>
+        <li><%= image_tag 'participantes/logo_verderousseau.png' %></li>
+        <li><%= image_tag 'participantes/logo_vicentina.png' %></li>
+      </ul>                              
     </div>
   </section>
 
@@ -221,18 +229,17 @@
 
   $("#clientescarousel").carouFredSel({
     auto: {
-      items: 5,
-      duration: 10000,
+      duration: 20000,
       easing: "linear",
       timeoutDuration: 2000,
       pauseOnHover: "immediate"
     }
   });
 
-  $('#clientescarousel img').adipoli({
-    'startEffect': 'grayscale',
-    'hoverEffect': 'normal'
-  });
+  //$('#clientescarousel img').adipoli({
+  //  'startEffect': 'grayscale',
+  //  'hoverEffect': 'normal'
+  //});
 
   $('body').scrollspy({ target: '.navbar-bottom', offset: 150 });
 

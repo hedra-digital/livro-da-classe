@@ -648,20 +648,23 @@ section {
   .list-carousel {
     position: relative;
     z-index: 100;
+    .caroufredsel_wrapper {
+      width: 940px !important;
+    }
     ul {
       margin: 0;
       padding: 0;
       list-style: none;
       display: block;
       position: absolute;
+      background-color: #fff;
       li {
         height: 120px;
         width: 174px;
         padding: 0;
-        background-color: #ccc;
-        margin: 0 6px;
-        display: block;
-        float: left;
+        margin: 0 12px;
+        display: inline-block !important;
+        text-align: center;
         img {
           max-height: 120px;
         }
