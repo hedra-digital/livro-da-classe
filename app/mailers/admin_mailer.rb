@@ -22,4 +22,12 @@ class AdminMailer < ActionMailer::Base
     mail(subject: "#{Publisher.get_current_app} - Novo recado em #{@title.upcase}")
   end
 
+  def contact_notifier(name, email, content)
+    @name = name
+    @email = email
+    @content = content
+
+    mail(to: "fernando@hedra.com.br", subject: "#{Publisher.get_current_app} - Contato - #{@name} (#{@email})")
+  end
+
 end

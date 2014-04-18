@@ -584,6 +584,12 @@ section {
         margin-bottom: 20px;
         h2 {
           font-size: 22px;
+          &:first-child {
+            margin-bottom: 0;
+          }
+          &:last-child {
+            margin-top: 0;
+          }
         }
         figure {
           -webkit-border-radius: 100px;

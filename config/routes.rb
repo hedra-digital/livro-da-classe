@@ -18,6 +18,8 @@ Livrodaclasse::Application.routes.draw do
   match 'texts/enable_or_disable', :to => 'texts#enable_or_disable', :as => :enable_or_disable
   root :to => 'pages#home'
 
+  match 'contact' => 'pages#contact', :via => :post
+
   resources :users do
     collection do
       get 'email'

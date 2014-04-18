@@ -123,7 +123,8 @@
             <figure>
               <%= image_tag 'jorge_quem-somos.jpg' %>
             </figure>
-            <h2 for="">Jorge Sallum, editor</h2>
+            <h2>Jorge Sallum,</h2>
+            <h2>editor</h2>
           </div>
           <article>
             <p>Sou editor há mais de quinze anos e, para mim, é um prazer poder orientar os professores a publicar seus livros. Todos podem escrever um livro. Mas depois de vencido este desafio, editá-lo requer alguns cuidados especiais. E é a eles que me dedico.</p>
@@ -134,7 +135,8 @@
             <figure>
               <%= image_tag 'luan_quem-somos.jpg' %>
             </figure>
-            <h2 for="">Luan Maitan, editor assistente</h2>
+            <h2>Luan Maitan,</h2>
+            <h2>editor assistente</h2>
           </div>
           <article>
             <p>O livro é o resultado de um longo processo, em que ao final os alunos podem se reconhecer. O que fica é um reflexo, uma reflexão. Meu trabalho é ajudar o professor a obter o máximo desse processo criativo.</p>
@@ -145,7 +147,8 @@
             <figure>
               <%= image_tag 'fernando_quem-somos.jpg' %>
             </figure>
-            <h2 for="">Fernando Quinteiro, gerente comercial</h2>
+            <h2>Fernando Quinteiro,</h2>
+            <h2>gerente comercial</h2>
           </div>
           <article>
             <p>A escola é uma instituição muito especial, pois prepara, mais do que alunos, seu futuro. Nos últimos três anos, com o Livro da Classe, criamos um instrumento para retratar e registrar a experiência escolar.</p>
@@ -208,10 +211,10 @@
     <div class="contato">
       <h1>Contato</h1>
       <p>Caro professor: estamos à sua inteira disposição para tirar qualquer dúvida e ouvir suas sugestões. Deixe aqui seu recado: entraremos em contato!</p>
-      <form action="">
-        <input type="text" placeholder="Nome">
-        <input type="text" placeholder="Email">
-        <textarea name="" id="" rows="10" placeholder="Mensagem"></textarea>
+      <form action="/contact" method="post">
+        <input type="text" name="name" placeholder="Nome">
+        <input type="text" name="email" placeholder="Email">
+        <textarea name="content" id="" rows="10" placeholder="Mensagem"></textarea>
         <input type="submit" value="Enviar" data-disable-with="Enviando...">
       </form>
     </div>
