@@ -663,7 +663,6 @@ section {
       list-style: none;
       display: block;
       position: absolute;
-      background-color: #fff;
       li {
         height: 120px;
         width: 174px;
@@ -672,6 +671,9 @@ section {
         display: inline-block !important;
         text-align: center;
         img {
+          -webkit-border-radius: 6px;
+          -moz-border-radius: 6px;
+          border-radius: 6px;
           max-height: 120px;
         }
       }
