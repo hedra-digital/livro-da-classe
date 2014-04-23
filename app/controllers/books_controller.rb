@@ -9,6 +9,8 @@ class BooksController < ApplicationController
   require "#{Rails.root}/lib/book_cover.rb"
 
   def index
+    redirect_to new_book_path if current_user.organized_books.empty? and current_user.books.empty?
+
     @books = []
     @books.concat(current_user.organized_books).concat(current_user.books).flatten
     @books.sort! { |a,b| a.directory_name.downcase <=> b.directory_name.downcase }
