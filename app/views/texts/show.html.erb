@@ -26,7 +26,7 @@
         <%= link_to t(:text_edit), edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
         <%= link_to t(:text_delete), book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger', :method => "delete", :confirm => t(:text_confirm) %>
       <% end %>
-      <%= link_to t(:text_back), book_path(@book), :class =>'btn' %>
+      <%= link_to t(:text_back), book_texts_path(@book), :class =>'btn' %>
     </div>
   </div>
 </div>

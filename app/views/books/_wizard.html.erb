@@ -90,8 +90,8 @@
     </div>
 
     <div class="btn-group">
-      <%= b.button :submit, @book.new_record? ? t('book_create') : t('book_update') %>
-      <%= link_to 'Voltar', @book, class: 'btn btn-blue' unless @book.new_record? %>
+      <%= b.button :submit, @book.new_record? ? t('book_create') : t('book_update'), class: 'btn-success' %>
+      <%= link_to 'Voltar', @book, class: 'btn' unless @book.new_record? %>
     </div>
   <% end %>
 

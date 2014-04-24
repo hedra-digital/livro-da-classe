@@ -1,3 +1,6 @@
+$iconSpritePath: asset-path("glyphicons-halflings.png", image);
+$iconWhiteSpritePath: asset-path("glyphicons-halflings-white.png", image);
+
 @import "bootstrap";
 
 @font-face {
@@ -102,7 +105,6 @@ h1, h2 {
 }
 
 .btn-group {
-  display: flex;
   margin-top: 20px;
   .btn:last-child {
     margin-right: 0;
@@ -111,9 +113,10 @@ h1, h2 {
 
 .btn, input[type="submit"] {
   display: inline-block;
-  width: 200px;
-  padding: 14px 0px;
+  min-width: 200px;
+  padding: 14px;
   margin-right: 20px;
+  margin-bottom: 2px;
   background: #fd8142;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -123,31 +126,46 @@ h1, h2 {
   color: #fff;
   font-family: 'Calluna Sans';
   font-size: 20px;
-  &:disabled {
-    background: #e4743b !important;
-  }
+  vertical-align: top;
   &:hover, &:focus {
     background: #fd8142;
     color: #fff;
     text-decoration: none;
+    opacity: 0.9;
   }
-  &.btn-blue {
+  &:active {
+    opacity: 0.7;
+  }
+  &:disabled {
+    background: #e4743b !important;
+  }
+  &.btn-primary {
     background: #0088cc !important;
     &:disabled {
       background: #007ab8 !important;
     }
   }
+  &.btn-warning, &.btn-danger {
+    background: #ff4719 !important;
+    &:disabled {
+      background: #e64016 !important;
+    }
+  }
+  &.btn-success {
+    background: #33ad5c !important;
+    &:disabled {
+      background: #2e9c53  !important;
+    }
+  }
   &.btn-small, &.btn-file {
-    width: 140px;
-    padding: 8px 0px;
+    min-width: 140px;
+    padding: 8px;
     font-size: 14px;
-    background: #fd8142 !important;
   }
   &.btn-mini {
-    width: 80px;
-    padding: 2px 0px;
+    min-width: 80px;
+    padding: 0 6px;
     font-size: 12px;
-    background: #39a0c1 !important;
   }
 }
 

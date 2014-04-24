@@ -37,7 +37,7 @@ pt-BR:
   text_edit: 'Editar texto'
   text_delete: 'Apagar texto'
   text_confirm: 'Tem certeza de que deseja apagar o texto?'
-  text_back: 'Voltar para o texto'
+  text_back: 'Voltar para lista de textos'
   document_upload: 'Carregar o documento'
   document_uploaded: 'Alterar o documento'
   document_none: 'Nenhum documento'
