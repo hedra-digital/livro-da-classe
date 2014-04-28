@@ -7,7 +7,7 @@
 
 ### Clonar a aplicação
 <code>
-$ git clone git@github.com/hedra-digital/livro-da-classe.git
+$ git clone https://github.com/hedra-digital/livro-da-classe.git
 </code>
 
 ### Iniciar Vagrant
