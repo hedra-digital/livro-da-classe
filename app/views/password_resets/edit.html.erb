@@ -1,12 +1,22 @@
-<h1><%=t :edit_password %></h1>
+<section id="new_session">
+  <div class="new_session cadastro-login">
 
-<%= simple_form_for @user, { :url => password_reset_path(params[:id]) } do |f| %>
-  <div class="form-inputs">
+    <h1><%=t :edit_password %></h1>
+    <%= simple_form_for @user, { :url => password_reset_path(params[:id]) } do |f| %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
-  </div>
-
-  <div class="form-actions">
     <%= f.button :submit, t(:save_password) %>
+    <% end %>
+
   </div>
-<% end %>
+</section>
+
+<script>
+$.each($("form div"), function() {
+  var label = $("label",$(this)).text();
+  $("label",$(this)).hide();
+  $("div input",$(this)).prop("placeholder",label);
+});
+</script>
+
+
