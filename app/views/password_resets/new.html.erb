@@ -1,6 +1,19 @@
-<h1><%=t :reset_password %></h1>
+<section id="new_session">
+  <div class="new_session cadastro-login">
 
-<%= simple_form_for :password_reset, { :url => password_resets_path, :method => :post } do |f| %>
-  <%= f.input :email %>
-  <%= f.button :submit, 'Enviar email' %>
-<% end %>
+    <h1><%=t :reset_password %></h1>
+    <%= simple_form_for :password_reset, { :url => password_resets_path, :method => :post } do |f| %>
+    <%= f.input :email %>
+    <%= f.button :submit, 'Enviar email' %>
+    <% end %>
+
+  </div>
+</section>
+
+<script>
+$.each($("form div"), function() {
+  var label = $("label",$(this)).text();
+  $("label",$(this)).hide();
+  $("div input",$(this)).prop("placeholder",label);
+});
+</script>
