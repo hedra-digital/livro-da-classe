@@ -15,6 +15,9 @@ class Admin::ScrapsController < Admin::ApplicationController
     @scrap.answered = true
     @scrap.admin_name = Publisher.find(current_publisher).name
     if @scrap.save
+
+      AdminMailer.scrap_notifier(@scrap.book, @scrap).deliver
+
       redirect_to admin_scraps_path, :notice => "Uma recado foi escrito."
     else
       render :new
@@ -38,6 +41,9 @@ class Admin::ScrapsController < Admin::ApplicationController
 
     parent_scrap.answered = true
     parent_scrap.save
+
+    AdminMailer.scrap_notifier(@scrap.book, @scrap).deliver
+    
     render layout: false
   end
 end

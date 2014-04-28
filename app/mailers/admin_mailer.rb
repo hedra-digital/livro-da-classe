@@ -19,7 +19,7 @@ class AdminMailer < ActionMailer::Base
     @title = book.title
     @content = scrap.content
     
-    mail(subject: "#{Publisher.get_current_app} - Novo recado em #{@title.upcase}")
+    mail(to: book.organizer.email, subject: "#{Publisher.get_current_app} - Novo recado em #{@title.upcase}")
   end
 
   def contact_notifier(name, email, content)
