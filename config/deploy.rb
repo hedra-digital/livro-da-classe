@@ -8,8 +8,7 @@ set :default_stage, "staging"
 set :application, "Livro da Classe"
 
 set :scm, :git
-set :repository,  "git@github.com:hedra-digital/livro-da-classe.git"
-set :deploy_via, 'copy'
+set :repository,  "https://github.com/hedra-digital/livro-da-classe.git"
 set :user, 'deploy'
 
 ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "livrodaclasse_rsa"), File.join(ENV["HOME"], ".ssh", "id_rsa")]
