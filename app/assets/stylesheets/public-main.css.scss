@@ -348,10 +348,11 @@ section {
   .navbar {
     width: 940px;
     margin: 0 auto;
-    display: flex;
     .navbar-left {
       padding: 0;
       margin-right: auto;
+      display: inline-block;
+      vertical-align: top;
       ul.nav {
         padding: 0;
         margin: 0;
@@ -381,9 +382,9 @@ section {
       }
     }
     .navbar-right {
-      display: flex;
       height: 46px;
       padding: 0;
+      float: right;
       .navbar-logo {
         display: inline-block;
         a.logo {
@@ -398,22 +399,28 @@ section {
       }
       .navbar-user {
         display: inline-block;
+        vertical-align: top;
         padding-top: 0;
-        figure {
-          -webkit-border-radius: 23px;
-          -moz-border-radius: 23px;
-          border-radius: 23px;
-          overflow: hidden;
-          display: inline-block;
-          width: 40px;
-          height: 40px;
-          margin: 3px;
-        }
-        .caret {
-          margin: 21px 0;
-        }
-        .dropdown>a {
-          display: flex;
+        .dropdown>button {
+          vertical-align: top;
+          height: 46px;
+          padding: 0;
+          margin: 0;
+          border: none;
+          background: none;
+          img {
+            -webkit-border-radius: 23px;
+            -moz-border-radius: 23px;
+            border-radius: 23px;
+            overflow: hidden;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 3px;
+          }
+          .caret {
+            margin: 21px 0 0 0;
+          }
         }
         .dropdown-menu {
           top: 47px;
@@ -813,28 +820,19 @@ section {
 } 
 
 #wizard .substeps {
-  background: #fff;
+  background: #88b2c2;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   -webkit-box-shadow: 0px 0px 82px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 0px 82px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 82px rgba(0, 0, 0, 0.1);
-  display: flex;
+  overflow: hidden;
   .buttons {
-    background: #88b2c2;
+    float: left;
     width: 300px;
-    min-height: 500px;
-    -webkit-border-top-left-radius: 3px;
-    -moz-border-top-left-radius: 3px;
-    border-top-left-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -moz-border-bottom-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    -webkit-box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.1);
-    box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.1);
     ul {
+      position: relative;
       background: #fff;
       list-style: none;
       margin: 0;
@@ -853,9 +851,6 @@ section {
         }
         &:first-child {
           border-top: none;
-          -webkit-border-top-left-radius: 3px;
-          -moz-border-top-left-radius: 3px;
-          border-top-left-radius: 3px;
         }
         &.selected {
           background-color: #39a0c1;
@@ -876,8 +871,15 @@ section {
     }
   }
   .substep {
+    display: inline-block;
+    vertical-align: top;
+    background: #fff;
     width: 540px;
-    margin: 40px 50px;
+    min-height: 400px;
+    padding: 40px 50px;
+    -webkit-box-shadow: 22px 0px 20px -20px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 22px 0px 20px -20px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 22px 0px 20px -20px rgba(0, 0, 0, 0.2) inset;
     .control-group {
       width: auto;
       margin-right: 20px;
