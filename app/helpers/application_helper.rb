@@ -19,10 +19,10 @@ module ApplicationHelper
     tags = ""
     if user.email.present? && user.name.present?
       tags << gravatar_image_tag(user.email, :alt => user.name, :class => 'user-gravatar', :gravatar => { :default => "#{root_url}assets/avatar.png" })
-      tags << user.email
+      #tags << user.email
     elsif user.email.present?
       tags << gravatar_image_tag(user.email, :class => 'user-gravatar', :gravatar => { :default => "#{root_url}assets/avatar.png" })
-      tags << user.email
+      #tags << user.email
     end
     tags.html_safe
   end
