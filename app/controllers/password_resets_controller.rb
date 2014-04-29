@@ -23,7 +23,7 @@ class PasswordResetsController < ApplicationController
     elsif @user.update_attributes(params[:user])
       # login at once
       session[:auth_token] = @user.auth_token
-      redirect_to app_home_path
+      redirect_to app_home_path, :notice => "Sua senha foi alterada! Você já pode usar a senha nova."
     else
       render :edit
     end
