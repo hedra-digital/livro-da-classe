@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <%= yield(:title).presence || content_tag(:title, "#{Publisher.get_current(request.host).name} - Admin") %>
+    <%= yield(:title).presence || content_tag(:title, "#{Publisher.get_current_app} - Admin") %>
     <%= stylesheet_link_tag    "public", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= favicon_link_tag %>
