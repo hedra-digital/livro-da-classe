@@ -6,6 +6,8 @@ class PasswordResetsController < ApplicationController
   layout :choose_layout
 
   def new
+    cookies.delete(:auth_token)
+    session[:auth_token] = nil
   end
 
   def create
@@ -21,9 +23,7 @@ class PasswordResetsController < ApplicationController
     if @user.password_reset_sent_at < 2.hours.ago
       redirect_to new_password_reset_path, :alert => "A alteração de senha já expirou."
     elsif @user.update_attributes(params[:user])
-      # login at once
-      session[:auth_token] = @user.auth_token
-      redirect_to app_home_path, :notice => "Sua senha foi alterada! Você já pode usar a senha nova."
+      redirect_to root_url, :notice => "Sua senha foi alterada! Você já pode usar a senha nova."
     else
       render :edit
     end
