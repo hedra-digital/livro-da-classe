@@ -4,8 +4,9 @@
   <tr>
     <th></th>
     <th>Título</th>
-    <th>Email</th>
-    <th>Telefone</th>
+    <th>Date created</th>
+    <th>Date modified</th>
+    <th>Date accessed</th>
     <th>Template</th>
     <th>Status</th>
     <th></th>
@@ -16,8 +17,9 @@
       <tr>
         <td><%= pdf_status(project.book) %></td>
         <td><%= link_to title_text(project.book), admin_project_path(project) %>, (<%= project.book.organizer.name.presence || project.book.organizer.email %>, org.)</td>
-        <td><%= project.book.organizer.email %></td>
-        <td><%= project.book.organizer.telephone %></td>
+        <td><%= l(project.book.created_at, :format => :short) %></td>
+        <td><%= l(project.book.updated_at, :format => :short) %></td>
+        <td><%= l(project.book.accessed_at, :format => :short) if project.book.accessed_at %></td>
         <td><%= project.book.template %></td>
         <td><%= project.status_to_s %></td>
         <td><%= admin_book_status(project.book) %></td>

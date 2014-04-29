@@ -95,6 +95,10 @@ class Book < ActiveRecord::Base
     File.directory? File.join(template_directory,"ebook")
   end
 
+  def accessed_at
+    self.texts.map(&:updated_at).sort.last if self.texts.count > 0
+  end
+
   def pdf user_profile=nil
     #check repository existence
     self.check_repository

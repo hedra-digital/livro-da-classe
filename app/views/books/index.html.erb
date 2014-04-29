@@ -4,6 +4,9 @@
   <table class="table table-striped">
     <tr>
       <th>Título</th>
+      <th>Date created</th>
+      <th>Date modified</th>
+      <th>Date accessed</th>
       <th>Status</th>
       <th>Textos</th>
       <th>Papel</th>
@@ -13,6 +16,9 @@
     <% @books.each do |book| %>
       <tr>
         <td><%= link_to title_text(book), book_path(book.uuid) %>, (<%= book.organizer.name.presence || book.organizer.email %>, org.)</td>
+        <td><%= l(book.created_at, :format => :short) %></td>
+        <td><%= l(book.updated_at, :format => :short) %></td>
+        <td><%= l(book.accessed_at, :format => :short) if book.accessed_at %></td>
         <td><%= book.project.status_to_s %></td>
         <td><%= raw book.texts.size %></td>
         <td><%= book_role_label(book, current_user) %></td>
