@@ -83,8 +83,8 @@ class BookData < ActiveRecord::Base
 
   has_attached_file :logo,
                     :styles => {
-                          :normal => ["600x600>", :png],
-                          :small => ["300x300#", :png]
+                          :normal => ["600x600>", :jpg],
+                          :small => ["300x300#", :jpg]
                     }
 
   has_attached_file :imagemficha,
