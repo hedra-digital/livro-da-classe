@@ -16,6 +16,7 @@ class Publisher < ActiveRecord::Base
                       :small => ["300x300#", :png]
                     }                    
 
+  # maybe move to db:seeds later
   def self.get_default
     if Publisher.all.size == 0
     	p = Publisher.new
@@ -27,7 +28,7 @@ class Publisher < ActiveRecord::Base
     	p.city = "São Paulo"
     	p.uf = "SP"
     	p.telephone = "(11) 3097-8304"
-      p.trello_email = "chagas+eoyipyvrcukn3uslydul@boards.trello.com"
+      p.trello_email = "andylin17+l8iz9ezjmd9mofoleacg@boards.trello.com"
       p.text_email = "Caro @name,\n\nSeu livro cadastrado em nosso sistema de aprovação teve seu status alterado para: @status\n\n        Para entrar em contato com nossos editores, utilize o mural presente no site http://livrodaclasse.com.br\n\nEditora Hedra"
     	p.save
     end
