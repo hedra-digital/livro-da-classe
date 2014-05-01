@@ -16,11 +16,13 @@
       <%= image_tag(@book.book_data.logo.url(:small)) if @book.book_data.logo.present? %>
     </div>
     <div>
-      <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span>
-      <span class="fileupload-exists" style="display:block;width:213px;" >formatos aceitos: .jpg, .gif, .tif .png 
-      Alterar</span>
+      <span class="btn btn-file">
+        <span class="fileupload-new">Selecionar imagem</span>
+        <span class="fileupload-exists">Alterar</span>
         <%= f.input_field :logo, :as => :file, :accept => 'image/jpg,image/jpeg,image/pjpeg,image/png,image/x-png,image/gif,image/svg,image/tif' %>
       </span>
     </div>
+
+    <small style="color:#999;margin: 3px 0px 0px 3px;display: inline-block;">  formatos aceitos: .jpg, .gif, .tif .png</small>
   </div>
 </div>
