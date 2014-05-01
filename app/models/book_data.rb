@@ -83,8 +83,8 @@ class BookData < ActiveRecord::Base
 
   has_attached_file :logo,
                     :styles => {
-                          :normal => ["600x600>", :jpg],
-                          :small => ["300x300#", :jpg]
+                          :normal => ["600x600>", :png],
+                          :small => ["300x300#", :png]
                     }
 
   has_attached_file :imagemficha,
@@ -172,7 +172,7 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\diretor{#{self.diretor}}\n", self.diretor)
     commands << check("\\newcommand\\coordenador{#{self.coordenador}}\n", self.coordenador)
     commands << check("\\newcommand\\turma{#{self.turma}}\n", self.turma)
-    commands << check("\\newcommand\\logo{#{get_fullpath_for(self.logo.url)}}\n", self.logo, true)
+    commands << check("\\newcommand\\logo{#{get_fullpath_for(self.logo.url(:normal))}}\n", self.logo, true)
     commands << check("\\newcommand\\cidade{#{self.cidade}}\n", self.cidade)
     commands << "\n% Aparatos\n"
     commands << check("\\newcommand\\release{#{to_latex(self.release)}}\n", self.release)
