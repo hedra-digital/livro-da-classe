@@ -36,8 +36,11 @@ class CollaboratorsController < ApplicationController
 
   def edit
     if @collaborator.password_digest || @collaborator.provider
-      @book.users << @collaborator
-      Invitation.where(:invited_id => @collaborator.id, :book_id => @book.id).first.destroy
+      @book.users << @collaborator if !@book.users.include?(@collaborator)
+
+      invitation = Invitation.where(:invited_id => @collaborator.id, :book_id => @book.id).first
+      invitation.destroy if invitation
+
       session[:auth_token] = @collaborator.auth_token
       redirect_to app_home_path, :notice => "Você foi adicionado como colaborador do livro <em>#{@book.title}</em>."
     else
