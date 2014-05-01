@@ -57,6 +57,18 @@
         <%= b.error_notification %>
         <div class="form-inputs">
           <%= b.simple_fields_for @book.book_data do |f| %>
+
+          <% if f.error_notification %>
+          <div class="alert alert-error fade in">
+            <a class="close" data-dismiss="alert" href="#">&times;</a>
+            <ul>
+             <% @book.book_data.errors.full_messages.each do |msg|%> 
+             <li><%= msg%></li>
+             <% end %>
+           </ul>
+         </div>
+         <% end %>
+
             <div class="substep-content" id="content-general">
               <%= render :partial => '/book_datas/general', :locals => {:f => f, :b => b} %>
             </div>

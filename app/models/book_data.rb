@@ -87,6 +87,8 @@ class BookData < ActiveRecord::Base
                           :small => ["300x300#", :png]
                     }
 
+  validates_attachment_content_type :logo, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif|svg|tif)$/, :message => 'O arquivo anexado não é compatível. Tente novamente ou entre em contato com nossos editores.'
+
   has_attached_file :imagemficha,
                     :styles => {
                           :normal => ["600x600>", :png],
