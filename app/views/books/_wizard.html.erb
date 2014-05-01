@@ -62,8 +62,8 @@
           <div class="alert alert-error fade in">
             <a class="close" data-dismiss="alert" href="#">&times;</a>
             <ul>
-             <% @book.book_data.errors.full_messages.each do |msg|%> 
-             <li><%= msg%></li>
+             <% @book.book_data.errors.messages.each do |key, msg|%> 
+             <li><%= msg.join('</br>')%></li>
              <% end %>
            </ul>
          </div>
@@ -110,6 +110,7 @@
 </div>
 
 <script>
+$(document).ready(function(){
   $('.buttons ul li button').click(function() {
     $('.buttons .selected').removeClass('selected');
     $(this).parent().addClass('selected');
@@ -138,4 +139,20 @@
     $('.bar ul li:lt(3)').addClass('past');
     $('.bar ul li:nth-child(4)').addClass('active');
   });
+
+<% if @book.book_data.errors.include?(:logo_content_type) %>
+// $('.buttons ul li button:eq(2)').click()  will be a bug in this way, so use the way below:
+
+$('.buttons .selected').removeClass('selected');
+$('#partners').parent().addClass('selected');
+$('.substep-content').hide();
+$('#content-partners').show();
+$('.bar ul li:lt(3)').addClass('past');
+$('.bar ul li:nth-child(4)').addClass('active');
+
+<% end %>
+
+})
+
+
 </script>
