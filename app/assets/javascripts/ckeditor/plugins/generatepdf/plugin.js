@@ -7,7 +7,7 @@ CKEDITOR.plugins.add( 'generatepdf', {
             }
         });
         editor.ui.addButton( 'GeneratePdf', {
-            label: 'Generate Pdf',
+            label: 'Gerar PDF',
             command: 'generatePdf',
             toolbar: 'editing'
         });
