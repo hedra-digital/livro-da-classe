@@ -1,6 +1,6 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'eqneditor,charcount,texttransform,footnote,epigraph,verse,chapter,smallskip,medskip,bigskip';
+  config.extraPlugins = 'generatepdf,eqneditor,charcount,texttransform,footnote,epigraph,verse,chapter,smallskip,medskip,bigskip';
 
   /* Char Count Plugin */
   config.maxLength = 0;
@@ -31,7 +31,7 @@ CKEDITOR.editorConfig = function(config) {
 
   config.toolbar = [   
     { name: 'clipboard', items : [ 'Undo','Redo' ] },
-    { name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
+    { name: 'editing', items : [ 'Save','GeneratePdf','Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
     { name: 'links', items : [ 'Anchor' ] },
     { name: 'document', items : [ 'Source' ] },
     { name: 'tools', items : [ 'Maximize', 'ShowBlocks' ] },

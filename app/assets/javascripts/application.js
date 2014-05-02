@@ -46,6 +46,7 @@
 //= require ckeditor/plugins/medskip/plugin
 //= require ckeditor/plugins/bigskip/plugin
 //= require ckeditor/plugins/autogrow/plugin
+//= require ckeditor/plugins/generatepdf/plugin
 //= require jquery.jqEasyCharCounter.min.js
 //= require jquery.mask.min.js
 //= require jscolor/jscolor
