@@ -31,7 +31,7 @@ CKEDITOR.editorConfig = function(config) {
 
   config.toolbar = [   
     { name: 'clipboard', items : [ 'Undo','Redo' ] },
-    { name: 'editing', items : [ 'Save','GeneratePdf','Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
+    { name: 'editing', items : ['Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
     { name: 'links', items : [ 'Anchor' ] },
     { name: 'document', items : [ 'Source' ] },
     { name: 'tools', items : [ 'Maximize', 'ShowBlocks' ] },
@@ -43,6 +43,11 @@ CKEDITOR.editorConfig = function(config) {
     { name: 'colors', items : [ 'TextColor','BGColor' ] },
     { name: 'styles', items : [ 'Format', 'Smallskip', 'Medskip', 'Bigskip' ] }
   ];
+
+  // show save and generate pdf buttons.
+  if (CKEDITOR.instances.text_content != undefined){
+    config.toolbar[1].items = $.merge(['Save','GeneratePdf'], config.toolbar[1].items);
+  }
   
   config.language = 'pt-BR';
 
