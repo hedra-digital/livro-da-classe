@@ -17,10 +17,10 @@ CKEDITOR.plugins.add( 'ajaxsave', {
                console.log("start updae text");
 
                $.ajax({
-                url: $("#edit_text_1").attr("action"),
+                url: $("form").first().attr("action"),
                 type: 'PUT', 
                 dataType: 'json',
-                data: $("#edit_text_1").serialize()
+                data: $("form").first().serialize()
             })
                .done(function(response) {
                 console.log("updae text success");
