@@ -39,7 +39,10 @@ class TextsController < ApplicationController
     @text.valid_content = @text.validate_content
     if @text.update_attributes(params[:text])
       Version.commit_file(@text.book.directory, @text, current_user.profile.desc, current_user.name, params[:text][:git_message])
-      redirect_to book_text_path(@book.uuid, @text.uuid), :notice => t('activerecord.successful.messages.updated', :model => @text.class.model_name.human)
+      respond_to do |format|
+        format.html  {redirect_to book_text_path(@book.uuid, @text.uuid), :notice => t('activerecord.successful.messages.updated', :model => @text.class.model_name.human)}
+        format.json  { render :json => "ok" }
+      end
     else
       render :edit
     end
