@@ -41,7 +41,7 @@ class TextsController < ApplicationController
       Version.commit_file(@text.book.directory, @text, current_user.profile.desc, current_user.name, params[:text][:git_message])
       respond_to do |format|
         format.html  {redirect_to book_text_path(@book.uuid, @text.uuid), :notice => t('activerecord.successful.messages.updated', :model => @text.class.model_name.human)}
-        format.json  { render :json => "ok" }
+        format.json  { render :json => @text }
       end
     else
       render :edit
