@@ -1,6 +1,6 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'generatepdf,eqneditor,charcount,texttransform,footnote,epigraph,verse,chapter,smallskip,medskip,bigskip';
+  config.extraPlugins = 'ajaxsave,generatepdf,eqneditor,charcount,texttransform,footnote,epigraph,verse,chapter,smallskip,medskip,bigskip';
 
   /* Char Count Plugin */
   config.maxLength = 0;
@@ -46,7 +46,7 @@ CKEDITOR.editorConfig = function(config) {
 
   // show save and generate pdf buttons.
   if (CKEDITOR.instances.text_content != undefined){
-    config.toolbar[1].items = $.merge(['Save','GeneratePdf'], config.toolbar[1].items);
+    config.toolbar[1].items = $.merge(['AjaxSave','GeneratePdf'], config.toolbar[1].items);
   }
   
   config.language = 'pt-BR';
