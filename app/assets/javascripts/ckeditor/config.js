@@ -192,9 +192,9 @@ CKEDITOR.editorConfig = function(config) {
 
 CKEDITOR.addCss('body { font-family: Courier; font-size: 12px; }');
 /*Image Upload Customization*/
-CKEDITOR.addCss('.small-intention { zoom: 0.3; -moz-transform: scale(0.3); }');
-CKEDITOR.addCss('.medium-intention { zoom: 0.6; -moz-transform: scale(0.6); }');
-CKEDITOR.addCss('.big-intention { zoom: 1; -moz-transform: scale(1); }');
+CKEDITOR.addCss('.small-intention { zoom: 0.3; -moz-transform: scale(0.3); max-width: 100%;}');
+CKEDITOR.addCss('.medium-intention { zoom: 0.6; -moz-transform: scale(0.6); max-width: 100%;}');
+CKEDITOR.addCss('.big-intention { zoom: 1; -moz-transform: scale(1); max-width: 100%;}');
 /*LaTeX Input Plugin*/
 CKEDITOR.addCss('.latex-inputbox { background-color: #73b8f7; cursor: pointer; -webkit-border-radius: 3px; border-radius: 5px; padding: 3px; margin: 3px; margin-left: 5px;}');
 CKEDITOR.addCss('.latex-close { cursor: pointer; font-size: 12px; color: #fff; padding: 5px; }');
