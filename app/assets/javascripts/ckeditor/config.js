@@ -1,6 +1,6 @@
 CKEDITOR.editorConfig = function(config) {
 
-  config.extraPlugins = 'ajaxsave,generatepdf,eqneditor,charcount,texttransform,footnote,epigraph,verse,chapter,smallskip,medskip,bigskip';
+  config.extraPlugins = 'latexformater,ajaxsave,generatepdf,eqneditor,charcount,texttransform,footnote,epigraph,verse,chapter,smallskip,medskip,bigskip';
 
   /* Char Count Plugin */
   config.maxLength = 0;
@@ -41,7 +41,7 @@ CKEDITOR.editorConfig = function(config) {
     { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },
     { name: 'insert', items : [ 'Image','Table','HorizontalRule', 'SpecialChar','EqnEditor', 'FootNote', 'Epigraph', 'Verse', 'Chapter' ] },
     { name: 'colors', items : [ 'TextColor','BGColor' ] },
-    { name: 'styles', items : [ 'Format', 'Smallskip', 'Medskip', 'Bigskip' ] }
+    { name: 'styles', items : [ 'Format', 'Smallskip', 'Medskip', 'Bigskip', 'LatexFormater' ] }
   ];
 
   // show save and generate pdf buttons.
