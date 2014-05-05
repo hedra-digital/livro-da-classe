@@ -5,7 +5,7 @@ CKEDITOR.plugins.add('latexformater',
   {
     // array of strings to choose from that'll be inserted into the editor
     var strings = [];
-    strings.push(['versos', 'versos', 'formata versos versos']);
+    strings.push(['versos', 'versos', 'formata versos']);
     strings.push(['epígrafe', 'epígrafe', 'insere epígrafe']);
     strings.push(['nota de rodapé', 'nota de rodapé', 'insere uma nota de rodapé']);
     strings.push(['novo capítulo', 'novo capítulo', 'insere novo capítulo']);
@@ -16,9 +16,9 @@ CKEDITOR.plugins.add('latexformater',
     // add the menu to the editor
     editor.ui.addRichCombo('LatexFormater',
     {
-      label:    'formatação',
-      title:    'formatação',
-      voiceLabel: 'formatação',
+      label:    'Extras',
+      title:    'Extras',
+      voiceLabel: 'Extras',
       className:  'cke_format',
       multiSelect:false,
       panel:
@@ -29,7 +29,7 @@ CKEDITOR.plugins.add('latexformater',
 
       init: function()
       {
-        this.startGroup( "formatação");
+        this.startGroup( "Extras");
         for (var i in strings)
         {
           this.add(strings[i][0], strings[i][1], strings[i][2]);
