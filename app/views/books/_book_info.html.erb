@@ -114,7 +114,9 @@
     }).done(function(response) {
       if (response.result == "success") {
         parent.jQuery.fancybox.close();
-        window.location = response.path;
+        // window.location = response.path;
+        // open in a new tab
+        window.open(response.path, '_blank');     
       } else {
         var link = $(document.createElement('a')).attr('href',response.path).text('<%= t(:click_here) %>');
         $('img.progress-modal').hide();
