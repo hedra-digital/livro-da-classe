@@ -48,6 +48,7 @@
 //= require ckeditor/plugins/autogrow/plugin
 //= require ckeditor/plugins/ajaxsave/plugin
 //= require ckeditor/plugins/generatepdf/plugin
+//= require ckeditor/plugins/latexformater/plugin
 //= require jquery.jqEasyCharCounter.min.js
 //= require jquery.mask.min.js
 //= require jscolor/jscolor
