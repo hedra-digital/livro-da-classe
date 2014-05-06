@@ -63,11 +63,8 @@ class BooksController < ApplicationController
     render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{book_download_pdf_path(@book.uuid)}", :result => "success" }
   end
 
-  # make it faster later, in ask_for_download_pdf, we generate the pdf, in download_pdf we just send the file
   def download_pdf
-    pdf = @book.pdf
-    pdf_path = pdf.to_s.gsub('public/','')
-    send_file File.open(pdf_path)
+    send_file File.open(File.join(@book.directory,"#{@book.uuid}.pdf").gsub('public', ''))
   end
 
   def generate_ebook
