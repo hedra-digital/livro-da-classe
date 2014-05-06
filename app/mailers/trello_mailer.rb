@@ -12,7 +12,7 @@ class TrelloMailer < ActionMailer::Base
     @abstract = book.abstract
 
     if book.project.school_logo.exists?
-      attachments["#{project.school_logo_file_name}"] = File.read(book.project.school_logo.path)
+      attachments["#{book.project.school_logo_file_name}"] = File.read(book.project.school_logo.path)
     end
 
     mail :to => "#{publisher.trello_email}", :subject => "#{@title} (#{@name})"

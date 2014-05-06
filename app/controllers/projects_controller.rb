@@ -26,7 +26,9 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.where(:book_id => @book.id).first
-    if @project.update_attributes(params[:project].merge(engaged: true))
+    if @project.update_attributes(params[:project])
+       @project.engaged = true
+       @project.save
       redirect_to book_path(@book.uuid), :notice => "Projeto atualizado com sucesso"
     else
       render :edit
