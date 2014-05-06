@@ -3,8 +3,8 @@
 <% if @permissions.present? %>
   <table class="table table-striped">
     <tr>
-      <th>Status</th>
       <th>Perfil</th>
+      <th>Status</th>
       <th>Leitura</th>
       <th>Escrita</th>
       <th>Execução</th>
@@ -13,8 +13,8 @@
     </tr>
     <% @permissions.each do |permission| %>
       <tr>
-        <td><%= permission.book_status.desc %></td>
         <td><%= permission.profile.desc %></td>
+        <td><%= permission.book_status.desc %></td>
         <td><%= active_or_not(permission.read) %></td>
         <td><%= active_or_not(permission.write) %></td>
         <td><%= active_or_not(permission.execute) %></td>

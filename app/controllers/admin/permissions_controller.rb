@@ -1,11 +1,11 @@
 class Admin::PermissionsController < Admin::ApplicationController
 
   def index
-    @permissions = Permission.order("book_status_id").all
+    @permissions = Permission.order("profile_id, book_status_id").all
   end
 
   def edit
-    @permissions = Permission.order("book_status_id").all
+    @permissions = Permission.order("profile_id, book_status_id").all
   end
 
   def update
