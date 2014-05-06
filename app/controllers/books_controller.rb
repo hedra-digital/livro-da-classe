@@ -64,7 +64,7 @@ class BooksController < ApplicationController
   end
 
   def download_pdf
-    send_file File.open(File.join(@book.directory,"#{@book.uuid}.pdf").gsub('public', ''))
+    send_file File.open(File.join(@book.directory,"#{@book.uuid}.pdf"))
   end
 
   def generate_ebook
