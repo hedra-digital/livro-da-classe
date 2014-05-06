@@ -48,6 +48,8 @@ Livrodaclasse::Application.routes.draw do
   match 'books/:id/generate_cover', to: 'books#generate_cover', as: :book_generate_cover
 
   match 'books/:id/generate_pdf', to: 'books#generate_pdf', as: :book_generate_pdf
+  match 'books/:id/ask_for_download_pdf', to: 'books#ask_for_download_pdf', as: :book_ask_for_download_pdf
+  match 'books/:id/download_pdf', to: 'books#download_pdf', as: :book_download_pdf
   match 'books/:id/generate_ebook', to: 'books#generate_ebook', as: :book_generate_ebook
 
   match 'scraps/:id/thread', :to => 'scraps#thread', :as => :scraps_thread

@@ -60,6 +60,7 @@
 <script type="text/javascript">
   var bookurl = '<%= book_generate_pdf_path(@book.uuid) %>';
   var ebookurl = '<%= book_generate_ebook_path(@book.uuid) %>';
+  var ask_for_download_pdf_url = '<%= book_ask_for_download_pdf_path(@book.uuid) %>';
 
   function getByType(type){
     if (type == "pdf"){
@@ -114,9 +115,7 @@
     }).done(function(response) {
       if (response.result == "success") {
         parent.jQuery.fancybox.close();
-        // window.location = response.path;
-        // open in a new tab
-        window.open(response.path, '_blank');     
+        window.location = response.path;
       } else {
         var link = $(document.createElement('a')).attr('href',response.path).text('<%= t(:click_here) %>');
         $('img.progress-modal').hide();

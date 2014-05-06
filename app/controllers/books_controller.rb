@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
   before_filter :ominiauth_user_gate, :except => [:show]
   before_filter :secure_organizer_id, :only => [:create, :update]
-  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :generate_ebook]
+  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook]
 
   require "#{Rails.root}/lib/book_cover.rb"
 
@@ -54,6 +54,20 @@ class BooksController < ApplicationController
       pdf_path = File.join(@book.directory,"#{@book.uuid}.pdf").gsub('public', '')
       render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{pdf_path}", :result => "fail" }
     end
+  end
+
+  # work around http://stackoverflow.com/questions/6019522/rails-3-how-to-send-file-in-response-of-a-remote-form-in-rails 
+  def ask_for_download_pdf
+    pdf = @book.pdf
+    pdf_path = pdf.to_s.gsub('public/','')
+    render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{book_download_pdf_path(@book.uuid)}", :result => "success" }
+  end
+
+  # make it faster later, in ask_for_download_pdf, we generate the pdf, in download_pdf we just send the file
+  def download_pdf
+    pdf = @book.pdf
+    pdf_path = pdf.to_s.gsub('public/','')
+    send_file File.open(pdf_path)
   end
 
   def generate_ebook
