@@ -66,20 +66,6 @@
       <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>
       <%= f.input :quantity, :as => :integer, :label => t(:quantity), input_html: { min: 50, value: 50 } %>
       <div class="project-price"><b>Preço Total: </b><span id="project-total-price"></span></div>
-
-      <label for="project_school_logo"><%= t('project.school_logo') %></label>
-      <div class="fileupload <%= @project.school_logo.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
-        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
-        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-          <%= image_tag(@project.school_logo.url(:normal)) if @project.school_logo.present? %>
-        </div>
-        <div>
-          <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
-            <%= f.input_field :school_logo, :as => :file %>
-          </span>
-        </div>
-      </div>
-  
     <% end %>
 
     <%= field_set_tag "Dados pessoais" do %>

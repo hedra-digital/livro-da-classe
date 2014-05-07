@@ -11,8 +11,8 @@ class TrelloMailer < ActionMailer::Base
     @release_date = book.project.release_date ? book.project.release_date.strftime("%d/%m/%Y") : nil
     @abstract = book.abstract
 
-    if book.project.school_logo.exists?
-      attachments["#{book.project.school_logo_file_name}"] = File.read(book.project.school_logo.path)
+    if book.book_data.logo.exists?
+      attachments["#{book.book_data.logo_file_name}"] = File.read(book.book_data.logo.path)
     end
 
     mail :to => "#{publisher.trello_email}", :subject => "#{@title} (#{@name})"
