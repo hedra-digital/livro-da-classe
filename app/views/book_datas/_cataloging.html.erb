@@ -9,8 +9,11 @@
     </div>
     <div>
       <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
-        <%= f.input_field :imagemficha, :as => :file %>
+        <%= f.input_field :imagemficha, :as => :file, :accept => 'image/jpg,image/jpeg,image/pjpeg,image/png,image/x-png,image/gif,image/svg,image/tif' %>
       </span>
     </div>
+
+    <small style="color:#999;margin: 3px 0px 0px 3px;display: inline-block;">  formatos aceitos: .jpg, .gif, .tif, .png</small>
+
   </div>
 </div>

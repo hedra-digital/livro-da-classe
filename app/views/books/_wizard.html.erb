@@ -152,6 +152,10 @@ $('.bar ul li:nth-child(4)').addClass('active');
 
 <% end %>
 
+<% if @book.book_data.errors.include?(:imagemficha_content_type) %>
+$('.buttons ul li button:eq(3)').first().click()
+<% end %>
+
 })
 
 
