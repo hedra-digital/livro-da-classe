@@ -1,5 +1,7 @@
-# -*- encoding : utf-8 -*-
 class Admin::DashboardController < Admin::ApplicationController
+
+  skip_before_filter :authentication_admin_check, if: -> { current_user and current_user.publisher? }
+
   def index
   	if params[:impersonate_user_id].blank?
       @projects = Project.includes([:book, :client]).where("books.publisher_id = #{current_publisher}").all

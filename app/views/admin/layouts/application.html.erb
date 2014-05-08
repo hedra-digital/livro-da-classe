@@ -21,13 +21,13 @@
             <ul class="nav">
               <!--<li><%= link_to "Templates", admin_templates_path %></li>-->
               <!--<li><%= link_to "Capa Padrão", admin_default_cover_path %></li>-->
-              <li><%= link_to "Expressões", admin_expressions_path %></li>
+              <li><%= link_to "Expressões", admin_expressions_path if current_user.admin? %></li>
               <li><%= link_to "Recados", admin_scraps_path %></li>
-              <li><%= link_to "Status", admin_book_statuses_path %></li>
-              <li><%= link_to "Perfis", admin_profiles_path %></li>
-              <li><%= link_to "Permissões", admin_permissions_path %></li>
+              <li><%= link_to "Status", admin_book_statuses_path if current_user.admin? %></li>
+              <li><%= link_to "Perfis", admin_profiles_path if current_user.admin? %></li>
+              <li><%= link_to "Permissões", admin_permissions_path if current_user.admin? %></li>
               <li><%= link_to "Usuários", admin_users_path %></li>
-              <li><%= link_to "Repositório", admin_revision_path %></li>
+              <li><%= link_to "Repositório", admin_revision_path if current_user.admin? %></li>
             </ul>
           </div>
           <div class="navbar-inner navbar-right">
