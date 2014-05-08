@@ -27,6 +27,7 @@
   <% end %>
 </table>
 
+<% if current_user.admin?%>
 <div class="btn-group dropdown">
   <button type="button" class="btn btn-primary btn-small dropdown-toggle" data-toggle="dropdown">
     <%= t('admin_tasks') %> <span class="caret"></span>
@@ -40,3 +41,4 @@
     </li>
   </ul>
 </div> 
+<% end %>

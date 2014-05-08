@@ -1,5 +1,8 @@
 class Admin::ProjectsController < Admin::ApplicationController
 
+  skip_before_filter :authentication_admin_check, :only => [:show, :impersonate]
+  before_filter :auth_admin_or_publisher, :only => [:show, :impersonate]
+
   def index
     @projects = Project.includes([:book, :client]).where("books.publisher_id = #{current_publisher}").all
     @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
@@ -7,6 +10,12 @@ class Admin::ProjectsController < Admin::ApplicationController
 
   def show
     @project = Project.find(params[:id])
+
+    # data scope check
+    if current_user.publisher? and @project.book.organizer_id != current_user.id
+      redirect_to signin_path
+      return
+    end
   end
 
   def edit
@@ -26,6 +35,13 @@ class Admin::ProjectsController < Admin::ApplicationController
 
   def impersonate
     @project = Project.find(params[:id])
+   
+    # data scope check
+    if current_user.publisher? and @project.book.organizer_id != current_user.id
+      redirect_to signin_path
+      return
+    end
+
     session[:auth_token] = @project.book.organizer.auth_token
     redirect_to app_home_path
   end

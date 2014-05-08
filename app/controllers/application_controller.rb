@@ -37,6 +37,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def auth_admin_or_publisher
+    if !(current_user and (current_user.admin? or current_user.publisher?))
+      redirect_to signin_path
+    end
+  end
+
   def ominiauth_user_gate
     if current_user && current_user.email.blank? && current_user.asked_for_email.nil?
       current_user.update_attribute(:asked_for_email, true)

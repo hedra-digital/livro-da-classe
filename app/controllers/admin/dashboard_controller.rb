@@ -3,9 +3,16 @@ class Admin::DashboardController < Admin::ApplicationController
   skip_before_filter :authentication_admin_check, if: -> { current_user and current_user.publisher? }
 
   def index
-  	if params[:impersonate_user_id].blank?
-      @projects = Project.includes([:book, :client]).where("books.publisher_id = #{current_publisher}").all
-      @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
+    if params[:impersonate_user_id].blank?
+
+      if current_user.admin?
+        @projects = Project.includes(:book).all
+      elsif current_user.publisher?
+        @projects = Project.joins(:book).where("books.organizer_id = #{current_user.id}")
+      end
+
+    @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
+
   	else
     	@user = User.find(params[:impersonate_user_id])
 	    session[:auth_token] = @user.auth_token
