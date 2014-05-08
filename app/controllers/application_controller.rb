@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authentication_admin_check
-    if !(current_user and current_user.profile.desc == 'Admin')
+    if !(current_user and current_user.admin?)
       redirect_to signin_path
     end
   end

@@ -84,4 +84,12 @@ class User < ActiveRecord::Base
   def set_default_profile
     self.profile = Profile.first
   end
+
+  def admin?
+    self.profile.desc == 'Admin'
+  end
+
+  def publisher?
+    self.profile.desc == 'Publisher'
+  end
 end
