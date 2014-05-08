@@ -1,9 +1,9 @@
-class Admin::ApplicationController < ActionController::Base
+class Admin::ApplicationController < ApplicationController
   layout 'admin/layouts/application'
 
   protect_from_forgery
 
-  http_basic_authenticate_with(:name => CONFIG[:restricted_area][:username], :password => CONFIG[:restricted_area][:password])
+  before_filter :authentication_admin_check
 
   def current_publisher
     publisher = Publisher.where("url LIKE ?", "%#{request.host}%").first

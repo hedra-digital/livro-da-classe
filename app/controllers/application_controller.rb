@@ -31,6 +31,12 @@ class ApplicationController < ActionController::Base
     redirect_to signin_path unless current_user
   end
 
+  def authentication_admin_check
+    if !(current_user and current_user.profile.desc == 'Admin')
+      redirect_to signin_path
+    end
+  end
+
   def ominiauth_user_gate
     if current_user && current_user.email.blank? && current_user.asked_for_email.nil?
       current_user.update_attribute(:asked_for_email, true)
