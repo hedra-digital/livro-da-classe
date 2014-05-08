@@ -1,12 +1,23 @@
 class Admin::ScrapsController < Admin::ApplicationController
 
+  skip_before_filter :authentication_admin_check 
+  before_filter :auth_admin_or_publisher 
+
   def index
-    @scraps = Scrap.where(:parent_scrap_id => nil).order('answered, created_at DESC').all
+    if current_user.admin?
+      @scraps = Scrap.where(:parent_scrap_id => nil).order('answered, created_at DESC').all
+    elsif current_user.publisher?
+      @scraps = Scrap.joins(:book).where(:parent_scrap_id => nil, 'books.organizer_id' => current_user.id).order('answered, created_at DESC').all
+    end
   end
 
   def new
     @scrap = Scrap.new
-    @books = Book.all
+    if current_user.admin?
+      @books = Book.all
+    elsif current_user.publisher?
+      @books = Book.where('organizer_id' => current_user.id)
+    end
   end
 
   def create
@@ -26,11 +37,24 @@ class Admin::ScrapsController < Admin::ApplicationController
 
   def thread
     @scrap = Scrap.find(params[:id])
+
+    # data scope check
+    if current_user.publisher? and @scrap.book.organizer_id != current_user.id
+      redirect_to signin_path
+      return
+    end
     @book = @scrap.book
   end
 
   def answer
     parent_scrap = Scrap.find(params[:parent])
+
+    # data scope check
+    if current_user.publisher? and parent_scrap.book.organizer_id != current_user.id
+      redirect_to signin_path
+      return
+    end
+
     @scrap = Scrap.new
     @scrap.parent_scrap_id = parent_scrap.id
     @scrap.content = params[:content]
