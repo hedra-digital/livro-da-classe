@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hedra-digital/livro-da-classe.png)](https://travis-ci.org/hedra-digital/livro-da-classe) 
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/hedra-digital/livro-da-classe)
 [![Code Climate](https://codeclimate.com/repos/536c079f6956801268001034/badges/b8197b1c251d7246d52e/gpa.png)](https://codeclimate.com/repos/536c079f6956801268001034/feed)
 
 #Livro da Classe & Tipografia Digital
