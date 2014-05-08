@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/repos/536c079f6956801268001034/badges/b8197b1c251d7246d52e/gpa.png)](https://codeclimate.com/repos/536c079f6956801268001034/feed)
+
 #Livro da Classe & Tipografia Digital
 
 ## Como configurar o ambiente de desenvolvimento
