@@ -68,7 +68,7 @@ Livrodaclasse::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   #Permit multiple threads
-  config.threadsafe!
+  config.threadsafe! unless $rails_rake_task
 
   config.middleware.use ExceptionNotifier,
   sender_address: 'nao-responda@livrodaclasse.com.br',
