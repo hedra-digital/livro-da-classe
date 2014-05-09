@@ -37,5 +37,5 @@ Livrodaclasse::Application.configure do
   config.active_support.deprecation = :stderr
 
   #Permit multiple threads
-  config.threadsafe!
+  config.threadsafe! unless $rails_rake_task # can find models when db:migrate after add 'unless $rails_rake_task'
 end
