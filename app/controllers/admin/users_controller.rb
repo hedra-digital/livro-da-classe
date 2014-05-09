@@ -4,11 +4,7 @@ class Admin::UsersController < Admin::ApplicationController
   before_filter :auth_admin_or_publisher, only: [:index, :books, :add_book, :remove_book]
 
   def index
-    if current_user.admin?
-      @users = User.all
-    elsif current_user.publisher?
-      @users = User.joins(:books).where('books.id in (?)', current_user.organized_books).group('users.id')
-    end      
+    @users = User.all
   end
 
   def edit
@@ -30,37 +26,12 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.find(params[:id])
     @user_books = []
     @user_books = @user_books.concat(@user.books).flatten
-
-    if current_user.admin?
-      @books = Book.where("organizer_id != #{@user.id}") - @user_books
-    elsif current_user.publisher?
-      # data scope check
-      if !User.joins(:books).where('books.id in (?)', current_user.organized_books).include?(@user)
-        redirect_to signin_path
-        return
-      end
-
-      @books = current_user.organized_books - @user_books
-    end
+    @books = Book.where("organizer_id != #{@user.id}") - @user_books
   end
 
   def add_book
     @user = User.find(params[:id])
     @book = Book.find(params[:user][:book_id])
-
-    # data scope check
-    if current_user.publisher?
-      if !User.joins(:books).where('books.id in (?)', current_user.organized_books).include?(@user)
-        redirect_to signin_path
-        return
-      end
-
-      if !current_user.organized_books.include?(@book)
-        redirect_to signin_path
-        return
-      end
-    end
-
     @user.books << @book
 
     if @user.save
@@ -73,20 +44,6 @@ class Admin::UsersController < Admin::ApplicationController
   def remove_book
     @user = User.find(params[:id])
     @book = Book.find(params[:book_id])
-
-    # data scope check
-    if current_user.publisher?
-      if !User.joins(:books).where('books.id in (?)', current_user.organized_books).include?(@user)
-        redirect_to signin_path
-        return
-      end
-
-      if !current_user.organized_books.include?(@book)
-        redirect_to signin_path
-        return
-      end
-    end
-
     @user.books.delete(@book)
 
     if @user.save
@@ -97,3 +54,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
 end
+
+# data scrope for publisher
+# @users = User.joins(:books).where('books.id in (?)', current_user.organized_books).group('users.id')
+# current_user.organized_books.include?(@book)

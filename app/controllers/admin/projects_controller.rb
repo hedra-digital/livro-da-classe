@@ -10,33 +10,15 @@ class Admin::ProjectsController < Admin::ApplicationController
 
   def show
     @project = Project.find(params[:id])
-
-    # data scope check
-    if current_user.publisher? and @project.book.organizer_id != current_user.id
-      redirect_to signin_path
-      return
-    end
   end
 
   def edit
     @project = Project.find(params[:id])
-
-    # data scope check
-    if current_user.publisher? and @project.book.organizer_id != current_user.id
-      redirect_to signin_path
-      return
-    end
     @statuses = BookStatus.all.collect {|b| [ b.desc, b.id ] }
   end
 
   def update
     @project = Project.find(params[:id])
-
-    # data scope check
-    if current_user.publisher? and @project.book.organizer_id != current_user.id
-      redirect_to signin_path
-      return
-    end
 
     @project.update_attributes(params[:project])
     if @project.save
@@ -48,12 +30,6 @@ class Admin::ProjectsController < Admin::ApplicationController
 
   def impersonate
     @project = Project.find(params[:id])
-   
-    # data scope check
-    if current_user.publisher? and @project.book.organizer_id != current_user.id
-      redirect_to signin_path
-      return
-    end
 
     session[:auth_token] = @project.book.organizer.auth_token
     redirect_to app_home_path

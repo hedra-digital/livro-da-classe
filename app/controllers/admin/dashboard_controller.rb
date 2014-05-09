@@ -5,31 +5,26 @@ class Admin::DashboardController < Admin::ApplicationController
   def index
     if params[:impersonate_user_id].blank?
 
-      if current_user.admin?
-        @projects = Project.includes(:book).all
-      elsif current_user.publisher?
-        @projects = Project.joins(:book).where("books.organizer_id = #{current_user.id}")
-      end
+      @projects = Project.includes(:book).all
+      @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
 
-    @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
-
-  	else
+    else
     	@user = User.find(params[:impersonate_user_id])
-	    session[:auth_token] = @user.auth_token
-	    redirect_to app_home_path
+      session[:auth_token] = @user.auth_token
+      redirect_to app_home_path
     end
   end
 
   def default_cover
-  	DefaultCover.new.save if DefaultCover.first.nil? 
+    DefaultCover.new.save if DefaultCover.first.nil? 
 
-  	@default_cover = DefaultCover.first
+    @default_cover = DefaultCover.first
   end
 
   def update_default_cover
-  	DefaultCover.first.update_attributes(params[:default_cover])
-  	flash[:success] = 'Capa padrão atualizada com sucesso'
-  	redirect_to admin_root_path
+    DefaultCover.first.update_attributes(params[:default_cover])
+    flash[:success] = 'Capa padrão atualizada com sucesso'
+    redirect_to admin_root_path
   end
 
   def scraps
