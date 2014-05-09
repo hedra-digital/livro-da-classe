@@ -57,17 +57,21 @@
         <%= b.error_notification %>
         <div class="form-inputs">
           <%= b.simple_fields_for @book.book_data do |f| %>
-
-          <% if f.error_notification %>
+          
+          <% if @book.book_data.errors.count > 0 or @book.cover_info.errors.count > 0 %>
           <div class="alert alert-error fade in">
             <a class="close" data-dismiss="alert" href="#">&times;</a>
             <ul>
              <% @book.book_data.errors.messages.each do |key, msg|%> 
-             <li><%= msg.join('</br>')%></li>
+             <li><%= msg.join('</br>').html_safe%></li>
+             <% end %>
+
+             <% @book.cover_info.errors.messages.each do |key, msg|%> 
+             <li><%= msg.join('</br>').html_safe%></li>
              <% end %>
            </ul>
          </div>
-         <% end %>
+        <% end %>
 
             <div class="substep-content" id="content-general">
               <%= render :partial => '/book_datas/general', :locals => {:f => f, :b => b} %>
@@ -154,6 +158,10 @@ $('.bar ul li:nth-child(4)').addClass('active');
 
 <% if @book.book_data.errors.include?(:imagemficha_content_type) %>
 $('.buttons ul li button:eq(3)').first().click()
+<% end %>
+
+<% if !(@book.cover_info.errors and [:capa_imagem, :capa_detalhe]).empty? %>
+$('.buttons ul li button:eq(1)').first().click()
 <% end %>
 
 })

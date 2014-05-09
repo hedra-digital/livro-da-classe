@@ -1,7 +1,7 @@
 class CoverInfo < ActiveRecord::Base
   belongs_to :book
   attr_accessible :texto_quarta_capa, :autor, :book_id, :organizador, :texto_na_lombada, :titulo_linha1, :titulo_linha2, :titulo_linha3, :cor_primaria, :cor_secundaria, 
-  					:logo_x1, :logo_x2, :logo_y1, :logo_y2, :logo_w, :logo_h
+  :logo_x1, :logo_x2, :logo_y1, :logo_y2, :logo_w, :logo_h
   
   attr_accessible :capa_imagem, :capa_imagem_x1, :capa_imagem_x2, :capa_imagem_y1, :capa_imagem_y2, :capa_imagem_w, :capa_imagem_h
   has_attached_file :capa_imagem, :styles => { :normal => ["600x600>", :jpg], :small => ["300x300#", :jpg] }, :default_url => "/images/:style/missing.png"
@@ -10,6 +10,11 @@ class CoverInfo < ActiveRecord::Base
   has_attached_file :capa_detalhe, :styles => { :normal => ["600x600>", :jpg], :small => ["300x300#", :jpg] }, :default_url => "/images/:style/missing.png"
 
   DEFAULT_CROP = "[0, 0, 30, 30]"
+
+  validate :image_dimensions
+
+  validates_attachment_size :capa_imagem, :less_than => 1.gigabyte, :message => "O tamanho limite do arquivo (1GB) foi ultrapassado"
+  validates_attachment_size :capa_detalhe, :less_than => 1.gigabyte, :message => "O tamanho limite do arquivo (1GB) foi ultrapassado"
 
   def cropping_logo?  
     !logo_x1.blank? and !logo_y1.blank? and !logo_w.blank? and !logo_h.blank?
@@ -63,6 +68,25 @@ class CoverInfo < ActiveRecord::Base
 
   def secundaria
     return self.cor_secundaria.nil? ? '6F7551' : self.cor_secundaria
+  end
+
+  private
+
+  def image_dimensions
+    image_dimension(capa_imagem) if capa_imagem.queued_for_write[:original]
+    image_dimension(capa_detalhe) if capa_detalhe.queued_for_write[:original]
+  end
+
+  def image_dimension(image)
+    dimensions = Paperclip::Geometry.from_file(image.queued_for_write[:original].path)
+    if dimensions.smaller < 300 
+      self.errors.add(image.name, 'Width or height must be at least 300px')
+    end
+
+    # 14cm = 529px
+    if dimensions.larger > 529
+      self.errors.add(image.name, 'Width or height must be at no more than 14cm')
+    end
   end
 
 end
