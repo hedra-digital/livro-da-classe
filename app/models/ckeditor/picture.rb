@@ -39,7 +39,7 @@ class Ckeditor::Picture < Ckeditor::Asset
                                         ],
                                       :message => "has to be in a proper format"
 
-  validate :image_dimension
+  validates_with ImageDimensionValidator, fields: [:data]
 
 
   before_create :randomize_file_name
@@ -57,17 +57,7 @@ private
   end
 
 
-  def image_dimension
-    dimensions = Paperclip::Geometry.from_file(data.queued_for_write[:original].path)
-    if dimensions.smaller < 300 
-      self.errors.add(data.name, 'Width or height must be at least 300px')
-    end
 
-    # 14cm = 529px
-    if dimensions.larger > 529
-      self.errors.add(data.name, 'Width or height must be at no more than 14cm')
-    end
-  end
 
 
 end

@@ -11,7 +11,7 @@ class CoverInfo < ActiveRecord::Base
 
   DEFAULT_CROP = "[0, 0, 30, 30]"
 
-  validate :image_dimensions
+  validates_with ImageDimensionValidator, fields: [:capa_imagem, :capa_detalhe]
 
   validates_attachment_size :capa_imagem, :less_than => 1.gigabyte, :message => "O tamanho limite do arquivo (1GB) foi ultrapassado"
   validates_attachment_size :capa_detalhe, :less_than => 1.gigabyte, :message => "O tamanho limite do arquivo (1GB) foi ultrapassado"
@@ -69,24 +69,4 @@ class CoverInfo < ActiveRecord::Base
   def secundaria
     return self.cor_secundaria.nil? ? '6F7551' : self.cor_secundaria
   end
-
-  private
-
-  def image_dimensions
-    image_dimension(capa_imagem) if capa_imagem.queued_for_write[:original]
-    image_dimension(capa_detalhe) if capa_detalhe.queued_for_write[:original]
-  end
-
-  def image_dimension(image)
-    dimensions = Paperclip::Geometry.from_file(image.queued_for_write[:original].path)
-    if dimensions.smaller < 300 
-      self.errors.add(image.name, 'Width or height must be at least 300px')
-    end
-
-    # 14cm = 529px
-    if dimensions.larger > 529
-      self.errors.add(image.name, 'Width or height must be at no more than 14cm')
-    end
-  end
-
 end
