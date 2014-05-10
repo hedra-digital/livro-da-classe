@@ -16,11 +16,12 @@
     <![endif]-->
     <div class="wrap wrap-app">
       <header class="main-header main-header-app">
-        <div class="navbar">
+        <div class="navbar" style="width: 1070px;">
           <div class="navbar-inner navbar-left">
             <ul class="nav">
               <!--<li><%= link_to "Templates", admin_templates_path %></li>-->
               <!--<li><%= link_to "Capa Padrão", admin_default_cover_path %></li>-->
+              <li><%= link_to t('my_books'), books_path %></li> <!-- class="active" -->
               <li><%= link_to "Expressões", admin_expressions_path if current_user.admin? %></li>
               <li><%= link_to "Recados", admin_scraps_path %></li>
               <li><%= link_to "Status", admin_book_statuses_path if current_user.admin? %></li>
