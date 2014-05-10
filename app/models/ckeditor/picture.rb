@@ -24,8 +24,9 @@ class Ckeditor::Picture < Ckeditor::Asset
                     }
 
   validates_attachment_size           :data,
-                                      :less_than => 50.megabytes,
-                                      :message => "has to be under 50 MB size"
+                                      :less_than => 1.gigabyte,
+                                      :message => "O tamanho limite do arquivo (1GB) foi ultrapassado"
+
   validates_attachment_presence       :data
   validates_attachment_content_type   :data,
                                       :content_type => [
@@ -37,6 +38,9 @@ class Ckeditor::Picture < Ckeditor::Asset
                                         'image/gif'
                                         ],
                                       :message => "has to be in a proper format"
+
+  validate :image_dimension
+
 
   before_create :randomize_file_name
 
@@ -51,5 +55,19 @@ private
     name = File.basename(data_file_name, extension).downcase
     self.data.instance_write(:file_name, "#{name}#{"%.0f" % Time.new.to_f}#{extension}")
   end
+
+
+  def image_dimension
+    dimensions = Paperclip::Geometry.from_file(data.queued_for_write[:original].path)
+    if dimensions.smaller < 300 
+      self.errors.add(data.name, 'Width or height must be at least 300px')
+    end
+
+    # 14cm = 529px
+    if dimensions.larger > 529
+      self.errors.add(data.name, 'Width or height must be at no more than 14cm')
+    end
+  end
+
 
 end

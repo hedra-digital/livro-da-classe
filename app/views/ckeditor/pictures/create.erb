@@ -1,0 +1,5 @@
+<div style='font: normal normal normal 12px Arial,Helvetica,Tahoma,Verdana,Sans-Serif;'>
+  <% @image.errors.messages.each do |key, msg|%> 
+  <%= msg.join('</br>').html_safe%>
+  <% end %>
+</div>
