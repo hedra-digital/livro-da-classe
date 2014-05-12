@@ -160,7 +160,7 @@ $('.bar ul li:nth-child(4)').addClass('active');
 $('.buttons ul li button:eq(3)').first().click()
 <% end %>
 
-<% if !(@book.cover_info.errors and [:capa_imagem, :capa_detalhe]).empty? %>
+<% if !(@book.cover_info.errors.messages.keys & [:capa_imagem, :capa_detalhe]).empty? %>
 $('.buttons ul li button:eq(1)').first().click()
 <% end %>
 
