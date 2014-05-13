@@ -36,7 +36,11 @@ class Admin::ProjectsController < Admin::ApplicationController
   end
 
   def refresh
-    BooksGenerateWorker.perform_async
+    background do 
+      Project.all.each do |project|
+        project.book.pdf
+      end
+    end 
     redirect_to admin_root_path, :notice => "Os projetos estão sendo atualizados..."
   end
 

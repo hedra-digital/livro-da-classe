@@ -124,9 +124,21 @@ class Book < ActiveRecord::Base
       File.rename(pdf_file, File.join(directory,"#{self.uuid}.pdf"))
       pdf_file = File.join(directory,"#{self.uuid}.pdf")
       pages = PDF::Reader.new(pdf_file).page_count
-
       self.update_attributes(:valid_pdf => true, :pages_count => pages)
+
+      # at the last 11 line of the log file
+      # if start with " (./LIVRO.aux", means pdf is ok
+      # the last 11 line may look like:
+      # (./LIVRO.aux (./TESTE.aux)) ) 
+      # (./LIVRO.aux (./INPUTS.aux)) ) 
+      # (./LIVRO.aux (./INPUTS.aux) (./PUBLICIDADE.aux)) ) 
+      if !File.readlines(directory + "/LIVRO.log").reverse[10].start_with?(" (./LIVRO.aux")
+        AdminMailer.pdf_to_latex_error(self, directory, "#{directory}/LIVRO.log").deliver
+        self.update_attributes(:valid_pdf => false)
+      end
+      
     else
+      # should never run at here, need refactory
       pdf_file = nil
       if File.exist?(File.join(directory, 'LIVRO.log'))
         AdminMailer.pdf_to_latex_error(self, directory, "#{directory}/LIVRO.log").deliver
