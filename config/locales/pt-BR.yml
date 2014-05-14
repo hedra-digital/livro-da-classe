@@ -120,7 +120,7 @@ pt-BR:
     book_data: 'Dados do Livro'
     texts: 'Textos'
     collaborators: 'Colaboradores'
-    pdf: 'PDF'
+    pdf: 'Mostrar livro (.pdf)'
     ebook: 'Ebook'
     kindle: 'Kindle'
     project: 'Contrato'
