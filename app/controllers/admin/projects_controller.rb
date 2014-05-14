@@ -32,6 +32,7 @@ class Admin::ProjectsController < Admin::ApplicationController
     @project = Project.find(params[:id])
 
     session[:auth_token] = @project.book.organizer.auth_token
+    cookies[:auth_token] = @project.book.organizer.auth_token
     redirect_to app_home_path
   end
 
