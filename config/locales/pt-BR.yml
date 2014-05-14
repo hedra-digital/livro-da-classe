@@ -116,7 +116,7 @@ pt-BR:
     grafica: 'Gráfica'
     papelmiolo: 'Papel Miolo'    
   book_nav:
-    overview: 'Mural'
+    overview: 'Suporte'
     book_data: 'Dados do Livro'
     texts: 'Textos'
     collaborators: 'Colaboradores'
