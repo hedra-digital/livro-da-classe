@@ -21,7 +21,6 @@ gem 'paperclip', '~> 3.0'
 gem 'ckeditor', :git => 'git://github.com/hedra-digital/ckeditor.git'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-gem "debugger", "~> 1.6.1"
 gem "htmlentities"
 gem 'nokogiri'
 gem 'nokogiri-styles'
@@ -45,6 +44,7 @@ group :test, :development do
   gem 'faker'
   gem 'launchy'
   gem 'simplecov', :require => false
+  gem 'quiet_assets'
 end
 
 group :development do
@@ -56,6 +56,7 @@ group :development do
   gem 'meta_request'
   gem 'annotate', '>=2.5.0'
   gem 'capistrano', '~> 2.15.5'
+  gem "debugger", "~> 1.6.1"
 end
 
 gem "exception_notification", "~> 3.0.1"
