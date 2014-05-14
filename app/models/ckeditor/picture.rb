@@ -21,7 +21,8 @@ class Ckeditor::Picture < Ckeditor::Asset
                     :styles => {
                       :content => ['100%', :jpg],
                       :thumb => ['118x100#', :jpg]
-                    }
+                    },
+                    :convert_options => { :all => '-colorspace cmyk'}
 
   validates_attachment_size           :data,
                                       :less_than => 50.megabytes,
