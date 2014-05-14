@@ -24,8 +24,8 @@ class Ckeditor::Picture < Ckeditor::Asset
                     }
 
   validates_attachment_size           :data,
-                                      :less_than => 1.gigabyte,
-                                      :message => "O tamanho limite do arquivo (1GB) foi ultrapassado"
+                                      :less_than => 50.megabytes,
+                                      :message => "O tamanho limite do arquivo (50MB) foi ultrapassado"
 
   validates_attachment_presence       :data
   validates_attachment_content_type   :data,

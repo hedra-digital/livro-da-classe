@@ -37,13 +37,20 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
 
     callback = ckeditor_before_create_asset(asset)
 
+    # params[:CKEditor].blank? , the call is from tab1.  else,  the call is from tab3
     if callback && asset.save
       body = params[:CKEditor].blank? ? asset.to_json(:only=>[:id, :type]) : %Q"<script type='text/javascript'>
       window.parent.CKEDITOR.tools.callFunction(#{params[:CKEditorFuncNum]}, '#{Ckeditor::Utils.escape_single_quotes(asset.url_content)}');
       </script>"
       render :text => body
     else
-      @image = asset
+      if body = params[:CKEditor].blank? 
+        render :json => { :error => asset.errors.messages[:data].first }
+        return
+      else
+        @image = asset
+      end
+
     end
   end
 end
