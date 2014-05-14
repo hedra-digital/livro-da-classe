@@ -1,6 +1,4 @@
 <% if @texts.present? %>
-  <h1>Textos</h1>
-
   <% if is_organizer? and can_write? %>
     <ul id="text-list" data-update-url="<%= sort_book_texts_path(@book) %>" class="text-list-organizer">
   <% else %>
