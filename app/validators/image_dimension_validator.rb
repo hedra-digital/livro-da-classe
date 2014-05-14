@@ -10,8 +10,9 @@ class ImageDimensionValidator < ActiveModel::Validator
     return unless image.queued_for_write[:original]
 
     dimensions = Paperclip::Geometry.from_file(image.queued_for_write[:original].path)
+    # disablie the smaller check this time
     if dimensions.smaller < 300 
-      record.errors.add(image.name, 'Width or height must be at least 300px')
+      # record.errors.add(image.name, 'Width or height must be at least 300px')
     end
 
     # 14cm = 529px
