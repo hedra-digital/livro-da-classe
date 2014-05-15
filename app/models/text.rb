@@ -18,7 +18,6 @@ class Text < ActiveRecord::Base
   # Callbacks
   before_save               :set_uuid
   before_save               :remove_expressions
-  before_save               :title_on_content
 
   # Relationships
   belongs_to                :book
@@ -59,6 +58,7 @@ class Text < ActiveRecord::Base
 
   def to_file
     self.book.check_repository
+    self.content = "<section class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
     content = LatexConverter.to_latex(self.content)
     File.open(self.filename,'wb') {|io| io.write(content) }
   end
@@ -95,12 +95,6 @@ class Text < ActiveRecord::Base
       Expression.where(:level => 2).each do |exp|
         self.content = self.content.gsub(eval(exp.target), "<span style='background-color:#FFD700;'>#{exp.replace}</span>")
       end
-    end
-  end
-
-  def title_on_content
-    if !self.new_record? and self.valid_content_changed? and self.valid_content_was.nil? 
-      self.content = "<section class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
     end
   end
 

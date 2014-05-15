@@ -15,12 +15,12 @@
   </ul>
 <% else %>
   <% if can_write? %>
-    <p class="blank">Nenhum texto encontrado. Que tal <%= link_to 'criar um novo texto?', new_book_text_path(@book.uuid) %></p>
+    <p class="blank">Nenhum capítulo encontrado. Que tal <%= link_to 'criar um novo capítulo?', new_book_text_path(@book.uuid) %></p>
   <% end %>
 <% end %>
 
 <% if can_write? %>
   <div class="btn-group">
-    <%= link_to 'Novo Texto', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small' %>
+    <%= link_to 'Novo Capítulo', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small' %>
   </div>
 <% end %>

@@ -20,11 +20,16 @@ CKEDITOR.plugins.add( 'generatepdf', {
                 dataType: 'json'
             })
                .done(function(response) {
-                console.log("download pdf success");
                 $('.cke_button__generatepdf_icon').css("background-image", normal_icon);
                 CKEDITOR.instances.text_content.commands.generatePdf.enable()
 
-                window.location.replace(response.path);
+                console.log("download pdf success");
+
+                // sleep 300ms to let the icon show first
+                setTimeout(function(){
+                  window.location.replace(response.path);
+                  }
+                  , 300);
             })
                .fail(function() {
                 console.log("download pdf error");
