@@ -39,10 +39,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @scraps = Scrap.where(:parent_scrap_id => nil, :book_id => @book.id).order('created_at DESC').all
-    respond_to do |format|
-      format.html
-    end
+    redirect_to book_texts_path(@book.uuid)
   end
 
   def generate_pdf

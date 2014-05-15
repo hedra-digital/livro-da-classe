@@ -41,6 +41,7 @@ Livrodaclasse::Application.routes.draw do
       end
     end
     resources :projects
+    resources :scraps
   end
   get 'books/:id/cover_info', to: 'books#cover_info', as: :book_cover_info
   get 'books/:id/revision', to: 'books#revision', as: :book_revision

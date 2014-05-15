@@ -1,31 +1,29 @@
-<% if @books.present? %>
+<input type="hidden" id="hidden_book_id" value="<%= @book.uuid %>"></input>
+
+<% if @scraps.present? %>
   <table class="table table-striped">
     <tr>
-      <th>Título</th>
-      <th>Criado em</th>
-      <th>Modificado em</th>
-      <th>Status</th>
-      <th>Textos</th>
-      <th>Papel</th>
       <th></th>
+      <th>Chamado</th>
+      <th>Data</th>
+      <th>Conversa</th>
       <th></th>
     </tr>
-    <% @books.each do |book| %>
+    <% @scraps.each do |scrap| %>
       <tr>
-        <td><%= link_to title_text(book), book_path(book.uuid) %>, (<%= book.organizer.name.presence || book.organizer.email %>, org.)</td>
-        <td><%= l(book.created_at, :format => :short) %></td>
-        <td><%= l(book.accessed_at, :format => :short) if book.accessed_at %></td>
-        <td><%= book.project.status_to_s %></td>
-        <td><%= raw book.texts.size %></td>
-        <td><%= book_role_label(book, current_user) %></td>
-        <td><%= book_pages(book) %></td>
-        <td><%= book_remove_label(book, current_user) %></td>
+        <td><span class="badge"><%= scrap.answered? ? '!' : '' %></span></td>
+        <td><%= "##{scrap.id}" %></td>
+        <td><span class="label label-info"><%= scrap.created_at.strftime("%d/%m/%Y") %></span></td>
+        <td><%= "#{scrap.content[0..20]}..." %></td>
+        <td><%= link_to 'Expandir', scraps_thread_path(scrap), :class => 'btn btn-mini' %></td>
       </tr>
     <% end %>
   </table>
   <div class="btn-group">
-    <%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary btn-new btn-small' %>
+    <%= link_to 'Nova Conversa', new_scrap_path(@book.id), :class => 'btn btn-primary btn-new btn-small' %>
   </div>
 <% else %>
-  <p class="blank">Você não tem nenhum livro. Que tal <%= link_to 'começar um agora?', new_book_path %></p>
+  <% if can_write? %>
+    <p class="blank">Nenhuma conversa encontrada. <%= link_to 'Criar uma nova conversa?', new_scrap_path(@book.id) %></p>
+  <% end %>
 <% end %>
