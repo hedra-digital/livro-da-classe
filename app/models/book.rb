@@ -132,7 +132,13 @@ class Book < ActiveRecord::Base
       # (./LIVRO.aux (./TESTE.aux)) ) 
       # (./LIVRO.aux (./INPUTS.aux)) ) 
       # (./LIVRO.aux (./INPUTS.aux) (./PUBLICIDADE.aux)) ) 
-      if !File.readlines(directory + "/LIVRO.log").reverse[10].start_with?(" (./LIVRO.aux")
+      # sometime, this line is not in the 11th.
+      log_valid = false
+      [9, 10, 11].each do |n|
+        log_valid = (log_valid or File.readlines(directory + "/LIVRO.log").reverse[n].start_with?(" (./LIVRO.aux") )
+      end
+
+      if !log_valid
         AdminMailer.pdf_to_latex_error(self, directory, "#{directory}/LIVRO.log").deliver
         self.update_attributes(:valid_pdf => false)
       end
