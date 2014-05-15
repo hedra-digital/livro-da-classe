@@ -58,8 +58,7 @@ class Text < ActiveRecord::Base
 
   def to_file
     self.book.check_repository
-    self.content = "<section class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
-    content = LatexConverter.to_latex(self.content)
+    content = LatexConverter.to_latex(self.content_with_head)
     File.open(self.filename,'wb') {|io| io.write(content) }
   end
 
@@ -78,6 +77,10 @@ class Text < ActiveRecord::Base
 
   def short_filename
     "#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{self.id}.tex"
+  end
+
+  def content_with_head
+    "<section class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
   end
 
   private
