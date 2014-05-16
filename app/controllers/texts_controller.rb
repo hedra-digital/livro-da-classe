@@ -94,14 +94,19 @@ class TextsController < ApplicationController
     chapters << current_chapter if current_chapter.count > 0
 
     #modify chapter
-    modified_chapters_id = []
+    in_chapters_id = []
     chapters.each do |chapter|
 
       # chapter's first node must be "section"
       chapter_node = chapter.shift 
-      text = Text.find_by_uuid(chapter_node.attribute("data-id").value)
 
-      modified_chapters_id << text.id
+      if chapter_node.attribute("data-id")
+        text = Text.find_by_uuid(chapter_node.attribute("data-id").value)
+      else
+        text = Text.new
+        text.book = @book
+        text.user = current_user
+      end
 
       text.title = chapter_node.at_css("h1").text
       text.subtitle = chapter_node.at_css("h3").text
@@ -110,13 +115,16 @@ class TextsController < ApplicationController
       text.content = chapter.map(&:to_html).join()
       text.valid_content = text.validate_content
       text.save
+
+      # after save, the new chapter have id
+      in_chapters_id << text.id
       # TODO add git support
     end
 
-    #delete chapter if not in modified_chapters_id
+    #delete chapter if not in in_chapters_id
     # TODO add git support
     @book.texts.each do |t|
-      t.destroy unless modified_chapters_id.include?(t.id)
+      t.destroy unless in_chapters_id.include?(t.id)
     end
 
     respond_to do |format|
