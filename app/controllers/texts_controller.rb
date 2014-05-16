@@ -4,7 +4,7 @@ class TextsController < ApplicationController
   before_filter :secure_book, :only => [:update, :create]
 
   def index
-    @texts = @book.texts.order('-position DESC')
+    @texts = @book.texts.order('position')
   end
 
   def show
@@ -70,10 +70,12 @@ class TextsController < ApplicationController
 
   def all
     @text = Text.new
-    @text.content = @book.texts.map(&:content_with_head).join()
+    @text.content = @book.texts.order('position').map(&:content_with_head).join()
   end
 
   def save_all
+    # TODO not a good idea to use session, need refatcory the code base
+    session['book_id'] = @book.id
     doc = Nokogiri::HTML(params[:text][:content])
 
     chapters = []
@@ -92,18 +94,29 @@ class TextsController < ApplicationController
     chapters << current_chapter if current_chapter.count > 0
 
     #modify chapter
+    modified_chapters_id = []
     chapters.each do |chapter|
 
       # chapter's first node must be "section"
       chapter_node = chapter.shift 
       text = Text.find_by_uuid(chapter_node.attribute("data-id").value)
 
+      modified_chapters_id << text.id
+
       text.title = chapter_node.at_css("h1").text
       text.subtitle = chapter_node.at_css("h3").text
       text.author = chapter_node.at_css("p").text
 
       text.content = chapter.map(&:to_html).join()
+      text.valid_content = text.validate_content
       text.save
+      # TODO add git support
+    end
+
+    #delete chapter if not in modified_chapters_id
+    # TODO add git support
+    @book.texts.each do |t|
+      t.destroy unless modified_chapters_id.include?(t.id)
     end
 
     respond_to do |format|

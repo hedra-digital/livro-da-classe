@@ -23,15 +23,16 @@ CKEDITOR.plugins.add( 'ajaxsave', {
                 data: $("form").first().serialize()
             })
                .done(function(response) {
+                // turn it back
+                $('.cke_button__ajaxsave_icon').css("background-image", normal_icon);
+                CKEDITOR.instances.text_content.commands.ajaxSave.enable()
                 console.log("updae text success");
             })
                .fail(function() {
                 console.log("updae text error");
             })
                .always(function() {
-                // turn it back
-                $('.cke_button__ajaxsave_icon').css("background-image", normal_icon);
-                CKEDITOR.instances.text_content.commands.ajaxSave.enable()
+
             });
            }
        });
