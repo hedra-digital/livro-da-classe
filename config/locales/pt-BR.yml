@@ -118,7 +118,7 @@ pt-BR:
   book_nav:
     overview: 'Suporte'
     book_data: 'Dados do Livro'
-    texts: 'Textos'
+    texts: 'Capítulos'
     collaborators: 'Colaboradores'
     pdf: 'Mostrar livro (.pdf)'
     ebook: 'Ebook'
@@ -354,8 +354,8 @@ pt-BR:
         one: Permissão
         other: Permissões
       text:
-        one: Texto
-        other: Textos
+        one: Capítulo
+        other: Capítulos
       client:
         one: Cliente
         other: Clientes
@@ -419,7 +419,7 @@ pt-BR:
         organizers: 'Organizador'
         directors: 'Diretor'
         coordinators: 'Coordenação'
-        texts: 'Textos'
+        texts: 'Capítulos'
         cover: 'Capa'
         institution: 'Instituição'
         street: 'Logradouro'
