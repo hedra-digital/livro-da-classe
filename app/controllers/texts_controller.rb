@@ -121,6 +121,10 @@ class TextsController < ApplicationController
       # TODO add git support
     end
 
+    in_chapters_id.each_with_index do |id, index|
+      Text.find(id).update_attribute(:position, index)
+    end
+
     #delete chapter if not in in_chapters_id
     # TODO add git support
     @book.texts.each do |t|
