@@ -84,7 +84,7 @@ CKEDITOR.editorConfig = function(config) {
       'span(latex-inputbox); span(epigraph-author); span{color,background-color};' +
       'p[align]; p{align,text-align};' +
       'div[!id];' +
-      'section(epigraph); section(chapter);' +
+      'section(epigraph); section(chapter); section[data-id];' +
       'div(verse); div(smallskip); div(medskip); div(bigskip);';
 
   // Rails CSRF token

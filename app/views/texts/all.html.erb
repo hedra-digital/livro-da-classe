@@ -1,0 +1,19 @@
+<%= simple_form_for([@book, @text], :url=>save_all_book_texts_path, :html => {:method => 'put', :class => 'form-vertical' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="row">
+    <% if can_review? %>
+      <div class="span2 form-horizontal inline-checkbox"><%= f.input :revised %></div>
+    <% end %>
+  </div>
+  <% if can_git? %>
+    <div class="row">
+      <div class="span11 fill">
+        <%= f.input :git_message, :placeholder => 'Mensagem' %>
+      </div>
+    </div>
+  <% end %>
+  <%= f.input :content, :label => false, :as => :ckeditor %>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t(:cancel), book_path(@book.uuid), :class => 'btn' %>
+<% end %>

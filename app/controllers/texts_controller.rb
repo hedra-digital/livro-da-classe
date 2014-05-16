@@ -68,6 +68,51 @@ class TextsController < ApplicationController
     redirect_to book_texts_path(text.book.uuid)
   end
 
+  def all
+    @text = Text.new
+    @text.content = @book.texts.map(&:content_with_head).join()
+  end
+
+  def save_all
+    doc = Nokogiri::HTML(params[:text][:content])
+
+    chapters = []
+    current_chapter = [] # current chapter is a html nodes arrary
+
+    doc.css('body > *').each do |level_1_node|
+      if (level_1_node.node_name == "section" and level_1_node.attribute("class").value == "chapter")
+
+        chapters << current_chapter if current_chapter.count > 0
+        current_chapter = []
+      end
+
+      current_chapter << level_1_node
+    end
+    # add the last chapter
+    chapters << current_chapter if current_chapter.count > 0
+
+    #modify chapter
+    chapters.each do |chapter|
+
+      # chapter's first node must be "section"
+      chapter_node = chapter.shift 
+      text = Text.find_by_uuid(chapter_node.attribute("data-id").value)
+
+      text.title = chapter_node.at_css("h1").text
+      text.subtitle = chapter_node.at_css("h3").text
+      text.author = chapter_node.at_css("p").text
+
+      text.content = chapter.map(&:to_html).join()
+      text.save
+    end
+
+    respond_to do |format|
+      format.html  {redirect_to book_texts_path(@book.uuid), :notice => t('activerecord.successful.messages.updated', :model => Text.model_name.human)}
+      format.json  { render :json => {:ok => :ture} }
+    end
+
+  end
+
   private
 
   def find_book

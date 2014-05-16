@@ -29,7 +29,13 @@ Livrodaclasse::Application.routes.draw do
   resources :sessions
   resources :password_resets
   resources :books do
+
     resources :texts do
+      collection do
+        get 'all'
+        put 'save_all'
+      end
+
       resources :comments
       collection do
         post 'sort'

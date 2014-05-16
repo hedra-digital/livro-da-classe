@@ -80,7 +80,7 @@ class Text < ActiveRecord::Base
   end
 
   def content_with_head
-    "<section class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
+    "<section data-id='#{self.uuid}' class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
   end
 
   private

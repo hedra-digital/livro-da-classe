@@ -22,5 +22,6 @@
 <% if can_write? %>
   <div class="btn-group">
     <%= link_to 'Novo Capítulo', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small' %>
+    <%= link_to 'Editar todos os capítulo juntos', all_book_texts_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small' %>
   </div>
 <% end %>
