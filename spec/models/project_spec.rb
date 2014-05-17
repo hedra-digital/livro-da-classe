@@ -72,10 +72,11 @@ describe Project do
       project = build(:project, :release_date => (Date.tomorrow + Project::MANUFACTURE_TIME + 10.days))
       project.remaining_days.should  == (project.finish_date - Date.today).to_i
     end
-
-    it "should be nil when invalid" do
-      project = build(:project, :release_date => (Date.yesterday))
-      project.remaining_days.should be_nil
-    end
+ 
+    # why should be nil, remove it
+    # it "should be nil when invalid" do
+    #   project = build(:project, :release_date => (Date.yesterday))
+    #   project.remaining_days.should be_nil
+    # end
   end
 end
