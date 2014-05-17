@@ -9,7 +9,6 @@ class TextsController < ApplicationController
 
   def show
     @text = Text.find_by_uuid_or_id(params[:id])
-    @book = @text.book
     @comment = Comment.new
   end
 

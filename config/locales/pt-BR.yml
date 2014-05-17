@@ -19,7 +19,7 @@ pt-BR:
   email_ask_heading: 'Ainda não temos seu e-mail!'
   email_ask_body: 'Para continuar usando o Livro da Classe, por favor informe seu email.'
   cancel: 'Cancelar'
-  initial_text_title: 'Título do texto'
+  initial_text_title: 'Título do capítulo'
   invite_new_collaborator: 'Convidar novo colaborador'
   send_invitation_submit: 'Enviar convite'
   current_collaborators: 'Colaboradores atuais'
