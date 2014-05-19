@@ -123,8 +123,8 @@ pt-BR:
     pdf: 'Mostrar livro (.pdf)'
     ebook: 'Ebook'
     kindle: 'Kindle'
-    project: 'Contrato'
-    publish: 'Contratar impressão'
+    project: 'Contratar impressão'
+    publish: 'Contratar'
     git: 'Revisão'
   helpers:
     submit:
