@@ -124,7 +124,7 @@ pt-BR:
     ebook: 'Ebook'
     kindle: 'Kindle'
     project: 'Contrato'
-    publish: 'Contratar'
+    publish: 'Contratar impressão'
     git: 'Revisão'
   helpers:
     submit:

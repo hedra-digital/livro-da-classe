@@ -26,12 +26,12 @@ describe 'book organizer' do
     end
 
     it "clicks the new project link" do
-      click_link 'Contrato'
+      click_link 'Contratar impressão'
       current_path.should eq(new_book_project_path(book.uuid))
     end
 
     it "fills out form" do
-      click_link 'Contrato'
+      click_link 'Contratar impressão'
       fill_in 'project_release_date', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
@@ -42,7 +42,7 @@ describe 'book organizer' do
     end
 
     it "clicks submit button" do
-      click_link 'Contrato'
+      click_link 'Contratar impressão'
       fill_in 'project_release_date', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
@@ -54,7 +54,7 @@ describe 'book organizer' do
     end
 
     it "creates new project" do
-      click_link 'Contrato'
+      click_link 'Contratar impressão'
       fill_in 'project_release_date', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
@@ -66,7 +66,7 @@ describe 'book organizer' do
     end
 
     it "gets redirected to book page" do
-      click_link 'Contrato'
+      click_link 'Contratar impressão'
       fill_in 'project_release_date', :with => project_attributes[:release_date]
       fill_in 'Nome', :with => organizer.name
       fill_in 'Email', :with => organizer.email
@@ -99,7 +99,7 @@ describe 'book organizer' do
   #   end
 
   #   it "does not see the new project link" do
-  #     page.should_not have_link('Contrato')
+  #     page.should_not have_link('Contratar impressão')
   #   end
 
   # end
