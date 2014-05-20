@@ -89,7 +89,7 @@ class Text < ActiveRecord::Base
     current_chapter = [] # current chapter is a html nodes arrary
 
     doc.css('body > *').each do |level_1_node|
-      if (level_1_node.node_name == "section" and level_1_node.attribute("class").value == "chapter")
+      if (level_1_node.node_name == "section" and level_1_node.attribute("class").value == "chapter") or level_1_node.node_name == "h1"
 
         chapters << current_chapter if current_chapter.count > 0
         current_chapter = []
@@ -103,7 +103,7 @@ class Text < ActiveRecord::Base
     chapters
   end
 
-  def self.save_split_chapters(chapters)
+  def self.save_split_chapters(chapters, book, current_user)
     chapter_ids = []
     chapters.each do |chapter|
 
@@ -114,13 +114,18 @@ class Text < ActiveRecord::Base
         text = Text.find_by_uuid(chapter_node.attribute("data-id").value)
       else
         text = Text.new
-        text.book = @book
+        text.book = book
         text.user = current_user
       end
 
-      text.title = chapter_node.at_css("h1").text
-      text.subtitle = chapter_node.at_css("h3").text
-      text.author = chapter_node.at_css("p").text
+      if chapter_node.node_name == "section"
+        text.title = chapter_node.at_css("h1").text
+        text.subtitle = chapter_node.at_css("h3").text if chapter_node.at_css("h3")
+        text.author = chapter_node.at_css("p").text if chapter_node.at_css("p")
+      else
+        # for h1
+        text.title = chapter_node.content
+      end
 
       text.content = chapter.map(&:to_html).join()
       text.valid_content = text.validate_content
@@ -129,6 +134,7 @@ class Text < ActiveRecord::Base
       # after save, the new chapter have id
       chapter_ids << text.id
       # TODO add git support
+      # TODO this will create more text in db, and delete it. if save it many times. because do not give the new data id to new text
     end
     chapter_ids
   end

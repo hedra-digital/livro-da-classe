@@ -78,7 +78,7 @@ class TextsController < ApplicationController
 
     chapters = Text.split_chpaters(params[:text][:content])
 
-    chapter_ids = Text.save_split_chapters(chapters)
+    chapter_ids = Text.save_split_chapters(chapters, @book, current_user)
 
     chapter_ids.each_with_index do |id, index|
       Text.find(id).update_attribute(:position, index)
