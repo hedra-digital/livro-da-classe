@@ -75,22 +75,8 @@ class TextsController < ApplicationController
   def save_all
     # TODO not a good idea to use session, need refatcory the code base
     session['book_id'] = @book.id
-    doc = Nokogiri::HTML(params[:text][:content])
 
-    chapters = []
-    current_chapter = [] # current chapter is a html nodes arrary
-
-    doc.css('body > *').each do |level_1_node|
-      if (level_1_node.node_name == "section" and level_1_node.attribute("class").value == "chapter")
-
-        chapters << current_chapter if current_chapter.count > 0
-        current_chapter = []
-      end
-
-      current_chapter << level_1_node
-    end
-    # add the last chapter
-    chapters << current_chapter if current_chapter.count > 0
+    chapters = Text.split_chpaters(params[:text][:content])
 
     #modify chapter
     in_chapters_id = []

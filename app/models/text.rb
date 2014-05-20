@@ -35,10 +35,10 @@ class Text < ActiveRecord::Base
   attr_accessor             :git_message
 
   has_attached_file :image,
-                    :styles => {
-                      :normal => ["600x600>", :png],
-                      :small => ["300x300>", :png]
-                    }
+  :styles => {
+    :normal => ["600x600>", :png],
+    :small => ["300x300>", :png]
+  }
 
   attr_accessor             :finished_at
 
@@ -83,10 +83,30 @@ class Text < ActiveRecord::Base
     "<section data-id='#{self.uuid}' class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
   end
 
+  def self.split_chpaters(content)
+    doc = Nokogiri::HTML(content)
+    chapters = []
+    current_chapter = [] # current chapter is a html nodes arrary
+
+    doc.css('body > *').each do |level_1_node|
+      if (level_1_node.node_name == "section" and level_1_node.attribute("class").value == "chapter")
+
+        chapters << current_chapter if current_chapter.count > 0
+        current_chapter = []
+      end
+
+      current_chapter << level_1_node
+    end
+    # add the last chapter
+    chapters << current_chapter if current_chapter.count > 0
+
+    chapters
+  end
+
   private
 
   def set_uuid
-     self.uuid = Guid.new.to_s if self.uuid.nil?
+    self.uuid = Guid.new.to_s if self.uuid.nil?
   end
 
   def remove_expressions
