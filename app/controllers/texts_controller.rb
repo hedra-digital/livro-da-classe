@@ -78,42 +78,16 @@ class TextsController < ApplicationController
 
     chapters = Text.split_chpaters(params[:text][:content])
 
-    #modify chapter
-    in_chapters_id = []
-    chapters.each do |chapter|
+    chapter_ids = Text.save_split_chapters(chapters)
 
-      # chapter's first node must be "section"
-      chapter_node = chapter.shift 
-
-      if chapter_node.attribute("data-id")
-        text = Text.find_by_uuid(chapter_node.attribute("data-id").value)
-      else
-        text = Text.new
-        text.book = @book
-        text.user = current_user
-      end
-
-      text.title = chapter_node.at_css("h1").text
-      text.subtitle = chapter_node.at_css("h3").text
-      text.author = chapter_node.at_css("p").text
-
-      text.content = chapter.map(&:to_html).join()
-      text.valid_content = text.validate_content
-      text.save
-
-      # after save, the new chapter have id
-      in_chapters_id << text.id
-      # TODO add git support
-    end
-
-    in_chapters_id.each_with_index do |id, index|
+    chapter_ids.each_with_index do |id, index|
       Text.find(id).update_attribute(:position, index)
     end
 
-    #delete chapter if not in in_chapters_id
+    #delete chapter if not in chapter_ids
     # TODO add git support
     @book.texts.each do |t|
-      t.destroy unless in_chapters_id.include?(t.id)
+      t.destroy unless chapter_ids.include?(t.id)
     end
 
     respond_to do |format|

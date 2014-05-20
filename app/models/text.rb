@@ -103,6 +103,36 @@ class Text < ActiveRecord::Base
     chapters
   end
 
+  def self.save_split_chapters(chapters)
+    chapter_ids = []
+    chapters.each do |chapter|
+
+      # chapter's first node must be "section" or "h1"
+      chapter_node = chapter.shift 
+
+      if chapter_node.attribute("data-id")
+        text = Text.find_by_uuid(chapter_node.attribute("data-id").value)
+      else
+        text = Text.new
+        text.book = @book
+        text.user = current_user
+      end
+
+      text.title = chapter_node.at_css("h1").text
+      text.subtitle = chapter_node.at_css("h3").text
+      text.author = chapter_node.at_css("p").text
+
+      text.content = chapter.map(&:to_html).join()
+      text.valid_content = text.validate_content
+      text.save
+
+      # after save, the new chapter have id
+      chapter_ids << text.id
+      # TODO add git support
+    end
+    chapter_ids
+  end
+
   private
 
   def set_uuid
