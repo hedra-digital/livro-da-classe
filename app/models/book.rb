@@ -48,17 +48,17 @@ class Book < ActiveRecord::Base
 
   # Paperclip attachment
   has_attached_file :cover,
-                    :url => "/system/:class/:attachment/:id_partition/:style/Capa.:extension",
-                    :styles => {
-                      :content => ['100%', :jpg],
-                      :thumb => ['60x80>', :jpg]
-                    }
+  :url => "/system/:class/:attachment/:id_partition/:style/Capa.:extension",
+  :styles => {
+    :content => ['100%', :jpg],
+    :thumb => ['60x80>', :jpg]
+  }
 
   has_attached_file :document
 
   validates_attachment_size :document,
-                            :less_than => 25.megabytes,
-                            :message => "O tamanho limite do arquivo (25MB) foi ultrapassado"
+  :less_than => 25.megabytes,
+  :message => "O tamanho limite do arquivo (25MB) foi ultrapassado"
 
   after_validation :join_document_errors
 
@@ -117,7 +117,7 @@ class Book < ActiveRecord::Base
           Process.exit! 1
         end
       end
-    )
+      )
 
     # check rotine success
     if File.exist?(pdf_file = File.join(directory, 'LIVRO.pdf'))
@@ -173,7 +173,7 @@ class Book < ActiveRecord::Base
             Process.exit! 1
           end
         end
-      )
+        )
       # check rotine success
       if File.exist?(ebook_file = File.join(directory, 'ebook', 'EBOOK.idv'))
         File.rename(ebook_file, File.join(directory, 'ebook',"#{self.uuid}.idv"))
@@ -192,7 +192,7 @@ class Book < ActiveRecord::Base
             Process.exit! 1
           end
         end
-      )
+        )
       # check rotine success
       if File.exist?(ebook_file = File.join(directory, 'ebook', 'EBOOK.epub'))
         File.rename(ebook_file, File.join(directory, 'ebook',"#{self.uuid}.epub"))
@@ -229,8 +229,10 @@ class Book < ActiveRecord::Base
     if !self.book_data.nil? && !Dir.exists?(directory)
       FileUtils.mkdir_p(directory)
       FileUtils.cp_r(Dir[File.join(template_directory,"*")], directory)
-      Version.commit_directory directory, "New Book => #{self.title}", directory_name
-      pdf #make sure that has a file .pdf
+
+      system "curl --user #{CONFIG[Rails.env.to_sym]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data owner=#{CONFIG[Rails.env.to_sym]["git_team"]} --data is_private=true"
+      system "cd #{directory}/ && git init && git remote add origin #{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git && git add . && git commit -a -m \"New Book => #{self.title}\" && git push origin master"
+
       ebook if has_ebook? #make sure that has a file .epub and .ivk if template supports ebook
     end
   end
