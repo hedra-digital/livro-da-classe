@@ -57,6 +57,8 @@ class TextsController < ApplicationController
         end
       end
 
+      Text.set_positoins_after_split(chapter_ids)
+
       Version.commit_file(@text.book.directory, @text, current_user.profile.desc, current_user.name, params[:text][:git_message])
       respond_to do |format|
         format.html  {redirect_to book_text_path(@book.uuid, @text.uuid), :notice => t('activerecord.successful.messages.updated', :model => @text.class.model_name.human)}

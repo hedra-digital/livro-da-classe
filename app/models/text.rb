@@ -144,6 +144,33 @@ class Text < ActiveRecord::Base
     chapter_ids
   end
 
+  # in this way, we can save it for many times without the wrong position
+  def self.set_positoins_after_split(chapter_ids)
+
+    current_chapter_id = chapter_ids.shift
+    current_book_id = Text.find(current_chapter_id).book_id
+
+    chapters = Text.where(:book_id => current_book_id).order("position")
+    book_chapter_ids = []
+    chapters.each do |c|
+      book_chapter_ids << c.id
+    end
+
+    # remove the new chapter ids
+    book_chapter_ids = book_chapter_ids - chapter_ids
+
+    # add the new chapter ids in the right position
+    book_chapter_ids.insert((book_chapter_ids.index(current_chapter_id) + 1), *chapter_ids)
+
+    # set the right position to all chapters in this book    
+    book_chapter_ids.each_with_index do |id, index|
+      chapter = Text.find(id)
+      chapter.position = index + 1
+      chapter.save
+    end
+
+  end
+
   private
 
   def set_uuid
