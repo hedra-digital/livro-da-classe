@@ -100,9 +100,6 @@ class Book < ActiveRecord::Base
   end
 
   def pdf user_profile=nil
-    #check repository existence
-    self.check_repository
-
     # generate latex files
     self.generate_latex_files
 
@@ -155,9 +152,6 @@ class Book < ActiveRecord::Base
   end
 
   def ebook is_kindle=false
-    #check repository existence
-    self.check_repository
-
     # generate latex files
     self.generate_latex_files
 
@@ -233,7 +227,6 @@ class Book < ActiveRecord::Base
       system "curl --user #{CONFIG[Rails.env.to_sym]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data owner=#{CONFIG[Rails.env.to_sym]["git_team"]} --data is_private=true"
       system "cd #{directory}/ && git init && git remote add origin #{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git && git add . && git commit -a -m \"New Book => #{self.title}\" && git push origin master"
 
-      ebook if has_ebook? #make sure that has a file .epub and .ivk if template supports ebook
     end
   end
 
