@@ -36,11 +36,31 @@ class TextsController < ApplicationController
   def update
     @text = Text.find_by_uuid_or_id(params[:id])
     @text.valid_content = @text.validate_content
+    
+    # do not save the content, because we need to split it later
+    content = params[:text].delete(:content)
+
     if @text.update_attributes(params[:text])
+      @text.content = content
+
+      chapters = Text.split_chpaters(@text.content_with_head)
+
+      chapter_ids = Text.save_split_chapters(chapters, @book, current_user)
+
+      # the new content with data id will be render to ckeditor, so no dump chapter after ajaxSave
+      new_content = []
+      chapter_ids.each_with_index do |id, index|
+        if index == 0
+          new_content << Text.find(id).content
+        else
+          new_content << Text.find(id).content_with_h1_head
+        end
+      end
+
       Version.commit_file(@text.book.directory, @text, current_user.profile.desc, current_user.name, params[:text][:git_message])
       respond_to do |format|
         format.html  {redirect_to book_text_path(@book.uuid, @text.uuid), :notice => t('activerecord.successful.messages.updated', :model => @text.class.model_name.human)}
-        format.json  { render :json => @text }
+        format.json  { render :json => {:refresh => true, :content => new_content.join()} }
       end
     else
       render :edit

@@ -85,6 +85,7 @@ CKEDITOR.editorConfig = function(config) {
       'p[align]; p{align,text-align};' +
       'div[!id];' +
       'section(epigraph); section(chapter); section[data-id];' +
+      'h1[data-id];' + 
       'div(verse); div(smallskip); div(medskip); div(bigskip);';
 
   // Rails CSRF token

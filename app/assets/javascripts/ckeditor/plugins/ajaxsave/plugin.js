@@ -23,6 +23,10 @@ CKEDITOR.plugins.add( 'ajaxsave', {
                 data: $("form").first().serialize()
             })
                .done(function(response) {
+                if(response.refresh){
+                  CKEDITOR.instances.text_content.setData(response.content);
+                }
+
                 // turn it back
                 $('.cke_button__ajaxsave_icon').css("background-image", normal_icon);
                 CKEDITOR.instances.text_content.commands.ajaxSave.enable()

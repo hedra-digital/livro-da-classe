@@ -18,6 +18,7 @@ class Text < ActiveRecord::Base
   # Callbacks
   before_save               :set_uuid
   before_save               :remove_expressions
+  before_save               :set_positoin
 
   # Relationships
   belongs_to                :book
@@ -83,6 +84,10 @@ class Text < ActiveRecord::Base
     "<section data-id='#{self.uuid}' class=\"chapter\"><h1>#{self.title}</h1><h3>#{self.subtitle}</h3><p>#{self.author}</p></section>#{self.content}"
   end
 
+  def content_with_h1_head
+    "<h1 data-id='#{self.uuid}'>#{self.title}</h1>#{self.content}"
+  end
+
   def self.split_chpaters(content)
     doc = Nokogiri::HTML(content)
     chapters = []
@@ -143,6 +148,11 @@ class Text < ActiveRecord::Base
 
   def set_uuid
     self.uuid = Guid.new.to_s if self.uuid.nil?
+  end
+
+  # set the default positoin
+  def set_positoin
+    self.position = self.book.texts.count + 1 unless self.position
   end
 
   def remove_expressions
