@@ -93,15 +93,8 @@ class MarkupLatex
   end
 
   def prepare_footnote(text)
-    Nokogiri::HTML(text).css("a[name]").each do |footnote|
-      footnote_id = footnote['name']
-      Nokogiri::HTML(text).css("a[href='##{footnote_id}']").each do |footnote_ref|
-        footnote_container = footnote_ref.parent
-        text = text.sub(footnote_container.parent.to_s, "")
-        footnote_ref.remove
-        footnote_text = convert_with_pandoc footnote_container.to_s
-        text = text.sub(footnote.to_s, "<font>|>|\\footnote{#{footnote_text}} |<|</font>")        
-      end
+    Nokogiri::HTML(text).css("a[name='footnote']").each do |footnote|
+      text = text.sub(footnote.to_s, "<font>|>|\\footnote{#{footnote.content}} |<|</font>")        
     end
     text
   end
