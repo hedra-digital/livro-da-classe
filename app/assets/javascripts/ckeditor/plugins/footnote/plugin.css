@@ -2,8 +2,22 @@ a.footnote{
   background: no-repeat left center;
   padding-left: 18px;
   cursor: pointer;
+  position: relative;
 }
 
 a.footnote span{
   display: none;
+}
+
+a.footnote:hover span{
+  position: absolute;
+  background: #333;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 15px;
+  display: block;
+  min-width: 200px;
+  left: 24px;
+  top: -7px;
+  z-index: 100;
 }
