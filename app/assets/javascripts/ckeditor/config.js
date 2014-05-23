@@ -39,7 +39,7 @@ CKEDITOR.editorConfig = function(config) {
     '/',
     { name: 'basicstyles', items : [ 'Bold','Italic','Subscript','Superscript','-','RemoveFormat' ] },
     { name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },
-    { name: 'insert', items : [ 'Image','Table','HorizontalRule', 'SpecialChar','EqnEditor'] },
+    { name: 'insert', items : [ 'Image','Table','HorizontalRule', 'SpecialChar','EqnEditor', 'Footnote'] },
     { name: 'colors', items : [ 'TextColor','BGColor' ] },
     { name: 'styles', items : [ 'Format', 'LatexFormater' ] }
   ];
@@ -86,6 +86,7 @@ CKEDITOR.editorConfig = function(config) {
       'div[!id];' +
       'section(epigraph); section(chapter); section[data-id];' +
       'h1[data-id];' + 
+      'a(footnote);' +
       'div(verse); div(smallskip); div(medskip); div(bigskip);';
 
   // Rails CSRF token

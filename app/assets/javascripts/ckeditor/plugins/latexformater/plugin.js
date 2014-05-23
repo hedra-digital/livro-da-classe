@@ -7,7 +7,7 @@ CKEDITOR.plugins.add('latexformater',
     var strings = [];
     strings.push(['versos', 'versos', 'formata versos']);
     strings.push(['epígrafe', 'epígrafe', 'insere epígrafe']);
-    strings.push(['nota de rodapé', 'nota de rodapé', 'insere uma nota de rodapé']);
+    //strings.push(['nota de rodapé', 'nota de rodapé', 'insere uma nota de rodapé']);
     //strings.push(['novo capítulo', 'novo capítulo', 'insere novo capítulo']);
     strings.push(['espaço pequeno', 'espaço pequeno', 'espaço pequeno entrelinhas']);
     strings.push(['espaço médio', 'espaço médio', 'espaço médio entrelinhas']);
@@ -43,7 +43,7 @@ CKEDITOR.plugins.add('latexformater',
         }else if(value == 'epígrafe'){
           CKEDITOR.currentInstance.commands.epigraphDialog.exec()
         }else if(value == 'nota de rodapé'){
-          CKEDITOR.currentInstance.commands.footnoteDialog.exec()
+          // CKEDITOR.currentInstance.commands.footnoteDialog.exec()
         }else if(value == 'novo capítulo'){
           // CKEDITOR.currentInstance.commands.chapterDialog.exec()
         }else if(value == 'espaço pequeno'){
