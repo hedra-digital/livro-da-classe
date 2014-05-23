@@ -20,7 +20,7 @@ CKEDITOR.dialog.add( 'footnoteDialog', function( editor ) {
         onOk: function() {
             var dialog = this;
 
-            link = "&nbsp;<a name='footnote'><em><strong>"+ dialog.getValueOf( 'tab-basic', 'foot-text' ) +"</strong></em></a>&nbsp;"
+            link = "<a class='footnote'><span>"+ dialog.getValueOf( 'tab-basic', 'foot-text' ) +"</span></a>&nbsp;"
             editor.insertHtml( link );
 
         }

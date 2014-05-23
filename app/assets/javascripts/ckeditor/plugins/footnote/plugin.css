@@ -3,3 +3,7 @@ a.footnote{
   padding-left: 18px;
   cursor: pointer;
 }
+
+a.footnote span{
+  display: none;
+}
