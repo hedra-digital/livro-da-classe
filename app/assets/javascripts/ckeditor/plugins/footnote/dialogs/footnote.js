@@ -3,25 +3,34 @@ CKEDITOR.dialog.add( 'footnoteDialog', function( editor ) {
         title: 'Notas de Rodapé',
         minWidth: 400,
         minHeight: 200,
+        footnote: null, // the footnote jquery node
         contents: [
+        {
+            id: 'tab-basic',
+            label: 'Parametros Básicos',
+            elements: [
             {
-                id: 'tab-basic',
-                label: 'Parametros Básicos',
-                elements: [
-                    {
-                        type: 'text',
-                        id: 'foot-text',
-                        label: 'Texto da Nota',
-                        validate: CKEDITOR.dialog.validate.notEmpty( "Campo texto da nota de rodapé não pode ser vazio" )
-                    }
-                ]
+                type: 'text',
+                id: 'foot-text',
+                label: 'Texto da Nota',
+                validate: CKEDITOR.dialog.validate.notEmpty( "Campo texto da nota de rodapé não pode ser vazio" )
             }
+            ]
+        }
         ],
+        onShow: function(){
+            if(this.footnote != null){
+                this.setValueOf( 'tab-basic', 'foot-text', this.footnote.children("span").html() );
+            }
+        },
         onOk: function() {
-            var dialog = this;
+            link = "<a class='footnote'><span>"+ this.getValueOf( 'tab-basic', 'foot-text' ) +"</span></a>&nbsp;"
 
-            link = "<a class='footnote'><span>"+ dialog.getValueOf( 'tab-basic', 'foot-text' ) +"</span></a>&nbsp;"
-            editor.insertHtml( link );
+            if(this.footnote != null){
+                this.footnote.children("span").html(this.getValueOf( 'tab-basic', 'foot-text' ))
+            }else{
+                editor.insertHtml( link );
+            }
 
         }
     };
