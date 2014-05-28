@@ -1,8 +1,17 @@
-a.footnote{
-  background: no-repeat left center;
-  padding-left: 18px;
-  cursor: pointer;
+a.sdfootnoteanc{
+  background: no-repeat left center !important;
+  border: none !important;
+  padding-left: 18px !important;
+  cursor: pointer !important;
   position: relative;
+}
+
+a.sdfootnoteanc sup{
+  display: none;
+}
+
+div[id^=sdfootnote]{
+  display: none;
 }
 
 a.footnote span{
