@@ -12,6 +12,13 @@ a.sdfootnoteanc sup{
 
 div[id^=sdfootnote]{
   display: none;
+  position: absolute;
+  background: #333;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 15px;
+  min-width: 200px;
+  z-index: 100;
 }
 
 a.footnote span{
