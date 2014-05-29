@@ -20,7 +20,19 @@ CKEDITOR.plugins.add( 'footnote', {
     // walk around for the image path
     CKEDITOR.addCss('a.sdfootnoteanc {background-image: url(' + CKEDITOR.getUrl(this.path + 'icons/footnote_red.png') + ') !important;}')
 
-    editor.on("doubleclick", function(event) {
+
+    CKEDITOR.on("instanceReady", function(event){
+      update_footnotes()
+    });
+
+
+    editor.on("afterPaste", function(event){
+      update_footnotes()
+      return true
+    }, null, null, 0 );
+
+
+    editor.on("doubleclick", function(event){
       var element = event.data.element;
 
       if(element.is("a") && element.getAttribute("class") == "sdfootnoteanc"){
@@ -69,3 +81,55 @@ CKEDITOR.plugins.add( 'footnote', {
       });
     }
   });
+
+
+
+
+// update the footnotes dom after paste 
+// the dom like this: 
+// footnote link:
+// <a class="sdfootnoteanc" href="#sdfootnote1sym" name="sdfootnote1anc"><sup>1</sup></a>
+// footnote body:
+// <div id="sdfootnote1">
+// <p><a class="sdfootnotesym" href="#sdfootnote1anc" name="sdfootnote1sym">1</a>Jorge Luiz, <em>S&atilde;o Paulo da garoa. </em>1998. Lorem ipsum dolor sit amet, consetetur sadi<strong>pscing elitr, se</strong>d diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+// <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+// <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+// </div>
+function update_footnotes(){
+  console.log("update footnote")
+  doc = $(CKEDITOR.instances.text_content.document.$)
+  
+  doc.find("a.sdfootnoteanc").each(function(){
+    if($(this).attr("data-id") == undefined){
+
+      link_in_footnote_div = doc.find("a[href=#" + $(this).attr("name") + "]")
+
+      footnote_div = link_in_footnote_div.parents("div[id=^sdfootnote]") 
+
+      uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+      });
+
+      $(this).removeAttr("data-cke-saved-name name data-cke-saved-href href").attr("data-id", uuid)
+
+      link_in_footnote_div.remove()
+
+      footnote_div.attr("data-id", uuid)
+    }
+  })
+}
+
+
+// 
+function mouseover_event(){
+  console.log("add mouseover event to footnotes")
+
+  doc = $(CKEDITOR.instances.text_content.document.$)
+
+  doc.find("a.sdfootnoteanc").on("mouseover", function(){
+    console.log("over")
+  }).on("mouseout", function(){
+    console.log("out")
+  })
+};

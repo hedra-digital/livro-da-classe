@@ -78,7 +78,7 @@ CKEDITOR.editorConfig = function(config) {
 
   config.allowedContent = 
       'h1 h2 h3 h4 h5 h6 strong em blockquote ol ul li;' +
-      'a(latex-close)[*]; a[!name,!href];' +
+      'a(latex-close)[*]; a[name, href];' +
       'img(small-intention)[*]; img(medium-intention)[*]; img(big-intention)[*];' +
       'table tr th td caption;' +
       'span(latex-inputbox); span(epigraph-author); span{color,background-color};' +
@@ -86,7 +86,7 @@ CKEDITOR.editorConfig = function(config) {
       'div[!id];' +
       'section(epigraph); section(chapter); section[data-id];' +
       'h1[data-id];' + 
-      'a(footnote); a(sdfootnoteanc, sdfootnotesym); sup;' +
+      'a[data-id]; div[data-id]; a(sdfootnoteanc, sdfootnotesym); sup;' +
       'div(verse); div(smallskip); div(medskip); div(bigskip);';
 
   // Rails CSRF token
