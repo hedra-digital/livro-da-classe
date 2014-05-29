@@ -10,7 +10,7 @@ a.sdfootnoteanc sup{
   display: none;
 }
 
-div[id^=sdfootnote]{
+div[id^=sdfootnote], div.sdfootnotesym{
   display: none;
   position: absolute;
   background: #333;

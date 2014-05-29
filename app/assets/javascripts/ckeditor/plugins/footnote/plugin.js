@@ -20,15 +20,13 @@ CKEDITOR.plugins.add( 'footnote', {
     // walk around for the image path
     CKEDITOR.addCss('a.sdfootnoteanc {background-image: url(' + CKEDITOR.getUrl(this.path + 'icons/footnote_red.png') + ') !important;}')
 
-
+    // update the footnote for the old content and after paste
     CKEDITOR.on("instanceReady", function(event){
       update_footnotes()
     });
 
-
     editor.on("afterPaste", function(event){
       update_footnotes()
-      return true
     }, null, null, 0 );
 
 
@@ -40,47 +38,28 @@ CKEDITOR.plugins.add( 'footnote', {
 
         link = $(element.$)
 
-      // uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      //   var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-      //   return v.toString(16);
-      // });
+        footnote_div = doc.find("div[data-id="+ link.attr("data-id") +"]")
 
-      // if(link.attr("data-id") == undefined){
-      //   link.attr("data-id", uuid)
-      // }
+        footnote_div.css({top: (link.position().top + 20), left: link.position().left});
 
-      link_at_the_end = doc.find("a[href=#" + link.attr("name") + "]")
+        footnote_div.toggle()
 
-      // if(doc.find("div[data-id="+ link.attr("data-id") +"]").size() == 0){
-      //   div_at_the_end = doc.find("div[data-id="+ link.attr("data-id") +"]")
-      // }else{
-      //   div_at_the_end = link_at_the_end.parents("div[id=^sdfootnote]") 
-      // }
-      div_at_the_end = link_at_the_end.parents("div[id=^sdfootnote]") 
-      // if(div_at_the_end.attr("data-id") == undefined){
-      //   div_at_the_end.attr("data-id", link.attr("data-id"))
-      // }
-
-      // div_at_the_end.find("a.sdfootnotesym").remove()
-
-      div_at_the_end.css({top: (link.position().top + 20), left: link.position().left});
-
-      div_at_the_end.toggle()
+        return false
+      }
+    }, null, null, 0 );
 
 
-      return false
-    }
-  }, null, null, 0 );
-
-
-      // 
-      editor.addCommand('footnoteCmd', { 
-        exec : function(editor) {
-          editor.insertHtml("<div class='footnote'><div class='footnote-content'>aa</div></div>"); 
-        } 
-      });
-    }
-  });
+    // add footnote
+    editor.addCommand('footnoteCmd', { 
+      exec : function(editor) {
+        // footnote link can not be blank, so the ckeditor will remove it, add "1" to it
+        var uuid = get_uuid()
+        editor.insertHtml("<a class='sdfootnoteanc' data-id='"+ uuid +"'><sup>1</sup></a>"); 
+        editor.setData(editor.getData() + "<div class='sdfootnotesym' data-id='"+ uuid +"'><p></p></div>");
+      } 
+    });
+  }
+});
 
 
 
@@ -98,7 +77,7 @@ CKEDITOR.plugins.add( 'footnote', {
 function update_footnotes(){
   console.log("update footnote")
   doc = $(CKEDITOR.instances.text_content.document.$)
-  
+
   doc.find("a.sdfootnoteanc").each(function(){
     if($(this).attr("data-id") == undefined){
 
@@ -106,20 +85,23 @@ function update_footnotes(){
 
       footnote_div = link_in_footnote_div.parents("div[id=^sdfootnote]") 
 
-      uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-        return v.toString(16);
-      });
+      var uuid = get_uuid()
 
       $(this).removeAttr("data-cke-saved-name name data-cke-saved-href href").attr("data-id", uuid)
 
       link_in_footnote_div.remove()
 
-      footnote_div.attr("data-id", uuid)
+      footnote_div.removeAttr("id").attr("data-id", uuid).addClass("sdfootnotesym")
     }
   })
 }
 
+function get_uuid(){
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+    return v.toString(16);
+  });
+}
 
 // 
 function mouseover_event(){
