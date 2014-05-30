@@ -34,12 +34,14 @@ CKEDITOR.plugins.add( 'footnote', {
     var modal_in_ck = CKEDITOR.dom.element.get("modal_inline")
 
     if(!modal_in_ck.getEditor()){
-      var modal_inline_cke = CKEDITOR.inline("modal_inline", {
-        customConfig: 'inline.js'
-      });
+      // put it in a timer to fixed sometime the ckeditor halt
+      setTimeout (function(){
+        modal_inline_cke = CKEDITOR.inline("modal_inline", {
+          customConfig: 'inline.js'
+        });
 
-      modal_inline_cke.on('instanceReady', function(event){
-        console.log("inline ckeditor created!")
+        modal_inline_cke.on('instanceReady', function(event){
+          console.log("inline ckeditor created!")
 
         // make the inline tool bar show
         $("#cke_modal_inline").css("z-index", 13000)
@@ -50,6 +52,8 @@ CKEDITOR.plugins.add( 'footnote', {
         keystrokeHandler.blockedKeystrokes[ 8 ] = +modal_inline_cke.readOnly;
 
       });
+      }, 1000);
+
     }
 
 
@@ -77,10 +81,10 @@ CKEDITOR.plugins.add( 'footnote', {
     // add footnote
     editor.addCommand('footnoteCmd', { 
       exec : function(editor) {
-        // footnote link can not be blank, so the ckeditor will remove it, add "*" to it
         var uuid = get_uuid()
-        editor.insertHtml("<a class='sdfootnoteanc' data-id='"+ uuid +"'><sup>*</sup></a>"); 
-        editor.setData(editor.getData() + "<div class='sdfootnotesym' data-id='"+ uuid +"'><p></p></div>");
+
+        $("#modal_inline").html("").attr("data-id", uuid)
+        $('#footnote_modal').modal()
       } 
     });
   }
