@@ -62,8 +62,6 @@ CKEDITOR.plugins.add( 'footnote', {
 });
 
 
-
-
 // update the footnotes dom after paste 
 // the dom like this: 
 // footnote link:

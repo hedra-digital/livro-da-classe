@@ -93,9 +93,13 @@ class MarkupLatex
   end
 
   def prepare_footnote(text)
-    Nokogiri::HTML(text).css("a.footnote").each do |footnote|
-      footnote_text = convert_with_pandoc(footnote.css("span").inner_html)
-      text = text.sub(footnote.to_s, "<font>|>|\\footnote{#{footnote_text}} |<|</font>")        
+    doc = Nokogiri::HTML(text)
+    doc.css("a.sdfootnoteanc").each do |footnote|
+      footnote_div = doc.css("div[data-id='"+ footnote.attr("data-id") +"']")
+      footnote_text = convert_with_pandoc(footnote_div.to_html())
+      
+      text = text.sub(footnote.to_s, "<font>|>|\\footnote{#{footnote_text}} |<|</font>")
+      text = text.sub(footnote_div.to_s, "")
     end
     text
   end
