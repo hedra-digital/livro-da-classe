@@ -52,9 +52,9 @@ CKEDITOR.plugins.add( 'footnote', {
     // add footnote
     editor.addCommand('footnoteCmd', { 
       exec : function(editor) {
-        // footnote link can not be blank, so the ckeditor will remove it, add "1" to it
+        // footnote link can not be blank, so the ckeditor will remove it, add "*" to it
         var uuid = get_uuid()
-        editor.insertHtml("<a class='sdfootnoteanc' data-id='"+ uuid +"'><sup>1</sup></a>"); 
+        editor.insertHtml("<a class='sdfootnoteanc' data-id='"+ uuid +"'><sup>*</sup></a>"); 
         editor.setData(editor.getData() + "<div class='sdfootnotesym' data-id='"+ uuid +"'><p></p></div>");
       } 
     });

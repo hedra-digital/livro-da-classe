@@ -43,13 +43,14 @@ class TextsController < ApplicationController
     if @text.update_attributes(params[:text])
       @text.content = content
 
-      chapters = Text.split_chpaters(@text.content_with_head)
+      chapters, footnotes = Text.split_chpaters(@text.content_with_head)
 
-      chapter_ids = Text.save_split_chapters(chapters, @book, current_user)
+      chapter_ids = Text.save_split_chapters(chapters, footnotes, @book, current_user)
 
       # the new content with data id will be render to ckeditor, so no dump chapter after ajaxSave
       new_content = []
       chapter_ids.each_with_index do |id, index|
+
         if index == 0
           new_content << Text.find(id).content
         else
@@ -98,9 +99,9 @@ class TextsController < ApplicationController
     # TODO not a good idea to use session, need refatcory the code base
     session['book_id'] = @book.id
 
-    chapters = Text.split_chpaters(params[:text][:content])
+    chapters, footnotes = Text.split_chpaters(params[:text][:content])
 
-    chapter_ids = Text.save_split_chapters(chapters, @book, current_user)
+    chapter_ids = Text.save_split_chapters(chapters, footnotes, @book, current_user)
 
     chapter_ids.each_with_index do |id, index|
       Text.find(id).update_attribute(:position, index)

@@ -89,6 +89,9 @@ class Text < ActiveRecord::Base
 
   def self.split_chpaters(content)
     doc = Nokogiri::HTML(content)
+
+    footnotes = doc.css("div.sdfootnotesym").remove
+
     chapters = []
     current_chapter = [] # current chapter is a html nodes arrary
 
@@ -104,10 +107,10 @@ class Text < ActiveRecord::Base
     # add the last chapter
     chapters << current_chapter if current_chapter.count > 0
 
-    chapters
+    [chapters, footnotes]
   end
 
-  def self.save_split_chapters(chapters, book, current_user)
+  def self.save_split_chapters(chapters, footnotes, book, current_user)
     chapter_ids = []
     chapters.each do |chapter|
 
@@ -132,7 +135,26 @@ class Text < ActiveRecord::Base
       end
 
       text.content = chapter.map(&:to_html).join()
+
+      # find the chapter footnotes and append to chapter
+      Nokogiri::HTML(text.content).css("a.sdfootnoteanc").each do |footnote_link|
+        data_id = footnote_link.attr("data-id")
+
+        matched_node = nil
+        
+        footnotes.each do |footnote|
+          if(footnote.attr("data-id") == data_id)
+            text.content += footnote.to_html()
+            matched_node = footnote
+          end
+        end
+        # do not delete in loop
+        footnotes.delete matched_node if matched_node
+      end
+
+
       text.valid_content = text.validate_content
+      text.title = "Título do capítulo" if text.title.blank? # fixed for some blank h1
       text.save
 
       # after save, the new chapter have id
