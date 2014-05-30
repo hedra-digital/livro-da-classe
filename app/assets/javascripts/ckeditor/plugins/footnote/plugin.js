@@ -21,13 +21,36 @@ CKEDITOR.plugins.add( 'footnote', {
     CKEDITOR.addCss('a.sdfootnoteanc {background-image: url(' + CKEDITOR.getUrl(this.path + 'icons/footnote_red.png') + ') !important;}')
 
     // update the footnote for the old content and after paste
-    CKEDITOR.on("instanceReady", function(event){
+    CKEDITOR.instances.text_content.on("instanceReady", function(event){
       update_footnotes()
+      // mouseover_event()
     });
 
     editor.on("afterPaste", function(event){
       update_footnotes()
     }, null, null, 0 );
+
+    
+    var modal_in_ck = CKEDITOR.dom.element.get("modal_inline")
+
+    if(!modal_in_ck.getEditor()){
+      var modal_inline_cke = CKEDITOR.inline("modal_inline", {
+        customConfig: 'inline.js'
+      });
+
+      modal_inline_cke.on('instanceReady', function(event){
+        console.log("inline ckeditor created!")
+
+        // make the inline tool bar show
+        $("#cke_modal_inline").css("z-index", 13000)
+
+        modal_inline_cke.setReadOnly(false)
+        // the newest version will fixed this bug
+        var keystrokeHandler = modal_inline_cke.keystrokeHandler;
+        keystrokeHandler.blockedKeystrokes[ 8 ] = +modal_inline_cke.readOnly;
+
+      });
+    }
 
 
     editor.on("doubleclick", function(event){
@@ -42,7 +65,9 @@ CKEDITOR.plugins.add( 'footnote', {
 
         footnote_div.css({top: (link.position().top + 20), left: link.position().left});
 
-        footnote_div.toggle()
+        $('#footnote_modal').modal()
+
+        // footnote_div.toggle()
 
         return false
       }

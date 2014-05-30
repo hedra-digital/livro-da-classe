@@ -21,6 +21,7 @@
 //= require bootstrap-affix
 //= require bootstrap-scrollspy
 //= require bootstrap-modal
+//= require bootstrap-transition
 //= require jquery.tipsy
 //= require jquery.fancybox
 //= require bindWithDelay

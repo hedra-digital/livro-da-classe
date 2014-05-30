@@ -82,3 +82,23 @@
 .crop-label {
   margin-top: 15px;
 }
+
+
+/* modify bootstrap css, ckeditor's z index is big */
+div.modal-backdrop{
+  z-index: 10000;
+}
+
+div.modal{
+  z-index: 12000;
+}
+
+/* end modify bootstrap css*/
+
+/*modify the popup css to look like ckeditor*/
+div.modal-body.cke_editable p{
+  color: #333;
+  background-color: #fff;
+  font-size: 14px;
+  line-height: 1.6em;
+}

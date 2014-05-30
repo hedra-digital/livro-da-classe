@@ -192,7 +192,7 @@ CKEDITOR.editorConfig = function(config) {
   });
 };
 
-CKEDITOR.addCss('body { font-family: Courier; font-size: 12px; }');
+CKEDITOR.addCss('body.cke_editable { font-family: Courier; font-size: 13px; }');
 /*Image Upload Customization*/
 CKEDITOR.addCss('.small-intention { zoom: 0.3; -moz-transform: scale(0.3); max-width: 30%;}');
 CKEDITOR.addCss('.medium-intention { zoom: 0.6; -moz-transform: scale(0.6); max-width: 60%;}');
@@ -215,6 +215,8 @@ CKEDITOR.addCss('.smallskip { background-color: #f0f0f0; height: 14px; }');
 CKEDITOR.addCss('.medskip { background-color: #e0e0e0; height: 28px; }');
 /*BigSkip Plugin*/
 CKEDITOR.addCss('.bigskip { background-color: #d0d0d0; height: 56px; }');
+
+CKEDITOR.disableAutoInline = true;
 
 for (var i in CKEDITOR.instances) {
     (function(i){
