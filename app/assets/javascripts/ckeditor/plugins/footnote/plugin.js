@@ -15,7 +15,7 @@ CKEDITOR.plugins.add( 'footnote', {
       CKEDITOR.config.contentsCss = [CKEDITOR.config.contentsCss];
     } 
 
-    CKEDITOR.config.contentsCss.push(CKEDITOR.basePath + CKEDITOR.plugins.basePath + 'footnote/plugin.css');
+    CKEDITOR.config.contentsCss.push(CKEDITOR.basePath + CKEDITOR.plugins.basePath + 'footnote/plugin2.css');
 
     // walk around for the image path
     CKEDITOR.addCss('a.sdfootnoteanc {background-image: url(' + CKEDITOR.getUrl(this.path + 'icons/footnote_red.png') + ') !important;}')
