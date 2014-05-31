@@ -42,16 +42,28 @@
 
 <script type="text/javascript">
 $("#save_footnote").click(function(){
-  data_id = $("#modal_inline").attr("data-id")
 
-  // footnote link can not be blank, so the ckeditor will remove it, add "*" to it
-  CKEDITOR.instances.text_content.insertHtml("<a class='sdfootnoteanc' data-id='"+ data_id +"'><sup>*</sup></a>"); 
+  // no data-id means new footnote, otherwise modify footnote
+  data_id = $("#footnote_modal").attr("data-id")
 
-  $(CKEDITOR.instances.text_content.document.$).find("body").append("<div class='sdfootnotesym' data-id='"+data_id+"'>"+ $("#modal_inline").html() +"</div>")
+  if(data_id == undefined || data_id == ""){
+    data_id = get_uuid()
+    // footnote link can not be blank, so the ckeditor will remove it, add "*" to it
+    CKEDITOR.instances.text_content.insertHtml("<a class='sdfootnoteanc' data-id='"+ data_id +"'><sup>*</sup></a>"); 
 
-  $('#footnote_modal').modal("hide")
-  $("#modal_inline").html("").attr("data-id", "")
+    $(CKEDITOR.instances.text_content.document.$).find("body").append("<div class='sdfootnotesym' data-id='"+data_id+"'>"+ $("#modal_inline").html() +"</div>")
 
+  }else{
+    doc = $(CKEDITOR.instances.text_content.document.$)
+
+    footnote_div = doc.find("div[data-id="+ data_id +"]")
+
+    footnote_div.html($('#modal_inline').html())
+  }
+
+  // make it clean all the time
+  $('#modal_inline').html("")
+  $("#footnote_modal").attr("data-id", "").modal("hide")
 })
 
 </script>

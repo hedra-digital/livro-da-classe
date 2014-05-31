@@ -48,6 +48,7 @@ CKEDITOR.plugins.add( 'footnote', {
 
         modal_inline_cke.setReadOnly(false)
         // the newest version will fixed this bug
+        // http://dev.ckeditor.com/ticket/9761
         var keystrokeHandler = modal_inline_cke.keystrokeHandler;
         keystrokeHandler.blockedKeystrokes[ 8 ] = +modal_inline_cke.readOnly;
 
@@ -61,15 +62,16 @@ CKEDITOR.plugins.add( 'footnote', {
       var element = event.data.element;
 
       if(element.is("a") && element.getAttribute("class") == "sdfootnoteanc"){
-        doc = $(CKEDITOR.instances.text_content.document.$)
-
         link = $(element.$)
+
+        doc = $(CKEDITOR.instances.text_content.document.$)
 
         footnote_div = doc.find("div[data-id="+ link.attr("data-id") +"]")
 
         footnote_div.css({top: (link.position().top + 20), left: link.position().left});
 
-        $('#footnote_modal').modal()
+        $('#modal_inline').html(footnote_div.html())
+        $("#footnote_modal").attr("data-id", link.attr("data-id")).modal()
 
         // footnote_div.toggle()
 
@@ -81,10 +83,8 @@ CKEDITOR.plugins.add( 'footnote', {
     // add footnote
     editor.addCommand('footnoteCmd', { 
       exec : function(editor) {
-        var uuid = get_uuid()
-
-        $("#modal_inline").html("").attr("data-id", uuid)
-        $('#footnote_modal').modal()
+        $("#modal_inline").html("")
+        $('#footnote_modal').attr("data-id", "").modal()
       } 
     });
   }
