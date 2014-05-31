@@ -96,7 +96,8 @@ div.modal{
 /* end modify bootstrap css*/
 
 /*modify the popup css to look like ckeditor*/
-div.modal-body.cke_editable p{
+#modal_inline p{
+  font-family: "Courier";
   color: #333;
   background-color: #fff;
   font-size: 14px;

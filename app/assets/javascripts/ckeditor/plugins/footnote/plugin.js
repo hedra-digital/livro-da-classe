@@ -30,33 +30,6 @@ CKEDITOR.plugins.add( 'footnote', {
       update_footnotes()
     }, null, null, 0 );
 
-    
-    var modal_in_ck = CKEDITOR.dom.element.get("modal_inline")
-
-    if(!modal_in_ck.getEditor()){
-      // put it in a timer to fixed sometime the ckeditor halt
-      setTimeout (function(){
-        modal_inline_cke = CKEDITOR.inline("modal_inline", {
-          customConfig: 'inline.js'
-        });
-
-        modal_inline_cke.on('instanceReady', function(event){
-          console.log("inline ckeditor created!")
-
-        // make the inline tool bar show
-        $("#cke_modal_inline").css("z-index", 13000)
-
-        modal_inline_cke.setReadOnly(false)
-        // the newest version will fixed this bug
-        // http://dev.ckeditor.com/ticket/9761
-        var keystrokeHandler = modal_inline_cke.keystrokeHandler;
-        keystrokeHandler.blockedKeystrokes[ 8 ] = +modal_inline_cke.readOnly;
-
-      });
-      }, 1000);
-
-    }
-
 
     editor.on("doubleclick", function(event){
       var element = event.data.element;
@@ -68,10 +41,11 @@ CKEDITOR.plugins.add( 'footnote', {
 
         footnote_div = doc.find("div[data-id="+ link.attr("data-id") +"]")
 
-        footnote_div.css({top: (link.position().top + 20), left: link.position().left});
+        //footnote_div.css({top: (link.position().top + 20), left: link.position().left});
 
         $('#modal_inline').html(footnote_div.html())
         $("#footnote_modal").attr("data-id", link.attr("data-id")).modal()
+        create_inline_ckeditor()
 
         // footnote_div.toggle()
 
@@ -85,6 +59,7 @@ CKEDITOR.plugins.add( 'footnote', {
       exec : function(editor) {
         $("#modal_inline").html("")
         $('#footnote_modal').attr("data-id", "").modal()
+        create_inline_ckeditor()
       } 
     });
   }
@@ -128,6 +103,44 @@ function get_uuid(){
     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
     return v.toString(16);
   });
+}
+
+// create inline ckeditor every time to make the its position right 
+function create_inline_ckeditor(){
+  var modal_in_ck = CKEDITOR.dom.element.get("modal_inline")
+
+  if(!modal_in_ck.getEditor()){
+
+    setTimeout (function(){
+      var modal_inline_cke = CKEDITOR.inline("modal_inline", {
+        customConfig: 'inline.js'
+      });
+
+      modal_inline_cke.on('instanceReady', function(event){
+        // make the inline tool bar show
+        $("#cke_modal_inline").css("z-index", 13000)
+
+        modal_inline_cke.setReadOnly(false)
+        // the newest version will fixed this bug
+        // http://dev.ckeditor.com/ticket/9761
+        var keystrokeHandler = modal_inline_cke.keystrokeHandler;
+        keystrokeHandler.blockedKeystrokes[ 8 ] = +modal_inline_cke.readOnly;
+
+        console.log("inline ckeditor created!")
+      });
+    }, 400);
+
+  }
+}
+
+function destroy_inline_ckeditor(){
+  var editor = CKEDITOR.instances.modal_inline
+  if(editor){
+    setTimeout (function(){
+      editor.destroy()
+      console.log("inline ckeditor destroied!")
+    }, 400);
+  }
 }
 
 // 

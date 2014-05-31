@@ -66,4 +66,8 @@ $("#save_footnote").click(function(){
   $("#footnote_modal").attr("data-id", "").modal("hide")
 })
 
+$('#footnote_modal').on('hidden.bs.modal', function() {
+  destroy_inline_ckeditor()
+})
+
 </script>
