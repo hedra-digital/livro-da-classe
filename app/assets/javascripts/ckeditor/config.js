@@ -244,6 +244,15 @@ for (var i in CKEDITOR.instances) {
           var content = CKEDITOR.instances[i].document.getBody().getHtml();
           content = content.replace(/data-cke-pa-onclick/g, "onclick");
           CKEDITOR.instances[i].document.getBody().setHtml(content);
+
+          var format_translation = CKEDITOR.instances.text_content.lang.format
+          format_translation.tag_h1 = "Capítulo"
+          format_translation.tag_h2 = "Seção"
+          format_translation.tag_h3 = "Subseção"
+          format_translation.tag_h4 = "Subsubseção"
+          format_translation.tag_h5 = "Parágrafo"
+          format_translation.tag_h6 = "Subparágrafo"
+
         });
 
 
