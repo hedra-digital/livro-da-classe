@@ -203,6 +203,7 @@ class Book < ActiveRecord::Base
     self.valid_pdf
   end
 
+  # full dir to the book
   def directory
     File.join(CONFIG[Rails.env.to_sym]["books_path"],directory_name)
   end
@@ -211,8 +212,9 @@ class Book < ActiveRecord::Base
     self.book_data.nil? or self.book_data.autor.blank? ? "" : "#{String.remover_acentos(self.book_data.autor).gsub(/[^0-9A-Za-z]/, '')}-"
   end
 
+  # git dir name
   def directory_name
-    "#{self.autor}#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
+    "#{Rails.env}-#{self.autor}#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
   end
 
   def template_directory
@@ -221,11 +223,27 @@ class Book < ActiveRecord::Base
 
   def check_repository
     if !self.book_data.nil? && !Dir.exists?(directory)
-      FileUtils.mkdir_p(directory)
-      FileUtils.cp_r(Dir[File.join(template_directory,"*")], directory)
 
-      system "curl --user #{CONFIG[Rails.env.to_sym]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data owner=#{CONFIG[Rails.env.to_sym]["git_team"]} --data is_private=true"
-      system "cd #{directory}/ && git init && git remote add origin #{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git && git add . && git commit -a -m \"New Book => #{self.title}\" && git push origin master"
+      command = <<-eos
+      mkdir #{directory}
+      cp -r #{template_directory}/* #{directory}
+      cp config/book_gitignore #{directory}/.gitignore
+      cd #{directory}
+
+      curl --user #{CONFIG[Rails.env.to_sym]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true
+      
+      git init 
+      git remote add origin #{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git 
+      git add . 
+      git commit -a -m \"New Book => #{self.title}\" 
+      git push -u origin master
+
+      eos
+
+      Thread.new do
+        system command
+        ActiveRecord::Base.connection.close
+      end
 
     end
   end
