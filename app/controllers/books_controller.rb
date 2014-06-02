@@ -96,7 +96,7 @@ class BooksController < ApplicationController
     @book.publisher_id = current_publisher
 
     if @book.save
-      @book.create_project quantity: 50, status: BookStatus.all.first.id
+      @book.create_project quantity: 100, status: BookStatus.all.first.id
 
       @book.build_cover_info
       @book.cover_info.update_attributes cover_info

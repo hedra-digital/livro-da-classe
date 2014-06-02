@@ -64,7 +64,7 @@
   <div class="form-inputs">
     <%= field_set_tag "Dados do projeto" do %>      
       <%= f.input :release_date, :as => :date_picker, :label => t(:release_date_label) %>
-      <%= f.input :quantity, :as => :integer, :label => t(:quantity), input_html: { min: 50, value: @project.quantity } %>
+      <%= f.input :quantity, :as => :integer, :label => t(:quantity), input_html: { min: 100, value: @project.quantity } %>
       <div class="project-price"><b>Preço Total: </b><span id="project-total-price"></span></div>
     <% end %>
 
