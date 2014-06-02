@@ -8,7 +8,7 @@
     <%= content_tag_for :li, text do %>
       <%= raw('<i class="icon-move handle"></i>&nbsp;') if is_organizer? and can_write? %>
       <%= enable_or_disable_link(text) %>
-      <strong class="text-list-title"><%= text_title(@book, text) %></strong>, por <span class="text-list-author"><%= text.user.name.presence || text.user.email %></span>
+      <strong class="text-list-title"><%= text_title(@book, text) %></strong>, por <span class="text-list-author"><%= text.author %></span>
       <%= "<span class='label label-important'>Conteúdo Inválido</span>".html_safe unless text.valid_content %>
     <% end %>
   <% end %>
