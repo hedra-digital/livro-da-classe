@@ -25,6 +25,8 @@ gem "htmlentities"
 gem 'nokogiri'
 gem 'nokogiri-styles'
 gem 'brazilian-rails'
+gem "bitbucket_rest_api"
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -51,6 +53,8 @@ group :development do
   gem 'pry'
   gem 'pry-remote'
   gem 'pry-nav'
+  gem 'pry-debugger'
+  gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'

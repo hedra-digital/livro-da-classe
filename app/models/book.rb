@@ -23,6 +23,7 @@ class Book < ActiveRecord::Base
   # Callbacks
   before_save               :set_uuid
   after_save                :check_repository
+  before_save               :rename_dir
   
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
@@ -204,17 +205,30 @@ class Book < ActiveRecord::Base
   end
 
   # full dir to the book
-  def directory
-    File.join(CONFIG[Rails.env.to_sym]["books_path"],directory_name)
+  # pass the autor to walk around bookdata in other table 
+  def directory(autor_params = self.book_data.autor)
+    File.join(CONFIG[Rails.env.to_sym]["books_path"],directory_name(autor_params))
+  end
+  
+  def directory_was
+    File.join(CONFIG[Rails.env.to_sym]["books_path"],directory_name_was)
   end
 
-  def autor
+  def autor(autor_params = self.book_data.autor)
+    self.book_data.nil? or autor_params.blank? ? "" : "#{String.remover_acentos(autor_params).gsub(/[^0-9A-Za-z]/, '')}-"
+  end
+  
+  def autor_was
     self.book_data.nil? or self.book_data.autor.blank? ? "" : "#{String.remover_acentos(self.book_data.autor).gsub(/[^0-9A-Za-z]/, '')}-"
   end
 
   # git dir name
-  def directory_name
-    "#{Rails.env}-#{self.autor}#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
+  def directory_name(autor_params = self.book_data.autor)
+    "#{Rails.env}-#{self.autor(autor_params)}#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
+  end
+
+  def directory_name_was
+    "#{Rails.env}-#{self.autor_was}#{String.remover_acentos(self.title_was).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
   end
 
   def template_directory
@@ -225,13 +239,12 @@ class Book < ActiveRecord::Base
     if !self.book_data.nil? && !Dir.exists?(directory)
 
       command = <<-eos
+      curl --user #{CONFIG[Rails.env.to_sym]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true
+
       mkdir #{directory}
       cp -r #{template_directory}/* #{directory}
       cp config/book_gitignore #{directory}/.gitignore
       cd #{directory}
-
-      curl --user #{CONFIG[Rails.env.to_sym]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true
-      
       git init 
       git remote add origin #{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git 
       git add . 
@@ -247,6 +260,15 @@ class Book < ActiveRecord::Base
 
     end
   end
+
+  def rename_dir
+    if(!self.new_record? and self.title_changed?)
+      system "mv #{self.directory_was} #{self.directory}"
+
+      bitbucket = BitBucket.new basic_auth: CONFIG[Rails.env.to_sym]["git_user_pass"]
+      bitbucket.repos.edit CONFIG[Rails.env.to_sym]["bitbucket_user"], self.directory_name_was, {:name => self.directory_name, :is_private => true, :no_public_forks => true}
+    end
+  end 
 
   def generate_latex_files
     input_files = ""
@@ -273,5 +295,5 @@ class Book < ActiveRecord::Base
   def set_uuid
     self.uuid = Guid.new.to_s if self.uuid.nil?
   end
-  
+
 end
