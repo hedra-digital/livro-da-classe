@@ -20,6 +20,9 @@ class Text < ActiveRecord::Base
   before_save               :remove_expressions
   before_save               :set_positoin
 
+  after_destroy             :delete_file
+  after_update              :rename_file
+
   # Relationships
   belongs_to                :book
   belongs_to                :user
@@ -71,12 +74,17 @@ class Text < ActiveRecord::Base
     end
   end
 
+  # file name with full dir
   def filename
     File.join(self.book.directory,short_filename)
   end
 
   def short_filename
     "#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '').upcase}#{self.id}.tex"
+  end
+
+  def short_filename_was
+    "#{String.remover_acentos(self.title_was).gsub(/[^0-9A-Za-z]/, '').upcase}#{self.id}.tex"
   end
 
   def content_with_head
@@ -201,6 +209,24 @@ class Text < ActiveRecord::Base
   # set the default positoin
   def set_positoin
     self.position = self.book.texts.count + 1 unless self.position
+  end
+
+  def delete_file
+    system <<-command
+    cd #{self.book.directory}
+    git rm #{self.filename}
+    git commit -m "delete chapter #{self.title}"
+    command
+  end
+
+  def rename_file
+    if self.title_changed?
+      system <<-command
+      cd #{self.book.directory}
+      git mv #{self.short_filename_was} #{self.short_filename}
+      git commit -m "rename chapter #{self.title_was}"
+      command
+    end
   end
 
   def remove_expressions
