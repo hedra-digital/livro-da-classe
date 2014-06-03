@@ -24,6 +24,7 @@ class Book < ActiveRecord::Base
   before_save               :set_uuid
   after_save                :check_repository
   before_save               :rename_dir
+  before_save               :change_template
   
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
@@ -228,7 +229,7 @@ class Book < ActiveRecord::Base
   end
 
   def directory_name_was
-    "#{Rails.env}-#{self.autor_was}#{String.remover_acentos(self.title_was).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
+    "#{Rails.env}-#{self.autor_was}#{String.remover_acentos(self.title_was).gsub(/[^0-9A-Za-z]/, '')}-#{self.template_was}-#{self.id}"
   end
 
   def template_directory
@@ -269,6 +270,18 @@ class Book < ActiveRecord::Base
       bitbucket.repos.edit CONFIG[Rails.env.to_sym]["bitbucket_user"], self.directory_name_was, {:name => self.directory_name, :is_private => true, :no_public_forks => true}
     end
   end 
+
+  def change_template
+    if(!self.new_record? and self.template_changed?)
+
+      system "mv #{self.directory_was} #{self.directory}"
+
+      system "cp -r #{template_directory}/* #{directory}"
+
+      bitbucket = BitBucket.new basic_auth: CONFIG[Rails.env.to_sym]["git_user_pass"]
+      bitbucket.repos.edit CONFIG[Rails.env.to_sym]["bitbucket_user"], self.directory_name_was, {:name => self.directory_name, :is_private => true, :no_public_forks => true}
+    end
+  end
 
   def generate_latex_files
     input_files = ""
