@@ -265,22 +265,21 @@ class Book < ActiveRecord::Base
   def rename_dir
     if(!self.new_record? and self.title_changed?)
       system "mv #{self.directory_was} #{self.directory}"
-
-      bitbucket = BitBucket.new basic_auth: CONFIG[Rails.env.to_sym]["git_user_pass"]
-      bitbucket.repos.edit CONFIG[Rails.env.to_sym]["bitbucket_user"], self.directory_name_was, {:name => self.directory_name, :is_private => true, :no_public_forks => true}
+      self.rename_in_bitbucket
     end
   end 
 
   def change_template
     if(!self.new_record? and self.template_changed?)
-
       system "mv #{self.directory_was} #{self.directory}"
-
       system "cp -r #{template_directory}/* #{directory}"
-
-      bitbucket = BitBucket.new basic_auth: CONFIG[Rails.env.to_sym]["git_user_pass"]
-      bitbucket.repos.edit CONFIG[Rails.env.to_sym]["bitbucket_user"], self.directory_name_was, {:name => self.directory_name, :is_private => true, :no_public_forks => true}
+      self.rename_in_bitbucket
     end
+  end
+
+  def rename_in_bitbucket
+    bitbucket = BitBucket.new basic_auth: CONFIG[Rails.env.to_sym]["git_user_pass"]
+    bitbucket.repos.edit CONFIG[Rails.env.to_sym]["bitbucket_user"], self.directory_name_was, {:name => self.directory_name, :is_private => true, :no_public_forks => true}
   end
 
   def generate_latex_files
