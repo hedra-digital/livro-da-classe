@@ -282,6 +282,13 @@ class Book < ActiveRecord::Base
     bitbucket.repos.edit CONFIG[Rails.env.to_sym]["bitbucket_user"], self.directory_name_was, {:name => self.directory_name, :is_private => true, :no_public_forks => true}
   end
 
+  def push_to_bitbucket
+    system <<-command
+    cd #{self.directory}
+    git push
+    command
+  end
+
   def generate_latex_files
     input_files = ""
     self.texts.order("-position DESC").each do |text|
@@ -298,7 +305,7 @@ class Book < ActiveRecord::Base
 
   def self.push_all_to_repository
     Book.all.each do |book|
-      Version.push_to_repository book.directory
+      book.push_to_bitbucket
     end
   end
 

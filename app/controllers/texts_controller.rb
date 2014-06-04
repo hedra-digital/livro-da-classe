@@ -27,6 +27,7 @@ class TextsController < ApplicationController
     @text.title = I18n.translate(:initial_text_title)
     @text.user  = current_user
     if @text.save
+      @text.book.push_to_bitbucket
       redirect_to edit_book_text_path(@book.uuid, @text.uuid)
     else
       render :new
@@ -60,7 +61,8 @@ class TextsController < ApplicationController
 
       Text.set_positoins_after_split(chapter_ids)
 
-      Version.commit_file(@text.book.directory, @text, current_user.profile.desc, current_user.name, params[:text][:git_message])
+      @text.book.push_to_bitbucket
+
       respond_to do |format|
         format.html  {redirect_to book_text_path(@book.uuid, @text.uuid), :notice => t('activerecord.successful.messages.updated', :model => @text.class.model_name.human)}
         format.json  { render :json => {:refresh => true, :content => new_content.join()} }
@@ -108,10 +110,11 @@ class TextsController < ApplicationController
     end
 
     #delete chapter if not in chapter_ids
-    # TODO add git support
     @book.texts.each do |t|
       t.destroy unless chapter_ids.include?(t.id)
     end
+
+    @book.push_to_bitbucket
 
     respond_to do |format|
       format.html  {redirect_to book_texts_path(@book.uuid), :notice => t('activerecord.successful.messages.updated', :model => Text.model_name.human)}

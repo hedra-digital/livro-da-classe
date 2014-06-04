@@ -16,12 +16,14 @@
 class Text < ActiveRecord::Base
 
   # Callbacks
+  # http://guides.rubyonrails.org/v3.2.9/active_record_validations_callbacks.html#available-callbacks
   before_save               :set_uuid
   before_save               :remove_expressions
   before_save               :set_positoin
 
+  after_create              :create_file
+  after_update              :update_file
   after_destroy             :delete_file
-  after_update              :rename_file
 
   # Relationships
   belongs_to                :book
@@ -211,15 +213,16 @@ class Text < ActiveRecord::Base
     self.position = self.book.texts.count + 1 unless self.position
   end
 
-  def delete_file
+  def create_file
+    self.to_file
     system <<-command
     cd #{self.book.directory}
-    git rm #{self.filename}
-    git commit -m "delete chapter #{self.title}"
+    git add #{self.filename}
+    git commit -m "add chapter #{self.title}"
     command
   end
 
-  def rename_file
+  def update_file
     if self.title_changed?
       system <<-command
       cd #{self.book.directory}
@@ -227,6 +230,22 @@ class Text < ActiveRecord::Base
       git commit -m "rename chapter #{self.title_was}"
       command
     end
+
+    self.to_file
+
+    system <<-command
+    cd #{self.book.directory}
+    git add #{self.short_filename}
+    git commit -m "update chapter #{self.title}"
+    command
+  end
+
+  def delete_file
+    system <<-command
+    cd #{self.book.directory}
+    git rm #{self.filename}
+    git commit -m "delete chapter #{self.title}"
+    command
   end
 
   def remove_expressions
