@@ -75,6 +75,7 @@ class TextsController < ApplicationController
   def destroy
     @text = Text.find_by_uuid_or_id(params[:id])
     @text.destroy
+    @text.book.push_to_bitbucket
     redirect_to book_path(@book.uuid)
   end
 

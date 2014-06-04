@@ -218,7 +218,7 @@ class Text < ActiveRecord::Base
     system <<-command
     cd #{self.book.directory}
     git add #{self.filename}
-    git commit -m "add chapter #{self.title}"
+    git commit -m "add chapter: #{self.title}"
     command
   end
 
@@ -227,7 +227,7 @@ class Text < ActiveRecord::Base
       system <<-command
       cd #{self.book.directory}
       git mv #{self.short_filename_was} #{self.short_filename}
-      git commit -m "rename chapter #{self.title_was}"
+      git commit -m "rename chapter: #{self.title_was}"
       command
     end
 
@@ -236,7 +236,7 @@ class Text < ActiveRecord::Base
     system <<-command
     cd #{self.book.directory}
     git add #{self.short_filename}
-    git commit -m "update chapter #{self.title}"
+    git commit -m "update chapter: #{self.title}"
     command
   end
 
@@ -244,7 +244,7 @@ class Text < ActiveRecord::Base
     system <<-command
     cd #{self.book.directory}
     git rm #{self.filename}
-    git commit -m "delete chapter #{self.title}"
+    git commit -m "delete chapter: #{self.title}"
     command
   end
 
