@@ -217,7 +217,7 @@ class Text < ActiveRecord::Base
     self.to_file
     system <<-command
     cd #{self.book.directory}
-    git add #{self.filename}
+    git add #{self.short_filename}
     git commit -m "add chapter: #{self.title}"
     command
   end
@@ -243,7 +243,7 @@ class Text < ActiveRecord::Base
   def delete_file
     system <<-command
     cd #{self.book.directory}
-    git rm #{self.filename}
+    git rm #{self.short_filename}
     git commit -m "delete chapter: #{self.title}"
     command
   end
