@@ -262,16 +262,28 @@ class Book < ActiveRecord::Base
 
   def rename_dir
     if(!self.new_record? and self.title_changed?)
-      system "mv #{self.directory_was} #{self.directory}"
+      logger.info `mv #{self.directory_was} #{self.directory}
+      cd #{self.directory}
+      git remote set-url origin #{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git`
+
       self.rename_in_bitbucket
     end
   end 
 
   def change_template
     if(!self.new_record? and self.template_changed?)
-      system "mv #{self.directory_was} #{self.directory}"
-      system "cp -r #{template_directory}/* #{directory}"
+
+      logger.info `mv #{self.directory_was} #{self.directory}
+      cp -r #{template_directory}/* #{self.directory}
+      cd #{self.directory}
+      git add .
+      git commit -m "change template to #{self.template}"`
       self.rename_in_bitbucket
+
+      # remember to cd the dir in the new command
+      logger.info `cd #{self.directory}
+      git remote set-url origin #{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git`
+      self.push_to_bitbucket
     end
   end
 
@@ -280,11 +292,13 @@ class Book < ActiveRecord::Base
     bitbucket.repos.edit CONFIG[Rails.env.to_sym]["bitbucket_user"], self.directory_name_was, {:name => self.directory_name, :is_private => true, :no_public_forks => true}
   end
 
+  # push is very slow, must be in background
   def push_to_bitbucket
-    system <<-command
-    cd #{self.directory}
-    git push
-    command
+    Thread.new do
+      logger.info `cd #{self.directory}
+      git push`
+      ActiveRecord::Base.connection.close
+    end
   end
 
   def generate_latex_files
