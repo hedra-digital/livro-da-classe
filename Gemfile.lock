@@ -386,7 +386,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter
-  pandoc-ruby
+  pandoc-ruby (~> 0.7.5)
   paperclip (~> 3.0)
   pdf-reader
   pry
