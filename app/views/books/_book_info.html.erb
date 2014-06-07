@@ -46,7 +46,7 @@
             <% end %>
 
             <% if can_git? %>
-              <%= menu_item t(:git, :scope => :book_nav), "#{CONFIG[Rails.env.to_sym]['revision_url']}#{@book.directory_name}" %>
+              <%= menu_item t(:git, :scope => :book_nav), "#{CONFIG[Rails.env.to_sym]['revision_url']}#{@book.directory_name}", nil, "", true %>
             <% end %>
           </ul>
         </nav>

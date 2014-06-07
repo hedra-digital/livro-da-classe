@@ -35,10 +35,13 @@ module BooksHelper
     tags.html_safe
   end
 
-  def menu_item(name, path, external=nil, type="")
+  def menu_item(name, path, external=nil, type="", blank = false)
     options = {}
     options[:class] = 'active' if current_page?(path)
-    external.nil? ? content_tag(:li, link_to(name, path), options) : content_tag(:li, link_to(name, path, :id => type), options)
+    
+    link_options = {}
+    link_options[:target] = "_blank" if blank
+    external.nil? ? content_tag(:li, link_to(name, path, link_options), options) : content_tag(:li, link_to(name, path, :id => type), options)
   end
 
   def book_cover
