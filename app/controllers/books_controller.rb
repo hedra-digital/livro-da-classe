@@ -61,7 +61,12 @@ class BooksController < ApplicationController
   end
 
   def download_pdf
-    send_file File.open(File.join(@book.directory,"#{@book.uuid}.pdf"))
+    if @book.autor.blank?
+      filename = "#{@book.title}.pdf"
+    else
+      filename = "#{@book.book_data.autor}-#{@book.title}.pdf"
+    end
+    send_file(File.open(File.join(@book.directory, "LIVRO.pdf")), {filename: filename})
   end
 
   def generate_ebook

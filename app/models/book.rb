@@ -120,8 +120,7 @@ class Book < ActiveRecord::Base
 
     # check rotine success
     if File.exist?(pdf_file = File.join(directory, 'LIVRO.pdf'))
-      File.rename(pdf_file, File.join(directory,"#{self.uuid}.pdf"))
-      pdf_file = File.join(directory,"#{self.uuid}.pdf")
+      pdf_file = File.join(directory, "LIVRO.pdf")
       pages = PDF::Reader.new(pdf_file).page_count
       self.update_attributes(:valid_pdf => true, :pages_count => pages)
 
