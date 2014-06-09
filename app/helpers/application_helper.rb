@@ -53,4 +53,9 @@ module ApplicationHelper
     p = Publisher.get_current(request.host)
     "#{p.address}<br>#{p.district}<br>#{p.city} - #{p.uf}<br>Tel. #{p.telephone}<br>".html_safe
   end
+
+  def version_number
+    number = `git log -1 --pretty=%B`.split.first
+    "(v. #{number})"
+  end
 end
