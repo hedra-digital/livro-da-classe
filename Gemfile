@@ -26,6 +26,7 @@ gem 'nokogiri'
 gem 'nokogiri-styles'
 gem 'brazilian-rails'
 gem "bitbucket_rest_api"
+gem "passenger"
 
 
 group :assets do
