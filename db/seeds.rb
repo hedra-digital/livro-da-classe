@@ -1,7 +1,7 @@
-# encoding: UTF-8
 
-user = Profile.create(:desc => "Usuário")
-admin = Profile.create(:desc => "Admin")
+Profile.create(:desc => "Usuário")
+Profile.create(:desc => "Admin")
+Profile.create(:desc => "Publisher")
 
 BookStatus.create(:desc => "Em fila")
 BookStatus.create(:desc => "Aprovado")
