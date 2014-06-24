@@ -224,11 +224,11 @@ class Book < ActiveRecord::Base
 
   # git dir name
   def directory_name(autor_params = self.book_data.autor)
-    "#{Rails.env}-#{self.autor(autor_params)}#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
+    "#{CONFIG[Rails.env][:repo_prefix]}-#{self.autor(autor_params)}#{String.remover_acentos(self.title).gsub(/[^0-9A-Za-z]/, '')}-#{self.template}-#{self.id}"
   end
 
   def directory_name_was
-    "#{Rails.env}-#{self.autor_was}#{String.remover_acentos(self.title_was).gsub(/[^0-9A-Za-z]/, '')}-#{self.template_was}-#{self.id}"
+    "#{CONFIG[Rails.env][:repo_prefix]}-#{self.autor_was}#{String.remover_acentos(self.title_was).gsub(/[^0-9A-Za-z]/, '')}-#{self.template_was}-#{self.id}"
   end
 
   def template_directory
