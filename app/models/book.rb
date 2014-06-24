@@ -239,20 +239,17 @@ class Book < ActiveRecord::Base
     if !self.book_data.nil? && !Dir.exists?(directory)
 
       Thread.new do
-        system <<-command
-        curl --user #{CONFIG[Rails.env.to_sym]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true
+        logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true
 
         mkdir #{directory}
         cp -r #{template_directory}/* #{directory}
         cp config/book_gitignore #{directory}/.gitignore
         cd #{directory}
         git init 
-        git remote add origin #{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git 
+        git remote add origin #{CONFIG[Rails.env]["git"]}/#{directory_name}.git 
         git add . 
         git commit -a -m "create book: #{self.title}"
-        git push -u origin master
-
-        command
+        git push -u origin master`
 
         ActiveRecord::Base.connection.close
       end
