@@ -106,5 +106,13 @@
       olark.identify('2286-731-10-2219');/*]]>*/</script><noscript><a href="https://www.olark.com/site/2286-731-10-2219/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
       <!-- end olark code -->
     <% end %>
+
+    <% if current_user %>
+    <script type="text/javascript">
+    olark('api.chat.updateVisitorNickname', {
+      snippet: "<%= current_user.email%>"
+    });
+    </script>
+    <% end %>
   </body>
 </html>
