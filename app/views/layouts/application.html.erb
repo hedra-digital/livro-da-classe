@@ -110,7 +110,7 @@
     <% if current_user %>
     <script type="text/javascript">
     olark('api.chat.updateVisitorNickname', {
-      snippet: "<%= current_user.email%>"
+      snippet: '<%= "#{current_user.name} (#{current_user.email})"%>'
     });
     </script>
     <% end %>
