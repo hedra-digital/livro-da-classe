@@ -109,13 +109,17 @@
 
     <% if current_user %>
     <script type="text/javascript">
-    olark('api.chat.updateVisitorNickname', {
-      snippet: "<%= current_user.name %>"
-    });
+    setTimeout(function(){
 
-    olark('api.visitor.updateFullName', {fullName: '<%= current_user.name%>'});
+      olark('api.chat.updateVisitorNickname', {
+        snippet: "<%= current_user.name %>"
+      });
 
-    olark('api.visitor.updateEmailAddress', {emailAddress: '<%= current_user.email%>'});
+      olark('api.visitor.updateFullName', {fullName: '<%= current_user.name%>'});
+
+      olark('api.visitor.updateEmailAddress', {emailAddress: '<%= current_user.email%>'});
+
+    },3000)
     </script>
     <% end %>
   </body>
