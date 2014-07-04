@@ -309,6 +309,16 @@ class Book < ActiveRecord::Base
 
     input_commands = File.join(directory,'fichatecnica.sty')
     File.open(input_commands,'w') {|io| io.write(self.book_data.to_file) }
+
+    Thread.new do
+      logger.info `cd #{self.directory}
+      git add INPUTS.tex
+      git add fichatecnica.sty
+      git commit -m "add latex files"
+      git push`
+
+      ActiveRecord::Base.connection.close
+    end
   end
 
   def self.push_all_to_repository
