@@ -321,6 +321,38 @@ class Book < ActiveRecord::Base
     end
   end
 
+  # just run for deploy
+  def regenerate_git_repository
+    logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true
+
+    mkdir #{directory}
+    cp -r #{template_directory}/* #{directory}
+    cp config/book_gitignore #{directory}/.gitignore
+    cd #{directory}
+    git init 
+    git remote add origin #{CONFIG[Rails.env]["git"]}/#{directory_name}.git`
+
+    input_files = ""
+    self.texts.order("-position DESC").each do |text|
+      text.to_file
+      input_files << "\\input{#{text.short_filename}}\n"
+    end
+
+    input_text = File.join(directory,'INPUTS.tex')
+    File.open(input_text,'w') {|io| io.write(input_files) }
+
+    input_commands = File.join(directory,'fichatecnica.sty')
+    File.open(input_commands,'w') {|io| io.write(self.book_data.to_file) }
+
+    logger.info `cd #{self.directory}
+    git add . 
+    git commit -a -m "regenerate git repository from database"
+    git push -u origin master`
+
+    logger.info "regenerate git repository from database for book, id #{self.id}"
+
+  end
+
   def self.push_all_to_repository
     Book.all.each do |book|
       book.push_to_bitbucket
