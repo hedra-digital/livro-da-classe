@@ -132,7 +132,7 @@ class Book < ActiveRecord::Base
       # (./LIVRO.aux (./INPUTS.aux) (./PUBLICIDADE.aux)) ) 
       # sometime, this line is not in the 11th.
       log_valid = false
-      [9, 10, 11].each do |n|
+      [9, 10, 11, 12, 13, 14].each do |n|
         log_valid = (log_valid or File.readlines(directory + "/LIVRO.log").reverse[n].start_with?(" (./LIVRO.aux") )
       end
 
