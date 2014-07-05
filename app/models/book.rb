@@ -239,9 +239,11 @@ class Book < ActiveRecord::Base
     if !self.book_data.nil? && !Dir.exists?(directory)
 
       Thread.new do
-        logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true
+        logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true`
 
-        mkdir #{directory}
+        sleep 1
+
+        logger.info `mkdir #{directory}
         cp -r #{template_directory}/* #{directory}
         cp config/book_gitignore #{directory}/.gitignore
         cd #{directory}
@@ -323,9 +325,11 @@ class Book < ActiveRecord::Base
 
   # just run for deploy
   def regenerate_git_repository
-    logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true
+    logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true`
 
-    mkdir #{directory}
+    sleep 1
+
+    logger.info `mkdir #{directory}
     cp -r #{template_directory}/* #{directory}
     cp config/book_gitignore #{directory}/.gitignore
     cd #{directory}
