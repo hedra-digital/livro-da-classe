@@ -17,12 +17,12 @@
   <% end %>
   </ul>
 <% else %>
-  <% if can_write? %>
+  <% if is_organizer? and can_write? %>
     <p class="blank">Nenhum capítulo encontrado. Que tal <%= link_to 'criar um novo capítulo?', new_book_text_path(@book.uuid) %></p>
   <% end %>
 <% end %>
 
-<% if can_write? %>
+<% if is_organizer? and can_write? %>
   <div class="btn-group">
     <%= link_to 'Novo Capítulo', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small' %>
     <%= link_to('Editar todos os capítulo juntos', all_book_texts_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small') if @texts.count >= 2 %>

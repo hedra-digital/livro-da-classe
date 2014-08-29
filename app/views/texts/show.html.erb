@@ -8,7 +8,7 @@
 <div class="row">
   <div class="span pull-right">
     <div>
-      <% if can_write? %>
+      <% if is_organizer? and can_write? %>
         <%= link_to t(:text_edit), edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
       <% end %>
     </div>
@@ -22,7 +22,7 @@
 
   <div class="span10">
     <div>
-      <% if can_write? %>
+      <% if is_organizer? and can_write? %>
         <%= link_to t(:text_edit), edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
         <%= link_to t(:text_delete), book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger', :method => "delete", :confirm => t(:text_confirm) %>
       <% end %>
