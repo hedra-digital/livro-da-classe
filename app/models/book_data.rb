@@ -135,9 +135,6 @@ class BookData < ActiveRecord::Base
   def rename_dir
     if(!self.new_record? and self.autor_changed?)
       system "mv #{self.book.directory_was} #{self.book.directory(self.autor)}"
-
-      bitbucket = BitBucket.new basic_auth: CONFIG[Rails.env.to_sym]["git_user_pass"]
-      bitbucket.repos.edit CONFIG[Rails.env.to_sym]["bitbucket_user"], self.book.directory_name_was, {:name => self.book.directory_name(self.autor), :is_private => true, :no_public_forks => true}
     end
   end 
 

@@ -239,7 +239,7 @@ class Book < ActiveRecord::Base
     if !self.book_data.nil? && !Dir.exists?(directory)
 
       Thread.new do
-        logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true`
+        logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{CONFIG[Rails.env][:repo_prefix]}-#{self.uuid} --data is_private=true`
 
         sleep 1
 
@@ -248,7 +248,7 @@ class Book < ActiveRecord::Base
         cp config/book_gitignore #{directory}/.gitignore
         cd #{directory}
         git init 
-        git remote add origin #{CONFIG[Rails.env]["git"]}/#{directory_name}.git 
+        git remote add origin #{CONFIG[Rails.env]["git"]}/#{CONFIG[Rails.env][:repo_prefix]}-#{self.uuid}.git 
         git add . 
         git commit -a -m "create book: #{self.title}"
         git push -u origin master`
@@ -260,11 +260,8 @@ class Book < ActiveRecord::Base
 
   def rename_dir
     if(!self.new_record? and self.title_changed?)
-      logger.info `mv #{self.directory_was} #{self.directory}
-      cd #{self.directory}
-      git remote set-url origin #{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git`
+      logger.info `mv #{self.directory_was} #{self.directory}`
 
-      self.rename_in_bitbucket
     end
   end 
 
@@ -276,11 +273,7 @@ class Book < ActiveRecord::Base
       cd #{self.directory}
       git add .
       git commit -m "change template to #{self.template}"`
-      self.rename_in_bitbucket
 
-      # remember to cd the dir in the new command
-      logger.info `cd #{self.directory}
-      git remote set-url origin #{CONFIG[Rails.env.to_sym]["git"]}/#{directory_name}.git`
       self.push_to_bitbucket
     end
   end
@@ -325,7 +318,7 @@ class Book < ActiveRecord::Base
 
   # just run for deploy
   def regenerate_git_repository
-    logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{directory_name} --data is_private=true`
+    logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{CONFIG[Rails.env][:repo_prefix]}-#{self.uuid} --data is_private=true`
 
     sleep 1
 
@@ -334,7 +327,7 @@ class Book < ActiveRecord::Base
     cp config/book_gitignore #{directory}/.gitignore
     cd #{directory}
     git init 
-    git remote add origin #{CONFIG[Rails.env]["git"]}/#{directory_name}.git`
+    git remote add origin #{CONFIG[Rails.env]["git"]}/#{CONFIG[Rails.env][:repo_prefix]}-#{self.uuid}.git`
 
     input_files = ""
     self.texts.order("-position DESC").each do |text|
