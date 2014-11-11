@@ -106,17 +106,7 @@ class Book < ActiveRecord::Base
     self.generate_latex_files
 
     # generate pdf
-    Process.waitpid(
-      fork do
-        begin
-          system "cd #{directory}/ && make"
-        rescue
-          system "cd #{directory}/ && make clean"
-        ensure
-          Process.exit! 1
-        end
-      end
-      )
+    system "cd #{directory}/ && make"
 
     # check rotine success
     if File.exist?(pdf_file = File.join(directory, 'LIVRO.pdf'))
