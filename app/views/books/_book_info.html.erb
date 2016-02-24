@@ -1,6 +1,6 @@
 <div id="book-info">
   <div>
-    <%= progress_notification %>  
+    <%= progress_notification %>
   </div>
   <div class="container">
     <div class="row">
@@ -35,13 +35,13 @@
               <%= menu_item t(:kindle, :scope => :book_nav), '#', true, 'generate-kindle'  %>
             <% end %>
 
-            <% if is_organizer? && is_project? && can_execute? %>
+            <% if is_organizer? && is_project? && can_execute? && can_print? %>
               <%= menu_item t(:project, :scope => :book_nav), edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>
-            
+
             <%= menu_item t(:overview, :scope => :book_nav), book_scraps_path(@book.uuid) %>
-            
-            <% if is_organizer? && !is_project? && can_execute? %>
+
+            <% if is_organizer? && !is_project? && can_execute? && can_print? %>
               <%= menu_item t(:publish, :scope => :book_nav), edit_book_project_path(@book.uuid, @book.project.id) %>
             <% end %>
 
@@ -64,21 +64,21 @@
 
   function getByType(type){
     if (type == "pdf"){
-      return { 
+      return {
         url : bookurl,
         title: "<%= t(:pdf_progress_title) %>",
         download: "<%= t(:pdf_generation_download) %>",
         error: "<%= t(:pdf_generation_error) %>"
       };
     } else if (type == "ebook"){
-      return { 
+      return {
         url : ebookurl,
         title: "<%= t(:ebook_progress_title) %>",
         download: "<%= t(:ebook_generation_download) %>",
         error: "<%= t(:ebook_generation_error) %>"
       };
     } else {
-      return { 
+      return {
         url : ebookurl + "?kindle=true",
         title: "<%= t(:kindle_progress_title) %>",
         download: "<%= t(:kindle_generation_download) %>",

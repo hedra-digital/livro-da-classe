@@ -114,7 +114,7 @@ pt-BR:
     corprimaria: 'Cor Primária'
     corsecundaria: 'Cor Secundária'
     grafica: 'Gráfica'
-    papelmiolo: 'Papel Miolo'    
+    papelmiolo: 'Papel Miolo'
   book_nav:
     overview: 'Suporte'
     book_data: 'Dados do Livro'
@@ -123,8 +123,8 @@ pt-BR:
     pdf: 'Mostrar livro (.pdf)'
     ebook: 'Ebook'
     kindle: 'Kindle'
-    project: 'Contratar impressão'
-    publish: 'Contratar impressão'
+    project: 'Contratar'
+    publish: 'Contratar'
     git: 'Revisão'
   helpers:
     submit:
@@ -392,9 +392,9 @@ pt-BR:
         target: Expressão a ser substituída
         replace: Expressão substituta
         level: Nível
-      cover_info: 
-        autor: Autor 
-        book_id: Livro 
+      cover_info:
+        autor: Autor
+        book_id: Livro
         texto_quarta_capa: Texto da quarta capa
         titulo_linha1: Título (linha 1)
         titulo_linha2: Título (linha 2)
@@ -442,6 +442,7 @@ pt-BR:
         execute: 'Executar'
         review: 'Revisar'
         git: 'Git'
+        print: 'Contratar'
       text:
         title: 'Título'
         content: 'Conteúdo'
