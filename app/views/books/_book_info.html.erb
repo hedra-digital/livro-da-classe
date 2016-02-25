@@ -2,12 +2,15 @@
   <div>
     <%= progress_notification %>
   </div>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
+      <div class="span3 logo-scola">
+        <img src="/assets/fernando_quem-somos.jpg" alt="" class="img-responsive">
+      </div>
       <div class="span1">
         <%= book_cover %>
       </div>
-      <div class="span11">
+      <div class="span8">
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? and @book.project.engaged? %>
         <nav role="navigation">
           <ul class="nav nav-pills fill-width">
