@@ -4,8 +4,8 @@
   </div>
   <div class="container-fluid">
     <div class="row">
-      <div class="span3 logo-scola">
-        <img src="/assets/fernando_quem-somos.jpg" alt="" class="img-responsive">
+      <div class="span2 logo-scola">
+        <%= image_tag(@book.book_data.logo.url(:small)), class:'img-responsive' if @book.book_data.logo.present?%>
       </div>
       <div class="span1">
         <%= book_cover %>
