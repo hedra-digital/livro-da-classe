@@ -2,7 +2,7 @@ module AuthorizationHelper
   def is_organizer?(book=nil, user=nil)
     book ||= @book
     user ||= @current_user
-    
+
     if book.nil? || user.nil?
       return false
     else
@@ -13,7 +13,7 @@ module AuthorizationHelper
   def is_collaborator?(book=nil, user=nil)
     book ||= @book
     user ||= @current_user
-    
+
     if book.nil? || user.nil?
       return false
     else
@@ -73,6 +73,17 @@ module AuthorizationHelper
       return false
     else
       Permission.get_permissions_for(book.project.status, user.profile.id).git
+    end
+  end
+
+  def can_print?(book=nil, user=nil)
+    book ||= @book
+    user ||= @current_user
+
+    if book.nil? || user.nil?
+      return false
+    else
+      Permission.get_permissions_for(book.project.status, user.profile.id).print
     end
   end
 end
