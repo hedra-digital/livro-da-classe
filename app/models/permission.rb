@@ -6,7 +6,7 @@ class Permission < ActiveRecord::Base
   belongs_to                    :profile
 
   # Specify fields that can be accessible through mass assignment
-  attr_accessible               :book_status, :profile, :read, :write, :execute, :review, :git
+  attr_accessible               :book_status, :profile, :read, :write, :execute, :review, :git, :print
 
   accepts_nested_attributes_for :book_status, :profile
 
@@ -43,5 +43,5 @@ class Permission < ActiveRecord::Base
   def self.get_permissions_for book_status_id, user_profile_id
     Permission.where(:profile_id => user_profile_id, :book_status_id => book_status_id).first
   end
-  
+
 end

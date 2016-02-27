@@ -9,6 +9,7 @@
       <th>Execução</th>
       <th>Revisão</th>
       <th>Git</th>
+      <th>Contratar</th>
       <th></th>
     </tr>
     <% @permissions.each do |permission| %>
@@ -39,6 +40,11 @@
           <td>
             <div class="form-inputs">
               <%= f.input :git, :label => "" %>
+            </div>
+          </td>
+          <td>
+            <div class="form-inputs">
+              <%= f.input :print, :label => "" %>
             </div>
           </td>
           <td>
