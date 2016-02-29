@@ -2,15 +2,15 @@
   <div>
     <%= progress_notification %>
   </div>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
-      <div class="span1">
-      <%= link_to(image_tag(@book.book_data.logo.url(:thumb)), @book.book_data.logo.url(:content), :class => 'cover-modal') %>
+      <div class="span2 logo-scola">
+        <%= image_tag(@book.book_data.logo.url(:small)), class:'img-responsive' if @book.book_data.logo.present?%>
       </div>
       <div class="span1">
         <%= book_cover %>
       </div>
-      <div class="span11">
+      <div class="span8">
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? and @book.project.engaged? %>
         <nav role="navigation">
           <ul class="nav nav-pills fill-width">
