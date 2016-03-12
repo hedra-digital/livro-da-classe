@@ -1,6 +1,6 @@
 restricted_area:
   username: "frodo"
-  password: "shire
+  password: "shire"
 
 development: &defaults
   latex_template_path: templates/
