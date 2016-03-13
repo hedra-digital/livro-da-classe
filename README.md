@@ -15,6 +15,7 @@ $ git clone https://github.com/hedra-digital/livro-da-classe.git
 </code>
 
 ### Criar Vagrantfile
+Dentro do diretório da aplicação:
 <code>
 $ cp Vagrantfile.example Vagrantfile
 </code>
@@ -22,6 +23,7 @@ $ cp Vagrantfile.example Vagrantfile
 ### Configurações da aplicação
 <code>
 $ cp config/config.example.yml config/config.yml
+
 $ cp config/database.example.yml config/database.yml
 </code>
 
@@ -57,18 +59,6 @@ Adicionar a pasta na configuração do vagrant (Vagrantfile)
 
 Colocar seu caminho na variável "books_path" do arquivo de configurações (config/config.yml)
 
-### Iniciar Vagrant
-<code>
-$ vagrant up
-$ vagrant ssh
-$ cd /project
-</code>
-
-### Instalar Gemas do projeto
-<code>
-$ bundle install
-</code>
-
 ### Configurações para o ambiente LaTeX
 
 Clonar a projeto do texmf.
@@ -98,6 +88,18 @@ Adicionar a pasta na configuração do vagrant (Vagrantfile)
 </code>
 
 Colocar seu caminho na variável "templates_path" do arquivo de configurações (config/config.yml)
+
+### Iniciar Vagrant
+<code>
+$ vagrant up
+$ vagrant ssh
+$ cd /project
+</code>
+
+### Instalar Gemas do projeto
+<code>
+$ bundle install
+</code>
 
 ### Criar estrutura do banco de dados da aplicação
 

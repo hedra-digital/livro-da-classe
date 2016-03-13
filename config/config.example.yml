@@ -4,8 +4,8 @@ restricted_area:
 
 development: &defaults
   latex_template_path: templates/
-  books_path: /home/user/tipografia-books/
-  books_submodule_path: /home/user/tipografia-submodule/
+  books_path: /books/
+  books_submodule_path: /tipografia-submodule/
   repo_prefix: livrodaclasse
   git: https://user:pass@bitbucket.org/repo
   git_user_pass: user:password
