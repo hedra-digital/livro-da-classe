@@ -6,6 +6,7 @@ class Admin::DashboardController < Admin::ApplicationController
     if params[:impersonate_user_id].blank?
 
       @projects = Project.includes(:book).all
+      @projects.delete_if { |project| project.book.book_data.nil? }
       @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
 
     else
