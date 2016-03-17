@@ -5,12 +5,9 @@
   <div class="container">
     <div class="row">
       <div class="span1">
-      <%= link_to(image_tag(@book.book_data.logo.url(:thumb)), @book.book_data.logo.url(:content), :class => 'cover-modal') %>
-      </div>
-      <div class="span1">
         <%= book_cover %>
       </div>
-      <div class="span11">
+      <div class="span9">
         <h2 class="book-title"><%= @book.title %></h2><%= remaining_label(@book.project) if @book.project.present? and @book.project.engaged? %>
         <nav role="navigation">
           <ul class="nav nav-pills fill-width">
@@ -53,6 +50,9 @@
             <% end %>
           </ul>
         </nav>
+      </div>
+      <div class="span2">
+        <%= image_tag(@book.book_data.logo.url(:small)) if @book.book_data.logo.present?%>
       </div>
       <div class="span3 book-info-aux">
         <%= image_tag(@book.project.school_logo.url) if @book.project.present? && @book.project.school_logo.present? %>
