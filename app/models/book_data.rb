@@ -84,7 +84,7 @@ class BookData < ActiveRecord::Base
   has_attached_file :logo,
                     :styles => {
                           :normal => ["600x600>", :png],
-                          :small => ["300x300#", :png]
+                          :small => ["300x300", :png]
                     }
 
   validates_attachment_content_type :logo, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif|svg\+xml|tiff)$/, :message => 'A imagem do logo ou da ficha catalográfica que você acrescentou parece que não está num formato adequado. Confira o formato e tente novamente.'
