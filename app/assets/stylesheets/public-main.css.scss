@@ -625,6 +625,17 @@ section {
           height: 130px;
         }
       }
+      .user-agent {
+        margin-bottom: 20px;
+
+        figure {
+          -webkit-border-radius: 100px;
+          -moz-border-radius: 100px;
+          overflow: hidden;
+          width: 130px;
+          height: 130px;
+        }
+      }
       article p {
         position: relative;
         &:before {
