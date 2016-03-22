@@ -10,6 +10,7 @@
       <th>Execução</th>
       <th>Revisão</th>
       <th>Git</th>
+      <th>Contratar</th>
     </tr>
     <% @permissions.each do |permission| %>
       <tr>
@@ -20,6 +21,7 @@
         <td><%= active_or_not(permission.execute) %></td>
         <td><%= active_or_not(permission.review) %></td>
         <td><%= active_or_not(permission.git) %></td>
+        <td><%= active_or_not(permission.print) %></td>
       </tr>
     <% end %>
   </table>
