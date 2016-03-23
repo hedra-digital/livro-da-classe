@@ -28,7 +28,6 @@
               <li><%= link_to "Perfis", admin_profiles_path if current_user.admin? %></li>
               <li><%= link_to "Permissões", admin_permissions_path if current_user.admin? %></li>
               <li><%= link_to "Usuários", admin_users_path %></li>
-              <li><%= link_to("Repositório", "#{CONFIG[Rails.env.to_sym]['revision_url']}", target: "_blank") if current_user.admin? %></li>
             </ul>
           </div>
           <div class="navbar-inner navbar-right">
