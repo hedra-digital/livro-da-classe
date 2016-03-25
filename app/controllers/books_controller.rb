@@ -136,7 +136,7 @@ class BooksController < ApplicationController
 
     book_data = params[:book][:book_data]
     params[:book].delete :book_data
-    byebug
+
     @book.remove_capa if params[:remove_capa].present?
     @book.remove_capa_detalhe if params[:remove_capa_detalhe].present?
 
