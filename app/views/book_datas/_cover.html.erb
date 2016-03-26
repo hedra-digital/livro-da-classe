@@ -11,12 +11,16 @@
       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
         <%= image_tag(@book.cover_info.capa_imagem.url(:small)) if @book.cover_info.capa_imagem.present? %>
       </div>
-      <div class="fileupload-exists checkbox">
-        <% if @book.cover_info.capa_imagem.present? %>
+      <% if @book.cover_info.capa_imagem.present? %>
+        <div class="fileupload-exists checkbox">
           <%= check_box_tag(:remove_capa) %>
           <%= label_tag(:remove_capa, "Remover imagem.") %>
-        <% end %>
-      </div>
+        </div>
+      <% else %>
+        <div>
+          <a href="#" class="btn btn-file fileupload-exists" data-dismiss="fileupload">Remover</a>
+        </div>
+      <% end %>
       <div>
         <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
           <%= c.input_field :capa_imagem, :as => :file %>
@@ -29,12 +33,16 @@
       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
         <%= image_tag(@book.cover_info.capa_detalhe.url(:small)) if @book.cover_info.capa_detalhe.present? %>
       </div>
-      <div class="fileupload-exists checkbox">
-        <% if @book.cover_info.capa_imagem.present? %>
+      <% if @book.cover_info.capa_detalhe.present? %>
+        <div class="fileupload-exists checkbox">
           <%= check_box_tag(:remove_capa_detalhe) %>
           <%= label_tag(:remove_capa_detalhe, "Remover imagem.") %>
-        <% end %>
-      </div>
+        </div>
+      <% else %>
+        <div>
+          <a href="#" class="btn btn-file fileupload-exists" data-dismiss="fileupload">Remover</a>
+        </div>
+      <% end %>
       <div>
         <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
           <%= c.input_field :capa_detalhe, :as => :file %>
