@@ -18,7 +18,7 @@ class BooksController < ApplicationController
 
   def cover_info
   end
-  
+
   def update_cover_info
     if @book.cover_info.update_attributes(params[:cover_info])
       BookCover.new(@book.cover_info).generate_cover
@@ -30,10 +30,10 @@ class BooksController < ApplicationController
 
   def generate_cover
     pdf_file = BookCover.new(@book.cover_info).generate_pdf_cover
-    
+
     respond_to do |format|
       format.pdf do |pdf|
-        send_file pdf_file    
+        send_file pdf_file
       end
     end
   end
@@ -53,7 +53,7 @@ class BooksController < ApplicationController
     end
   end
 
-  # work around http://stackoverflow.com/questions/6019522/rails-3-how-to-send-file-in-response-of-a-remote-form-in-rails 
+  # work around http://stackoverflow.com/questions/6019522/rails-3-how-to-send-file-in-response-of-a-remote-form-in-rails
   def ask_for_download_pdf
     pdf = @book.pdf
     pdf_path = pdf.to_s.gsub('public/','')
@@ -96,7 +96,7 @@ class BooksController < ApplicationController
     params[:book].delete :book_data
 
     @book = current_user.organized_books.new(params[:book].merge(:template => Livrodaclasse::Application.latex_templates[0]))
-    
+
     @book.organizer = current_user
     @book.publisher_id = current_publisher
 
@@ -137,13 +137,16 @@ class BooksController < ApplicationController
     book_data = params[:book][:book_data]
     params[:book].delete :book_data
 
-    cover_info.delete :capa_imagem        if cover_info[:capa_imagem].blank? 
+    @book.remove_capa if params[:remove_capa].present?
+    @book.remove_capa_detalhe if params[:remove_capa_detalhe].present?
+
+    cover_info.delete :capa_imagem        if cover_info[:capa_imagem].blank?
     cover_info.delete :capa_detalhe       if cover_info[:capa_detalhe].blank?
     cover_info.delete :texto_quarta_capa  if cover_info[:texto_quarta_capa].blank?
 
     @book.publisher_id = current_publisher
-    
-    if @book.update_attributes(params[:book]) and @book.cover_info.update_attributes(cover_info) and @book.book_data.update_attributes(book_data)    
+
+    if @book.update_attributes(params[:book]) and @book.cover_info.update_attributes(cover_info) and @book.book_data.update_attributes(book_data)
       BookCover.new(@book.cover_info).generate_cover
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
@@ -164,7 +167,7 @@ class BooksController < ApplicationController
   def revision
     @name = @book.directory_name
   end
-  
+
   private
 
   def secure_organizer_id
