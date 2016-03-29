@@ -27,7 +27,7 @@ class AdminMailer < ActionMailer::Base
     @email = email
     @content = content
 
-    mail(to: "fernando@hedra.com.br, pauloabner@gmail.com", subject: "#{Publisher.get_current_app} - Contato - #{@name} (#{@email})")
+    mail(to: "jorge@hedra.com.br", subject: "#{Publisher.get_current_app} - Contato - #{@name} (#{@email})")
   end
 
 end
