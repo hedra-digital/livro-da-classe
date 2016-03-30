@@ -6,6 +6,7 @@ class Admin::DashboardController < Admin::ApplicationController
     if params[:impersonate_user_id].blank?
 
       @projects = Project.includes(:book).all
+      remove_projects_inconsistent
       @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
 
     else
@@ -16,7 +17,7 @@ class Admin::DashboardController < Admin::ApplicationController
   end
 
   def default_cover
-    DefaultCover.new.save if DefaultCover.first.nil? 
+    DefaultCover.new.save if DefaultCover.first.nil?
 
     @default_cover = DefaultCover.first
   end
@@ -32,5 +33,18 @@ class Admin::DashboardController < Admin::ApplicationController
   end
 
   def revision
+  end
+
+  private
+
+  def remove_projects_inconsistent
+    @projects.delete_if do |project|
+      inconsist = false
+      if project.book.nil? || project.book.book_data.nil?
+        logger.warn "WARN - Projeto Inconsistente: Project id ##{project.id}"
+        inconsist = true
+      end
+      inconsist
+    end
   end
 end

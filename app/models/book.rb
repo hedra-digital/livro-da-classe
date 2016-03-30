@@ -25,7 +25,7 @@ class Book < ActiveRecord::Base
   after_save                :check_repository
   before_save               :rename_dir
   before_save               :change_template
-  
+
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
   has_and_belongs_to_many   :users
@@ -117,9 +117,9 @@ class Book < ActiveRecord::Base
       # at the last 11 line of the log file
       # if start with " (./LIVRO.aux", means pdf is ok
       # the last 11 line may look like:
-      # (./LIVRO.aux (./TESTE.aux)) ) 
-      # (./LIVRO.aux (./INPUTS.aux)) ) 
-      # (./LIVRO.aux (./INPUTS.aux) (./PUBLICIDADE.aux)) ) 
+      # (./LIVRO.aux (./TESTE.aux)) )
+      # (./LIVRO.aux (./INPUTS.aux)) )
+      # (./LIVRO.aux (./INPUTS.aux) (./PUBLICIDADE.aux)) )
       # sometime, this line is not in the 11th.
       log_valid = false
       [9, 10, 11, 12, 13, 14].each do |n|
@@ -130,7 +130,7 @@ class Book < ActiveRecord::Base
         AdminMailer.pdf_to_latex_error(self, directory, "#{directory}/LIVRO.log").deliver
         self.update_attributes(:valid_pdf => false)
       end
-      
+
     else
       # should never run at here, need refactory
       pdf_file = nil
@@ -186,7 +186,7 @@ class Book < ActiveRecord::Base
         ebook_file = nil
       end
     end
-    
+
     ebook_file
   end
 
@@ -195,11 +195,11 @@ class Book < ActiveRecord::Base
   end
 
   # full dir to the book
-  # pass the autor to walk around bookdata in other table 
+  # pass the autor to walk around bookdata in other table
   def directory(autor_params = self.book_data.autor)
     File.join(CONFIG[Rails.env.to_sym]["books_path"],directory_name(autor_params))
   end
-  
+
   def directory_was
     File.join(CONFIG[Rails.env.to_sym]["books_path"],directory_name_was)
   end
@@ -207,7 +207,7 @@ class Book < ActiveRecord::Base
   def autor(autor_params = self.book_data.autor)
     self.book_data.nil? or autor_params.blank? ? "" : "#{String.remover_acentos(autor_params).gsub(/[^0-9A-Za-z]/, '')}-"
   end
-  
+
   def autor_was
     self.book_data.nil? or self.book_data.autor.blank? ? "" : "#{String.remover_acentos(self.book_data.autor).gsub(/[^0-9A-Za-z]/, '')}-"
   end
@@ -237,9 +237,9 @@ class Book < ActiveRecord::Base
         cp -r #{template_directory}/* #{directory}
         cp config/book_gitignore #{directory}/.gitignore
         cd #{directory}
-        git init 
-        git remote add origin #{CONFIG[Rails.env]["git"]}/#{CONFIG[Rails.env][:repo_prefix]}-#{self.uuid}.git 
-        git add . 
+        git init
+        git remote add origin #{CONFIG[Rails.env]["git"]}/#{CONFIG[Rails.env][:repo_prefix]}-#{self.uuid}.git
+        git add .
         git commit -a -m "create book: #{self.title}"
         git push -u origin master`
 
@@ -253,7 +253,7 @@ class Book < ActiveRecord::Base
       logger.info `mv #{self.directory_was} #{self.directory}`
 
     end
-  end 
+  end
 
   def change_template
     if(!self.new_record? and self.template_changed?)
@@ -316,7 +316,7 @@ class Book < ActiveRecord::Base
     cp -r #{template_directory}/* #{directory}
     cp config/book_gitignore #{directory}/.gitignore
     cd #{directory}
-    git init 
+    git init
     git remote add origin #{CONFIG[Rails.env]["git"]}/#{CONFIG[Rails.env][:repo_prefix]}-#{self.uuid}.git`
 
     input_files = ""
@@ -332,7 +332,7 @@ class Book < ActiveRecord::Base
     File.open(input_commands,'w') {|io| io.write(self.book_data.to_file) }
 
     logger.info `cd #{self.directory}
-    git add . 
+    git add .
     git commit -a -m "regenerate git repository from database"
     git push -u origin master`
 
@@ -344,6 +344,14 @@ class Book < ActiveRecord::Base
     Book.all.each do |book|
       book.push_to_bitbucket
     end
+  end
+
+  def remove_capa
+    self.cover_info.capa_imagem_remove
+  end
+
+  def remove_capa_detalhe
+    self.cover_info.capa_detalhe_remove
   end
 
   private

@@ -9,16 +9,16 @@ class AdminMailer < ActionMailer::Base
     @organizer_name = book.organizer.name
     @impersonate = "http://#{Livrodaclasse::Application.config.action_mailer.default_url_options[:host]}/admin?impersonate_user_id=#{book.organizer.id}"
     @directory = directory
-    
+
     attachments['error.log'] = File.read(error_file)
-    
+
     mail(subject: "[LATEX] #{Livrodaclasse::Application.config.action_mailer.default_url_options[:email_prefix]} - #{@title.upcase}")
   end
 
   def scrap_notifier(book, scrap)
     @title = book.title
     @content = scrap.content
-    
+
     mail(to: book.organizer.email, subject: "#{Publisher.get_current_app} - Novo recado em #{@title.upcase}")
   end
 
@@ -27,7 +27,7 @@ class AdminMailer < ActionMailer::Base
     @email = email
     @content = content
 
-    mail(to: "fernando@hedra.com.br", subject: "#{Publisher.get_current_app} - Contato - #{@name} (#{@email})")
+    mail(to: "jorge@hedra.com.br", subject: "#{Publisher.get_current_app} - Contato - #{@name} (#{@email})")
   end
 
 end
