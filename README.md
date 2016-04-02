@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/hedra-digital/livro-da-classe.png)](https://travis-ci.org/hedra-digital/livro-da-classe) 
+[![Build Status](https://travis-ci.org/hedra-digital/livro-da-classe.png)](https://travis-ci.org/hedra-digital/livro-da-classe)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/hedra-digital/livro-da-classe)
 [![Code Climate](https://codeclimate.com/repos/536c079f6956801268001034/badges/b8197b1c251d7246d52e/gpa.png)](https://codeclimate.com/repos/536c079f6956801268001034/feed)
 
@@ -14,21 +14,16 @@
 $ git clone https://github.com/hedra-digital/livro-da-classe.git
 </code>
 
-### Iniciar Vagrant
+### Criar Vagrantfile
+Dentro do diretório da aplicação:
 <code>
-$ vagrant up
-$ vagrant ssh
-$ cd /project
-</code>
-
-### Instalar Gemas do projeto
-<code>
-$ bundle install
+$ cp Vagrantfile.example Vagrantfile
 </code>
 
 ### Configurações da aplicação
 <code>
 $ cp config/config.example.yml config/config.yml
+
 $ cp config/database.example.yml config/database.yml
 </code>
 
@@ -59,7 +54,7 @@ $ mkdir books
 Adicionar a pasta na configuração do vagrant (Vagrantfile)
 
 <code>
-  config.vm.synced_folder "/local-books-path", "/books-path"
+  config.vm.synced_folder "/local-books-path", "/books"
 </code>
 
 Colocar seu caminho na variável "books_path" do arquivo de configurações (config/config.yml)
@@ -93,6 +88,18 @@ Adicionar a pasta na configuração do vagrant (Vagrantfile)
 </code>
 
 Colocar seu caminho na variável "templates_path" do arquivo de configurações (config/config.yml)
+
+### Iniciar Vagrant
+<code>
+$ vagrant up
+$ vagrant ssh
+$ cd /project
+</code>
+
+### Instalar Gemas do projeto
+<code>
+$ bundle install
+</code>
 
 ### Criar estrutura do banco de dados da aplicação
 

@@ -4,7 +4,9 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "vagrant", "/vagrant"
   config.vm.synced_folder ".", "/project"
   config.vm.synced_folder "/home/user/tipografia-submodule-dev", "/tipografia-submodule-dev"
-  config.vm.synced_folder "/home/user/tipografia-books", "/tipografia-books"
+  config.vm.synced_folder "/home/user/books", "/books"
+  config.vm.synced_folder "/home/user/texmf", "/texmf"
+  config.vm.synced_folder "/home/user/templates", "/templates"
   config.ssh.forward_agent = true
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", 512]
