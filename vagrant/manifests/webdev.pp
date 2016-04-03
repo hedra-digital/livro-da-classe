@@ -185,14 +185,14 @@ class { 'install_mysql':
 
 # --- Ruby ---------------------------------------------------------------------
 exec { 'import_key':
-  command => ${as_vagrant} 'curl -sSL https://rvm.io/mpapis.asc | gpg --import -'",
+  command => "${as_vagrant} 'curl -sSL https://rvm.io/mpapis.asc | gpg --import -'",
   require => Package['curl']
 }
 
 exec { 'install_rvm':
   command => "${as_vagrant} 'curl -L https://get.rvm.io | bash -s stable'",
   creates => "${home}/.rvm/bin/rvm",
-  require => Package['import_key']
+  require => Exec['import_key']
 }
 
 exec { 'install_ruby':
