@@ -10,12 +10,21 @@ class GoogleConnector
   CLIENT_SECRETS_PATH = File.join(Rails.root, 'config', 'client_secret.json')
   CREDENTIALS_PATH = File.join(Rails.root, 'config',
                                'google-connector-credentials.yaml')
-  SCOPE = Google::Apis::DriveV3::AUTH_DRIVE
+  SCOPE = 'https://www.googleapis.com/auth/drive.file'.freeze
 
   def initialize
     @service = Google::Apis::DriveV3::DriveService.new
     @service.client_options.application_name = APPLICATION_NAME
     @service.authorization = authorize
+  end
+
+  def upload(file)
+    metadata = {
+      name: 'ConvertFile-' << Time.now.strftime('%Y%m%d%H%M%S'),
+      mime_type: 'application/vnd.google-apps.document'
+    }
+    result = @service.create_file(metadata, upload_source: file)
+    result.id
   end
 
   private
@@ -26,7 +35,7 @@ class GoogleConnector
     user_id = 'default'
     credentials = authorizer.get_credentials(user_id)
     if credentials.nil?
-      code = get_authorization_code(authorizer)
+      code = authorization_code(authorizer)
       credentials = authorizer.get_and_store_credentials_from_code(
         user_id: user_id, code: code, base_url: OOB_URI)
     end
