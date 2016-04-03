@@ -27,6 +27,16 @@ class GoogleConnector
     result.id
   end
 
+  def download_as_html(google_filedocument_id, output_file: nil)
+    dest = output_file || StringIO.new
+    @service.export_file(google_filedocument_id,
+                         'text/html',
+                         download_dest: dest)
+    return unless dest.is_a?(StringIO)
+    dest.rewind
+    STDOUT.write(dest.read)
+  end
+
   private
 
   def authorize
