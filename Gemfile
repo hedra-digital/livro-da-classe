@@ -27,7 +27,7 @@ gem 'nokogiri-styles'
 gem 'brazilian-rails'
 gem "bitbucket_rest_api"
 gem "passenger"
-
+gem "google-api-client"
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
