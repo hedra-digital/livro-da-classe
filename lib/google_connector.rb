@@ -34,7 +34,7 @@ class GoogleConnector
                          download_dest: dest)
     return unless dest.is_a?(StringIO)
     dest.rewind
-    STDOUT.write(dest.read)
+    dest.read
   end
 
   private

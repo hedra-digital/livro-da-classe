@@ -1,3 +1,5 @@
+require "#{Rails.root}/lib/google_connector.rb"
+
 class TextsController < ApplicationController
   before_filter :authentication_check
   before_filter :find_book
@@ -19,6 +21,24 @@ class TextsController < ApplicationController
   def edit
     @text = Text.find_by_uuid_or_id(params[:id])
     session['book_id'] = @text.book.id
+  end
+
+  def upload
+    @book = Book.find_by_uuid_or_id(params[:id])
+    connector = GoogleConnector.new
+    content = connector.download_as_html('1sGNXLEIRVoois5Bg_Mt-2V2g-Vp3LLOy8NFJ4qnK87Q')
+    @text       = Text.new
+    @text.content = content
+    @text.book  = @book
+    @text.title = I18n.translate(:initial_text_title)
+    @text.user  = current_user
+    if @text.save
+      @text.book.push_to_bitbucket
+      @texts = @book.texts.order('position')
+      render :index
+    else
+      render :new
+    end
   end
 
   def create

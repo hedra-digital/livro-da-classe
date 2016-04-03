@@ -63,6 +63,8 @@ Livrodaclasse::Application.routes.draw do
   match 'scraps/:id/answer', :to => 'scraps#answer', :as => :scraps_answer
   resources :scraps, :only => [:index, :create, :edit, :update, :destroy]
 
+  get 'books/:id/upload/text' , to: 'texts#upload', as: 'upload_book_text'
+
   namespace :admin do
     root :to => 'dashboard#index'
 
