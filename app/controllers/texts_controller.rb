@@ -26,7 +26,7 @@ class TextsController < ApplicationController
   def upload
     @book = Book.find_by_uuid_or_id(params[:id])
     connector = GoogleConnector.new
-    content = connector.download_as_html('1sGNXLEIRVoois5Bg_Mt-2V2g-Vp3LLOy8NFJ4qnK87Q')
+    content = connector.download_as_html('1re80JerNjYhRiPOUjp_fNtiAwE0FhfOfD8-oJQ5hSBE')
     @text       = Text.new
     @text.content = content
     @text.book  = @book
@@ -57,7 +57,7 @@ class TextsController < ApplicationController
   def update
     @text = Text.find_by_uuid_or_id(params[:id])
     @text.valid_content = @text.validate_content
-    
+
     # do not save the content, because we need to split it later
     content = params[:text].delete(:content)
 
