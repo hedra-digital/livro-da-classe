@@ -26,7 +26,7 @@ class TextsController < ApplicationController
   def upload
     @book = Book.find_by_uuid_or_id(params[:id])
     connector = GoogleConnector.new
-    content = connector.download_as_html('1re80JerNjYhRiPOUjp_fNtiAwE0FhfOfD8-oJQ5hSBE')
+    content = connector.download_as_html('147y43kueJto4bn_TIGtbxABMzXnvA3W4OmClcS9C8kc')
     @text       = Text.new
     @text.content = content
     @text.book  = @book
