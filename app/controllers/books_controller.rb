@@ -112,7 +112,7 @@ class BooksController < ApplicationController
 
       BookCover.new(@book.cover_info).generate_cover
 
-      add_file_uploaded(@book) if params[:upload].present?
+      add_file_uploaded if params[:upload].present?
 
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
@@ -185,7 +185,7 @@ class BooksController < ApplicationController
     @states = [["Acre", "AC"], ["Alagoas", "AL"], ["Amazonas", "AM"], ["Amapá", "AP"], ["Bahia", "BA"], ["Ceará", "CE"], ["Distrito Federal", "DF"], ["Espírito Santo", "ES"], ["Goiás", "GO"], ["Maranhão", "MA"], ["Minas Gerais", "MG"], ["Mato Grosso do Sul", "MS"], ["Mato Grosso", "MT"], ["Pará", "PA"], ["Paraíba", "PB"], ["Pernambuco", "PE"], ["Piauí", "PI"], ["Paraná", "PR"], ["Rio de Janeiro", "RJ"], ["Rio Grande do Norte", "RN"], ["Rondônia", "RO"], ["Roraima", "RR"], ["Rio Grande do Sul", "RS"], ["Santa Catarina", "SC"], ["Sergipe", "SE"], ["São Paulo", "SP"], ["Tocantins", "TO"]]
   end
 
-  def add_file_uploaded(book)
+  def add_file_uploaded
     connector = GoogleConnector.new
 
     upload = params[:upload]
@@ -194,14 +194,36 @@ class BooksController < ApplicationController
     end
     google_filedocument_id = connector.upload(Rails.root.join('public', 'uploads', upload.original_filename).to_s)
     content = connector.download_as_html(google_filedocument_id)
-    text       = Text.new
-    text.content = content
-    text.book  = book
-    text.title = I18n.translate(:initial_text_title)
-    text.user  = current_user
-    text.save
+    parse_new_content(content)
   rescue Exception => e
     puts e.message
     puts e.backtrace.inspect
+  end
+
+  def parse_new_content(content)
+    text       = Text.new
+    text.content = content
+    text.book  = @book
+    text.title = I18n.translate(:initial_text_title)
+    text.user  = current_user
+    text.save
+    chapters, footnotes = Text.split_chpaters(text.content_with_head)
+
+    chapter_ids = Text.save_split_chapters(chapters, footnotes, @book, current_user)
+
+    # the new content with data id will be render to ckeditor, so no dump chapter after ajaxSave
+    new_content = []
+    chapter_ids.each_with_index do |id, index|
+
+      if index == 0
+        new_content << Text.find(id).content
+      else
+        new_content << Text.find(id).content_with_h1_head
+      end
+    end
+
+    Text.set_positoins_after_split(chapter_ids)
+
+    text.book.push_to_bitbucket
   end
 end
