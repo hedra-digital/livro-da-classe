@@ -11,8 +11,9 @@
     <label for="upload">
         <%= image_tag 'doc_ico.png' %>
     </label>
-    <%= file_field_tag 'upload' %>
+    <%= file_field_tag 'upload', style: 'display:none' %>
   </div>
+  <label id='filename'>.docx</label>
   <%#= f.input :tradutor, :label => t('book_data.tradutor') %>
 </div>
 
@@ -28,5 +29,14 @@
 
   $('#book_title').on('blur', function() {
     $('.book_title span').remove();
+  });
+
+  $('#upload').change( function () {
+    $('#filename').html($('#upload').val() + " adicionado. Clique para remover.");
+  });
+
+  $('#filename').click( function () {
+    $('#filename').html('.docx');
+    $('#upload').val('');
   });
 </script>

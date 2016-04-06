@@ -104,10 +104,6 @@ div.modal{
   line-height: 1.6em;
 }
 
-.doc-upload  > input {
-  display: none;
-}
-
 .doc-upload img {
   width: 40px;
 }
