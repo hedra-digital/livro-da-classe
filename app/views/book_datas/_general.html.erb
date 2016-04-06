@@ -7,6 +7,12 @@
   <%#= f.input :sumarioautor, :label => t('book_data.sumarioautor') %>
   <%= f.input :organizador, :label => t('book_data.organizador') %>
   <%= f.input :introdutor, :label => t('book_data.introdutor') %>
+  <div class="doc-upload">
+    <label for="upload">
+        <%= image_tag 'doc_ico.png' %>
+    </label>
+    <%= file_field_tag 'upload' %>
+  </div>
   <%#= f.input :tradutor, :label => t('book_data.tradutor') %>
 </div>
 
@@ -15,7 +21,7 @@
     $('.book_title span').remove();
     $('.book_title label').append("<span> (" + $(this).val().length + "/" + $(this).attr('maxlength') + ")</span>");
   });
-    
+
   $('#book_title').bind('keydown keyup keypress', function() {
     $('.book_title span').html(" (" + $(this).val().length + "/" + $(this).attr('maxlength') + ")");
   });
