@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require "#{Rails.root}/lib/google_connector.rb"
 
 class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
@@ -111,6 +112,8 @@ class BooksController < ApplicationController
 
       BookCover.new(@book.cover_info).generate_cover
 
+      add_file_uploaded(@book) if params[:upload].present?
+
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else
@@ -180,5 +183,25 @@ class BooksController < ApplicationController
 
   def states
     @states = [["Acre", "AC"], ["Alagoas", "AL"], ["Amazonas", "AM"], ["Amapá", "AP"], ["Bahia", "BA"], ["Ceará", "CE"], ["Distrito Federal", "DF"], ["Espírito Santo", "ES"], ["Goiás", "GO"], ["Maranhão", "MA"], ["Minas Gerais", "MG"], ["Mato Grosso do Sul", "MS"], ["Mato Grosso", "MT"], ["Pará", "PA"], ["Paraíba", "PB"], ["Pernambuco", "PE"], ["Piauí", "PI"], ["Paraná", "PR"], ["Rio de Janeiro", "RJ"], ["Rio Grande do Norte", "RN"], ["Rondônia", "RO"], ["Roraima", "RR"], ["Rio Grande do Sul", "RS"], ["Santa Catarina", "SC"], ["Sergipe", "SE"], ["São Paulo", "SP"], ["Tocantins", "TO"]]
+  end
+
+  def add_file_uploaded(book)
+    connector = GoogleConnector.new
+
+    upload = params[:upload]
+    File.open(Rails.root.join('public', 'uploads', upload.original_filename), 'wb') do |file|
+      file.write(upload.read)
+    end
+    google_filedocument_id = connector.upload(Rails.root.join('public', 'uploads', upload.original_filename).to_s)
+    content = connector.download_as_html(google_filedocument_id)
+    text       = Text.new
+    text.content = content
+    text.book  = book
+    text.title = I18n.translate(:initial_text_title)
+    text.user  = current_user
+    text.save
+  rescue Exception => e
+    puts e.message
+    puts e.backtrace.inspect
   end
 end

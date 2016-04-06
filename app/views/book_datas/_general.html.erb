@@ -11,7 +11,7 @@
     <label for="upload">
         <%= image_tag 'doc_ico.png' %>
     </label>
-    <%= file_field_tag 'upload', style: 'display:none' %>
+    <%= file_field_tag 'upload', accept: 'application/vnd.ms-word', style: 'display:none' %>
   </div>
   <label id='filename'>.docx</label>
   <%#= f.input :tradutor, :label => t('book_data.tradutor') %>
