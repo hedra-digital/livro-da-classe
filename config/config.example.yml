@@ -3,14 +3,19 @@ restricted_area:
   password: "shire"
 
 development: &defaults
-  latex_template_path: templates/
-  books_path: /home/user/tipografia-books/
-  books_submodule_path: /home/user/tipografia-submodule/
+  latex_template_path: /templates/
+  books_path: public/books/
+  books_submodule_path: /tipografia-submodule/
+  repo_prefix: livrodaclasse
   git: https://user:pass@bitbucket.org/repo
   git_user_pass: user:password
   revision_url: http://revisao.tipografiadigital.com.br/
   git_team: tipografiadigital
   app_name: Tipografia Digital
+  providers:
+    google_oauth2:
+      key: 'key'
+      secret: 'secret'
 
 test:
   <<: *defaults

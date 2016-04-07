@@ -39,7 +39,7 @@ package { 'git-core':
 }
 
 # Nokogiri dependencies.
-package { ['libxml2', 'libxml2-dev', 'libxslt1-dev']:                                     
+package { ['libxml2', 'libxml2-dev', 'libxslt1-dev']:
   ensure => installed,
   require => Package['git-core']
 }
@@ -67,7 +67,7 @@ package { 'libmysqlclient15-dev':
   require => Package['redis-server']
 }
 
-package { 'postgresql-client':                                                                                                                                                                                                                    
+package { 'postgresql-client':
   ensure => installed,
   require => Package['libmysqlclient15-dev']
 }
@@ -184,11 +184,15 @@ class { 'install_mysql':
 }
 
 # --- Ruby ---------------------------------------------------------------------
+exec { 'import_key':
+  command => "${as_vagrant} 'curl -sSL https://rvm.io/mpapis.asc | gpg --import -'",
+  require => Package['curl']
+}
 
 exec { 'install_rvm':
   command => "${as_vagrant} 'curl -L https://get.rvm.io | bash -s stable'",
   creates => "${home}/.rvm/bin/rvm",
-  require => Package['curl']
+  require => Exec['import_key']
 }
 
 exec { 'install_ruby':
@@ -197,7 +201,7 @@ exec { 'install_ruby':
   # The rvm executable is more suitable for automated installs.
   #
   # Thanks to @mpapis for this tip.
-  command => "${as_vagrant} '${home}/.rvm/bin/rvm install 2.0.0-p247 && rvm --fuzzy alias create default 2.0.0-p247'",
+  command => "${as_vagrant} '${home}/.rvm/bin/rvm install 2.0.0-p481 && rvm --fuzzy alias create default 2.0.0-p481'",
   creates => "${home}/.rvm/bin/ruby",
   require => Exec['install_rvm']
 }
