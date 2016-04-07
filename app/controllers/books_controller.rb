@@ -189,12 +189,15 @@ class BooksController < ApplicationController
     connector = GoogleConnector.new
 
     upload = params[:upload]
-    File.open(Rails.root.join('public', 'uploads', upload.original_filename), 'wb') do |file|
+    filepath = Rails.root.join('/tmp', upload.original_filename)
+    File.open(filepath, 'wb') do |file|
       file.write(upload.read)
     end
-    google_filedocument_id = connector.upload(Rails.root.join('public', 'uploads', upload.original_filename).to_s)
+    google_filedocument_id = connector.upload(filepath.to_s)
     content = connector.download_as_html(google_filedocument_id)
+
     parse_new_content(content)
+    File.delete(filepath.to_s)
   rescue Exception => e
     puts e.message
     puts e.backtrace.inspect
@@ -207,23 +210,11 @@ class BooksController < ApplicationController
     text.title = I18n.translate(:initial_text_title)
     text.user  = current_user
     text.save
-    chapters, footnotes = Text.split_chpaters(text.content_with_head)
 
+    chapters, footnotes = Text.split_chpaters(text.content_with_head)
     chapter_ids = Text.save_split_chapters(chapters, footnotes, @book, current_user)
 
-    # the new content with data id will be render to ckeditor, so no dump chapter after ajaxSave
-    new_content = []
-    chapter_ids.each_with_index do |id, index|
-
-      if index == 0
-        new_content << Text.find(id).content
-      else
-        new_content << Text.find(id).content_with_h1_head
-      end
-    end
-
     Text.set_positoins_after_split(chapter_ids)
-
     text.book.push_to_bitbucket
   end
 end

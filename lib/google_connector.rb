@@ -20,7 +20,7 @@ class GoogleConnector
 
   def upload(file)
     metadata = {
-      name: 'ConvertFile-' << Time.now.strftime('%Y%m%d%H%M%S'),
+      name: 'HedraConvertFile-' << Time.now.strftime('%Y%m%d%H%M%S'),
       mime_type: 'application/vnd.google-apps.document'
     }
     result = @service.create_file(metadata, upload_source: file)

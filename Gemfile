@@ -21,12 +21,13 @@ gem 'paperclip', '~> 3.0'
 gem 'ckeditor', :git => 'git://github.com/hedra-digital/ckeditor.git'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
-gem "htmlentities"
+gem 'htmlentities'
 gem 'nokogiri'
 gem 'nokogiri-styles'
 gem 'brazilian-rails'
-gem "bitbucket_rest_api"
-gem "passenger"
+gem 'bitbucket_rest_api'
+gem 'passenger'
+gem 'google-api-client'
 
 
 group :assets do
@@ -40,7 +41,7 @@ group :test, :development do
   gem 'rb-inotify', '~> 0.8.8', :require => false
   gem 'rb-fsevent', :require => false
   gem 'terminal-notifier-guard'
-  gem 'rspec-rails', "~> 2.14.0.rc1"
+  gem 'rspec-rails', '~> 2.14.0.rc1'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-webkit'
@@ -61,11 +62,11 @@ group :development do
   gem 'meta_request'
   gem 'annotate', '>=2.5.0'
   gem 'capistrano', '~> 2.15.5'
-  gem "debugger", "1.6.6"
+  gem 'debugger', '1.6.6'
 end
 
-gem "exception_notification", "~> 3.0.1"
-gem "pdf-reader"
+gem 'exception_notification', '~> 3.0.1'
+gem 'pdf-reader'
 gem 'xml-simple'
 gem 'sidekiq'
 gem 'sinatra', require: false
