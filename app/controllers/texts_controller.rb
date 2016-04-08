@@ -23,24 +23,6 @@ class TextsController < ApplicationController
     session['book_id'] = @text.book.id
   end
 
-  def upload
-    @book = Book.find_by_uuid_or_id(params[:id])
-    connector = GoogleConnector.new
-    content = connector.download_as_html('147y43kueJto4bn_TIGtbxABMzXnvA3W4OmClcS9C8kc')
-    @text       = Text.new
-    @text.content = content
-    @text.book  = @book
-    @text.title = I18n.translate(:initial_text_title)
-    @text.user  = current_user
-    if @text.save
-      @text.book.push_to_bitbucket
-      @texts = @book.texts.order('position')
-      render :index
-    else
-      render :new
-    end
-  end
-
   def create
     @text       = Text.new(params[:text])
     @text.book  = @book
