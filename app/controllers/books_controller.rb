@@ -196,6 +196,8 @@ class BooksController < ApplicationController
     google_filedocument_id = connector.upload(filepath.to_s)
     content = connector.download_as_html(google_filedocument_id)
 
+    content = validate_google_html(content)
+
     parse_new_content(content)
     File.delete(filepath.to_s)
   rescue Exception => e
@@ -204,17 +206,36 @@ class BooksController < ApplicationController
   end
 
   def parse_new_content(content)
-    text       = Text.new
-    text.content = content
-    text.book  = @book
-    text.title = I18n.translate(:initial_text_title)
-    text.user  = current_user
-    text.save
-
-    chapters, footnotes = Text.split_chpaters(text.content_with_head)
+    chapters, footnotes = Text.split_chpaters(content)
     chapter_ids = Text.save_split_chapters(chapters, footnotes, @book, current_user)
-
+    
     Text.set_positoins_after_split(chapter_ids)
-    text.book.push_to_bitbucket
+    @book.push_to_bitbucket
+  end
+
+  def validate_google_html(content)
+    doc = Nokogiri::HTML(content)
+    doc = remove_head(doc)
+    doc = replace_ol_h1(doc)
+    doc.to_html
+  end
+
+  def replace_ol_h1(doc)
+    doc.css('ol').each do |ol|
+      ol.attributes.each do |att|
+        if att[0] == 'class' && att[1].value.include?('_1-0')
+          text = ol.content
+          li = ol.css('li').remove
+          ol.name = 'h1'
+          ol.content = text
+        end
+      end
+    end
+    doc
+  end
+
+  def remove_head(content)
+    content.css('head').remove
+    content
   end
 end
