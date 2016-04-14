@@ -1,4 +1,5 @@
 require "#{Rails.root}/lib/google_connector.rb"
+require "#{Rails.root}/lib/google_html.rb"
 
 class TextsController < ApplicationController
   before_filter :authentication_check
@@ -24,10 +25,23 @@ class TextsController < ApplicationController
   end
 
   def create
+    content = ''
+    begin
+      if params[:upload].present?
+        content = add_file_uploaded
+        @book = Book.find_by_uuid_or_id(params[:id])
+      end
+    rescue Exception => e
+      puts e.message
+      puts e.backtrace.inspect
+    end
+
     @text       = Text.new(params[:text])
     @text.book  = @book
     @text.title = I18n.translate(:initial_text_title)
     @text.user  = current_user
+    @text.content = content
+
     if @text.save
       @text.book.push_to_bitbucket
       redirect_to edit_book_text_path(@book.uuid, @text.uuid)
@@ -134,5 +148,24 @@ class TextsController < ApplicationController
 
   def secure_book
     params[:text].delete(:book) if params[:text].present?
+  end
+
+  def add_file_uploaded
+    connector = GoogleConnector.new
+
+    upload = params[:upload]
+    filepath = Rails.root.join('/tmp', upload.original_filename)
+    File.open(filepath, 'wb') do |file|
+      file.write(upload.read)
+    end
+    google_filedocument_id = connector.upload(filepath.to_s)
+    content = connector.download_as_html(google_filedocument_id)
+
+    content = GoogleHtml.validate_google_html(content)
+    File.delete(filepath.to_s)
+    content
+  rescue Exception => e
+    puts e.message
+    puts e.backtrace.inspect
   end
 end
