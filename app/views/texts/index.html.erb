@@ -23,10 +23,35 @@
 <% end %>
 
 <% if can_write? %>
+  <%= form_tag(upload_text_path(@book.uuid), :multipart => true) do %>
   <div class="btn-group">
-    <%= link_to 'Novo Capítulo', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small' %>
+    <%= button_tag 'Upload Capítulo', class: 'btn btn-primary btn-new btn-small', style: 'display:none', id: 'upload-chapter'%>
+    <%= link_to 'Novo Capítulo', new_book_text_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small', :id => 'new-chapter'%>
     <% if is_organizer? %>
       <%= link_to('Editar todos os capítulo juntos', all_book_texts_path(@book.uuid), :class => 'btn btn-primary btn-new btn-small') if @texts.count >= 2 %>
     <% end %>
   </div>
+  <div class="doc-upload">
+    <label for="upload">
+        <%= image_tag 'doc_ico.png' %>
+    </label>
+    <%= file_field_tag 'upload', accept: 'application/vnd.ms-word', style: 'display:none' %>
+  </div>
+  <label id='filename'>.docx</label>
+  <% end %>
 <% end %>
+
+<script>
+  $('#upload').change( function () {
+    $('#filename').html($('#upload').val() + " adicionado. Clique para remover.");
+    $('#upload-chapter').show();
+    $('#new-chapter').hide();
+  });
+
+  $('#filename').click( function () {
+    $('#filename').html('.docx');
+    $('#upload').val('');
+    $('#upload-chapter').hide();
+    $('#new-chapter').show();
+  });
+</script>
