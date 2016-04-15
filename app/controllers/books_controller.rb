@@ -263,6 +263,8 @@ class BooksController < ApplicationController
         p_text.content = footnote_content(ftntc)
         p_text.parent = div
 
+        a_sup = a.parent
+        a.parent = a_sup.parent
         a = new_a
       end
     end
