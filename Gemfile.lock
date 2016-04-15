@@ -93,6 +93,7 @@ GEM
     brstring (3.3.0)
       activesupport (>= 3.0.0)
     builder (3.0.4)
+    byebug (8.2.4)
     callsite (0.0.11)
     capistrano (2.15.7)
       highline
@@ -404,6 +405,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bourbon
   brazilian-rails
+  byebug
   capistrano (~> 2.15.5)
   capybara
   capybara-webkit
