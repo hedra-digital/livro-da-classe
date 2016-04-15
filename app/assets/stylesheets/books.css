@@ -103,3 +103,7 @@ div.modal{
   font-size: 14px;
   line-height: 1.6em;
 }
+
+.doc-upload img {
+  width: 40px;
+}
