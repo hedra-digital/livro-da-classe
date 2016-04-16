@@ -30,17 +30,20 @@ class TextsController < ApplicationController
       if params[:upload].present?
         content = add_file_uploaded
         @book = Book.find_by_uuid_or_id(params[:id])
+        chapters, footnotes = Text.split_chpaters(content)
+        chapter_ids = Text.save_split_chapters(chapters, footnotes, @book, current_user)
+        Text.set_positoins_after_split(chapter_ids)
+        return redirect_to book_texts_path(@book.uuid)
       end
     rescue Exception => e
       puts e.message
       puts e.backtrace.inspect
     end
-
+    
     @text       = Text.new(params[:text])
     @text.book  = @book
     @text.title = I18n.translate(:initial_text_title)
     @text.user  = current_user
-    @text.content = content
 
     if @text.save
       @text.book.push_to_bitbucket

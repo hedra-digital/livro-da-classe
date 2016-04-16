@@ -213,6 +213,4 @@ class BooksController < ApplicationController
     Text.set_positoins_after_split(chapter_ids)
     @book.push_to_bitbucket
   end
-        a_sup = a.parent
-        a.parent = a_sup.parent
 end
