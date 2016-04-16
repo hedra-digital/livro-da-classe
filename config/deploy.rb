@@ -24,6 +24,8 @@ namespace :deploy do
   task :symlink_config, :roles => :app do
     run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{deploy_to}/shared/config/config.yml #{release_path}/config/config.yml"
+    run "ln -nfs #{deploy_to}/shared/config/client_secret.json #{release_path}/config/client_secret.json"
+    run "ln -nfs #{deploy_to}/shared/config/google-connector-credentials.yaml #{release_path}/config/google-connector-credentials.yaml"
   end
 
   desc "Symlinks assets"
