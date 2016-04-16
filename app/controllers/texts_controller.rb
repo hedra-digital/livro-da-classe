@@ -45,6 +45,7 @@ class TextsController < ApplicationController
     @text.title = I18n.translate(:initial_text_title)
     @text.user  = current_user
 
+
     if @text.save
       @text.book.push_to_bitbucket
       redirect_to edit_book_text_path(@book.uuid, @text.uuid)
