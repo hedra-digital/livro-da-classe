@@ -1,5 +1,6 @@
 # encoding: UTF-8
 require "#{Rails.root}/lib/google_connector.rb"
+require "#{Rails.root}/lib/google_html.rb"
 
 class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
@@ -196,7 +197,7 @@ class BooksController < ApplicationController
     google_filedocument_id = connector.upload(filepath.to_s)
     content = connector.download_as_html(google_filedocument_id)
 
-    content = validate_google_html(content)
+    content = GoogleHtml.validate_google_html(content)
 
     parse_new_content(content)
     File.delete(filepath.to_s)
@@ -208,96 +209,8 @@ class BooksController < ApplicationController
   def parse_new_content(content)
     chapters, footnotes = Text.split_chpaters(content)
     chapter_ids = Text.save_split_chapters(chapters, footnotes, @book, current_user)
-    
+
     Text.set_positoins_after_split(chapter_ids)
     @book.push_to_bitbucket
-  end
-
-  def validate_google_html(content)
-    doc = Nokogiri::HTML(content)
-    doc = remove_head(doc)
-    doc = replace_ol_h1(doc)
-    doc = convert_footnotes(doc)
-    doc.to_html
-  end
-
-  def replace_ol_h1(doc)
-    doc.css('ol').each do |ol|
-      ol.attributes.each do |att|
-        if att[0] == 'class' && att[1].value.include?('_1-0')
-          text = ol.content
-          li = ol.css('li').remove
-          ol.name = 'h1'
-          ol.content = text
-        end
-      end
-    end
-    doc
-  end
-
-  def remove_head(content)
-    content.css('head').remove
-    content
-  end
-
-  def convert_footnotes(doc)
-    contents = doc.css('a').select {
-      |a| footnote_content?(a)
-    }
-
-    doc.css('a').each do |a|
-      if footnote?(a)
-        ftntc = contents.select { |ftntc| footnote_ref(a) == footnote_content_ref(ftntc) }
-        new_a = create_footnote(a)
-
-        sup = Nokogiri::XML::Node.new 'sup', new_a
-        sup.content = '*'
-        sup.parent = new_a
-
-        div = Nokogiri::XML::Node.new 'div', new_a
-        div['class'] = 'sdfootnotesym'
-        div['data-id'] = footnote_content_ref(ftntc.first)
-        new_a.add_next_sibling(div)
-
-        p_text = Nokogiri::XML::Node.new 'p', div
-        p_text.content = footnote_content(ftntc)
-        p_text.parent = div
-
-        a_sup = a.parent
-        a.parent = a_sup.parent
-        a = new_a
-      end
-    end
-    contents.each { |c| c.parent.remove }
-    doc
-  end
-
-  def footnote_content?(a)
-    a.attributes['href'].value.include?('ftnt_ref') && a.parent.name == 'p'
-  end
-
-  def footnote?(a)
-    a.attributes['id'].value.include?('ftnt_ref') && a.parent.name == 'sup'
-  end
-
-  def footnote_ref(a)
-    a.attributes['href'].value.delete('#')
-  end
-
-  def footnote_content_ref(ftnt_content)
-    ftnt_content.attributes['id'].value
-  end
-
-  def footnote_content(ftnt_content)
-    ftnt_content.first.parent.children.last.text.gsub(/\u00a0/, '').strip
-  end
-
-  def create_footnote(a)
-    a['class'] = 'sdfootnoteanc'
-    a['data-id'] = footnote_ref(a)
-    a.attributes['href'].remove
-    a.children.remove
-    a.attributes['id'].remove
-    a
   end
 end
