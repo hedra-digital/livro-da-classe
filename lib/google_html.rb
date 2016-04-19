@@ -23,7 +23,7 @@ class GoogleHtml
   end
 
   def self.remove_head(content)
-    content.css('head').remove
+    content.css('head').first.remove
     content
   end
 
@@ -32,30 +32,36 @@ class GoogleHtml
       |a| footnote_content?(a)
     }
 
+    body = doc.css('body').first
     doc.css('a').each do |a|
       if footnote?(a)
         ftntc = contents.select { |ftntc| footnote_ref(a) == footnote_content_ref(ftntc) }
-        new_a = create_footnote(a)
 
-        sup = Nokogiri::XML::Node.new 'sup', new_a
+        a['class'] = 'sdfootnoteanc'
+        a['data-id'] = footnote_ref(a)
+        a.content = ''
+        a.attributes['href'].remove
+        a.attributes['id'].remove
+
+        sup = Nokogiri::XML::Node.new 'sup', a
         sup.content = '*'
-        sup.parent = new_a
+        sup.parent = a
 
-        div = Nokogiri::XML::Node.new 'div', new_a
+        sup = a.parent
+        sup.add_next_sibling(a)
+        sup.remove
+        byebug
+
+        div = ftntc.first.parent.parent
         div['class'] = 'sdfootnotesym'
         div['data-id'] = footnote_content_ref(ftntc.first)
-        new_a.add_next_sibling(div)
 
-        p_text = Nokogiri::XML::Node.new 'p', div
-        p_text.content = footnote_content(ftntc)
-        p_text.parent = div
-
-        a_sup = a.parent
-        a.parent = a_sup.parent
-        a = new_a
+        p_text = ftntc.first.parent
+        content = footnote_content(ftntc)
+        p_text.children.each { |c| c.remove }
+        p_text.content = content
       end
     end
-    contents.each { |c| c.parent.remove }
     doc
   end
 
@@ -77,14 +83,5 @@ class GoogleHtml
 
   def self.footnote_content(ftnt_content)
     ftnt_content.first.parent.children.last.text.gsub(/\u00a0/, '').strip
-  end
-
-  def self.create_footnote(a)
-    a['class'] = 'sdfootnoteanc'
-    a['data-id'] = footnote_ref(a)
-    a.attributes['href'].remove
-    a.children.remove
-    a.attributes['id'].remove
-    a
   end
 end
