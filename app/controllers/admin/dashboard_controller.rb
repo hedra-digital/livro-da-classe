@@ -5,10 +5,8 @@ class Admin::DashboardController < Admin::ApplicationController
   def index
     if params[:impersonate_user_id].blank?
 
-      @projects = Project.includes(:book).order(updated_at: :desc)
+      @projects = Project.order('updated_at DESC').includes(:book)
       remove_projects_inconsistent
-      @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
-
     else
     	@user = User.find(params[:impersonate_user_id])
       session[:auth_token] = @user.auth_token
