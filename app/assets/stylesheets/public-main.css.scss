@@ -233,6 +233,10 @@ section {
           text-decoration: none;
           color: #e7611d;
           font-family: Miso, "Helvetica Neue", Helvetica, Arial, sans-serif;
+          vertical-align: middle;
+        }
+        img {
+          height: 90px;
         }
       }
       .navbar-user {
@@ -540,7 +544,7 @@ section {
           }
         }
       }
-    }  
+    }
     .video {
       float: right;
       height: 418px;
@@ -828,7 +832,7 @@ section {
       }
     }
   }
-} 
+}
 
 #wizard .substeps {
   background: #88b2c2;
@@ -1033,19 +1037,18 @@ section {
 .chapter {
   min-height: 0;
   width: auto;
-  background-color: #aeaeae; 
+  background-color: #aeaeae;
   color: #fff;
   padding: 10px;
   p {
     color: #fff;
-    text-align: right; 
+    text-align: right;
   }
   h1 {
     color: #fff;
   }
   h3 {
     color: #fff;
-    font-style: oblique; 
+    font-style: oblique;
   }
 }
-
