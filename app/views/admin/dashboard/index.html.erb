@@ -15,7 +15,7 @@
         <td><%= pdf_status(project.book) %></td>
         <td><%= link_to title_text(project.book), admin_project_path(project) %>, (<%= project.book.organizer.name.presence || project.book.organizer.email %>, org.)</td>
         <td><%= l(project.book.created_at, :format => :short) %></td>
-        <td><%= l(project.book.accessed_at, :format => :short) if project.book.accessed_at %></td>
+        <td><%= l(project.book.accessed_at, :format => :long) if project.book.accessed_at %></td>
         <td><%= project.book.template %></td>
         <td><%= project.status_to_s %></td>
         <td><%= admin_book_status(project.book) %></td>
@@ -38,5 +38,5 @@
       <%= link_to t('book_push_all'), admin_projects_push_path %>
     </li>
   </ul>
-</div> 
+</div>
 <% end %>
