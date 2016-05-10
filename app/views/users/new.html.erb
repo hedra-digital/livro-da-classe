@@ -1,13 +1,13 @@
 <section id="new_user">
   <div class="new_user cadastro-login">
-    <!--
+
     <ul class="social-connect">
       <span>Conecte-se com</span>
       <li class="facebook"><%= link_to '', '/auth/facebook', :id => 'facebook-oauth' %></li>
       <li class="twitter"><%= link_to '', '/auth/twitter', :id => 'twitter-oauth' %></li>
       <li class="google"><%= link_to '', '/auth/google_oauth2', :id => 'google-oauth' %></li>
     </ul>
-  -->
+
     <div class="tabs">
       <%= link_to "Login", signin_path %>
       <%= link_to "Cadastre-se", new_user_path, class: "active" %>
@@ -25,5 +25,3 @@
     $("div input",$(this)).prop("placeholder",label);
   });
 </script>
-
-
