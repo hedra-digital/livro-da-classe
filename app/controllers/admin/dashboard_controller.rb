@@ -5,7 +5,7 @@ class Admin::DashboardController < Admin::ApplicationController
   def index
     if params[:impersonate_user_id].blank?
 
-      @projects = Project.includes(:book).all
+      @projects = Project.includes(:book).order(updated_at: :desc)
       remove_projects_inconsistent
       @projects.sort! { |a,b| a.book.directory_name.downcase <=> b.book.directory_name.downcase }
 
