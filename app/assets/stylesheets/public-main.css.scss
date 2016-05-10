@@ -235,7 +235,7 @@ section {
           font-family: Miso, "Helvetica Neue", Helvetica, Arial, sans-serif;
           vertical-align: middle;
         }
-        img {
+        img.logo {
           height: 90px;
         }
       }
@@ -312,6 +312,9 @@ section {
           a.logo {
             font-size: 32px;
             line-height: 46px;
+          }
+          img.logo {
+            height: 47px;
           }
         }
         .navbar-user {
@@ -399,6 +402,9 @@ section {
           text-decoration: none;
           color: #e7611d;
           font-family: Miso, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        img.logo {
+          height: 47px;
         }
       }
       .navbar-user {
