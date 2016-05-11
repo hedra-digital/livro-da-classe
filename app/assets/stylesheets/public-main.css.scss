@@ -314,7 +314,7 @@ section {
             line-height: 46px;
           }
           img.logo {
-            height: 47px;
+            height: 45px;
           }
         }
         .navbar-user {
@@ -404,7 +404,7 @@ section {
           font-family: Miso, "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
         img.logo {
-          height: 47px;
+          height: 45px;
         }
       }
       .navbar-user {
@@ -559,6 +559,10 @@ section {
       border-left: none;
       iframe {
         background: #f7f7f9;
+      }
+      img {
+        width: 738px;
+        height: 418px;
       }
     }
   }
