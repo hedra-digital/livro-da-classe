@@ -27,6 +27,7 @@ gem 'nokogiri-styles'
 gem 'brazilian-rails'
 gem "bitbucket_rest_api"
 gem "passenger"
+gem "gepub"
 
 
 group :assets do
@@ -62,6 +63,7 @@ group :development do
   gem 'annotate', '>=2.5.0'
   gem 'capistrano', '~> 2.15.5'
   gem "debugger", "1.6.6"
+  gem 'byebug'
 end
 
 gem "exception_notification", "~> 3.0.1"

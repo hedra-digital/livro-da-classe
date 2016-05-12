@@ -93,6 +93,7 @@ GEM
     brstring (3.3.0)
       activesupport (>= 3.0.0)
     builder (3.0.4)
+    byebug (8.2.4)
     callsite (0.0.11)
     capistrano (2.15.7)
       highline
@@ -151,6 +152,9 @@ GEM
     faraday_middleware (0.9.2)
       faraday (>= 0.7.4, < 0.10)
     ffi (1.9.10)
+    gepub (0.6.9.2)
+      nokogiri (~> 1.6.1)
+      rubyzip (>= 1.1.1)
     git-version-bump (0.15.1)
     gravatar_image_tag (1.2.0)
     guid (0.1.1)
@@ -303,6 +307,7 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     ruby-rc4 (0.1.5)
+    rubyzip (1.2.0)
     sass (3.4.21)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -370,6 +375,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bourbon
   brazilian-rails
+  byebug
   capistrano (~> 2.15.5)
   capybara
   capybara-webkit
@@ -379,6 +385,7 @@ DEPENDENCIES
   exception_notification (~> 3.0.1)
   factory_girl_rails
   faker
+  gepub
   gravatar_image_tag
   guid
   htmlentities
