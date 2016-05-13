@@ -28,6 +28,7 @@ gem 'brazilian-rails'
 gem 'bitbucket_rest_api'
 gem 'passenger'
 gem 'google-api-client'
+gem "gepub"
 
 
 group :assets do
