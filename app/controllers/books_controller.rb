@@ -70,11 +70,12 @@ class BooksController < ApplicationController
   end
 
   def generate_ebook
-    ebook = @book.ebook
+    ebook = @book.ebook params[:kindle].present?
     ebook_path = ebook.to_s.gsub('public/','')
     if !ebook.nil?
       render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "success" }
     else
+      ebook_path = params[:kindle].present? ? File.join(@book.directory,"ebook","#{@book.uuid}.idv").gsub('public', '') : File.join(@book.directory,"ebook","#{@book.uuid}.epub").gsub('public', '')
       render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "fail" }
     end
   end
