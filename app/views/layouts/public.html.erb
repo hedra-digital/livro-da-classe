@@ -21,7 +21,8 @@
         <div class="navbar">
           <div class="navbar-inner navbar-top">
             <div class="navbar-logo">
-              <%= image_tag 'logo-hedra-2.png', :class => 'logo' %>
+              <%= image_tag 'hedra.gif', :class => 'logo' %>
+              <%= link_to "#{Publisher.get_current_app}", root_path, :class => 'logo' %>
             </div>
             <div class="navbar-user">
               <% if current_user.nil? %>

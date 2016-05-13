@@ -142,34 +142,52 @@ class Book < ActiveRecord::Base
     pdf_file
   end
 
-  def ebook
-    book = GEPUB::Book.new
-    book.set_primary_identifier('http:/www.hedra.com.br', self.uuid, 'URL')
-    book.language = 'pt-BR'
-    book.add_title(self.title, nil, GEPUB::TITLE_TYPE::MAIN).set_display_seq(1)
-    book.add_creator(self.autor).set_display_seq(1)
+  def ebook is_kindle=false
+    # generate latex files
+    self.generate_latex_files
 
-    if self.cover.exists?
-      imgfile = File.join(self.cover.path)
-      File.open(imgfile) do
-        |io|
-        book.add_item('img/cover.png',io).cover_image
+    # generate ebook
+    if is_kindle
+      Process.waitpid(
+        fork do
+          begin
+            system "cd #{directory}/ebook/ && make mobi"
+          rescue
+            system "cd #{directory}/ebook/ && make clean"
+          ensure
+            Process.exit! 1
+          end
+        end
+        )
+      # check rotine success
+      if File.exist?(ebook_file = File.join(directory, 'ebook', 'EBOOK.idv'))
+        File.rename(ebook_file, File.join(directory, 'ebook',"#{self.uuid}.idv"))
+        ebook_file = File.join(directory, 'ebook', "#{self.uuid}.idv")
+      else
+        ebook_file = nil
+      end
+    else
+      Process.waitpid(
+        fork do
+          begin
+            system "cd #{directory}/ebook/ && make"
+          rescue
+            system "cd #{directory}/ebook/ && make clean"
+          ensure
+            Process.exit! 1
+          end
+        end
+        )
+      # check rotine success
+      if File.exist?(ebook_file = File.join(directory, 'ebook', 'EBOOK.epub'))
+        File.rename(ebook_file, File.join(directory, 'ebook',"#{self.uuid}.epub"))
+        ebook_file = File.join(directory, 'ebook', "#{self.uuid}.epub")
+      else
+        ebook_file = nil
       end
     end
 
-    chapter_count = 1
-    book.ordered {
-      self.texts.each do |text|
-        book.add_item("text/chap#{chapter_count}.xhtml").add_content(generate_epub_content(text.content)).toc_text(text.title)
-        chapter_count += 1
-      end
-    }
-    epubname = File.join(directory, 'EBOOK.epub')
-
-    book.generate_epub(epubname)
-    epubname
-  rescue
-    nil
+    ebook_file
   end
 
   def valid
@@ -342,7 +360,4 @@ class Book < ActiveRecord::Base
     self.uuid = Guid.new.to_s if self.uuid.nil?
   end
 
-  def generate_epub_content(html_content)
-    StringIO.new("<html xmlns='http://www.w3.org/1999/xhtml'><head><title>EBOOK</title></head><body>#{html_content}</body></html>")
-  end
 end

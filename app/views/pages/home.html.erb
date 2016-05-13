@@ -11,7 +11,9 @@
           </ul>
         </div>
         <div class="video">
-          <%= image_tag 'logo-dt.png'%>
+          <div class="embed">
+            <iframe width="738" height="418" src="//www.youtube.com/embed/_O3kIpX1LmY?rel=0" frameborder="0" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
       <div class="bottom">
@@ -119,16 +121,6 @@
         <li>
           <div class="user">
             <figure>
-              <%= image_tag 'hedra.gif' %>
-            </figure>
-          </div>
-          <article>
-            <p>Somos editores da Hedra e entendemos que para editar livros também é preciso pensar em novas ferramentas. A edição, segundo nossos critérios, tem de ser <i>ágil</i>,  <i>colaborativa</i> e <i>metodológica</i> e não pode mais ser um processo linear. Editamos mais de duzentos livros com softwares livres e em nuvem. E buscamos um padrão rígido de controle de textos, lançando mão de diversas tecnologias. Visite nosso site <%= link_to 'hedra.com.br' %></p>
-          </article>
-        </li>
-        <li>
-          <div class="user">
-            <figure>
               <%= image_tag 'jorge_quem-somos.jpg' %>
             </figure>
             <h2>Jorge Sallum,</h2>
@@ -150,6 +142,18 @@
             <p>O livro é o resultado de um longo processo, em que ao final os alunos podem se reconhecer. O que fica é um reflexo, uma reflexão. Meu trabalho é ajudar o professor a obter o máximo desse processo criativo.</p>
           </article>
         </li>
+        <li>
+          <div class="user">
+            <figure>
+              <%= image_tag 'edson_quem-somos.jpg' %>
+            </figure>
+            <h2>Edson Prates,</h2>
+            <h2>gerente comercial</h2>
+          </div>
+          <article>
+            <p>A escola é uma instituição muito especial, pois prepara, mais do que alunos, seu futuro. Nos últimos cinco anos, com o Livro da Classe, criamos um instrumento para retratar e registrar a experiência escolar.</p>
+          </article>
+        </li>
       </ul>
     </div>
   </section>
@@ -161,20 +165,45 @@
         <figure>
           <%= image_tag 'big-icons-1.png' %>
         </figure>
-        <p><i>Agilidade</i> — Você precisa apenas de um arquivo no formato *.docx. Após incluir os dados de <br>seu livro na ficha inicial, é possível ter acesso à primeira versão de seu <i>pdf</i> e <i>epub</i>.<br> É importante que as marcações de estilo estejam indicadas. (Leia algumas dicas em "Saiba mais".)</p>
+        <p>Uma plataforma de edição colaborativa, com apoio editorial e impressão digital, na qual professor e alunos interagem para produzir livros de modo fácil e rápido. </p>
       </article>
       <article>
         <figure>
           <%= image_tag 'big-icons-2.png' %>
         </figure>
-        <p><i>Colaboração</i> — Após incluir os dados de seu livro, você pode convidar pessoas<br> para acompanhar o processo. Essas pessoas terão o status que você definir<br> para modificar o texto ou simplesmente acompanhar as modificações.</p>
+        <p>Apoio editorial por profissionais da área, para editar e <br>produzir seu livro.</p>
       </article>
       <article>
         <figure>
           <%= image_tag 'big-icons-3.png' %>
         </figure>
-        <p><i>Métodos & processos</i> — Após  a inclusão do texto, submetemos o texto a uma série de trocas sistemáticas (mais de 200 substituições). São trocas de estilo tipográfico (travessões, versaletes), padrões editoriais e revisões de texto. Todas as modificações ou emenda feitas no texto são arquivadas e podem ser consultadas.</p>
+        <p>Arquivos ebook ou pdf gratuito e a possibilidade de imprimir <br> o livro da sua escola na tiragem desejada.</p>
       </article>
+    </div>
+  </section>
+
+  <section id="clientes">
+    <div class="clientes list-carousel">
+      <h1>Clientes</h1>
+      <ul id="clientescarousel">
+        <li><%= image_tag 'participantes/logo-cachoeirinha.png' %></li>
+        <li><%= image_tag 'participantes/logo_bomjesus.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_chromos.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_ciman.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_claretiano.png' %></li>
+        <li><%= image_tag 'participantes/logo_degraus.png' %></li>
+        <li><%= image_tag 'participantes/logo_espacovida.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_franciscano.png' %></li>
+        <li><%= image_tag 'participantes/logo_mackenzie.png' %></li>
+        <li><%= image_tag 'participantes/logo_maxwell.png' %></li>
+        <li><%= image_tag 'participantes/logo_omni.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_piaget.png' %></li>
+        <li><%= image_tag 'participantes/logo_santoagostinho.jpg' %></li>
+        <li><%= image_tag 'participantes/logo_santoantonio.png' %></li>
+        <li><%= image_tag 'participantes/logo_saoluis.png' %></li>
+        <li><%= image_tag 'participantes/logo_verderousseau.png' %></li>
+        <li><%= image_tag 'participantes/logo_vicentina.png' %></li>
+      </ul>
     </div>
   </section>
 
