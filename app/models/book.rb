@@ -160,7 +160,7 @@ class Book < ActiveRecord::Base
     chapter_count = 1
     book.ordered {
       self.texts.each do |text|
-        book.add_item("text/chap#{chapter_count}.xhtml").add_content(generate_epub_content(text.content)).toc_text(text.title)
+        book.add_item("text/chap#{chapter_count}.xhtml").add_content(generate_epub_content(text.title, text.content)).toc_text(text.title)
         chapter_count += 1
       end
     }
@@ -342,7 +342,13 @@ class Book < ActiveRecord::Base
     self.uuid = Guid.new.to_s if self.uuid.nil?
   end
 
-  def generate_epub_content(html_content)
-    StringIO.new("<html xmlns='http://www.w3.org/1999/xhtml'><head><title>EBOOK</title></head><body>#{html_content}</body></html>")
+  def generate_epub_content(title, content)
+    template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
+                "<head><title>EBOOK</title></head>" +
+                "<body>" +
+                "<h1>#{title}</h1>" +
+                "#{content}" +
+                "</body></html>"
+    StringIO.new(template)
   end
 end
