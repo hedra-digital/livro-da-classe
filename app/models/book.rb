@@ -159,8 +159,10 @@ class Book < ActiveRecord::Base
 
     chapter_count = 1
     book.ordered {
+
+      book.add_item('text/cover.xhtml').add_content(epub_cover)
       self.texts.each do |text|
-        book.add_item("text/chap#{chapter_count}.xhtml").add_content(generate_epub_content(text.title, text.content)).toc_text(text.title)
+        book.add_item("text/chap#{chapter_count}.xhtml").add_content(epub_chapter(text.title, text.content)).toc_text(text.title)
         chapter_count += 1
       end
     }
@@ -342,12 +344,22 @@ class Book < ActiveRecord::Base
     self.uuid = Guid.new.to_s if self.uuid.nil?
   end
 
-  def generate_epub_content(title, content)
+  def epub_chapter(title, content)
     template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
                 "<head><title>EBOOK</title></head>" +
                 "<body>" +
                 "<h1>#{title}</h1>" +
                 "#{content}" +
+                "</body></html>"
+    StringIO.new(template)
+  end
+
+  def epub_cover
+    template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
+                "<head><title>COVER</title></head>" +
+                "<body>" +
+                "<div><svg xmlns='http://www.w3.org/2000/svg' height='100%' preserveAspectRatio='none' version='1.1' viewBox='0 0 601 942' width='100%' xmlns:xlink='http://www.w3.org/1999/xlink'><image height='942' width='601' xlink:href='../img/cover.png' /></svg>" +
+                "</div>" +
                 "</body></html>"
     StringIO.new(template)
   end
