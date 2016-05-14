@@ -50,7 +50,6 @@ class GoogleHtml
         sup = a.parent
         sup.add_next_sibling(a)
         sup.remove
-        byebug
 
         div = ftntc.first.parent.parent
         div['class'] = 'sdfootnotesym'
