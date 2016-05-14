@@ -303,6 +303,7 @@ section {
     -moz-box-shadow: 0 5px 20px -10px;
     box-shadow: 0 5px 20px -10px;
     .navbar {
+      width: 940px;
       .navbar-top {
         display: inline-block;
         float: right;
@@ -334,6 +335,7 @@ section {
         }
       }
       .navbar-bottom {
+        width: 940px;
         display: inline-block;
         float: left;
         ul.nav {
