@@ -125,7 +125,7 @@ class Text < ActiveRecord::Base
     chapters.each do |chapter|
 
       # chapter's first node must be "section" or "h1"
-      chapter_node = chapter.shift 
+      chapter_node = chapter.shift
 
       if chapter_node.attribute("data-id")
         text = Text.find_by_uuid(chapter_node.attribute("data-id").value)
@@ -151,7 +151,7 @@ class Text < ActiveRecord::Base
         data_id = footnote_link.attr("data-id")
 
         matched_node = nil
-        
+
         footnotes.each do |footnote|
           if(footnote.attr("data-id") == data_id)
             text.content += footnote.to_html()
@@ -193,7 +193,7 @@ class Text < ActiveRecord::Base
     # add the new chapter ids in the right position
     book_chapter_ids.insert((book_chapter_ids.index(current_chapter_id) + 1), *chapter_ids)
 
-    # set the right position to all chapters in this book    
+    # set the right position to all chapters in this book
     book_chapter_ids.each_with_index do |id, index|
       chapter = Text.find(id)
       chapter.position = index + 1
@@ -250,7 +250,7 @@ class Text < ActiveRecord::Base
 
   def remove_expressions
     Expression.where(:level => 1).each do |exp|
-      self.content = self.content.gsub(eval(exp.target), exp.replace)
+      self.content = self.content.present? ? self.content.gsub(eval(exp.target), exp.replace) : ''
     end
 
     if revised

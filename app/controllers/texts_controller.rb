@@ -39,7 +39,7 @@ class TextsController < ApplicationController
       puts e.message
       puts e.backtrace.inspect
     end
-    
+
     @text       = Text.new(params[:text])
     @text.book  = @book
     @text.title = I18n.translate(:initial_text_title)
@@ -164,7 +164,6 @@ class TextsController < ApplicationController
     end
     google_filedocument_id = connector.upload(filepath.to_s)
     content = connector.download_as_html(google_filedocument_id)
-
     content = GoogleHtml.validate_google_html(content)
     File.delete(filepath.to_s)
     content
