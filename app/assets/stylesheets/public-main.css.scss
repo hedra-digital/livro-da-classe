@@ -561,14 +561,15 @@ section {
       width: 738px;
       border: 1px solid #ccc;
       border-left: none;
+      background-color: #C1C1C1;
       iframe {
         background: #f7f7f9;
       }
       img {
-        width: auto;
+        width:320px;
         height: auto;
-        margin-left: 180px;
-        margin-top: 160px;
+        margin-left: 230px;
+        margin-top: 170px;
       }
     }
   }
