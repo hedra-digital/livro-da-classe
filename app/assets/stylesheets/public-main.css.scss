@@ -90,7 +90,7 @@ h1, h2 {
   min-height: 100%;
   height: auto !important;
   margin: 0 15px;
-  margin-top: 147px;
+  margin-top: 46px;
   background-color: #f4f4f4;
 }
 
@@ -211,6 +211,7 @@ section {
   position: absolute;
   .navbar {
     width: 940px;
+
     margin: 0 auto;
     position: relative;
     .navbar-inner {
@@ -237,32 +238,6 @@ section {
         }
         img.logo {
           height: 90px;
-        }
-      }
-      .navbar-user {
-        float: right;
-        padding-top: 30px;
-        label {
-          display: inline-block;
-          float: left;
-          font-size: 16px;
-          line-height: 20px;
-          padding: 15px;
-          margin: 0;
-          a {
-            color: #e7611d;
-          }
-        }
-        figure {
-          -webkit-border-radius: 20px;
-          -moz-border-radius: 20px;
-          border-radius: 20px;
-          overflow: hidden;
-          display: inline-block;
-          width: 50px;
-          height: 50px;
-          float: right;
-          margin: 0;
         }
       }
     }
@@ -294,6 +269,31 @@ section {
           }
         }
       }
+      .navbar-user {
+        float: right;
+        label {
+          display: inline-block;
+          float: left;
+          font-size: 16px;
+          line-height: 20px;
+          padding: 10px;
+          margin: 0;
+          a {
+            color: #e7611d;
+          }
+        }
+        figure {
+          -webkit-border-radius: 20px;
+          -moz-border-radius: 20px;
+          border-radius: 20px;
+          overflow: hidden;
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          float: right;
+          margin: 0;
+        }
+      }
     }
   }
   &.affix {
@@ -303,6 +303,7 @@ section {
     -moz-box-shadow: 0 5px 20px -10px;
     box-shadow: 0 5px 20px -10px;
     .navbar {
+      width: 940px;
       .navbar-top {
         display: inline-block;
         float: right;
@@ -314,7 +315,8 @@ section {
             line-height: 46px;
           }
           img.logo {
-            height: 45px;
+            height: 35px;
+            margin-top: 4px;
           }
         }
         .navbar-user {
@@ -334,6 +336,7 @@ section {
         }
       }
       .navbar-bottom {
+        width: 940px;
         display: inline-block;
         float: left;
         ul.nav {
@@ -404,7 +407,8 @@ section {
           font-family: Miso, "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
         img.logo {
-          height: 45px;
+          height: 35px;
+          margin-top: 4px;
         }
       }
       .navbar-user {
@@ -561,8 +565,10 @@ section {
         background: #f7f7f9;
       }
       img {
-        width: 738px;
-        height: 418px;
+        width: auto;
+        height: auto;
+        margin-left: 180px;
+        margin-top: 160px;
       }
     }
   }

@@ -19,10 +19,15 @@
     <div class="wrap">
       <header class="main-header">
         <div class="navbar">
-          <div class="navbar-inner navbar-top">
-            <div class="navbar-logo">
-              <%= image_tag 'logo-hedra-2.png', :class => 'logo' %>
-            </div>
+          <div class="navbar-inner navbar-bottom">
+            <ul class="nav">
+              <li <%= "class=active" if current_page?(root_path) %>>
+                <a href="<%= current_page?(root_path) ? '#video' : '/' %>">Home</a>
+              </li>
+              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#quem-somos">Quem Somos</a></li>
+              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#como-funciona">Como Funciona</a></li>
+              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#contato">Contato</a></li>
+            </ul>
             <div class="navbar-user">
               <% if current_user.nil? %>
                 <label><%= link_to "Acesse sua conta", signin_path %> ou <%= link_to "Cadastre-se", new_user_path %></label>
@@ -42,17 +47,6 @@
                 </ul>
               <% end %>
             </div>
-          </div>
-          <div class="navbar-inner navbar-bottom">
-            <ul class="nav">
-              <li <%= "class=active" if current_page?(root_path) %>>
-                <a href="<%= current_page?(root_path) ? '#video' : '/' %>">Home</a>
-              </li>
-              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#quem-somos">Quem Somos</a></li>
-              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#como-funciona">Como Funciona</a></li>
-              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#clientes">Clientes</a></li>
-              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#contato">Contato</a></li>
-            </ul>
           </div>
         </div>
       </header>

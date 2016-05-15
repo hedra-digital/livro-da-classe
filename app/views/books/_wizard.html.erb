@@ -36,7 +36,7 @@
             <button id="cataloging">Ficha catalográfica</button>
           </li>
           <li>
-            <button id="partners">Dados da escola</button>
+            <button id="partners">Dados da Instituição</button>
           </li>
           <li hidden>
             <button id="apparatus">Aparatos</button>
@@ -57,16 +57,16 @@
         <%= b.error_notification %>
         <div class="form-inputs">
           <%= b.simple_fields_for @book.book_data do |f| %>
-          
+
           <% if @book.book_data.errors.count > 0 or @book.cover_info.errors.count > 0 %>
           <div class="alert alert-error fade in">
             <a class="close" data-dismiss="alert" href="#">&times;</a>
             <ul>
-             <% @book.book_data.errors.messages.each do |key, msg|%> 
+             <% @book.book_data.errors.messages.each do |key, msg|%>
              <li><%= msg.join('</br>').html_safe%></li>
              <% end %>
 
-             <% @book.cover_info.errors.messages.each do |key, msg|%> 
+             <% @book.cover_info.errors.messages.each do |key, msg|%>
              <li><%= msg.join('</br>').html_safe%></li>
              <% end %>
            </ul>
