@@ -1,3 +1,5 @@
+require "#{Rails.root}/lib/google_connector.rb"
+
 class TextsController < ApplicationController
   before_filter :authentication_check
   before_filter :find_book
@@ -37,7 +39,7 @@ class TextsController < ApplicationController
   def update
     @text = Text.find_by_uuid_or_id(params[:id])
     @text.valid_content = @text.validate_content
-    
+
     # do not save the content, because we need to split it later
     content = params[:text].delete(:content)
 

@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require "#{Rails.root}/lib/google_connector.rb"
 
 class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
@@ -111,6 +112,8 @@ class BooksController < ApplicationController
 
       BookCover.new(@book.cover_info).generate_cover
 
+      add_file_uploaded if params[:upload].present?
+
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else
@@ -180,5 +183,59 @@ class BooksController < ApplicationController
 
   def states
     @states = [["Acre", "AC"], ["Alagoas", "AL"], ["Amazonas", "AM"], ["Amapá", "AP"], ["Bahia", "BA"], ["Ceará", "CE"], ["Distrito Federal", "DF"], ["Espírito Santo", "ES"], ["Goiás", "GO"], ["Maranhão", "MA"], ["Minas Gerais", "MG"], ["Mato Grosso do Sul", "MS"], ["Mato Grosso", "MT"], ["Pará", "PA"], ["Paraíba", "PB"], ["Pernambuco", "PE"], ["Piauí", "PI"], ["Paraná", "PR"], ["Rio de Janeiro", "RJ"], ["Rio Grande do Norte", "RN"], ["Rondônia", "RO"], ["Roraima", "RR"], ["Rio Grande do Sul", "RS"], ["Santa Catarina", "SC"], ["Sergipe", "SE"], ["São Paulo", "SP"], ["Tocantins", "TO"]]
+  end
+
+  def add_file_uploaded
+    connector = GoogleConnector.new
+
+    upload = params[:upload]
+    filepath = Rails.root.join('/tmp', upload.original_filename)
+    File.open(filepath, 'wb') do |file|
+      file.write(upload.read)
+    end
+    google_filedocument_id = connector.upload(filepath.to_s)
+    content = connector.download_as_html(google_filedocument_id)
+
+    content = validate_google_html(content)
+
+    parse_new_content(content)
+    File.delete(filepath.to_s)
+  rescue Exception => e
+    puts e.message
+    puts e.backtrace.inspect
+  end
+
+  def parse_new_content(content)
+    chapters, footnotes = Text.split_chpaters(content)
+    chapter_ids = Text.save_split_chapters(chapters, footnotes, @book, current_user)
+    
+    Text.set_positoins_after_split(chapter_ids)
+    @book.push_to_bitbucket
+  end
+
+  def validate_google_html(content)
+    doc = Nokogiri::HTML(content)
+    doc = remove_head(doc)
+    doc = replace_ol_h1(doc)
+    doc.to_html
+  end
+
+  def replace_ol_h1(doc)
+    doc.css('ol').each do |ol|
+      ol.attributes.each do |att|
+        if att[0] == 'class' && att[1].value.include?('_1-0')
+          text = ol.content
+          li = ol.css('li').remove
+          ol.name = 'h1'
+          ol.content = text
+        end
+      end
+    end
+    doc
+  end
+
+  def remove_head(content)
+    content.css('head').remove
+    content
   end
 end
