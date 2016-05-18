@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
   before_filter :ominiauth_user_gate, :except => [:show]
   before_filter :secure_organizer_id, :only => [:create, :update]
-  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook]
+  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook, :epub_viewer]
 
   require "#{Rails.root}/lib/book_cover.rb"
 
@@ -169,6 +169,10 @@ class BooksController < ApplicationController
 
   def revision
     @name = @book.directory_name
+  end
+
+  def epub_viewer
+    render layout: false 
   end
 
   private
