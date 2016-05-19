@@ -74,7 +74,7 @@
 
          <script>
             "use strict";
-            var Book = ePub('../../<%= @book.directory.to_s.gsub("public/","") + "/EBOOK.epub" %>', {
+            var Book = ePub('../../../<%= @book.directory.to_s.gsub("public/","") + "/EBOOK.epub" %>', {
               width: 400,
               height: 600
             });
