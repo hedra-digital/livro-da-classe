@@ -57,9 +57,6 @@
 //= require carousel
 //= require adipoli
 //= require scrollTo
-//= require epub
-//= require epub.min.js
-//= require zip.min.js
 
 // Bootstrap Datepicker
 
