@@ -118,7 +118,7 @@
     }).done(function(response) {
       if (response.result == "success") {
         parent.jQuery.fancybox.close();
-        window.location = '<%= epub_viewer_path @book.uuid %>';
+        window.location = response.path;
       } else {
         var link = $(document.createElement('a')).attr('href',response.path).text('<%= t(:click_here) %>');
         $('img.progress-modal').hide();

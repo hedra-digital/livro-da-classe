@@ -75,7 +75,7 @@ class BooksController < ApplicationController
     ebook = @book.ebook
     ebook_path = ebook.to_s.gsub('public/','')
     if !ebook.nil?
-      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "success" }
+      render :json => { :path => "#{request.protocol}#{request.host_with_port}/books/#{@book.uuid}/epub_viewer", :result => "success", :new_window => true }
     else
       render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "fail" }
     end
@@ -172,7 +172,7 @@ class BooksController < ApplicationController
   end
 
   def epub_viewer
-    render layout: false 
+    render layout: false
   end
 
   private

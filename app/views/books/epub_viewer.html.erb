@@ -51,6 +51,18 @@
             user-select: none;
           }
 
+          .back {
+            position: absolute;
+            font-size: 30px;
+            color: #C1C1C1;
+            font-family: arial, sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+
           .arrow:hover {
             color: #777;
           }
@@ -70,6 +82,7 @@
     </head>
     <body>
         <div id="main">
+          <div id="back" onclick="back_to_book();" class="back">‹ Voltar ao Livro</div>
           <div id="prev" onclick="Book.prevPage();" class="arrow">‹</div>
           <div id="wrapper">
             <div id="area"></div>
@@ -79,6 +92,11 @@
 
         <script>
             Book.renderTo("area")
+
+            function back_to_book() {
+              current_url = window.location.href.replace("\epub_viewer", "")
+              window.location =  current_url;
+            }
         </script>
     </body>
 </html>
