@@ -44,7 +44,7 @@ class TextsController < ApplicationController
     @text.book  = @book
     @text.title = I18n.translate(:initial_text_title)
     @text.user  = current_user
-
+    @text.valid_content = @text.validate_content
 
     if @text.save
       @text.book.push_to_bitbucket
