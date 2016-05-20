@@ -66,9 +66,9 @@ module AuthorizationHelper
   end
 
   def can_git?(book=nil, user=nil)
+    book = book.nil? ? nil : book[:book]
     book ||= @book
     user ||= @current_user
-
     if book.nil? || user.nil?
       return false
     else
