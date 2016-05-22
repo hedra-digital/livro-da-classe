@@ -377,10 +377,28 @@ class Book < ActiveRecord::Base
     div_notes = html.css 'a'
     count = 1
     div_notes.each do |a|
-      if a.attributes['class'].value == 'sdfootnoteanc' && !a.css('sup').empty?
+      if !a.attributes['class'].nil? && a.attributes['class'].value == 'sdfootnoteanc' && !a.css('sup').empty?
         a.attributes['data-id'].remove
         sup = a.css('sup').first
         sup.content = count
+        count += 1
+      end
+    end
+
+    count = 1
+    divs = html.css 'div'
+    divs.each do |div|
+      if !div.attributes['class'].nil? && div.attributes['class'].value == 'sdfootnotesym'
+        div.attributes['data-id'].remove
+        content = div.content
+        div.children.remove
+        p_node = Nokogiri::XML::Node.new "p" , html
+        sup = Nokogiri::XML::Node.new "sup", html
+
+        sup.content = count
+        p_node.content = content
+        sup.parent = div
+        p_node.parent = div
         count += 1
       end
     end
