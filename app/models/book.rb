@@ -157,9 +157,13 @@ class Book < ActiveRecord::Base
       end
     end
 
+    css_template = File.join('public/main-epub.css')
+    File.open(css_template) do |io|
+      book.add_item('css/main.css',io)
+    end
+
     chapter_count = 1
     book.ordered {
-
       book.add_item('text/cover.xhtml').add_content(epub_cover)
       self.texts.each do |text|
         content = setup_footnote_epub(text.content)
@@ -347,7 +351,10 @@ class Book < ActiveRecord::Base
 
   def epub_chapter(title, content)
     template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
-                "<head><title>EBOOK</title></head>" +
+                "<head>" +
+                "<title>EBOOK</title>" +
+                "<link href='../css/main.css' media='all' rel='stylesheet' type='text/css' />" +
+                "</head>" +
                 "<body>" +
                 "<h1>#{title}</h1>" +
                 "#{content}" +
@@ -368,8 +375,14 @@ class Book < ActiveRecord::Base
   def setup_footnote_epub(text)
     html = Nokogiri::HTML(text)
     div_notes = html.css 'a'
+    count = 1
     div_notes.each do |a|
-      a.attributes['data-id'].remove if a.attributes['class'].value == 'sdfootnoteanc'
+      if a.attributes['class'].value == 'sdfootnoteanc' && !a.css('sup').empty?
+        a.attributes['data-id'].remove
+        sup = a.css('sup').first
+        sup.content = count
+        count += 1
+      end
     end
     html.css('body').to_html
   end
