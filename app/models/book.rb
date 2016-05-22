@@ -162,7 +162,8 @@ class Book < ActiveRecord::Base
 
       book.add_item('text/cover.xhtml').add_content(epub_cover)
       self.texts.each do |text|
-        book.add_item("text/chap#{chapter_count}.xhtml").add_content(epub_chapter(text.title, text.content)).toc_text(text.title)
+        content = setup_footnote_epub(text.content)
+        book.add_item("text/chap#{chapter_count}.xhtml").add_content(epub_chapter(text.title, content)).toc_text(text.title)
         chapter_count += 1
       end
     }
@@ -362,5 +363,14 @@ class Book < ActiveRecord::Base
                 "</div>" +
                 "</body></html>"
     StringIO.new(template)
+  end
+
+  def setup_footnote_epub(text)
+    html = Nokogiri::HTML(text)
+    div_notes = html.css 'a'
+    div_notes.each do |a|
+      a.attributes['data-id'].remove if a.attributes['class'].value == 'sdfootnoteanc'
+    end
+    html.css('body').to_html
   end
 end
