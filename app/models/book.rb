@@ -157,12 +157,17 @@ class Book < ActiveRecord::Base
       end
     end
 
+    css_template = File.join('public/main-epub.css')
+    File.open(css_template) do |io|
+      book.add_item('css/main.css',io)
+    end
+
     chapter_count = 1
     book.ordered {
-
       book.add_item('text/cover.xhtml').add_content(epub_cover)
       self.texts.each do |text|
-        book.add_item("text/chap#{chapter_count}.xhtml").add_content(epub_chapter(text.title, text.content)).toc_text(text.title)
+        content = setup_footnote_epub(text.content)
+        book.add_item("text/chap#{chapter_count}.xhtml").add_content(epub_chapter(text.title, content)).toc_text(text.title)
         chapter_count += 1
       end
     }
@@ -346,7 +351,10 @@ class Book < ActiveRecord::Base
 
   def epub_chapter(title, content)
     template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
-                "<head><title>EBOOK</title></head>" +
+                "<head>" +
+                "<title>EBOOK</title>" +
+                "<link href='../css/main.css' media='all' rel='stylesheet' type='text/css' />" +
+                "</head>" +
                 "<body>" +
                 "<h1>#{title}</h1>" +
                 "#{content}" +
@@ -362,5 +370,38 @@ class Book < ActiveRecord::Base
                 "</div>" +
                 "</body></html>"
     StringIO.new(template)
+  end
+
+  def setup_footnote_epub(text)
+    html = Nokogiri::HTML(text)
+    div_notes = html.css 'a'
+    count = 1
+    div_notes.each do |a|
+      if !a.attributes['class'].nil? && a.attributes['class'].value == 'sdfootnoteanc' && !a.css('sup').empty?
+        a.attributes['data-id'].remove
+        sup = a.css('sup').first
+        sup.content = count
+        count += 1
+      end
+    end
+
+    count = 1
+    divs = html.css 'div'
+    divs.each do |div|
+      if !div.attributes['class'].nil? && div.attributes['class'].value == 'sdfootnotesym'
+        div.attributes['data-id'].remove
+        content = div.content
+        div.children.remove
+        p_node = Nokogiri::XML::Node.new "p" , html
+        sup = Nokogiri::XML::Node.new "sup", html
+
+        sup.content = count
+        p_node.content = content
+        sup.parent = div
+        p_node.parent = div
+        count += 1
+      end
+    end
+    html.css('body').to_html
   end
 end
