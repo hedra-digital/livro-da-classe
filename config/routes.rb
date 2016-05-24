@@ -99,5 +99,6 @@ Livrodaclasse::Application.routes.draw do
     resources :publishers, :only => [:index, :create, :new, :edit, :update, :destroy]
     resources :scraps, :only => [:index, :create, :new, :edit, :update, :destroy]
     resources :users, :only => [:index, :edit, :update]
+    resources :rules, :only => [:index, :new, :create, :destroy, :edit, :update]
   end
 end

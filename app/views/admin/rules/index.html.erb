@@ -1,0 +1,23 @@
+<h1>Rotinas</h1>
+
+<% if @rules.present? %>
+  <table class="table table-striped">
+    <tr>
+      <th>Label</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @rules.each do |rule| %>
+      <tr>
+        <td><%= rule.label %></td>
+        <td><%= link_to 'Editar', edit_admin_rule_path(rule), :class => 'btn btn-mini' %></td>
+        <td><%= link_to 'Remover', admin_rule_path(rule), :class => 'btn btn-danger btn-mini', :confirm => 'Tem certeza que deseja apagar esta expressão de substituição?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class='btn-group'>
+    <%= link_to 'Nova Rotina', new_admin_rule_path, :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
+<% else %>
+  <p class="blank">Nenhuma expressão cadastrada. <%= link_to 'Definir uma nova rotina?', new_admin_rule_path %></p>
+<% end %>
