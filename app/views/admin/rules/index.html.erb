@@ -4,12 +4,28 @@
   <table class="table table-striped">
     <tr>
       <th>Label</th>
-      <th></th>
-      <th></th>
+      <th class="span1"></th>
+      <th class="span1"></th>
+      <th class="span1"></th>
     </tr>
     <% @rules.each do |rule| %>
       <tr>
         <td><%= rule.label %></td>
+        <td>
+          <input type="checkbox" data-handle-width="65px" data-size="mini" data-role="flipswitch" name="switch" id="active_<%= rule.id %>">
+          <script>
+            $("#active_<%= rule.id %>").bootstrapSwitch('state', <%= rule.active %>);
+            $('#active_<%= rule.id %>').on('switchChange.bootstrapSwitch', function (event, state) {
+                $.ajax({
+                  url: 'rules/active',
+                  type: 'POST',
+                  data: {
+                    id: <%= rule.id %>
+                  }
+                });
+            });
+          </script>
+        </td>
         <td><%= link_to 'Editar', edit_admin_rule_path(rule), :class => 'btn btn-mini' %></td>
         <td><%= link_to 'Remover', admin_rule_path(rule), :class => 'btn btn-danger btn-mini', :confirm => 'Tem certeza que deseja apagar esta expressão de substituição?', :method => :delete %></td>
       </tr>

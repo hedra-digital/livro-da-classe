@@ -37,5 +37,16 @@ module Admin
         render :edit
       end
     end
+
+    def active
+      rule = Rule.find(params[:id])
+      active = rule.active
+      rule.active = !active
+      if rule.save
+        render json: { result: 'success' }
+      else
+        render json: { result: 'fail' }
+      end
+    end
   end
 end
