@@ -29,8 +29,8 @@ Livrodaclasse::Application.routes.draw do
   resources :sessions
   resources :password_resets
   resources :books do
-
     resources :texts do
+      post 'cancel'
       collection do
         get 'all'
         put 'save_all'
