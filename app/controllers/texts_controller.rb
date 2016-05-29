@@ -144,6 +144,17 @@ class TextsController < ApplicationController
 
   end
 
+  def cancel
+    @text = Text.find_by_uuid_or_id(params[:text_id])
+    if empty_chapter @text
+      @text.destroy
+      @text.book.push_to_bitbucket
+      redirect_to book_path(@book.uuid), notice: 'Capítulo em branco removido.'
+    else
+      redirect_to book_path(@book.uuid)
+    end
+  end
+
   private
 
   def find_book
@@ -170,5 +181,9 @@ class TextsController < ApplicationController
   rescue Exception => e
     puts e.message
     puts e.backtrace.inspect
+  end
+
+  def empty_chapter(text)
+    ( (text.title.empty? || text.title == I18n.translate(:initial_text_title)) && text.content.empty?  ) ? true : false
   end
 end
