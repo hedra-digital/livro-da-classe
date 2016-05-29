@@ -379,6 +379,8 @@ class Book < ActiveRecord::Base
     div_notes.each do |a|
       if !a.attributes['class'].nil? && a.attributes['class'].value == 'sdfootnoteanc' && !a.css('sup').empty?
         a.attributes['data-id'].remove
+        a['id'] = "sdfootnoteanc_#{count}"
+        a['href'] = "#sdfootnotesym_#{count}"
         sup = a.css('sup').first
         sup.content = count
         count += 1
@@ -394,10 +396,15 @@ class Book < ActiveRecord::Base
         div.children.remove
         p_node = Nokogiri::XML::Node.new "p" , html
         sup = Nokogiri::XML::Node.new "sup", html
+        link = Nokogiri::XML::Node.new "a", html
+        link['id'] = "sdfootnotesym_#{count}"
+        link['href'] = "#sdfootnoteanc_#{count}"
 
         sup.content = count
-        p_node.content = content
-        sup.parent = div
+
+        sup.parent = link
+        link.parent = p_node
+        link.add_next_sibling content
         p_node.parent = div
         count += 1
       end
