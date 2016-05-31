@@ -1,15 +1,9 @@
-<h1>Rotinas</h1>
-
 <% if @rules.present? %>
   <table class="table table-striped">
-    <tr>
-      <th>Label</th>
-      <th class="span1"></th>
-    </tr>
     <% @rules.each do |rule| %>
       <tr>
         <td><%= rule[:label] %></td>
-        <td>
+        <td class="span1">
           <input type="checkbox" data-handle-width="65px" data-size="mini" data-role="flipswitch" name="switch" id="active_<%= rule[:id] %>">
           <script>
             $("#active_<%= rule[:id] %>").bootstrapSwitch('state', <%= rule[:active] %>);
