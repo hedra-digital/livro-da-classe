@@ -192,6 +192,7 @@ class BooksController < ApplicationController
       @book.rules.delete(maps)
     end
     @book.save
+    @book.generate_commands
     render json: { result: 'success' }
   end
 

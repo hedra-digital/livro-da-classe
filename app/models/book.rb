@@ -344,6 +344,20 @@ class Book < ActiveRecord::Base
     self.cover_info.capa_detalhe_remove
   end
 
+  def generate_commands
+    Thread.new do
+      logger.info 'Update commands.sty'
+      input_commands = ''
+      self.rules.each do |rule|
+        if rule.active
+          input_commands << "% #{rule.label}\n"
+          input_commands << rule.command + "\n\n"
+        end
+      end
+      File.open("#{self.directory}/commands.sty",'w') {|io| io.write(input_commands) }
+    end
+  end
+
   private
 
   def set_uuid
