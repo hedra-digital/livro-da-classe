@@ -128,6 +128,7 @@ class BooksController < ApplicationController
   end
 
   def edit
+    rules
     respond_to do |format|
       format.html
     end
@@ -173,14 +174,6 @@ class BooksController < ApplicationController
 
   def epub_viewer
     render layout: false
-  end
-
-  def rules
-    @rules = []
-    Rule.all.each do |rule|
-      map = (@book.rules.map { |r| r if r.id == rule.id}).compact
-      @rules.push({ id: rule.id, label: rule.label, active: !map.empty? })
-    end
   end
 
   def rule_active
@@ -236,5 +229,13 @@ class BooksController < ApplicationController
 
     Text.set_positoins_after_split(chapter_ids)
     @book.push_to_bitbucket
+  end
+
+  def rules
+    @rules = []
+    Rule.all.each do |rule|
+      map = (@book.rules.map { |r| r if r.id == rule.id}).compact
+      @rules.push({ id: rule.id, label: rule.label, active: !map.empty? })
+    end
   end
 end
