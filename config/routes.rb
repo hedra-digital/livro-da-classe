@@ -32,6 +32,7 @@ Livrodaclasse::Application.routes.draw do
 
     member do
       get 'rules'
+      post 'rules/active', to: 'books#rule_active'
     end
 
     resources :texts do

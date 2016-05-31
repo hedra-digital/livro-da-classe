@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
   before_filter :ominiauth_user_gate, :except => [:show]
   before_filter :secure_organizer_id, :only => [:create, :update]
-  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook, :epub_viewer, :rules]
+  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook, :epub_viewer, :rules, :rule_active]
 
   require "#{Rails.root}/lib/book_cover.rb"
 
@@ -178,9 +178,21 @@ class BooksController < ApplicationController
   def rules
     @rules = []
     Rule.all.each do |rule|
-      map = @book.rules.map { |r| r.id == rule.id}
+      map = (@book.rules.map { |r| r if r.id == rule.id}).compact
       @rules.push({ id: rule.id, label: rule.label, active: !map.empty? })
     end
+  end
+
+  def rule_active
+    rule = Rule.find(params[:rule_id])
+    maps = (@book.rules.map { |r| r if r.id == rule.id}).compact
+    if maps.empty?
+      @book.rules.push(rule)
+    else
+      @book.rules.delete(maps)
+    end
+    @book.save
+    render json: { result: 'success' }
   end
 
   private
