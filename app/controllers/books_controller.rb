@@ -176,6 +176,11 @@ class BooksController < ApplicationController
   end
 
   def rules
+    @rules = []
+    Rule.all.each do |rule|
+      map = @book.rules.map { |r| r.id == rule.id}
+      @rules.push({ id: rule.id, label: rule.label, active: !map.empty? })
+    end
   end
 
   private
