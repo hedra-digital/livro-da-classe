@@ -234,8 +234,10 @@ class BooksController < ApplicationController
   def rules
     @rules = []
     Rule.all.each do |rule|
-      map = (@book.rules.map { |r| r if r.id == rule.id}).compact
-      @rules.push({ id: rule.id, label: rule.label, active: !map.empty? })
+      if rule.active
+        map = (@book.rules.map { |r| r if r.id == rule.id}).compact
+        @rules.push({ id: rule.id, label: rule.label, active: !map.empty? })
+      end
     end
   end
 end
