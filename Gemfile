@@ -29,6 +29,7 @@ gem 'bitbucket_rest_api'
 gem 'passenger'
 gem 'google-api-client'
 gem "gepub"
+gem "bootstrap-switch-rails"
 
 
 group :assets do

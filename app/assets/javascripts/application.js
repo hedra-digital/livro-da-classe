@@ -22,6 +22,7 @@
 //= require bootstrap-scrollspy
 //= require bootstrap-modal
 //= require bootstrap-transition
+//= require bootstrap-switch
 //= require jquery.tipsy
 //= require jquery.fancybox
 //= require bindWithDelay
@@ -61,7 +62,6 @@
 //= require zip.min.js
 
 // Bootstrap Datepicker
-
 $(document).ready(function() {
   $('[data-behaviour~=datepicker]').datepicker({
     language: 'pt-BR',

@@ -35,6 +35,7 @@ class Book < ActiveRecord::Base
   has_one                   :book_data
   has_many                  :invitations, :dependent => :destroy
   has_many                  :scraps, :dependent => :destroy
+  has_and_belongs_to_many   :rules
 
   # Validations
   validates                 :organizer, :presence => true
@@ -341,6 +342,20 @@ class Book < ActiveRecord::Base
 
   def remove_capa_detalhe
     self.cover_info.capa_detalhe_remove
+  end
+
+  def generate_commands
+    Thread.new do
+      logger.info 'Update commands.sty'
+      input_commands = ''
+      self.rules.each do |rule|
+        if rule.active
+          input_commands << "% #{rule.label}\n"
+          input_commands << rule.command + "\n\n"
+        end
+      end
+      File.open("#{self.directory}/commands.sty",'w') {|io| io.write(input_commands) }
+    end
   end
 
   private

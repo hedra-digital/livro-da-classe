@@ -38,6 +38,9 @@
           <li>
             <button id="partners">Dados da Instituição</button>
           </li>
+          <li>
+            <button id="advanced">Opções Avançadas</button>
+          </li>
           <li hidden>
             <button id="apparatus">Aparatos</button>
           </li>
@@ -87,6 +90,9 @@
             </div>
             <div class="substep-content" id="content-partners" hidden>
               <%= render :partial => '/book_datas/partners', :locals => {:f => f} %>
+            </div>
+            <div class="substep-content" id="content-advanced" hidden>
+              <%= render :partial => '/books/rules' %>
             </div>
             <div class="substep-content" id="content-apparatus" hidden>
               <%= render :partial => '/book_datas/apparatus', :locals => {:f => f} %>
