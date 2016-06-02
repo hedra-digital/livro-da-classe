@@ -371,6 +371,9 @@ pt-BR:
       scrap:
         one: Recado
         other: Recados
+      rule:
+        one: Rotina
+        other: Rotinas
     attributes:
       scrap:
         book_id: Livro

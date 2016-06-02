@@ -50,7 +50,6 @@ class GoogleHtml
         sup = a.parent
         sup.add_next_sibling(a)
         sup.remove
-        byebug
 
         div = ftntc.first.parent.parent
         div['class'] = 'sdfootnotesym'
@@ -70,7 +69,7 @@ class GoogleHtml
   end
 
   def self.footnote?(a)
-    a.attributes['id'].value.include?('ftnt_ref') && a.parent.name == 'sup'
+    a.attributes['id'].value.include?('ftnt_ref') && a.parent.name == 'sup' if a.attributes['id'].present?
   end
 
   def self.footnote_ref(a)

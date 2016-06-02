@@ -27,7 +27,7 @@
               <%= menu_item t(:pdf, :scope => :book_nav), '#', true, 'generate-pdf'  %>
             <% end %>
 
-            <% if can_execute? and has_ebook?(@book)  %>
+            <% if can_execute? %>
               <%= menu_item t(:ebook, :scope => :book_nav), '#', true, 'generate-ebook'  %>
             <% end %>
 

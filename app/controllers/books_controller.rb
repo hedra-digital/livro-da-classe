@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
   before_filter :ominiauth_user_gate, :except => [:show]
   before_filter :secure_organizer_id, :only => [:create, :update]
-  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook]
+  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook, :epub_viewer, :rules, :rule_active]
 
   require "#{Rails.root}/lib/book_cover.rb"
 
@@ -72,12 +72,11 @@ class BooksController < ApplicationController
   end
 
   def generate_ebook
-    ebook = @book.ebook params[:kindle].present?
+    ebook = @book.ebook
     ebook_path = ebook.to_s.gsub('public/','')
     if !ebook.nil?
-      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "success" }
+      render :json => { :path => "#{request.protocol}#{request.host_with_port}/books/#{@book.uuid}/epub_viewer", :result => "success", :new_window => true }
     else
-      ebook_path = params[:kindle].present? ? File.join(@book.directory,"ebook","#{@book.uuid}.idv").gsub('public', '') : File.join(@book.directory,"ebook","#{@book.uuid}.epub").gsub('public', '')
       render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "fail" }
     end
   end
@@ -129,6 +128,7 @@ class BooksController < ApplicationController
   end
 
   def edit
+    rules
     respond_to do |format|
       format.html
     end
@@ -172,6 +172,23 @@ class BooksController < ApplicationController
     @name = @book.directory_name
   end
 
+  def epub_viewer
+    render layout: false
+  end
+
+  def rule_active
+    rule = Rule.find(params[:rule_id])
+    maps = (@book.rules.map { |r| r if r.id == rule.id}).compact
+    if maps.empty?
+      @book.rules.push(rule)
+    else
+      @book.rules.delete(maps)
+    end
+    @book.save
+    @book.generate_commands
+    render json: { result: 'success' }
+  end
+
   private
 
   def secure_organizer_id
@@ -212,5 +229,15 @@ class BooksController < ApplicationController
 
     Text.set_positoins_after_split(chapter_ids)
     @book.push_to_bitbucket
+  end
+
+  def rules
+    @rules = []
+    Rule.all.each do |rule|
+      if rule.active
+        map = (@book.rules.map { |r| r if r.id == rule.id}).compact
+        @rules.push({ id: rule.id, label: rule.label, active: !map.empty? })
+      end
+    end
   end
 end

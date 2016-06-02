@@ -38,7 +38,7 @@ module BooksHelper
   def menu_item(name, path, external=nil, type="", blank = false)
     options = {}
     options[:class] = 'active' if current_page?(path)
-    
+
     link_options = {}
     link_options[:target] = "_blank" if blank
     external.nil? ? content_tag(:li, link_to(name, path, link_options), options) : content_tag(:li, link_to(name, path, :id => type), options)
@@ -58,7 +58,7 @@ module BooksHelper
 
   def progress_notification
       image_tag('/assets/ajax-loader.gif', :class => 'progress-modal', :style => 'display: none;')
-  end  
+  end
 
   def book_pages(book)
     book.pages_count > 0 ? "#{book.pages_count} páginas" : ""

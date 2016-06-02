@@ -39,12 +39,12 @@ class TextsController < ApplicationController
       puts e.message
       puts e.backtrace.inspect
     end
-    
+
     @text       = Text.new(params[:text])
     @text.book  = @book
     @text.title = I18n.translate(:initial_text_title)
     @text.user  = current_user
-
+    @text.valid_content = @text.validate_content
 
     if @text.save
       @text.book.push_to_bitbucket
@@ -144,6 +144,17 @@ class TextsController < ApplicationController
 
   end
 
+  def cancel
+    @text = Text.find_by_uuid_or_id(params[:text_id])
+    if empty_chapter @text
+      @text.destroy
+      @text.book.push_to_bitbucket
+      redirect_to book_path(@book.uuid), notice: 'Capítulo em branco removido.'
+    else
+      redirect_to book_path(@book.uuid)
+    end
+  end
+
   private
 
   def find_book
@@ -164,12 +175,15 @@ class TextsController < ApplicationController
     end
     google_filedocument_id = connector.upload(filepath.to_s)
     content = connector.download_as_html(google_filedocument_id)
-
     content = GoogleHtml.validate_google_html(content)
     File.delete(filepath.to_s)
     content
   rescue Exception => e
     puts e.message
     puts e.backtrace.inspect
+  end
+
+  def empty_chapter(text)
+    ( (text.title.empty? || text.title == I18n.translate(:initial_text_title)) && text.content.empty?  ) ? true : false
   end
 end

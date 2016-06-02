@@ -1,0 +1,26 @@
+<% if @rules.present? %>
+  <table class="table table-striped">
+    <% @rules.each do |rule| %>
+      <tr>
+        <td><%= rule[:label] %></td>
+        <td class="span1">
+          <input type="checkbox" data-handle-width="65px" data-size="mini" data-role="flipswitch" name="switch" id="active_<%= rule[:id] %>">
+          <script>
+            $("#active_<%= rule[:id] %>").bootstrapSwitch('state', <%= rule[:active] %>);
+            $('#active_<%= rule[:id] %>').on('switchChange.bootstrapSwitch', function (event, state) {
+                $.ajax({
+                  url: 'rules/active',
+                  type: 'POST',
+                  data: {
+                    rule_id: <%= rule[:id] %>
+                  }
+                });
+            });
+          </script>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="blank">Nenhuma rotina cadastrada.</p>
+<% end %>

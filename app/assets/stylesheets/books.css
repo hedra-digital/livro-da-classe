@@ -107,3 +107,11 @@ div.modal{
 .doc-upload img {
   width: 40px;
 }
+
+.table.table-striped.table-books td {
+  vertical-align: middle;
+}
+
+.git-link img {
+  width: 25px;
+}

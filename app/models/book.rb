@@ -35,6 +35,7 @@ class Book < ActiveRecord::Base
   has_one                   :book_data
   has_many                  :invitations, :dependent => :destroy
   has_many                  :scraps, :dependent => :destroy
+  has_and_belongs_to_many   :rules
 
   # Validations
   validates                 :organizer, :presence => true
@@ -142,52 +143,41 @@ class Book < ActiveRecord::Base
     pdf_file
   end
 
-  def ebook is_kindle=false
-    # generate latex files
-    self.generate_latex_files
+  def ebook
+    book = GEPUB::Book.new
+    book.set_primary_identifier('http:/www.hedra.com.br', self.uuid, 'URL')
+    book.language = 'pt-BR'
+    book.add_title(self.title, nil, GEPUB::TITLE_TYPE::MAIN).set_display_seq(1)
+    book.add_creator(self.autor).set_display_seq(1)
 
-    # generate ebook
-    if is_kindle
-      Process.waitpid(
-        fork do
-          begin
-            system "cd #{directory}/ebook/ && make mobi"
-          rescue
-            system "cd #{directory}/ebook/ && make clean"
-          ensure
-            Process.exit! 1
-          end
-        end
-        )
-      # check rotine success
-      if File.exist?(ebook_file = File.join(directory, 'ebook', 'EBOOK.idv'))
-        File.rename(ebook_file, File.join(directory, 'ebook',"#{self.uuid}.idv"))
-        ebook_file = File.join(directory, 'ebook', "#{self.uuid}.idv")
-      else
-        ebook_file = nil
-      end
-    else
-      Process.waitpid(
-        fork do
-          begin
-            system "cd #{directory}/ebook/ && make"
-          rescue
-            system "cd #{directory}/ebook/ && make clean"
-          ensure
-            Process.exit! 1
-          end
-        end
-        )
-      # check rotine success
-      if File.exist?(ebook_file = File.join(directory, 'ebook', 'EBOOK.epub'))
-        File.rename(ebook_file, File.join(directory, 'ebook',"#{self.uuid}.epub"))
-        ebook_file = File.join(directory, 'ebook', "#{self.uuid}.epub")
-      else
-        ebook_file = nil
+    if self.cover.exists?
+      imgfile = File.join(self.cover.path)
+      File.open(imgfile) do
+        |io|
+        book.add_item('img/cover.png',io).cover_image
       end
     end
 
-    ebook_file
+    css_template = File.join('public/main-epub.css')
+    File.open(css_template) do |io|
+      book.add_item('css/main.css',io)
+    end
+
+    chapter_count = 1
+    book.ordered {
+      book.add_item('text/cover.xhtml').add_content(epub_cover)
+      self.texts.each do |text|
+        content = setup_footnote_epub(text.content)
+        book.add_item("text/chap#{chapter_count}.xhtml").add_content(epub_chapter(text.title, content)).toc_text(text.title)
+        chapter_count += 1
+      end
+    }
+    epubname = File.join(directory, 'EBOOK.epub')
+
+    book.generate_epub(epubname)
+    epubname
+  rescue
+    nil
   end
 
   def valid
@@ -354,10 +344,86 @@ class Book < ActiveRecord::Base
     self.cover_info.capa_detalhe_remove
   end
 
+  def generate_commands
+    Thread.new do
+      logger.info 'Update commands.sty'
+      input_commands = ''
+      self.rules.each do |rule|
+        if rule.active
+          input_commands << "% #{rule.label}\n"
+          input_commands << rule.command + "\n\n"
+        end
+      end
+      File.open("#{self.directory}/commands.sty",'w') {|io| io.write(input_commands) }
+    end
+  end
+
   private
 
   def set_uuid
     self.uuid = Guid.new.to_s if self.uuid.nil?
   end
 
+  def epub_chapter(title, content)
+    template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
+                "<head>" +
+                "<title>EBOOK</title>" +
+                "<link href='../css/main.css' media='all' rel='stylesheet' type='text/css' />" +
+                "</head>" +
+                "<body>" +
+                "<h1>#{title}</h1>" +
+                "#{content}" +
+                "</body></html>"
+    StringIO.new(template)
+  end
+
+  def epub_cover
+    template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
+                "<head><title>COVER</title></head>" +
+                "<body>" +
+                "<div><svg xmlns='http://www.w3.org/2000/svg' height='100%' preserveAspectRatio='none' version='1.1' viewBox='0 0 601 942' width='100%' xmlns:xlink='http://www.w3.org/1999/xlink'><image height='942' width='601' xlink:href='../img/cover.png' /></svg>" +
+                "</div>" +
+                "</body></html>"
+    StringIO.new(template)
+  end
+
+  def setup_footnote_epub(text)
+    html = Nokogiri::HTML(text)
+    div_notes = html.css 'a'
+    count = 1
+    div_notes.each do |a|
+      if !a.attributes['class'].nil? && a.attributes['class'].value == 'sdfootnoteanc' && !a.css('sup').empty?
+        a.attributes['data-id'].remove
+        a['id'] = "sdfootnoteanc_#{count}"
+        a['href'] = "#sdfootnotesym_#{count}"
+        sup = a.css('sup').first
+        sup.content = count
+        count += 1
+      end
+    end
+
+    count = 1
+    divs = html.css 'div'
+    divs.each do |div|
+      if !div.attributes['class'].nil? && div.attributes['class'].value == 'sdfootnotesym'
+        div.attributes['data-id'].remove
+        content = div.content
+        div.children.remove
+        p_node = Nokogiri::XML::Node.new "p" , html
+        sup = Nokogiri::XML::Node.new "sup", html
+        link = Nokogiri::XML::Node.new "a", html
+        link['id'] = "sdfootnotesym_#{count}"
+        link['href'] = "#sdfootnoteanc_#{count}"
+
+        sup.content = count
+
+        sup.parent = link
+        link.parent = p_node
+        link.add_next_sibling content
+        p_node.parent = div
+        count += 1
+      end
+    end
+    html.css('body').to_html
+  end
 end

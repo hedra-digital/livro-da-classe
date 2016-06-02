@@ -8,6 +8,7 @@
       <li class="google"><%= link_to '', '/auth/google_oauth2', :id => 'google-oauth' %></li>
     </ul>
   -->
+
     <div class="tabs">
       <%= link_to "Login", signin_path %>
       <%= link_to "Cadastre-se", new_user_path, class: "active" %>
@@ -25,5 +26,3 @@
     $("div input",$(this)).prop("placeholder",label);
   });
 </script>
-
-

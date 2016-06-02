@@ -18,7 +18,11 @@
   <% end %>
   <%= f.input :content, :label => false, :as => :ckeditor %>
   <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to t(:cancel), book_path(@book.uuid), :class => 'btn' %>
+  <% if @text.id.present? %>
+    <%= link_to t(:cancel), book_text_cancel_path(@book.uuid, @text.uuid) , :class => 'btn', method: :post %>
+  <% else %>
+    <%= link_to t(:cancel), book_path(@book.uuid), :class => 'btn' %>
+  <% end %>
 <% end %>
 
 
