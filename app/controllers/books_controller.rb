@@ -143,10 +143,6 @@ class BooksController < ApplicationController
 
     @book.remove_capainteira if !book_data[:capainteira].present?
 
-    cover_info.delete :capa_imagem        if cover_info[:capa_imagem].blank?
-    cover_info.delete :capa_detalhe       if cover_info[:capa_detalhe].blank?
-    cover_info.delete :texto_quarta_capa  if cover_info[:texto_quarta_capa].blank?
-
     @book.publisher_id = current_publisher
 
     if @book.update_attributes(params[:book]) and @book.cover_info.update_attributes(cover_info) and @book.book_data.update_attributes(book_data)
