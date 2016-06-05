@@ -65,6 +65,7 @@ Livrodaclasse::Application.routes.draw do
   match 'books/:id/ask_for_download_pdf', to: 'books#ask_for_download_pdf', as: :book_ask_for_download_pdf
   match 'books/:id/download_pdf', to: 'books#download_pdf', as: :book_download_pdf
   match 'books/:id/generate_ebook', to: 'books#generate_ebook', as: :book_generate_ebook
+  match 'books/:id/download_ebook', to: 'books#download_ebook', as: :book_ownload_ebook
 
   match 'scraps/:id/thread', :to => 'scraps#thread', :as => :scraps_thread
   match 'scraps/:id/answer', :to => 'scraps#answer', :as => :scraps_answer

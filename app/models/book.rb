@@ -174,7 +174,7 @@ class Book < ActiveRecord::Base
         chapter_count += 1
       end
     }
-    epubname = File.join(directory, 'EBOOK.epub')
+    epubname = File.join(directory, 'LIVRO.epub')
 
     book.generate_epub(epubname)
     epubname

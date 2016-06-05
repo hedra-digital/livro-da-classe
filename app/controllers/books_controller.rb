@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   before_filter :authentication_check, :except => [:show]
   before_filter :ominiauth_user_gate, :except => [:show]
   before_filter :secure_organizer_id, :only => [:create, :update]
-  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook, :epub_viewer, :rules, :rule_active]
+  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook, :epub_viewer, :rules, :rule_active, :download_ebook]
 
   require "#{Rails.root}/lib/book_cover.rb"
 
@@ -63,12 +63,11 @@ class BooksController < ApplicationController
   end
 
   def download_pdf
-    if @book.autor.blank?
-      filename = "#{@book.title}.pdf"
-    else
-      filename = "#{@book.book_data.autor}-#{@book.title}.pdf"
-    end
-    send_file(File.open(File.join(@book.directory, "LIVRO.pdf")), {filename: filename})
+    download(type: 'pdf')
+  end
+
+  def download_ebook
+    download(type: 'epub')
   end
 
   def generate_ebook
@@ -185,6 +184,15 @@ class BooksController < ApplicationController
   end
 
   private
+
+  def download(type: 'pdf')
+    if @book.autor.blank?
+      filename = "#{@book.title}.#{type}"
+    else
+      filename = "#{@book.book_data.autor}-#{@book.title}.#{type}"
+    end
+    send_file(File.open(File.join(@book.directory, "LIVRO.#{type}")), {filename: filename})
+  end
 
   def secure_organizer_id
     params[:book].delete(:organizer)

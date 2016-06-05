@@ -89,7 +89,7 @@
 
          <script>
             "use strict";
-            var Book = ePub('../../<%= @book.directory.to_s.gsub("public/","") + "/EBOOK.epub" %>', {
+            var Book = ePub('../../<%= @book.directory.to_s.gsub("public/","") + "/LIVRO.epub" %>', {
               width: 400,
               height: 600
             });
@@ -99,7 +99,7 @@
         <div id="main">
           <div id="back" onclick="back_to_book();" class="back">‹ Voltar ao Livro</div>
           <div id="download" class="download">
-            <a href='../../<%= @book.directory.to_s.gsub("public/","") + "/EBOOK.epub" %>'>
+            <a href='download_ebook'>
               Download<a>
           </div>
           <div id="prev" onclick="Book.prevPage();" class="arrow">‹</div>
