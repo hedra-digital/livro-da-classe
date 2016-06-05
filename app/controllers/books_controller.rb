@@ -143,6 +143,7 @@ class BooksController < ApplicationController
 
     @book.remove_capa if params[:remove_capa].present?
     @book.remove_capa_detalhe if params[:remove_capa_detalhe].present?
+    @book.remove_capainteira if !book_data[:capainteira].present?
 
     cover_info.delete :capa_imagem        if cover_info[:capa_imagem].blank?
     cover_info.delete :capa_detalhe       if cover_info[:capa_detalhe].blank?

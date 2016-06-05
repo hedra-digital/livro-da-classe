@@ -58,6 +58,10 @@
       <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
        <%= image_tag(@book.book_data.capainteira.url(:thumb)) if @book.book_data.capainteira.present? %>
       </div>
+      <div>
+        <a id="#remove_capainteita_btn" href="#" class="btn btn-file fileupload-exists" data-dismiss="fileupload">Remover</a>
+        <%= hidden_field_tag 'remove_capainteita', 'false' %>
+      </div>
     <div>
       <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
          <%= f.input_field :capainteira, :as => :file %>

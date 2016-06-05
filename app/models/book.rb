@@ -344,6 +344,10 @@ class Book < ActiveRecord::Base
     self.cover_info.capa_detalhe_remove
   end
 
+  def remove_capainteira
+    self.book_data.remove_capainteira
+  end
+
   def generate_commands
     Thread.new do
       logger.info 'Update commands.sty'
