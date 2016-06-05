@@ -150,12 +150,14 @@ class Book < ActiveRecord::Base
     book.add_title(self.title, nil, GEPUB::TITLE_TYPE::MAIN).set_display_seq(1)
     book.add_creator(self.autor).set_display_seq(1)
 
-    if self.cover.exists?
+    if self.book_data.capainteira.exists?
+      imgfile = File.join(self.book_data.capainteira.path)
+    else
       imgfile = File.join(self.cover.path)
-      File.open(imgfile) do
-        |io|
-        book.add_item('img/cover.png',io).cover_image
-      end
+    end
+    File.open(imgfile) do
+      |io|
+      book.add_item('img/cover.png',io).cover_image
     end
 
     css_template = File.join('public/main-epub.css')
@@ -336,12 +338,8 @@ class Book < ActiveRecord::Base
     end
   end
 
-  def remove_capa
-    self.cover_info.capa_imagem_remove
-  end
-
-  def remove_capa_detalhe
-    self.cover_info.capa_detalhe_remove
+  def remove_capainteira
+    self.book_data.remove_capainteira
   end
 
   def generate_commands
