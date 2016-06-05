@@ -336,14 +336,6 @@ class Book < ActiveRecord::Base
     end
   end
 
-  def remove_capa
-    self.cover_info.capa_imagem_remove
-  end
-
-  def remove_capa_detalhe
-    self.cover_info.capa_detalhe_remove
-  end
-
   def remove_capainteira
     self.book_data.remove_capainteira
   end
