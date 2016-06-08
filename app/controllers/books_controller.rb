@@ -96,7 +96,9 @@ class BooksController < ApplicationController
     book_data = params[:book][:book_data]
     params[:book].delete :book_data
 
-    @book = current_user.organized_books.new(params[:book].merge(:template => Livrodaclasse::Application.latex_templates[0]))
+    template = params[:template].present? ? params[:template] : Livrodaclasse::Application.latex_templates[0]
+
+    @book = current_user.organized_books.new(params[:book].merge(:template => template))
 
     @book.organizer = current_user
     @book.publisher_id = current_publisher
@@ -141,15 +143,14 @@ class BooksController < ApplicationController
     book_data = params[:book][:book_data]
     params[:book].delete :book_data
 
-    @book.remove_capa if params[:remove_capa].present?
-    @book.remove_capa_detalhe if params[:remove_capa_detalhe].present?
-
-    cover_info.delete :capa_imagem        if cover_info[:capa_imagem].blank?
-    cover_info.delete :capa_detalhe       if cover_info[:capa_detalhe].blank?
-    cover_info.delete :texto_quarta_capa  if cover_info[:texto_quarta_capa].blank?
+    @book.remove_capainteira if !book_data[:capainteira].present?
 
     @book.publisher_id = current_publisher
 
+    if params[:template].present? && params[:template] != @book.template
+      params[:book].merge!(:template => params[:template])
+    end
+    
     if @book.update_attributes(params[:book]) and @book.cover_info.update_attributes(cover_info) and @book.book_data.update_attributes(book_data)
       BookCover.new(@book.cover_info).generate_cover
       if @book.resize_images?

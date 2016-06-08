@@ -96,7 +96,7 @@ class BookData < ActiveRecord::Base
                     }
 
   validates_attachment_content_type :imagemficha, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif|svg\+xml)$/, :message => 'A imagem do logo ou da ficha catalográfica que você acrescentou parece que não está num formato adequado. Confira o formato e tente novamente.'
-                    
+
 
   has_attached_file :capainteira,
                     :url => "/system/:class/:attachment/:id_partition/:style/Capa.:extension",
@@ -115,7 +115,7 @@ class BookData < ActiveRecord::Base
   end
 
   def cover_directory
-    if self.capainteira.exists? 
+    if self.capainteira.exists?
       File.dirname(self.capainteira.path)
     elsif self.book.cover.exists?
       File.dirname(self.book.cover.path)
@@ -126,7 +126,7 @@ class BookData < ActiveRecord::Base
 
   def check value, field, is_image=false
     (field.blank? or (is_image && !field.exists?)) ? "" : value
-  end   
+  end
 
   def to_latex content
     LatexConverter.to_latex(content)
@@ -136,8 +136,11 @@ class BookData < ActiveRecord::Base
     if(!self.new_record? and self.autor_changed?)
       system "mv #{self.book.directory_was} #{self.book.directory(self.autor)}"
     end
-  end 
+  end
 
+  def remove_capainteira
+    self.capainteira = nil
+  end
 
   def to_file
     commands = "% Gerais\n"
@@ -173,7 +176,7 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\preparacao{#{self.preparacao}}\n", self.preparacao)
     commands << check("\\newcommand\\capa{#{self.capa}}\n", self.capa)
     commands << check("\\newcommand\\imagemcapa{#{self.imagemcapa}}\n", self.imagemcapa)
-    commands << check("\\newcommand\\numeroedicao{#{self.numeroedicao}}\n", self.numeroedicao)    
+    commands << check("\\newcommand\\numeroedicao{#{self.numeroedicao}}\n", self.numeroedicao)
     commands << "\n% Ficha catalográfica\n"
     commands << check("\\newcommand\\imagemficha{#{get_fullpath_for(self.imagemficha.url)}}\n", self.imagemficha, true)
     commands << "\n% Parceiro\n"
@@ -201,7 +204,7 @@ class BookData < ActiveRecord::Base
     commands << check("\\newcommand\\gramaturamiolo{#{self.gramaturamiolo}}\n", self.gramaturamiolo)
     commands << check("\\newcommand\\cormiolo{#{self.cormiolo}}\n", self.cormiolo)
     commands << check("\\newcommand\\grafica{#{self.grafica}}\n", self.grafica)
-    commands << check("\\newcommand\\papelmiolo{#{self.papelmiolo}}\n", self.papelmiolo)    
+    commands << check("\\newcommand\\papelmiolo{#{self.papelmiolo}}\n", self.papelmiolo)
     commands << "\n% Metadados\n"
     commands << check("\\newcommand\\palavraschave{#{self.palavraschave}}\n", self.palavraschave)
     commands << "\n% ebook\n"

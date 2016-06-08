@@ -69,28 +69,4 @@ class CoverInfo < ActiveRecord::Base
   def secundaria
     return self.cor_secundaria.nil? ? '6F7551' : self.cor_secundaria
   end
-
-  def capa_imagem_remove
-    self.capa_imagem_file_name = nil
-    self.capa_imagem_content_type = nil
-    self.capa_imagem_file_size = nil
-    self.capa_imagem_x1 = nil
-    self.capa_imagem_x2 = nil
-    self.capa_imagem_y1 = nil
-    self.capa_imagem_y2 = nil
-    self.capa_imagem_w = nil
-    self.capa_imagem_h = nil
-  end
-
-  def capa_detalhe_remove
-    self.capa_detalhe_file_name = nil
-    self.capa_detalhe_content_type = nil
-    self.capa_detalhe_file_size = nil
-    self.capa_detalhe_x1 = nil
-    self.capa_detalhe_x2 = nil
-    self.capa_detalhe_y1 = nil
-    self.capa_detalhe_y2 = nil
-    self.capa_detalhe_w = nil
-    self.capa_detalhe_h = nil
-  end
 end
