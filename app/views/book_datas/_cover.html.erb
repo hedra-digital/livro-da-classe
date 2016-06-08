@@ -21,6 +21,6 @@
   </div>
   <div class="span2">
     <label><%= t('template') %></label>
-    <%= select_tag "template", options_for_select(Livrodaclasse::Application.latex_templates) %>
+    <%= select_tag "template", options_for_select(Livrodaclasse::Application.latex_templates, @book.template) %>
   </div>
 </div>
