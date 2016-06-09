@@ -1,5 +1,5 @@
 <h1>Manual</h1>
-<%= form_tag(manual_path, method: :post) do %>
+<%= form_tag(admin_manual_update_path, method: :post) do %>
   <div>
     <%= text_area_tag :content, "#{@content}" %>
   </div>
