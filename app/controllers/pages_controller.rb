@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :public_view_check
+  before_filter :public_view_check, except: :manual
   layout        :choose_layout
 
   def home
@@ -13,6 +13,10 @@ class PagesController < ApplicationController
     AdminMailer.contact_notifier(@name, @email, @content).deliver
 
     redirect_to root_path, :notice => 'Sua mensagem foi enviada.'
+  end
+
+  def manual
+    render 'pages/manual'
   end
 
   private

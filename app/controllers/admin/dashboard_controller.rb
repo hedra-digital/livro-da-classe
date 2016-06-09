@@ -33,6 +33,25 @@ class Admin::DashboardController < Admin::ApplicationController
   def revision
   end
 
+  def manual
+    @content = ''
+    manual_content_file_name = 'public/manual_content.html'
+    if File.exist? manual_content_file_name
+      File.open(manual_content_file_name,'r') do |file|
+        while (line = file.gets)
+          @content << line
+        end
+      end
+    end
+  end
+
+  def manual_update
+    manual_content_file_name = 'public/manual_content.html'
+    content = params[:content]
+    File.open(manual_content_file_name,'w') {|io| io.write(content) }
+    redirect_to admin_manual_url
+  end
+
   private
 
   def remove_projects_inconsistent
