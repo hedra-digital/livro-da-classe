@@ -1,0 +1,9 @@
+<h1>Manual</h1>
+<%= form_tag(manual_path, method: :post) do %>
+  <div>
+    <%= text_area_tag :content, "#{@content}" %>
+  </div>
+  <div>
+    <%= submit_tag("Salvar") %>
+  </div>
+<% end %>
