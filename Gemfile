@@ -30,7 +30,8 @@ gem 'passenger'
 gem 'google-api-client'
 gem "gepub"
 gem "bootstrap-switch-rails"
-
+gem 'tinymce-rails', '4.3.12'
+gem 'tinymce-rails-langs'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
