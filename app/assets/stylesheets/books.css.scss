@@ -125,10 +125,16 @@ div.modal{
   margin-top: 100px;
 
   .chapter-info {
+    margin: 20px 0 20px 0;
     #title {
       width: -moz-available;
     }
   }
+
+  .exist-chapters {
+    margin-bottom: 80px;
+  }
+  
   .add-chapter {
     text-align: right;
     vertical-align: middle;
