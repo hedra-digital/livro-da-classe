@@ -380,6 +380,10 @@ GEM
     terminal-notifier-guard (1.7.0)
     thor (0.19.1)
     tilt (1.4.1)
+    tinymce-rails (4.3.12)
+      railties (>= 3.1.1)
+    tinymce-rails-langs (4.20160310)
+      tinymce-rails (~> 4.1, >= 4.1.10)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -460,6 +464,8 @@ DEPENDENCIES
   slim
   sprockets-rails
   terminal-notifier-guard
+  tinymce-rails (= 4.3.12)
+  tinymce-rails-langs
   uglifier (>= 1.0.3)
   validates_email_format_of
   whenever

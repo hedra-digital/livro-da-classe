@@ -1,0 +1,5 @@
+toolbar:
+  - bold italic | alignleft aligncenter alignright
+menubar: false
+statusbar: false
+language: 'pt_BR'
