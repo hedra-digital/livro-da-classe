@@ -10,21 +10,27 @@
   </div>
   <div class="chapters-container" hidden="true">
     <div class="row question">
+      <% if !@book.id.present? %>
+        <div class="row">
+          <span>Vamos adicionar os capítulos do seu livro? Atenção, não se preocupe com o sumário. Faremos isso para você.</span>
+        </div>
+        <div class="row chapter-info">
+          <div class="span7"><%= text_field_tag :title, nil, :placeholder => 'Título'%></div>
+          <%= text_field_tag :subtitle, nil,:placeholder => 'Subtítulo' %>
+          <%= text_field_tag :author, nil, :placeholder => 'Autor do Capítulo' %>
+          <%= link_to '', '#', class: 'icon-plus', onclick: 'return addChapterLine();' %>
+        </div>
+        <div class="row chapter-table-container" hidden>
+          <table id="chapter-table" class="table table-striped">
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
       <div class="row">
-        <span>Vamos adicionar os capítulos do seu livro? Atenção, não se preocupe com o sumário. Faremos isso para você.</span>
+        <span>Legal!!! Você já tem um livro criado. Pode acessar seus capítulos na página princiapl.</span>
       </div>
-      <div class="row chapter-info">
-        <div class="span7"><%= text_field_tag :title, nil, :placeholder => 'Título'%></div>
-        <%= text_field_tag :subtitle, nil,:placeholder => 'Subtítulo' %>
-        <%= text_field_tag :author, nil, :placeholder => 'Autor do Capítulo' %>
-        <%= link_to '', '#', class: 'icon-plus', onclick: 'return addChapterLine();' %>
-      </div>
-      <div class="row chapter-table-container" hidden>
-        <table id="chapter-table" class="table table-striped">
-          <tbody>
-          </tbody>
-        </table>
-      </div>
+      <% end %>
       <div class="row btn-group">
         <%= link_to 'Voltar', '#', class: 'btn', onclick: 'return manualContainer();' %>
         <%= link_to 'Próximo', '#', class: 'btn', onclick: 'return extrasContainer();'  %>
