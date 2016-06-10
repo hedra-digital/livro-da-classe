@@ -116,25 +116,24 @@ div.modal{
   width: 25px;
 }
 
-.originals-container .chapters-container .question {
-  text-align: center;
-  font-size: 20px;
-  height: 100px;
-  margin-top: 100px;
-}
-
-.originals-container .manual-container .question {
-  text-align: center;
-  font-size: 20px;
-  height: 100px;
-  margin-top: 100px;
-}
-
+.originals-container .manual-container .question,
+.originals-container .chapters-container .question,
 .originals-container .extras-container .question {
   text-align: center;
   font-size: 20px;
   height: 100px;
   margin-top: 100px;
+
+  .chapter-info {
+    #title {
+      width: -moz-available;
+    }
+  }
+  .add-chapter {
+    text-align: right;
+    vertical-align: middle;
+    margin-left: 25px;
+  }
 }
 
 .originals-container .manual-container .btn-group {

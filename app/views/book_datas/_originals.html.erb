@@ -1,4 +1,4 @@
-<div class="originals-container">
+<div id="originals-container" class="originals-container">
   <div class="manual-container">
     <div class="question">
       <span>Você já leu nosso manual?</span>
@@ -9,12 +9,26 @@
     </div>
   </div>
   <div class="chapters-container" hidden="true">
-    <div class="question">
-      <span>Quantos capítulos tem seu livro? Atenção, não se preocupe com o sumário. Faremos isso para você.</span>
-    </div>
-    <div class="btn-group">
-      <%= link_to 'Voltar', '#', class: 'btn', onclick: 'return manualContainer();' %>
-      <%= link_to 'Próximo', '#', class: 'btn', onclick: 'return extrasContainer();'  %>
+    <div class="row question">
+      <div class="row">
+        <span>Vamos adicionar os capítulos do seu livro? Atenção, não se preocupe com o sumário. Faremos isso para você.</span>
+      </div>
+      <div class="row chapter-info">
+        <div class="span7"><%= text_field_tag :title, nil, :placeholder => 'Título'%></div>
+        <%= text_field_tag :subtitle, nil,:placeholder => 'Subtítulo' %>
+        <%= text_field_tag :author, nil, :placeholder => 'Autor do Capítulo' %>
+        <%= link_to '', '#', class: 'icon-plus', onclick: 'return addChapterLine();' %>
+      </div>
+      <div class="row chapter-table-container" hidden>
+        <table id="chapter-table" class="table table-striped">
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <div class="row btn-group">
+        <%= link_to 'Voltar', '#', class: 'btn', onclick: 'return manualContainer();' %>
+        <%= link_to 'Próximo', '#', class: 'btn', onclick: 'return extrasContainer();'  %>
+      </div>
     </div>
   </div>
   <div class="extras-container" hidden="true">
@@ -48,4 +62,19 @@ function extrasContainer() {
   $('.manual-container').hide();
   return false;
 }
+
+function addChapterLine() {
+  if($('#title').val() == '') return false;
+  tr = "<tr><td class='truncate'>"+ $('#title').val() +"</td><td class='truncate'>"+ $('#subtitle').val() +"</td><td class='truncate'>"+ $('#author').val() +"</td></tr>"
+  $('#chapter-table').append(tr);
+  if($('#chapter-table tr').length > 0) {
+    $('.chapter-table-container').show();
+  }
+  $('#title').val('');
+  $('#subtitle').val('');
+  $('#author').val('');
+  $('.substep').height($('.substep').height() + 36)
+  return false
+}
+
 </script>
