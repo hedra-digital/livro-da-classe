@@ -41,6 +41,24 @@
     <div class="question">
       <span>Além dos capítlos, seu livro algum dos itens abaixo?</span>
     </div>
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#dedic" aria-controls="dedic" role="tab" data-toggle="tab">Dedicatória</a></li>
+      <li role="presentation"><a href="#resume" aria-controls="resume" role="tab" data-toggle="tab">Resumo</a></li>
+      <li role="presentation"><a href="#agree" aria-controls="agree" role="tab" data-toggle="tab">Agradecimentos</a></li>
+      <li role="presentation"><a href="#sigla" aria-controls="sigla" role="tab" data-toggle="tab">Siglas</a></li>
+      <li role="presentation"><a href="#image" aria-controls="image" role="tab" data-toggle="tab">Imagem de abertura</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+   <div class="tab-content">
+     <div role="tabpanel" class="tab-pane active" id="dedic">Dedicatoria</div>
+     <div role="tabpanel" class="tab-pane" id="resume">Resumo</div>
+     <div role="tabpanel" class="tab-pane" id="agree">Agradecimentos.</div>
+     <div role="tabpanel" class="tab-pane" id="sigla">Siglas</div>
+     <div role="tabpanel" class="tab-pane" id="image">Imagem</div>
+   </div>
+
     <div class="btn-group">
       <%= link_to 'Voltar', '#', class: 'btn', onclick: 'return chaptersContainer();' %>
     </div>
@@ -48,6 +66,32 @@
 </div>
 
 <script>
+
+$('#dedic a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('dedic')
+});
+
+$('#resume a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('resume')
+});
+
+$('#agree a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('agree')
+});
+
+$('#sigla a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('sigla')
+});
+
+$('#image a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('image')
+});
+
 function chaptersContainer() {
   $('.manual-container').hide();
   $('.extras-container').hide();
