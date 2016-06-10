@@ -1,5 +1,7 @@
 toolbar:
-  - bold italic | alignleft aligncenter alignright
+  - bold italic | alignleft aligncenter alignright alignjustify | bullist numlist
+plugins:
+  - advlist
 menubar: false
 statusbar: false
 language: 'pt_BR'

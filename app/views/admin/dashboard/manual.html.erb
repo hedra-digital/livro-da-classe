@@ -1,9 +1,11 @@
 <h1>Manual</h1>
 <%= form_tag(admin_manual_update_path, method: :post) do %>
   <div>
-    <%= text_area_tag :content, "#{@content}" %>
+    <%= text_area_tag :content, "#{@content}", class: "tinymce", rows: 20%>
   </div>
   <div>
     <%= submit_tag("Salvar") %>
   </div>
 <% end %>
+
+<%= tinymce %>
