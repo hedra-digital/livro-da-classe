@@ -82,7 +82,19 @@
             </div>
           </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="image"></div>
+        <div role="tabpanel" class="tab-pane" id="image">
+          <div class="fileupload <%= @initial_cover.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
+            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
+            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+            </div>
+            <div>
+              <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
+                <%= file_field_tag 'initial_cover' %>
+              </span>
+              <a href="#" class="btn btn-file fileupload-exists" data-dismiss="fileupload">Remover</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   <div>
