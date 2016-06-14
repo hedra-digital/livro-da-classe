@@ -11,11 +11,17 @@
   <div class="chapters-container" hidden="true">
     <div class="row question">
       <% if !@book.id.present? %>
-        <div class="row">
+        <div class="row text">
           <span>Vamos adicionar os capítulos do seu livro? Atenção, não se preocupe com o sumário. Faremos isso para você.</span>
         </div>
+        <div class="row text">
+          <span>Digite abaixo o título, o subtítulo e o autor de cada capítulo. Se não tiver autor ou subtítulo, deixe os campos me branco.</span><br>
+        </div>
+        <div class="row">
+          <span>Se tiver mais de um capítulo, aperte o sinal de mais (+).</span>
+        </div>
         <div class="row chapter-info">
-          <div class="span7"><%= text_field_tag :title, nil, :placeholder => 'Título'%></div>
+          <%= text_field_tag :title, nil, :placeholder => 'Título'%>
           <%= text_field_tag :subtitle, nil,:placeholder => 'Subtítulo' %>
           <%= text_field_tag :author, nil, :placeholder => 'Autor do Capítulo' %>
           <%= link_to '', '#', class: 'icon-plus', onclick: 'return addChapterLine();' %>

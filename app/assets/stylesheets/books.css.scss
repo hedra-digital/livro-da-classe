@@ -122,23 +122,30 @@ div.modal{
   text-align: center;
   font-size: 20px;
   height: 100px;
-  margin-top: 100px;
+  margin-top: 25px;
 
+  .row.text {
+    margin-bottom: 10px;
+  }
   .chapter-info {
-    margin: 20px 0 20px 0;
-    #title {
-      width: -moz-available;
+    margin: 40px 0 20px 0;
+    input {
+      width: 160px;
     }
   }
 
   .exist-chapters {
     margin-bottom: 80px;
   }
-  
+
   .add-chapter {
     text-align: right;
     vertical-align: middle;
     margin-left: 25px;
+  }
+
+  .tab-container {
+    margin-top: -40px;
   }
 }
 
