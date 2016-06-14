@@ -47,29 +47,43 @@
     <div class="question">
       <span>Além dos capítlos, seu livro algum dos itens abaixo?</span>
     </div>
+    <div class="row">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#dedic" aria-controls="dedic" role="tab" data-toggle="tab">Dedicatória</a></li>
+        <li role="presentation"><a href="#resume" aria-controls="resume" role="tab" data-toggle="tab">Resumo</a></li>
+        <li role="presentation"><a href="#agree" aria-controls="agree" role="tab" data-toggle="tab">Agradecimentos</a></li>
+        <li role="presentation"><a href="#sigla" aria-controls="sigla" role="tab" data-toggle="tab">Siglas</a></li>
+        <li role="presentation"><a href="#image" aria-controls="image" role="tab" data-toggle="tab">Imagem de abertura</a></li>
+      </ul>
 
-    <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#dedic" aria-controls="dedic" role="tab" data-toggle="tab">Dedicatória</a></li>
-      <li role="presentation"><a href="#resume" aria-controls="resume" role="tab" data-toggle="tab">Resumo</a></li>
-      <li role="presentation"><a href="#agree" aria-controls="agree" role="tab" data-toggle="tab">Agradecimentos</a></li>
-      <li role="presentation"><a href="#sigla" aria-controls="sigla" role="tab" data-toggle="tab">Siglas</a></li>
-      <li role="presentation"><a href="#image" aria-controls="image" role="tab" data-toggle="tab">Imagem de abertura</a></li>
-    </ul>
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="dedic">
-        <%= text_area_tag :dedic, "#{@dedic}", class: "tinymce", rows: 5%>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="dedic">
+          <%= text_area_tag :dedic, "#{@dedic}", class: "tinymce", rows: 5%>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="resume">
+         <%= text_area_tag :resume, "#{@resume}", class: "tinymce", rows: 5%>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="agree">
+         <%= text_area_tag :agree, "#{@agree}", class: "tinymce", rows: 5%>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="sigla">
+          <div class="sigla-container">
+            <div class="row">
+              <%= text_field_tag :sigla_text, nil, :placeholder => 'Sigla'%>
+              <%= text_field_tag :sigla_desc, nil,:placeholder => 'Descrição' %>
+              <%= link_to '', '#', class: 'icon-plus', onclick: 'return addSiglaLine();' %>
+            </div>
+            <div class="row sigla-table-container" hidden>
+              <table id="sigla-table" class="table table-striped">
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="image"></div>
       </div>
-      <div role="tabpanel" class="tab-pane" id="resume">
-       <%= text_area_tag :resume, "#{@resume}", class: "tinymce", rows: 5%>
-      </div>
-      <div role="tabpanel" class="tab-pane" id="agree">
-       <%= text_area_tag :agree, "#{@agree}", class: "tinymce", rows: 5%>
-      </div>
-      <div role="tabpanel" class="tab-pane" id="sigla">
-      </div>
-      <div role="tabpanel" class="tab-pane" id="image"></div>
     </div>
   <div>
 </div>
@@ -123,6 +137,18 @@ function addChapterLine() {
   $('#author').val('');
   $('.substep').height($('.substep').height() + 36)
   return false
+}
+
+function addSiglaLine() {
+  if($('#sigla_text').val() == '' || $('#sigla_desc').val() == '') return false;
+  tr = "<tr><td class='truncate'>"+ $('#sigla_text').val() +"</td><td class='truncate'>"+ $('#sigla_desc').val() +"</td></tr>"
+  $('#sigla-table').append(tr);
+  if($('#sigla-table tr').length > 0) {
+    $('.sigla-table-container').show();
+  }
+  $('#sigla_text').val('');
+  $('#sigla_desc').val('');
+  return false;
 }
 
 </script>
