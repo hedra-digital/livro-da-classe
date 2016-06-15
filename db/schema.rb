@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160530230158) do
+ActiveRecord::Schema.define(:version => 20160614231410) do
 
   create_table "book_datas", :force => true do |t|
     t.integer  "book_id"
@@ -126,6 +126,10 @@ ActiveRecord::Schema.define(:version => 20160530230158) do
     t.text     "abstract"
     t.boolean  "valid_pdf",             :default => true
     t.integer  "pages_count",           :default => -1
+    t.string   "dedic"
+    t.string   "acknowledgment"
+    t.string   "resume_original_text"
+    t.string   "acronym"
   end
 
   create_table "books_rules", :id => false, :force => true do |t|

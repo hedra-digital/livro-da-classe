@@ -44,6 +44,7 @@ class Book < ActiveRecord::Base
 
   # Specify fields that can be accessible through mass assignment
   attr_accessible           :project_attributes, :cover_info_attributes, :book_data, :coordinators, :directors, :organizers, :published_at, :title, :subtitle, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd, :cdu, :keywords, :document, :publisher_id, :abstract, :valid_pdf, :pages_count
+  attr_accessible           :dedic, :resume_original_text, :acknowledgment
 
   attr_accessor             :finished_at
 
@@ -353,6 +354,29 @@ class Book < ActiveRecord::Base
         end
       end
       File.open("#{self.directory}/commands.sty",'w') {|io| io.write(input_commands) }
+    end
+  end
+
+  def generate_dedication
+    #html
+    File.open("#{self.directory}/DEDICATORIA.html",'w') {|io| io.write(self.dedic) }
+
+    #tex
+    begin
+      content = LatexConverter.to_latex(self.dedic)
+    rescue
+      content = "Um erro aconteceu."
+    end
+    File.open("#{self.directory}/DEDICATORIA.tex",'w') {|io| io.write(content) }
+
+    #update repo
+    Thread.new do
+      logger.info 'Update Dedication'
+      logger.info `cd #{self.directory}
+      git add .
+      git commit -a -m "Update Dedication"
+      git push -u origin master`
+      logger.info "Update dedication for book, id #{self.id}"
     end
   end
 

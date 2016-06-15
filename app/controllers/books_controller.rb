@@ -112,6 +112,8 @@ class BooksController < ApplicationController
       @book.build_book_data
       @book.book_data.update_attributes book_data
 
+      @book.generate_dedication
+
       BookCover.new(@book.cover_info).generate_cover
 
       add_file_uploaded if params[:upload].present?
@@ -150,8 +152,9 @@ class BooksController < ApplicationController
     if params[:template].present? && params[:template] != @book.template
       params[:book].merge!(:template => params[:template])
     end
-    
+
     if @book.update_attributes(params[:book]) and @book.cover_info.update_attributes(cover_info) and @book.book_data.update_attributes(book_data)
+      @book.generate_dedication
       BookCover.new(@book.cover_info).generate_cover
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)

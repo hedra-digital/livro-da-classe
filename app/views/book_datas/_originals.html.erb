@@ -59,13 +59,13 @@
       <!-- Tab panes -->
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="dedic">
-          <%= text_area_tag :dedic, "#{@dedic}", class: "tinymce", rows: 5%>
+          <%= b.text_area :dedic, class: "tinymce", rows: 5%>
         </div>
         <div role="tabpanel" class="tab-pane" id="resume">
-         <%= text_area_tag :resume, "#{@resume}", class: "tinymce", rows: 5%>
+         <%= b.text_area :resume_original_text, class: "tinymce", rows: 5%>
         </div>
         <div role="tabpanel" class="tab-pane" id="agree">
-         <%= text_area_tag :agree, "#{@agree}", class: "tinymce", rows: 5%>
+         <%= b.text_area :acknowledgment, class: "tinymce", rows: 5%>
         </div>
         <div role="tabpanel" class="tab-pane" id="sigla">
           <div class="sigla-container">
