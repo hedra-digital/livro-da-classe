@@ -221,7 +221,7 @@ class Book < ActiveRecord::Base
   def check_repository
     if !self.book_data.nil? && !Dir.exists?(directory)
 
-      Thread.new do
+      thr = Thread.new do
         logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{CONFIG[Rails.env][:repo_prefix]}-#{self.uuid} --data is_private=true`
 
         sleep 1
@@ -238,6 +238,9 @@ class Book < ActiveRecord::Base
 
         ActiveRecord::Base.connection.close
       end
+
+      thr.join
+      generate_originals_texts
     end
   end
 

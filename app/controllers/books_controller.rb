@@ -112,12 +112,29 @@ class BooksController < ApplicationController
       @book.build_book_data
       @book.book_data.update_attributes book_data
 
-      @book.generate_originals_texts
-
       BookCover.new(@book.cover_info).generate_cover
 
-      add_file_uploaded if params[:upload].present?
+      if params[:upload].present?
+        content = add_file_uploaded params[:upload]
+        parse_new_content(content)
+      end
 
+      if params[:chapter].present?
+        params[:chapter].each do |chapter|
+          sleep 5
+          details = chapter.last
+          text = Text.new
+          text.title = details[:title]
+          text.subtitle = details[:subtitle]
+          text.author = details[:author]
+          text.user = current_user
+          text.book = @book
+          text.valid_content = true
+          text.content = ''
+          text.save
+        end
+      end
+      
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else
@@ -207,10 +224,10 @@ class BooksController < ApplicationController
     @states = [["Acre", "AC"], ["Alagoas", "AL"], ["Amazonas", "AM"], ["Amapá", "AP"], ["Bahia", "BA"], ["Ceará", "CE"], ["Distrito Federal", "DF"], ["Espírito Santo", "ES"], ["Goiás", "GO"], ["Maranhão", "MA"], ["Minas Gerais", "MG"], ["Mato Grosso do Sul", "MS"], ["Mato Grosso", "MT"], ["Pará", "PA"], ["Paraíba", "PB"], ["Pernambuco", "PE"], ["Piauí", "PI"], ["Paraná", "PR"], ["Rio de Janeiro", "RJ"], ["Rio Grande do Norte", "RN"], ["Rondônia", "RO"], ["Roraima", "RR"], ["Rio Grande do Sul", "RS"], ["Santa Catarina", "SC"], ["Sergipe", "SE"], ["São Paulo", "SP"], ["Tocantins", "TO"]]
   end
 
-  def add_file_uploaded
+  def add_file_uploaded(file)
     connector = GoogleConnector.new
 
-    upload = params[:upload]
+    upload = file
     filepath = Rails.root.join('/tmp', upload.original_filename)
     File.open(filepath, 'wb') do |file|
       file.write(upload.read)
@@ -218,10 +235,8 @@ class BooksController < ApplicationController
     google_filedocument_id = connector.upload(filepath.to_s)
     content = connector.download_as_html(google_filedocument_id)
 
-    content = GoogleHtml.validate_google_html(content)
-
-    parse_new_content(content)
     File.delete(filepath.to_s)
+    GoogleHtml.validate_google_html(content)
   rescue Exception => e
     puts e.message
     puts e.backtrace.inspect

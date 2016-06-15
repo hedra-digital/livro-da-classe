@@ -15,16 +15,16 @@
           <span>Vamos adicionar os capítulos do seu livro? Atenção, não se preocupe com o sumário. Faremos isso para você.</span>
         </div>
         <div class="row text">
-          <span>Digite abaixo o título, o subtítulo e o autor de cada capítulo. Se não tiver autor ou subtítulo, deixe os campos me branco.</span><br>
+          <span>Digite abaixo o título, o subtítulo e o autor de cada capítulo. Se não tiver autor ou subtítulo, deixe os campos em branco.</span><br>
         </div>
         <div class="row">
-          <span>Se tiver mais de um capítulo, aperte o sinal de mais (+).</span>
+          <span>Informe os dados de todos seus capítulos.</span>
         </div>
         <div class="row chapter-info">
           <%= text_field_tag :title, nil, :placeholder => 'Título'%>
           <%= text_field_tag :subtitle, nil,:placeholder => 'Subtítulo' %>
           <%= text_field_tag :author, nil, :placeholder => 'Autor do Capítulo' %>
-          <%= link_to '', '#', class: 'icon-plus', onclick: 'return addChapterLine();' %>
+          <%= link_to '', '#', class: 'icon-ok', onclick: 'return addChapterLine();' %>
         </div>
         <div class="row chapter-table-container" hidden>
           <table id="chapter-table" class="table table-striped">
@@ -45,7 +45,7 @@
   </div>
   <div class="extras-container" hidden="true">
     <div class="question">
-      <span>Além dos capítlos, seu livro algum dos itens abaixo?</span>
+      <span>Além dos capítlos, seu livro tem algum dos itens abaixo?</span>
     </div>
     <div class="row">
       <ul class="nav nav-tabs" role="tablist">
@@ -139,7 +139,17 @@ function extrasContainer() {
 
 function addChapterLine() {
   if($('#title').val() == '') return false;
-  tr = "<tr><td class='truncate'>"+ $('#title').val() +"</td><td class='truncate'>"+ $('#subtitle').val() +"</td><td class='truncate'>"+ $('#author').val() +"</td></tr>"
+  number_line = $('#chapter-table tr').length
+  tr = "<tr><td class='truncate'>"
+    + $('#title').val()
+    + "</td><td class='truncate'>"
+    + $('#subtitle').val()
+    + "</td><td class='truncate'>"
+    + $('#author').val() + "</td>"
+    + "<input type=hidden name='chapter["+ number_line +"][title]' value='"+ $('#title' ).val() +"' />"
+    + "<input type=hidden name='chapter["+ number_line +"][subtitle]'' value='"+ $('#subtitle').val() +"' />"
+    + "<input type=hidden name='chapter["+ number_line +"][author]' value='"+ $('#author').val() +"' />"
+    + "</tr>"
   $('#chapter-table').append(tr);
   if($('#chapter-table tr').length > 0) {
     $('.chapter-table-container').show();
