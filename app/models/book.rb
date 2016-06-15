@@ -357,26 +357,31 @@ class Book < ActiveRecord::Base
     end
   end
 
-  def generate_dedication
-    #html
-    File.open("#{self.directory}/DEDICATORIA.html",'w') {|io| io.write(self.dedic) }
+  def generate_originals_texts
+    arr = [ {part: 'DEDICATORIA', content: self.dedic},
+            {part: 'RESUMO', content: self.resume_original_text},
+            {part: 'AGRADECIMENTO', content: self.acknowledgment}]
+    arr.each do |element|
+      #html
+      File.open("#{self.directory}/#{element[:part]}.html",'w') {|io| io.write(element[:content]) }
 
-    #tex
-    begin
-      content = LatexConverter.to_latex(self.dedic)
-    rescue
-      content = "Um erro aconteceu."
-    end
-    File.open("#{self.directory}/DEDICATORIA.tex",'w') {|io| io.write(content) }
+      #tex
+      begin
+        content = LatexConverter.to_latex(element[:content])
+      rescue
+        content = "Um erro aconteceu."
+      end
+      File.open("#{self.directory}/#{element[:part]}.tex",'w') {|io| io.write(content) }
 
-    #update repo
-    Thread.new do
-      logger.info 'Update Dedication'
-      logger.info `cd #{self.directory}
-      git add .
-      git commit -a -m "Update Dedication"
-      git push -u origin master`
-      logger.info "Update dedication for book, id #{self.id}"
+      #update repo
+      Thread.new do
+        logger.info "Update #{element[:part]}"
+        logger.info `cd #{self.directory}
+        git add .
+        git commit -a -m "Update #{element[:part]}"
+        git push -u origin master`
+        logger.info "Update #{element[:part]} for book, id #{self.id}"
+      end
     end
   end
 

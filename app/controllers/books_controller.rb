@@ -112,7 +112,7 @@ class BooksController < ApplicationController
       @book.build_book_data
       @book.book_data.update_attributes book_data
 
-      @book.generate_dedication
+      @book.generate_originals_texts
 
       BookCover.new(@book.cover_info).generate_cover
 
@@ -154,7 +154,7 @@ class BooksController < ApplicationController
     end
 
     if @book.update_attributes(params[:book]) and @book.cover_info.update_attributes(cover_info) and @book.book_data.update_attributes(book_data)
-      @book.generate_dedication
+      @book.generate_originals_texts
       BookCover.new(@book.cover_info).generate_cover
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
