@@ -86,7 +86,7 @@
           <div class="fileupload <%= @book.initial_cover.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
             <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
             <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-              <%= image_tag(@book.initial_cover.url(:thumb)) if @book.initial_cover.present? %>
+              <%= image_tag(@book.initial_cover.url) if @book.initial_cover.present? %>
             </div>
             <div>
               <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
