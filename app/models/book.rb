@@ -25,6 +25,7 @@ class Book < ActiveRecord::Base
   after_save                :check_repository
   before_save               :rename_dir
   before_save               :change_template
+  after_save                :convert_initial_cover
 
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
@@ -62,6 +63,7 @@ class Book < ActiveRecord::Base
                       :content => ['100%', :jpg],
                       :thumb => ['60x80>', :jpg]
                     }
+  validates_attachment_content_type :initial_cover, :content_type => /^image\/(jpg|jpeg|pjpeg|png|x-png|gif|svg\+xml)$/, :message => 'A imagem de abertur que você acrescentou parece que não está num formato adequado. Confira o formato e tente novamente.'
 
   has_attached_file :document
 
@@ -460,5 +462,17 @@ class Book < ActiveRecord::Base
       end
     end
     html.css('body').to_html
+  end
+
+  def convert_initial_cover
+    byebug
+    if initial_cover_file_name.present?
+      logger.info `cd #{self.directory}
+      convert #{self.initial_cover.path} front.png
+      git add .
+      git commit -a -m "Update front.png"
+      git push -u origin master`
+      logger.info "Update front.png for book, id #{self.id}"
+    end
   end
 end
