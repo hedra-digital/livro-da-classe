@@ -1,24 +1,5 @@
 <div id="wizard">
 
-  <div class="steps">
-    <div class="bar">
-      <ul>
-        <li class="active">
-          <a>Passo Um</a>
-        </li>
-        <li>
-          <a>Passo Dois</a>
-        </li>
-        <li>
-          <a>Passo Três</a>
-        </li>
-        <li>
-          <a>Passo Quatro</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
   <%= simple_form_for(@book, :html => {:class => 'form-vertical', :multipart => true}) do |b| %>
     <div class="substeps">
       <div class="buttons">
@@ -127,27 +108,6 @@ $(document).ready(function(){
     $('.substep-content').hide();
     $('#content-'+$(this).attr('id')).show();
     return false;
-  });
-  $('.buttons ul li button:lt(2)').click(function() {
-    $('.bar ul li').removeClass('active');
-    $('.bar ul li').removeClass('past');
-    $('.bar ul li:nth-child(1)').addClass('active');
-  });
-  $('.buttons ul li button:gt(1)').click(function() {
-    $('.bar ul li').removeClass('active');
-    $('.bar ul li').removeClass('past');
-    $('.bar ul li:lt(1)').addClass('past');
-    $('.bar ul li:nth-child(2)').addClass('active');
-  });
-  $('.buttons ul li button:gt(2)').click(function() {
-    $('.bar ul li').removeClass('active');
-    $('.bar ul li').removeClass('past');
-    $('.bar ul li:lt(2)').addClass('past');
-    $('.bar ul li:nth-child(3)').addClass('active');
-  });
-  $('.buttons ul li button:gt(3)').click(function() {
-    $('.bar ul li:lt(3)').addClass('past');
-    $('.bar ul li:nth-child(4)').addClass('active');
   });
 
 <% if @book.book_data.errors.include?(:logo_content_type) %>
