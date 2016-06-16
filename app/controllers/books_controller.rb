@@ -121,8 +121,8 @@ class BooksController < ApplicationController
 
       if params[:chapter].present?
         params[:chapter].each do |chapter|
-          sleep 5
           details = chapter.last
+          content = add_file_uploaded details[:file]
           text = Text.new
           text.title = details[:title]
           text.subtitle = details[:subtitle]
@@ -130,11 +130,11 @@ class BooksController < ApplicationController
           text.user = current_user
           text.book = @book
           text.valid_content = true
-          text.content = ''
+          text.content = content
           text.save
         end
       end
-      
+
       if @book.resize_images?
         redirect_to book_cover_info_path(@book.uuid)
       else

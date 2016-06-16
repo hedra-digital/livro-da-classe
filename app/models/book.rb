@@ -465,7 +465,6 @@ class Book < ActiveRecord::Base
   end
 
   def convert_initial_cover
-    byebug
     if initial_cover_file_name.present?
       logger.info `cd #{self.directory}
       convert #{self.initial_cover.path} front.png

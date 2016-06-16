@@ -147,6 +147,7 @@ function addChapterLine() {
     + $('#subtitle').val()
     + "</td><td class='truncate'>"
     + $('#author').val() + "</td>"
+    + "<td width='5%'><div><label for='chapter["+ number_line +"][file]'><img class='icon-upload'></label><input type='file' id='chapter["+ number_line +"][file]' name='chapter["+ number_line +"][file]' style='display:none' /></div></td>"
     + "<input type=hidden name='chapter["+ number_line +"][title]' value='"+ $('#title' ).val() +"' />"
     + "<input type=hidden name='chapter["+ number_line +"][subtitle]'' value='"+ $('#subtitle').val() +"' />"
     + "<input type=hidden name='chapter["+ number_line +"][author]' value='"+ $('#author').val() +"' />"
