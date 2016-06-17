@@ -165,7 +165,15 @@ function addChapterLine() {
 
 function addSiglaLine() {
   if($('#sigla_text').val() == '' || $('#sigla_desc').val() == '') return false;
-  tr = "<tr><td class='truncate'>"+ $('#sigla_text').val() +"</td><td class='truncate'>"+ $('#sigla_desc').val() +"</td></tr>"
+  number_line = $('#sigla-table tr').length
+  tr = "<tr><td class='truncate'>"
+    + $('#sigla_text').val()
+    + "</td><td class='truncate'>"
+    + $('#sigla_desc').val()
+    + "</td>"
+    + "<input type=hidden name='acronym["+ number_line +"][acronym]' value='"+ $('#sigla_text').val() +"' />"
+    + "<input type=hidden name='acronym["+ number_line +"][desc]' value='"+ $('#sigla_desc').val() +"' />"
+    + "</tr>"
   $('#sigla-table').append(tr);
   if($('#sigla-table tr').length > 0) {
     $('.sigla-table-container').show();

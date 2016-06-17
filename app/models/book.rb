@@ -45,7 +45,7 @@ class Book < ActiveRecord::Base
 
   # Specify fields that can be accessible through mass assignment
   attr_accessible           :project_attributes, :cover_info_attributes, :book_data, :coordinators, :directors, :organizers, :published_at, :title, :subtitle, :uuid, :organizer, :organizer_id, :text_ids, :users, :template, :cover, :institution, :street, :number, :city, :state, :zipcode, :klass, :librarian_name, :cdd,
-                            :cdu, :keywords, :document, :publisher_id, :abstract, :valid_pdf, :pages_count, :dedic, :resume_original_text, :acknowledgment, :initial_cover
+                            :cdu, :keywords, :document, :publisher_id, :abstract, :valid_pdf, :pages_count, :dedic, :resume_original_text, :acknowledgment, :initial_cover, :acronym
 
   accepts_nested_attributes_for :cover_info, :project, :book_data
 
@@ -370,14 +370,16 @@ class Book < ActiveRecord::Base
   def generate_originals_texts
     arr = [ {part: 'DEDICATORIA', content: self.dedic},
             {part: 'RESUMO', content: self.resume_original_text},
-            {part: 'AGRADECIMENTO', content: self.acknowledgment}]
+            {part: 'AGRADECIMENTO', content: self.acknowledgment},
+            {part: 'SIGLAS', content: self.acronym }]
     arr.each do |element|
       #html
-      File.open("#{self.directory}/#{element[:part]}.html",'w') {|io| io.write(element[:content]) }
+      content = element[:part] == 'SIGLAS' ? get_content_acronym(element[:content]) : element[:content]
+      File.open("#{self.directory}/#{element[:part]}.html",'w') {|io| io.write(content) }
 
       #tex
       begin
-        content = LatexConverter.to_latex(element[:content])
+        content = LatexConverter.to_latex(content)
       rescue
         content = "Um erro aconteceu."
       end
@@ -473,5 +475,19 @@ class Book < ActiveRecord::Base
       git push -u origin master`
       logger.info "Update front.png for book, id #{self.id}"
     end
+  end
+
+  def get_content_acronym(table_html)
+    body = '<table>'
+    tr = table_html.split('&&')
+    tr.each do |tr_el|
+      body += '<tr>'
+      td = tr_el.split('$$')
+      td.each do |td_el|
+        body += '<td>' + td_el + '</td>'
+      end
+      body += '</tr>'
+    end
+    body += '</table>'
   end
 end

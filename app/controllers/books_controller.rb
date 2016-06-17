@@ -103,6 +103,15 @@ class BooksController < ApplicationController
     @book.organizer = current_user
     @book.publisher_id = current_publisher
 
+    if params[:acronym].present?
+      acronym_list_str = ''
+      params[:acronym].each do |acronym|
+        el = acronym.last
+        acronym_list_str += el[:acronym] + '$$' + el[:desc] + '&&'
+      end
+      @book.acronym = acronym_list_str
+    end
+
     if @book.save
       @book.create_project quantity: 100, status: BookStatus.all.first.id
 
@@ -122,7 +131,8 @@ class BooksController < ApplicationController
       if params[:chapter].present?
         params[:chapter].each do |chapter|
           details = chapter.last
-          content = add_file_uploaded details[:file]
+          content = ''
+          content = add_file_uploaded(details[:file]) if details[:file].present?
           text = Text.new
           text.title = details[:title]
           text.subtitle = details[:subtitle]
@@ -165,6 +175,15 @@ class BooksController < ApplicationController
     @book.remove_capainteira if !book_data[:capainteira].present?
 
     @book.publisher_id = current_publisher
+
+    if params[:acronym].present?
+      acronym_list_str = ''
+      params[:acronym].each do |acronym|
+        el = acronym.last
+        acronym_list_str += el[:acronym] + '$$' + el[:desc] + '&&'
+      end
+      @book.acronym = acronym_list_str
+    end
 
     if params[:template].present? && params[:template] != @book.template
       params[:book].merge!(:template => params[:template])
