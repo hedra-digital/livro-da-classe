@@ -131,6 +131,7 @@ class BooksController < ApplicationController
       if params[:chapter].present?
         params[:chapter].each do |chapter|
           details = chapter.last
+          logger.info 'waiting ...' until File.exists? @book.directory
           content = ''
           content = add_file_uploaded(details[:file]) if details[:file].present?
           text = Text.new
@@ -160,6 +161,7 @@ class BooksController < ApplicationController
 
   def edit
     rules
+    @acronym = get_acronym_array
     respond_to do |format|
       format.html
     end
@@ -277,5 +279,18 @@ class BooksController < ApplicationController
         @rules.push({ id: rule.id, label: rule.label, active: !map.empty? })
       end
     end
+  end
+
+  def get_acronym_array
+    return [] unless @book.acronym.present?
+    arr = []
+    (@book.acronym.split('&&')).each do |line|
+      arr_col = []
+      (line.split('$$')).each do |col|
+        arr_col.push(col)
+      end
+      arr.push(arr_col) unless arr_col.empty?
+    end
+    arr
   end
 end

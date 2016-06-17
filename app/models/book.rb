@@ -25,7 +25,6 @@ class Book < ActiveRecord::Base
   after_save                :check_repository
   before_save               :rename_dir
   before_save               :change_template
-  after_save                :convert_initial_cover
 
   # Relationships
   belongs_to                :organizer, :class_name => "User", :foreign_key => "organizer_id"
@@ -375,7 +374,7 @@ class Book < ActiveRecord::Base
     arr.each do |element|
       #html
       content = element[:part] == 'SIGLAS' ? get_content_acronym(element[:content]) : element[:content]
-      File.open("#{self.directory}/#{element[:part]}.html",'w') {|io| io.write(content) }
+      File.open("#{directory}/#{element[:part]}.html",'w') {|io| io.write(content) }
 
       #tex
       begin
@@ -383,18 +382,20 @@ class Book < ActiveRecord::Base
       rescue
         content = "Um erro aconteceu."
       end
-      File.open("#{self.directory}/#{element[:part]}.tex",'w') {|io| io.write(content) }
+      File.open("#{directory}/#{element[:part]}.tex",'w') {|io| io.write(content) }
 
       #update repo
-      Thread.new do
+      tr = Thread.new do
         logger.info "Update #{element[:part]}"
-        logger.info `cd #{self.directory}
+        logger.info `cd #{directory}
         git add .
         git commit -a -m "Update #{element[:part]}"
         git push -u origin master`
         logger.info "Update #{element[:part]} for book, id #{self.id}"
       end
+      tr.join
     end
+    convert_initial_cover
   end
 
   private
@@ -468,7 +469,7 @@ class Book < ActiveRecord::Base
 
   def convert_initial_cover
     if initial_cover_file_name.present?
-      logger.info `cd #{self.directory}
+      logger.info `cd #{directory}
       convert #{self.initial_cover.path} front.png
       git add .
       git commit -a -m "Update front.png"
@@ -478,6 +479,7 @@ class Book < ActiveRecord::Base
   end
 
   def get_content_acronym(table_html)
+    return '' unless table_html.present?
     body = '<table>'
     tr = table_html.split('&&')
     tr.each do |tr_el|

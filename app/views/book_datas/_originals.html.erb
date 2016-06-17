@@ -74,9 +74,23 @@
               <%= text_field_tag :sigla_desc, nil,:placeholder => 'Descrição' %>
               <%= link_to '', '#', class: 'icon-plus', onclick: 'return addSiglaLine();' %>
             </div>
-            <div class="row sigla-table-container" hidden>
+            <div class="row sigla-table-container" <%= 'hidden' unless @acronym.present? %> >
               <table id="sigla-table" class="table table-striped">
                 <tbody>
+                  <% if @acronym.present? %>
+                    <% number_line = 0 %>
+                    <% @acronym.each do |tr| %>
+                      <tr>
+                        <% count = 0 %>
+                        <% tr.each do |td| %>
+                          <td><%= td %></td>
+                          <input type=hidden name='acronym[<%= number_line %>][<%= count == 0 ? 'acronym' : 'desc' %>]' value='<%= td %>' />
+                          <% count += 1%>
+                        <% end %>
+                      </tr>
+                      <% number_line += 1 %>
+                    <% end %>
+                  <% end %>
                 </tbody>
               </table>
             </div>
