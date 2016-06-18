@@ -60,6 +60,7 @@
 //= require scrollTo
 //= require epub.min.js
 //= require zip.min.js
+//= require tinymce
 
 // Bootstrap Datepicker
 $(document).ready(function() {

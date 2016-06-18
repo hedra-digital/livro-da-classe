@@ -2,6 +2,8 @@ class Admin::DashboardController < Admin::ApplicationController
 
   skip_before_filter :authentication_admin_check, if: -> { current_user and current_user.publisher? }
 
+  MANUAL_CONTENT_FILE_PATH = 'public/manual_content.html'
+
   def index
     if params[:impersonate_user_id].blank?
 
@@ -31,6 +33,22 @@ class Admin::DashboardController < Admin::ApplicationController
   end
 
   def revision
+  end
+
+  def manual
+    @content = ''
+    if File.exist? MANUAL_CONTENT_FILE_PATH
+      File.open(MANUAL_CONTENT_FILE_PATH, 'r') do |file|
+        while (line = file.gets)
+          @content << line
+        end
+      end
+    end
+  end
+
+  def manual_update
+    File.open(MANUAL_CONTENT_FILE_PATH, 'w') { |io| io.write(params[:content]) }
+    redirect_to admin_manual_url
   end
 
   private

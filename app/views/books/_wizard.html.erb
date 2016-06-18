@@ -8,6 +8,9 @@
             <button id="general">Informações gerais</button>
           </li>
           <li>
+            <button id="originals">Textos Originais</button>
+          </li>
+          <li>
             <button id="cover">Capa & Layout</button>
           </li>
           <li>
@@ -59,6 +62,9 @@
 
             <div class="substep-content" id="content-general">
               <%= render :partial => '/book_datas/general', :locals => {:f => f, :b => b} %>
+            </div>
+            <div class="substep-content" id="content-originals" hidden>
+              <%= render :partial => '/book_datas/originals', :locals => {:f => f, :b => b} %>
             </div>
             <div class="substep-content" id="content-cover" hidden>
               <%= render :partial => '/book_datas/cover', :locals => {:f => f, :b => b} %>

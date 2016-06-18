@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160530230158) do
+ActiveRecord::Schema.define(:version => 20160615234706) do
 
   create_table "book_datas", :force => true do |t|
     t.integer  "book_id"
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(:version => 20160530230158) do
     t.text     "organizers"
     t.text     "directors"
     t.text     "coordinators"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.integer  "organizer_id"
     t.string   "template"
     t.string   "cover_file_name"
@@ -124,8 +124,16 @@ ActiveRecord::Schema.define(:version => 20160530230158) do
     t.datetime "document_updated_at"
     t.integer  "publisher_id"
     t.text     "abstract"
-    t.boolean  "valid_pdf",             :default => true
-    t.integer  "pages_count",           :default => -1
+    t.boolean  "valid_pdf",                  :default => true
+    t.integer  "pages_count",                :default => -1
+    t.string   "dedic"
+    t.string   "acknowledgment"
+    t.string   "resume_original_text"
+    t.string   "acronym"
+    t.string   "initial_cover_file_name"
+    t.string   "initial_cover_content_type"
+    t.integer  "initial_cover_file_size"
+    t.datetime "initial_cover_updated_at"
   end
 
   create_table "books_rules", :id => false, :force => true do |t|
