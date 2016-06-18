@@ -367,22 +367,22 @@ class Book < ActiveRecord::Base
   end
 
   def generate_originals_texts
-    arr = [ {part: 'DEDICATORIA', content: self.dedic},
-            {part: 'RESUMO', content: self.resume_original_text},
-            {part: 'AGRADECIMENTO', content: self.acknowledgment},
-            {part: 'SIGLAS', content: self.acronym }]
+    arr = [ { part: 'DEDICATORIA', content: self.dedic },
+            { part: 'RESUMO', content: self.resume_original_text },
+            { part: 'AGRADECIMENTO', content: self.acknowledgment },
+            { part: 'SIGLAS', content: self.acronym } ]
     arr.each do |element|
-      #html
+      # html
       content = element[:part] == 'SIGLAS' ? get_content_acronym(element[:content]) : element[:content]
-      File.open("#{directory}/#{element[:part]}.html",'w') {|io| io.write(content) }
+      File.open("#{directory}/#{element[:part]}.html", 'w') { |io| io.write(content) }
 
-      #tex
+      # tex
       begin
         content = LatexConverter.to_latex(content)
       rescue
         content = "Um erro aconteceu."
       end
-      File.open("#{directory}/#{element[:part]}.tex",'w') {|io| io.write(content) }
+      File.open("#{directory}/#{element[:part]}.tex",  'w') { |io| io.write(content) }
 
       #update repo
       tr = Thread.new do
@@ -391,7 +391,7 @@ class Book < ActiveRecord::Base
         git add .
         git commit -a -m "Update #{element[:part]}"
         git push -u origin master`
-        logger.info "Update #{element[:part]} for book, id #{self.id}"
+        logger.info "Update #{element[:part]} for book, id #{id}"
       end
       tr.join
     end
@@ -470,11 +470,11 @@ class Book < ActiveRecord::Base
   def convert_initial_cover
     if initial_cover_file_name.present?
       logger.info `cd #{directory}
-      convert #{self.initial_cover.path} front.png
+      convert #{initial_cover.path} front.png
       git add .
       git commit -a -m "Update front.png"
       git push -u origin master`
-      logger.info "Update front.png for book, id #{self.id}"
+      logger.info "Update front.png for book, id #{ id}"
     end
   end
 

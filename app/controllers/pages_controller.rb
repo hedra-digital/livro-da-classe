@@ -12,14 +12,14 @@ class PagesController < ApplicationController
 
     AdminMailer.contact_notifier(@name, @email, @content).deliver
 
-    redirect_to root_path, :notice => 'Sua mensagem foi enviada.'
+    redirect_to root_path, notice: 'Sua mensagem foi enviada.'
   end
 
   def manual
     @manual_content = ''
     manual_content_file_name = 'public/manual_content.html'
     if File.exist? manual_content_file_name
-      File.open(manual_content_file_name,'r') do |file|
+      File.open(manual_content_file_name, 'r') do |file|
         while (line = file.gets)
           @manual_content << line
         end

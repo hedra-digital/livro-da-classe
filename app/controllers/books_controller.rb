@@ -3,19 +3,19 @@ require "#{Rails.root}/lib/google_connector.rb"
 require "#{Rails.root}/lib/google_html.rb"
 
 class BooksController < ApplicationController
-  before_filter :authentication_check, :except => [:show]
-  before_filter :ominiauth_user_gate, :except => [:show]
-  before_filter :secure_organizer_id, :only => [:create, :update]
-  before_filter :resource, :only => [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook, :epub_viewer, :rules, :rule_active]
+  before_filter :authentication_check, except: [:show]
+  before_filter :ominiauth_user_gate, except: [:show]
+  before_filter :secure_organizer_id, only: [:create, :update]
+  before_filter :resource, only: [:show, :edit, :destroy, :update, :cover_info, :update_cover_info, :generate_cover, :revision, :generate_pdf, :ask_for_download_pdf, :download_pdf, :generate_ebook, :epub_viewer, :rules, :rule_active]
 
   require "#{Rails.root}/lib/book_cover.rb"
 
   def index
-    redirect_to new_book_path if current_user.organized_books.empty? and current_user.books.empty?
+    redirect_to new_book_path if current_user.organized_books.empty? && current_user.books.empty?
 
     @books = []
     @books.concat(current_user.organized_books).concat(current_user.books).flatten
-    @books.sort! { |a,b| a.directory_name.downcase <=> b.directory_name.downcase }
+    @books.sort! { |a, b| a.directory_name.downcase <=> b.directory_name.downcase }
   end
 
   def cover_info
@@ -34,7 +34,7 @@ class BooksController < ApplicationController
     pdf_file = BookCover.new(@book.cover_info).generate_pdf_cover
 
     respond_to do |format|
-      format.pdf do |pdf|
+      format.pdf do |_pdf|
         send_file pdf_file
       end
     end
@@ -46,38 +46,38 @@ class BooksController < ApplicationController
 
   def generate_pdf
     pdf = @book.pdf
-    pdf_path = pdf.to_s.gsub('public/','')
+    pdf_path = pdf.to_s.gsub('public/', '')
     if !pdf.nil?
-      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{pdf_path}", :result => "success" }
+      render json: { path: "#{request.protocol}#{request.host_with_port}/#{pdf_path}", result: 'success' }
     else
-      pdf_path = File.join(@book.directory,"#{@book.uuid}.pdf").gsub('public', '')
-      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{pdf_path}", :result => "fail" }
+      pdf_path = File.join(@book.directory, "#{@book.uuid}.pdf").gsub('public', '')
+      render json: { path: "#{request.protocol}#{request.host_with_port}/#{pdf_path}", result: 'fail' }
     end
   end
 
   # work around http://stackoverflow.com/questions/6019522/rails-3-how-to-send-file-in-response-of-a-remote-form-in-rails
   def ask_for_download_pdf
     pdf = @book.pdf
-    pdf_path = pdf.to_s.gsub('public/','')
-    render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{book_download_pdf_path(@book.uuid)}", :result => "success" }
+    pdf_path = pdf.to_s.gsub('public/', '')
+    render json: { path: "#{request.protocol}#{request.host_with_port}/#{book_download_pdf_path(@book.uuid)}", result: 'success' }
   end
 
   def download_pdf
-    if @book.autor.blank?
-      filename = "#{@book.title}.pdf"
-    else
-      filename = "#{@book.book_data.autor}-#{@book.title}.pdf"
-    end
-    send_file(File.open(File.join(@book.directory, "LIVRO.pdf")), {filename: filename})
+    filename = if @book.autor.blank?
+                 "#{@book.title}.pdf"
+               else
+                 "#{@book.book_data.autor}-#{@book.title}.pdf"
+               end
+    send_file(File.open(File.join(@book.directory, 'LIVRO.pdf')), filename: filename)
   end
 
   def generate_ebook
     ebook = @book.ebook
-    ebook_path = ebook.to_s.gsub('public/','')
+    ebook_path = ebook.to_s.gsub('public/', '')
     if !ebook.nil?
-      render :json => { :path => "#{request.protocol}#{request.host_with_port}/books/#{@book.uuid}/epub_viewer", :result => "success", :new_window => true }
+      render json: { path: "#{request.protocol}#{request.host_with_port}/books/#{@book.uuid}/epub_viewer", result: 'success', new_window: true }
     else
-      render :json => { :path => "#{request.protocol}#{request.host_with_port}/#{ebook_path}", :result => "fail" }
+      render json: { path: "#{request.protocol}#{request.host_with_port}/#{ebook_path}", result: 'fail' }
     end
   end
 
@@ -98,19 +98,11 @@ class BooksController < ApplicationController
 
     template = params[:template].present? ? params[:template] : Livrodaclasse::Application.latex_templates[0]
 
-    @book = current_user.organized_books.new(params[:book].merge(:template => template))
+    @book = current_user.organized_books.new(params[:book].merge(template: template))
 
     @book.organizer = current_user
     @book.publisher_id = current_publisher
-
-    if params[:acronym].present?
-      acronym_list_str = ''
-      params[:acronym].each do |acronym|
-        el = acronym.last
-        acronym_list_str += el[:acronym] + '$$' + el[:desc] + '&&'
-      end
-      @book.acronym = acronym_list_str
-    end
+    @book.acronym = get_acronym(params[:acronym]) if params[:acronym].present?
 
     if @book.save
       @book.create_project quantity: 100, status: BookStatus.all.first.id
@@ -131,18 +123,9 @@ class BooksController < ApplicationController
       if params[:chapter].present?
         params[:chapter].each do |chapter|
           details = chapter.last
-          logger.info 'waiting ...' until File.exists? @book.directory
-          content = ''
-          content = add_file_uploaded(details[:file]) if details[:file].present?
-          text = Text.new
-          text.title = details[:title]
-          text.subtitle = details[:subtitle]
-          text.author = details[:author]
-          text.user = current_user
-          text.book = @book
-          text.valid_content = true
-          text.content = content
-          text.save
+          logger.info 'waiting ...' until File.exist? @book.directory
+          content = details[:file].present? ? add_file_uploaded(details[:file]) : ''
+          create_text(details[:title], details[:subtitle], details[:author], content)
         end
       end
 
@@ -174,24 +157,15 @@ class BooksController < ApplicationController
     book_data = params[:book][:book_data]
     params[:book].delete :book_data
 
-    @book.remove_capainteira if !book_data[:capainteira].present?
-
+    @book.remove_capainteira unless book_data[:capainteira].present?
     @book.publisher_id = current_publisher
-
-    if params[:acronym].present?
-      acronym_list_str = ''
-      params[:acronym].each do |acronym|
-        el = acronym.last
-        acronym_list_str += el[:acronym] + '$$' + el[:desc] + '&&'
-      end
-      @book.acronym = acronym_list_str
-    end
+    @book.acronym = get_acronym(params[:acronym]) if params[:acronym].present?
 
     if params[:template].present? && params[:template] != @book.template
       params[:book].merge!(:template => params[:template])
     end
 
-    if @book.update_attributes(params[:book]) and @book.cover_info.update_attributes(cover_info) and @book.book_data.update_attributes(book_data)
+    if @book.update_attributes(params[:book]) && @book.cover_info.update_attributes(cover_info) && @book.book_data.update_attributes(book_data)
       @book.generate_originals_texts
       BookCover.new(@book.cover_info).generate_cover
       if @book.resize_images?
@@ -220,7 +194,7 @@ class BooksController < ApplicationController
 
   def rule_active
     rule = Rule.find(params[:rule_id])
-    maps = (@book.rules.map { |r| r if r.id == rule.id}).compact
+    maps = (@book.rules.map { |r| r if r.id == rule.id }).compact
     if maps.empty?
       @book.rules.push(rule)
     else
@@ -275,22 +249,43 @@ class BooksController < ApplicationController
     @rules = []
     Rule.all.each do |rule|
       if rule.active
-        map = (@book.rules.map { |r| r if r.id == rule.id}).compact
+        map = (@book.rules.map { |r| r if r.id == rule.id }).compact
         @rules.push({ id: rule.id, label: rule.label, active: !map.empty? })
       end
     end
   end
 
+  def get_acronym(obj)
+    acronym_list_str = ''
+    obj.each do |acronym|
+      el = acronym.last
+      acronym_list_str += el[:acronym] + '$$' + el[:desc] + '&&'
+    end
+    acronym_list_str
+  end
+
   def get_acronym_array
     return [] unless @book.acronym.present?
     arr = []
-    (@book.acronym.split('&&')).each do |line|
+    @book.acronym.split('&&').each do |line|
       arr_col = []
-      (line.split('$$')).each do |col|
+      line.split('$$').each do |col|
         arr_col.push(col)
       end
       arr.push(arr_col) unless arr_col.empty?
     end
     arr
+  end
+
+  def create_text(title, subtitle, author, content)
+    text = Text.new
+    text.title = title
+    text.subtitle = subtitle
+    text.author = author
+    text.user = current_user
+    text.book = @book
+    text.valid_content = true
+    text.content = content
+    text.save
   end
 end
