@@ -6,6 +6,14 @@ GIT
       mime-types
       orm_adapter
 
+GIT
+  remote: https://github.com/pauloabner/hepub.git
+  revision: c0cc39afb3644681f0921f0b5438f682559a904b
+  specs:
+    hepub (0.0.1)
+      gepub (= 0.6.9.2)
+      nokogiri (= 1.6.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -208,7 +216,7 @@ GEM
       railties (>= 3.0.0, < 5.1.0)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mini_portile2 (2.0.0)
+    mini_portile2 (2.1.0)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -221,8 +229,9 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     newrelic_rpm (3.15.1.316)
-    nokogiri (1.6.7.2)
-      mini_portile2 (~> 2.0.0.rc2)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
     nokogiri-styles (0.1.2)
       nokogiri
     oauth (0.5.1)
@@ -268,6 +277,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
+    pkg-config (1.1.7)
     polyglot (0.3.5)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -429,6 +439,7 @@ DEPENDENCIES
   google-api-client
   gravatar_image_tag
   guid
+  hepub (= 0.0.1)!
   htmlentities
   jquery-rails (= 2.0.1)
   kramdown
@@ -436,7 +447,7 @@ DEPENDENCIES
   meta_request
   mysql2 (~> 0.3.10)
   newrelic_rpm
-  nokogiri
+  nokogiri (= 1.6.8)
   nokogiri-styles
   omniauth-facebook
   omniauth-google-oauth2
