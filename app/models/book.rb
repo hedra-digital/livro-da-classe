@@ -156,7 +156,7 @@ class Book < ActiveRecord::Base
     options[:subtitle] = self.book_data.subtit if self.book_data.present? && self.book_data.subtit.present?
     options[:author] = self.book_data.autor if self.book_data.present? && self.book_data.autor.present?
     options[:reference] = ''
-    options[:cover] = self.book_data.capainteira.exists? ? self.book_data.capainteira.path : self.cover.path
+    options[:cover_path] = self.book_data.capainteira.exists? ? self.book_data.capainteira.path : self.cover.path
 
     metadata = Hepub::Metadata.new(options)
     book = Hepub::Book.new(metadata, template_dir = epub_template_dir)
@@ -164,7 +164,6 @@ class Book < ActiveRecord::Base
       content = setup_footnote_epub(text.content)
       section = Array.new
       section.push({ :title => text.title, :content => content })
-      author = options[:author].present? ?  options[:author] : ''
       book.add_chapter(text.title, options[:author], section)
     end
 
@@ -389,29 +388,6 @@ class Book < ActiveRecord::Base
 
   def set_uuid
     self.uuid = Guid.new.to_s if self.uuid.nil?
-  end
-
-  def epub_chapter(title, content)
-    template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
-                "<head>" +
-                "<title>EBOOK</title>" +
-                "<link href='../css/main.css' media='all' rel='stylesheet' type='text/css' />" +
-                "</head>" +
-                "<body>" +
-                "<h1>#{title}</h1>" +
-                "#{content}" +
-                "</body></html>"
-    StringIO.new(template)
-  end
-
-  def epub_cover
-    template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
-                "<head><title>COVER</title></head>" +
-                "<body>" +
-                "<div><svg xmlns='http://www.w3.org/2000/svg' height='100%' preserveAspectRatio='none' version='1.1' viewBox='0 0 601 942' width='100%' xmlns:xlink='http://www.w3.org/1999/xlink'><image height='942' width='601' xlink:href='../img/cover.png' /></svg>" +
-                "</div>" +
-                "</body></html>"
-    StringIO.new(template)
   end
 
   def setup_footnote_epub(text)
