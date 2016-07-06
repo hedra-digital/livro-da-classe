@@ -1,0 +1,6 @@
+<div class="section">
+  <div class="title">
+    <p><b>{{ SECTION_TITLE }}</b></p>
+  </div>
+  {{ SECTION_CONTENT }}
+</div>

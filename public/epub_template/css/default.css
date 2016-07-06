@@ -1,0 +1,93 @@
+/* last update 2014.09.05 */
+
+.chapter .title {
+	font-size: 1.70em;
+	font-weight: bold;
+}
+.author {
+	margin-top: 3.5%;
+	font-weight: bold;
+}
+.section {
+	margin-top: 3.5%;
+}
+.section_break {
+	page-break-before: always;
+}
+.section .title {
+	font-size: 130%;
+	font-weight: bold;
+}
+.section_break  .title {
+	font-size: 130%;
+	font-weight: bold;
+}
+.image {
+	margin-top: 3.5%;
+	margin-bottom: 3.5%;
+	text-align: center !important;
+	height: auto;
+	page-break-inside: avoid;
+}
+.image img {
+	max-height:auto !important;
+	max-width: 100%;
+}
+.footer {
+	margin-top: 5%;
+}
+.footer .title {
+	font-size: 130%;
+	font-weight: bold;
+}
+.catalog {
+	width: 80%;
+	margin: auto;
+	padding: 1.5%;
+	border: solid;
+	border-width: thin;
+}
+.center {
+	text-align:center;
+}
+.right {
+	text-align:right;
+}
+.underline {
+	text-decoration:underline;
+}
+.cover {
+	text-align: center;
+	page-break-after: always;
+}
+.table {
+	width: 80%;
+	margin: auto;
+	border-collapse: collapse;
+	text-align:left !important;
+}
+.table p {
+	margin: 1.5%;
+}
+.table tr td {
+	border: 1px solid;
+	vertical-align:text-top;
+}
+.table_borderless {
+	width: 80%;
+	margin: auto;
+	border: none;
+	text-align:left !important;
+}
+.table_borderless tr td {
+	vertical-align:text-top;
+	border: none;
+}
+.toc li {
+	list-style-type: none;
+	padding: 0.5%;
+}
+ol.alpha li
+{
+	list-style-type: lower-alpha;
+	}

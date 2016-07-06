@@ -151,39 +151,26 @@ class Book < ActiveRecord::Base
   end
 
   def ebook
-    book = GEPUB::Book.new
-    book.set_primary_identifier('http:/www.hedra.com.br', self.uuid, 'URL')
-    book.language = 'pt-BR'
-    book.add_title(self.title, nil, GEPUB::TITLE_TYPE::MAIN).set_display_seq(1)
-    book.add_creator(self.autor).set_display_seq(1)
+    options = Hash.new
+    options[:title] = self.title
+    options[:subtitle] = self.book_data.subtit if self.book_data.present? && self.book_data.subtit.present?
+    options[:author] = self.book_data.autor if self.book_data.present? && self.book_data.autor.present?
+    options[:reference] = ''
+    options[:cover] = self.book_data.capainteira.exists? ? self.book_data.capainteira.path : self.cover.path
 
-    if self.book_data.capainteira.exists?
-      imgfile = File.join(self.book_data.capainteira.path)
-    else
-      imgfile = File.join(self.cover.path)
-    end
-    File.open(imgfile) do
-      |io|
-      book.add_item('img/cover.png',io).cover_image
-    end
-
-    css_template = File.join('public/main-epub.css')
-    File.open(css_template) do |io|
-      book.add_item('css/main.css',io)
+    metadata = Hepub::Metadata.new(options)
+    book = Hepub::Book.new(metadata, template_dir = epub_template_dir)
+    self.texts.each do |text|
+      content = setup_footnote_epub(text.content)
+      section = Array.new
+      section.push({ :title => text.title, :content => content })
+      author = options[:author].present? ?  options[:author] : ''
+      book.add_chapter(text.title, options[:author], section)
     end
 
-    chapter_count = 1
-    book.ordered {
-      book.add_item('text/cover.xhtml').add_content(epub_cover)
-      self.texts.each do |text|
-        content = setup_footnote_epub(text.content)
-        book.add_item("text/chap#{chapter_count}.xhtml").add_content(epub_chapter(text.title, content)).toc_text(text.title)
-        chapter_count += 1
-      end
-    }
+    book.generate
+
     epubname = File.join(directory, 'EBOOK.epub')
-
-    book.generate_epub(epubname)
     epubname
   rescue
     nil
@@ -491,5 +478,10 @@ class Book < ActiveRecord::Base
       body += '</tr>'
     end
     body += '</table>'
+  end
+
+  def epub_template_dir
+    return "#{directory}/epub_template" if Dir.exists? "#{directory}/epub_template"
+    'public/epub_template'
   end
 end
