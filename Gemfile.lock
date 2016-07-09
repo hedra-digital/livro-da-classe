@@ -8,11 +8,11 @@ GIT
 
 GIT
   remote: https://github.com/pauloabner/hepub.git
-  revision: c0cc39afb3644681f0921f0b5438f682559a904b
+  revision: dfa45181c1ac69a6886f37170e221494bc0cba4d
   specs:
     hepub (0.0.1)
       gepub (= 0.6.9.2)
-      nokogiri (= 1.6.8)
+      nokogiri
 
 GEM
   remote: https://rubygems.org/

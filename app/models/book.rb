@@ -166,10 +166,8 @@ class Book < ActiveRecord::Base
       section.push({ :title => text.title, :content => content })
       book.add_chapter(text.title, options[:author], section)
     end
-
-    book.generate
-
-    epubname = File.join(directory, 'EBOOK.epub')
+    epubname =  "#{Rails.root.to_s}/#{directory}/EBOOK.epub"
+    book.generate(epubname)
     epubname
   rescue
     nil
