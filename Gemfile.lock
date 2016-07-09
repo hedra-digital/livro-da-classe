@@ -8,11 +8,11 @@ GIT
 
 GIT
   remote: https://github.com/pauloabner/hepub.git
-  revision: dfa45181c1ac69a6886f37170e221494bc0cba4d
+  revision: f4eef42edf29fdd90e015c71be1306b7a7a5f621
   specs:
-    hepub (0.0.1)
+    hepub (0.0.2)
       gepub (= 0.6.9.2)
-      nokogiri
+      nokogiri (= 1.6.8)
 
 GEM
   remote: https://rubygems.org/
@@ -439,7 +439,7 @@ DEPENDENCIES
   google-api-client
   gravatar_image_tag
   guid
-  hepub (= 0.0.1)!
+  hepub (= 0.0.2)!
   htmlentities
   jquery-rails (= 2.0.1)
   kramdown
