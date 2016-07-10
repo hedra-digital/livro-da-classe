@@ -4,6 +4,9 @@
 	font-size: 1.70em;
 	font-weight: bold;
 }
+.chapter .subtitle {
+	font-style: italic;
+}
 .author {
 	margin-top: 3.5%;
 	font-weight: bold;
@@ -15,8 +18,12 @@
 	page-break-before: always;
 }
 .section .title {
+	margin-top: 5%;
 	font-size: 130%;
 	font-weight: bold;
+}
+.section .content {
+	margin-top: 5%;
 }
 .section_break  .title {
 	font-size: 130%;
@@ -90,4 +97,4 @@
 ol.alpha li
 {
 	list-style-type: lower-alpha;
-	}
+}
