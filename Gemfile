@@ -32,7 +32,7 @@ gem "gepub"
 gem "bootstrap-switch-rails"
 gem 'tinymce-rails', '4.3.12'
 gem 'tinymce-rails-langs'
-gem 'hepub', '0.0.4', :git => 'https://github.com/pauloabner/hepub.git'
+gem 'hepub', '0.0.5', :git => 'https://github.com/pauloabner/hepub.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

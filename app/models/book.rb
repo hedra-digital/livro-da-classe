@@ -167,7 +167,9 @@ class Book < ActiveRecord::Base
       book.add_chapter(text.title, options[:author], section)
     end
     epubname =  "#{Rails.root.to_s}/#{directory}/EBOOK.epub"
-    book.generate(epubname)
+    logger.info "#{epubname} (STARTED)"
+    epubname = book.generate(epubname)
+    logger.info "#{epubname} (ENDED)"
     epubname
   rescue
     nil
