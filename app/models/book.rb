@@ -247,6 +247,7 @@ class Book < ActiveRecord::Base
     if(!self.new_record? and self.template_changed?)
 
       logger.info `mv #{self.directory_was} #{self.directory}
+      rm -r #{self.directory}/epub_template
       cp -r #{template_directory}/* #{self.directory}
       cd #{self.directory}
       git add .
