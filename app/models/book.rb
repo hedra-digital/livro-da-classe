@@ -151,39 +151,25 @@ class Book < ActiveRecord::Base
   end
 
   def ebook
-    book = GEPUB::Book.new
-    book.set_primary_identifier('http:/www.hedra.com.br', self.uuid, 'URL')
-    book.language = 'pt-BR'
-    book.add_title(self.title, nil, GEPUB::TITLE_TYPE::MAIN).set_display_seq(1)
-    book.add_creator(self.autor).set_display_seq(1)
+    options = Hash.new
+    options[:title] = self.title
+    options[:subtitle] = self.book_data.subtit if self.book_data.present? && self.book_data.subtit.present?
+    options[:author] = self.book_data.autor if self.book_data.present? && self.book_data.autor.present?
+    options[:reference] = ''
+    options[:cover_path] = self.book_data.capainteira.exists? ? self.book_data.capainteira.path : self.cover.path
 
-    if self.book_data.capainteira.exists?
-      imgfile = File.join(self.book_data.capainteira.path)
-    else
-      imgfile = File.join(self.cover.path)
+    metadata = Hepub::Metadata.new(options)
+    book = Hepub::Book.new(metadata, template_dir = epub_template_dir)
+    self.texts.each do |text|
+      content = setup_footnote_epub(text.content)
+      section = Array.new
+      section.push({ :title => text.title, :content => content })
+      book.add_chapter(text.title, options[:author], section)
     end
-    File.open(imgfile) do
-      |io|
-      book.add_item('img/cover.png',io).cover_image
-    end
-
-    css_template = File.join('public/main-epub.css')
-    File.open(css_template) do |io|
-      book.add_item('css/main.css',io)
-    end
-
-    chapter_count = 1
-    book.ordered {
-      book.add_item('text/cover.xhtml').add_content(epub_cover)
-      self.texts.each do |text|
-        content = setup_footnote_epub(text.content)
-        book.add_item("text/chap#{chapter_count}.xhtml").add_content(epub_chapter(text.title, content)).toc_text(text.title)
-        chapter_count += 1
-      end
-    }
-    epubname = File.join(directory, 'EBOOK.epub')
-
-    book.generate_epub(epubname)
+    epubname =  "#{Rails.root.to_s}/#{directory}/EBOOK.epub"
+    logger.info "#{epubname} (STARTED)"
+    epubname = book.generate(epubname)
+    logger.info "#{epubname} (ENDED)"
     epubname
   rescue
     nil
@@ -404,29 +390,6 @@ class Book < ActiveRecord::Base
     self.uuid = Guid.new.to_s if self.uuid.nil?
   end
 
-  def epub_chapter(title, content)
-    template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
-                "<head>" +
-                "<title>EBOOK</title>" +
-                "<link href='../css/main.css' media='all' rel='stylesheet' type='text/css' />" +
-                "</head>" +
-                "<body>" +
-                "<h1>#{title}</h1>" +
-                "#{content}" +
-                "</body></html>"
-    StringIO.new(template)
-  end
-
-  def epub_cover
-    template = "<html xmlns='http://www.w3.org/1999/xhtml'>" +
-                "<head><title>COVER</title></head>" +
-                "<body>" +
-                "<div><svg xmlns='http://www.w3.org/2000/svg' height='100%' preserveAspectRatio='none' version='1.1' viewBox='0 0 601 942' width='100%' xmlns:xlink='http://www.w3.org/1999/xlink'><image height='942' width='601' xlink:href='../img/cover.png' /></svg>" +
-                "</div>" +
-                "</body></html>"
-    StringIO.new(template)
-  end
-
   def setup_footnote_epub(text)
     html = Nokogiri::HTML(text)
     div_notes = html.css 'a'
@@ -491,5 +454,10 @@ class Book < ActiveRecord::Base
       body += '</tr>'
     end
     body += '</table>'
+  end
+
+  def epub_template_dir
+    return "#{directory}/epub_template" if Dir.exists? "#{directory}/epub_template"
+    'public/epub_template'
   end
 end

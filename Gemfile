@@ -22,7 +22,7 @@ gem 'ckeditor', :git => 'git://github.com/hedra-digital/ckeditor.git'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem 'htmlentities'
-gem 'nokogiri'
+gem 'nokogiri', '1.6.8'
 gem 'nokogiri-styles'
 gem 'brazilian-rails'
 gem 'bitbucket_rest_api'
@@ -32,6 +32,7 @@ gem "gepub"
 gem "bootstrap-switch-rails"
 gem 'tinymce-rails', '4.3.12'
 gem 'tinymce-rails-langs'
+gem 'hepub', '0.0.7', :git => 'https://github.com/pauloabner/hepub.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
