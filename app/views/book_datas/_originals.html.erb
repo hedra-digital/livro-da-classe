@@ -1,0 +1,200 @@
+<div id="originals-container" class="originals-container">
+  <div class="manual-container">
+    <div class="question">
+      <span>Você já leu nosso manual?</span>
+    </div>
+    <div class="btn-group">
+      <%= link_to 'Não', manual_path, class: 'btn', target: '_blank' %>
+      <%= link_to 'Sim', '#', class: 'btn btn-success', onclick: 'return chaptersContainer();'  %>
+    </div>
+  </div>
+  <div class="chapters-container" hidden="true">
+    <div class="row question">
+      <% if !@book.id.present? %>
+        <div class="row text">
+          <span>Vamos adicionar os capítulos do seu livro? Atenção, não se preocupe com o sumário. Faremos isso para você.</span>
+        </div>
+        <div class="row text">
+          <span>Digite abaixo o título, o subtítulo e o autor de cada capítulo. Se não tiver autor ou subtítulo, deixe os campos em branco.</span><br>
+        </div>
+        <div class="row">
+          <span>Informe os dados de todos seus capítulos.</span>
+        </div>
+        <div class="row chapter-info">
+          <%= text_field_tag :title, nil, :placeholder => 'Título'%>
+          <%= text_field_tag :subtitle, nil,:placeholder => 'Subtítulo' %>
+          <%= text_field_tag :author, nil, :placeholder => 'Autor do Capítulo' %>
+          <%= link_to '', '#', class: 'icon-ok', onclick: 'return addChapterLine();' %>
+        </div>
+        <div class="row chapter-table-container" hidden>
+          <table id="chapter-table" class="table table-striped">
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+      <div class="row exist-chapters">
+        <span>Legal!!! Você já tem um livro criado. Pode acessar seus capítulos na página princiapl.</span>
+      </div>
+      <% end %>
+      <div class="row btn-group">
+        <%= link_to 'Voltar', '#', class: 'btn', onclick: 'return manualContainer();' %>
+        <%= link_to 'Próximo', '#', class: 'btn', onclick: 'return extrasContainer();'  %>
+      </div>
+    </div>
+  </div>
+  <div class="extras-container" hidden="true">
+    <div class="question">
+      <span>Além dos capítulos, seu livro tem algum dos itens abaixo?</span>
+    </div>
+    <div class="row">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#dedic" aria-controls="dedic" role="tab" data-toggle="tab">Dedicatória</a></li>
+        <li role="presentation"><a href="#resume" aria-controls="resume" role="tab" data-toggle="tab">Resumo</a></li>
+        <li role="presentation"><a href="#agree" aria-controls="agree" role="tab" data-toggle="tab">Agradecimentos</a></li>
+        <li role="presentation"><a href="#sigla" aria-controls="sigla" role="tab" data-toggle="tab">Siglas</a></li>
+        <li role="presentation"><a href="#image" aria-controls="image" role="tab" data-toggle="tab">Imagem de abertura</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="dedic">
+          <%= b.text_area :dedic, class: "tinymce", rows: 5%>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="resume">
+         <%= b.text_area :resume_original_text, class: "tinymce", rows: 5%>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="agree">
+         <%= b.text_area :acknowledgment, class: "tinymce", rows: 5%>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="sigla">
+          <div class="sigla-container">
+            <div class="row">
+              <%= text_field_tag :sigla_text, nil, :placeholder => 'Sigla'%>
+              <%= text_field_tag :sigla_desc, nil,:placeholder => 'Descrição' %>
+              <%= link_to '', '#', class: 'icon-plus', onclick: 'return addSiglaLine();' %>
+            </div>
+            <div class="row sigla-table-container" <%= 'hidden' unless @acronym.present? %> >
+              <table id="sigla-table" class="table table-striped">
+                <tbody>
+                  <% if @acronym.present? %>
+                    <% number_line = 0 %>
+                    <% @acronym.each do |tr| %>
+                      <tr>
+                        <% count = 0 %>
+                        <% tr.each do |td| %>
+                          <td><%= td %></td>
+                          <input type=hidden name='acronym[<%= number_line %>][<%= count == 0 ? 'acronym' : 'desc' %>]' value='<%= td %>' />
+                          <% count += 1%>
+                        <% end %>
+                      </tr>
+                      <% number_line += 1 %>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="image">
+          <div class="fileupload <%= @book.initial_cover.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
+            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
+            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
+              <%= image_tag(@book.initial_cover.url) if @book.initial_cover.present? %>
+            </div>
+            <div>
+              <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
+                <%= b.file_field :initial_cover %>
+              </span>
+              <a href="#" class="btn btn-file fileupload-exists" data-dismiss="fileupload">Remover</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div>
+</div>
+
+  <div class="btn-group">
+    <%= link_to 'Voltar', '#', class: 'btn', onclick: 'return chaptersContainer();' %>
+  </div>
+</div>
+</div>
+<%= tinymce %>
+
+<script>
+$('.extras-container ul li a').click(function() {
+  $('.tab-pane').hide();
+  $('.extras-container ul li').removeClass('active');
+  $(this).parent().addClass('active');
+  $($(this).attr('href')).show();
+  return false;
+});
+
+function chaptersContainer() {
+  $('.manual-container').hide();
+  $('.extras-container').hide();
+  $('.chapters-container').show();
+  return false;
+}
+
+function manualContainer() {
+  $('.manual-container').show();
+  $('.chapters-container').hide();
+  $('.extras-container').hide();
+  return false;
+}
+
+function extrasContainer() {
+  $('.chapters-container').hide();
+  $('.extras-container').show();
+  $('.manual-container').hide();
+  return false;
+}
+
+function addChapterLine() {
+  if($('#title').val() == '') return false;
+  number_line = $('#chapter-table tr').length
+  tr = "<tr><td class='truncate'>"
+    + $('#title').val()
+    + "</td><td class='truncate'>"
+    + $('#subtitle').val()
+    + "</td><td class='truncate'>"
+    + $('#author').val() + "</td>"
+    + "<td width='5%'><div><label for='chapter["+ number_line +"][file]'><img class='icon-upload'></label><input type='file' id='chapter["+ number_line +"][file]' name='chapter["+ number_line +"][file]' style='display:none' /></div></td>"
+    + "<input type=hidden name='chapter["+ number_line +"][title]' value='"+ $('#title' ).val() +"' />"
+    + "<input type=hidden name='chapter["+ number_line +"][subtitle]'' value='"+ $('#subtitle').val() +"' />"
+    + "<input type=hidden name='chapter["+ number_line +"][author]' value='"+ $('#author').val() +"' />"
+    + "</tr>"
+  $('#chapter-table').append(tr);
+  if($('#chapter-table tr').length > 0) {
+    $('.chapter-table-container').show();
+  }
+  $('#title').val('');
+  $('#subtitle').val('');
+  $('#author').val('');
+  $('.substep').height($('.substep').height() + 36)
+  return false
+}
+
+function addSiglaLine() {
+  if($('#sigla_text').val() == '' || $('#sigla_desc').val() == '') return false;
+  number_line = $('#sigla-table tr').length
+  tr = "<tr><td class='truncate'>"
+    + $('#sigla_text').val()
+    + "</td><td class='truncate'>"
+    + $('#sigla_desc').val()
+    + "</td>"
+    + "<input type=hidden name='acronym["+ number_line +"][acronym]' value='"+ $('#sigla_text').val() +"' />"
+    + "<input type=hidden name='acronym["+ number_line +"][desc]' value='"+ $('#sigla_desc').val() +"' />"
+    + "</tr>"
+  $('#sigla-table').append(tr);
+  if($('#sigla-table tr').length > 0) {
+    $('.sigla-table-container').show();
+  }
+  $('#sigla_text').val('');
+  $('#sigla_desc').val('');
+  return false;
+}
+
+</script>

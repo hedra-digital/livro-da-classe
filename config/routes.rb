@@ -17,6 +17,7 @@ Livrodaclasse::Application.routes.draw do
   get 'projects/terms_of_service', :to => 'projects#terms_of_service', :as => :terms_of_service
   match 'texts/enable_or_disable', :to => 'texts#enable_or_disable', :as => :enable_or_disable
   root :to => 'pages#home'
+  get 'manual', :to => 'pages#manual'
 
   match 'contact' => 'pages#contact', :via => :post
 
@@ -84,6 +85,8 @@ Livrodaclasse::Application.routes.draw do
     match 'dashboard/update_default_cover', :to => 'dashboard#update_default_cover', :as => :update_default_cover
 
     match 'dashboard/revision', :to => 'dashboard#revision', :as => :revision
+    match 'dashboard/manual', :to => 'dashboard#manual', :as => :manual
+    post 'dashboard/manual/update', :to => 'dashboard#manual_update', :as => :manual_update
 
     match 'projects/refresh', :to => 'projects#refresh', :as => :projects_refresh
 
