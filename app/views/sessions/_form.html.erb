@@ -1,0 +1,7 @@
+<%= simple_form_for :signin, { :url => sessions_path } do |f| %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :remember_me, :as => :boolean, :inline_label => 'Permanecer logado', :label => false %>
+  <%= content_tag :p, link_to("Esqueceu sua senha?", new_password_reset_path) %>
+  <%= submit_tag 'Entrar', disable_with: 'Entrando...' %>
+<% end %>
