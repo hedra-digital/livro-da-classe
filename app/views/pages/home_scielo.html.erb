@@ -1,0 +1,147 @@
+    <!--[if lt IE 7]>
+      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="wrap">
+      <header class="main-header">
+        <div class="navbar">
+          <div class="navbar-inner navbar-top">
+            <div class="navbar-logo" >
+              <%= image_tag "scielo/logo-scielo.png", class: 'logo' %>
+              <a href="index.html" class="logo">Livros</a>
+              <div class="publish">Editoração Digital Online</div>
+            </div>
+            <div class="navbar-user">
+                <label><a href="entrar.html">Acesse sua conta</a> ou <a href="cadastro.html">Cadastre-se</a></label>
+            </div>
+            <div class="language">
+              <a href="index.en.html" class="lang-en" lang="en">English</a>
+              <a href="index.es.html" class="lang-es" lang="es">Español</a>
+            </div>
+          </div>
+          <div class="navbar-inner navbar-bottom">
+            <ul class="nav">
+              <li class="active"><a href="#intro">Quem somos</a></li>
+              <li><a href="#servicos">Serviços</a></li>
+              <li><a href="#clientes">Parceiros</a></li>
+              <li><a href="#contato">Contato</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      
+      <div id="home">
+
+        <section id="intro">
+          <div class="intro">
+            <h1>Quem somos</h1>
+            <p>O SciELO Livros é um programa de apoio à disseminação de livros acadêmicos e das pesquisas que comunicam por meio da publicação online com alta visibilidade de coleções de livros de editoras acadêmicas ou coleções temáticas no formato digital.</p>
+            <p>O programa opera como um consórcio e rede de editoras acadêmicas, com destaque para as editoras universitárias. Tem com objetivos específicos contribuir para fortalecer e desenvolver capacidades e infraestruturas de editoração e publicação digital e contribuir para maximizar a visibilidade, interoperabilidade, uso e impacto dos livros acadêmicos.</p>
+            <p>O SciELO Livros faz parte do Programa SciELO / FAPESP, é financiado com o aporte das editoras participantes e combina a publicação de livros comerciais e em acesso aberto. <br/><a href="http://www.scielo.br/scielo.php?script=sci_home&lng=pt&nrm=iso" target="_blank">Ver mais...</a></p>
+          </div>
+          <div class="new_user cadastro-login">
+            <div class="control-group email required user_email">
+              <div class="controls">
+                <input class="string email required" id="signin_email" name="signin[email]" size="50" type="email" placeholder="* Email">
+              </div>
+            </div>
+            <div class="control-group password required user_password">
+              <div class="controls">
+                <input class="password required" id="signin_password" name="signin[password]" size="50" type="password" placeholder="* Password">
+              </div>
+            </div>
+            <input data-disable-with="Entrando..." name="commit" type="submit" value="Entrar">
+            <p><a href="/password_resets/new">Esqueceu sua senha?</a></p>
+          </div>
+        </section>
+
+        <section id="servicos">
+          <div class="servicos">
+            <h1>Serviços</h1>
+            <p>A plataforma SciELO Livros Editoração Digital Online (EDO) é uma plataforma de editoração digital online que permite realizar de forma eficiente e eficaz o projeto ou design gráfico de um livro, incluindo a diagramação e formatação do texto miolo, capa e contracapa. A plataforma SciELO EDO é operada diretamente por usuários, normalmente das equipes técnicas das editoras que fazem uso dos seus serviços. A editoração digital de um livro inicia-se com a carga do texto na plataforma, sem os pré-textos e os pós-textos que são agregados ao texto de acordo com o projeto gráfico. O texto pode estar nos formatos texto ou Word. No futuro outros formatos como Látex e Xml serão admitidos. A diagramação dos textos segue um template ou modelo, estilos e fontes indicados no texto original ou selecionados pelo operador da editoração. As opções envolvem todos os componentes da diagramação como títulos de capítulos e seções, citações, referências, notas, tabelas, figuras, etc. As editoras registradas no sistema podem desenvolver bibliotecas de soluções predefinidas de templates, estilos, fontes, etc. e assim fazer uso de soluções comuns para seus livros o que acelera o tempo de produção e barateia os custos. A plataforma armazena todas as versões elaboradas durante a editoração de modo que sempre é possível retornar uma solução anterior. A plataforma é produto de parceria entre o SciELO e a Editora Hedra e suas funcionalidades, eficiência e segurança são aperfeiçoadas continuamente.</p>
+            <p>A equipe do SciELO Livros assiste às editoras que participam do SciELO Livros no teste da plataforma, no contrato de assinatura de uso da plataforma, na capacitação das equipes para explorar todas as suas potencialidades, na solução de problemas técnicas, na superação de eventuais limitações ou erros na operação, na orçamentação dos custos de uso de acordo com o projeto editorial, acompanhamento das estatísticas de uso e cobranças. A editora usuária da plataforma SciELO EDO terá acesso exclusivo a sua área de serviço e as bibliotecas de modelos e estilos assim como os livros já produzidos são preservados pela plataforma.</p>
+            <p>Entre em contato com a equipe do SciELO EDO pelo <a href="#contato">email</a>.</p>
+          </div>
+        </section>
+
+        <section id="clientes">
+          <div class="clientes">
+            <h1>Parceiros</h1>
+            <ul id="clientescarousel">
+              <li><%= image_tag "scielo/partner-fapesp.png" %></li>
+              <li><%= image_tag "scielo/partner-cnpq.png" %></li>
+              <li><%= image_tag "scielo/partner-bvs.png" %></li>
+              <li><%= image_tag "scielo/partner-bireme.png" %></li>
+              <li><%= image_tag "scielo/partner-fap.png" %></li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="contato">
+          <div class="contato">
+            <h1>Contato</h1>
+            <p>Caro professor: estamos à sua inteira disposição para tirar qualquer dúvida e ouvir suas sugestões. Deixe aqui seu recado: entraremos em contato!</p>
+            <form action="/contact" method="post">
+              <input type="text" name="name" placeholder="Nome">
+              <input type="text" name="email" placeholder="Email">
+              <textarea name="content" id="" rows="10" placeholder="Mensagem"></textarea>
+              <input type="submit" value="Enviar" data-disable-with="Enviando...">
+            </form>
+          </div>
+        </section>
+    </div>
+
+
+    <script>
+    $(document).ready(function() {
+      $('.main-header .nav li a').click(function() {
+        $(window).scrollTo($(this).attr('href'), 1000, {
+          offset: -46
+        });
+      });
+
+      $("#clientescarousel").carouFredSel({
+        auto: {
+          duration: 10000,
+          easing: "linear",
+          timeoutDuration: 0,
+          pauseOnHover: "immediate"
+        }
+      });
+
+      //$('#clientescarousel img').adipoli({
+      //  'startEffect': 'grayscale',
+      //  'hoverEffect': 'normal'
+      //});
+
+      $('body').scrollspy({ target: '.navbar-bottom', offset: 150 });
+
+      $('.saiba-mais').click(function() {
+        $('#saiba-mais-content').modal();
+        return false;
+      });
+    });
+    </script>
+
+
+      <footer class="main-footer">
+        <div class="footer-top">
+          <ul class="nav">
+            <li></li>
+          </ul>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">
+            <%= image_tag "scielo/logo-scielo-signature.png" %>
+          </div>
+          <div class="address">
+            <strong>SciELO - Scientific Electronic Library Online</strong>
+            <br />
+            Av. Onze de Junho, 269 - Vila Clementino 04041-050 São Paulo SP - Brasil
+            <br />
+            Tel.: (55 11) 5083-3639 - Email: scielo@scielo.org
+          </div>
+        </div>
+      </footer>
+    </div>
