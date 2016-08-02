@@ -77,3 +77,5 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'whenever', :require => false
+
+gem 'rack-mini-profiler', require: false
