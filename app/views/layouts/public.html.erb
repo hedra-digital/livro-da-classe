@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= yield(:title).presence || content_tag(:title, "#{Publisher.get_current_app}") %>
-    <%= stylesheet_link_tag    "public" %>
+    <%= stylesheet_link_tag    "scielo" %>
     <%= javascript_include_tag "application" %>
     <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
@@ -47,6 +47,17 @@
                 </ul>
               <% end %>
             </div>
+          </div>
+          <div class="navbar-inner navbar-bottom">
+            <ul class="nav">
+              <!-- <li <%= "class=active" if current_page?(root_path) %>>
+                <a href="<%= current_page?(root_path) ? '#video' : '/' %>">Home</a>
+              </li> -->
+              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#quem-somos">Quem Somos</a></li>
+              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#como-funciona">Como Funciona</a></li>
+              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#clientes">Clientes</a></li>
+              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#contato">Contato</a></li>
+            </ul>
           </div>
         </div>
       </header>

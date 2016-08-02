@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   layout        :choose_layout
 
   def home
+    render 'pages/home_scielo'
   end
 
   def contact
