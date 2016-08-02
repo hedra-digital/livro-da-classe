@@ -41,18 +41,20 @@
             <p>O SciELO Livros faz parte do Programa SciELO / FAPESP, é financiado com o aporte das editoras participantes e combina a publicação de livros comerciais e em acesso aberto. <br/><a href="http://www.scielo.br/scielo.php?script=sci_home&lng=pt&nrm=iso" target="_blank">Ver mais...</a></p>
           </div>
           <div class="new_user cadastro-login">
+            <%= simple_form_for :signin, { :url => sessions_path } do |f| %>
             <div class="control-group email required user_email">
               <div class="controls">
-                <input class="string email required" id="signin_email" name="signin[email]" size="50" type="email" placeholder="* Email">
+                <%= f.input :email, label: false, placeholder: '* Email', class: 'string email required', input_html: { size: 50 } %>
               </div>
             </div>
             <div class="control-group password required user_password">
               <div class="controls">
-                <input class="password required" id="signin_password" name="signin[password]" size="50" type="password" placeholder="* Password">
+                <%= f.input :password, label: false, placeholder: '* Password', class: 'password required', input_html: { size: 50 } %>
               </div>
             </div>
-            <input data-disable-with="Entrando..." name="commit" type="submit" value="Entrar">
-            <p><a href="/password_resets/new">Esqueceu sua senha?</a></p>
+            <%= submit_tag 'Entrar', disable_with: 'Entrando...' %>
+            <%= content_tag :p, link_to("Esqueceu sua senha?", new_password_reset_path) %>
+            <% end %>
           </div>
         </section>
 
