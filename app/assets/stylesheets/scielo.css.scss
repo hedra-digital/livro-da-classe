@@ -3499,26 +3499,26 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
 
 @font-face {
   font-family: 'Calluna Sans';
-  src: url("../images/fonts/callunasans-regular.eot");
-  src: url("../images/fonts/callunasans-regular.eot?#iefix") format("embedded-opentype"), url("../images/fonts/callunasans-regular.woff") format("woff"), url("../images/fonts/callunasans-regular.ttf") format("truetype"), url("../images/fonts/callunasans-regular.svg#calluna_sansregular") format("svg");
+  src: url("../assets/scielo/fonts/callunasans-regular.eot");
+  src: url("../assets/scielo/fonts/callunasans-regular.eot?#iefix") format("embedded-opentype"), url("../assets/scielo/fonts/callunasans-regular.woff") format("woff"), url("../assets/scielo/fonts/callunasans-regular.ttf") format("truetype"), url("../assets/scielo/fonts/callunasans-regular.svg#calluna_sansregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 @font-face {
   font-family: 'Calluna';
-  src: url("../images/fonts/calluna-regular.eot");
-  src: url("../images/fonts/calluna-regular.eot?#iefix") format("embedded-opentype"), url("../images/fonts/calluna-regular.woff") format("woff"), url("../images/fonts/calluna-regular.ttf") format("truetype"), url("../images/fonts/calluna-regular.svg#callunaregular") format("svg");
+  src: url("../assets/scielo/fonts/calluna-regular.eot");
+  src: url("../assets/scielo/fonts/calluna-regular.eot?#iefix") format("embedded-opentype"), url("../assets/scielo/fonts/calluna-regular.woff") format("woff"), url("../assets/scielo/fonts/calluna-regular.ttf") format("truetype"), url("../assets/scielo/fonts/calluna-regular.svg#callunaregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 @font-face {
   font-family: 'Miso';
-  src: url("../images/fonts/miso-regular.eot");
-  src: url("../images/fonts/miso-regular.eot?#iefix") format("embedded-opentype"), url("../images/fonts/miso-regular.woff") format("woff"), url("../images/fonts/miso-regular.ttf") format("truetype");
+  src: url("../assets/scielo/fonts/miso-regular.eot");
+  src: url("../assets/scielo/fonts/miso-regular.eot?#iefix") format("embedded-opentype"), url("../assets/scielo/fonts/miso-regular.woff") format("woff"), url("../assets/scielo/fonts/miso-regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
 @font-face {
   font-family: 'Miso';
-  src: url("../images/fonts/miso-bold.eot");
-  src: url("../images/fonts/miso-bold.eot?#iefix") format("embedded-opentype"), url("../images/fonts/miso-bold.woff") format("woff"), url("../images/fonts/miso-bold.ttf") format("truetype");
+  src: url("../assets/scielo/fonts/miso-bold.eot");
+  src: url("../assets/scielo/fonts/miso-bold.eot?#iefix") format("embedded-opentype"), url("../assets/scielo/fonts/miso-bold.woff") format("woff"), url("../assets/scielo/fonts/miso-bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal; }
 object {
@@ -3718,13 +3718,13 @@ section {
           text-indent: -999999em;
           width: 70px;
           height: 30px;
-          background-image: url(../images/logo-scielo-livros.svg);
+          background-image: url(../assets/scielo/logo-scielo-livros.svg);
           background-repeat: no-repeat;
           background-size: auto 100%; }
           .main-header .navbar .navbar-top .navbar-logo a.logo.lang-en {
-            background-image: url(../images/logo-scielo-books.svg); }
+            background-image: url(../assets/scielo/logo-scielo-books.svg); }
           .main-header .navbar .navbar-top .navbar-logo a.logo.lang-es {
-            background-image: url(../images/logo-scielo-libros.svg); }
+            background-image: url(../assets/scielo/logo-scielo-libros.svg); }
         .main-header .navbar .navbar-top .navbar-logo .publish {
           display: inline-block;
           position: relative;
@@ -3944,7 +3944,7 @@ section {
   padding: 20px 0 15px;
   color: #403d39;
   font-size: .8em;
-  background: #f5f5f5 url(../images/dashline.png) top left repeat-x; }
+  background: #f5f5f5 url(../assets/scielo/dashline.png) top left repeat-x; }
   .main-footer .footer-top {
     display: none;
     margin: 0 10%;
@@ -4002,7 +4002,7 @@ section {
           display: inline-block;
           width: 55px;
           height: 55px;
-          background: url(../images/video-icons.jpg); }
+          background: url(../assets/scielo/video-icons.jpg); }
         #home .video .top .links ul li .text {
           display: inline-block;
           width: 55px;
@@ -4072,7 +4072,7 @@ section {
 #home .clientes h1,
 #home .quem-somos h1,
 #home .contato h1 {
-  background: url(../images/dashline.png) bottom left repeat-x; }
+  background: url(../assets/scielo/dashline.png) bottom left repeat-x; }
 
 #home #servicos,
 #home #contato {
