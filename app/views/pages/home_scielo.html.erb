@@ -2,35 +2,6 @@
       <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="wrap">
-      <header class="main-header">
-        <div class="navbar">
-          <div class="navbar-inner navbar-top">
-            <div class="navbar-logo" >
-              <%= image_tag "scielo/logo-scielo.png", class: 'logo' %>
-              <a href="index.html" class="logo">Livros</a>
-              <div class="publish">Editoração Digital Online</div>
-            </div>
-            <div class="navbar-user">
-                <label><a href="entrar.html">Acesse sua conta</a> ou <a href="cadastro.html">Cadastre-se</a></label>
-            </div>
-            <div class="language">
-              <a href="index.en.html" class="lang-en" lang="en">English</a>
-              <a href="index.es.html" class="lang-es" lang="es">Español</a>
-            </div>
-          </div>
-          <div class="navbar-inner navbar-bottom">
-            <ul class="nav">
-              <li class="active"><a href="#intro">Quem somos</a></li>
-              <li><a href="#servicos">Serviços</a></li>
-              <li><a href="#clientes">Parceiros</a></li>
-              <li><a href="#contato">Contato</a></li>
-            </ul>
-          </div>
-        </div>
-      </header>
-
-      
       <div id="home">
 
         <section id="intro">
@@ -93,8 +64,6 @@
           </div>
         </section>
     </div>
-
-
     <script>
     $(document).ready(function() {
       $('.main-header .nav li a').click(function() {
@@ -124,26 +93,4 @@
         return false;
       });
     });
-    </script>
-
-
-      <footer class="main-footer">
-        <div class="footer-top">
-          <ul class="nav">
-            <li></li>
-          </ul>
-        </div>
-        <div class="footer-bottom">
-          <div class="copyright">
-            <%= image_tag "scielo/logo-scielo-signature.png" %>
-          </div>
-          <div class="address">
-            <strong>SciELO - Scientific Electronic Library Online</strong>
-            <br />
-            Av. Onze de Junho, 269 - Vila Clementino 04041-050 São Paulo SP - Brasil
-            <br />
-            Tel.: (55 11) 5083-3639 - Email: scielo@scielo.org
-          </div>
-        </div>
-      </footer>
-    </div>
+    </script>      

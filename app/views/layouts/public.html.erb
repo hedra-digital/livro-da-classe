@@ -17,37 +17,52 @@
     <![endif]-->
 
     <div class="wrap">
-      <header class="main-header">
-        <div class="navbar">         
+       <header class="main-header">
+        <div class="navbar">
+          <div class="navbar-inner navbar-top">
+            <div class="navbar-logo" >
+              <%= image_tag "scielo/logo-scielo.png", class: 'logo' %>
+              <a href="#" class="logo">Livros</a>
+              <div class="publish">Editoração Digital Online</div>
+            </div>
+            <div class="navbar-user">
+                <label><a href="entrar.html">Acesse sua conta</a> ou <a href="cadastro.html">Cadastre-se</a></label>
+            </div>
+            <div class="language">
+              <a href="index.en.html" class="lang-en" lang="en">English</a>
+              <a href="index.es.html" class="lang-es" lang="es">Español</a>
+            </div>
+          </div>
           <div class="navbar-inner navbar-bottom">
             <ul class="nav">
-              <!-- <li <%= "class=active" if current_page?(root_path) %>>
-                <a href="<%= current_page?(root_path) ? '#video' : '/' %>">Home</a>
-              </li> -->
-              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#quem-somos">Quem Somos</a></li>
-              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#como-funciona">Como Funciona</a></li>
-              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#clientes">Clientes</a></li>
-              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#contato">Contato</a></li>
+              <li class="active"><a href="#intro">Quem somos</a></li>
+              <li><a href="#servicos">Serviços</a></li>
+              <li><a href="#clientes">Parceiros</a></li>
+              <li><a href="#contato">Contato</a></li>
             </ul>
           </div>
         </div>
       </header>
-
-      <%= flash_message %>
+      
       <%= yield %>
 
-      <footer class="main-footer">
+     <footer class="main-footer">
         <div class="footer-top">
           <ul class="nav">
             <li></li>
           </ul>
         </div>
         <div class="footer-bottom">
-          <%#= image_tag publisher_logo, :width => '130', :height => '130' %>
-          <%#= publisher_official_name %>
-          <%#= publisher_address_info %>
-          <div class="address">Rua Fradique Coutinho 1139, Subsolo CEP 05416-011 - São Paulo - SP Tel.: (11) 3097-8304</div>
-          <div class="copyright">Copyright © 2014, Hedra. <%= version_number%></div>
+          <div class="copyright">
+            <%= image_tag "scielo/logo-scielo-signature.png" %>
+          </div>
+          <div class="address">
+            <strong>SciELO - Scientific Electronic Library Online</strong>
+            <br />
+            Av. Onze de Junho, 269 - Vila Clementino 04041-050 São Paulo SP - Brasil
+            <br />
+            Tel.: (55 11) 5083-3639 - Email: scielo@scielo.org
+          </div>
         </div>
       </footer>
     </div>
