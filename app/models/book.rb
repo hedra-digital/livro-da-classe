@@ -357,7 +357,9 @@ class Book < ActiveRecord::Base
     arr = [ { part: 'DEDICATORIA', content: self.dedic },
             { part: 'RESUMO', content: self.resume_original_text },
             { part: 'AGRADECIMENTO', content: self.acknowledgment },
-            { part: 'SIGLAS', content: self.acronym } ]
+            { part: 'SIGLAS', content: self.acronym },
+            { part: 'QUARTA', content: self.book_data.quartacapa },
+            { part: 'ORELHA', content: self.book_data.orelha } ]
     arr.each do |element|
       # html
       content = element[:part] == 'SIGLAS' ? get_content_acronym(element[:content]) : element[:content]
