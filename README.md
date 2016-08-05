@@ -117,6 +117,27 @@ $ rails server
 
 Acesse a aplicação através da url http://127.0.0.1:3012
 
+### Create google credentials
+==========================
+
+These credentials are necessary to use the upload docx file and import it in the system.
+
+First, you need to access the URL https://console.developers.google.com/apis/ and select Credentials option in the left menu.
+In Credentials tab, click on 'Create Credentials' and choice 'OAuth Client ID'. Switch 'Other' in the Application Type, fill the name field with livrodaclasse and click 'Create' button.
+Download JSON file and save in the config folder as client_secrets.json.
+
+In the terminal use rails c command and execute the follow commands
+
+<code>
+> load 'lib/google_connector'
+> GoogleConnector.new
+</code>
+
+An URl will be showed. Open this URL in the browser and accept the permission.
+A code will be showed. Copy and paste it in terminal.
+
+A new file is create on the config folder. Close the terminal and restart tha application.
+
 ###License
 
 MIT License. Copyright 2012, 2013, 2014 Editora Hedra. http://hedra.com.br
