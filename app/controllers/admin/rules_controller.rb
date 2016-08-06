@@ -1,6 +1,9 @@
 module Admin
   # Rule Controller
   class RulesController < Admin::ApplicationController
+    skip_before_filter :authentication_admin_check
+    before_filter :auth_admin_or_publisher
+    
     def index
       @rules = Rule.all
     end
