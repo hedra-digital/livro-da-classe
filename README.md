@@ -90,11 +90,11 @@ Adicionar a pasta na configuração do vagrant (Vagrantfile)
 Colocar seu caminho na variável "templates_path" do arquivo de configurações (config/config.yml)
 
 ### Iniciar Vagrant
-<code>
+```
 $ vagrant up
 $ vagrant ssh
 $ cd /project
-</code>
+```
 
 ### Instalar Gemas do projeto
 <code>
@@ -103,11 +103,11 @@ $ bundle install
 
 ### Criar estrutura do banco de dados da aplicação
 
-<code>
+```
 $ rake db:create
 $ rake db:migrate
 $ rake db:seed
-</code>
+```
 
 ### Executar aplicação local
 
@@ -130,11 +130,10 @@ Download JSON file and save in the config folder as client_secrets.json.
 
 In the terminal use rails c command and execute the follow commands:
 
-<code>
+```
 $ load 'lib/google_connector'
-
 $ GoogleConnector.new
-</code>
+```
 
 An URl will be showed. Open this URL in the browser and accept the permission.
 
