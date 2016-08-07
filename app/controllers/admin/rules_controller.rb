@@ -1,6 +1,7 @@
 module Admin
   # Rule Controller
   class RulesController < Admin::ApplicationController
+
     def index
       @rules = Rule.all
     end
