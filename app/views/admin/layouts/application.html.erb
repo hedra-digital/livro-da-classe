@@ -27,9 +27,9 @@
               <li><%= link_to "Status", admin_book_statuses_path if current_user.admin? %></li>
               <li><%= link_to "Perfis", admin_profiles_path if current_user.admin? %></li>
               <li><%= link_to "Permissões", admin_permissions_path if current_user.admin? %></li>
-              <li><%= link_to "Rotinas", admin_rules_path %></li>
+              <li><%= link_to "Rotinas", admin_rules_path if current_user.admin? %></li>
               <li><%= link_to "Usuários", admin_users_path %></li>
-              <li><%= link_to "Manual", admin_manual_path %></li>
+              <li><%= link_to "Manual", admin_manual_path if current_user.admin? %></li> 
             </ul>
           </div>
         </div>
