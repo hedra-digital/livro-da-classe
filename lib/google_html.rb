@@ -65,7 +65,7 @@ class GoogleHtml
   end
 
   def self.footnote_content?(a)
-    a.attributes['href'].value.include?('ftnt_ref') && a.parent.name == 'p'
+    a.attributes['href'].value.include?('ftnt_ref') && a.parent.name == 'p' if a.attributes['href'].present?
   end
 
   def self.footnote?(a)
@@ -73,11 +73,11 @@ class GoogleHtml
   end
 
   def self.footnote_ref(a)
-    a.attributes['href'].value.delete('#')
+    a.attributes['href'].value.delete('#') if a.attributes['href'].present?
   end
 
   def self.footnote_content_ref(ftnt_content)
-    ftnt_content.attributes['id'].value
+    ftnt_content.attributes['id'].value if ftnt_content.attributes['id'].present?
   end
 
   def self.footnote_content(ftnt_content)
