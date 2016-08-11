@@ -16,6 +16,7 @@ Livrodaclasse::Application.routes.draw do
   get 'auth/failure', :to => redirect('/')
   get 'projects/terms_of_service', :to => 'projects#terms_of_service', :as => :terms_of_service
   match 'texts/enable_or_disable', :to => 'texts#enable_or_disable', :as => :enable_or_disable
+  get '/:locale' => 'pages#home'
   root :to => 'pages#home'
   get 'manual', :to => 'pages#manual'
 
