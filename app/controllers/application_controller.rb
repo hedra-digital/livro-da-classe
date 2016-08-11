@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_filter :log_additional_data
+  before_filter :set_locale
 
   include AuthorizationHelper
 
@@ -69,6 +70,10 @@ class ApplicationController < ActionController::Base
       yield
       ActiveRecord::Base.connection.close
     end
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 
   protected
