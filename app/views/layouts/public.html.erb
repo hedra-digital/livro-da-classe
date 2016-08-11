@@ -49,7 +49,7 @@
               <li <%= "class=active" if current_page?(root_path) %>>
                 <a href="<%= current_page?(root_path) ? '#video' : '/' %>">Home</a>
               </li>
-              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#quem-somos">Quem Somos</a></li>
+              <li><a href="<%= current_page?(root_path) ? '' : '/' %>#quem-somos"><%= t(:who_are_we) %></a></li>
               <li><a href="<%= current_page?(root_path) ? '' : '/' %>#como-funciona">Como Funciona</a></li>
               <li><a href="<%= current_page?(root_path) ? '' : '/' %>#clientes">Clientes</a></li>
               <li><a href="<%= current_page?(root_path) ? '' : '/' %>#contato">Contato</a></li>
