@@ -1,0 +1,18 @@
+pt-BR:
+  services: "Serviços"
+  partners: "Parceiros"
+  contact: "Contato"
+  who_are_we_text: "O SciELO Livros é um programa de apoio à disseminação de obras acadêmicas e de pesquisas com publicação online, e disponibiliza pela internet coleções de livros de editoras acadêmicas ou séries temáticas, no formato digital. O programa opera como um consórcio ou rede de editoras acadêmicas — com destaque para as editoras universitárias — e tem com objetivo oferecer infraestrutura e desenvolver processos de editoração ágeis para a publicação digital, contribuindo assim para maximizar a visibilidade, interoperabilidade, uso e impacto dos livros acadêmicos. O SciELO Livros faz parte do Programa SciELO/ FAPESP e é financiado com o aporte das editoras participantes, e contempla a publicação de livros comerciais e em acesso aberto."
+  see_more: "Ver mais..."
+  services_text: "<p>A plataforma SciELO Livros «Editoração Digital Online» (EDO) é uma plataforma de editoração digital online que permite realizar de forma ágil e eficaz a edição de um livro, incluindo a diagramação e formatação do texto de miolo, capa e contracapa. A plataforma SciELO «EDO» pode ser operada diretamente pelo editor, revisor e até mesmo autor, pela internet e simultâneamente. A editoração digital de um livro inicia-se com a carga do texto na plataforma, sem as partes pré e pós-textuais, como agradecimentos, epígrafe, sumário etc. O usuário pode inserir os capítulos diretamente no editor da aplicação ou carrager um arquivo no formado docx (no futuro, outros formatos como LaTeX e Xml serão admitidos). A diagramação pode ser disposta em um template ou modelo específico, com tamanho, estilos e fontes pré-estabelecidos com a editora. Os templates incluem estílos como abertura de capítulos e seções, citações, referências, notas, tabelas, cabeços, figuras etc. A plataforma armazena todas as versões elaboradas durante o processo de editoração e a conferência de emendas é facilitada. A plataforma é produto de parceria entre o SciELO e a Editora Hedra e suas funcionalidades, eficiência e segurança são aperfeiçoadas continuamente.</p>
+                  <p>A equipe do SciELO Livros assiste às editoras participantes no teste da plataforma, no contrato de assinatura de uso da plataforma, na capacitação das equipes para explorar todas as suas potencialidades, na solução de problemas técnicas, na superação de eventuais limitações ou erros na operação, na orçamentação dos custos de uso de acordo com o projeto editorial, acompanhamento das estatísticas de uso e cobranças. A editora usuária da plataforma SciELO «EDO» terá acesso exclusivo a sua área de serviço. As bibliotecas de modelos e estilos assim como os livros já produzidos são preservados pela plataforma.</p>"
+  contact_text: "<p>Entre em contato com a equipe do SciELO EDO pelo <a href='#contato'>email</a>.</p>"
+  signing: "Entrando..."
+  public_sign_in: "Entrar"
+  forgot_your_password: "Esqueceu sua senha?"
+  public_email: "* Email"
+  public_password: "* Password"
+  public_name: "Nome"
+  public_message: "Mensagem"
+  public_send: "Enviar"
+  public_sending: "Enviando..."
