@@ -6,39 +6,37 @@
 
         <section id="intro">
           <div class="intro">
-            <h1>Quem somos</h1>
-            <p>O SciELO Livros é um programa de apoio à disseminação de obras acadêmicas e de pesquisas com publicação online, e disponibiliza pela internet coleções de livros de editoras acadêmicas ou séries temáticas, no formato digital. O programa opera como um consórcio ou rede de editoras acadêmicas — com destaque para as editoras universitárias — e tem com objetivo oferecer infraestrutura e desenvolver processos de editoração ágeis para a publicação digital, contribuindo assim para maximizar a visibilidade, interoperabilidade, uso e impacto dos livros acadêmicos. O SciELO Livros faz parte do Programa SciELO/ FAPESP e é financiado com o aporte das editoras participantes, e contempla a publicação de livros comerciais e em acesso aberto.<br/><a href="http://www.scielo.br/scielo.php?script=sci_home&lng=pt&nrm=iso" target="_blank">Ver mais...</a></p>
+            <h1><%= t :who_are_we %></h1>
+            <p><%= t :who_are_we_text %><br/><a href="http://www.scielo.br/scielo.php?script=sci_home&lng=pt&nrm=iso" target="_blank"><%= t :see_more %></a></p>
           </div>
           <div class="new_user cadastro-login">
             <%= simple_form_for :signin, { :url => sessions_path } do |f| %>
             <div class="control-group email required user_email">
               <div class="controls">
-                <%= f.input :email, label: false, placeholder: '* Email', class: 'string email required', input_html: { size: 50 } %>
+                <%= f.input :email, label: false, placeholder: (t :public_email), class: 'string email required', input_html: { size: 50 } %>
               </div>
             </div>
             <div class="control-group password required user_password">
               <div class="controls">
-                <%= f.input :password, label: false, placeholder: '* Password', class: 'password required', input_html: { size: 50 } %>
+                <%= f.input :password, label: false, placeholder: (t :public_password), class: 'password required', input_html: { size: 50 } %>
               </div>
             </div>
-            <%= submit_tag 'Entrar', disable_with: 'Entrando...' %>
-            <%= content_tag :p, link_to("Esqueceu sua senha?", new_password_reset_path) %>
+            <%= submit_tag (t :public_sign_in), disable_with: (t :signing) %>
+            <%= content_tag :p, link_to( (t :forgot_your_password), new_password_reset_path) %>
             <% end %>
           </div>
         </section>
 
         <section id="servicos">
           <div class="servicos">
-            <h1>Serviços</h1>
-            <p>A plataforma SciELO Livros «Editoração Digital Online» (EDO) é uma plataforma de editoração digital online que permite realizar de forma ágil e eficaz a edição de um livro, incluindo a diagramação e formatação do texto de miolo, capa e contracapa. A plataforma SciELO «EDO» pode ser operada diretamente pelo editor, revisor e até mesmo autor, pela internet e simultâneamente. A editoração digital de um livro inicia-se com a carga do texto na plataforma, sem as partes pré e pós-textuais, como agradecimentos, epígrafe, sumário etc. O usuário pode inserir os capítulos diretamente no editor da aplicação ou carrager um arquivo no formado docx (no futuro, outros formatos como LaTeX e Xml serão admitidos). A diagramação pode ser disposta em um template ou modelo específico, com tamanho, estilos e fontes pré-estabelecidos com a editora. Os templates incluem estílos como abertura de capítulos e seções, citações, referências, notas, tabelas, cabeços, figuras etc. A plataforma armazena todas as versões elaboradas durante o processo de editoração e a conferência de emendas é facilitada. A plataforma é produto de parceria entre o SciELO e a Editora Hedra e suas funcionalidades, eficiência e segurança são aperfeiçoadas continuamente.</p>
-            <p>A equipe do SciELO Livros assiste às editoras participantes no teste da plataforma, no contrato de assinatura de uso da plataforma, na capacitação das equipes para explorar todas as suas potencialidades, na solução de problemas técnicas, na superação de eventuais limitações ou erros na operação, na orçamentação dos custos de uso de acordo com o projeto editorial, acompanhamento das estatísticas de uso e cobranças. A editora usuária da plataforma SciELO «EDO» terá acesso exclusivo a sua área de serviço. As bibliotecas de modelos e estilos assim como os livros já produzidos são preservados pela plataforma.</p>
-            <p>Entre em contato com a equipe do SciELO EDO pelo <a href="#contato">email</a>.</p>
+            <h1><%= t :services %></h1>
+            <%= (t :services_text).html_safe %>
           </div>
         </section>
 
         <section id="clientes">
           <div class="clientes">
-            <h1>Parceiros</h1>
+            <h1><%= t :partners %></h1>
             <ul id="clientescarousel">
               <li><%= image_tag "scielo/partner-fapesp.png" %></li>
               <li><%= image_tag "scielo/partner-cnpq.png" %></li>
@@ -51,13 +49,13 @@
 
         <section id="contato">
           <div class="contato">
-            <h1>Contato</h1>
-            <p>Caro professor: estamos à sua inteira disposição para tirar qualquer dúvida e ouvir suas sugestões. Deixe aqui seu recado: entraremos em contato!</p>
+            <h1><%= t :contact %></h1>
+            <%= (t :contact_text).html_safe %>
             <form action="/contact" method="post">
-              <input type="text" name="name" placeholder="Nome">
-              <input type="text" name="email" placeholder="Email">
-              <textarea name="content" id="" rows="10" placeholder="Mensagem" style="resize:none"></textarea>
-              <input type="submit" value="Enviar" data-disable-with="Enviando...">
+              <input type="text" name="name" placeholder="<%= t :public_name %>">
+              <input type="text" name="email" placeholder="<%= t :public_email %>">
+              <textarea name="content" id="" rows="10" placeholder="<%= t :public_message %>" style="resize:none"></textarea>
+              <input type="submit" value="<%= t :public_send %>" data-disable-with="<%= t :public_sending %>">
             </form>
           </div>
         </section>
