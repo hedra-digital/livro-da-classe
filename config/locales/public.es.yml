@@ -9,7 +9,7 @@ es:
   contact_text: "<p>Póngase en contacto con el personal SciELO EDO por <a href='#contato'>correo electrónico</a>.</p>"
   signing: "Cargando..."
   public_sign_in: "Registrarse"
-  forgot_your_password: "Forgot your password?"
+  forgot_your_password: "¿Olvidaste tu contraseña?"
   public_email: "* Email"
   public_password: "* Contraseña"
   public_name: "Nombre"
