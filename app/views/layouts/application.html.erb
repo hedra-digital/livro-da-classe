@@ -27,24 +27,23 @@
 		<![endif]-->
 
 
-
-		<!-- Content -->
 		<div class="wrap wrap-app">
 
 
+			<!-- Header -->
 			<header class="main-header main-header-app">
 				<div class="navbar">
 					<div class="navbar-inner navbar-left">
 						<ul class="nav">
-							<li><%= link_to t('my_books'), books_path %></li> <!-- class="active" -->
+							<li class="active"><%= link_to t('my_books'), books_path %></li> <!-- class="active" -->
 							<% if current_user.publisher? %>
 							<li><%= link_to 'EDITORIAL', '/admin' %></li>
 							<% end %>
-							<li><a class="tutorial-modal" data-fancybox-type="iframe" href="http://prezi.com/embed/w2ipyvduj-gc/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;features=undefined&amp;disabled_features=undefined">Tutorial</a></li>
+							<!-- <li><a class="tutorial-modal" data-fancybox-type="iframe" href="http://prezi.com/embed/w2ipyvduj-gc/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;features=undefined&amp;disabled_features=undefined">Tutorial</a></li> -->
 						</ul>
 					</div>
 
-					
+
 					<div class="navbar-inner navbar-right">
 						<div class="navbar-user">
 							<div class="dropdown">
@@ -61,32 +60,44 @@
 					</div>
 				</div>
 			</header>
+			<div class="header-space"></div>
 
+
+
+			<!-- Notification -->
 			<%= flash_message %>
 
+
+
+			<!-- Content -->
 			<section>
-				<div>
+				<div class="inner-wrap">
 					<%= render 'books/book_info' if (controller_name == 'books' and params[:id]) || params[:book_id] %>
 					<%= yield %>
 				</div>
 			</section>
 
+
+
+			<!-- Footer -->
 			<footer class="main-footer">
-				<div class="footer-top">
-					<ul class="nav">
-						<li></li>
-					</ul>
-				</div>
-				<div class="footer-bottom">
-					<div class="copyright">
-						<%= image_tag "scielo/logo-scielo-signature.png" %>
+				<div class="inner-wrap">
+					<div class="footer-top">
+						<ul class="nav">
+							<li></li>
+						</ul>
 					</div>
-					<div class="address">
-						<strong>SciELO - Scientific Electronic Library Online</strong>
-						<br />
-						Av. Onze de Junho, 269 - Vila Clementino 04041-050 São Paulo SP - Brasil
-						<br />
-						Tel.: (55 11) 5083-3639 - Email: scielo@scielo.org
+					<div class="footer-bottom">
+						<div class="copyright">
+							<%= image_tag "scielo/logo-scielo-signature.png" %>
+						</div>
+						<div class="address">
+							<strong>SciELO - Scientific Electronic Library Online</strong>
+							<br />
+							Av. Onze de Junho, 269 - Vila Clementino 04041-050 São Paulo SP - Brasil
+							<br />
+							Tel.: (55 11) 5083-3639 - Email: scielo@scielo.org
+						</div>
 					</div>
 				</div>
 			</footer>
