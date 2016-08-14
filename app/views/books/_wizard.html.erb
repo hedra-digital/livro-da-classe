@@ -22,7 +22,7 @@
           <li>
             <button id="partners">Dados da escola</button>
           </li>
-          <% unless @rules.empty? %>
+          <% if @rules.present? %>
           <li>
             <button id="advanced">Opções Avançadas</button>
           </li>
