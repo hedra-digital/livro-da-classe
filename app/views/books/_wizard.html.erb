@@ -22,9 +22,11 @@
           <li>
             <button id="partners">Dados da Instituição</button>
           </li>
+          <% if @rules.present? %>
           <li>
             <button id="advanced">Opções Avançadas</button>
           </li>
+          <% end %>
           <li hidden>
             <button id="apparatus">Aparatos</button>
           </li>

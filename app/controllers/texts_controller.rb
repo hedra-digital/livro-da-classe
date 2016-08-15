@@ -7,7 +7,14 @@ class TextsController < ApplicationController
   before_filter :secure_book, :only => [:update, :create]
 
   def index
-    @texts = @book.texts.order('position')
+    @texts = []
+    @book.texts.order('position').each do |text|
+      if text.title == 'Título do capítulo' && text.content.empty?
+        text.delete
+      else
+        @texts << text
+      end
+    end
   end
 
   def show
@@ -58,12 +65,16 @@ class TextsController < ApplicationController
     @text = Text.find_by_uuid_or_id(params[:id])
     @text.valid_content = @text.validate_content
 
+
     # do not save the content, because we need to split it later
     content = params[:text].delete(:content)
 
     if @text.update_attributes(params[:text])
       @text.content = content
 
+      if @text.title == 'Título do capítulo' && @text.content.empty?
+        return redirect_to book_texts_path @book.uuid
+      end
       chapters, footnotes = Text.split_chpaters(@text.content_with_head)
 
       chapter_ids = Text.save_split_chapters(chapters, footnotes, @book, current_user)
