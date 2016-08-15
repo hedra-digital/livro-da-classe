@@ -19,7 +19,7 @@
 		<%= csrf_meta_tags %>
 		<%= yield :meta_tags %>
 	</head>
-	<body>
+	<body class="application">
 
 		<!-- Old browser -->
 		<!--[if lt IE 7]>
@@ -32,34 +32,43 @@
 
 			<!-- Header -->
 			<header class="main-header main-header-app">
-				<div class="navbar">
-					<div class="navbar-inner navbar-left">
-						<ul class="nav">
-							<li class="active"><%= link_to t('my_books'), books_path %></li> <!-- class="active" -->
-							<% if current_user.publisher? %>
-							<li><%= link_to 'EDITORIAL', '/admin' %></li>
-							<% end %>
-							<!-- <li><a class="tutorial-modal" data-fancybox-type="iframe" href="http://prezi.com/embed/w2ipyvduj-gc/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;features=undefined&amp;disabled_features=undefined">Tutorial</a></li> -->
-						</ul>
+				<div class="inner-wrap">
+					
+					
+					<!-- Logo -->
+					<div class="logo" >
+						<%= image_tag "scielo/logo-scielo.png" %>
 					</div>
+					
 
+					<!-- Navigation -->
+					<nav class="navigation">
+						<ul>
+							<li class="active"><%= link_to t('my_books'), books_path %></li>
+							
+							<% if current_user.publisher? %>
+								<li><%= link_to 'EDITORIAL', '/admin' %></li>
+							<% end %>
+							
+							<!-- <li><a class="tutorial-modal" data-fancybox-type="iframe" href="http://prezi.com/embed/w2ipyvduj-gc/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;features=undefined&amp;disabled_features=undefined">Tutorial</a></li> -->
 
-					<div class="navbar-inner navbar-right">
-						<div class="navbar-user">
-							<div class="dropdown">
-								<button data-toggle="dropdown">
-									<%= user_id(current_user) %>
-									<b class="caret"></b>
-								</button>
-								<ul class="dropdown-menu">
+							<li>
+								<a data-toggle="dropdown" href="#">Conta <i class="icon-arrow"></i></a>
+								<ul class="dropdown">
 									<li><%= link_to current_user.name, user_path(current_user) %></li>
 									<li><%= link_to t(:sign_out), signout_path, :method => :delete %></li>
 								</ul>
-							</div>
-						</div>
-					</div>
+							</li>
+						</ul>
+					</nav>
+
+
 				</div>
 			</header>
+
+
+
+			<!-- space -->
 			<div class="header-space"></div>
 
 
@@ -70,12 +79,12 @@
 
 
 			<!-- Content -->
-			<section>
+			<main>
 				<div class="inner-wrap">
 					<%= render 'books/book_info' if (controller_name == 'books' and params[:id]) || params[:book_id] %>
 					<%= yield %>
 				</div>
-			</section>
+			</main>
 
 
 
@@ -88,9 +97,6 @@
 						</ul>
 					</div>
 					<div class="footer-bottom">
-						<div class="copyright">
-							<%= image_tag "scielo/logo-scielo-signature.png" %>
-						</div>
 						<div class="address">
 							<strong>SciELO - Scientific Electronic Library Online</strong>
 							<br />
@@ -131,8 +137,7 @@
 					olark('api.chat.updateVisitorNickname', { snippet: "<%= current_user.name %>" });
 					olark('api.visitor.updateFullName', {fullName: '<%= current_user.name%>'});
 					olark('api.visitor.updateEmailAddress', {emailAddress: '<%= current_user.email%>'});
-
-				},3000)
+				},3000);
 			</script>
 		<% end %>
 
