@@ -89,19 +89,36 @@
 			</footer>
 		</div>
 
+
+
+		<!-- JS -->
+		<script>
+			$('.main-header .nav li a').click(function() {
+				$(window).scrollTo($(this).attr('href'), 1000, {
+					offset: -46
+				});
+			});
+			$('body').scrollspy({ target: '.navbar-bottom', offset: 150 });
+		</script>
+
+
+		<!-- Google Analytics -->
+		<script>
+			var _gaq=[['_setAccount','UA-34822510-2'],['_trackPageview']];
+			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g,s)}(document,'script'));
+
+			$('.main-header').affix({
+				offset: {
+					top: $('.main-header').height(),
+					bottom: $('.main-footer').outerHeight(true)
+				}
+			});
+		</script>
+
+
+
 	</body>
 </html>
 
-<script>
-	var _gaq=[['_setAccount','UA-34822510-2'],['_trackPageview']];
-	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-	s.parentNode.insertBefore(g,s)}(document,'script'));
-
-	$('.main-header').affix({
-		offset: {
-			top: $('.main-header').height(),
-			bottom: $('.main-footer').outerHeight(true)
-		}
-	});
-</script>
