@@ -1,0 +1,18 @@
+en:
+  services: "Services"
+  partners: "Partners"
+  contact: "Contact"
+  who_are_we_text: "SciELO Books is a program to support the dissemination of scholarly works and online publication. It offers open access to academic books and collections in digital format. The program operates as a consortium of academic publishers — especially university presses — and intend to provide infrastructure and agile publishing processes for digital formats, thereby helping to maximize visibility, interoperability, use and impact of books academics. The SciELO Books is part of the SciELO / FAPESP Program and is financed by the publishers. It concerns trade books and open access."
+  see_more: "View more..."
+  services_text: "<p>SciELO Books' Publishing Online Digital Platform (EDO) is an online platform  for digital publishing. It focus on agile publishing and deals with book layout and formatting, including pages, front and back cover. SciELO platform 'EDO' can be operated directly by the editor, reviewer and even author, simultaneously, through the internet. You begin loading main text on the platform (it must be separated from the pre and post-textual parts, as thanks, title, abstract etc). You can enter chapters directly in the application editor or upload a file, in docx format (in the near future, other formats such as LaTeX and XML will be admitted). The layout can be arranged according a template or specific model —designed for the publisher—, setting size, styles and pre-established sources. The templates include styles such as opening chapters and sections, quotes, references, notes, tables, figures etc. The platform stores all versions produced during the process of publishing and the version control is easy. The platform is a result of the partnership between SciELO and Publisher Hedra and is improved continuously.</p>
+                  <p>After subscription contract, the SciELO Books team supports the participating publishers in the use of the platform, training to explore their full potential and solving technical problems. The user of SciELO platform 'EDO' will have exclusive access to a service area, models and styles libraries as well as the books ever produced are preserved by the platform.</p>"
+  contact_text: "<p>Contact the SciELO EDO staff by <a href='#contato'>email</a>.</p>"
+  signing: "Loading..."
+  public_sign_in: "Sign in"
+  forgot_your_password: "Forgot your password?"
+  public_email: "* Email"
+  public_password: "* Password"
+  public_name: "Name"
+  public_message: "Message"
+  public_send: "Send"
+  public_sending: "Sending..."
