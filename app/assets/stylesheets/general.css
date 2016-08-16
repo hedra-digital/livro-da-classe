@@ -68,6 +68,10 @@ figure, ul, li { margin:0; padding:0; text-indent:0; }
 .books article.book p.chapters_count 	{ display:inline-block; }
 .books article.book p.status 			{ display:inline-block; margin-bottom:5px; padding:3px 10px; font-weight:700; color:#FFF; background:#D2081E; border-radius:4px; }
 .books article.book p.role 				{  }
+.books article.book p.remove 			{ position:absolute; z-index:2; right:10px; bottom:10px; }
+.books article.book p.remove a 			{ opacity:0.001; position:absolute; z-index:3; top:-5px; left:-5px; padding:0; width:30px; min-width:initial; height:30px; }
+.books article.book p.remove img 		{ opacity:0.5; width:20px; }
+.books article.book p.remove:hover img  { opacity:1.0; }
 .books article.book.empty 				{ outline:2px dashed #BBB; background:transparent; }
 .books article.book.empty h3 			{ padding-top:75px; font-size:18px; }
 .book.empty.flex-1::before 				{ content:'+'; opacity:0.5; position:absolute; top:135px; right:0; left:0; font-size:100px; }

@@ -7,13 +7,6 @@
 
 
 
-	<!-- Actions -->
-	<!-- <div class="btn-group">
-		<%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary btn-new btn-small' %>
-	</div> -->
-
-
-
 	<!-- Content -->
 	<div class="books flex flex-row flex-wrap flex-space-between">
 		
@@ -25,11 +18,6 @@
 				<h3>Adiciona novo</h3>
 			</div>
 		</article>
-		<!-- 
-			TODO:
-				- Add a full svg graphic with awesome dreams.
-		 -->
-
 
 
 		<!-- List -->
@@ -47,6 +35,10 @@
 						</div>
 						<p class="role"><%= book_role_label(book, current_user) %></p>
 						<p class="status">Status: <%= book.project.status_to_s %></p>
+						<p class="remove">
+							<%= image_tag '_general/icon-remove.svg' %>
+							<%= book_remove_label(book, current_user) %>
+						</p>
 					</div>
 				</article>
 			<% end %>
