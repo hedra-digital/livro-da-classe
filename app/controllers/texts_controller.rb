@@ -9,7 +9,7 @@ class TextsController < ApplicationController
   def index
     @texts = []
     @book.texts.order('position').each do |text|
-      if text.title == 'Título do capítulo' && text.content.empty?
+      if text.title == 'Título do capítulo' && text.content.blank?
         text.delete
       else
         @texts << text
@@ -72,7 +72,7 @@ class TextsController < ApplicationController
     if @text.update_attributes(params[:text])
       @text.content = content
 
-      if @text.title == 'Título do capítulo' && @text.content.empty?
+      if @text.title == 'Título do capítulo' && @text.content.blank?
         return redirect_to book_texts_path @book.uuid
       end
       chapters, footnotes = Text.split_chpaters(@text.content_with_head)
@@ -195,6 +195,6 @@ class TextsController < ApplicationController
   end
 
   def empty_chapter(text)
-    ( (text.title.empty? || text.title == I18n.translate(:initial_text_title)) && text.content.empty?  ) ? true : false
+    ( (text.title.blank? || text.title == I18n.translate(:initial_text_title)) && text.content.blank?  ) ? true : false
   end
 end
