@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-				<!-- Meta -->
+		<!-- Meta -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 		<meta name="theme-color" content="#0068AE">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 		<!-- CSS -->
-		<link rel="shortcut icon" sizes="32x32" href="/images/app-icon-32.png">
-		<link rel="manifest" href="/manifest.json">
-		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
-
 		<%= yield(:title).presence || content_tag(:title, "#{Publisher.get_current_app}") %>
 		<%= stylesheet_link_tag    "scielo" %>
 		<%= stylesheet_link_tag    "general" %>
@@ -22,12 +18,15 @@
 	</head>
 	<body>
 
+
+
 		<!--[if lt IE 7]>
 			<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 		<![endif]-->
 
+
+
 		<div class="wrap">
-			
 
 			<!-- Header -->
 			<header class="main-header">
@@ -42,21 +41,21 @@
 							<label><a href="entrar.html">Acesse sua conta</a> ou <a href="cadastro.html">Cadastre-se</a></label>
 						</div>
 						<div class="language">
-							<a href="#" class="lang-en" lang="en">English</a>
-							<a href="#" class="lang-es" lang="es">Español</a>
+							<a href="/en" class="lang-en" lang="en">English</a>
+							<a href="/es" class="lang-es" lang="es">Español</a>
 						</div>
 					</div>
 					<div class="navbar-inner navbar-bottom">
-						<ul class="nav">
-							<li class="active"><a href="/#"><%= t :who_are_we %></a></li>
-							<li><a href="/#servicos"><%= t :services %></a></li>
-							<li><a href="/#clientes"><%= t :partners %></a></li>
-							<li><a href="/#contato"><%= t :contact %></a></li>
+						<ul class="nav navigation">
+							<li class="active"><a href="#top"><%= t :who_are_we %></a></li>
+							<li><a href="#servicos"><%= t :services %></a></li>
+							<li><a href="#clientes"><%= t :partners %></a></li>
+							<li><a href="#contato"><%= t :contact %></a></li>
 						</ul>
 					</div>
 				</div>
 			</header>
-			<div class="header-space"></div>
+			<div id="top" class="header-space"></div>
 
 
 			
@@ -85,19 +84,32 @@
 					</div>
 				</div>
 			</footer>
+			
 		</div>
 
 
 
 		<!-- JS -->
 		<script>
-			$('.main-header .nav li a').click(function() {
-				$(window).scrollTo($(this).attr('href'), 1000, {
-					offset: -46
+			$(document).ready(function() {
+				$('.main-header .nav li a').click(function(event) {
+					event.preventDefault();
+					$(window).scrollTo($(this).attr('href').replace('/#','#'), 1000, { offset:-46});
+				});
+
+				// $(window).ScrollSpy({ target: '.navbar-bottom' })
+				$('body').scrollspy({ target: '.navbar-bottom', offset: 150 });
+
+
+				$('.main-header').affix({
+					offset: {
+						top: $('.main-header').height(),
+						bottom: $('.main-footer').outerHeight(true)
+					}
 				});
 			});
-			$('body').scrollspy({ target: '.navbar-bottom', offset: 150 });
 		</script>
+
 
 
 		<!-- Google Analytics -->
@@ -106,13 +118,6 @@
 			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
 			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 			s.parentNode.insertBefore(g,s)}(document,'script'));
-
-			$('.main-header').affix({
-				offset: {
-					top: $('.main-header').height(),
-					bottom: $('.main-footer').outerHeight(true)
-				}
-			});
 		</script>
 
 

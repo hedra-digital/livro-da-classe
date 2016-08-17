@@ -19,8 +19,10 @@ figure, ul, li { margin:0; padding:0; text-indent:0; }
 ---------------------------------------------------------------------------------------------------*/
 .application h1, .application h2, .application h3, .application h4, .application h5 { margin:0; padding:0; line-height:120%; }
 .application h1 			{ font-size:28px; font-weight:300; }
+.application h2 			{ font-size:24px; font-weight:600; }
 .application main header 	{ padding:0 0 25px; }
 .icon-arrow					{ display:inline-block; vertical-align:middle; width:0; height:0; border:5px solid #666; border-right-color:transparent; border-bottom-color:transparent; border-left-color:transparent; }
+
 
 
 
@@ -40,22 +42,22 @@ figure, ul, li { margin:0; padding:0; text-indent:0; }
 .flex-align-center 		{ align-items:center; }
 .flex-align-baseline 	{ align-items:baseline; }
 .flex-align-stretch 	{ align-items:stretch; }
-.flex-1 				{ flex-shrink:1; }
-.flex-2 				{ flex-shrink:2; }
-.flex-3 				{ flex-shrink:3; }
-.flex-4 				{ flex-shrink:4; }
-.flex-5 				{ flex-shrink:5; }
-.flex-6 				{ flex-shrink:6; }
-.flex-7 				{ flex-shrink:7; }
-.flex-8 				{ flex-shrink:8; }
-.flex-9 				{ flex-shrink:9; }
+.flex-1 				{ flex-basis:10%; }
+.flex-2 				{ flex-basis:20%; }
+.flex-3 				{ flex-basis:30%; }
+.flex-4 				{ flex-basis:40%; }
+.flex-5 				{ flex-basis:50%; }
+.flex-6 				{ flex-basis:60%; }
+.flex-7 				{ flex-basis:70%; }
+.flex-8 				{ flex-basis:80%; }
+.flex-9 				{ flex-basis:90%; }
 
 
 
 
 /* books
 ---------------------------------------------------------------------------------------------------*/
-.books article.book 					{ position:relative; margin-bottom:25px; padding:5px 5px 20px; width:20%; min-width:220px; text-align:center; background:#fff; box-shadow:0px 1px 2px rgba(0,0,0,0.2); }
+.books article.book 					{ position:relative; margin-bottom:35px; padding:5px 5px 20px; width:20%; min-width:220px; text-align:center; background:#fff; box-shadow:0px 1px 2px rgba(0,0,0,0.2); }
 .books article.book a.overall 			{ position:absolute; top:0; right:0; bottom:0; left:0; }
 .books article.book figure.cover 		{ width:100%; height:300px; background:#CCC; }
 .books article.book figure.cover img 	{  }
@@ -81,18 +83,18 @@ figure, ul, li { margin:0; padding:0; text-indent:0; }
 
 /* header
 ---------------------------------------------------------------------------------------------------*/
-header.main-header 								{ padding:0; background:#FFF; -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.2); -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.2); box-shadow:0 0 10px rgba(0, 0, 0, 0.2); }
-header.main-header .inner-wrap					{ padding-top:0; padding-bottom:0; }
-header.main-header .logo 						{ display:inline-block; padding:15px; width:100px; max-height:85px; line-height:80px; vertical-align:middle; }
-header.main-header .logo img 					{ display:block; width:100%; }
-header.main-header .navigation 					{ display:inline-block; float:right; vertical-align:middle; }
-header.main-header .navigation>ul 				{  }
-header.main-header .navigation>ul>li 			{ position:relative; float:left; margin-left:30px; line-height:115px; }
-header.main-header .navigation>ul>li>a 			{ display:block; padding-top:70px; height:45px; line-height:initial; text-decoration:none; text-transform:uppercase; color:#666; font-size:15px; background:none; -webkit-box-shadow:none; -moz-box-shadow:none; box-shadow:none; border-bottom:2px solid transparent; }
-header.main-header .navigation>ul>li>a:hover 	{ border-bottom:2px solid #d2081e; }
-header.main-header .navigation>ul>li.active>a 	{ border-bottom:2px solid #d2081e; }
-header.main-header .navigation>ul>li>a>i 		{ margin-left:4px; }
-.application .header-space 						{ height:115px; }
+.application header.main-header 							{ padding:0; background:#FFF; -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.2); -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.2); box-shadow:0 0 10px rgba(0, 0, 0, 0.2); }
+.application header.main-header .inner-wrap					{ padding-top:0; padding-bottom:0; }
+.application header.main-header .logo 						{ display:inline-block; padding:15px; width:100px; max-height:85px; line-height:80px; vertical-align:middle; }
+.application header.main-header .logo img 					{ display:block; width:100%; }
+.application header.main-header .navigation 				{ display:inline-block; float:right; vertical-align:middle; }
+.application header.main-header .navigation>ul 				{  }
+.application header.main-header .navigation>ul>li 			{ position:relative; float:left; margin-left:30px; line-height:115px; }
+.application header.main-header .navigation>ul>li>a 		{ display:block; padding-top:70px; height:45px; line-height:initial; text-decoration:none; text-transform:uppercase; color:#666; font-size:15px; background:none; -webkit-box-shadow:none; -moz-box-shadow:none; box-shadow:none; border-bottom:2px solid transparent; }
+.application header.main-header .navigation>ul>li>a:hover 	{ border-bottom:2px solid #d2081e; }
+.application header.main-header .navigation>ul>li.active>a 	{ border-bottom:2px solid #d2081e; }
+.application header.main-header .navigation>ul>li>a>i 		{ margin-left:4px; }
+.application .header-space 									{ height:115px; }
 
 .dropdown 							{ display:none; position:absolute; top:100%; right:0; margin-top:-2px; background:#FFF; -webkit-box-shadow:0 0 30px rgba(0, 0, 0, 0.2); -moz-box-shadow:0 0 30px rgba(0, 0, 0, 0.2); box-shadow:0 0 30px rgba(0, 0, 0, 0.2); }
 .dropdown li 						{  }

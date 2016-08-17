@@ -58,7 +58,7 @@ input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button { -webkit-appearance:none; }
 textarea { overflow:auto; vertical-align:top; }
 @media print { * { text-shadow:none !important; color:#000 !important; background:transparent !important; box-shadow:none !important; } a, a:visited { text-decoration:underline; } a[href]:after { content:" (" attr(href) ")"; } abbr[title]:after { content:" (" attr(title) ")"; } .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content:""; } pre, blockquote { border:1px solid #999; page-break-inside:avoid; } thead { display:table-header-group; } tr, img { page-break-inside:avoid; } img { max-width:100% !important; } @page { margin:0.5cm; } p, h2, h3 { orphans:3; widows:3; } h2, h3 { page-break-after:avoid; } }
-body { margin:0; font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:14px; line-height:20px; color:#333; background-color:#fff; }
+body { position:relative; margin:0; font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size:14px; line-height:20px; color:#333; background-color:#fff; }
 a { color:#08c; text-decoration:none; }
 a:hover,
 a:focus { color:#005580; text-decoration:underline; }
@@ -1379,7 +1379,7 @@ section:after { display:table; content:''; clear:both; }
 .main-header.affix { z-index:1000; position:fixed; -webkit-box-shadow:0 5px 20px -10px; -moz-box-shadow:0 5px 20px -10px; box-shadow:0 5px 20px -10px; background:rgba(255,255,255,0.95); zoom:1; }
 .main-header.affix .navbar .navbar-top { display:inline-block; float:left; height:46px; }
 .main-header.affix .navbar .navbar-top .navbar-logo { float:left; line-height:77px; /*a.logo { font-size:32px;line-height:46px;}*/ }
-.main-header.affix .navbar .navbar-top .navbar-logo img.logo { height:50px; }
+.main-header.affix .navbar .navbar-top .navbar-logo img.logo { width:initial; height:50px; }
 .main-header.affix .navbar .navbar-top .navbar-logo .logo { top:0; height:20px; top:3px; }
 .main-header.affix .navbar .navbar-top .navbar-logo .publish { display:none; }
 .main-header.affix .navbar .navbar-top .navbar-user { display:inline-block; padding-top:0; }
@@ -1492,7 +1492,7 @@ section:after { display:table; content:''; clear:both; }
 .cadastro-login input[type="text"],
 .cadastro-login input[type="tel"],
 .cadastro-login input[type="password"],
-.cadastro-login input[type="email"] { width:300px; padding:15px; }
+.cadastro-login input[type="email"] { /*width:300px;*/ padding:15px; }
 .cadastro-login input[type="submit"] { text-transform:uppercase; background:#39a0c1; width:auto; padding:14px; margin:10px 0 0; }
 .chapter { min-height:0; width:auto; background-color:#aeaeae; color:#fff; padding:10px; }
 .chapter p { color:#fff; text-align:right; }

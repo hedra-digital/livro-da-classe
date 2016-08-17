@@ -6,11 +6,11 @@
 
 		<section id="intro">
 			<div class="inner-wrap flex flex-row">
-				<div class="intro flex-3">
+				<div class="intro flex-7">
 					<h1><%= t :who_are_we %></h1>
 					<p><%= t :who_are_we_text %><br/><a href="http://www.scielo.br/scielo.php?script=sci_home&lng=pt&nrm=iso" target="_blank"><%= t :see_more %></a></p>
 				</div>
-				<div class="new_user cadastro-login flex-1">
+				<div class="new_user cadastro-login flex-3">
 					<%= simple_form_for :signin, { :url => sessions_path } do |f| %>
 					<div class="control-group email required user_email">
 						<div class="controls">
@@ -31,7 +31,7 @@
 
 		<section id="servicos">
 			<div class="servicos inner-wrap">
-				<<h1><%= t :services %></h1>
+				<h1><%= t :services %></h1>
 				<%= (t :services_text).html_safe %>
 			</div>
 		</section>
@@ -51,11 +51,11 @@
 
 		<section id="contato">
 			<div class="contato inner-wrap flex flex-row">
-				<div class="flex-1">
+				<div class="flex-5">
 					<h1><%= t :contact %></h1>
 					<%= (t :contact_text).html_safe %>
 				</div>
-				<div class="flex-1">
+				<div class="flex-5">
 					<form action="/contact" method="post">
 						<input type="text" name="name" placeholder="<%= t :public_name %>">
 						<input type="text" name="email" placeholder="<%= t :public_email %>">
