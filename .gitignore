@@ -50,6 +50,3 @@ Vagrantfile
 /log/searchd.development.pid
 .vagrant
 /public/ckeditor_assets/
-
-/books
-/tipografia-submodule-dev
