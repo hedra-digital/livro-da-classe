@@ -43,7 +43,7 @@ class Project < ActiveRecord::Base
                       :small => ["300x300#", :png]
                     }
 
-  after_save    :check_status                  
+  after_save    :check_status
 
   PUBLISH_FORMAT_PRICE = {
     "21 x 14 cm" => 0.4,

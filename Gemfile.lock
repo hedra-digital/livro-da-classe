@@ -124,6 +124,7 @@ GEM
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
+    cliver (0.3.2)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
@@ -279,6 +280,10 @@ GEM
       ruby-rc4
       ttfunk
     pkg-config (1.1.7)
+    poltergeist (1.10.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     polyglot (0.3.5)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -405,6 +410,9 @@ GEM
       execjs (>= 0.3.0, < 3)
     validates_email_format_of (1.6.3)
       i18n
+    websocket-driver (0.6.4)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
     whenever (0.9.4)
       chronic (>= 0.6.3)
     wicked_pdf (1.0.6)
@@ -457,6 +465,7 @@ DEPENDENCIES
   paperclip (~> 3.0)
   passenger
   pdf-reader
+  poltergeist
   pry
   pry-debugger
   pry-nav

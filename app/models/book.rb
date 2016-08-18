@@ -211,6 +211,7 @@ class Book < ActiveRecord::Base
   end
 
   def check_repository
+    return if Rails.env.test?
     if !self.book_data.nil? && !Dir.exists?(directory)
 
       thr = Thread.new do

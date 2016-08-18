@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
                             :uniqueness => true,
                             :presence => true
 
-  #validates :telephone,     :presence => true  do not use this validate this time. collaborator do not need telephone                        
+  #validates :telephone,     :presence => true  do not use this validate this time. collaborator do not need telephone
   validates :password,      :presence => true, :on => :create
 
   # Specify fields that can be accessible through mass assignment

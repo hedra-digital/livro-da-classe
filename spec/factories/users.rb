@@ -6,6 +6,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password { Faker::Base.bothify('#?#?#?#?') }
     asked_for_email true
+    profile { Profile.new(desc: 'Usuario') }
 
     factory :organizer do
       organized_books { FactoryGirl.create_list(:book, 3) }

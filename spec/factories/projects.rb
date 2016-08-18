@@ -7,5 +7,12 @@ FactoryGirl.define do
     release_date 3.months.since.to_date
     quantity 100
     publish_format "21 x 14 cm"
+    status { FactoryGirl.create(:book_status).id }
+  end
+
+  factory :project_base do
+    release_date 3.months.since.to_date
+    quantity 100
+    publish_format "21 x 14 cm"
   end
 end

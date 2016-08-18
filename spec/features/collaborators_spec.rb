@@ -8,7 +8,7 @@ describe 'book organizer' do
 
   before do
     visit root_path
-    click_link('Entrar no site')
+    click_link('Acesse sua conta')
     fill_in 'signin_email', :with => organizer.email
     fill_in 'signin_password', :with => organizer.password
     click_button 'Entrar'
