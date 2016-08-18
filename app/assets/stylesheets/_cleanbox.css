@@ -1,0 +1,71 @@
+/* 
+ * Create by Willianson Araujo at Jul 02 2013
+ */
+
+
+
+
+/* iframe (outside)
+-------------------------------------------------------------------------------------------*/
+.cleanbox 											{ position:fixed; z-index:100; top:0; right:0; bottom:0; left:0; width:100%; height:100%; background:rgba(40,40,40,0.94) }
+.cleanbox iframe 									{ display:none; position:relative; z-index:2; width:100%; height:100%; }
+.cleanbox.loading::before							{ content:''; display:block; position:absolute; z-index:1; top:0; right:0; bottom:0; left:0; background:url(/images/_common/loading-32-gray-on-dark.gif) no-repeat center center; }
+.cleanbox.loading iframe 							{  }
+
+
+
+
+/* FIX TEMP
+   TODO: Create a specific layout and remove it
+-------------------------------------------------------------------------------------------*/
+html 												{ background:transparent; }
+body.cleanbox-body header.main-header 				{ display:none; }
+body.cleanbox-body div.header-space 				{ display:none; }
+body.cleanbox-body main 							{ background:transparent; }
+body.cleanbox-body footer.main-footer 				{ display:none; }
+
+
+
+
+/* base
+-------------------------------------------------------------------------------------------*/
+body.cleanbox-body  								{ background:transparent; }
+body.cleanbox-body main.base 						{ position:relative; margin:0 auto; background:#E0E0E0; -webkit-box-shadow:0px 0px 30px rgba(0,0,0,0.3); -moz-box-shadow:0px 0px 30px rgba(0,0,0,0.3); box-shadow:0px 0px 30px rgba(0,0,0,0.3); }
+body.cleanbox-body.top main.base					{ margin:5% auto; }
+
+
+
+
+/* output
+-------------------------------------------------------------------------------------------*/
+body div#cleanbox-output 								{ position:fixed; z-index:999; top:-100px; right:10px; left:10px; color:#FFF; text-align:center; pointer-events:none; }
+body div#cleanbox-output div#output-message				{ display:inline-block; position:relative; padding:0px 20px; height:45px; line-height:45px; font-size:16px; background:rgba(0,0,0,0.5); }
+body div#cleanbox-output div#output-message::after		{ content:''; opacity:0.15; position:absolute; top:0; right:0; bottom:0; left:0; border:1px solid white; border-radius:inherit; }
+body div#cleanbox-output.error div#output-message		{ background:#B02D1E; }
+body div#cleanbox-output.info div#output-message		{ background:#2268B3; }
+body div#cleanbox-output.success div#output-message		{ background:#2C9E6A; }
+
+
+
+
+/* header
+-------------------------------------------------------------------------------------------*/
+body.cleanbox-body main.base header							{ position:relative; padding:35px 50px; border-bottom:1px solid #A7BACE; background:#FFF; }
+body.cleanbox-body main.base header::after					{ content:''; position:absolute; bottom:-12px; right:0; left:0; height:12px; background:url(/images/_common/header-shadow.svg?1) no-repeat center top; -webkit-background-size:100% 100%; background-size:100% 100%; zoom:1; }
+body.cleanbox-body main.base header a.close					{ position:absolute; top:35px; right:45px; -webkit-transition:all 0.2s; -o-transition:all 0.2s; transition:all 0.2s; }
+body.cleanbox-body main.base header a.close:hover			{ -ms-transform:scale(1.2); -webkit-transform:scale(1.2); transform:scale(1.2); }
+body.cleanbox-body main.base header a.close:hover svg path	{ stroke:#007EC5; }
+body.cleanbox-body main.base header a.close svg	 			{ padding:5px; width:18px; height:18px; }
+body.cleanbox-body main.base header a.close svg	path 		{ /*stroke:#f00;*/ }
+
+
+
+
+/* content
+-------------------------------------------------------------------------------------------*/
+body.cleanbox-body main.base section.content 								{ padding:45px 50px 50px; }
+body.cleanbox-body main.base section.content::before						,
+body.cleanbox-body main.base section.content::after							,
+body.cleanbox-body main.base section.content div.content-stage::after		{ content:''; display:block; margin-bottom:-1px; height:1px; clear:both; }
+body.cleanbox-body main.base section.content div.loading					{ opacity:1; position:absolute; z-index:9; top:0; right:0; bottom:0; left:0; height:100%; background:rgba(240,240,240,0.8) url(/images/_common/loading-32-dark-on-gray.gif) no-repeat center center; }
+
