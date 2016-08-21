@@ -130,15 +130,24 @@ class BooksController < ApplicationController
       end
 
       if @book.resize_images?
-        redirect_to book_cover_info_path(@book.uuid)
+        respond_to do |format|
+          format.html { redirect_to book_cover_info_path(@book.uuid) }
+          format.json { render json: @book }
+        end
       else
-        redirect_to book_path(@book.uuid), notice: t('book_created')
+        respond_to do |format|
+          format.html { redirect_to book_path(@book.uuid), notice: t('book_created') }
+          format.json { render json: @book }
+        end
       end
     else
       @book.build_project
       @book.build_cover_info
       @book.build_book_data
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: @book }
+      end
     end
   end
 
