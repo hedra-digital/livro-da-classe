@@ -1,3 +1,5 @@
+<h1>Usuários</h1>
+
 <% if @users.present? %>
   <table class="table table-striped">
     <tr>
@@ -17,6 +19,9 @@
       </tr>
     <% end %>
   </table>
+  <div class="btn-group">
+    <%= link_to 'Novo Usuário', new_admin_user_path, :class => 'btn btn-primary btn-new btn-small' %>
+  </div>
 <% else %>
   <p class="blank">Nenhum usuário cadastrado.</p>
 <% end %>

@@ -1,0 +1,8 @@
+<%= simple_form_for @user, url: admin_users_path, method: :post do |f| %>
+  <%= f.input :name %>
+  <%= f.input :telephone, :placeholder => 'Ex.: (11) 9999-9999' %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= submit_tag 'Criar usuário', disable_with: 'Enviando dados...' %>
+<% end %>
