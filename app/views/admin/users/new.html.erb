@@ -1,0 +1,11 @@
+<div class="new_user cadastro-login">
+  <%= render 'form' %>
+</div>
+
+<script>
+  $.each($("form div"), function() {
+    var label = $("label",$(this)).text();
+    $("label",$(this)).hide();
+    $("div input",$(this)).prop("placeholder",label);
+  });
+</script>
