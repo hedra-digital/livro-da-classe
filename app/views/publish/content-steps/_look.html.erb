@@ -1,0 +1,437 @@
+
+
+
+<!-- STEP: 02_LOOK -->
+<div id="step-look" class="clearfix">
+
+	<!-- content-navigation -->
+	<aside class="content-navigation">
+		<nav>
+			<ul>
+				<li><a href="javascript:;" data-tab="tab-cover-editor" class="ico-cover-editor">Capa</a></li>
+				<li><a href="javascript:;" data-tab="tab-textual" class="ico-textual">Textual</a></li>
+				<li><a href="javascript:;" data-tab="tab-layout" class="ico-layout">Template</a></li>
+			</ul>
+		</nav>
+	</aside>
+
+
+
+	<!-- content -->
+	<section class="content">
+
+
+		<!-- tab-cover-editor -->
+		<div class="tab-cover-editor none">
+			<div class="header clearfix">
+				<h2 class="sans-light ts-28 tc-blue lh-big">Capa</h2>
+			</div>
+
+
+			<% #= book_cover %>
+
+
+			<%= simple_form_for(@book, :html => {:class => 'form-vertical', :multipart => true}) do |b| %>
+				<%= b.simple_fields_for @book.book_data do |f| %>
+					<%= render :partial => '/book_datas/cover', :locals => {:f => f, :b => b} %>
+					
+					<%= b.button :submit, @book.new_record? ? t('book_create') : t('book_update'), :class =>'btn btn-success btn-default bc-blue tc-white' %>
+				<% end %>
+			<% end %>
+
+
+			<div class="editor-stage clearfix none">
+				<!-- TODO: text and background colors is binded on cover and childrens use inherit.  -->
+				<div id="cover" class="cover left pattern-linear-top ta-center lh-default" style="color:#FFF; background-color:#444;">
+					<div class="margin">
+						<div class="book-title">Lorem Ipsum Dolor Sit Amet</div>
+						<div class="book-subtitle">Lorem Ipsum Dolor Sit Amet</div>
+						<div class="author-name">Nome do Autor Completo</div>
+					</div>
+				</div>
+
+				<div class="tools right">
+					<div class="tool-color">
+						<a href="#" class="select">
+							<span class="label sans-regular ts-15 tc-gray-dark">Cor</span>
+							<span class="choice right" style="background-color:#444;"></span>
+						</a>
+						<div class="options shadow-default none">
+							<div class="base">
+								<table class="color-list">
+									<tbody>
+										<tr>
+											<td bgcolor="#FFCCCC">&nbsp;</td>
+											<td bgcolor="#FFE5CC">&nbsp;</td>
+											<td bgcolor="#FFFFCC">&nbsp;</td>
+											<td bgcolor="#E5FFCC">&nbsp;</td>
+											<td bgcolor="#CCFFCC">&nbsp;</td>
+											<td bgcolor="#CCFFE5">&nbsp;</td>
+											<td bgcolor="#CCFFFF">&nbsp;</td>
+											<td bgcolor="#CCE5FF">&nbsp;</td>
+											<td bgcolor="#CCCCFF">&nbsp;</td>
+											<td bgcolor="#E5CCFF">&nbsp;</td>
+											<td bgcolor="#FFCCFF">&nbsp;</td>
+											<td bgcolor="#FFCCE5">&nbsp;</td>
+											<td bgcolor="#FFFFFF">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#FF9999">&nbsp;</td>
+											<td bgcolor="#FFCC99">&nbsp;</td>
+											<td bgcolor="#FFFF99">&nbsp;</td>
+											<td bgcolor="#CCFF99">&nbsp;</td>
+											<td bgcolor="#99FF99">&nbsp;</td>
+											<td bgcolor="#99FFCC">&nbsp;</td>
+											<td bgcolor="#99FFFF">&nbsp;</td>
+											<td bgcolor="#99CCFF">&nbsp;</td>
+											<td bgcolor="#9999FF">&nbsp;</td>
+											<td bgcolor="#CC99FF">&nbsp;</td>
+											<td bgcolor="#FF99FF">&nbsp;</td>
+											<td bgcolor="#FF99CC">&nbsp;</td>
+											<td bgcolor="#E0E0E0">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#FF6666">&nbsp;</td>
+											<td bgcolor="#FFB266">&nbsp;</td>
+											<td bgcolor="#FFFF66">&nbsp;</td>
+											<td bgcolor="#B2FF66">&nbsp;</td>
+											<td bgcolor="#66FF66">&nbsp;</td>
+											<td bgcolor="#66FFB2">&nbsp;</td>
+											<td bgcolor="#66FFFF">&nbsp;</td>
+											<td bgcolor="#66B2FF">&nbsp;</td>
+											<td bgcolor="#6666FF">&nbsp;</td>
+											<td bgcolor="#B266FF">&nbsp;</td>
+											<td bgcolor="#FF66FF">&nbsp;</td>
+											<td bgcolor="#FF66B2">&nbsp;</td>
+											<td bgcolor="#C0C0C0">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#FF3333">&nbsp;</td>
+											<td bgcolor="#FF9933">&nbsp;</td>
+											<td bgcolor="#FFFF33">&nbsp;</td>
+											<td bgcolor="#99FF33">&nbsp;</td>
+											<td bgcolor="#33FF33">&nbsp;</td>
+											<td bgcolor="#33FF99">&nbsp;</td>
+											<td bgcolor="#33FFFF">&nbsp;</td>
+											<td bgcolor="#3399FF">&nbsp;</td>
+											<td bgcolor="#3333FF">&nbsp;</td>
+											<td bgcolor="#9933FF">&nbsp;</td>
+											<td bgcolor="#FF33FF">&nbsp;</td>
+											<td bgcolor="#FF3399">&nbsp;</td>
+											<td bgcolor="#A0A0A0">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#FF0000">&nbsp;</td>
+											<td bgcolor="#FF8000">&nbsp;</td>
+											<td bgcolor="#FFFF00">&nbsp;</td>
+											<td bgcolor="#80FF00">&nbsp;</td>
+											<td bgcolor="#00FF00">&nbsp;</td>
+											<td bgcolor="#00FF80">&nbsp;</td>
+											<td bgcolor="#00FFFF">&nbsp;</td>
+											<td bgcolor="#0080FF">&nbsp;</td>
+											<td bgcolor="#0000FF">&nbsp;</td>
+											<td bgcolor="#7F00FF">&nbsp;</td>
+											<td bgcolor="#FF00FF">&nbsp;</td>
+											<td bgcolor="#FF007F">&nbsp;</td>
+											<td bgcolor="#808080">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#CC0000">&nbsp;</td>
+											<td bgcolor="#CC6600">&nbsp;</td>
+											<td bgcolor="#CCCC00">&nbsp;</td>
+											<td bgcolor="#66CC00">&nbsp;</td>
+											<td bgcolor="#00CC00">&nbsp;</td>
+											<td bgcolor="#00CC66">&nbsp;</td>
+											<td bgcolor="#00CCCC">&nbsp;</td>
+											<td bgcolor="#0066CC">&nbsp;</td>
+											<td bgcolor="#0000CC">&nbsp;</td>
+											<td bgcolor="#6600CC">&nbsp;</td>
+											<td bgcolor="#CC00CC">&nbsp;</td>
+											<td bgcolor="#CC0066">&nbsp;</td>
+											<td bgcolor="#606060">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#990000">&nbsp;</td>
+											<td bgcolor="#994C00">&nbsp;</td>
+											<td bgcolor="#999900">&nbsp;</td>
+											<td bgcolor="#4C9900">&nbsp;</td>
+											<td bgcolor="#009900">&nbsp;</td>
+											<td bgcolor="#00994C">&nbsp;</td>
+											<td bgcolor="#009999">&nbsp;</td>
+											<td bgcolor="#004C99">&nbsp;</td>
+											<td bgcolor="#000099">&nbsp;</td>
+											<td bgcolor="#4C0099">&nbsp;</td>
+											<td bgcolor="#990099">&nbsp;</td>
+											<td bgcolor="#99004C">&nbsp;</td>
+											<td bgcolor="#404040" class="selected">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#660000">&nbsp;</td>
+											<td bgcolor="#663300">&nbsp;</td>
+											<td bgcolor="#666600">&nbsp;</td>
+											<td bgcolor="#336600">&nbsp;</td>
+											<td bgcolor="#006600">&nbsp;</td>
+											<td bgcolor="#006633">&nbsp;</td>
+											<td bgcolor="#006666">&nbsp;</td>
+											<td bgcolor="#003366">&nbsp;</td>
+											<td bgcolor="#000066">&nbsp;</td>
+											<td bgcolor="#330066">&nbsp;</td>
+											<td bgcolor="#660066">&nbsp;</td>
+											<td bgcolor="#660033">&nbsp;</td>
+											<td bgcolor="#202020">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#330000">&nbsp;</td>
+											<td bgcolor="#331900">&nbsp;</td>
+											<td bgcolor="#333300">&nbsp;</td>
+											<td bgcolor="#193300">&nbsp;</td>
+											<td bgcolor="#003300">&nbsp;</td>
+											<td bgcolor="#003319">&nbsp;</td>
+											<td bgcolor="#003333">&nbsp;</td>
+											<td bgcolor="#001933">&nbsp;</td>
+											<td bgcolor="#000033">&nbsp;</td>
+											<td bgcolor="#190033">&nbsp;</td>
+											<td bgcolor="#330033">&nbsp;</td>
+											<td bgcolor="#330019">&nbsp;</td>
+											<td bgcolor="#000000">&nbsp;</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class="tool-pattern">
+						<a href="#" class="select">
+							<span class="label sans-regular ts-15 tc-gray-dark">Estampa</span>
+							<span class="choice right pattern-linear-top"></span>
+						</a>
+						<div class="options shadow-default none">
+							<div class="base">
+								<a href="#" class="btn-diag-1" data-action="pattern-diag-1"></a>
+								<a href="#" class="btn-diag-2" data-action="pattern-diag-2"></a>
+								<a href="#" class="btn-diag-3" data-action="pattern-diag-3"></a>
+								<a href="#" class="btn-diag-4" data-action="pattern-diag-4"></a>
+								<a href="#" class="btn-ball-1" data-action="pattern-ball-1"></a>
+								<a href="#" class="btn-ball-2" data-action="pattern-ball-2"></a>
+								<a href="#" class="btn-square-1" data-action="pattern-square-1"></a>
+								<a href="#" class="btn-square-2" data-action="pattern-square-2"></a>
+								<a href="#" class="btn-linear-left" data-action="pattern-linear-left"></a>
+								<a href="#" class="btn-linear-right" data-action="pattern-linear-right"></a>
+								<a href="#" class="btn-linear-top" data-action="pattern-linear-top"></a>
+								<a href="#" class="btn-linear-bottom" data-action="pattern-linear-bottom"></a>
+							</div>
+						</div>
+					</div>
+
+					<div class="tool-font">
+						<a href="#" class="select">
+							<span class="label sans-regular ts-15 tc-gray-dark">Estilo de fonte</span>
+							<span class="choice right ts-20" style="color:#FFF;">a</span>
+						</a>
+						<div class="options shadow-default none">
+							<div class="base">
+								<a href="#" class="btn-smaller tc-gray-light btn-ts-lower" 	data-action="ts-lower">a</a>
+								<a href="#" class="btn-smaller tc-gray-light btn-ts-upper" 	data-action="ts-upper">A</a>
+								<a href="#" class="btn-smaller tc-gray-light btn-ts-bold" 	data-action="ts-bold"><strong>Negrito</strong></a>
+								<a href="#" class="btn-smaller tc-gray-light btn-ts-italic" data-action="ts-italic"><i>Itálico</i></a>
+								<a href="#" class="btn-smaller tc-gray-light btn-ta-left" 	data-action="ta-left"></a>
+								<a href="#" class="btn-smaller tc-gray-light btn-ta-center" data-action="ta-center"></a>
+								<a href="#" class="btn-smaller tc-gray-light btn-ta-right" 	data-action="ta-right"></a>
+								<a href="#" class="btn-smaller tc-gray-light btn-lh-less" 	data-action="lh-less"></a>
+								<a href="#" class="btn-smaller tc-gray-light btn-lh-more" 	data-action="lh-more"></a>
+								
+								<table class="color-list">
+									<tbody>
+										<tr>
+											<td bgcolor="#FFCCCC">&nbsp;</td>
+											<td bgcolor="#FFE5CC">&nbsp;</td>
+											<td bgcolor="#FFFFCC">&nbsp;</td>
+											<td bgcolor="#E5FFCC">&nbsp;</td>
+											<td bgcolor="#CCFFCC">&nbsp;</td>
+											<td bgcolor="#CCFFE5">&nbsp;</td>
+											<td bgcolor="#CCFFFF">&nbsp;</td>
+											<td bgcolor="#CCE5FF">&nbsp;</td>
+											<td bgcolor="#CCCCFF">&nbsp;</td>
+											<td bgcolor="#E5CCFF">&nbsp;</td>
+											<td bgcolor="#FFCCFF">&nbsp;</td>
+											<td bgcolor="#FFCCE5">&nbsp;</td>
+											<td bgcolor="#FFFFFF" class="selected">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#FF9999">&nbsp;</td>
+											<td bgcolor="#FFCC99">&nbsp;</td>
+											<td bgcolor="#FFFF99">&nbsp;</td>
+											<td bgcolor="#CCFF99">&nbsp;</td>
+											<td bgcolor="#99FF99">&nbsp;</td>
+											<td bgcolor="#99FFCC">&nbsp;</td>
+											<td bgcolor="#99FFFF">&nbsp;</td>
+											<td bgcolor="#99CCFF">&nbsp;</td>
+											<td bgcolor="#9999FF">&nbsp;</td>
+											<td bgcolor="#CC99FF">&nbsp;</td>
+											<td bgcolor="#FF99FF">&nbsp;</td>
+											<td bgcolor="#FF99CC">&nbsp;</td>
+											<td bgcolor="#E0E0E0">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#FF6666">&nbsp;</td>
+											<td bgcolor="#FFB266">&nbsp;</td>
+											<td bgcolor="#FFFF66">&nbsp;</td>
+											<td bgcolor="#B2FF66">&nbsp;</td>
+											<td bgcolor="#66FF66">&nbsp;</td>
+											<td bgcolor="#66FFB2">&nbsp;</td>
+											<td bgcolor="#66FFFF">&nbsp;</td>
+											<td bgcolor="#66B2FF">&nbsp;</td>
+											<td bgcolor="#6666FF">&nbsp;</td>
+											<td bgcolor="#B266FF">&nbsp;</td>
+											<td bgcolor="#FF66FF">&nbsp;</td>
+											<td bgcolor="#FF66B2">&nbsp;</td>
+											<td bgcolor="#C0C0C0">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#FF3333">&nbsp;</td>
+											<td bgcolor="#FF9933">&nbsp;</td>
+											<td bgcolor="#FFFF33">&nbsp;</td>
+											<td bgcolor="#99FF33">&nbsp;</td>
+											<td bgcolor="#33FF33">&nbsp;</td>
+											<td bgcolor="#33FF99">&nbsp;</td>
+											<td bgcolor="#33FFFF">&nbsp;</td>
+											<td bgcolor="#3399FF">&nbsp;</td>
+											<td bgcolor="#3333FF">&nbsp;</td>
+											<td bgcolor="#9933FF">&nbsp;</td>
+											<td bgcolor="#FF33FF">&nbsp;</td>
+											<td bgcolor="#FF3399">&nbsp;</td>
+											<td bgcolor="#A0A0A0">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#FF0000">&nbsp;</td>
+											<td bgcolor="#FF8000">&nbsp;</td>
+											<td bgcolor="#FFFF00">&nbsp;</td>
+											<td bgcolor="#80FF00">&nbsp;</td>
+											<td bgcolor="#00FF00">&nbsp;</td>
+											<td bgcolor="#00FF80">&nbsp;</td>
+											<td bgcolor="#00FFFF">&nbsp;</td>
+											<td bgcolor="#0080FF">&nbsp;</td>
+											<td bgcolor="#0000FF">&nbsp;</td>
+											<td bgcolor="#7F00FF">&nbsp;</td>
+											<td bgcolor="#FF00FF">&nbsp;</td>
+											<td bgcolor="#FF007F">&nbsp;</td>
+											<td bgcolor="#808080">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#CC0000">&nbsp;</td>
+											<td bgcolor="#CC6600">&nbsp;</td>
+											<td bgcolor="#CCCC00">&nbsp;</td>
+											<td bgcolor="#66CC00">&nbsp;</td>
+											<td bgcolor="#00CC00">&nbsp;</td>
+											<td bgcolor="#00CC66">&nbsp;</td>
+											<td bgcolor="#00CCCC">&nbsp;</td>
+											<td bgcolor="#0066CC">&nbsp;</td>
+											<td bgcolor="#0000CC">&nbsp;</td>
+											<td bgcolor="#6600CC">&nbsp;</td>
+											<td bgcolor="#CC00CC">&nbsp;</td>
+											<td bgcolor="#CC0066">&nbsp;</td>
+											<td bgcolor="#606060">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#990000">&nbsp;</td>
+											<td bgcolor="#994C00">&nbsp;</td>
+											<td bgcolor="#999900">&nbsp;</td>
+											<td bgcolor="#4C9900">&nbsp;</td>
+											<td bgcolor="#009900">&nbsp;</td>
+											<td bgcolor="#00994C">&nbsp;</td>
+											<td bgcolor="#009999">&nbsp;</td>
+											<td bgcolor="#004C99">&nbsp;</td>
+											<td bgcolor="#000099">&nbsp;</td>
+											<td bgcolor="#4C0099">&nbsp;</td>
+											<td bgcolor="#990099">&nbsp;</td>
+											<td bgcolor="#99004C">&nbsp;</td>
+											<td bgcolor="#404040">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#660000">&nbsp;</td>
+											<td bgcolor="#663300">&nbsp;</td>
+											<td bgcolor="#666600">&nbsp;</td>
+											<td bgcolor="#336600">&nbsp;</td>
+											<td bgcolor="#006600">&nbsp;</td>
+											<td bgcolor="#006633">&nbsp;</td>
+											<td bgcolor="#006666">&nbsp;</td>
+											<td bgcolor="#003366">&nbsp;</td>
+											<td bgcolor="#000066">&nbsp;</td>
+											<td bgcolor="#330066">&nbsp;</td>
+											<td bgcolor="#660066">&nbsp;</td>
+											<td bgcolor="#660033">&nbsp;</td>
+											<td bgcolor="#202020">&nbsp;</td>
+										</tr>
+										<tr>
+											<td bgcolor="#330000">&nbsp;</td>
+											<td bgcolor="#331900">&nbsp;</td>
+											<td bgcolor="#333300">&nbsp;</td>
+											<td bgcolor="#193300">&nbsp;</td>
+											<td bgcolor="#003300">&nbsp;</td>
+											<td bgcolor="#003319">&nbsp;</td>
+											<td bgcolor="#003333">&nbsp;</td>
+											<td bgcolor="#001933">&nbsp;</td>
+											<td bgcolor="#000033">&nbsp;</td>
+											<td bgcolor="#190033">&nbsp;</td>
+											<td bgcolor="#330033">&nbsp;</td>
+											<td bgcolor="#330019">&nbsp;</td>
+											<td bgcolor="#000000">&nbsp;</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<div class="tool-send-cover">
+						<!-- TODO: insert input file hidden, only to open selection file window.  -->
+						<a href="#" class="sans-regular ts-16 tc-blue">
+							Envie sua capa
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- tab-textual -->
+		<div class="tab-textual none">
+			<div class="header clearfix">
+				<h2 class="sans-light ts-28 tc-blue">Textual</h2>
+			</div>
+			<!-- <p class="sans-regular ts-18 tc-gray-dark">Selecione a melhor capa para seu livro.</p> -->
+
+			
+			<%= simple_form_for(@book, :html => {:class => 'form-vertical', :multipart => true}) do |b| %>
+				<%= b.simple_fields_for @book.book_data do |f| %>
+					<%= f.input :orelha, :label => t('book_data.orelha'), input_html: {cols: '100', rows: '5'} %>
+					<%= f.input :quartacapa, :label => t('book_data.quartacapa'), input_html: {cols: '100', rows: '5'} %>
+					
+					<%= b.button :submit, @book.new_record? ? t('book_create') : t('book_update'), class: 'btn-success' %>
+				<% end %>
+			<% end %>
+		</div>
+
+
+
+		<!-- tab-layout -->
+		<div class="tab-layout none">
+			<div class="header clearfix">
+				<h2 class="sans-light ts-28 tc-blue">Template</h2>
+			</div>
+
+			<%= simple_form_for(@book, :html => {:class => 'form-vertical', :multipart => true}) do |b| %>
+				<%= b.simple_fields_for @book.book_data do |f| %>
+					<label><%= t('template') %></label>
+					<%= select_tag "template", options_for_select(Livrodaclasse::Application.latex_templates, @book.template) %>
+					<%= b.button :submit, @book.new_record? ? t('book_create') : t('book_update'), class: 'btn-success' %>
+				<% end %>
+			<% end %>
+		</div>
+
+
+	</section>
+
+</div>

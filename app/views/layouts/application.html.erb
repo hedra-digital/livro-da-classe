@@ -1,123 +1,156 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <%= yield(:title).presence || content_tag(:title, "#{Publisher.get_current_app}") %>
-    <%= stylesheet_link_tag    "public", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= favicon_link_tag %>
-    <%= csrf_meta_tags %>
-    <%= yield :meta_tags %>
-  </head>
-  <body>
-    <!--[if lt IE 7]>
-      <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    <![endif]-->
+	<head>
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, user-scalable=yes">
+		<meta name="theme-color" content="#0068AE">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <div class="wrap wrap-app">
-      <header class="main-header main-header-app">
-        <div class="navbar">
-          <div class="navbar-inner navbar-left">
-            <ul class="nav">
-              <li><%= link_to t('my_books'), books_path %></li> <!-- class="active" -->
-              <% if current_user.publisher? %>
-              <li><%= link_to 'EDITORIAL', '/admin' %></li>
-              <% end %>
-              <!--<li><a class="tutorial-modal" data-fancybox-type="iframe" href="http://prezi.com/embed/w2ipyvduj-gc/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;features=undefined&amp;disabled_features=undefined">Tutorial</a></li>-->
-            </ul>
-          </div>
-          <div class="navbar-inner navbar-right">
-            <div class="navbar-user">
-              <div class="dropdown">
-                <button data-toggle="dropdown">
-                  <%= user_id(current_user) %>
-                  <b class="caret"></b>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><%= link_to current_user.name, user_path(current_user) %></li>
-                  <li><%= link_to t(:sign_out), signout_path, :method => :delete %></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+		<!-- CSS -->
+		<link rel="shortcut icon" sizes="32x32" href="/images/app-icon-32.png">
+		<link rel="manifest" href="/manifest.json">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 
-      <%= flash_message %>
+		<%= yield(:head) %>
+		<%= yield(:title).presence || content_tag(:title, "#{Publisher.get_current_app}") %>
+		<%= stylesheet_link_tag    "public", :media => "all" %>
+		<%= javascript_include_tag "application" %>
+		<%= favicon_link_tag %>
+		<%= csrf_meta_tags %>
+		<%= yield :meta_tags %>
 
-      <section>
-        <div>
-          <%= render 'books/book_info' if (controller_name == 'books' and params[:id]) || params[:book_id] %>
-          <%= yield %>
-        </div>
-      </section>
+	</head>
+	<body class="application <%= @body_class %>">
+			
 
-      <footer class="main-footer">
-        <div class="footer-top">
-          <ul class="nav">
-            <li></li>
-          </ul>
-        </div>
-        <div class="footer-bottom">
-          <%#= image_tag publisher_logo, :width => '130', :height => '130' %>
-          <%#= publisher_official_name %>
-          <%#= publisher_address_info %>
-          <div class="address">Rua Fradique Coutinho 1139, Subsolo CEP 05416-011 - São Paulo - SP Tel.: (11) 3097-8304</div>
-          <div class="copyright">Copyright © 2014, Hedra. <%= version_number%></div>
-        </div>
-      </footer>
+		<!-- All -->
+		<div class="wrap wrap-app">
 
-    </div>
 
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-34822510-2']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
+			<!-- Header -->
+			<header class="main-header main-header-app">
+				<div class="inner-wrap">
+					
+					
+					<!-- Logo -->
+					<div class="logo" >
+						<%= image_tag "scielo/logo-scielo.png" %>
+					</div>
+					
 
-    <% unless current_user.organized_books.empty? %>
-      <!-- begin olark code -->
-      <script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
-      f[z]=function(){
-      (a.s=a.s||[]).push(arguments)};var a=f[z]._={
-      },q=c.methods.length;while(q--){(function(n){f[z][n]=function(){
-      f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={
-      0:+new Date};a.P=function(u){
-      a.p[u]=new Date-a.p[0]};function s(){
-      a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){
-      hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){
-      return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){
-      b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{
-      b.contentWindow[g].open()}catch(w){
-      c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{
-      var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
-      b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
-      loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
-      /* custom configuration goes here (www.olark.com/documentation) */
-      olark.identify('2286-731-10-2219');/*]]>*/</script><noscript><a href="https://www.olark.com/site/2286-731-10-2219/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
-      <!-- end olark code -->
-    <% end %>
+					<!-- Navigation -->
+					<nav class="navigation">
+						<ul>
+							<li class="active"><%= link_to t('my_books'), books_path %></li>
+							
+							<% if current_user.publisher? %>
+								<li><%= link_to 'EDITORIAL', '/admin' %></li>
+							<% end %>
+							
+							<!-- <li><a class="tutorial-modal" data-fancybox-type="iframe" href="http://prezi.com/embed/w2ipyvduj-gc/?bgcolor=ffffff&amp;lock_to_path=0&amp;autoplay=0&amp;autohide_ctrls=0&amp;features=undefined&amp;disabled_features=undefined">Tutorial</a></li> -->
 
-    <% if current_user %>
-    <script type="text/javascript">
-    setTimeout(function(){
+							<li>
+								<a data-toggle="dropdown" href="#">Conta <i class="icon-arrow"></i></a>
+								<ul class="dropdown">
+									<li><%= link_to current_user.name, user_path(current_user) %></li>
+									<li><%= link_to t(:sign_out), signout_path, :method => :delete %></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
 
-      olark('api.chat.updateVisitorNickname', {
-        snippet: "<%= current_user.name %>"
-      });
 
-      olark('api.visitor.updateFullName', {fullName: '<%= current_user.name%>'});
+				</div>
+			</header>
 
-      olark('api.visitor.updateEmailAddress', {emailAddress: '<%= current_user.email%>'});
 
-    },3000)
-    </script>
-    <% end %>
-  </body>
+
+			<!-- space -->
+			<div class="header-space"></div>
+
+
+
+			<!-- Notification -->
+			
+			<% #if :flash_message? %>
+				<% #= flash_message %>
+				<script>
+					// <%= flash_message.html_safe %>
+					// common.showOutput(true, '<%= flash_message.html_safe %>')
+				</script>
+			<% #end %>
+
+
+
+			<!-- Content -->
+			<main>
+				<div class="inner-wrap">
+					<%= yield %>
+				</div>
+			</main>
+
+
+
+			<!-- Footer -->
+			<footer class="main-footer">
+				<div class="inner-wrap">
+					<div class="footer-top">
+						<ul class="nav">
+							<li></li>
+						</ul>
+					</div>
+					<div class="footer-bottom">
+						<div class="address">
+							<strong>SciELO - Scientific Electronic Library Online</strong>
+							<br />
+							Av. Onze de Junho, 269 - Vila Clementino 04041-050 São Paulo SP - Brasil
+							<br />
+							Tel.: (55 11) 5083-3639 - Email: scielo@scielo.org
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+
+
+		<!-- Google Analytics -->
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-34822510-2']);
+			_gaq.push(['_trackPageview']);
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+
+
+
+		<!-- Olark -->
+		<% unless current_user.organized_books.empty? %>
+			<script data-cfasync="false" type='text/javascript'>/*<![CDATA[*/window.olark||function(e){var t=window,n=document,a="https:"==t.location.protocol?"https:":"http:",o=e.name,r="load",i=function(){function d(){c.P(r),t[o](r)}t[o]=function(){(c.s=c.s||[]).push(arguments)};for(var c=t[o]._={},s=e.methods.length;s--;)!function(e){t[o][e]=function(){t[o]("call",e,arguments)}}(e.methods[s]);c.l=e.loader,c.i=i,c.p={0:+new Date},c.P=function(e){c.p[e]=new Date-c.p[0]},t.addEventListener?t.addEventListener(r,d,!1):t.attachEvent("on"+r,d);var l=function(){function t(e){return e="head",["<",e,"></",e,"><",r,' onload="var d=',v,";d.getElementsByTagName('head')[0].",s,"(d.",f,"('script')).",m,"='",a,"//",c.l,"'",'"',"></",r,">"].join("")}var r="body",i=n[r];if(!i)return setTimeout(l,100);c.P(1);var d,s="appendChild",f="createElement",m="src",u=n[f]("div"),p=u[s](n[f](o)),h=n[f]("iframe"),v="document",w="domain";u.style.display="none",i.insertBefore(u,i.firstChild).id=o,h.frameBorder="0",h.id=o+"-loader",/MSIE[ ]+6/.test(navigator.userAgent)&&(h.src="javascript:false"),h.allowTransparency="true",p[s](h);try{h.contentWindow[v].open()}catch(g){e[w]=n[w],d="javascript:var d="+v+".open();d.domain='"+n.domain+"';",h[m]=d+"void(0);"}try{var y=h.contentWindow[v];y.write(t()),y.close()}catch(E){h[m]=d+'d.write("'+t().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}c.P(2)};l()};i()}({loader:"static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]}),olark.identify("2286-731-10-2219");/*]]>*/</script>
+			<noscript><a href="https://www.olark.com/site/2286-731-10-2219/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript>
+		<% end %>
+		<% if current_user %>
+			<script type="text/javascript">
+				setTimeout(function()
+				{
+					olark('api.chat.updateVisitorNickname', { snippet: "<%= current_user.name %>" });
+					olark('api.visitor.updateFullName', {fullName: '<%= current_user.name%>'});
+					olark('api.visitor.updateEmailAddress', {emailAddress: '<%= current_user.email%>'});
+				},3000);
+			</script>
+		<% end %>
+
+
+
+		<!-- foot -->
+		<%= yield(:foot) %>
+
+
+
+	</body>
 </html>

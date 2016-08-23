@@ -1,0 +1,102 @@
+
+
+
+<!-- STEP: 03_METADATA -->
+<div id="step-metadata" class="clearfix">
+
+	<!-- content-navigation -->
+	<aside class="content-navigation">
+		<nav>
+			<ul>
+				<li><a href="#" data-tab="tab-book-info" class="ico-book-info">Dados do livro</a></li>
+				<li><a href="#" data-tab="tab-book-ficha-catalografica" class="ico-book-ficha-catalografica">Ficha catalográfica</a></li>
+				<li><a href="#" data-tab="tab-book-instituicao" class="ico-shop-local">Instituição</a></li>
+			</ul>
+		</nav>
+	</aside>
+
+
+
+	<!-- content -->
+	<section class="content">
+
+
+		<!-- tab-book-info -->
+		<div class="tab-book-info none">
+			<form id="book-info-form" method="put" action="/books/<%= @book.uuid %>.json">
+				<div class="header clearfix">
+					<h2 class="sans-light ts-28 tc-blue lh-big left">Dados do livro</h2>
+				</div>
+
+				<!-- inputs -->
+				<div class="form-item flex-top">
+					<label class="ts-18 tc-gray-light lh-big">Título do livro</label>
+					<input name="book[title]" type="text" value="<%= @book.title %>" />
+				</div>
+				<div class="form-item flex-top">
+					<label class="ts-18 tc-gray-light lh-big">Subtítulo</label>
+					<input name="book[book_data][subtit]" type="text" value="<%= @book.book_data.subtit %>" />
+				</div>
+				<div class="form-item flex-top">
+					<label class="ts-18 tc-gray-light lh-big">Autor</label>
+					<input name="book[book_data][autor]" type="text" value="<%= @book.book_data.autor %>" />
+				</div>
+				<div class="form-item flex-top">
+					<label class="ts-18 tc-gray-light lh-big">Organizador</label>
+					<input name="book[book_data][organizador]" type="text" value="<%= @book.book_data.organizador %>" />
+				</div>
+				<div class="form-item flex-top">
+					<label class="ts-18 tc-gray-light lh-big">Prefácio</label>
+					<input name="book[book_data][introdutor]" type="text" value="<%= @book.book_data.introdutor %>" />
+				</div>
+				
+				<!-- buttons -->
+				<div class="buttons">
+					<button class="btn-default bc-blue tc-white">Salvar</button>
+				</div>
+			</form>
+		</div>
+
+
+
+		<!-- tab-book-ficha-catalografica -->
+		<div class="tab-book-ficha-catalografica none">
+			<form id="book-ficha-catalografica-form" method="post" action="/output-example">
+				<div class="header clearfix">
+					<h2 class="sans-light ts-28 tc-blue">Ficha catalográfica</h2>
+				</div>
+
+				<%= simple_form_for(@book, :html => {:class => 'form-vertical', :multipart => true}) do |b| %>
+					<%= b.simple_fields_for @book.book_data do |f| %>
+						<%= render :partial => '/book_datas/cataloging', :locals => {:f => f, :b => b} %>
+
+						<%= b.button :submit, @book.new_record? ? t('book_create') : t('book_update'), class: 'btn-success' %>
+					<% end %>
+				<% end %>
+
+			</form>
+		</div>
+
+
+
+		<!-- tab-book-instituicao -->
+		<div class="tab-book-instituicao none">
+			<form action="">
+				<div class="header clearfix">
+					<h2 class="sans-light ts-28 tc-blue">Instituição</h2>
+				</div>
+
+				<%= simple_form_for(@book, :html => {:class => 'form-vertical', :multipart => true}) do |b| %>
+					<%= b.simple_fields_for @book.book_data do |f| %>
+						<%= render :partial => '/book_datas/partners', :locals => {:f => f, :b => b} %>
+						
+						<%= b.button :submit, @book.new_record? ? t('book_create') : t('book_update'), class: 'btn-success' %>
+					<% end %>
+				<% end %>
+			</form>
+		</div>
+
+
+	</section>
+
+</div>

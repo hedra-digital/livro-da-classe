@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery.mousewheel
+//= require jquery.ui
+//= require jquery.validate
+//= require jquery.colorpicker
+//= require _common
+//= require _cleanbox
 //= require bootstrap-alert
 //= require bootstrap-dropdown
 //= require bootstrap-datepicker/core
@@ -61,6 +66,7 @@
 //= require epub.min.js
 //= require zip.min.js
 //= require tinymce
+
 
 // Bootstrap Datepicker
 $(document).ready(function() {

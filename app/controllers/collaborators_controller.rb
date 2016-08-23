@@ -10,10 +10,19 @@ class CollaboratorsController < ApplicationController
   def index
     @collaborators = @book.users.all
     @invited_users = Invitation.where(:book_id => @book.id).map { |i| User.where(:id => i.invited_id).first }
+
+    respond_to do |format|
+      format.html {  }
+      format.json { render json: ['collaborators' => @collaborators, 'invited_users' => @invited_users] }
+    end
   end
 
   def new
     @collaborator = User.new
+
+    respond_to do |format|
+      format.json { render json: @collaborator }
+    end
   end
 
   def create
@@ -22,16 +31,25 @@ class CollaboratorsController < ApplicationController
       collaborator = User.new(params[:user], :without_protection => true)
       collaborator.valid?
       if collaborator.errors[:email].present?
-        redirect_to new_book_collaborator_path(@book.uuid), :notice => "O e-mail informado não é válido." and return
+        respond_to do |format|
+          format.html { redirect_to new_book_collaborator_path(@book.uuid), :notice => "O e-mail informado não é válido." and return}
+          format.json { render json: colaborator }
+        end
       else
         collaborator.save!(:validate => false)
       end
     elsif @book.users.include?(collaborator)
-      redirect_to new_book_collaborator_path(@book.uuid), :notice => "O usuário informado já é colaborador do livro selecionado." and return
+          respond_to do |format|
+            format.html { redirect_to new_book_collaborator_path(@book.uuid), :notice => "O usuário informado já é colaborador do livro selecionado." and return}
+            format.json { render json: colaborator }
+          end
     end
     collaborator.send_book_invitation(current_user, @book.uuid)
     Invitation.create(:invited_id => collaborator.id, :book_id => @book.id)
-    redirect_to book_collaborators_path(@book.uuid), :notice => "Email enviado com instruções para o colaborador."
+      respond_to do |format|
+        format.html { redirect_to book_collaborators_path(@book.uuid), :notice => "Email enviado com instruções para o colaborador."}
+        format.json { render json: colaborator }
+      end
   end
 
   def edit

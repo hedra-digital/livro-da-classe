@@ -1,26 +1,28 @@
-<div class="cover-container">
-  <%= f.input :orelha, :label => t('book_data.orelha'), input_html: {cols: '100', rows: '5'} %>
-  <%= f.input :quartacapa, :label => t('book_data.quartacapa'), input_html: {cols: '100', rows: '5'} %>
-  <div class="span3">
-    <label for="book_datas_capainteira"><%= t('book_data.capainteira') %></label>
-    <div class="fileupload <%= @book.book_data.capainteira.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
-      <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=sem+imagem" /></div>
-        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;">
-         <%= image_tag(@book.book_data.capainteira.url(:thumb)) if @book.book_data.capainteira.present? %>
-        </div>
-        <div>
-          <a id="#remove_capainteita_btn" href="#" class="btn btn-file fileupload-exists" data-dismiss="fileupload">Remover</a>
-          <%= hidden_field_tag 'remove_capainteita', 'false' %>
-        </div>
-      <div>
-        <span class="btn btn-file"><span class="fileupload-new">Selecionar imagem</span><span class="fileupload-exists">Alterar</span>
-           <%= f.input_field :capainteira, :as => :file %>
-        </span>
-      </div>
-    </div>
-  </div>
-  <div class="span2">
-    <label><%= t('template') %></label>
-    <%= select_tag "template", options_for_select(Livrodaclasse::Application.latex_templates, @book.template) %>
-  </div>
-</div>
+	
+
+	<div class="fileupload <%= @book.book_data.capainteira.present? ? 'fileupload-exists' : 'fileupload-new' %>" data-provides="fileupload">
+		<!-- <div class="fileupload-new thumbnail"> -->
+			<div class="fileupload-preview fileupload-exists" style="display:block; margin-top:-20px;">
+				<img src="<%= @book.book_data.capainteira.url(:original) %>" alt="" style="width:100%; background:#CCC; border:1px solid #AAA; margin:12px 0;">
+				<% #= image_tag(@book.book_data.capainteira.url(:original)) if @book.book_data.capainteira.present? %>
+			</div>
+
+			<div class="actions">
+				<!-- <span class="btn btn-file"> -->
+					<!-- <span class="fileupload-new">Selecionar imagem</span> -->
+					<!-- <span class="fileupload-exists">Alterar</span> -->
+
+					<br/>
+					
+					<%= f.input_field :capainteira, :as => :file, :class =>'input-item left', :style =>'font-size:100%;' %>
+					<a id="#remove_capainteita_btn" href="#" class="btn btn-file fileupload-exists right tc-red-dark" data-dismiss="fileupload">Remover</a>
+					
+					<div class="clear"></div>
+					
+					<br/><br/>
+				<!-- </span> -->
+			</div>
+
+			<div class="clear"></div>
+		<!-- </div> -->
+	</div>

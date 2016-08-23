@@ -1,0 +1,109 @@
+
+
+
+<!-- STEP: 01_CONTENT -->
+<div id="step-content" class="clearfix">
+
+	<!-- content-navigation -->
+	<aside class="content-navigation">
+		<nav>
+			<ul>
+				<li><a href="javascript:;" data-tab="tab-chapters" class="ico-chapters">Capítulos</a></li>
+				<li><a href="javascript:;" data-tab="tab-send-file" class="ico-send-file">Enviar arquivo</a></li>
+			</ul>
+		</nav>
+	</aside>
+
+
+
+	<!-- content -->
+	<section class="content">
+
+
+		<!-- tab-chapters -->
+		<div class="tab-chapters none">
+			<div class="header clearfix">
+				<h2 class="sans-light ts-28 tc-blue lh-big left">Capítulos</h2>
+				<a rel="cleanbox" href="/books/<%= @book.uuid %>/texts/new" class="btn-default tc-white bc-blue right">Adicionar novo</a>
+			</div>
+
+
+
+			<!-- 
+				TODO:
+				- show loading.
+				- open editor text_controller #get 
+			-->
+
+
+
+			<!-- apple list -->
+			<div class="chapters">
+				<div class="empty none">
+					Nenhum capítulo cadastrado.
+				</div>
+
+				<div role="template" class="item flex-center">
+					<div class="ico-drag">
+						<a href="#"></a>
+					</div>
+					<div class="chapter-name">
+						<a rel="cleanbox" data-onclose="top.$('.cleanbox').eq(0).find('iframe')[0].contentWindow.publish_wizard.fillChapters();" href="/books/{book_id}/texts/{chapter_id}" class="sans-regular ts-18 tc-black">{title}</a>
+					</div>
+					<div class="time">
+						<!-- <p class="sans-light ts-16 tc-gray-light ta-right">{time_ago}</p> -->
+					</div>
+				</div>
+
+				<div class="receiver"></div>
+			</div>
+
+		</div>
+
+
+
+		<!-- tab-send-file -->
+		<div class="tab-send-file none">
+			<form method="post" action="">
+				<div class="header clearfix">
+					<h2 class="sans-light ts-28 tc-blue">Enviar arquivo</h2>
+				</div>
+
+				<div class="select-file clearfix">
+					<div class="ico left">
+						<img src="/assets/publish/ico-send-file.png" alt="" />
+					</div>
+					<div class="info left">
+						<p class="sans-regular ts-18 gray-dark lh-default">
+							O arquivo deve ser do formato: <br/>DOC, DOCX ou TXT.
+						</p>
+						<button class="btn-default tc-white bc-blue">Selecionar arquivo</button>
+					</div>
+				</div>
+
+				<div class="sending-file clearfix none">
+					<div class="clean-progress green"><i style="width:60%;"></i></div>
+					<p class="sans-regular ts-18 gray-dark left">Enviando arquivo: MeuLivro.doc...</p>
+					<a href="#" class="sans-regular ts-16 tc-blue right">Cancelar</a>
+					<p class="sans-semibold ts-18 tc-green right">Enviado!</p>
+				</div>
+
+				<div class="building-book clearfix none">
+					<div class="clean-progress blue"><i style="width:30%;"></i></div>
+					<p class="sans-regular ts-18 gray-dark left">Criando livro...</p>
+					<p class="sans-semibold ts-18 tc-blue right">2 capítulos adicionados.</p>
+				</div>
+			</form>
+
+
+
+			<!-- TODO: add upload form. -->
+
+
+			
+		</div>
+
+
+	</section>
+
+</div>

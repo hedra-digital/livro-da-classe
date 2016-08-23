@@ -1,20 +1,9 @@
-<h2><%=t :comments %></h2>
-
+<h2>Comentário(s)</h2>
 <%= render :partial => "/comments/show", :collection => @text.comments, :as => :comment %>
 
 <%= simple_form_for([@book, @text, @comment]) do |f| %>
-  <%= f.input :content, :as => :text, :label => false %>
-  <%= f.button :submit, "Postar comentário" %>
+	<%= f.input :content, :as => :text, :label => false, :class =>'input-item', :row =>'5' %>
+	<%= f.button :submit, "Enviar", :class =>'btn-default bc-gray tc-gray-dark' %>
 <% end %>
 
-<style type="text/css">
-  textarea {
-    width: 370px;
-    height: 60px;
-  }
-
-  .form-horizontal .controls {
-    margin-top: 10px;
-    margin-left: 0px;
-  }
-</style>
+<div class="clear"></div>

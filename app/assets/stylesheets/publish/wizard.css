@@ -1,0 +1,316 @@
+/* extras
+-------------------------------------------------------------------------------------- */
+body.cleanbox-body main.base 						{ max-width:960px; width:100%; }
+body.cleanbox-body main.base header::after			{ bottom:-89px !important; }
+body.cleanbox-body main.base header.small::after	{ bottom:-12px !important; }
+div#body-fake										{ overflow:visible; }
+div#steps  											{ min-height:40px; }
+div#steps::after									{ content:''; display:block; height:0px; clear:both; }
+div#steps div[id^='step-'] 							{ opacity:0; height:0; overflow:hidden; }
+div#steps div[id^='step-']::after					{ content:''; display:block; height:1px; background-color:#F00; }
+div#steps div[id^='step-'].show						{ opacity:1; height:auto; }
+
+
+
+
+/* progress-bar
+-------------------------------------------------------------------------------------- */
+nav.progress-bar 								{ position:relative; height:75px; border-bottom:1px solid #96AABE; background-color:#BDD1E5; }
+nav.progress-bar ul 							{ display:block; position:relative; padding-left:40px; font-size:0; }
+nav.progress-bar ul li							{ display:inline-block; position:relative; }
+nav.progress-bar ul li:last-of-type a			{ font-weight:600; color:#6C95C1; text-shadow:0px 0px 50px rgba(255, 255, 255, 1); }
+nav.progress-bar ul li a						{ display:block; padding:0px 44px; line-height:75px; text-decoration:none; }
+nav.progress-bar ul.default						{ width:100%; }
+nav.progress-bar ul.default li.current			{  }
+nav.progress-bar ul.default li.current::before	{ content:''; position:absolute; left:50%; bottom:-18px; margin-left:-9px; width:1px; height:1px; border-bottom:9px solid #1358A2; border-left:9px solid transparent; border-right:9px solid transparent; 
+												  /*-ms-animation:floating-short 0.4s ease infinite alternate; -webkit-animation:floating-short 0.4s ease infinite alternate; -animation:floating-short 0.4s ease infinite alternate;*/ }
+nav.progress-bar div.base-on					{ position:absolute; top:0; left:0; width:0; height:75px; background:#1358A2;
+ 												  -webkit-transition:all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  														  transition:all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+nav.progress-bar div.base-on::after				{ content:''; position:absolute; top:0; right:-14px; width:1px; height:1px; border-left:13px solid #1358A2; border-top:37px solid transparent; border-bottom:38px solid transparent; }
+nav.progress-bar ul.on							{ white-space:nowrap; overflow:hidden; }
+nav.progress-bar ul.on li						{ background-color:#1358A2; }
+nav.progress-bar ul.on li a						{ color:#FFF; }
+nav.progress-bar ul.on li:last-of-type a		{ font-weight:600; color:#36CB60; text-shadow:rgba(0,0,0,0.5) 0px 0px 60px }
+
+
+
+
+/* content-navigation (GLOBAL)
+-------------------------------------------------------------------------------------- */
+aside.content-navigation											{ float:left; padding:25px 0 50px; width:260px; }
+aside.content-navigation nav										{  }
+aside.content-navigation nav ul										{  }
+aside.content-navigation nav ul li									{ height:78px; border-bottom:1px solid #C4C3C3; }
+aside.content-navigation nav ul li a								{ opacity:0.4; display:block; padding-left:50px; line-height:78px; font-size:18px; color:#4B4B4B; text-decoration:none; }
+aside.content-navigation nav ul li a:hover							{ opacity:1; }
+aside.content-navigation nav ul li a[class^='ico-']::before			{ content:''; display:inline-block; margin-right:15px; width:25px; height:25px; vertical-align:text-bottom; background:url(../publish/publish-icons.svg?3) no-repeat 0 0; }
+aside.content-navigation nav ul li a.ico-chapters::before			{ background-position:-25px -25px; }
+aside.content-navigation nav ul li a.ico-send-file::before			{ background-position:-25px -50px; }
+aside.content-navigation nav ul li a.ico-cover-editor::before		{ background-position:-25px -75px; }
+aside.content-navigation nav ul li a.ico-cover-models::before		{ background-position:-25px -100px; }
+aside.content-navigation nav ul li a.ico-book-info::before			{ background-position:-25px -125px; }
+aside.content-navigation nav ul li a.ico-book-isbn::before			{ background-position:-25px -150px; }
+aside.content-navigation nav ul li a.ico-book-measures::before		{ background-position:-25px -175px; }
+aside.content-navigation nav ul li a.ico-book-style::before			{ background-position:-25px -200px; }
+aside.content-navigation nav ul li a.ico-prices::before				{ background-position:-25px -225px; }
+aside.content-navigation nav ul li a.ico-shop-local::before			{ background-position:-25px -250px; }
+aside.content-navigation nav ul li a.ico-shop-online::before		{ background-position:-25px -275px; }
+aside.content-navigation nav ul li a.ico-total::before				{ background-position:-25px -300px; }
+aside.content-navigation nav ul li a.ico-finish::before				{ background-position:0 -325px; }
+aside.content-navigation nav ul li.current a						{ opacity:1; color:#115DAE; cursor:default; }
+aside.content-navigation nav ul li.current a[class^='ico-']::before	{ background-position-x:0; }
+aside.content-navigation nav ul li.finish							{ position:relative; left:-16px; padding-left:16px; width:260px; border-bottom:0; background-color:#30AF76; }
+aside.content-navigation nav ul li.finish::before					{ content:''; position:absolute; bottom:-16px; left:0; width:0; height:0; border-right:16px solid #185A3D; border-left:0; border-top:0; border-bottom:16px solid transparent; }
+aside.content-navigation nav ul li.finish::after					{ content:''; position:absolute; top:0; right:-13px; width:0; height:0; border-left:13px solid #30AF76; border-top:40px solid transparent; border-bottom:40px solid transparent; }
+aside.content-navigation nav ul li.finish a							{ opacity:1; font-family:'sans-bold'; font-style:18px; color:#FFF; }
+
+
+
+
+/* content
+-------------------------------------------------------------------------------------- */
+section.content  						{ float:right; max-width:600px; width:calc(100% - 360px); }
+section.content div.header				{ margin-bottom:20px; /*height:45px;*/ }
+section.content article p 				{ padding-bottom:6%; line-height:150%; font-size:100%; color:#555; text-align:justify; text-indent:3.8%; }
+section.content div.header p 			{ text-align:initial; text-indent:initial; }
+
+
+
+
+/* 01_content
+-------------------------------------------------------------------------------------- */
+div#step-content div.tab-chapters div.chapters  									{ position:relative; }
+div#step-content div.tab-chapters div.chapters div.empty 							{ line-height:95px; text-align:center; border:dashed #C4C3C3; border-width:1px 0; }
+div#step-content div.tab-chapters div.chapters div.item								{ position:relative; margin-bottom:-1px; height:60px; border:dashed #C4C3C3; border-width:1px 0; }
+div#step-content div.tab-chapters div.chapters div.item div.ico-drag				{ width:40px; }
+div#step-content div.tab-chapters div.chapters div.item div.ico-drag a 				{ opacity:0.15; margin-left:25px; display:inline-block; width:25px; height:25px; border:0; background:url(../publish/publish-icons.svg) no-repeat 0 0; cursor:default; }
+div#step-content div.tab-chapters div.chapters div.item div.ico-drag a:hover		{ opacity:1.0 !important; }
+div#step-content div.tab-chapters div.chapters div.item div.chapter-name			{ width:350px; }
+div#step-content div.tab-chapters div.chapters div.item div.chapter-name a			{ display:block; margin-left:25px; line-height:60px; text-decoration:none; }
+div#step-content div.tab-chapters div.chapters div.item div.chapter-name a:hover	{ text-decoration:underline; }
+div#step-content div.tab-chapters div.chapters div.item div.time					{ width:210px; }
+div#step-content div.tab-chapters div.chapters div.item div.time p					{ margin-right:20px; }
+div#step-content div.tab-chapters div.chapters div.item:hover						{ background-color:rgba(255,255,255,0.3); }
+div#step-content div.tab-chapters div.chapters div.item:hover div.ico-drag a		{ opacity:0.5; }
+div#step-content div.tab-chapters div.chapters div.item.floating					{ top:-10px; left:-10px; border:1px solid #C4C3C3; background-color:rgba(255,255,255,0.8); box-shadow:2px 2px 7px rgba(0,0,0,0.1) }
+div#step-content div.tab-chapters div.chapters div.item.placeholder					{ background-color:#DDD; border-width:1px; }
+div#step-content div.tab-send-file div.select-file div.ico							{ margin-right:45px; }
+div#step-content div.tab-send-file div.select-file div.info p						{ margin-bottom:25px; }
+div#step-content div.tab-send-file div.sending-file 								{ margin-bottom:20px; }
+div#step-content div.tab-send-file div.clean-progress								{ margin-bottom:20px; }
+
+
+
+
+
+/* 02_cover
+-------------------------------------------------------------------------------------- */
+div#step-cover div.tab-cover-editor div.header															{ margin-bottom:25px; height:auto; }
+div#step-cover div.tab-cover-editor div.editor-stage													{ margin-top:40px; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover											{ position:relative; width:280px; height:374px; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover::before									{ content:''; position:absolute; top:0; right:0; bottom:0; left:0; background:url(/images/_common/book-bevels.svg) no-repeat; -webkit-background-size:cover; background-size:cover; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover[class*="pattern"] 						{  }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-diag-1 							{ background-image:url(../publish/pattern-diag-1.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-diag-2 							{ background-image:url(../publish/pattern-diag-2.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-diag-3 							{ background-image:url(../publish/pattern-diag-3.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-diag-4 							{ margin-right:0; background-image:url(../publish/pattern-diag-4.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-ball-1 							{ background-image:url(../publish/pattern-ball-1.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-ball-2 							{ background-image:url(../publish/pattern-ball-2.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-square-1							{ background-image:url(../publish/pattern-square-1.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-square-2							{ margin-right:0; background-image:url(../publish/pattern-square-2.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-linear-top						{ background-image:linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.8)); }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-linear-right						{ background-image:linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.8)); }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-linear-bottom					{ background-image:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.8)); }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.pattern-linear-left						{ background-image:linear-gradient(270deg, rgba(0,0,0,0), rgba(0,0,0,0.8)); }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.ta-left div								{ text-align:left; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.ta-center div							{ text-align:center; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.ta-right div								{ text-align:right; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.ts-upper div								{ text-transform:uppercase; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.ts-lower div								{ text-transform:lowercase; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.ts-bold div								{ font-weight:bold; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.ts-italic div							{ font-style:italic; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.lh-small div								{ line-height:80%; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.lh-default div							{ line-height:100%; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.lh-medium div							{ line-height:130%; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover.lh-big div								{ line-height:160%; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover div										{ color:inherit; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover div.margin								{ position:relative; margin:50px 20px 20px; height:304px; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover div.book-title							{ font-size:23px; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover div.book-subtitle						{ opacity:0.6; margin-top:20px; font-size:14px; }
+div#step-cover div.tab-cover-editor div.editor-stage div#cover div.author-name							{ position:absolute; right:0; bottom:0; left:0; font-size:10px; /*text-align:center;*/ }
+
+div#step-cover div.tab-cover-editor div.editor-stage div.tools											{ width:270px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']									{ position:relative; margin-bottom:18px; height:80px; background:#D7D7D8; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']:hover							{ background:#CCC; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>a								{ display:block; position:relative; padding:0 30px; line-height:80px; text-decoration:none; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>a.select::after					{ content:''; display:inline-block; position:absolute; top:50%; right:20px; margin-top:-3px; width:0; height:0; border-top:5px solid #31313F; border-right:5px solid transparent; border-left:5px solid transparent; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>a span.label						{ display:inline-block; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>a span.choice					{ display:inline-block; margin:22px 8px; width:36px; height:36px; line-height:36px; text-align:center; background-color:#444; border-radius:18px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>div.options						{ position:absolute; z-index:3; top:75px; right:0; left:0; background:#FFF; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>div.options::before				{ content:''; position:absolute; top:-8px; right:46px; width:0; height:0; border-right:9px solid transparent; border-bottom:9px solid #FFF; border-left:9px solid transparent; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>div.options div.base				{ margin:18px; font-size:0; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>div.options table				{ border-collapse:initial; border-spacing:1px; background-color:#333; cursor:default; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>div.options table tbody tr		{  }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>div.options table tbody tr td	{ position:relative; width:18px; height:18px; font-size:0; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>div.options table tbody tr td.selected::before	,
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div[class^='tool-']>div.options table tbody tr td:hover::before		{ content:''; display:block; position:absolute; top:0; right:0; bottom:0; left:0; border:2px solid #F00; }
+
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-color										{  }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-color a span.choice							{  }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-color div.options							{  }
+
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern 									{  }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice						{ background-color:#AAA;  background-size:contain; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-diag-1		{ background-image:url(../publish/pattern-diag-1.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-diag-2		{ background-image:url(../publish/pattern-diag-2.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-diag-3		{ background-image:url(../publish/pattern-diag-3.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-diag-4		{ background-image:url(../publish/pattern-diag-4.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-ball-1		{ background-image:url(../publish/pattern-ball-1.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-ball-2		{ background-image:url(../publish/pattern-ball-2.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-square-1		{ background-image:url(../publish/pattern-square-1.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-square-2		{ background-image:url(../publish/pattern-square-2.png?90); background-position:center center; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-linear-top	{ background-image:linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.8)); }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-linear-right	{ background-image:linear-gradient(90deg, rgba(0,0,0,0), rgba(0,0,0,0.8)); }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-linear-bottom	{ background-image:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.8)); }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern a span.choice.pattern-linear-left	{ background-image:linear-gradient(270deg, rgba(0,0,0,0), rgba(0,0,0,0.8)); }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options							{ font-size:0;  }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a						{ display:inline-block; opacity:0.8; margin:3px 7px 3px 0; width:53px; height:53px; background:#666  url(../publish/cover-editor-icons.svg?6) no-repeat 0 0; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a:hover					{ opacity:1; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-diag-1			{ background-position:-62px 0px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-diag-2			{ background-position:-62px -53px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-diag-3			{ background-position:-62px -106px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-diag-4			{ margin-right:0; background-position:-62px -159px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-ball-1			{ background-position:-62px -212px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-ball-2			{ background-position:-62px -265px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-square-1			{ background-position:-62px -318px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-square-2			{ margin-right:0; background-position:-62px -371px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-linear-left		{ background-position:-62px -424px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-linear-right		{ background-position:-62px -477px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-linear-top		{ background-position:-62px -530px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-pattern div.options a.btn-linear-bottom		{ margin-right:0; background-position:-62px -583px; }
+
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font a span.choice							{  }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options							{  }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a strong					{ font-weight:bold; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a i						{ font-style:italic; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-smaller				{ margin:0 5px 5px 0; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-ts-italic			{ margin-right:0; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-ta-left				{ padding:0 4px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-ta-left::before		{ content:''; opacity:0.5; display:inline-block; margin-top:2px; width:26px; height:26px; background:url(../publish/cover-editor-icons.svg) no-repeat 0 0; background-position:0 0; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-ta-center			{ padding:0 4px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-ta-center::before	{ content:''; opacity:0.5; display:inline-block; margin-top:2px; width:26px; height:26px; background:url(../publish/cover-editor-icons.svg) no-repeat 0 0; background-position:0 -26px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-ta-right				{ padding:0 4px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-ta-right::before		{ content:''; opacity:0.5; display:inline-block; margin-top:2px; width:26px; height:26px; background:url(../publish/cover-editor-icons.svg) no-repeat 0 0; background-position:0 -52px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-lh-less				{ padding:0 7px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-lh-less::before		{ content:''; opacity:0.5; display:inline-block; margin-top:2px; width:36px; height:26px; background:url(../publish/cover-editor-icons.svg) no-repeat 0 0; background-position:-26px 0; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-lh-more				{ padding:0 7px; margin-right:0; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a.btn-lh-more::before		{ content:''; opacity:0.5; display:inline-block; margin-top:2px; width:36px; height:26px; background:url(../publish/cover-editor-icons.svg) no-repeat 0 0; background-position:-26px -26px; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a:hover					{ color:#000; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options a:hover::before			{ opacity:1; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-font div.options table						{ margin-top:18px; }
+
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-send-cover 											{  }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-send-cover a										{ text-align:center; }
+div#step-cover div.tab-cover-editor div.editor-stage div.tools div.tool-send-cover a::before								{ content:''; display:inline-block; margin-right:5px; width:25px; height:25px; vertical-align:text-bottom; background:url(../publish/publish-icons.svg) no-repeat; background-position:-25px 0; }
+
+div#step-cover div.tab-cover-models div.header									{ margin-bottom:25px; height:auto; }
+div#step-cover div.tab-cover-models div.header.small									{ marn-bottom:12px; height:auto; }
+div#step-cover div.tab-cover-models div.models 									{ margin-top:38px; }
+div#step-cover div.tab-cover-models div.models div.cover						{ position:relative; margin-bottom:40px; width:280px; height:374px; background-image:linear-gradient(45deg, #221E1F, #444); }
+div#step-cover div.tab-cover-models div.models div.cover:nth-of-type(odd)		{ margin-right:38px; }
+div#step-cover div.tab-cover-models div.models div.cover:nth-last-of-type(-n+2)	{ margin-bottom:0; }
+div#step-cover div.tab-cover-models div.models div.cover div.info				{ position:absolute; z-index:2; top:0; right:0; bottom:0; left:0; padding:60px 40px; text-align:center; background-color:rgba(34,30,31,0.95) }
+div#step-cover div.tab-cover-models div.models div.cover div.info h3			{ height:80px; overflow:hidden; }
+div#step-cover div.tab-cover-models div.models div.cover div.info div.price		{ display:inline-block; text-align:left; }
+div#step-cover div.tab-cover-models div.models div.cover div.info a				{ margin-top:60px; }
+
+
+
+
+/* 03_metadata
+-------------------------------------------------------------------------------------- */
+div#step-metadata div.tab-book-info								{  }
+div#step-metadata div.tab-book-info div 						{  }
+div#step-metadata div.tab-book-info div.form-item 				{ /*padding-right:0;*/ }
+div#step-metadata div.tab-book-info div.form-item label			{ width:200px; line-height:45px; text-align:right; }
+div#step-metadata div.tab-book-info div.form-item input			,
+div#step-metadata div.tab-book-info div.form-item textarea		{ margin-left:18px; width:100%; }
+div#step-metadata div.tab-book-info div.form-item textarea		{ height:150px; }
+div#step-metadata div.tab-book-info div.form-item select		{ margin-left:153px; width:100%; }
+div#step-metadata div.tab-book-info div.buttons					{  }
+div#step-metadata div.tab-book-info div.buttons	button			{ margin-left:150px; width:180px; }
+div#step-metadata div.tab-book-isbn div.form-item.checkbox		{  }
+
+
+
+
+
+/* 04_features
+-------------------------------------------------------------------------------------- */
+div#step-features div.tab-book-measures																		{  }
+div#step-features div.tab-book-measures div.measures-options div.option										{ padding:36px 0; border-bottom:1px dashed #C4C3C3; }
+div#step-features div.tab-book-measures div.measures-options div.option:nth-child(1)						{ padding-top:0; }
+div#step-features div.tab-book-measures div.measures-options div.option:nth-last-child(1)					{ padding-bottom:0; border-bottom:0; }
+div#step-features div.tab-book-measures div.measures-options div.option div.sample							{ margin-right:40px; width:200px; text-align:center; }
+div#step-features div.tab-book-measures div.measures-options div.option div.sample div.paper				{ display:inline-block; border:1px solid #AAA; background:#FFF; box-shadow:3px 3px 0px rgba(0,0,0,0.2); }
+div#step-features div.tab-book-measures div.measures-options div.option div.info							{ width:360px; }
+div#step-features div.tab-book-measures div.measures-options div.option:nth-child(1) div.sample div.paper	{ width:113px; height:158px; }
+div#step-features div.tab-book-measures div.measures-options div.option:nth-child(2) div.sample div.paper	{ width:131px; height:167px; }
+div#step-features div.tab-book-measures div.measures-options div.option:nth-child(3) div.sample div.paper	{ width:197px; height:158px; }
+div#step-features div.tab-book-style div.style-options 														{  }
+div#step-features div.tab-book-style div.style-options div.option											{ padding:36px 0; border-bottom:1px dashed #C4C3C3; }
+div#step-features div.tab-book-style div.style-options div.option:nth-child(1)								{ padding-top:0; }
+div#step-features div.tab-book-style div.style-options div.option:nth-last-child(1)							{ padding-bottom:0; border-bottom:0; }
+div#step-features div.tab-book-style div.style-options div.option div.sample								{ margin-right:40px; width:200px; text-align:center; }
+div#step-features div.tab-book-style div.style-options div.option div.sample div.paper						{ display:inline-block; width:197px; height:158px; border:1px solid #AAA; background:#FFF; box-shadow:3px 3px 0px rgba(0,0,0,0.2); }
+div#step-features div.tab-book-style div.style-options div.option div.sample div.paper.style-default		{ background:url(../publish/style-default.png) no-repeat center center; }
+div#step-features div.tab-book-style div.style-options div.option div.sample div.paper.style-retro			{ background:url(../publish/style-retro.png) no-repeat center center; }
+div#step-features div.tab-book-style div.style-options div.option div.sample div.paper.style-modern			{ background:url(../publish/style-modern.png) no-repeat center center; }
+div#step-features div.tab-book-style div.style-options div.option div.info									{ width:360px; }
+
+
+
+
+/* 05_publication
+-------------------------------------------------------------------------------------- */
+div#step-publication div.tab-prices 											{  }
+div#step-publication div.tab-prices div.header									{ margin-bottom:25px; height:auto; }
+div#step-publication div.tab-prices div.header.small									{ marn-bottom:12px; height:auto; }
+div#step-publication div.tab-prices div.calculator								{ margin-top:60px; text-align:center; }
+div#step-publication div.tab-prices div.calculator div.form-item 				{ display:inline-block; margin-bottom:10px; padding-right:0; }
+div#step-publication div.tab-prices div.calculator div.form-item label			{ display:inline-block; margin-right:15px; width:205px; text-align:right; white-space:nowrap; }
+div#step-publication div.tab-prices div.calculator div.form-item input			{ width:160px; text-align:right; }
+div#step-publication div.tab-prices div.calculator hr							{ margin:15px 0; }
+div#step-publication div.tab-prices div.calculator div.item						{ display:inline-block; position:relative; line-height:40px; text-align:right; }
+div#step-publication div.tab-prices div.calculator div.item label				{ display:inline-block; margin-right:15px; width:205px; text-align:right; white-space:nowrap; }
+div#step-publication div.tab-prices div.calculator div.item span				{ display:inline-block; padding:0 15px; width:130px; }
+div#step-publication div.tab-prices div.calculator div.form-item::after			,
+div#step-publication div.tab-prices div.calculator div.item::after				{ content:'R$'; position:absolute; top:0px; right:130px; line-height:45px; font-style:18px; color:#777; pointer-events:none; }
+div#step-publication div.tab-prices div.calculator div.item:nth-last-child(1)::after	{ font-family:'sans-semibold'; font-style:18px; color:#203F99; }
+div#step-publication div[class*="tab-shop"]													{  }
+div#step-publication div[class*="tab-shop"] div.header										{ margin-bottom:25px; height:auto; }
+div#step-publication div[class*="tab-shop"] div.header.small										{ marn-bottom:12px; height:auto; }
+div#step-publication div[class*="tab-shop"] form											{ margin-top:35px; }
+div#step-publication div[class*="tab-shop"] form 											{  }
+div#step-publication div[class*="tab-shop"] form div.local-option 							{  }
+div#step-publication div[class*="tab-shop"] form div.local-option hr						{ margin:5px 0; }
+div#step-publication div[class*="tab-shop"] form div.local-option div.left					{ width:250px; }
+div#step-publication div[class*="tab-shop"] form div.local-option div.right 						{  }
+div#step-publication div[class*="tab-shop"] form div.local-option div.right div.box					{ position:relative; padding:15px 30px; width:270px; background-color:#D5D5D5; }
+div#step-publication div[class*="tab-shop"] form div.local-option div.right div.box::before			{ content:''; position:absolute; top:0; left:-24px; width:0; height:0; border:12px solid #D5D5D5; border-left-color:transparent; border-bottom-color:transparent; }
+div#step-publication div[class*="tab-shop"] form div.local-option div.right div.box div.item		{ display:inline-block; position:relative; line-height:29px; }
+div#step-publication div[class*="tab-shop"] form div.local-option div.right div.box div.item label	{ display:inline-block; width:155px; text-align:left; white-space:nowrap; }
+div#step-publication div[class*="tab-shop"] form div.local-option div.right div.box div.item span	{ display:inline-block; width:110px; text-align:right; }
+div#step-publication div.tab-total div.services div.item							{ position:relative; margin-bottom:-1px; height:60px; border:dashed #C4C3C3; border-width:1px 0; }
+div#step-publication div.tab-total div.services div.item div.ico-remove				{ width:40px; }
+div#step-publication div.tab-total div.services div.item div.ico-remove a 			{ opacity:0.15; margin-left:25px; display:inline-block; width:25px; height:25px; border:0; background:url(../publish/publish-icons.svg?1) no-repeat 0 -350px; }
+div#step-publication div.tab-total div.services div.item div.ico-remove a:hover		{ opacity:1.0 !important; background-position-x:-25px; }
+div#step-publication div.tab-total div.services div.item div.description			{ width:350px; }
+div#step-publication div.tab-total div.services div.item div.description p			{ margin-left:25px; line-height:60px; cursor:default; }
+div#step-publication div.tab-total div.services div.item div.price					{ width:210px; }
+div#step-publication div.tab-total div.services div.item div.price p				{ margin-right:20px; }
+div#step-publication div.tab-total div.services div.item:hover						{ background-color:rgba(255,255,255,0.3); cursor:default; }
+div#step-publication div.tab-total div.services div.item:hover div.ico-remove a		{ opacity:0.5; }
+div#step-publication div.tab-total div.services div.item.floating					{ top:-10px; left:-10px; border:1px solid #C4C3C3; background-color:rgba(255,255,255,0.8); box-shadow:2px 2px 7px rgba(0,0,0,0.1) }
+div#step-publication div.tab-total div.services div.item.placeholder				{ background-color:#DDD; border-width:1px; }

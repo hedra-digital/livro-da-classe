@@ -1,3 +1,65 @@
-<h1>Novo livro</h1>
+<% content_for :head do %>
+	<%= stylesheet_link_tag 'publish/start', media: 'all' %>
+<% end %>
 
-<%= render 'wizard' %>
+
+
+
+<% @body_class = 'cleanbox-body top' %>
+
+
+
+
+<!-- main-base -->
+<main class="base">
+
+	<!-- header -->
+	<header>
+		<h1 class="title sans-light tc-blue ts-28">Publique</h1>
+		<a rel="cleanbox-close" href="#" class="close">
+			<svg viewBox="0 0 18 18">
+				<path d="M 1 1 L 17 17 " stroke="#1358a2" stroke-width="1.2" fill="none"/>
+				<path d="M 17 1 L 1 17 " stroke="#1358a2" stroke-width="1.2" fill="none"/>
+			</svg>
+		</a>
+	</header>
+
+
+
+
+	<!-- content -->
+	<section class="content">
+		<form id="publish-form" method="post" action="/books.json">
+
+			<!-- inputs -->
+			<div class="form-item inside">
+				<label>Título do livro</label>
+				<input name="book[title]" type="text" placeholder="Título do livro" />
+				<div id="title-counter" class="tooltip green"></div>
+			</div>
+			<div class="form-item inside">
+				<label>Subtítulo</label>
+				<input name="book[book_data][subtit]" type="text" placeholder="Subtítulo" />
+				<div id="subtitle-counter" class="tooltip green"></div>
+				<span class="info">(opcional)</span>
+			</div>
+			<div class="form-item inside">
+				<label>Seu nome</label>
+				<input name="book[book_data][autor]" type="text" placeholder="Seu nome" />
+			</div>
+			
+			<!-- buttons -->
+			<div class="buttons">
+				<button class="btn-default bc-blue tc-white">Continuar</button>
+			</div>
+		</form>
+	</section>
+
+</main>
+
+
+
+
+<% content_for :foot do %>
+	<%= javascript_include_tag 'publish/start' %>
+<% end %>
