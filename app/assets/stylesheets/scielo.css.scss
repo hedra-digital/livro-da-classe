@@ -1349,7 +1349,7 @@ body:not([class*=application]) {
 	alert,
 	.alert { margin:0 auto; border:none; -webkit-box-shadow:none; -moz-box-shadow:none; box-shadow:none; -webkit-border-radius:0; -moz-border-radius:0; border-radius:0; }
 	section { min-height:300px; width:100%; padding:50px 0; }
-	section > div { max-width:1200px; width:100%; margin:0 auto; }
+	section > div { max-width:1200px; /*width:100%;*/ margin:0 auto; }
 	section:after { display:table; content:''; clear:both; }
 
 }
