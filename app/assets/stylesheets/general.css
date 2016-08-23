@@ -99,8 +99,8 @@ figure, ul, li { margin:0; padding:0; text-indent:0; }
 .application .header-space 									{ height:90px; }
 
 .dropdown 							{ display:none; position:absolute; top:100%; right:0; margin-top:-2px; background:#FFF; -webkit-box-shadow:0 0 30px rgba(0, 0, 0, 0.2); -moz-box-shadow:0 0 30px rgba(0, 0, 0, 0.2); box-shadow:0 0 30px rgba(0, 0, 0, 0.2); }
-.dropdown li 						{  }
-.dropdown li a 						{ display:block; padding:20px 30px; font-size:14px; text-transform:uppercase; text-decoration:none; border-bottom:1px solid #EEE; white-space:nowrap; }
+.dropdown li 						{ line-height:initial; }
+.dropdown li a 						{ display:block; padding:20px 30px; font-size:14px; color:#444; text-transform:uppercase; text-decoration:none; border-bottom:1px solid #EEE; white-space:nowrap; }
 .open .dropdown 					{ display:block; }
 
 
