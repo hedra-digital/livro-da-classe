@@ -16,6 +16,11 @@ class BooksController < ApplicationController
     @books = []
     @books.concat(current_user.organized_books).concat(current_user.books).flatten
     @books.sort! { |a, b| a.directory_name.downcase <=> b.directory_name.downcase }
+
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @books }
+    end
   end
 
   def cover_info
@@ -145,7 +150,7 @@ class BooksController < ApplicationController
       @book.build_cover_info
       @book.build_book_data
       respond_to do |format|
-        format.html { render :new }
+        format.html {  }
         format.json { render json: @book }
       end
     end
@@ -154,8 +159,13 @@ class BooksController < ApplicationController
   def edit
     rules
     @acronym = get_acronym_array
+
+    @text = Text.new
+    @text.content = @book.texts.order('position').map(&:content_with_head).join()
+
     respond_to do |format|
       format.html
+      format.json { render json: @text }
     end
   end
 
@@ -166,25 +176,37 @@ class BooksController < ApplicationController
     book_data = params[:book][:book_data]
     params[:book].delete :book_data
 
-    @book.remove_capainteira unless book_data[:capainteira].present?
-    @book.publisher_id = current_publisher
+    # @book.remove_capainteira unless book_data[:capainteira].present?
+    # @book.publisher_id = current_publisher
     @book.acronym = get_acronym(params[:acronym]) if params[:acronym].present?
 
     if params[:template].present? && params[:template] != @book.template
       params[:book].merge!(:template => params[:template])
     end
 
-    if @book.update_attributes(params[:book]) && @book.cover_info.update_attributes(cover_info) && @book.book_data.update_attributes(book_data)
-      @book.generate_originals_texts
-      BookCover.new(@book.cover_info).generate_cover
-      if @book.resize_images?
-        redirect_to book_cover_info_path(@book.uuid)
-      else
-        redirect_to book_path(@book.uuid), notice: t('book_updated')
+    # if @book.update_attributes(params[:book]) && @book.cover_info.update_attributes(cover_info) && @book.book_data.update_attributes(book_data)
+    #   @book.generate_originals_texts
+    #   BookCover.new(@book.cover_info).generate_cover
+    #   if @book.resize_images?
+    #     respond_to do |format|
+    #       format.html { redirect_to book_cover_info_path(@book.uuid) }
+    #       format.json { render json: @book }
+    #     end
+    #   else
+    #     respond_to do |format|
+    #       format.html { redirect_to book_path(@book.uuid), notice: t('book_updated') }
+    #       format.json { render json: @book }
+    #     end
+    #   end
+    # else
+      # @book.build_project
+      # @book.build_cover_info
+      # @book.build_book_data
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: @book }
       end
-    else
-      render :edit
-    end
+    # end
   end
 
   def destroy
@@ -217,7 +239,7 @@ class BooksController < ApplicationController
   private
 
   def secure_organizer_id
-    params[:book].delete(:organizer)
+    # params[:book].delete(:organizer)
   end
 
   def resource

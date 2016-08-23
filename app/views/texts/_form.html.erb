@@ -1,77 +1,125 @@
-<%= simple_form_for([@book, @text], :html => { :class => 'form-vertical' }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="row">
-    <div class="span3"><%= f.input :title, :label => false %></div>
-    <div class="span3"><%= f.input :subtitle, :label => false,  :placeholder => 'Subtítulo' %></div>
-    <div class="span2"><%= f.input :author, :label => false, :placeholder => 'Autor do Capítulo' %></div>
-    <% if can_review? %>
-      <div class="span2 form-horizontal inline-checkbox"><%= f.input :revised %></div>
-    <% end %>
-  </div>
-  <% if can_git? %>
-    <div class="row">
-      <div class="span11 fill">
-        <%= f.input :git_message, :placeholder => 'Mensagem' %>
-      </div>
-    </div>
-  <% end %>
-  <%= f.input :content, :label => false, :as => :ckeditor %>
-  <%= f.button :submit, :class => 'btn-primary' %>
-  <% if @text.id.present? %>
-    <%= link_to t(:cancel), book_text_cancel_path(@book.uuid, @text.uuid) , :class => 'btn', method: :post %>
-  <% else %>
-    <%= link_to t(:cancel), book_path(@book.uuid), :class => 'btn' %>
-  <% end %>
+<% content_for :head do %>
+	<%= stylesheet_link_tag 'publish/wizard', media: 'all' %>
 <% end %>
 
 
-<!-- Modal -->
-<div class="modal fade" id="footnote_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Footnote</h4>
-      </div>
-      <div class="modal-body" id="modal_inline">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="save_footnote">Save Footnote</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<script type="text/javascript">
-$("#save_footnote").click(function(){
 
-  // no data-id means new footnote, otherwise modify footnote
-  data_id = $("#footnote_modal").attr("data-id")
+<% @body_class = 'cleanbox-body top' %>
 
-  if(data_id == undefined || data_id == ""){
-    data_id = get_uuid()
-    // footnote link can not be blank, so the ckeditor will remove it, add "*" to it
-    CKEDITOR.instances.text_content.insertHtml("<a class='sdfootnoteanc' data-id='"+ data_id +"'><sup>*</sup></a>"); 
 
-    $(CKEDITOR.instances.text_content.document.$).find("body").append("<div class='sdfootnotesym' data-id='"+data_id+"'>"+ $("#modal_inline").html() +"</div>")
 
-  }else{
-    doc = $(CKEDITOR.instances.text_content.document.$)
 
-    footnote_div = doc.find("div[data-id="+ data_id +"]")
+<!-- main-base -->
+<main class="base" style="max-width:600px;">
 
-    footnote_div.html($('#modal_inline').html())
-  }
+	<!-- header -->
+	<header class="small">
+		<h1 class="title sans-light tc-blue ts-28">Adicionar novo</h1>
+		<a rel="cleanbox-close" href="#" class="close">
+			<svg viewBox="0 0 18 18">
+				<path d="M 1 1 L 17 17 " stroke="#1358a2" stroke-width="1.2" fill="none"/>
+				<path d="M 17 1 L 1 17 " stroke="#1358a2" stroke-width="1.2" fill="none"/>
+			</svg>
+		</a>
+	</header>
 
-  // make it clean all the time
-  $('#modal_inline').html("")
-  $("#footnote_modal").attr("data-id", "").modal("hide")
-})
 
-$('#footnote_modal').on('hidden.bs.modal', function() {
-  destroy_inline_ckeditor()
-})
+	<!-- content -->
+	<section class="content" style="float:none; width:initial;">
 
-</script>
+		<%= simple_form_for([@book, @text], :html => { :class => 'form-vertical' }) do |f| %>
+			<%= f.error_notification %>
+
+			<div class="row">
+				<div class="span3"><%= f.input :title, :class =>'input-item', :label => false %></div>
+				<div class="span3"><%= f.input :subtitle, :class =>'input-item', :label => false,  :placeholder => 'Subtítulo' %></div>
+				<div class="span2"><%= f.input :author, :class =>'input-item', :label => false, :placeholder => 'Autor do Capítulo' %></div>
+				<% #if can_review? %>
+					<!-- <div class="span2 form-horizontal inline-checkbox"><%= f.input :revised %></div> -->
+				<% #end %>
+			</div>
+			<% #if can_git? %>
+				<!-- <div class="row"> -->
+					<!-- <div class="span11 fill"> -->
+						<% #= f.input :git_message, :placeholder => 'Mensagem' %>
+					<!-- </div> -->
+				<!-- </div> -->
+			<% #end %>
+			
+			<br/><br/>
+			<%= f.input :content, :label => false, :as => :ckeditor %>
+
+			<br/><br/>
+			<%= f.button :submit, 'Salvar', class: 'btn btn-primary btn-default bc-blue tc-white' %>
+			<%= link_to 'Voltar', book_texts_path(@book), :class =>'btn btn-default tc-black', :rel =>'cleanbox-close' %>
+			
+			<% #if @text.id.present? %>
+				<% #= link_to t(:cancel), book_text_cancel_path(@book.uuid, @text.uuid) , :class => 'btn', method: :post %>
+			<% #else %>
+				<% #= link_to t(:cancel), book_path(@book.uuid), :class => 'btn' %>
+			<% #end %>
+		<% end %>
+
+
+		<!-- Modal -->
+		<!-- <div class="modal fade" id="footnote_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Footnote</h4>
+					</div>
+					<div class="modal-body" id="modal_inline">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="save_footnote">Save Footnote</button>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+
+		<script type="text/javascript">
+		$("#save_footnote").click(function(){
+
+			// no data-id means new footnote, otherwise modify footnote
+			data_id = $("#footnote_modal").attr("data-id")
+
+			if(data_id == undefined || data_id == ""){
+				data_id = get_uuid()
+				// footnote link can not be blank, so the ckeditor will remove it, add "*" to it
+				CKEDITOR.instances.text_content.insertHtml("<a class='sdfootnoteanc' data-id='"+ data_id +"'><sup>*</sup></a>"); 
+
+				$(CKEDITOR.instances.text_content.document.$).find("body").append("<div class='sdfootnotesym' data-id='"+data_id+"'>"+ $("#modal_inline").html() +"</div>")
+
+			}else{
+				doc = $(CKEDITOR.instances.text_content.document.$)
+
+				footnote_div = doc.find("div[data-id="+ data_id +"]")
+
+				footnote_div.html($('#modal_inline').html())
+			}
+
+			// make it clean all the time
+			$('#modal_inline').html("")
+			$("#footnote_modal").attr("data-id", "").modal("hide")
+		})
+
+		$('#footnote_modal').on('hidden.bs.modal', function() {
+			destroy_inline_ckeditor()
+		})
+
+		</script>
+
+	</section>
+
+</main>
+
+
+
+
+<% content_for :foot do %>
+	<%= javascript_include_tag 'publish/wizard' %>
+<% end %>

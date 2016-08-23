@@ -3,7 +3,7 @@
 html, body				{ margin:0; padding:0; height:100%; }
 body 					{ background:#E0E0E0; }
 #body-fake 				{ position:relative; z-index:1; width:100%; height:100%; overflow:auto; }
-
+[role="template"] 		{ display:none !important; background:#F00; }
 
 
 
@@ -20,16 +20,16 @@ body 					{ background:#E0E0E0; }
 .clearfix:after,.container_24:after{clear:both}
 .clearfix,.container_24{zoom:1}
 
-/*@media screen and (min-device-width: 960px){
+@media screen and (min-device-width: 960px){
 	.grid_1{max-width:30px}.grid_2{max-width:70px}.grid_3{max-width:110px}.grid_4{max-width:150px}.grid_5{max-width:190px}.grid_6{max-width:230px}.grid_7{max-width:270px}.grid_8{max-width:310px}.grid_9{max-width:350px}.grid_10{max-width:390px}.grid_11{max-width:430px}.grid_12{max-width:470px}.grid_13{max-width:510px}.grid_14{max-width:550px}.grid_15{max-width:590px}.grid_16{max-width:630px}.grid_17{max-width:670px}.grid_18{max-width:710px}.grid_19{max-width:750px}.grid_20{max-width:790px}.grid_21{max-width:830px}.grid_22{max-width:870px}.grid_23{max-width:910px}.grid_24{max-width:950px
-}*/
+}
 
 
 
 
 /* reset - Eric Meyer's Reset CSS v2.0
 -------------------------------------------------------------------------------------- */
-/*html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
 
 
 
@@ -40,10 +40,10 @@ body 					{ background:#E0E0E0; }
 /*@font-face 			{ font-family:'sans-regular'; src:url('opensans-regular-webfont.eot'); src:url('opensans-regular-webfont.eot?#iefix') format('embedded-opentype'), url('opensans-regular-webfont.woff2') format('woff2'), url('opensans-regular-webfont.woff') format('woff'), url('opensans-regular-webfont.ttf') format('truetype'), url('opensans-regular-webfont.svg#sans-regular') format('svg'); font-weight:normal; font-style:normal; }*/
 /*@font-face 			{ font-family:'sans-semibold'; src:url('opensans-semibold-webfont.eot'); src:url('opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('opensans-semibold-webfont.woff2') format('woff2'), url('opensans-semibold-webfont.woff') format('woff'), url('opensans-semibold-webfont.ttf') format('truetype'), url('opensans-semibold-webfont.svg#sans-semibold') format('svg'); font-weight:normal; font-style:normal; }*/
 /*@font-face 			{ font-family:'sans-bold'; src:url('opensans-bold-webfont.eot'); src:url('opensans-bold-webfont.eot?#iefix') format('embedded-opentype'), url('opensans-bold-webfont.woff2') format('woff2'), url('opensans-bold-webfont.woff') format('woff'), url('opensans-bold-webfont.ttf') format('truetype'), url('opensans-bold-webfont.svg#sans-bold') format('svg'); font-weight:normal; font-style:normal; }*/
-.sans-light			{ font-family:'sans-light','arial','helvetica'; }
-.sans-regular		{ font-family:'sans-regular','arial','helvetica'; }
-.sans-semibold		{ font-family:'sans-semibold','arial','helvetica'; }
-.sans-bold			{ font-family:'sans-bold','arial','helvetica'; }
+.sans-light			{ font-family:'Roboto', 'sans-light','arial','helvetica'; }
+.sans-regular		{ font-family:'Roboto', 'sans-regular','arial','helvetica'; }
+.sans-semibold		{ font-family:'Roboto', 'sans-semibold','arial','helvetica'; }
+.sans-bold			{ font-family:'Roboto', 'sans-bold','arial','helvetica'; }
 
 
 
@@ -107,7 +107,7 @@ hr.gray-light		{ border-top-color:#C4C3C3; }
 /* text colors
 -------------------------------------------------------------------------------------- */
 .tc-black 				{ color:#201E1F; }
-.tc-gray-dark 			{ color:#31313F; }
+.tc-gray-dark 			{ color:#555; }
 .tc-gray 				{ color:#414151; }
 .tc-gray-light			{ color:#777; }
 .tc-gray-light-extra	{ color:#999; }
@@ -117,6 +117,7 @@ hr.gray-light		{ border-top-color:#C4C3C3; }
 .tc-blue 				{ color:#115DAE; }
 .tc-blue-dark 			{ color:#1358A2; }
 .tc-blue-navy 			{ color:#203F99; }
+.tc-red-dark 			{ color:#C30; }
 .tc-green 				{ color:#2C9E6A; }
 .tc-yellow 				{ color:#FFF100; }
 
@@ -126,11 +127,14 @@ hr.gray-light		{ border-top-color:#C4C3C3; }
 /* background color
 -------------------------------------------------------------------------------------- */
 .bc-white 				{ background-color:#FFF; }
+.bc-gray-dark 			{ background-color:#31313F; }
+.bc-gray 				{ background-color:#CCC; }
 .bc-gray-light-extra	{ background-color:#E0E0E0; }
 .bc-blue-light-extra	{ background-color:#BDD1E5; }
 .bc-blue-light 			{ background-color:#97B8DC; }
 .bc-blue 				{ background-color:#115DAE; }
 .bc-blue-dark 			{ background-color:#1357A0; }
+.bc-red-dark 			{ background-color:#C30; }
 .bc-green 				{ background-color:#2C9E6A; }
 .bc-yellow 				{ background-color:#FFF100; }
 

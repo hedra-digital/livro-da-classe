@@ -1,0 +1,96 @@
+<% content_for :head do %>
+
+	<title>Publish Full - Oz</title>
+	<%= stylesheet_link_tag 'publish/wizard', media: 'all' %>
+
+<% end %>
+
+
+
+
+<% @body_class 		= 'cleanbox-body top' %>
+
+
+
+
+<!-- main-base -->
+<main class="base">
+
+
+
+	<!-- header -->
+	<header>
+		<h1 class="title sans-light tc-blue ts-28">Publique &nbsp;<span class="ts-22 tc-gray-light-extra">(passo 2 de 2)</span></h1>
+		<a rel="cleanbox-close" href="#" class="close">
+			<svg viewBox="0 0 18 18">
+				<path d="M 1 1 L 17 17 " stroke="#1358a2" stroke-width="1.2" fill="none"/>
+				<path d="M 17 1 L 1 17 " stroke="#1358a2" stroke-width="1.2" fill="none"/>
+			</svg>
+		</a>
+	</header>
+
+
+
+	<!-- progress-bar -->
+	<nav class="progress-bar flex-center">
+		<ul class="default">
+			<li><a href="#" data-step="step-content" class="sans-regular ts-18 tc-blue-light-extra">Conteúdo</a></li>
+			<li><a href="#" data-step="step-cover" class="sans-regular ts-18 tc-blue-light-extra">Capa</a></li>
+			<li><a href="#" data-step="step-metadata" class="sans-regular ts-18 tc-blue-light-extra">Metadados</a></li>
+			<li><a href="#" data-step="step-features" class="sans-regular ts-18 tc-blue-light-extra">Características</a></li>
+			<li><a href="#" data-step="step-publication" class="sans-regular ts-18 tc-blue-light-extra">Publicação</a></li>
+		</ul>
+		<div class="base-on">
+			<ul class="on">
+				<li><a href="#" data-step="step-content" class="sans-regular ts-18 tc-blue-light-extra">Conteúdo</a></li>
+				<li><a href="#" data-step="step-cover" class="sans-regular ts-18 tc-blue-light-extra">Capa</a></li>
+				<li><a href="#" data-step="step-metadata" class="sans-regular ts-18 tc-blue-light-extra">Metadados</a></li>
+				<li><a href="#" data-step="step-features" class="sans-regular ts-18 tc-blue-light-extra">Características</a></li>
+				<li><a href="#" data-step="step-publication" class="sans-regular ts-18 tc-blue-light-extra">Publicação</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+
+	<!-- steps-contents -->
+	<div id="steps">
+		
+
+		<!-- :content -->
+		<%= render 'publish/content-steps/content' %>
+
+
+		<!-- :cover -->
+		<%= render 'publish/content-steps/cover' %>
+
+
+		<!-- :metadata -->
+		<%= render 'publish/content-steps/metadata' %>
+
+
+		<!-- :features -->
+		<%= render 'publish/content-steps/features' %>
+
+
+		<!-- :publication -->
+		<%= render 'publish/content-steps/publication' %>
+
+
+	</div>
+
+
+
+	<!-- Clear -->
+	<div class="clar"></div>
+
+
+
+</main>
+
+
+
+
+<% content_for :foot do %>
+	<%= javascript_include_tag 'publish/wizard' %>
+<% end %>

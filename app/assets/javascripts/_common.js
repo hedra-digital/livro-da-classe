@@ -218,26 +218,26 @@ var common = {
 		var _callback = _callback || null;
 
 		// action
-		$.post(_url, _data, _callback);
+		// $.post(_url, _data, _callback);
 
-		// $.ajax({
-		// 	url			: _url,
-		// 	type		: _method,
-		// 	dataType	: 'json',
-		// 	data 		: _data,
-		// 	success		: function(output)
-		// 	{
-		// 		if (_callback)
-		// 			_callback(output);
-		// 	},
-		// 	error 		: function(output)
-		// 	{
-		// 		// debug
-		// 		// TODO: save error log database.
-		// 		console.log(output);
-		// 		console.log("error");
-		// 	},
-		// });
+		$.ajax({
+			url			: _url,
+			type		: _method,
+			dataType	: 'json',
+			data 		: _data,
+			success		: function(output)
+			{
+				if (_callback)
+					_callback(output);
+			},
+			error 		: function(output)
+			{
+				// debug
+				// TODO: save error log database.
+				console.log(output);
+				console.log("error");
+			},
+		});
 	},
 
 

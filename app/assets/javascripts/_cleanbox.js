@@ -45,14 +45,15 @@ var cleanbox = {
 			event.preventDefault();
 
 			// data
-			var reference 	= $(this).attr('href');
+			var destine 	= $(this).attr('href');
 			var params 		= $(this).data('params');
-			var destine 	= reference;
+			var onclose 	= $(this).data('onclose');
+
 			if (params) 
 				destine += '?'+params;
 
 			// action
-			me.open(destine);
+			me.open(destine, onclose);
 		});
 	},
 
@@ -71,6 +72,8 @@ var cleanbox = {
 		el_body.on('click', el_closers, function(event)
 		{
 			event.preventDefault();
+			
+			// close
 			me.close();
 		});
 	},
@@ -84,6 +87,11 @@ var cleanbox = {
 
 		// elements
 		var el_last_cleanbox = parent.$('.cleanbox:last');
+
+		// callback
+		var _onclose = el_last_cleanbox.data('onclose');
+		if (_onclose && _onclose != undefined)
+				eval(_onclose);
 
 		// action
 		el_last_cleanbox.fadeOut(me.animation_time, function()
@@ -123,7 +131,7 @@ var cleanbox = {
 
 	/* open
 	---------------------------------------------------------------------------------------*/
-	open: function(reference)
+	open: function(reference, _onclose)
 	{
 		var me = this;
 
@@ -133,6 +141,13 @@ var cleanbox = {
 		// data
 		var new_cleanbox = null;
 		var type 		 = null;
+
+		// // callback
+		// // el_last_cleanbox.data('callback');
+		// var _onclose = el_last_cleanbox.data('callback');
+		
+		// if (_onclose)
+		// 		eval(_onclose);
 
 		// action
 		// _element
@@ -144,7 +159,12 @@ var cleanbox = {
 		// _iframe
 		else
 		{
-			new_cleanbox = me.template({ type: 'iframe', url: reference });
+			new_cleanbox = me.template(
+			{ 
+				type 	: 'iframe', 
+				url 	: reference, 
+				onclose : _onclose 
+			});
 		}
 
 		// _append
@@ -220,17 +240,17 @@ var cleanbox = {
 			alert('cleanbox.template(): Param "type" must be set.')
 				
 		// data
-		var output = null;
+		var output 		= null;
 
 		// action
 		switch(params.type)
 		{
 			case 'iframe':
-				output = '<div class="cleanbox loading"><iframe src="'+params.url+'" frameborder="0" onload="cleanbox.iframeLoaded(this);"></iframe></div>';
+				output = '<div class="cleanbox loading" data-onclose="'+params.onclose+'"><iframe src="'+params.url+'" frameborder="0" onload="cleanbox.iframeLoaded(this);"></iframe></div>';
 				break;
 
 			case 'element':
-				output = '<div class="cleanbox">'+params.content+'</div>';
+				output = '<div class="cleanbox"  data-callback="'+params.callback+'">'+params.content+'</div>';
 				break;
 
 			default:

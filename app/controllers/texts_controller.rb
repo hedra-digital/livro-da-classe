@@ -9,11 +9,16 @@ class TextsController < ApplicationController
   def index
     @texts = []
     @book.texts.order('position').each do |text|
-      if text.title == 'Título do capítulo' && text.content.blank?
+      if text.title == 'Novo capítulo' && text.content.blank?
         text.delete
       else
         @texts << text
       end
+    end
+
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @texts }
     end
   end
 
@@ -57,7 +62,10 @@ class TextsController < ApplicationController
       @text.book.push_to_bitbucket
       redirect_to edit_book_text_path(@book.uuid, @text.uuid)
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: @texts }
+      end
     end
   end
 
@@ -72,7 +80,7 @@ class TextsController < ApplicationController
     if @text.update_attributes(params[:text])
       @text.content = content
 
-      if @text.title == 'Título do capítulo' && @text.content.blank?
+      if @text.title == 'Novo capítulo' && @text.content.blank?
         return redirect_to book_texts_path @book.uuid
       end
       chapters, footnotes = Text.split_chpaters(@text.content_with_head)
@@ -149,8 +157,9 @@ class TextsController < ApplicationController
     @book.push_to_bitbucket
 
     respond_to do |format|
-      format.html  {redirect_to book_texts_path(@book.uuid), :notice => t('activerecord.successful.messages.updated', :model => Text.model_name.human)}
-      format.json  { render :json => {:ok => :ture} }
+      format.html  { redirect_to book_texts_path(@book.uuid), :notice => t('activerecord.successful.messages.updated', :model => Text.model_name.human)}
+      format.json  { render :json => @book }
+      # format.json  { render :json => {:ok => :ture} }
     end
 
   end

@@ -15,20 +15,26 @@
 			<%= link_to '', new_book_path, { class:'overall', rel:'cleanbox' } %>
 			<figure class="cover"></figure>
 			<div class="information">
-				<h3>Adiciona novo</h3>
+				<h3>Adicionar novo</h3>
 			</div>
 		</article>
+
+
+
+		<!-- @book.book_data.cover_info -->
+		<% #=@ book.book_data.cover_info %>
+
 
 
 		<!-- List -->
 		<% if @books.present? %>
 			<% @books.each do |book| %>
 				<article class="book flex-2">
-					<%= link_to '', book_path(book.uuid), { class:'overall', rel:'cleanbox' } %>
+					<%= link_to '', book_path(book.uuid)+'/edit', { class:'overall', rel:'cleanbox' } %>
 					<figure class="cover"><%= image_tag book.book_data.capainteira %></figure>
 					<div class="information">
-						<h3><%= title_text(book) %></h3>
-						<p class="author"><%= book.organizer.name.presence || book.organizer.email %></p>
+						<h3><%= book.title %></h3>
+						<p class="author"><%= book.book_data.autor %></p>
 						<div class="size">
 							<p class="pages_count"><%= book_pages(book) %> páginas, </p>
 							<p class="chapters_count"><%= raw book.texts.size %> capítulos</p>

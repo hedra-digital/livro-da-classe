@@ -1,0 +1,110 @@
+
+
+
+<!-- STEP: 05_DOWNLOAD -->
+<div id="step-download" class="clearfix">
+
+	<!-- content -->
+	<section class="content" style="float:none;">
+
+		<!-- tab-output -->
+		<div class="tab-output">
+			<div class="header clearfix">
+				<h2 class="sans-light ts-28 tc-blue lh-big left">Salvar</h2>
+			</div>
+
+			<!-- <p class="sans-regular ts-18 tc-gray-dark lh-default">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
+			<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique minus quidem maxime eum quasi numquam culpa tempore dicta rerum ab. Pariatur, quos libero, voluptas dolorem temporibus iure atque cupiditate id.</p> -->
+			
+			<%= render 'books/book_info' if (controller_name == 'books' and params[:id]) || params[:book_id] %>
+		</div>
+
+	</section>
+
+</div>
+
+
+
+<!-- JS -->
+<script type="text/javascript">
+	var bookurl = '<%= book_generate_pdf_path(@book.uuid) %>';
+	var ebookurl = '<%= book_generate_ebook_path(@book.uuid) %>';
+	var ask_for_download_pdf_url = '<%= book_ask_for_download_pdf_path(@book.uuid) %>';
+
+	function getByType(type){
+		if (type == "pdf"){
+			return {
+				url : bookurl,
+				title: "<%= t(:pdf_progress_title) %>",
+				download: "<%= t(:pdf_generation_download) %>",
+				error: "<%= t(:pdf_generation_error) %>"
+			};
+		} else if (type == "ebook"){
+			return {
+				url : ebookurl,
+				title: "<%= t(:ebook_progress_title) %>",
+				download: "<%= t(:ebook_generation_download) %>",
+				error: "<%= t(:ebook_generation_error) %>"
+			};
+		} else {
+			return {
+				url : ebookurl + "?kindle=true",
+				title: "<%= t(:kindle_progress_title) %>",
+				download: "<%= t(:kindle_generation_download) %>",
+				error: "<%= t(:kindle_generation_error) %>"
+			};
+		}
+	}
+
+	function generate(type){
+		var o = getByType(type);
+		$.ajax({
+			url: o.url,
+			dataType: 'json',
+			beforeSend: function () {
+				$(".progress-modal").fancybox({
+					helpers : {
+							overlay : {
+									locked : true,
+									closeClick : false
+							},
+							title: {
+								type: 'inside',
+								position: 'bottom'
+							}
+					},
+					title: o.title,
+					autoSize: true,
+					minHeight: 10,
+					closeBtn: true,
+					autoCenter: true
+				}).trigger('click')
+			},
+			context: document.body
+		}).done(function(response) {
+			if (response.result == "success") {
+				parent.jQuery.fancybox.close();
+				window.location = response.path;
+			} else {
+				var link = $(document.createElement('a')).attr('href',response.path).text('<%= t(:click_here) %>');
+				$('img.progress-modal').hide();
+				$('div.fancybox-title').text(o.download).append(link);
+				$('div.fancybox-title').html();
+			}
+		}).fail(function(response) {
+			alert(o.error);
+		});
+	}
+
+	$("#generate-pdf").on("click", function (){
+		generate("pdf");
+	});
+
+	$("#generate-ebook").on("click", function (){
+		generate("ebook");
+	});
+
+	$("#generate-kindle").on("click", function (){
+		generate("kindle");
+	});
+</script>

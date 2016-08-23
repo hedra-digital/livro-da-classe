@@ -1,47 +1,59 @@
-<% if @text.finished_at.present? %>
-  <div class="alert">
-   <button class="close" data-dismiss="alert">×</button>
-    <%= t(:text_finished_at) %><strong><%=  @text.finished_at.strftime("%d/%m/%y") %></strong>
-  </div>
+<% content_for :head do %>
+	<%= stylesheet_link_tag 'publish/wizard', media: 'all' %>
 <% end %>
 
-<div class="row">
-  <div class="span pull-right">
-    <div>
-      <% if (@text.user == current_user) and can_write? %>
-        <%= link_to t(:text_edit), edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
-      <% end %>
-    </div>
-  </div>
-</div>
 
-<div class="row">
-  <div class="span12">
-    <div style="padding: 10px;"><%= @text.content_with_head.html_safe %></div>
-  </div>
 
-  <div class="span10">
-    <div>
-      <% if (@text.user == current_user) and can_write? %>
-        <%= link_to t(:text_edit), edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary' %>
-        <%= link_to t(:text_delete), book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger', :method => "delete", :confirm => t(:text_confirm) %>
-      <% end %>
-      <%= link_to t(:text_back), book_texts_path(@book), :class =>'btn' %>
-    </div>
-  </div>
-</div>
 
-<script type="text/javascript">
-  $( document ).ready(function() {
-    $(".latex-close").hide();
-  });
-</script>
+<% @body_class = 'cleanbox-body top' %>
 
-<hr>
 
-<%= render "comments/index" %>
 
-<style type="text/css">
-  .span5 { border-left: 1px dotted #ccc; padding-left: 20px; }
-  .span5 div { margin-bottom: 10px;}
-</style>
+
+<!-- main-base -->
+<main class="base" style="max-width:600px;">
+
+	<!-- header -->
+	<header class="small">
+		<h1 class="title sans-light tc-blue ts-28"><%= @text.title.html_safe %></h1>
+		<a rel="cleanbox-close" data-onclose="top.$('.cleanbox').eq(0).find('iframe')[0].contentWindow.publish_wizard.fillChapters();" href="#" class="close">
+			<svg viewBox="0 0 18 18">
+				<path d="M 1 1 L 17 17 " stroke="#1358a2" stroke-width="1.2" fill="none"/>
+				<path d="M 17 1 L 1 17 " stroke="#1358a2" stroke-width="1.2" fill="none"/>
+			</svg>
+		</a>
+	</header>
+
+
+	<section class="content" style="float:none; width:initial;">
+		
+		<!-- content -->
+		<article><%= @text.content.html_safe %></article>
+
+
+		<!-- action -->
+		<div class="actions" style="padding-bottom:50px;">
+			<%= link_to 'Editar', edit_book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-primary btn-default bc-blue tc-white', :rel =>'cleanbox' %>
+			<%= link_to 'Remover', book_text_path(@book.uuid, @text.uuid), :class => 'btn btn-danger btn-default tc-red-dark right', :method => "delete", :confirm => t(:text_confirm) %>
+			<%= link_to 'Voltar', book_texts_path(@book), :class =>'btn btn-default tc-black', :rel =>'cleanbox-close' %>
+		</div>
+
+
+		<!-- comments -->
+		<%= render "comments/index" %>
+
+	</section>
+
+</main>
+
+<!-- 
+<script>
+	console.log(parent);
+</script> -->
+
+
+
+
+<% content_for :foot do %>
+	<% #= javascript_include_tag 'publish/wizard' %>
+<% end %>
