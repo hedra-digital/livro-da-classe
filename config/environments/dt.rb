@@ -52,7 +52,7 @@ Livrodaclasse::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { :host => "dt.hedra.com.br", :sender_address => "nao-responda@dt.hedra.com.br", :email_prefix => "[DIGITAL TYPOGRAPHY] ERRO NO SISTEMA "}
+  config.action_mailer.default_url_options = { :host => "editorial.hedra.com.br", :sender_address => "nao-responda@editorial.hedra.com.br", :email_prefix => "[EDO] - "}
 
   # Enable threaded mode
   # config.threadsafe!
@@ -72,8 +72,8 @@ Livrodaclasse::Application.configure do
   config.threadsafe! unless $rails_rake_task # can find models when db:migrate after add 'unless $rails_rake_task'
 
   config.middleware.use ExceptionNotifier,
-  sender_address: 'nao-responda@dt.hedra.com.br',
+  sender_address: 'nao-responda@editorial.hedra.com.br',
   exception_recipients: 'jorge@hedra.com.br; pauloabner+dt@gmail.com',
-  email_prefix: "[DIGITAL TYPOGRAPHY] ERRO NO SISTEMA - ",
+  email_prefix: "[EDO] ERRO NO SISTEMA - ",
   sections: %w(impersonate)
 end
