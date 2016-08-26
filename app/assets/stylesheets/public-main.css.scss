@@ -50,6 +50,7 @@ $iconWhiteSpritePath: asset-path("glyphicons-halflings-white.png", image);
 .application h1 			{ font-size:28px; font-weight:300; }
 .application h2 			{ line-height:45px; font-size:24px; font-weight:100; }
 .application main header 	{ padding:0 0 25px; }
+.icon-arrow					{ display:inline-block; vertical-align:middle; width:0; height:0; border:5px solid #666; border-right-color:transparent; border-bottom-color:transparent; border-left-color:transparent; }
 
 .dropdown 							{ display:none; position:absolute; top:100%; right:0; margin-top:-2px; background:#FFF; -webkit-box-shadow:0 0 30px rgba(0, 0, 0, 0.2); -moz-box-shadow:0 0 30px rgba(0, 0, 0, 0.2); box-shadow:0 0 30px rgba(0, 0, 0, 0.2); }
 .dropdown li 						{ line-height:initial; list-style: none;}
@@ -164,7 +165,7 @@ section {
 }
 
 .application header.main-header 							{ padding:0; background:#FFF; -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.2); -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.2); box-shadow:0 0 10px rgba(0, 0, 0, 0.2); position: fixed; z-index: 1; width:100%}
-.application header.main-header .inner-wrap					{ padding-top:0; padding-bottom:0; }
+.application header.main-header .inner-wrap					{ padding-top:0; padding-bottom:0; margin-left: 70px; margin-right: 70px;}
 .application header.main-header .logo 						{ display:inline-block; padding:15px; width:70px; vertical-align:middle; }
 .application header.main-header .logo img 					{ display:block; width:100%; }
 .application header.main-header .navigation 				{ display:inline-block; float:right; vertical-align:middle; }
