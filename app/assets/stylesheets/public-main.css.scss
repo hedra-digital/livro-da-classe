@@ -57,7 +57,7 @@ $iconWhiteSpritePath: asset-path("glyphicons-halflings-white.png", image);
 .dropdown li a 						{ display:block; padding:20px 30px; font-size:14px; color:#444; text-transform:uppercase; text-decoration:none; border-bottom:1px solid #EEE; white-space:nowrap; }
 .open .dropdown 					{ display:block; }
 
-main 								{ background:#F5F5F5; }
+main 								{ background:#F5F5F5; min-height: 515px; }
 main .inner-wrap 					{ padding-top:100px; padding-bottom:50px; }
 
 .wrap {
@@ -164,7 +164,7 @@ section {
   }
 }
 
-.application header.main-header 							{ padding:0; background:#FFF; -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.2); -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.2); box-shadow:0 0 10px rgba(0, 0, 0, 0.2); position: fixed; z-index: 1; width:100%}
+.application header.main-header 							{ padding:0; background:#FFF; -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.2); -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.2); box-shadow:0 0 10px rgba(0, 0, 0, 0.2); position: fixed; z-index: 1; width: 100%; min-width: 1200px; max-height: 90px;}
 .application header.main-header .inner-wrap					{ padding-top:0; padding-bottom:0; margin-left: 70px; margin-right: 70px;}
 .application header.main-header .logo 						{ display:inline-block; padding:15px; width:70px; vertical-align:middle; }
 .application header.main-header .logo img 					{ display:block; width:100%; }
