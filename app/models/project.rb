@@ -121,4 +121,8 @@ class Project < ActiveRecord::Base
     BookStatus.find(self.status).desc
   end
 
+  def accessed_at
+    return self.book.accessed_at if  self.book.accessed_at
+    DateTime.new(1978,07,07)
+  end
 end

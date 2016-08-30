@@ -2,13 +2,12 @@ class Admin::DashboardController < Admin::ApplicationController
 
   skip_before_filter :authentication_admin_check, if: -> { current_user and current_user.publisher? }
 
-  MANUAL_CONTENT_FILE_PATH = 'public/manual_content.html'
-
   def index
     if params[:impersonate_user_id].blank?
 
       @projects = Project.order('updated_at DESC').includes(:book)
       remove_projects_inconsistent
+      @projects.sort! { |a, b| b.accessed_at <=> a.accessed_at }
     else
     	@user = User.find(params[:impersonate_user_id])
       session[:auth_token] = @user.auth_token
