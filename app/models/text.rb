@@ -214,12 +214,16 @@ class Text < ActiveRecord::Base
   end
 
   def create_file
-    self.to_file
-    system <<-command
-    cd #{self.book.directory}
-    git add #{self.short_filename}
-    git commit -m "add chapter: #{self.title}"
-    command
+    begin
+      self.to_file
+      system <<-command
+      cd #{self.book.directory}
+      git add #{self.short_filename}
+      git commit -m "add chapter: #{self.title}"
+      command
+    rescue Exception => e
+      Rails.logger.error e
+    end
   end
 
   def update_file

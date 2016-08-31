@@ -11,6 +11,7 @@ FactoryGirl.define do
     coordinators "MyText"
     template "aprimeiraopcao"
     association :organizer, :factory => :user
+    association :book_data
 
     factory :book_with_texts do
       ignore do

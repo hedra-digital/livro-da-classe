@@ -133,6 +133,11 @@ class BookData < ActiveRecord::Base
   end
 
   def rename_dir
+    if !book.present?
+      Rails.logger.info("Book does not exist. Ignoring rename_dir operation")
+      return
+    end
+
     if(!self.new_record? and self.autor_changed?)
       system "mv #{self.book.directory_was} #{self.book.directory(self.autor)}"
     end
