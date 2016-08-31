@@ -104,9 +104,7 @@ $ bundle install
 ### Criar estrutura do banco de dados da aplicação
 
 ```
-$ rake db:create
-$ rake db:migrate
-$ rake db:seed
+$ rake db:setup && rake db:seed
 ```
 
 ### Executar aplicação local
