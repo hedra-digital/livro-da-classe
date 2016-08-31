@@ -123,6 +123,6 @@ class Project < ActiveRecord::Base
 
   def accessed_at
     return self.book.accessed_at if  self.book.accessed_at
-    DateTime.new(1978,07,07)
+    self.updated_at
   end
 end
