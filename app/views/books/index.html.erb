@@ -1,3 +1,16 @@
+<header>
+  <h1>Meus livros</h1>
+</header>
+
+<div class="book">
+ <div class="cover">
+   <%= link_to '', new_book_path %>
+ </div>
+ <div class="info-container">
+   <div class="info">Adicionar novo</div>
+ </div>
+</div>
+
 <% if @books.present? %>
   <table class="table table-striped table-books">
     <tr>
