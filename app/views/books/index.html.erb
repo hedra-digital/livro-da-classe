@@ -1,50 +1,37 @@
 <header>
   <h1>Meus livros</h1>
 </header>
-
-<div class="book">
- <div class="cover">
-   <%= link_to '', new_book_path %>
- </div>
- <div class="info-container">
-   <div class="info">Adicionar novo</div>
- </div>
-</div>
-
-<% if @books.present? %>
-  <table class="table table-striped table-books">
-    <tr>
-      <th>Título</th>
-      <th>Criado em</th>
-      <th>Modificado em</th>
-      <th>Status</th>
-      <th>Capítulos</th>
-      <th>Papel</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <% @books.each do |book| %>
-      <tr>
-        <td><%= link_to title_text(book), book_path(book.uuid) %>, (<%= book.organizer.name.presence || book.organizer.email %>, org.)</td>
-        <td><%= l(book.created_at, :format => :short) %></td>
-        <td><%= l(book.accessed_at, :format => :short) if book.accessed_at %></td>
-        <td><%= book.project.status_to_s %></td>
-        <td><%= raw book.texts.size %></td>
-        <td><%= book_role_label(book, current_user) %></td>
-        <td><%= book_pages(book) %></td>
-        <td><%= book_remove_label(book, current_user) %></td>
-        <td class="git-link">
-          <% if can_git?(book: book) %>
-            <%= link_to image_tag('gitfork.png'), "#{CONFIG[Rails.env.to_sym]['revision_url']}/#{CONFIG[Rails.env.to_sym]['repo_prefix']}-#{book.uuid}" %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-  <div class="btn-group">
-    <%= link_to 'Novo livro', new_book_path, :class => 'btn btn-primary btn-new btn-small' %>
+<div class="flex flex-row flex-wrap flex-space-between">
+  <div class="book new">
+   <div class="cover">
+     <%= link_to '', new_book_path %>
+   </div>
+   <div class="info-container">
+     <div class="info">Adicionar novo</div>
+   </div>
   </div>
-<% else %>
-  <p class="blank">Você não tem nenhum livro. Que tal <%= link_to 'começar um agora?', new_book_path %></p>
-<% end %>
+
+  <% @books.each do |book| %>
+    <div class="book">
+     <div class="cover">
+     </div>
+     <div class="info-container">
+       <h3><%= book.title %></h3>
+       <p class="author"><%= book.book_data.autor %></p>
+       <div class="size">
+         <p class="pages_count"><%= book.pages_count < 0 ? 0 : book.pages_count %> páginas, <%= raw book.texts.size %> capítulos</p>
+       </div>
+       <div>
+         <p class="role"><%= book_role_label(book, current_user) %></p>
+         <p class="status"><%= book.project.status_to_s %></p>
+       </div>
+       <div>
+         <p class="remove">
+           <%= link_to( image_tag('icon-remove.svg'), admin_users_remove_book_path(:id => current_user.id, :book_id => book.id),
+             :confirm => 'Tem certeza que deseja remover essa relação?', :method => :delete) %>
+         </p>
+       </div>
+     </div>
+    </div>
+  <% end %>
+</div>

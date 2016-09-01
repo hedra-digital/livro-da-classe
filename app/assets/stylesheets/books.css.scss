@@ -1,15 +1,20 @@
 .book {
 	height: 530px;
 	width: 220px;
-	outline: 2px dashed rgb(187, 187, 187);
+	outline: 2px rgb(187, 187, 187);
 	margin: 10px;
 	padding: 5px;
+	background-color: #FFF;
+
+	p {
+		padding: 0 0 2px 0;
+	}
+
 
   .cover {
     width: 100%;
     height: 375px;
     background: #CCC;
-    background-image: url('/assets/plus.png');
     background-repeat: no-repeat;
     background-position: center;
 
@@ -22,15 +27,60 @@
 
   .info-container {
     height: 155px;
+		text-align: center;
 
+		.role {
+			display: inline-block;
+			margin: 5px 0px 10px;
+			font-weight: 800;
+			color: rgb(255, 255, 255);
+			background: rgb(68, 68, 68) none repeat scroll 0% 0%;
+			border-radius: 4px;
+			width: 78px;
+			span {
+				background-color: rgb(68,68,68);
+			}
+		}
+
+		.status {
+			display: inline-block;
+			font-weight: 700;
+			color: #FFF;
+			background: #D2081E;
+			border-radius: 4px;
+			width: 78px;
+			span {
+				background-color: #D2081E;
+			}
+		}
+
+		.remove {
+			float: right;
+			img {
+				opacity: 0.5;
+				width: 20px;
+			}
+		}
     .info {
       font-size: 19px;
       text-align: center;
       padding-top: 75px;
     }
+
+		h3 {
+			padding: 15px 10px 10px;
+			font-size: 140%;
+		}
   }
 }
 
+.book.new {
+	background-color: transparent;
+	outline-style: dashed;
+	.cover {
+		background-image: url('/assets/plus.png');
+	}
+}
 #recados li{
   list-style:none;
 }

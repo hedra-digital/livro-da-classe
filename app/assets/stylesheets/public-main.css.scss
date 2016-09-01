@@ -60,6 +60,31 @@ $iconWhiteSpritePath: asset-path("glyphicons-halflings-white.png", image);
 main 								{ background:#F5F5F5; min-height: 515px; }
 main .inner-wrap 					{ padding-top:100px; padding-bottom:50px; }
 
+.flex 					{ display:-webkit-box; display:-moz-box; display:-ms-flexbox; display:-webkit-flex; display:flex; }
+.flex-row 				{ flex-direction:row; }
+.flex-column 			{ flex-direction:column; }
+.flex-wrap 				{ flex-wrap:wrap; }
+.flex-start 			{ justify-content:flex-start; }
+.flex-end 				{ justify-content:flex-end; }
+.flex-center 			{ justify-content:center; }
+.flex-space-between 	{ justify-content:space-between; }
+.flex-space-around 		{ justify-content:space-around; }
+.flex-align-start 		{ align-items:flex-start; }
+.flex-align-end 		{ align-items:flex-end; }
+.flex-align-center 		{ align-items:center; }
+.flex-align-baseline 	{ align-items:baseline; }
+.flex-align-stretch 	{ align-items:stretch; }
+.flex-1 				{ flex-basis:10%; }
+.flex-2 				{ flex-basis:20%; }
+.flex-3 				{ flex-basis:30%; }
+.flex-4 				{ flex-basis:40%; }
+.flex-5 				{ flex-basis:50%; }
+.flex-6 				{ flex-basis:60%; }
+.flex-7 				{ flex-basis:70%; }
+.flex-8 				{ flex-basis:80%; }
+.flex-9 				{ flex-basis:90%; }
+
+
 .wrap {
   min-height: 100%;
   height: auto !important;
