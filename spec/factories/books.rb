@@ -14,7 +14,7 @@ FactoryGirl.define do
     association :book_data
 
     factory :book_with_texts do
-      ignore do
+      transient do
         texts_count 5
       end
 

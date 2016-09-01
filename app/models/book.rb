@@ -211,8 +211,9 @@ class Book < ActiveRecord::Base
   end
 
   def check_repository
-    if !self.book_data.nil? && !Dir.exists?(directory)
+    return if ENV['EDO_GIT_DRY_RUN'].present?
 
+    if self.book_data.present? && !Dir.exists?(directory)
       thr = Thread.new do
         logger.info `curl --user #{CONFIG[Rails.env]["git_user_pass"]} https://api.bitbucket.org/1.0/repositories/ --data name=#{CONFIG[Rails.env][:repo_prefix]}-#{self.uuid} --data is_private=true`
 
