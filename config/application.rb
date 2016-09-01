@@ -83,5 +83,7 @@ module Livrodaclasse
       latex_template_path = CONFIG[Rails.env.to_sym]["latex_template_path"]
       Dir.glob("#{latex_template_path}*").sort.select { |f| File.directory? f }.map { |m| File.basename(m) }
     end
+
+    config.autoload_paths << Rails.root.join('lib')
   end
 end
