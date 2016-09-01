@@ -214,7 +214,6 @@ class Text < ActiveRecord::Base
   end
 
   def create_file
-    begin
       self.to_file
       system <<-command
       cd #{self.book.directory}
@@ -223,7 +222,6 @@ class Text < ActiveRecord::Base
       command
     rescue Exception => e
       Rails.logger.error e
-    end
   end
 
   def update_file

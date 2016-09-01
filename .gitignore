@@ -50,3 +50,4 @@ Vagrantfile
 /log/searchd.development.pid
 .vagrant
 /public/ckeditor_assets/
+.byebug_history
