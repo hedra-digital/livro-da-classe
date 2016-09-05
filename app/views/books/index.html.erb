@@ -1,7 +1,7 @@
 <header>
   <h1>Meus livros</h1>
 </header>
-<div class="flex flex-row flex-wrap">
+<div class="flex flex-row flex-wrap flex-center">
   <div class="book new">
    <div class="cover">
      <%= link_to '', new_book_path %>
@@ -14,6 +14,7 @@
   <% @books.each do |book| %>
     <div class="book">
      <div class="cover">
+       <%= book_cover book, :original %>
      </div>
      <div class="info-container">
        <h3><%=link_to book.title, book_path(id: book.uuid) %></h3>

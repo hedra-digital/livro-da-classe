@@ -44,13 +44,13 @@ module BooksHelper
     external.nil? ? content_tag(:li, link_to(name, path, link_options), options) : content_tag(:li, link_to(name, path, :id => type), options)
   end
 
-  def book_cover
-    if @book.book_data.capainteira.exists?
-      link_to(image_tag(@book.book_data.capainteira.url(:thumb)), @book.book_data.capainteira.url(:content), :class => 'cover-modal')
-    elsif @book.cover.exists?
-      link_to(image_tag(@book.cover.url(:thumb)), @book.cover.url(:content), :class => 'cover-modal')
+  def book_cover(book = @book, size = :thumb)
+    if book.book_data.capainteira.exists?
+      link_to(image_tag(book.book_data.capainteira.url(size)), book.book_data.capainteira.url(:content), :class => 'cover-modal')
+    elsif book.cover.exists?
+      link_to(image_tag(book.cover.url(size)), book.cover.url(:content), :class => 'cover-modal')
     elsif !DefaultCover.first.nil?
-      link_to(image_tag(DefaultCover.first.default_cover.url(:thumb)), DefaultCover.first.default_cover.url, :class => 'cover-modal')
+      link_to(image_tag(DefaultCover.first.default_cover.url(size)), DefaultCover.first.default_cover.url, :class => 'cover-modal')
     else
       ''
     end
