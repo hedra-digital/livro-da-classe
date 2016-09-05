@@ -53,6 +53,7 @@ group :test, :development do
   gem 'launchy'
   gem 'simplecov', :require => false
   gem 'quiet_assets'
+  gem 'byebug'
 end
 
 group :development do
@@ -66,8 +67,7 @@ group :development do
   gem 'meta_request'
   gem 'annotate', '>=2.5.0'
   gem 'capistrano', '~> 2.15.5'
-  gem 'debugger', '1.6.6'
-  gem 'byebug'
+  gem 'debugger', '1.6.6'  
 end
 
 gem 'exception_notification', '~> 3.0.1'

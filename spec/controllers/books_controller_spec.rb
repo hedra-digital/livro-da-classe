@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe BooksController do
-  let(:organizer)         { create(:organizer) }
-  let(:books)             { organizer.organized_books }
-  let(:book)              { books.first }
-  let(:valid_attributes)  { attributes_for(:book, :organizer_id => organizer.id) }
+  let(:organizer) { create(:organizer) }
+  let(:books) { organizer.organized_books.sort! { |a, b| a.directory_name.downcase <=> b.directory_name.downcase } }
+  let(:book) { books.first }
+  let(:valid_attributes) { attributes_for(:book, :organizer_id => organizer.id) }
 
   before do
     sign_in organizer
@@ -23,14 +23,14 @@ describe BooksController do
     end
 
     it "redirects to the email page if the current_user meets the requirements" do
-      organizer.email           = nil
+      organizer.email = nil
       organizer.asked_for_email = nil
       get :index
       expect(response.status).to eq(302)
     end
 
     it "shows the index page if current_user has no email but asked_for_email=true" do
-      organizer.email           = nil
+      organizer.email = nil
       get :index
       assigns(:books).should eq(books)
     end
