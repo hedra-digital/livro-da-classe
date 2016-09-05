@@ -16,7 +16,7 @@
      <div class="cover">
      </div>
      <div class="info-container">
-       <h3><%= book.title %></h3>
+       <h3><%=link_to book.title, book_path(id: book.uuid) %></h3>
        <p class="author"><%= book.book_data.autor %></p>
        <div class="size">
          <p class="pages_count"><%= book.pages_count < 0 ? 0 : book.pages_count %> páginas, <%= raw book.texts.size %> capítulos</p>
