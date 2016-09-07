@@ -1,0 +1,16 @@
+<%= simple_form_for(@book) do |b| %>
+  <%= b.simple_fields_for @book.book_data do |f| %>
+  	<div class="form-item inside">
+      <%= b.text_field :title, placeholder: 'Título'  %>
+  	</div>
+  	<div class="form-item inside">
+  		<%= f.text_field :subtit, placeholder: 'Subtítulo (Opcional)' %>
+  	</div>
+  	<div class="form-item inside">
+  		<%= f.text_field :autor, placeholder: 'Seu Nome' %>
+  	</div>
+  <% end %>
+  <div class="btn-group">
+    <%= b.submit 'Continuar', class: 'btn-primary' %>
+  </div>
+<% end %>

@@ -87,6 +87,7 @@ class BooksController < ApplicationController
     @book.build_project
     @book.build_cover_info
     @book.build_book_data
+    render partial: 'layouts/modal/new_book', layout: false
   end
 
   def create

@@ -1,10 +1,12 @@
+<%= render 'layouts/modal' %>
+
 <header>
   <h1>Meus livros</h1>
 </header>
 <div class="flex flex-row flex-wrap flex-center">
   <div class="book new">
    <div class="cover">
-     <%= link_to '', new_book_path %>
+     <%= link_to '', new_book_path, data: { toggle: "modal", target: "#ajax-modal" } %>
    </div>
    <div class="info-container">
      <div class="info">Adicionar novo</div>
@@ -28,7 +30,7 @@
        </div>
        <div>
          <p class="remove">
-           <%= link_to( image_tag('icon-remove.svg'), admin_users_remove_book_path(:id => current_user.id, :book_id => book.id),
+           <%= link_to( image_tag('icon-remove.svg'), book_path(:id => book.id),
              :confirm => 'Tem certeza que deseja remover essa relação?', :method => :delete) %>
          </p>
        </div>
