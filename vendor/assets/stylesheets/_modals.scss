@@ -26,7 +26,7 @@
   top: 10%;
   left: 50%;
   z-index: $zindexModal;
-  width: 560px;
+  width: 630px;
   margin-left: -280px;
   background-color: $white;
   border: 1px solid #999;
@@ -45,10 +45,9 @@
   &.fade.in { top: 10%; }
 }
 .modal-header {
-  padding: 9px 15px;
+  padding: 35px 50px;
   border-bottom: 1px solid #eee;
-  // Close icon
-  .close { margin-top: 2px; }
+  height: 32px;
   // Heading
   h3 {
     margin: 0;
@@ -62,7 +61,9 @@
   overflow-y: auto;
   max-height: 400px;
   padding: 15px;
+  background-color: #dbdbdb;
 }
+
 // Remove bottom margin if need be
 .modal-form {
   margin-bottom: 0;

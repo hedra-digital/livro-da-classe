@@ -84,6 +84,30 @@ main .inner-wrap 					{ padding-top:100px; padding-bottom:50px; }
 .flex-8 				{ flex-basis:80%; }
 .flex-9 				{ flex-basis:90%; }
 
+.modal-content-new-book {
+  padding: 30px 50px 50px 50px;
+  height: 240px;
+  .form-item {
+    padding-right: 30px;
+    input {
+      height: 41px;
+      margin-bottom: 25px;
+      width: 100% !important;
+      padding: 1px 14px;
+      border: 1px solid #bbbbbb;
+      box-shadow: inset 3px 3px 0px rgba(0,0,0,0.12);
+    }
+  }
+  .btn-group {
+    margin: 0px;
+  }
+}
+
+.modal-title {
+  h1 {
+    margin: 0px !important;
+  }
+}
 
 .wrap {
   min-height: 100%;
