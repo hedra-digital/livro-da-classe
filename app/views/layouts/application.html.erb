@@ -26,7 +26,7 @@
 
 					<nav class="navigation">
 						<ul>
-							<li class="active"><%= link_to t('my_books'), books_path %></li>
+							<li class="active"><%= link_to t('my_books'), '/apphome' %></li>
 							<% if current_user.publisher? %>
 								<li><%= link_to 'EDITORIAL', '/admin' %></li>
 							<% end %>
@@ -46,8 +46,14 @@
 
       <main>
         <div class="inner-wrap">
-          <%= render 'books/book_info' if (controller_name == 'books' and params[:id]) || params[:book_id] %>
-          <%= yield %>
+          <% if (controller_name == 'books' and params[:id]) || params[:book_id] %>
+          <%= render 'books/book_info'  %>
+            <div class="container">
+              <%= yield %>
+            </div>
+          <% else %>
+              <%= yield %>
+          <% end %>
         </div>
       </main>
 
