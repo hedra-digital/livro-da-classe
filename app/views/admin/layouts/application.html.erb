@@ -10,14 +10,18 @@
     <%= csrf_meta_tags %>
     <%= yield :meta_tags %>
   </head>
-  <body>
+  <body class="application" >
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
     <div class="wrap wrap-app">
-      <header class="main-header main-header-app">
-        <div class="navbar" style="width: 1070px;">
-          <div class="navbar-inner navbar-left">
+      <header class="main-header main-header-app" data-spy="affix">
+        <div class="inner-wrap">
+          <div class="logo" >
+						<%= image_tag "scielo/logo-scielo.png" %>
+					</div>
+
+          <nav class="navigation">
             <ul class="nav">
               <!--<li><%= link_to "Templates", admin_templates_path %></li>-->
               <!--<li><%= link_to "Capa Padrão", admin_default_cover_path %></li>-->
@@ -29,34 +33,31 @@
               <li><%= link_to "Permissões", admin_permissions_path if current_user.admin? %></li>
               <li><%= link_to "Rotinas", admin_rules_path if current_user.admin? %></li>
               <li><%= link_to "Usuários", admin_users_path %></li>
-              <li><%= link_to "Manual", admin_manual_path if current_user.admin? %></li> 
+              <li><%= link_to "Manual", admin_manual_path if current_user.admin? %></li>
             </ul>
-          </div>
+          </nav>
         </div>
       </header>
 
       <%= flash_message %>
-      <section>
-        <div>
+      <main>
+        <div class="inner-wrap">
           <%= yield %>
         </div>
-      </section>
+      </main>
 
       <footer class="main-footer">
-        <div class="footer-top">
-          <ul class="nav">
-            <li></li>
-          </ul>
-        </div>
-        <div class="footer-bottom">
-          <%#= image_tag publisher_logo, :width => '130', :height => '130' %>
-          <%#= publisher_official_name %>
-          <%#= publisher_address_info %>
-          <div class="address">Rua Fradique Coutinho 1139, Subsolo CEP 05416-011 - São Paulo - SP Tel.: (11) 3097-8304</div>
-          <div class="copyright">Copyright © 2014, Hedra. <%= version_number%></div>
+        <div class="inner-wrap">
+          <div class="footer-bottom">
+            <div class="address">
+							SciELO - Scientific Electronic Library Online<br />
+							Av. Onze de Junho, 269 - Vila Clementino 04041-050 São Paulo SP - Brasil<br />
+							Tel.: (55 11) 5083-3639 - Email: scielo@scielo.org
+						</div>
+            <div class="copyright">Copyright © 2016, Hedra. <%= version_number%></div>
+          </div>
         </div>
       </footer>
-
     </div>
   </body>
 </html>
